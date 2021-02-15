@@ -2,11 +2,11 @@
   {{ if or (site.GetPage "terms.md") (site.GetPage "privacy.md") }}
   <p class="powered-by">
     {{ with site.GetPage "privacy.md" }}
-      {{ printf "<a href=\"%s\">%s</a>" .RelPermalink .Title | safeHTML }}
+    {{ printf "<a href=\"%s\">%s</a>" .RelPermalink .Title | safeHTML }}
     {{ end }}
     {{ with site.GetPage "terms.md" }}
-      {{ if site.GetPage "privacy.md" }} &middot; {{ end }}
-      {{ printf "<a href=\"%s\">%s</a>" .RelPermalink .Title | safeHTML }}
+    {{ if site.GetPage "privacy.md" }} &middot; {{ end }}
+    {{ printf "<a href=\"%s\">%s</a>" .RelPermalink .Title | safeHTML }}
     {{ end }}
   </p>
   {{ end }}
@@ -18,7 +18,7 @@
   {{/* Display copyright license. */}}
   {{ partial "site_footer_license" . }}
 
-  <p class="powered-by">
+  <!-- <p class="powered-by">
     {{ $is_sponsor := site.Params.i_am_a_sponsor | default false }}
     {{ $hide_published_with_footer := site.Params.power_ups.hide_published_with | default true }}
     {{ if not (and $is_sponsor $hide_published_with_footer) }}
@@ -27,5 +27,5 @@
     the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">
     open source</a> website builder that empowers creators.
     {{ end }}
-  </p>
+  </p> -->
 </footer>

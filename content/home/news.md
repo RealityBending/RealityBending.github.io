@@ -22,3 +22,5 @@ design:
   view: 3
   columns: "1"
 ---
+
+See all posts [**here**](/post).

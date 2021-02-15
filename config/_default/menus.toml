@@ -10,17 +10,17 @@
 
 [[main]]
   name = "News"
-  url = "post"
+  url = "#news"
   weight = 20
 
 [[main]]
   name = "People"
-  url = "people"
+  url = "#people"
   weight = 30
 
 [[main]]
   name = "Events"
-  url = "event"
+  url = "#event"
   weight = 40
 
 [[main]]
@@ -30,5 +30,5 @@
 
 [[main]]
   name = "Contact"
-  url = "contact"
+  url = "#contact"
   weight = 60
