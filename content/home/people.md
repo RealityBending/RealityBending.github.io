@@ -3,9 +3,11 @@ content:
   user_groups:
   - Principal Investigators
   - Researchers
+  - Associates
   - Grad Students
   - Administration
   - Visitors
+  - Close Collaborators
   - Alumni
 design:
   show_interests: false
@@ -13,7 +15,7 @@ design:
   show_social: true
 headless: true
 subtitle: null
-title: Meet the Team
+title: The REBEL Team
 weight: 68
 widget: people
 ---
