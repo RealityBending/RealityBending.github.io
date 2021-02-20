@@ -242,5 +242,21 @@
       <description></description>
     </item>
     
+    <item>
+      <title>NeuroKit</title>
+      <link>/project/neurokit/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/project/neurokit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pyllusion</title>
+      <link>/project/pyllusion/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/project/pyllusion/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>
