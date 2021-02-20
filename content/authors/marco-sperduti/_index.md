@@ -2,6 +2,7 @@
 authors:
 - Marco Sperduti
 bio: "Assistant professor of psychology at the Université de Paris."
+webpage: "[Marco Sperduti](https://www.researchgate.net/profile/Marco-Sperduti)"
 education: ""
 email: ""
 interests:
