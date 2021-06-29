@@ -1,0 +1,39 @@
+on:
+  push:
+     branches:
+       - main
+
+
+name: 🚀 Build and Deploy
+
+jobs:
+  build:
+    runs-on: macOS-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup R
+        uses: r-lib/actions/setup-r@master
+       
+      - name: Setup Pandoc
+        uses: r-lib/actions/setup-pandoc@v1
+
+      - name: Install rmarkdown, blogdown # might need knitr
+        run: Rscript -e 'install.packages(c("rmarkdown","blogdown"))'
+       
+      - name: Install hugo
+        run: Rscript -e 'blogdown::install_hugo("0.80.0")'
+ 
+      - name: Build site with blogdown
+        run: Rscript -e "blogdown::build_site()"
+ 
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: . # The folder the action should deploy.
+
+  
+
