@@ -11,7 +11,7 @@ featured: false
 image:
   caption: ''
   placement: 0
-title: "RBEL Logo Symbolism (Work in Progress)"
+title: "RBEL LOGO Symbolism (Work in Progress)"
 subtitle: "Can you guess all the hidden symbols and elements present in our logo?"
 summary: "Can you guess all the hidden symbols and elements present in our logo?"
 tags:
