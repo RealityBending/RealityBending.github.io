@@ -9,8 +9,8 @@ education:
     year: 2019
 email: ""
 interests:
-- Neurocognitive mechanisms underlying memory (especially false memories and confabulation), decision-making, and inhibitory control ​🕵️‍♂️​
-- Neural dysfunction and psychopathology
+- Neurocognitive mechanisms underlying memory (especially false memories and confabulation), decision-making, and inhibitory control
+- Modelling cognition in neurological and mental disorders
 - Forensic psychology
 - Climbing at a bouldering gym 🧗 and getting some kicks in at a football pitch ⚽
 name: "Zen J. Lau"
@@ -40,4 +40,4 @@ user_groups:
 - Researchers
 ---
 
-This is my first year dabbling in research after graduation has been a fruitful and exciting journey of GitHubbing, working on open-source softwares (NeuroKit2), learning to analyze neurophysiological signals, and exploring the amazing open-science community! :smile:
+I graduated from the University of Edinburgh with a Master of Arts (Honours) in Psychology with First Class Honours in 2019. I am broadly interested in clinical neuropsychology, specifically regarding the interplay of memory, decision-making, and emotional dysfunction in mental and neurological disorders. At Clinical Brain Lab, I work on projects investigating the cognitive neuroscience of deception and am also an avid contributor of several open-source softwares.
