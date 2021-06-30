@@ -7,7 +7,7 @@ on:
 name: 🚀 Build and Deploy
 
 jobs:
-  blogdown:
+  build:
     runs-on: macOS-latest
     steps:
       - name: Checkout
@@ -27,26 +27,7 @@ jobs:
  
       - name: Build site with blogdown
         run: Rscript -e "blogdown::build_site()"
-      
-      - name: Upload built
-        uses: actions/upload-artifact@v2
-        with:
-          name: docs
-          path: docs
  
-   deploy:
-    runs-on: macOS-latest
-    needs: blogdown
-    steps:
-      - name: Checkout
-        uses: actions/checkout@master
- 
-      - name: Download artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: docs
-          path: docs
-          
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
