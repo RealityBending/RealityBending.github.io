@@ -14,3 +14,24 @@
     
   </channel>
 </rss>
+>
+    </image>
+    
+    <item>
+      <title>2021 - Heart Rate Variability in Psychology: A Review of HRV Indices and an Analysis Tutorial</title>
+      <link>/publication/pham2021hrv/</link>
+      <pubDate>Wed, 09 Jun 2021 00:00:00 +0000</pubDate>
+      <guid>/publication/pham2021hrv/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>2021 - NeuroKit2: A Python toolbox for neurophysiological signal processing</title>
+      <link>/publication/makowski2021neurokit/</link>
+      <pubDate>Mon, 01 Feb 2021 00:00:00 +0000</pubDate>
+      <guid>/publication/makowski2021neurokit/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
