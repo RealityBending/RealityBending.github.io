@@ -11,7 +11,7 @@ featured: false
 image:
   caption: ''
   placement: 0
-title: "ReBeL Logo Symbolism"
+title: "The symbolism of the ReBeL logo"
 subtitle: "Can you guess all the hidden symbols and elements present in our logo?"
 summary: "Can you guess all the hidden symbols and elements present in our logo?"
 tags:
