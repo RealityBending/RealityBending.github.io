@@ -20,9 +20,11 @@ tags:
 - Reality Bending
 ---
 
-**Warning: Spoilers Ahead!**
+The Reality Bending logo includes several references to various concepts. Can you try to guess them?
 
-<br><br><br><br>
+Scroll below to see the full list.
+
+:point_down: :point_down: :point_down: :point_down: :point_down: :point_down: :point_down: :point_down:
 
 **Warning: Spoilers Ahead!**
 
@@ -62,7 +64,7 @@ Wizards are a powerful [archetype](https://susannabarlow.com/2021/03/26/understa
 
 ### Beard
 
-In Greco-Roman antiquity, the beard was seen as the defining feature of a philosopher (see the [Philsopher's beard](https://en.wikipedia.org/wiki/Beard#The_%22Philosopher's_beard%22) on wikipedia), expressing the idea that philosophy is no mere intellectual hobby but rather a way of life that, by definition, transforms every aspect of one's behavior (including one's shaving habits).
+In Greco-Roman antiquity, the beard was seen as the defining feature of a philosopher (see the [Philosopher's beard](https://en.wikipedia.org/wiki/Beard#The_%22Philosopher's_beard%22) on wikipedia), expressing the idea that philosophy is no mere intellectual hobby but rather a way of life that, by definition, transforms every aspect of one's behavior (including one's shaving habits).
 
 Show me your beard and I'll tell you what philosopher you are:
 - Cynics had long dirty beards to indicate their *"strict indifference to all external goods and social customs"*
@@ -77,9 +79,9 @@ Show me your beard and I'll tell you what philosopher you are:
 
 ### Eyepatch
 
-For anyone that knows a bit of mythology, a bearded figure with an eyepatch (or a missing eye) is known to represent [**Odin**](https://en.wikipedia.org/wiki/Odin), the chief deity of the norse pantheon. It is a very complex character, with a deeply ambivalent nature, but one of the important event is when Odin sacrificed one of his eyes in return for wisdom.
+For anyone that knows a bit of mythology, a bearded figure with an eyepatch (or a missing eye) is known to represent [**Odin**](https://en.wikipedia.org/wiki/Odin), the chief deity of the norse pantheon. It is a very complex character, with a deeply ambivalent nature, but one of the key moment of Odin's story is when he sacrifices one of his eyes in return for wisdom.
 
-Losing direct sight of the reality in return for knowledge of reality - here is an interesting act that we can discuss and interpret over some drinks :beer:.
+Losing direct sight of the reality in return for knowledge of reality - here is an interesting act that we can discuss and (over)interpret over some drinks :beer:
 
 <figure align="center">
     <img src='odin.jpg' width="90%" />
@@ -90,7 +92,7 @@ Losing direct sight of the reality in return for knowledge of reality - here is 
 
 ### Pipe
 
-The pipe refers to painting of the surrealist René Magritte. One of the common interpretation of the meaning of it is that it symbolizes the difference between the authentic thing (a real pipe) and its representation. This, we believe, is just one level that differentiates the real from the unreal...
+The pipe refers to painting of the surrealist René Magritte. One of the common interpretation suggests that it symbolizes the difference between the authentic thing (a real pipe) and its representation. This, we believe, is just one level that differentiates the real from the unreal...
 
 <figure align="center">
     <img src='pipe.jpg' width="90%" />
