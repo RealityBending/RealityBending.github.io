@@ -20,6 +20,9 @@
     <loc>https://realitybending.github.io/category/art/</loc>
     <lastmod>2021-06-30T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://realitybending.github.io/post/</loc>
+    <lastmod>2021-06-30T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://realitybending.github.io/categories/</loc>
     <lastmod>2021-06-30T00:00:00+00:00</lastmod>
   </url><url>
@@ -27,9 +30,6 @@
     <lastmod>2021-06-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://realitybending.github.io/tag/neuroscience/</loc>
-    <lastmod>2021-06-30T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://realitybending.github.io/post/</loc>
     <lastmod>2021-06-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://realitybending.github.io/tag/reality-bending/</loc>
@@ -125,6 +125,33 @@
     <loc>https://realitybending.github.io/post/2020-09-28-what_is_realitybending/</loc>
     <lastmod>2020-09-28T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://realitybending.github.io/tag/definition/</loc>
+    <lastmod>2020-09-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/epistemology/</loc>
+    <lastmod>2020-09-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/psychology/</loc>
+    <lastmod>2020-09-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/post/2020-09-13-what_is_neuropsychology/</loc>
+    <lastmod>2020-09-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/github/</loc>
+    <lastmod>2020-05-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/open-science/</loc>
+    <lastmod>2020-05-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/programming/</loc>
+    <lastmod>2020-05-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/psychologist/</loc>
+    <lastmod>2020-05-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/post/2020-05-27-github_psychologists/</loc>
+    <lastmod>2020-05-27T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://realitybending.github.io/post/2020-05-13-visual_illusions/</loc>
     <lastmod>2020-05-18T00:00:00+00:00</lastmod>
   </url><url>
@@ -142,6 +169,42 @@
   </url><url>
     <loc>https://realitybending.github.io/tag/visual-illusions/</loc>
     <lastmod>2020-05-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/artificial/</loc>
+    <lastmod>2019-05-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/biosignals/</loc>
+    <lastmod>2019-05-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/category/biosignals/</loc>
+    <lastmod>2019-05-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/ecg/</loc>
+    <lastmod>2019-05-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/ekg/</loc>
+    <lastmod>2019-05-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/post/2019-05-17-simulate_ecg/</loc>
+    <lastmod>2019-05-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/neurokit/</loc>
+    <lastmod>2019-05-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/category/neurokit/</loc>
+    <lastmod>2019-05-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/physiological/</loc>
+    <lastmod>2019-05-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/python/</loc>
+    <lastmod>2019-05-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/category/python/</loc>
+    <lastmod>2019-05-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/simulate/</loc>
+    <lastmod>2019-05-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://realitybending.github.io/publication/makowski2019phenomenal/</loc>
     <lastmod>2019-01-01T00:00:00+00:00</lastmod>
@@ -209,8 +272,6 @@
     <loc>https://realitybending.github.io/project/</loc>
   </url><url>
     <loc>https://realitybending.github.io/project/pyllusion/</loc>
-  </url><url>
-    <loc>https://realitybending.github.io/tag/python/</loc>
   </url><url>
     <loc>https://realitybending.github.io/authors/yoda/</loc>
   </url><url>
