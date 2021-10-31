@@ -116,14 +116,50 @@
     <loc>https://realitybending.github.io/post/2021-01-03-visual_agnosia/</loc>
     <lastmod>2021-01-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://realitybending.github.io/category/psychology/</loc>
-    <lastmod>2020-09-28T00:00:00+00:00</lastmod>
+    <loc>https://realitybending.github.io/tag/determinism/</loc>
+    <lastmod>2020-11-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/category/philosophy/</loc>
+    <lastmod>2020-11-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://realitybending.github.io/tag/reality/</loc>
+    <lastmod>2020-11-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/category/science-fiction/</loc>
+    <lastmod>2020-11-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/science-fiction/</loc>
+    <lastmod>2020-11-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/time/</loc>
+    <lastmod>2020-11-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/post/2020-11-13-time_computational_limit/</loc>
+    <lastmod>2020-11-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/transhumanism/</loc>
+    <lastmod>2020-11-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/category/psychology/</loc>
     <lastmod>2020-09-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://realitybending.github.io/post/2020-09-28-what_is_realitybending/</loc>
     <lastmod>2020-09-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/bayesian/</loc>
+    <lastmod>2020-09-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/post/2020-09-14-individual_scores/</loc>
+    <lastmod>2020-09-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/individual-scores/</loc>
+    <lastmod>2020-09-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/statistics/</loc>
+    <lastmod>2020-09-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/category/statistics/</loc>
+    <lastmod>2020-09-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://realitybending.github.io/tag/definition/</loc>
     <lastmod>2020-09-13T00:00:00+00:00</lastmod>
@@ -152,6 +188,75 @@
     <loc>https://realitybending.github.io/post/2020-05-27-github_psychologists/</loc>
     <lastmod>2020-05-27T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://realitybending.github.io/tag/best-language/</loc>
+    <lastmod>2020-05-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/language/</loc>
+    <lastmod>2020-05-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/python/</loc>
+    <lastmod>2020-05-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/category/python/</loc>
+    <lastmod>2020-05-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/post/2020-05-22-r_or_python/</loc>
+    <lastmod>2020-05-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/post/2020-05-18-analyze_rt/</loc>
+    <lastmod>2020-05-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/reaction-time/</loc>
+    <lastmod>2020-05-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/rt/</loc>
+    <lastmod>2020-05-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/buddhabrot/</loc>
+    <lastmod>2020-05-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/fractal/</loc>
+    <lastmod>2020-05-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/mandelbrot/</loc>
+    <lastmod>2020-05-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/neurokit/</loc>
+    <lastmod>2020-05-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/category/neurokit/</loc>
+    <lastmod>2020-05-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/post/2020-05-16-python_mandelbrot/</loc>
+    <lastmod>2020-05-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/ci/</loc>
+    <lastmod>2020-05-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/confidence-interval/</loc>
+    <lastmod>2020-05-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/credible-interval/</loc>
+    <lastmod>2020-05-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/post/2020-05-15-defence_ci95/</loc>
+    <lastmod>2020-05-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/bayes/</loc>
+    <lastmod>2020-05-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/bayestestr/</loc>
+    <lastmod>2020-05-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/post/2020-05-14-intro_bayestestr/</loc>
+    <lastmod>2020-05-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/stats/</loc>
+    <lastmod>2020-05-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/tutorial/</loc>
+    <lastmod>2020-05-14T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://realitybending.github.io/post/2020-05-13-visual_illusions/</loc>
     <lastmod>2020-05-18T00:00:00+00:00</lastmod>
   </url><url>
@@ -168,6 +273,27 @@
     <lastmod>2020-05-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://realitybending.github.io/tag/visual-illusions/</loc>
+    <lastmod>2020-05-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/academia/</loc>
+    <lastmod>2020-05-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/category/academia/</loc>
+    <lastmod>2020-05-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/academic-life/</loc>
+    <lastmod>2020-05-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/funny/</loc>
+    <lastmod>2020-05-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/memes/</loc>
+    <lastmod>2020-05-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/tag/research/</loc>
+    <lastmod>2020-05-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://realitybending.github.io/post/2020-05-12-funny_academic/</loc>
     <lastmod>2020-05-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://realitybending.github.io/tag/artificial/</loc>
@@ -188,19 +314,7 @@
     <loc>https://realitybending.github.io/post/2019-05-17-simulate_ecg/</loc>
     <lastmod>2019-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://realitybending.github.io/tag/neurokit/</loc>
-    <lastmod>2019-05-17T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://realitybending.github.io/category/neurokit/</loc>
-    <lastmod>2019-05-17T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://realitybending.github.io/tag/physiological/</loc>
-    <lastmod>2019-05-17T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://realitybending.github.io/tag/python/</loc>
-    <lastmod>2019-05-17T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://realitybending.github.io/category/python/</loc>
     <lastmod>2019-05-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://realitybending.github.io/tag/simulate/</loc>
