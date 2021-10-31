@@ -1,0 +1,35 @@
+# Navigation Links
+#   To link a homepage widget, specify the URL as a hash `#` followed by the filename of the
+#     desired widget in your `content/home/` folder.
+#   The weight parameter defines the order that the links will appear in.
+
+main:
+  # - name: Home
+  #   url: '#about'
+  #   weight: 10
+  # - name: Posts
+  #   url: '#posts'
+  #   weight: 20
+  - name: "People"
+    url: "#people"
+    weight: 30
+
+  - name: "Research"
+    url: "research"
+    weight: 40
+
+  - name: "GitHub"
+    url: "https://github.com/RealityBending"
+    weight: 50
+
+  - name: "Job Opportunities"
+    url: "https://github.com/RealityBending/jobs"
+    weight: 60
+
+  - name: "Onboarding"
+    url: "https://github.com/RealityBending/Onboarding"
+    weight: 70
+
+  - name: "Contact"
+    url: "#contact"
+    weight: 80

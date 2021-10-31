@@ -31,8 +31,6 @@ content:
     tag: Python
   - name: R
     tag: R
-  - name: JavaScript
-    tag: JavaScript
 
 design:
   # Choose how many columns the section has. Valid values: '1' or '2'.

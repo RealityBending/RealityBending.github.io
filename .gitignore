@@ -37,3 +37,12 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+
+# IDEs
+.idea/
+
+# Hugo
+/resources/
+public/
+jsconfig.json
+node_modules/

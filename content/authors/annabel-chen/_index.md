@@ -15,7 +15,7 @@ email: "annabelchen@ntu.edu.sg"
 organizations:
 - name: Nanyang Technological University
   url: ""
-role: Professor
+role: Head of the Clinical Bain Lab
 social:
 - icon: envelope
   icon_pack: fas

@@ -7,6 +7,9 @@ email: ""
 interests:
 - The Force
 - The Wookie
+education:
+  courses:
+  - course: The Force
 name: Yoda
 title: Yoda
 organizations:
@@ -18,3 +21,4 @@ user_groups:
 - Alumni
 ---
 
+**You must unlearn what you have learned.**

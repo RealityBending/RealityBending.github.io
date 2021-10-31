@@ -8,7 +8,7 @@ date: "2020-09-28T00:00:00Z"
 draft: false
 featured: false
 image:
-  caption: 'An actual picture of a reality bender reading some papers on the topic.'
+  # caption: 'An actual picture of a reality bender reading some papers on the topic.'
   placement: 0
 title: 'What is Reality Bending?'
 subtitle: ''
@@ -62,6 +62,6 @@ Naturally, states in which our sense of reality is distorted (as compared to the
 
 ---
 
-*Thanks for reading! Do not hesitate to tweet and share this post, and leave a comment below* :hugs:
+*Thanks for reading! Don't forget to join me on Twitter* [@Dom_Makowski](https://twitter.com/Dom_Makowski) :hugs:
 
-🐦 *Don't forget to join me on Twitter* [@Dom_Makowski](https://twitter.com/Dom_Makowski)
+

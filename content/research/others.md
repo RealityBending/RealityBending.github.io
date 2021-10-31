@@ -19,7 +19,7 @@ design:
   columns: "1"
   background:
     image: vanitas.jpg
-    image_darken: 0.666
+    image_darken: 0.50
     image_parallax: true
     image_position: center
     image_size: cover

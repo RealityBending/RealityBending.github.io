@@ -8,6 +8,12 @@ interests:
 - Appa
 - Katara
 - Mommo
+education:
+  courses:
+  - course: Fire
+  - course: Earth
+  - course: Water
+  - course: Earth
 name: Aang
 title: Aang
 organizations:
@@ -19,3 +25,4 @@ user_groups:
 - Alumni
 ---
 
+**When We Hit Our Lowest Point, We Are Open To The Greatest Change.**

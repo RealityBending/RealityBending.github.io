@@ -27,6 +27,6 @@ social:
   link: https://www.researchgate.net/profile/Marco_Sperduti
 superuser: false
 user_groups:
-- Associates
+- Close Collaborators
 ---
 

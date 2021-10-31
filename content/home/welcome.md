@@ -6,7 +6,7 @@
 widget: hero  # See https://wowchemy.com/docs/page-builder/
 headless: true  # This file represents a page section.
 weight: 10  # Order that this section will appear.
-title: "Reality Bending League"
+title: "**Re**ality **Be**nding **L**eague"
 subtitle: ""
 hero_media: Maggrix.png
 design:

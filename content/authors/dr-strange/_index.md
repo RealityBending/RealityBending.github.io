@@ -7,6 +7,11 @@ email: ""
 interests:
 - Bargaining
 - Capes
+education:
+  courses:
+  - course: Mystic Arts
+  - course: PhD
+  - course: MD
 name: Dr Strange
 title: Dr Strange
 organizations:
@@ -18,3 +23,4 @@ user_groups:
 - Alumni
 ---
 
+**Dormammu, I've Come To Bargain.**

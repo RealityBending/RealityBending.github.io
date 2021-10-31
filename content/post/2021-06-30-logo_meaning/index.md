@@ -11,7 +11,7 @@ featured: false
 image:
   caption: ''
   placement: 0
-title: "The symbolism of the ReBeL logo"
+title: "The symbolism behind the ReBeL logo"
 subtitle: "Can you guess all the hidden symbols and elements present in our logo?"
 summary: "Can you guess all the hidden symbols and elements present in our logo?"
 tags:
@@ -20,31 +20,26 @@ tags:
 - Reality Bending
 ---
 
-The Reality Bending logo includes several references to various concepts. Can you try to guess them?
-
-Scroll below to see the full list.
+The Reality Bending logo includes several references to various concepts. **Can you try to guess them?**
 
 :point_down: :point_down: :point_down: :point_down: :point_down: :point_down: :point_down: :point_down:
 
-**Warning: Spoilers Ahead!**
+
+<figure align="center">
+    <img src='spoiler_alert.jpg' width="90%" />
+</figure>
+
+<!-- **.**
 
 <br><br><br><br>
 
-**Warning: Spoilers Ahead!**
+**.**
 
 <br><br><br><br>
 
-**Warning: Spoilers Ahead!**
+**.**
 
-<br><br><br><br>
-
-**Warning: Spoilers Ahead!**
-
-<br><br><br><br>
-
-**Warning: Spoilers Ahead!**
-
-<br><br><br><br>
+<br><br><br><br> -->
 
 
 ### Wizard
@@ -122,12 +117,4 @@ Incidentally, it is also the symbol of the *Makowski* family (which names refers
     <figcaption>The Makowski's Poppy Flower.</figcaption>
 </figure>
 
-Did you spot any more :smirk:? Let us know in the comments below :point_down:
-
-
----
-
-
-*Thanks for reading! Do not hesitate to tweet and share this post and don't forget to join me on Twitter* 🐦 [@Dom_Makowski](https://twitter.com/Dom_Makowski)
-
-
+Did you spot any more :smirk:? Let us know!

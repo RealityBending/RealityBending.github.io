@@ -16,7 +16,7 @@ content:
   # Page type to display. E.g. post, talk, publication...
   page_type: publication
   # Choose how much pages you would like to display (0 = all pages)
-  count: 3
+  count: 5
   # Choose how many pages you would like to offset by
   offset: 0
   # Page order: descending (desc) or ascending (asc) date.
@@ -35,9 +35,8 @@ design:
   #   3 = Card
   #   4 = Citation (publication only)
   view: 2
-  columns: "1"
 ---
-<!--
-{{% callout note %}}
+
+<!-- {{% callout note %}}
 See all publications by [**here**](./publication/).
 {{% /callout %}} -->

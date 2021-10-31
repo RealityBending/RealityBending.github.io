@@ -56,10 +56,10 @@ user_groups:
 Check-out my [**personal website**](https://dominiquemakowski.github.io/) to access my CV, publications, blog and more!
 {{% /callout %}}
 
-
+<!--
 Trained as neuropsychologist, CBT psychotherapist <sub><sup>(*and* [***others***](https://dominiquemakowski.github.io/cv/#titles-and-licenses))</sup></sub>, I am currently a researcher at the [**Clinical Brain Lab**](http://www.clinicalbrain.org/) in Singapore under the [Presidential Postdoc Fellowship](https://www.ntu.edu.sg/tracs/ppf/Pages/home_PPF.aspx), working (mainly) on the neuroscience of deception :smirk:.
 
  I'm fluent in French, English, Polish, Python, and currently learning Italian. My main figures of reference are
-Marcus Aurelius, Hannibal Lecter and Yoda. My interests include scientific methodology, history of art and religion, as well as philosophy. My research focuses on aspects of [**reality bending**](research/) (e.g., fiction, deception or altered states of consciousness such as through meditation or immersion).
+Marcus Aurelius, Hannibal Lecter and Yoda. My interests include scientific methodology, history of art and religion, as well as philosophy. My research focuses on aspects of [**reality bending**](research/) (e.g., fiction, deception or altered states of consciousness such as through meditation or immersion). -->
 
 <!-- {{< icon name="download" pack="fas" >}} Download my {{< staticref "media/demo_resume.pdf" "newtab" >}}resumé{{< /staticref >}}. -->
