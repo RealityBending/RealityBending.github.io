@@ -1,0 +1,3 @@
+User-agent: *
+
+Sitemap: https://realitybending.github.io/sitemap.xml
