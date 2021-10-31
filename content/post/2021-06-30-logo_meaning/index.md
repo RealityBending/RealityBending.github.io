@@ -79,9 +79,9 @@ Show me your beard and I'll tell you what philosopher you are:
 
 ### Eyepatch
 
-For anyone that knows a bit of mythology, a bearded figure with an eyepatch (or a missing eye) is known to represent [**Odin**](https://en.wikipedia.org/wiki/Odin), the chief deity of the norse pantheon. It is a very complex character, with a deeply ambivalent nature, but one of the key moment of Odin's story is when he sacrifices one of his eyes in return for wisdom.
+For any mythology fan, a bearded figure with an eyepatch (or a missing eye) is known to represent [**Odin**](https://en.wikipedia.org/wiki/Odin), the chief deity of the norse pantheon. He's a very complex character, with a deeply ambivalent nature. One of the key moment of Odin's story is when he sacrifices one of his eyes in return for wisdom...
 
-Losing direct sight of the reality in return for knowledge of reality - here is an interesting act that we can discuss and (over)interpret over some drinks :beer:
+Losing *direct sight* of reality in return for a **deeper knowledge** of reality - here is an interesting idea that we can discuss and (over)interpret with some drinks :beer:
 
 <figure align="center">
     <img src='odin.jpg' width="90%" />
@@ -92,7 +92,7 @@ Losing direct sight of the reality in return for knowledge of reality - here is 
 
 ### Pipe
 
-The pipe refers to painting of the surrealist René Magritte. One of the common interpretation suggests that it symbolizes the difference between the authentic thing (a real pipe) and its representation. This, we believe, is just one level that differentiates the real from the unreal...
+The pipe refers to the most famous painting of the surrealist René Magritte. One of the common interpretation suggests that it symbolizes the difference between the authentic thing (a real pipe) and its representation. This, we believe, is just one level that differentiates the real from the unreal...
 
 <figure align="center">
     <img src='pipe.jpg' width="90%" />
