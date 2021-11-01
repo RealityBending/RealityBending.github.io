@@ -5,28 +5,12 @@
     <link>https://realitybending.github.io/authors/tam-pham/</link>
       <atom:link href="https://realitybending.github.io/authors/tam-pham/index.xml" rel="self" type="application/rss+xml" />
     <description>Tam Pham</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© Reality Bending Lab</copyright><lastBuildDate>Wed, 09 Jun 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© Reality Bending Lab</copyright>
     <image>
       <url>https://realitybending.github.io/authors/tam-pham/avatar_huf920988c617520b1fa586712264df567_167550_270x270_fill_q75_lanczos_center.jpg</url>
       <title>Tam Pham</title>
       <link>https://realitybending.github.io/authors/tam-pham/</link>
     </image>
-    
-    <item>
-      <title>2021 - Heart Rate Variability in Psychology: A Review of HRV Indices and an Analysis Tutorial</title>
-      <link>https://realitybending.github.io/publication/pham2021hrv/</link>
-      <pubDate>Wed, 09 Jun 2021 00:00:00 +0000</pubDate>
-      <guid>https://realitybending.github.io/publication/pham2021hrv/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>2021 - NeuroKit2: A Python toolbox for neurophysiological signal processing</title>
-      <link>https://realitybending.github.io/publication/makowski2021neurokit/</link>
-      <pubDate>Mon, 01 Feb 2021 00:00:00 +0000</pubDate>
-      <guid>https://realitybending.github.io/publication/makowski2021neurokit/</guid>
-      <description></description>
-    </item>
     
   </channel>
 </rss>

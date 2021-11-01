@@ -127,14 +127,6 @@
     </item>
     
     <item>
-      <title>2021 - Heart Rate Variability in Psychology: A Review of HRV Indices and an Analysis Tutorial</title>
-      <link>https://realitybending.github.io/publication/pham2021hrv/</link>
-      <pubDate>Wed, 09 Jun 2021 00:00:00 +0000</pubDate>
-      <guid>https://realitybending.github.io/publication/pham2021hrv/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>How to share data analysis scripts with publications?</title>
       <link>https://realitybending.github.io/post/2021-02-10-template_results/</link>
       <pubDate>Wed, 10 Feb 2021 00:00:00 +0000</pubDate>
@@ -162,14 +154,6 @@
 &lt;p&gt;&lt;em&gt;Thanks for reading! Do not hesitate to tweet and share this post, and leave a comment below&lt;/em&gt; 🤗&lt;/p&gt;
 &lt;p&gt;🐦 &lt;em&gt;Don&amp;rsquo;t forget to join me on Twitter&lt;/em&gt; &lt;a href=&#34;https://twitter.com/Dom_Makowski&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;@Dom_Makowski&lt;/a&gt;&lt;/p&gt;
 </description>
-    </item>
-    
-    <item>
-      <title>2021 - NeuroKit2: A Python toolbox for neurophysiological signal processing</title>
-      <link>https://realitybending.github.io/publication/makowski2021neurokit/</link>
-      <pubDate>Mon, 01 Feb 2021 00:00:00 +0000</pubDate>
-      <guid>https://realitybending.github.io/publication/makowski2021neurokit/</guid>
-      <description></description>
     </item>
     
     <item>
@@ -1273,30 +1257,6 @@ nk.signal_plot(simulated_ecg, sampling_rate=200)
     </item>
     
     <item>
-      <title>2019 - Phenomenal, bodily and brain correlates of fictional reappraisal as an implicit emotion regulation strategy</title>
-      <link>https://realitybending.github.io/publication/makowski2019phenomenal/</link>
-      <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
-      <guid>https://realitybending.github.io/publication/makowski2019phenomenal/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>2017 - &#34;Being there&#34; and remembering it: Presence improves memory encoding</title>
-      <link>https://realitybending.github.io/publication/makowski2017being/</link>
-      <pubDate>Fri, 01 Sep 2017 00:00:00 +0000</pubDate>
-      <guid>https://realitybending.github.io/publication/makowski2017being/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>2017 - The distinctive role of executive functions in implicit emotion regulation</title>
-      <link>https://realitybending.github.io/publication/sperduti2017distinctive/</link>
-      <pubDate>Fri, 01 Sep 2017 00:00:00 +0000</pubDate>
-      <guid>https://realitybending.github.io/publication/sperduti2017distinctive/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>How virtual embodiment affects episodic memory functioning: a proof-of-concept study</title>
       <link>https://realitybending.github.io/publication/tuena2017virtual/</link>
       <pubDate>Fri, 01 Sep 2017 00:00:00 +0000</pubDate>
@@ -1310,33 +1270,6 @@ nk.signal_plot(simulated_ecg, sampling_rate=200)
       <pubDate>Fri, 01 Sep 2017 00:00:00 +0000</pubDate>
       <guid>https://realitybending.github.io/publication/sperduti2017meditation/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>2016 - The paradox of fiction: Emotional response toward fiction and the modulatory role of self-relevance</title>
-      <link>https://realitybending.github.io/publication/sperduti2016paradox/</link>
-      <pubDate>Thu, 01 Sep 2016 00:00:00 +0000</pubDate>
-      <guid>https://realitybending.github.io/publication/sperduti2016paradox/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>An example conference paper</title>
-      <link>https://realitybending.github.io/publication/example/</link>
-      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
-      <guid>https://realitybending.github.io/publication/example/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Create your slides in Markdown - click the &lt;em&gt;Slides&lt;/em&gt; button to check out the example.
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Supplementary notes can be added here, including &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code, math, and images&lt;/a&gt;.&lt;/p&gt;
-</description>
     </item>
     
     <item>
