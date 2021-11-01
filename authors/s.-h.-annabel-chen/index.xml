@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>S. H. Annabel Chen | Reality Bending League</title>
+    <link>https://realitybending.github.io/authors/s.-h.-annabel-chen/</link>
+      <atom:link href="https://realitybending.github.io/authors/s.-h.-annabel-chen/index.xml" rel="self" type="application/rss+xml" />
+    <description>S. H. Annabel Chen</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© Reality Bending Lab</copyright><lastBuildDate>Wed, 09 Jun 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://realitybending.github.io/media/icon_hu4309a21d8025289c373d006715f07fcc_32610_512x512_fill_lanczos_center_3.png</url>
+      <title>S. H. Annabel Chen</title>
+      <link>https://realitybending.github.io/authors/s.-h.-annabel-chen/</link>
+    </image>
+    
+    <item>
+      <title>Heart Rate Variability in Psychology: A Review of HRV Indices and an Analysis Tutorial</title>
+      <link>https://realitybending.github.io/publication/pham2021hrv/</link>
+      <pubDate>Wed, 09 Jun 2021 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/publication/pham2021hrv/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>The Structure of Deception: Validation of the Lying Profile Questionnaire</title>
+      <link>https://realitybending.github.io/publication/makowski2021structure/</link>
+      <pubDate>Thu, 22 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/publication/makowski2021structure/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
