@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Philippe Blondé | Reality Bending League</title>
+    <link>https://realitybending.github.io/authors/philippe-blonde/</link>
+      <atom:link href="https://realitybending.github.io/authors/philippe-blonde/index.xml" rel="self" type="application/rss+xml" />
+    <description>Philippe Blondé</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© Reality Bending Lab</copyright><lastBuildDate>Fri, 01 Sep 2017 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://realitybending.github.io/media/icon_hu4309a21d8025289c373d006715f07fcc_32610_512x512_fill_lanczos_center_3.png</url>
+      <title>Philippe Blondé</title>
+      <link>https://realitybending.github.io/authors/philippe-blonde/</link>
+    </image>
+    
+    <item>
+      <title>Meditation and successful aging: can meditative practices counteract age-related cognitive decline?</title>
+      <link>https://realitybending.github.io/publication/sperduti2017meditation/</link>
+      <pubDate>Fri, 01 Sep 2017 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/publication/sperduti2017meditation/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

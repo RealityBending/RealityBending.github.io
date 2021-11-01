@@ -1297,11 +1297,46 @@ nk.signal_plot(simulated_ecg, sampling_rate=200)
     </item>
     
     <item>
+      <title>How virtual embodiment affects episodic memory functioning: a proof-of-concept study</title>
+      <link>https://realitybending.github.io/publication/tuena2017virtual/</link>
+      <pubDate>Fri, 01 Sep 2017 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/publication/tuena2017virtual/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Meditation and successful aging: can meditative practices counteract age-related cognitive decline?</title>
+      <link>https://realitybending.github.io/publication/sperduti2017meditation/</link>
+      <pubDate>Fri, 01 Sep 2017 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/publication/sperduti2017meditation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>2016 - The paradox of fiction: Emotional response toward fiction and the modulatory role of self-relevance</title>
       <link>https://realitybending.github.io/publication/sperduti2016paradox/</link>
       <pubDate>Thu, 01 Sep 2016 00:00:00 +0000</pubDate>
       <guid>https://realitybending.github.io/publication/sperduti2016paradox/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>An example conference paper</title>
+      <link>https://realitybending.github.io/publication/example/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/publication/example/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Create your slides in Markdown - click the &lt;em&gt;Slides&lt;/em&gt; button to check out the example.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Supplementary notes can be added here, including &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code, math, and images&lt;/a&gt;.&lt;/p&gt;
+</description>
     </item>
     
     <item>
