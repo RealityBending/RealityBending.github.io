@@ -18,8 +18,15 @@ jobs:
       - name: Setup Pandoc
         uses: r-lib/actions/setup-pandoc@v1
 
-      - name: Install rmarkdown, blogdown
-        run: Rscript -e 'install.packages(c("rmarkdown","blogdown"))'
+      - name: Install rmarkdown and blogdown
+        run: Rscript -e 'install.packages(c("rmarkdown","blogdown", "remotes"))'
+
+      # The following can be delted after blogdown 1.6 is on CRAN ---
+      - name: Get development version of blogdown
+        run: |
+          remotes::install_github("rstudio/blogdown")
+        shell: Rscript {0}
+      # --------------------------------------------------------------
 
       - name: Install hugo
         run: Rscript -e 'blogdown::install_hugo()'
