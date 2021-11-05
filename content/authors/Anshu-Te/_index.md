@@ -1,8 +1,8 @@
 ---
 authors:
-- Te An Shu
+- An-Shu Te
 
-bio: An Shu is currently a Research Assistant at Clinical Brain Lab. She is working on the neuroscience of deception.
+bio: An-Shu is currently a Research Assistant at Clinical Brain Lab. She is working on the neuroscience of deception.
 
 
 education:
@@ -37,7 +37,7 @@ social:
 
 superuser: false
 
-title: Te An Shu
+title: An-Shu Te
 user_groups:
 - Researchers
 
