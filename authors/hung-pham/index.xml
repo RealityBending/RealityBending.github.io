@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hung Pham | Reality Bending League</title>
+    <link>https://realitybending.github.io/authors/hung-pham/</link>
+      <atom:link href="https://realitybending.github.io/authors/hung-pham/index.xml" rel="self" type="application/rss+xml" />
+    <description>Hung Pham</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© Reality Bending Lab</copyright><lastBuildDate>Mon, 01 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://realitybending.github.io/media/icon_hu4309a21d8025289c373d006715f07fcc_32610_512x512_fill_lanczos_center_3.png</url>
+      <title>Hung Pham</title>
+      <link>https://realitybending.github.io/authors/hung-pham/</link>
+    </image>
+    
+    <item>
+      <title>NeuroKit2: A Python toolbox for neurophysiological signal processing</title>
+      <link>https://realitybending.github.io/publication/makowski2021neurokit/</link>
+      <pubDate>Mon, 01 Feb 2021 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/publication/makowski2021neurokit/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
