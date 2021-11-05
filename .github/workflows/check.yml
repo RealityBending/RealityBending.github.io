@@ -23,9 +23,7 @@ jobs:
 
       # The following can be delted after blogdown 1.6 is on CRAN ---
       - name: Get development version of blogdown
-        run: |
-          remotes::install_github("rstudio/blogdown")
-        shell: Rscript {0}
+        run: Rscript -e 'remotes::install_github("rstudio/blogdown")'
       # --------------------------------------------------------------
 
       - name: Install hugo
