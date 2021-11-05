@@ -1,6 +1,6 @@
 ---
 authors:
-- Te An Shu 
+- Te An Shu
 
 bio: An Shu is currently a Research Assistant at Clinical Brain Lab. She is working on the neuroscience of deception.
 
@@ -14,13 +14,13 @@ education:
 email: "anshu.te@ntu.edu.sg"
 interests:
 - Clinical Psychology (Dysfunctions in Emotional Regulatory Processes and Self-Control)
-- Psychology of Trauma and associated psychosomatic symptoms 
-- Mindfulness-Based Approaches to Eating Disorders 
+- Psychology of Trauma and associated psychosomatic symptoms
+- Mindfulness-Based Approaches to Eating Disorders
 
 organizations:
 - name: Nanyang Technological University
   url: ""
-role: Research Assistant 
+role: Research Assistant
 social:
 - icon: envelope
   icon_pack: fas
@@ -37,11 +37,11 @@ social:
 
 superuser: false
 
-title: Te An Shu 
+title: Te An Shu
 user_groups:
-- Research Assistants
+- RResearchers
 
 ---
 
-An Shu graduated from University of Singapore with a Bachelor of Arts (Honours) in Psychology with First Class Honours in 2019. Her research interests lie in Clinical Psychology, particulary with regards to dysfunctions in emotion regulatory and cognitive control processes in children. 
+An Shu graduated from University of Singapore with a Bachelor of Arts (Honours) in Psychology with First Class Honours in 2019. Her research interests lie in Clinical Psychology, particulary with regards to dysfunctions in emotion regulatory and cognitive control processes in children.
 She also has a keen interest in studying specific disorders such as Post-Traumatic Stress Disorder, Eating Disorders and Personality Disorders.
