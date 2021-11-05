@@ -1,9 +1,9 @@
 on:
-  push:
+  pull_request:
      branches:
        - main
 
-name: 🚀 Build and Deploy
+name: 📦 Check build
 
 jobs:
   build:
@@ -22,16 +22,7 @@ jobs:
         run: Rscript -e 'install.packages(c("rmarkdown","blogdown"))'
 
       - name: Install hugo
-        run: Rscript -e 'blogdown::install_hugo('0.88.1')'
+        run: Rscript -e 'blogdown::install_hugo()'
 
       - name: Build site with blogdown
         run: Rscript -e "blogdown::build_site()"
-
-      - name: Deploy 🚀
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
-
-
-
