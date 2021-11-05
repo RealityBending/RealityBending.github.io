@@ -29,7 +29,7 @@ social:
   icon_pack: fab
   link: https://twitter.com/anshu_te97
 - icon: researchgate
-  icon_pack: ai
+  icon_pack: fab
   link: https://www.researchgate.net/profile/An_Shu_Te
 - icon: github
   icon_pack: fab
@@ -43,5 +43,5 @@ user_groups:
 
 ---
 
-An Shu graduated from University of Singapore with a Bachelor of Arts (Honours) in Psychology with First Class Honours in 2019. Her research interests lie in Clinical Psychology, particulary with regards to dysfunctions in emotion regulatory and cognitive control processes in children.
+An Shu graduated from University of Singapore with a Bachelor of Arts (Honours) in Psychology with First Class Honours in 2019. Her research interests lie in Clinical Psychology, particularly with regards to dysfunctions in emotion regulatory and cognitive control processes in children.
 She also has a keen interest in studying specific disorders such as Post-Traumatic Stress Disorder, Eating Disorders and Personality Disorders.
