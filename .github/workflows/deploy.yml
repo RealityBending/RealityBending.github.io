@@ -25,12 +25,12 @@ jobs:
         run: Rscript -e 'install.packages(c("rmarkdown","blogdown", "remotes"))'
 
       # The following can be delted after blogdown 1.6 is on CRAN ---
-      - name: Get development version of blogdown
-        run: Rscript -e 'remotes::install_github("rstudio/blogdown")'
+      # - name: Get development version of blogdown
+      #   run: Rscript -e 'remotes::install_github("rstudio/blogdown")'
       # --------------------------------------------------------------
 
       - name: Install hugo
-        run: Rscript -e 'blogdown::install_hugo()'
+        run: Rscript -e 'blogdown::install_hugo("0.88.1")'
 
       - name: Build site with blogdown
         run: Rscript -e "blogdown::build_site()"
