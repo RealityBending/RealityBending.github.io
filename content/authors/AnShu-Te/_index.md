@@ -39,7 +39,7 @@ superuser: false
 
 title: Te An Shu
 user_groups:
-- RResearchers
+- Researchers
 
 ---
 
