@@ -19,7 +19,7 @@ design:
   columns: "1"
   background:
     image: brain.jpg
-    image_darken: 0.50
+    image_darken: 0.33
     image_parallax: true
     image_position: center
     image_size: cover
