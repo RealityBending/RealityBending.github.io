@@ -1,18 +1,19 @@
 ---
 authors:
-- Zen Juen
+- zen-juen
 categories:
 - Python
+- EEG
 - Psychology
-date: "2020-05-22T00:00:00Z"
+date: "2021-11-12T00:00:00Z"
 draft: false
 featured: false
 image:
   caption: ''
   placement: 0
-title: 'NeuroKit2 0.1.5 is out!'
-subtitle: 'Greater support for complexity analysis of neurophysiological signals'
-summary: 'Greater support for complexity analysis of neurophysiological signals'
+title: "NeuroKit2 0.1.5 ('Complexity Measures') is out 🎉"
+subtitle: 'NeuroKit2 0.1.5 is out with greater support for complexity analysis of neurophysiological signals'
+summary: 'NeuroKit2 0.1.5 is out with greater support for complexity analysis of neurophysiological signals'
 tags:
 - NeuroKit2
 - Python
@@ -22,17 +23,26 @@ tags:
 - Entropy
 - Lyapunov Exponents
 - Neurophysiology
-- Programming
 - Psychology
-- Methodology
 ---
 
 ## NeuroKit2 0.1.5 is out! 🎉
 
-In the [latest 0.1.5 release](https://github.com/neuropsychology/NeuroKit/releases/tag/v0.1.5) of *NeuroKit2*, our team has fixed several bugs in existing functionalities and in particular, expanded the support for computing complexity indices of neurophysiological signals. We added multiple new indices, including lyapunov exponents, hurst exponents, coalition entropy, and permutation Lempel-Ziv complexity to name a few!
+In the [latest 0.1.5 release](https://github.com/neuropsychology/NeuroKit/releases/tag/v0.1.5) of ***NeuroKit2***, our team has fixed several bugs in existing functionalities and in particular, overhauled the support for computing **complexity measures** of neurophysiological signals. We added a ton of new indices of **entropy** and **fractal dimensions**, including:
 
-Of course, the *NeuroKit2* Python package also includes tons of other useful features primarily devoted at physiological signal processing, which you can find out more about [**here**](https://github.com/neuropsychology/NeuroKit#quick-example)!
+- Petrosian's, Katz's and Sevcik fractal dimension
+- Differential, Permutation, Spectral, SVD entropy
+- Fisher information
+- Hjorth's and Lempel-Ziv's complexity
+- Relative Roughness
+- Hurst and Lyapunov exponent(s)
+- Detrended Fluctuation Analysis (as well as MFDFA)
+- ...
+
+You can compute them all using the new `nk.complexity()` function!
 
 To understand more about complexity science, we recommend reading our [preprint](https://github.com/neuropsychology/NeuroKit), which introduces the theoretical (and mathematical) meanings of complexity and reviews the existing studies of complexity analysis across multiple fields of psychology.
 
-Watch our repo to keep a look out for more complexity functionalities coming up! :eyes:
+Of course, the [*NeuroKit2* Python package](https://github.com/neuropsychology/NeuroKit) also includes tons of other useful features for physiological signal processing (see this [**quick example**](https://github.com/neuropsychology/NeuroKit#quick-example))!
+
+Don't forget to watch our repo to keep a look out for more complexity functionalities coming up! :eyes:
