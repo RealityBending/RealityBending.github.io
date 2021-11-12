@@ -30,6 +30,16 @@
 &lt;li&gt;&amp;hellip;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;You can compute them all using the new &lt;code&gt;nk.complexity()&lt;/code&gt; function!&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import neurokit2 as nk
+
+signal = nk.signal_simulate(frequency=[5, 6], noise=0.5)
+
+results, info = nk.complexity(signal, which=&amp;quot;fast&amp;quot;)
+results
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;  DiffEn       FI    Hjorth       KFD  PEn  ...      PFD        RR       SFD
+1.536573  0.01524  1.355543  4.720953  1.0  ... 1.017423  1.638357  1.691036
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;To understand more about complexity science, we recommend reading our &lt;a href=&#34;https://github.com/neuropsychology/NeuroKit&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;preprint&lt;/a&gt;, which introduces the theoretical (and mathematical) meanings of complexity and reviews the existing studies of complexity analysis across multiple fields of psychology.&lt;/p&gt;
 &lt;p&gt;Of course, the &lt;a href=&#34;https://github.com/neuropsychology/NeuroKit&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;NeuroKit2&lt;/em&gt; Python package&lt;/a&gt; also includes tons of other useful features for physiological signal processing (see this &lt;a href=&#34;https://github.com/neuropsychology/NeuroKit#quick-example&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;quick example&lt;/strong&gt;&lt;/a&gt;)!&lt;/p&gt;
 &lt;p&gt;Don&amp;rsquo;t forget to watch our repo to keep a look out for more complexity functionalities coming up! 👀&lt;/p&gt;
