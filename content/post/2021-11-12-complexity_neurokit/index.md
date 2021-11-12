@@ -41,6 +41,19 @@ In the [latest 0.1.5 release](https://github.com/neuropsychology/NeuroKit/releas
 
 You can compute them all using the new `nk.complexity()` function!
 
+```python
+import neurokit2 as nk
+
+signal = nk.signal_simulate(frequency=[5, 6], noise=0.5)
+
+results, info = nk.complexity(signal, which="fast")
+results
+```
+```
+  DiffEn       FI    Hjorth       KFD  PEn  ...      PFD        RR       SFD
+1.536573  0.01524  1.355543  4.720953  1.0  ... 1.017423  1.638357  1.691036
+```
+
 To understand more about complexity science, we recommend reading our [preprint](https://github.com/neuropsychology/NeuroKit), which introduces the theoretical (and mathematical) meanings of complexity and reviews the existing studies of complexity analysis across multiple fields of psychology.
 
 Of course, the [*NeuroKit2* Python package](https://github.com/neuropsychology/NeuroKit) also includes tons of other useful features for physiological signal processing (see this [**quick example**](https://github.com/neuropsychology/NeuroKit#quick-example))!
