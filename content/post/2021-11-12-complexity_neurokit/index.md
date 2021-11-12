@@ -11,7 +11,7 @@ featured: false
 image:
   caption: ''
   placement: 0
-title: "NeuroKit2 0.1.5 ('Complexity Measures') is out 🎉"
+title: "NeuroKit2 0.1.5 'Complexity' is out 🎉"
 subtitle: 'NeuroKit2 0.1.5 is out with greater support for complexity analysis of neurophysiological signals'
 summary: 'NeuroKit2 0.1.5 is out with greater support for complexity analysis of neurophysiological signals'
 tags:
