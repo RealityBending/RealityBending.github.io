@@ -1,7 +1,7 @@
 ---
 authors:
 - "Zen J. Lau"
-bio: "Short bio."
+bio: "Currently a Project Officer at Clinical Brain Lab (Singapore) working on the neuroscience of deception."
 education:
   courses:
   - course: M.A. (Hons) Psychology
