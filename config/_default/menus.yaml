@@ -16,7 +16,7 @@ main:
     weight: 40
 
   - name: Blog
-    url: '#posts'
+    url: 'post/'
     weight: 50
 
   - name: Publications
@@ -27,7 +27,7 @@ main:
     url: "https://github.com/RealityBending/jobs"
     weight: 70
 
-  - name: "<i class=\"fab fa-github\"; font-size: 1rem; line-height: 1.25\"></i>""
+  - name: "<i class=\"fab fa-github\"; font-size: 1rem; line-height: 1.25\"></i>"
     url: "https://github.com/RealityBending"
     weight: 80
 
