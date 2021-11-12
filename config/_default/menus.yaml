@@ -24,13 +24,14 @@ main:
     weight: 60
 
   - name: "Job Opportunities"
-    url: "https://github.com/RealityBending/jobs"
+    url: "https://github.com/RealityBending/jobs#work-with-us-"
     weight: 70
-
-  - name: "<i class=\"fab fa-github\"; font-size: 1rem; line-height: 1.25\"></i>"
-    url: "https://github.com/RealityBending"
-    weight: 80
 
   - name: "Contact"
     url: "#contact"
+    weight: 80
+
+  - name: "<i class=\"fab fa-github\"; font-size: 1rem; line-height: 1.25\"></i>"
+    url: "https://github.com/RealityBending"
     weight: 90
+
