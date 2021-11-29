@@ -5,12 +5,20 @@
     <link>https://realitybending.github.io/authors/dominique-makowski/</link>
       <atom:link href="https://realitybending.github.io/authors/dominique-makowski/index.xml" rel="self" type="application/rss+xml" />
     <description>Dominique Makowski</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© Reality Bending Lab</copyright><lastBuildDate>Fri, 05 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© Reality Bending Lab</copyright><lastBuildDate>Mon, 29 Nov 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://realitybending.github.io/authors/dominique-makowski/avatar_hu8ec970fed8493c9666eb1aeeafcfd774_2053074_270x270_fill_lanczos_center_3.png</url>
       <title>Dominique Makowski</title>
       <link>https://realitybending.github.io/authors/dominique-makowski/</link>
     </image>
+    
+    <item>
+      <title>A Parametric Framework to Generate Visual Illusions Using Python</title>
+      <link>https://realitybending.github.io/publication/makowski2021parametric/</link>
+      <pubDate>Mon, 29 Nov 2021 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/publication/makowski2021parametric/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>&#34;Your sample is too small&#34;: How to Answer to Reviewers</title>
@@ -1198,7 +1206,7 @@ plt.show()
 &lt;script async src=&#34;https://platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
 
 &lt;hr&gt;
-&lt;blockquote class=&#34;twitter-tweet&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;For my upcoming 2-day R workshop. &lt;a href=&#34;https://t.co/cJjmqi2aLp&#34;&gt;pic.twitter.com/cJjmqi2aLp&lt;/a&gt;&lt;/p&gt;&amp;mdash; Darren Dahly, PhD FML WTF JFC STFU LOL (@statsepi) &lt;a href=&#34;https://twitter.com/statsepi/status/795574223439876100?ref_src=twsrc%5Etfw&#34;&gt;November 7, 2016&lt;/a&gt;&lt;/blockquote&gt;
+&lt;blockquote class=&#34;twitter-tweet&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;For my upcoming 2-day R workshop. &lt;a href=&#34;https://t.co/cJjmqi2aLp&#34;&gt;pic.twitter.com/cJjmqi2aLp&lt;/a&gt;&lt;/p&gt;&amp;mdash; Darren Dahly (@statsepi) &lt;a href=&#34;https://twitter.com/statsepi/status/795574223439876100?ref_src=twsrc%5Etfw&#34;&gt;November 7, 2016&lt;/a&gt;&lt;/blockquote&gt;
 &lt;script async src=&#34;https://platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
 
 &lt;hr&gt;
