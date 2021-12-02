@@ -4,10 +4,19 @@ jobs:
   tweet:
     runs-on: ubuntu-latest
     steps:
-      - uses: ethomson/send-tweet-action@main
+      - name: Tweet
+        id: tweet
+        uses: snow-actions/tweet@v1.1.1
+        env:
+          CONSUMER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+          CONSUMER_API_SECRET_KEY: ${{ secrets.TWITTER_API_SECRET_KEY }}
+          ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
         with:
-          status: "Hellow reality benders, this is an automated test tweet!"
-          consumer-key: ${{ secrets.TWITTER_API_KEY }}
-          consumer-secret: ${{ secrets.TWITTER_API_SECRET_KEY }}
-          access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-          access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+          status: |
+            Hello Reality Benders! This is a test automated tweet!
+          # media_paths: |
+          #   1st.png
+          #   2nd.png
+
+      - run: echo ${{ steps.tweet.outputs.response }}
