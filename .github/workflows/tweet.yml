@@ -1,22 +1,24 @@
-name: 🐦 Tweet
-on: [push]
-jobs:
-  tweet:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Tweet
-        id: tweet
-        uses: snow-actions/tweet@v1.1.1
-        env:
-          CONSUMER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
-          CONSUMER_API_SECRET_KEY: ${{ secrets.TWITTER_API_SECRET_KEY }}
-          ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-          ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
-        with:
-          status: |
-            Hello Reality Benders! This is a test automated tweet!
-          # media_paths: |
-          #   1st.png
-          #   2nd.png
+# Waiting for https://github.com/ethomson/send-tweet-action/issues/19 to be fixed
 
-      - run: echo ${{ steps.tweet.outputs.response }}
+# name: 🐦 Tweet
+# on: [push]
+# jobs:
+#   tweet:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Tweet
+#         id: tweet
+#         uses: snow-actions/tweet@main
+#         env:
+#           CONSUMER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+#           CONSUMER_API_SECRET_KEY: ${{ secrets.TWITTER_API_SECRET_KEY }}
+#           ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+#           ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+#         with:
+#           status: |
+#             Hello Reality Benders! This is a test automated tweet!
+#           # media_paths: |
+#           #   1st.png
+#           #   2nd.png
+
+#       - run: echo ${{ steps.tweet.outputs.response }}
