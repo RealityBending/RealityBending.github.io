@@ -19,4 +19,4 @@ advanced:
 
 Exploring the neuropsychology of reality and its distortions
 
-<sub>We're a small team led by [Dominique Makowski](https://dominiquemakowski.github.io/) within the [Clinical Brain Lab](http://www.clinicalbrain.org/) in Singapore. We research reality perception, fake news, illusions, fiction, deception, self-control, and more, using EEG and physiological signals. We also develop open-source tools and software.</sub>
+<sub>We're a small team led by [Dominique Makowski](https://dominiquemakowski.github.io/) within the [Clinical Brain Lab](http://www.clinicalbrain.org/) in Singapore. We research reality perception, fake news, illusions, fiction, deception, self-control, and more, using EEG and physiological signals. We also develop [open-source tools](https://github.com/RealityBending) and software.</sub>
