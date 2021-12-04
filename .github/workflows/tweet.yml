@@ -13,7 +13,7 @@ jobs:
           TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
         with:
           tweet-message: |
-            Hello Reality Benders! This is a test automated tweet!
+            Hello Reality Benders! This is a test tweet!
           # media_paths: |
           #   1st.png
           #   2nd.png
