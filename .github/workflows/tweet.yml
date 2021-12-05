@@ -67,7 +67,7 @@ jobs:
       - name: Check Tweet
         run: |
           echo "- TITLE: $TWEET_MESSAGE"
-          echo "- TITLE VIA ENV: ${{ env.TWEET_MESSAGE }}
+          echo "- TITLE VIA ENV: ${{ env.TWEET_MESSAGE }}"
       # =========================
       # Create Tweet
       # =========================
