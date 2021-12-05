@@ -17,4 +17,4 @@ tags:
 - Automated
 ---
 
-This is a test post. I am testing the automated dissemination of new blog posts through the power of GitHub actions.
+This is a test post. I am testing the automated dissemination of new blog posts through the power of GitHub actions. Test 1.
