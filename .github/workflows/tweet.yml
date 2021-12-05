@@ -22,6 +22,7 @@ jobs:
             # echo "- $file"
             if [[ "$file" == *"/post/"*"/index.md" ]];then
               echo "- POST FOUND: $file"
+              echo "- POST ADDRESS: $(basename $(dirname $file))"
               while IFS= read -r line; do
                 if [[ "$line" == "title: "* ]];then
                   echo "TITLE: '$line'"
@@ -43,16 +44,16 @@ jobs:
           echo "Author: $POST_AUTHOR"
           if [[ "$POST_AUTHOR" == '"Dominique Makowski"' ]];then
             echo "Author is DM"
-            echo "AUTHOR='by @Dom_Makowski'" >> $GITHUB_ENV
+            echo "AUTHOR=by @Dom_Makowski" >> $GITHUB_ENV
           else
             echo "!! No author found !!"
-            echo "AUTHOR=''" >> $GITHUB_ENV
+            echo "AUTHOR=" >> $GITHUB_ENV
           fi
           echo "- TITLE: $POST_TITLE"
           echo "TWEET_MESSAGE=$POST_TITLE by $AUTHOR" >> $GITHUB_ENV
       - name: Prepare Tweet Message
         run: |
-          echo "TWEET_MESSAGE=$POST_TITLE by $AUTHOR" >> $GITHUB_ENV
+          echo "TWEET_MESSAGE=$POST_TITLE $AUTHOR" >> $GITHUB_ENV
       - name: Check Tweet
         run: |
           echo "- TITLE: $TWEET_MESSAGE"
