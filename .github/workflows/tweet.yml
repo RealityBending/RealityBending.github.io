@@ -4,6 +4,14 @@ jobs:
   tweet:
     runs-on: ubuntu-latest
     steps:
+      # =========================
+      # Query the modified files
+      # =========================
+      name: Test changed-files
+      steps:
+        - uses: actions/checkout@v2
+          with:
+            fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@main
@@ -14,6 +22,9 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_modified_files }}; do
             echo "- $file"
           done
+        # =========================
+        # Create Tweet
+        # =========================
       - name: Tweet it!
         uses: Eomm/why-don-t-you-tweet@v1.0.0
         env:
