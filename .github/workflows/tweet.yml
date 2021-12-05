@@ -23,8 +23,10 @@ jobs:
             if [[ "$file" == *"/post/"*"/index.md" ]];then
               printf '!!! Found: %s\n' "$file"
               while IFS= read -r line; do
-                if [[ "$line" == *"title: "* ]];then
-                  echo "TITLE: $line"
+                if [[ "$line" == "title: "* ]];then
+                  echo "LINE: $line"
+                  title=${line/#title: }
+                  echo "TITLE: $title"
                 fi
               done < "$file"
             fi
