@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Twitter | Reality Bending League</title>
+    <link>https://realitybending.github.io/tag/twitter/</link>
+      <atom:link href="https://realitybending.github.io/tag/twitter/index.xml" rel="self" type="application/rss+xml" />
+    <description>Twitter</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© Reality Bending Lab</copyright><lastBuildDate>Sun, 05 Dec 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://realitybending.github.io/media/icon_hu16abe3bad5b6aa5209d3453d04c49f6a_46145_512x512_fill_lanczos_center_3.png</url>
+      <title>Twitter</title>
+      <link>https://realitybending.github.io/tag/twitter/</link>
+    </image>
+    
+    <item>
+      <title>This is a test post</title>
+      <link>https://realitybending.github.io/post/2021-12-05-autotweet/</link>
+      <pubDate>Sun, 05 Dec 2021 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/post/2021-12-05-autotweet/</guid>
+      <description>&lt;p&gt;Blablabla something something test test 1 2 3 check mic.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

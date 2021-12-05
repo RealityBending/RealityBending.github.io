@@ -5,12 +5,21 @@
     <link>https://realitybending.github.io/authors/dominique-makowski/</link>
       <atom:link href="https://realitybending.github.io/authors/dominique-makowski/index.xml" rel="self" type="application/rss+xml" />
     <description>Dominique Makowski</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© Reality Bending Lab</copyright><lastBuildDate>Wed, 01 Dec 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© Reality Bending Lab</copyright><lastBuildDate>Sun, 05 Dec 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://realitybending.github.io/authors/dominique-makowski/avatar_hu8ec970fed8493c9666eb1aeeafcfd774_2053074_270x270_fill_lanczos_center_3.png</url>
       <title>Dominique Makowski</title>
       <link>https://realitybending.github.io/authors/dominique-makowski/</link>
     </image>
+    
+    <item>
+      <title>This is a test post</title>
+      <link>https://realitybending.github.io/post/2021-12-05-autotweet/</link>
+      <pubDate>Sun, 05 Dec 2021 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/post/2021-12-05-autotweet/</guid>
+      <description>&lt;p&gt;Blablabla something something test test 1 2 3 check mic.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>We&#39;re recruiting a Research Assistant!</title>
