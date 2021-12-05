@@ -24,7 +24,7 @@ jobs:
               echo "- POST FOUND: $file"
               while IFS= read -r line; do
                 if [[ "$line" == "title: "* ]];then
-                  echo "LINE: $line"
+                  echo "LINE: '$line'"
                   echo POST_TITLE=${line/#title: } >> $GITHUB_ENV
                   # echo "- TITLE: $POST_TITLE"
                 fi
@@ -35,7 +35,7 @@ jobs:
       - name: Print context
         run: |
           # env
-          echo "- TITLE: $env.POST_TITLE"
+          echo "- TITLE: ${{ env.POST_TITLE }}"
         # =========================
         # Create Tweet
         # =========================
