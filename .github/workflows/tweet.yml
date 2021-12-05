@@ -40,7 +40,7 @@ jobs:
           echo "Prepare Message"
           echo "================"
           echo "$POST_AUTHOR"
-          if [[ "${{ env.POST_AUTHOR }}" == "Dominique Makowski" ]];then
+          if [[ "$POST_AUTHOR" == "Dominique Makowski" ]];then
             echo "Yes!"
              # echo "AUTHOR='by @Dom_Makowski'" >> $GITHUB_ENV
           else
@@ -48,8 +48,8 @@ jobs:
              # echo "AUTHOR=''" >> $GITHUB_ENV
           fi
           # echo "- AUTHOR: $AUTHOR"
-          echo "TWEET_MESSAGE=${{ env.POST_TITLE }}" >> $GITHUB_ENV
-          echo "- TITLE: ${{ env.TWEET_MESSAGE }}"
+          echo "TWEET_MESSAGE=$POST_TITLE" >> $GITHUB_ENV
+          echo "- TITLE: $TWEET_MESSAGE"
           env
         # =========================
         # Create Tweet
