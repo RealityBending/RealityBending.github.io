@@ -3,6 +3,8 @@ on: [push]
 jobs:
   tweet:
     runs-on: ubuntu-latest
+    env:
+      POST_TITLE: ''  # Initialize empty post title
     steps:
       # =========================
       # Query the modified files
@@ -19,13 +21,13 @@ jobs:
           echo "Modified files:"
           echo "================"
           for file in ${{ steps.changed-files.outputs.all_modified_files }}; do
-            echo "- $file"
+            # echo "- $file"
             if [[ "$file" == *"/post/"*"/index.md" ]];then
-              printf '!!! Found: %s\n' "$file"
+              echo "!!! POST FILE FOUND !!!"
               while IFS= read -r line; do
                 if [[ "$line" == "title: "* ]];then
-                  echo "LINE: $line"
-                  title=${line/#title: }
+                  # echo "LINE: $line"
+                  echo title=${line/#title: } >> $GITHUB_ENV
                   echo "TITLE: $title"
                 fi
               done < "$file"
