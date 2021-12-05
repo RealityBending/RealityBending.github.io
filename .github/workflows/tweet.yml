@@ -35,22 +35,25 @@ jobs:
             fi
           done
           echo "================"
-      - name: Prepare Tweet Message
+      # =========================
+      # Process Tweet Content
+      # =========================
+      - name: Prepare Author
         run: |
-          echo "Prepare Message"
-          echo "================"
-          echo "$POST_AUTHOR"
+          echo "Author: $POST_AUTHOR"
           if [[ "$POST_AUTHOR" == '"Dominique Makowski"' ]];then
-            echo "Yes!"
-             echo "AUTHOR='by @Dom_Makowski'" >> $GITHUB_ENV
+            echo "Author is DM"
+            echo "AUTHOR='by @Dom_Makowski'" >> $GITHUB_ENV
           else
-            echo "No!"
-             echo "AUTHOR=''" >> $GITHUB_ENV
+            echo "!! No author found !!"
+            echo "AUTHOR=''" >> $GITHUB_ENV
           fi
-          # echo "- AUTHOR: $AUTHOR"
           echo "- TITLE: $POST_TITLE"
           echo "TWEET_MESSAGE=$POST_TITLE by $AUTHOR" >> $GITHUB_ENV
-      - name: Check Tweet Message
+      - name: Prepare Tweet Message
+        run: |
+          echo "TWEET_MESSAGE=$POST_TITLE by $AUTHOR" >> $GITHUB_ENV
+      - name: Check Tweet
         run: |
           echo "- TITLE: $TWEET_MESSAGE"
           env
