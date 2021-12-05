@@ -3,8 +3,6 @@ on: [push]
 jobs:
   tweet:
     runs-on: ubuntu-latest
-    env:
-      POST_TITLE: ''  # Initialize empty post title
     steps:
       # =========================
       # Query the modified files
@@ -27,8 +25,9 @@ jobs:
               while IFS= read -r line; do
                 if [[ "$line" == "title: "* ]];then
                   # echo "LINE: $line"
-                  echo title=${line/#title: } >> $GITHUB_ENV
-                  echo "TITLE: $title"
+                  echo POST_TITLE=${line/#title: } >> $GITHUB_ENV
+                  echo "- TITLE: $POST_TITLE"
+                  echo "- TITLE: env.POST_TITLE"
                 fi
               done < "$file"
             fi
@@ -36,8 +35,6 @@ jobs:
           echo "================"
       - name: Print context
         run: |
-          echo "$GITHUB_CONTEXT"
-          echo "================"
           env
         # =========================
         # Create Tweet
