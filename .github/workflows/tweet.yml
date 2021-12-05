@@ -37,9 +37,14 @@ jobs:
           echo "================"
       - name: Prepare Tweet Message
         run: |
-          echo "- AUTHOR: ${{ env.POST_AUTHOR }}"
-          echo "TWEET_MESSAGE=${{ env.POST_TITLE }} by ..." >> $GITHUB_ENV
+          author=""
+          if [[ "${{ env.POST_AUTHOR }}" == "Dominique Makowski" ]];then
+            author="by @Dom_Makowski"
+          fi
+          echo "- AUTHOR: $author"
+          echo "TWEET_MESSAGE=${{ env.POST_TITLE }}" >> $GITHUB_ENV
           echo "- TITLE: ${{ env.TWEET_MESSAGE }}"
+          env
         # =========================
         # Create Tweet
         # =========================
