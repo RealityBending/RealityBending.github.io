@@ -1,5 +1,14 @@
 name: 🐦 Tweet
-on: [push]
+# on: [push]
+
+# Only trigger, when the build workflow succeeded
+on:
+  workflow_run:
+    workflows: ["🚀 Build and Deploy"]
+    types:
+      - completed
+
+
 jobs:
   tweet:
     runs-on: ubuntu-latest
@@ -58,22 +67,21 @@ jobs:
       - name: Check Tweet
         run: |
           echo "- TITLE: $TWEET_MESSAGE"
-          env
-        # =========================
-        # Create Tweet
-        # =========================
-      # - name: Tweet it!
-      #   uses: Eomm/why-don-t-you-tweet@v1.0.0
-      #   env:
-      #     TWITTER_CONSUMER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
-      #     TWITTER_CONSUMER_API_SECRET: ${{ secrets.TWITTER_API_SECRET_KEY }}
-      #     TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-      #     TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
-      #   with:
-      #     tweet-message: |
-      #       Hello Reality Benders! This is a test tweet!
-      #     # media_paths: |
-      #     #   1st.png
-      #     #   2nd.png
+      # =========================
+      # Create Tweet
+      # =========================
+      - name: Tweet it!
+        uses: Eomm/why-don-t-you-tweet@v1.0.0
+        env:
+          TWITTER_CONSUMER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+          TWITTER_CONSUMER_API_SECRET: ${{ secrets.TWITTER_API_SECRET_KEY }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+        with:
+          tweet-message: |
+            $TWEET_MESSAGE
+          # media_paths: |
+          #   1st.png
+          #   2nd.png
 
-      # - run: echo ${{ steps.tweet.outputs.response }}
+      - run: echo ${{ steps.tweet.outputs.response }}

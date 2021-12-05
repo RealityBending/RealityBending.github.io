@@ -17,4 +17,4 @@ tags:
 - Automated
 ---
 
-Blablabla something something test test 1 2 3 check mic. modified 21
+This is a test post. I am testing the automated dissemination of new blog posts through the power of GitHub actions.
