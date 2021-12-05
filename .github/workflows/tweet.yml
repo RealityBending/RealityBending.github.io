@@ -42,14 +42,14 @@ jobs:
           echo "$POST_AUTHOR"
           if [[ "$POST_AUTHOR" == '"Dominique Makowski"' ]];then
             echo "Yes!"
-             # echo "AUTHOR='by @Dom_Makowski'" >> $GITHUB_ENV
+             echo "AUTHOR='by @Dom_Makowski'" >> $GITHUB_ENV
           else
             echo "No!"
-             # echo "AUTHOR=''" >> $GITHUB_ENV
+             echo "AUTHOR=''" >> $GITHUB_ENV
           fi
           # echo "- AUTHOR: $AUTHOR"
           echo "- TITLE: $POST_TITLE"
-          echo "TWEET_MESSAGE=$POST_TITLE" >> $GITHUB_ENV
+          echo "TWEET_MESSAGE=$POST_TITLE by $AUTHOR" >> $GITHUB_ENV
       - name: Check Tweet Message
         run: |
           echo "- TITLE: $TWEET_MESSAGE"
