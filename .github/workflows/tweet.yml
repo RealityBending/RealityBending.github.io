@@ -22,7 +22,8 @@ jobs:
             # echo "- $file"
             if [[ "$file" == *"/post/"*"/index.md" ]];then
               echo "- POST FOUND: $file"
-              echo "- POST ADDRESS: $(basename $(dirname $file))"
+              echo "- POST NAME: $(basename $(dirname $file))"
+              echo POST_NAME=$(basename $(dirname $file)) >> $GITHUB_ENV
               while IFS= read -r line; do
                 if [[ "$line" == "title: "* ]];then
                   echo "TITLE: '$line'"
@@ -53,7 +54,7 @@ jobs:
           echo "TWEET_MESSAGE=$POST_TITLE by $AUTHOR" >> $GITHUB_ENV
       - name: Prepare Tweet Message
         run: |
-          echo "TWEET_MESSAGE=$POST_TITLE $AUTHOR" >> $GITHUB_ENV
+          echo "TWEET_MESSAGE=$POST_TITLE $AUTHOR  https://realitybending.github.io/post/$POST_NAME" >> $GITHUB_ENV
       - name: Check Tweet
         run: |
           echo "- TITLE: $TWEET_MESSAGE"
