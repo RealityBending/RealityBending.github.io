@@ -20,7 +20,7 @@ jobs:
           echo "================"
           for file in ${{ steps.changed-files.outputs.all_modified_files }}; do
             echo "- $file"
-            if [[ "$file" == *"/post/*/index.md"* ]];then
+            if [[ "$file" == *"/post/"*"/index.md" ]];then
               printf 'Found: %s\n' "$file"
             fi
           done
