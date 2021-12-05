@@ -24,18 +24,22 @@ jobs:
               echo "- POST FOUND: $file"
               while IFS= read -r line; do
                 if [[ "$line" == "title: "* ]];then
-                  echo "LINE: '$line'"
+                  echo "TITLE: '$line'"
                   echo POST_TITLE=${line/#title: } >> $GITHUB_ENV
-                  # echo "- TITLE: $POST_TITLE"
+                fi
+                if [[ "$line" == "authors: "* ]];then
+                  echo "AUTHOR: '$line'"
+                  echo POST_AUTHOR=${line/#authors: } >> $GITHUB_ENV
                 fi
               done < "$file"
             fi
           done
           echo "================"
-      - name: Print context
+      - name: Prepare Tweet Message
         run: |
-          # env
-          echo "- TITLE: ${{ env.POST_TITLE }}"
+          echo "- AUTHOR: ${{ env.POST_AUTHOR }}"
+          echo "TWEET_MESSAGE=${{ env.POST_TITLE }} by ..." >> $GITHUB_ENV
+          echo "- TITLE: ${{ env.TWEET_MESSAGE }}"
         # =========================
         # Create Tweet
         # =========================

@@ -1,6 +1,5 @@
 ---
-authors:
-- Dominique Makowski
+authors: "Dominique Makowski"
 categories:
 - Reproducibility
 date: "2021-12-05T00:00:00Z"
@@ -18,4 +17,4 @@ tags:
 - Automated
 ---
 
-Blablabla something something test test 1 2 3 check mic. modified 11
+Blablabla something something test test 1 2 3 check mic. modified 12
