@@ -23,7 +23,7 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_modified_files }}; do
             # echo "- $file"
             if [[ "$file" == *"/post/"*"/index.md" ]];then
-              echo "!!! POST FILE FOUND !!!"
+              echo "- POST FOUND: $file"
               while IFS= read -r line; do
                 if [[ "$line" == "title: "* ]];then
                   # echo "LINE: $line"
@@ -34,6 +34,11 @@ jobs:
             fi
           done
           echo "================"
+      - name: Print context
+        run: |
+          echo "$GITHUB_CONTEXT"
+          echo "================"
+          env
         # =========================
         # Create Tweet
         # =========================
