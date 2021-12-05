@@ -21,9 +21,11 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_modified_files }}; do
             echo "- $file"
             if [[ "$file" == *"/post/"*"/index.md" ]];then
-              printf '!! Found: %s\n' "$file"
+              printf '!!! Found: %s\n' "$file"
               while IFS= read -r line; do
-                echo "Text read from file: $line"
+                if [[ "$line" == *"title: "* ]];then
+                  echo "TITLE: $line"
+                fi
               done < "$file"
             fi
           done
