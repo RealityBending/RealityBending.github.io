@@ -67,7 +67,6 @@ jobs:
       - name: Check Tweet
         run: |
           echo "- TITLE: $TWEET_MESSAGE"
-          echo "- TITLE VIA ENV: ${{ env.TWEET_MESSAGE }}"
       # =========================
       # Create Tweet
       # =========================
@@ -78,10 +77,9 @@ jobs:
           TWITTER_CONSUMER_API_SECRET: ${{ secrets.TWITTER_API_SECRET_KEY }}
           TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
           TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
-          # TWEET_MESSAGE: $TWEET_MESSAGE
         with:
           tweet-message: |
-            This is a test tweet. ${{ env.TWEET_MESSAGE }}
+            ${{ env.TWEET_MESSAGE }}
           # media_paths: |
           #   1st.png
           #   2nd.png
