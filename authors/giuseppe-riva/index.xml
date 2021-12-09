@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Giuseppe Riva | Reality Bending League</title>
+    <link>https://realitybending.github.io/authors/giuseppe-riva/</link>
+      <atom:link href="https://realitybending.github.io/authors/giuseppe-riva/index.xml" rel="self" type="application/rss+xml" />
+    <description>Giuseppe Riva</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© Reality Bending Lab</copyright><lastBuildDate>Fri, 01 Sep 2017 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://realitybending.github.io/media/icon_hu16abe3bad5b6aa5209d3453d04c49f6a_46145_512x512_fill_lanczos_center_3.png</url>
+      <title>Giuseppe Riva</title>
+      <link>https://realitybending.github.io/authors/giuseppe-riva/</link>
+    </image>
+    
+    <item>
+      <title>How virtual embodiment affects episodic memory functioning: a proof-of-concept study</title>
+      <link>https://realitybending.github.io/publication/tuena2017virtual/</link>
+      <pubDate>Fri, 01 Sep 2017 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/publication/tuena2017virtual/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
