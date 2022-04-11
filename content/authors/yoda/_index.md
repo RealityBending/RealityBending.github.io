@@ -18,7 +18,7 @@ organizations:
 role: Jedi Master
 superuser: false
 user_groups:
-- Alumni
+- Consultants
 ---
 
 **You must unlearn what you have learned.**
