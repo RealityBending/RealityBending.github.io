@@ -38,7 +38,7 @@ social:
   link: https://github.com/Tam-Pham
 superuser: false
 user_groups:
-- Researchers
+- Alumni
 ---
 
 I graduated from Nanyang Technological University with a BA (Hons) Highest Distinction in Psychology in 2018 and has since been doing research on neurophysiological basis of deception.

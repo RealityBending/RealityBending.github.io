@@ -20,7 +20,7 @@ organizations:
 role: Sorcerer Supreme
 superuser: false
 user_groups:
-- Alumni
+- Consultants
 ---
 
 **Dormammu, I've Come To Bargain.**

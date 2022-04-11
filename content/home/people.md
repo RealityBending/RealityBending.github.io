@@ -8,6 +8,7 @@ content:
   - Administration
   - Visitors
   - Close Collaborators
+  - Consultants
   - Alumni
 design:
   show_interests: false

@@ -22,7 +22,7 @@ organizations:
 role: Fully Realized Avatar
 superuser: false
 user_groups:
-- Alumni
+- Consultants
 ---
 
 **When We Hit Our Lowest Point, We Are Open To The Greatest Change.**
