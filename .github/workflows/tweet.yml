@@ -1,87 +1,87 @@
-name: 🐦 Tweet
-# on: [push]
+# name: 🐦 Tweet
+# # on: [push]
 
-# Only trigger, when the build workflow succeeded
-on:
-  workflow_run:
-    workflows: ["🚀 Build and Deploy"]
-    types:
-      - completed
+# # Only trigger, when the build workflow succeeded
+# on:
+#   workflow_run:
+#     workflows: ["🚀 Build and Deploy"]
+#     types:
+#       - completed
 
 
-jobs:
-  tweet:
-    runs-on: ubuntu-latest
-    steps:
-      # =========================
-      # Query the modified files
-      # =========================
-      - name: Check-out
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@main
-      - name: List all modified files
-        run: |
-          echo "Modified files:"
-          echo "================"
-          for file in ${{ steps.changed-files.outputs.all_modified_files }}; do
-            # echo "- $file"
-            if [[ "$file" == *"/post/"*"/index.md" ]];then
-              echo "- POST FOUND: $file"
-              echo "- POST NAME: $(basename $(dirname $file))"
-              echo POST_NAME=$(basename $(dirname $file)) >> $GITHUB_ENV
-              while IFS= read -r line; do
-                if [[ "$line" == "title: "* ]];then
-                  echo "TITLE: '$line'"
-                  echo POST_TITLE=${line/#title: } >> $GITHUB_ENV
-                fi
-                if [[ "$line" == "authors: "* ]];then
-                  echo "AUTHOR: '$line'"
-                  echo POST_AUTHOR=${line/#authors: } >> $GITHUB_ENV
-                fi
-              done < "$file"
-            fi
-          done
-          echo "================"
-      # =========================
-      # Process Tweet Content
-      # =========================
-      - name: Prepare Author
-        run: |
-          echo "Author: $POST_AUTHOR"
-          if [[ "$POST_AUTHOR" == '"Dominique Makowski"' ]];then
-            echo "Author is DM"
-            echo "AUTHOR=by @Dom_Makowski" >> $GITHUB_ENV
-          else
-            echo "!! No author found !!"
-            echo "AUTHOR=" >> $GITHUB_ENV
-          fi
-          echo "- TITLE: $POST_TITLE"
-          echo "TWEET_MESSAGE=$POST_TITLE by $AUTHOR" >> $GITHUB_ENV
-      - name: Prepare Tweet Message
-        run: |
-          echo "TWEET_MESSAGE=$POST_TITLE $AUTHOR  https://realitybending.github.io/post/$POST_NAME" >> $GITHUB_ENV
-      - name: Check Tweet
-        run: |
-          echo "- TITLE: $TWEET_MESSAGE"
-      # =========================
-      # Create Tweet
-      # =========================
-      - name: Tweet it!
-        uses: Eomm/why-don-t-you-tweet@v1.0.0
-        env:
-          TWITTER_CONSUMER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
-          TWITTER_CONSUMER_API_SECRET: ${{ secrets.TWITTER_API_SECRET_KEY }}
-          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
-        with:
-          tweet-message: |
-            ${{ env.TWEET_MESSAGE }}
-          # media_paths: |
-          #   1st.png
-          #   2nd.png
+# jobs:
+#   tweet:
+#     runs-on: ubuntu-latest
+#     steps:
+#       # =========================
+#       # Query the modified files
+#       # =========================
+#       - name: Check-out
+#         uses: actions/checkout@v2
+#         with:
+#           fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
+#       - name: Get changed files
+#         id: changed-files
+#         uses: tj-actions/changed-files@main
+#       - name: List all modified files
+#         run: |
+#           echo "Modified files:"
+#           echo "================"
+#           for file in ${{ steps.changed-files.outputs.all_modified_files }}; do
+#             # echo "- $file"
+#             if [[ "$file" == *"/post/"*"/index.md" ]];then
+#               echo "- POST FOUND: $file"
+#               echo "- POST NAME: $(basename $(dirname $file))"
+#               echo POST_NAME=$(basename $(dirname $file)) >> $GITHUB_ENV
+#               while IFS= read -r line; do
+#                 if [[ "$line" == "title: "* ]];then
+#                   echo "TITLE: '$line'"
+#                   echo POST_TITLE=${line/#title: } >> $GITHUB_ENV
+#                 fi
+#                 if [[ "$line" == "authors: "* ]];then
+#                   echo "AUTHOR: '$line'"
+#                   echo POST_AUTHOR=${line/#authors: } >> $GITHUB_ENV
+#                 fi
+#               done < "$file"
+#             fi
+#           done
+#           echo "================"
+#       # =========================
+#       # Process Tweet Content
+#       # =========================
+#       - name: Prepare Author
+#         run: |
+#           echo "Author: $POST_AUTHOR"
+#           if [[ "$POST_AUTHOR" == '"Dominique Makowski"' ]];then
+#             echo "Author is DM"
+#             echo "AUTHOR=by @Dom_Makowski" >> $GITHUB_ENV
+#           else
+#             echo "!! No author found !!"
+#             echo "AUTHOR=" >> $GITHUB_ENV
+#           fi
+#           echo "- TITLE: $POST_TITLE"
+#           echo "TWEET_MESSAGE=$POST_TITLE by $AUTHOR" >> $GITHUB_ENV
+#       - name: Prepare Tweet Message
+#         run: |
+#           echo "TWEET_MESSAGE=$POST_TITLE $AUTHOR  https://realitybending.github.io/post/$POST_NAME" >> $GITHUB_ENV
+#       - name: Check Tweet
+#         run: |
+#           echo "- TITLE: $TWEET_MESSAGE"
+#       # =========================
+#       # Create Tweet
+#       # =========================
+#       - name: Tweet it!
+#         uses: Eomm/why-don-t-you-tweet@v1.0.0
+#         env:
+#           TWITTER_CONSUMER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+#           TWITTER_CONSUMER_API_SECRET: ${{ secrets.TWITTER_API_SECRET_KEY }}
+#           TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+#           TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+#         with:
+#           tweet-message: |
+#             ${{ env.TWEET_MESSAGE }}
+#           # media_paths: |
+#           #   1st.png
+#           #   2nd.png
 
-      - run: echo ${{ steps.tweet.outputs.response }}
+#       - run: echo ${{ steps.tweet.outputs.response }}
