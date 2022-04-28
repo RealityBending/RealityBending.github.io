@@ -28,7 +28,7 @@ feature:
   icon_pack: fa
   name: "[**Core Self**](research/#core_structure)"
 - description: "What is the history of psychology and psychiatry? What are the methods and tools of tomorrow?"
-  icon: gem
+  icon: microscope
   icon_pack: fa
   name: "[**Metascience**](research/#metascience)"
 

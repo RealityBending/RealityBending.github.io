@@ -19,15 +19,15 @@ feature:
 - description: "What are the mechanisms by which our belief and feeling of reality can be altered? What are the consequences?"
   icon: magic
   icon_pack: fa
-  name: "[**Reality bending**](research/#sense_of_reality)"
+  name: "[**Reality bending**](#sense_of_reality)"
 - description: "How do cognitive abilities unfold into personality traits and metastable neuropsychological profiles?"
   icon: gem
   icon_pack: fa
-  name: "[**Core Self**](research/#core_structure)"
+  name: "[**Core Self**](#core_structure)"
 - description: "What is the history of psychology and psychiatry? What are the methods and tools of tomorrow?"
-  icon: gem
+  icon: microscope
   icon_pack: fa
-  name: "[**Metascience**](research/#metascience)"
+  name: "[**Metascience**](#metascience)"
 
 # Uncomment to use emoji icons.
 #- icon = ":smile:"
