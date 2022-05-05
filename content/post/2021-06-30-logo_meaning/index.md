@@ -110,7 +110,7 @@ The smoke takes the form of a Psi letter Ψ, which is the symbol of **psychology
 
 The flower in the background is not just any flower. It is a [poppy flower](https://en.wikipedia.org/wiki/Poppy), from which the seed have been used throughout history to create diverse substances to alter our perception of reality...
 
-Incidentally, it is also the symbol of the *Makowski* family (which names refers to "poppy seed" in polish).
+Incidentally, it is also the symbol of the [*Makowski family*](https://en.wikipedia.org/wiki/Makowski) (which names refers to "poppy seed" in polish).
 
 <figure align="center">
     <img src='Makowski_Poppy.png' title = "The Poppy Flower of the Coat of Arms of the Makowski Family" alt = 'The Poppy Flower of the Coat of Arms of the Makowski Family' width="33%" />
