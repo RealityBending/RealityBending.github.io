@@ -1,8 +1,8 @@
 ---
 authors:
-- Ngoi Zi Liang
+- Zi Liang Ngoi
 
-alias: 
+alias:
 - Max
 
 bio: Zi Liang is a psychology graduate, and currently a research assistant at the Clinical Brain Lab in NTU.
@@ -14,7 +14,7 @@ education:
     #year: 2017-2021
 
 interests:
-- Clinical Psychology 
+- Clinical Psychology
 - Emotion regulation
 - Children's emotional development
 
@@ -43,12 +43,12 @@ social:
 
 superuser: false
 
-title: Ngoi Zi Liang
+title: Zi Liang Ngoi
 user_groups:
-- Research Assistants
+- Researchers
 
 ---
 
-Zi Liang graduated from National University of Singapore with a Bachelor of Social Sciences (Honours), majoring in Psychology in 2021. His research interest lies heavily on emotion regulation, specifically the development of emotional ability and interventions which help to improve emotion regulation. He is open to any psychology related topics as he is still exploring the broad horizon of psychology discipline.
+Zi Liang ("Max") graduated from National University of Singapore with a Bachelor of Social Sciences (Honours), majoring in Psychology in 2021. His research interest lies heavily on emotion regulation, specifically the development of emotional ability and interventions which help to improve emotion regulation. He is open to any psychology related topics as he is still exploring the broad horizon of psychology discipline.
 
---- 
+---
