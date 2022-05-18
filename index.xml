@@ -33,6 +33,22 @@
     </item>
     
     <item>
+      <title>NeuroKit2 0.2.0 is out 🎉</title>
+      <link>https://realitybending.github.io/post/2022-05-18-neurokit_release_2/</link>
+      <pubDate>Wed, 18 May 2022 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/post/2022-05-18-neurokit_release_2/</guid>
+      <description>&lt;h2 id=&#34;neurokit2-020-is-out-&#34;&gt;NeuroKit2 0.2.0 is out! 🎉&lt;/h2&gt;
+&lt;p&gt;What was supposed to be a small release turned out in a massive update. A big thanks - and a warm welcome - to &lt;a href=&#34;https://github.com/anshu-97&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;An Shu&lt;/a&gt; and &lt;a href=&#34;https://github.com/Max-ZiLiang&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Max&lt;/a&gt;, the newest member of the &lt;a href=&#34;https://realitybending.github.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Reality Bending Team&lt;/a&gt;, and thus maintainers of NeuroKit. They worked massively to update &lt;em&gt;all&lt;/em&gt; of the examples and docstrings. New features include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A &lt;a href=&#34;https://neuropsychology.github.io/NeuroKit/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;BRAND NEW WEBSITE&lt;/strong&gt;&lt;/a&gt; with a revamped documentation, now hopefully much more useful to navigate. Check-it out: &lt;a href=&#34;https://neuropsychology.github.io/NeuroKit/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://neuropsychology.github.io/NeuroKit/&lt;/a&gt; and let us know what you think!!&lt;/li&gt;
+&lt;li&gt;An overhaul of the &lt;a href=&#34;https://neuropsychology.github.io/NeuroKit/functions/complexity.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Complexity Indices&lt;/strong&gt;&lt;/a&gt;: With more than a 100 indices, NeuroKit is now the most comprehensive package to quantify &lt;strong&gt;chaos&lt;/strong&gt;, &lt;strong&gt;entropy&lt;/strong&gt; and &lt;strong&gt;fractal dimension&lt;/strong&gt; of signals.&lt;/li&gt;
+&lt;li&gt;Tons of other improvements and fixes ☺️&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Once again, a big thanks to all the &lt;a href=&#34;https://github.com/neuropsychology/NeuroKit/releases/tag/v0.2.0&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;contributors&lt;/a&gt; for their help in making NeuroKit an awesome open-source software for physiological signal processing!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Podcast &#39;Learn Bayesian Stats&#39; with Dominique Makowski</title>
       <link>https://realitybending.github.io/post/2022-02-01-learnbayesstats/</link>
       <pubDate>Tue, 01 Feb 2022 00:00:00 +0000</pubDate>
@@ -303,7 +319,7 @@ results
 &lt;h3 id=&#34;the-flower&#34;&gt;The Flower&lt;/h3&gt;
 &lt;!-- ### The Flower &lt;img src=&#39;Makowski_Poppy.png&#39; title = &#34;The Poppy Flower of the Coat of Arms of the Makowski Family&#34; alt = &#39;The Poppy Flower of the Coat of Arms of the Makowski Family&#39; align=&#34;right&#34; height=&#34;139&#34; /&gt; --&gt;
 &lt;p&gt;The flower in the background is not just any flower. It is a &lt;a href=&#34;https://en.wikipedia.org/wiki/Poppy&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;poppy flower&lt;/a&gt;, from which the seed have been used throughout history to create diverse substances to alter our perception of reality&amp;hellip;&lt;/p&gt;
-&lt;p&gt;Incidentally, it is also the symbol of the &lt;a href=&#34;https://en.wikipedia.org/wiki/Makowski&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;Makowski family&lt;/em&gt;&lt;/a&gt; (which names refers to &amp;ldquo;poppy seed&amp;rdquo; in polish).&lt;/p&gt;
+&lt;p&gt;Incidentally, it is also the symbol of the &lt;em&gt;Makowski&lt;/em&gt; family (which names refers to &amp;ldquo;poppy seed&amp;rdquo; in polish).&lt;/p&gt;
 &lt;figure align=&#34;center&#34;&gt;
     &lt;img src=&#39;Makowski_Poppy.png&#39; title = &#34;The Poppy Flower of the Coat of Arms of the Makowski Family&#34; alt = &#39;The Poppy Flower of the Coat of Arms of the Makowski Family&#39; width=&#34;33%&#34; /&gt;
     &lt;figcaption&gt;The Makowski&#39;s Poppy Flower.&lt;/figcaption&gt;
