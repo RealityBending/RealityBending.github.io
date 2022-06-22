@@ -12,8 +12,8 @@ education:
   - course: BA, Psychology
     institution: University of British Columbia
     #year: 2017-2019
-  - Course: MA, Museum Studies and Curatorial Practices
-    institution: National University of Singapore
+  - course: MA, Museum Studies and Curatorial Practices
+    institution: Nanyang Technological University
     #year: 2020-2021
 
 interests:
