@@ -18,7 +18,7 @@ title: Zen J. Lau
 organizations:
 - name: Nanyang Technological University, Singapore
   url: ""
-role: Research Assistant
+role: Research Assistant (2020-22)
 social:
 - icon: envelope
   icon_pack: fas
