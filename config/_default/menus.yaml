@@ -28,6 +28,10 @@ main:
       PageRef: jobs/postdoc.md
       weight: 10
       parent: jobs
+    - name: PhD
+      PageRef: jobs/phd.md
+      weight: 20
+      parent: jobs
 
     - name: "Contact"
       url: "contact/"
