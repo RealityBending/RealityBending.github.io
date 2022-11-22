@@ -1,6 +1,6 @@
 ---
 # Display name
-title: Dominique Makowski
+title: "Dominique Makowski"
 
 # Is this the primary user of the site?
 superuser: true

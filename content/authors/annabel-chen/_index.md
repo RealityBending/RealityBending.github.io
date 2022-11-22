@@ -1,4 +1,5 @@
 ---
+title: Annabel Chen
 authors:
 - S. H. Annabel Chen
 webpage: "[S. H. Annabel Chen](https://www.clinicalbrain.org/)"
@@ -15,7 +16,7 @@ email: "annabelchen@ntu.edu.sg"
 organizations:
 - name: Nanyang Technological University
   url: ""
-role: Head of the Clinical Brain Lab
+role: Prof. of Psychology<sub><br>Nanyang Technological University<br>Singapore</sub>
 social:
 - icon: envelope
   icon_pack: fas
@@ -33,10 +34,8 @@ social:
   icon_pack: fab
   link: https://github.com/DrAnnabel
 superuser: false
-name: Annabel Chen
-title: Annabel Chen
 user_groups:
-- Associates
+- Close Collaborators
 
 ---
 
