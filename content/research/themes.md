@@ -1,4 +1,7 @@
 ---
+# =============================================================================
+# THIS FILE IS COPIED FROM THE RESEARCH SECTION. Modify BOTH
+# =============================================================================
 # An instance of the Featurette widget.
 # Documentation: https://wowchemy.com/docs/page-builder/
 widget: featurette
@@ -17,7 +20,7 @@ subtitle:
 # - For available icons, see: https://wowchemy.com/docs/page-builder/#icons
 feature:
 - description: "What are the mechanisms by which our belief and feeling of reality can be altered? What are the consequences?"
-  icon: magic
+  icon: wand-magic-sparkles
   icon_pack: fa
   name: "[**Reality bending**](#sense_of_reality)"
 - description: "How do cognitive abilities unfold into personality traits and metastable neuropsychological profiles?"

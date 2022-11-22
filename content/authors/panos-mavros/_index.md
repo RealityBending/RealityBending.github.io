@@ -15,7 +15,7 @@ title: Panos Mavros
 organizations:
 - name: Future Cities Laboratory, Singapore-ETH Centre, Singapore
   url: https://www.fcl.ethz.ch/
-role: Senior Researcher
+role: "Senior Researcher<sub><br>ETH-Centre<br>Singapore</sub>"
 social:
 - icon: envelope
   icon_pack: fas

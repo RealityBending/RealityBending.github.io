@@ -14,7 +14,7 @@ title: Marco Sperduti
 organizations:
 - name: Université de Paris, France
   url: ""
-role: Assistant Professor
+role: A. Prof. of Psychology<sub><br>Université Paris Cité<br>France</sub>
 social:
 - icon: envelope
   icon_pack: fas

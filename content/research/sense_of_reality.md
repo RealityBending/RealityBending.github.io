@@ -13,7 +13,7 @@ headless: true
 weight: 30
 
 title: "The Sense of Reality"
-subtitle: "*<sup>\"Do not try and bend the spoon, that's impossible. Instead, only try to realize the truth... There is no spoon.\"</sup>*"
+subtitle: "*<sup>\"Doctors say I'm the illest 'cause I'm suffering from realness.\" Jay-Z & Kanye West</sup>*"
 
 design:
   columns: "1"
