@@ -6,6 +6,7 @@ theme: "starter-hugo-academic"
 
 title: Reality Bending Lab # Website name
 baseURL: "https://realitybending.github.io/" # Website URL
+publishDir: "docs"
 
 ############################
 ## LANGUAGE
