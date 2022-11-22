@@ -1,36 +1,31 @@
 on:
-  pull_request:
-     branches:
-       - main
+    pull_request:
+        branches:
+            - main
 
 name: 📦 Check build
 
 jobs:
-  build:
-    runs-on: macOS-latest
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    build:
+        runs-on: macOS-latest
+        env:
+            GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
 
-      - name: Setup R
-        uses: r-lib/actions/setup-r@master
+            - name: Setup R
+              uses: r-lib/actions/setup-r@v2
 
-      - name: Setup Pandoc
-        uses: r-lib/actions/setup-pandoc@v1
+            - name: Setup Pandoc
+              uses: r-lib/actions/setup-pandoc@v2
 
-      - name: Install rmarkdown and blogdown
-        run: Rscript -e 'install.packages(c("rmarkdown","blogdown", "remotes"))'
+            - name: Install rmarkdown and blogdown
+              run: Rscript -e 'install.packages(c("rmarkdown","blogdown", "remotes"))'
 
-      # The following can be delted after blogdown 1.6 is on CRAN ---
-      - name: Get development version of blogdown
-        run: Rscript -e 'remotes::install_github("rstudio/blogdown")'
-      # --------------------------------------------------------------
+            - name: Install hugo
+              run: Rscript -e 'blogdown::install_hugo()'
 
-      - name: Install hugo
-        run: Rscript -e 'blogdown::install_hugo()'
-
-      - name: Build site with blogdown
-        run: Rscript -e "blogdown::build_site()"
+            - name: Build site with blogdown
+              run: Rscript -e "blogdown::build_site()"
