@@ -9,7 +9,7 @@ toc: false
 
 {{< icon name="calendar" pack="fa" >}} Start date early 2023
 {{< icon name="location-pin" pack="fa" >}} Singapore
-{{< icon name="clock" pack="fa" >}} 3-years
+{{< icon name="clock" pack="fa" >}} 2.5-years
 
 ![](singapore.jpg)
 
@@ -17,7 +17,7 @@ toc: false
 
 {{< icon name="microscope" pack="fa" >}} **Themes: Fake news, EEG, deception, perception of reality**
 
-We are currently seeking a postdoctoral fellow to join us in Singapore for a **3-years** project investigating the neural mechanisms and socio/psycho/cognitive correlates of **beliefs in fake news and misinformation**. We welcome applicants with a PhD in psychology or neuroscience to work in the [Clinical Brain Lab](https://www.clinicalbrain.org/) at Nanyang Technological University (NTU), with Prof Annabel Chen (https://www.clinicalbrain.org/) and Dr Dominique Makowski (https://dominiquemakowski.github.io/).
+We are currently seeking a postdoctoral fellow to join us in Singapore for a **2.5-years** project investigating the neural mechanisms and socio/psycho/cognitive correlates of **beliefs in fake news and misinformation**. We welcome applicants with a PhD in psychology or neuroscience to work in the [Clinical Brain Lab](https://www.clinicalbrain.org/) at Nanyang Technological University (NTU), with Prof Annabel Chen (https://www.clinicalbrain.org/) and Dr Dominique Makowski (https://dominiquemakowski.github.io/).
 
 This is a fantastic opportunity for postdoctoral fellows to develop an exciting research project with important theoretical ties and applied outcomes (in terms of fake news, misinformation management, policy implications etc.,).
 At the Clinical Brain Lab, the research focuses on uncovering the neuropsychological mechanisms underlying cognitive processes and behaviour. Our main research modalities include the use of Magnetic Resonance Imaging (MRI), neurostimulation (TMS & TDCs), EEG and fNIRS, as well as cognitive behavioural and neuropsychological assessment tools.
