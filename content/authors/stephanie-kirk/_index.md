@@ -17,8 +17,8 @@ education:
     #year: 2020-2021
 
 interests:
-- Clinical Psychology
-- Neuroaesthetics 
+- Environmental Psychology
+- Neuroaesthetics
 - Psychology of trauma and post-traumatic growth
 
 
@@ -39,7 +39,7 @@ social:
   link: https://twitter.com/morgkms
 - icon: researchgate
   icon_pack: ai
-  link: 
+  link:
 - icon: github
   icon_pack: fab
   link: https://github.com/Stephmkirk
