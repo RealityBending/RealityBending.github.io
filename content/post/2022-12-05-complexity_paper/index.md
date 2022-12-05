@@ -14,8 +14,8 @@ image:
   caption: ''
   placement: 0
 title: "About signal complexity"
-subtitle: 'We recently did a bit of groundwork to better understand how to use signal complexity in neurophysiology'
-summary: 'We recently did a bit of groundwork to better understand how to use signal complexity in neurophysiology'
+subtitle: 'We recently did a bit of groundwork to better understand how to use signal complexity in neurophysiology.'
+summary: 'We recently did a bit of groundwork to better understand how to use signal complexity in neurophysiology.'
 tags:
 - NeuroKit2
 - Python
