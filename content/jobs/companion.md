@@ -1,9 +1,9 @@
 ---
 title: Companion
-linkTitle: "Companion"
+linkTitle: Companion
 date: '2023-04-23'
 type: book
-weight: 30
+weight: 40
 toc: false
 ---
 
