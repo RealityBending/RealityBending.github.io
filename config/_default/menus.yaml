@@ -32,6 +32,10 @@ main:
       PageRef: jobs/phd.md
       weight: 20
       parent: jobs
+    - name: Companion
+      PageRef: jobs/companion.md
+      weight: 20
+      parent: jobs
 
     - name: "Contact"
       url: "contact/"
