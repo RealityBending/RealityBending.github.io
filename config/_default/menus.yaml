@@ -34,7 +34,7 @@ main:
       parent: jobs
     - name: Companion
       PageRef: jobs/companion.md
-      weight: 20
+      weight: 30
       parent: jobs
 
     - name: "Contact"
