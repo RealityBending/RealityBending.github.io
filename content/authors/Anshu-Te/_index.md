@@ -20,7 +20,7 @@ interests:
 organizations:
 - name: Nanyang Technological University
   url: ""
-role: Research Assistant
+role: Research Assistant<sub><sup><br>Nanyang Technological University<br>Singapore</sup></sub>
 social:
 - icon: envelope
   icon_pack: fas
@@ -39,7 +39,7 @@ superuser: false
 
 title: An-Shu Te
 user_groups:
-- Researchers
+- Research Assistants
 
 ---
 

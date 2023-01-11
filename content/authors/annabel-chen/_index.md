@@ -3,7 +3,7 @@ title: Annabel Chen
 authors:
 - S. H. Annabel Chen
 webpage: "[S. H. Annabel Chen](https://www.clinicalbrain.org/)"
-bio: Dr. SH Annabel Chen is a clinical neuropsychologist, and currently a Faculty member of Psychology at the School of Social Sciences.
+bio: Prof. SH Annabel Chen is a clinical neuropsychologist, and professor of Psychology @ Nanyang Technological University, Singapore.
 education:
   courses:
   - course: Ph.D., Clinical Psychology (APA accredited)
@@ -16,7 +16,7 @@ email: "annabelchen@ntu.edu.sg"
 organizations:
 - name: Nanyang Technological University
   url: ""
-role: Prof. of Psychology<sub><br>Nanyang Technological University<br>Singapore</sub>
+role: Professor<sub><sup><br>Nanyang Technological University<br>Singapore</sup></sub>
 social:
 - icon: envelope
   icon_pack: fas

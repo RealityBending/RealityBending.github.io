@@ -1,7 +1,7 @@
 ---
 authors:
 - Panos Mavros
-bio: "Senior Researcher at theFuture Cities Laboratory in Singapore."
+bio: "Assistant Professor of Applied Psychology, Design and Digital Technologies @ Telecom Paris, Institut Polytechnique de Paris."
 education: ""
 email: ""
 interests:
@@ -15,7 +15,7 @@ title: Panos Mavros
 organizations:
 - name: Future Cities Laboratory, Singapore-ETH Centre, Singapore
   url: https://www.fcl.ethz.ch/
-role: "Senior Researcher<sub><br>ETH-Centre<br>Singapore</sub>"
+role: "Assistant Professor<sub><sup><br>Telecom Paris<br>France</sup></sub>"
 social:
 - icon: envelope
   icon_pack: fas

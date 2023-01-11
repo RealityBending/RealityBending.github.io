@@ -19,15 +19,15 @@ subtitle:
 # - Add/remove as many `feature` blocks below as you like.
 # - For available icons, see: https://wowchemy.com/docs/page-builder/#icons
 feature:
-- description: "What are the mechanisms by which our belief and feeling of reality can be altered? What are the consequences?"
+- description: "What are the mechanisms by which our belief and feeling of reality can be altered?"
   icon: wand-magic-sparkles
   icon_pack: fa
   name: "[**Reality bending**](research/#sense_of_reality)"
-- description: "How do cognitive abilities unfold into personality traits and metastable neuropsychological profiles?"
+- description: "How cognitive abilities unfold into personality traits and metastable neuropsychological profiles?"
   icon: gem
   icon_pack: fa
   name: "[**Core Self**](research/#core_structure)"
-- description: "What is the history of psychology and psychiatry? What are the methods and tools of tomorrow?"
+- description: "What is the history of psychology and neuropsychiatry? What are the methods and tools of tomorrow?"
   icon: microscope
   icon_pack: fa
   name: "[**Metascience**](research/#metascience)"

@@ -1,7 +1,7 @@
 ---
 authors:
 - Marco Sperduti
-bio: "Assistant professor of psychology at the Université de Paris."
+bio: "Assistant professor of psychology @ Université de Paris."
 webpage: "[Marco Sperduti](https://www.researchgate.net/profile/Marco-Sperduti)"
 education: ""
 email: ""
@@ -14,7 +14,7 @@ title: Marco Sperduti
 organizations:
 - name: Université de Paris, France
   url: ""
-role: A. Prof. of Psychology<sub><br>Université Paris Cité<br>France</sub>
+role: Assistant Professor<sub><sup><br>Université Paris Cité<br>France</sup></sub>
 social:
 - icon: envelope
   icon_pack: fas

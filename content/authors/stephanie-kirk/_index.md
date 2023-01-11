@@ -28,7 +28,7 @@ email: "stephanie.morgank@gmail.com"
 organizations:
 - name: Nanyang Technological University
   url: ""
-role: Research Assistant
+role: Research Assistant<sub><sup><br>Nanyang Technological University<br>Singapore</sup></sub>
 
 social:
 - icon: envelope
@@ -48,7 +48,7 @@ superuser: false
 
 title: Stephanie Kirk
 user_groups:
-- Researchers
+- Research Assistants
 
 ---
 
