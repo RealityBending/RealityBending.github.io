@@ -25,7 +25,13 @@ hero_media: "icon.png" # Maggrix.png
 
 Exploring the neuropsychology of reality and its distortions
 
-<sub>We're a small team led by [Dominique Makowski](https://dominiquemakowski.github.io/) within the [Clinical Brain Lab](http://www.clinicalbrain.org/) in Singapore. We research reality perception, fake news, illusions, fiction, deception, self-control, and more, using EEG and physiological signals. We also develop [open-source tools](https://github.com/RealityBending) and software.</sub>
+<sub>We're a team led by [Dominique Makowski](https://dominiquemakowski.github.io/) at the **University of Sussex** in Brighton, UK. We research reality perception, fake news, illusions, fiction, deception, self-control, and more, using EEG and physiological signals. We also develop [open-source tools](https://github.com/RealityBending) and software.</sub>
+
+
+<figure>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/University_of_Sussex_Logo.svg" alt="University of Sussex logo" width= "40%" align="right"/>
+  <!-- <figcaption>Aliens watching episode 2020 of "the Earth" unfold, horrified.</figcaption> -->
+</figure>
 
 <!--Custom spacing-->
 <div class="mb-3"></div>
