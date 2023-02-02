@@ -54,7 +54,7 @@ The **second meaning** of the logo is the *Psi* Greek letter, symbol of psycholo
   <figcaption>The logo of the APA features the Psi letter.</figcaption>
 </figure>
 
-Thirdly, the black rectangles represent **open doors**, which is a good illustration of progress, research, discovery and... consciousness expansion? Interestingly, Jim Morrison named its band "The Doors" in reference to a quote by William Blake, who state that when ***"the doors of perception were cleansed then everything would appear to man as it is, Infinite"***.
+Thirdly, the black rectangles represent **open doors**, which is a good illustration of progress, research, discovery and... consciousness expansion? Interestingly, Jim Morrison named its band "The Doors" in reference to a quote by William Blake, who said that when ***"the doors of perception were cleansed then everything would appear to man as it is, Infinite"***.
 
 <figure>
   <img src="TheDoors.jpg"/>
