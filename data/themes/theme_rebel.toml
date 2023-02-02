@@ -3,12 +3,12 @@ name = "Rebel"
 
 [light]
   # Primary
-  primary = "#9C27B0"
+  primary = "#9C27B0" # purple: 9C27B0
 
   # Menu
-  menu_primary = "#9C27B0"
+  menu_primary = "#1D1D1B"
   menu_text = "#FFFFFF"
-  menu_text_active = "#FFC107"
+  menu_text_active = "#FFC107" # orange: FFC107
   menu_title = "#FFFFFF"
 
   # Home sections

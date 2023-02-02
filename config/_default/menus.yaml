@@ -32,9 +32,17 @@ main:
       PageRef: jobs/phd.md
       weight: 20
       parent: jobs
+    - name: Research Assistant
+      PageRef: jobs/assistant.md
+      weight: 30
+      parent: jobs
+    - name: Internship
+      PageRef: jobs/intern.md
+      weight: 40
+      parent: jobs
     - name: Companion
       PageRef: jobs/companion.md
-      weight: 30
+      weight: 50
       parent: jobs
 
     - name: "Contact"
