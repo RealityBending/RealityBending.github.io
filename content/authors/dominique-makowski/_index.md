@@ -6,15 +6,15 @@ title: "Dominique Makowski"
 superuser: true
 
 # Role/position/tagline
-role: Presidential Research Fellow
+role: Lecturer in Psychology
 
 # Organizations/Affiliations to show in About widget
 organizations:
-- name: Nanyang Technological University, Singapore
-  url: https://www.ntu.edu.sg/
+- name: University of Sussex, Brighton, UK
+  url: https://www.sussex.ac.uk/schools/psychology/
 
 # Short bio (displayed in user profile at end of posts)
-bio: Trained as neuropsychologist and CBT psychotherapist, I am currently working as a researcher at the Clinical Brain Lab in Singapore, on the neuroscience of reality perception.
+bio: Trained as neuropsychologist and CBT psychotherapist, I am currently working as a lecturer at the University of Sussex, on the neuroscience of reality perception.
 
 # Interests to show in About widget
 interests:
@@ -67,7 +67,7 @@ social:
 #   link: https://dominiquemakowski.github.io/CV/
 
 # Enter email to display Gravatar (if Gravatar enabled in Config)
-email: "dom.makowski@gmail.com"
+email: "d.makowski@sussex.ac.uk"
 
 # Highlight the author in author lists? (true/false)
 highlight_name: false

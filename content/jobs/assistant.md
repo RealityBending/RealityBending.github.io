@@ -10,7 +10,7 @@ toc: false
 {{< icon name="calendar" pack="fa" >}} Flexible
 {{< icon name="location-pin" pack="fa" >}} University of Sussex, Brighton, UK
 
-![](ResearchAssistant.png)
+![](ResearchAssistant.jpg)
 
 Working as a research assistant is a formidable opportunity to take on before - eventually - signing up for a PhD. It is a flexible and varied position, and a perfect position to develop key research skills like writing, data analysis or neuroimaging. As a bonus, it can even be sometimes funded!
 
