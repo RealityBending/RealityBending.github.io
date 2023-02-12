@@ -32,7 +32,7 @@ education:
   - course: PhD in Psychology
     institution: Université de Paris
     year: 2018
-  - course: MSc in Clinical Neuropsychology and Cognitive Psychology
+  - course: MSc in Clinical Neuropsychology
     institution: Université de Paris
     year: 2014
   - course: BSc in Psychology
@@ -76,7 +76,7 @@ user_groups:
 - Principal Investigator
 ---
 
-Trained as clinical neuropsychologist, CBT psychotherapist <sub><sup>(*and* [***others***](https://dominiquemakowski.github.io/cv/))</sup></sub>, I am currently working as a postdoc at the Clinical Brain Lab in Singapore, in which I lead the [**Reality Bending Team**](https://realitybending.github.io/) 🧙 (ReBeL). I'm fluent in French, English, Polish, Python, and currently learning Italian. My main figures of reference are Marcus Aurelius, Sisyphus and Yoda. My interests include scientific methodology, history of art and religion, and philosophy. My research focuses on aspects of [**reality bending**](https://realitybending.github.io/research/) (e.g., fiction, deception, fake news, illusions, and altered states of consciousness such as through meditation or immersion). I also try to improve the access to advanced analysis techniques by developing open-source software and tools.
+Trained as clinical neuropsychologist, CBT psychotherapist <sub><sup>(*and* [***others***](https://dominiquemakowski.github.io/cv/))</sup></sub>, I am currently a lecturer at the University of Sussex, in which I lead the [**Reality Bending Team**](https://realitybending.github.io/) 🧙 (ReBeL). I'm fluent in French, English, Polish, Python, and currently learning Italian. My main figures of reference are Marcus Aurelius, Sisyphus and Yoda. My interests include scientific methodology, history of art and religion, and philosophy. My research focuses on aspects of [**reality bending**](https://realitybending.github.io/research/) (e.g., fiction, deception, fake news, illusions, and altered states of consciousness such as through meditation or immersion). I also try to improve the access to advanced analysis techniques by developing [**open-source**](https://github.com/DominiqueMakowski) software and tools.
 
 {{% callout warning %}}
 
@@ -84,7 +84,9 @@ Useful links
 
 {{< icon name="download" pack="fas" >}} Download my [**resumé**](https://dominiquemakowski.github.io/CV/).
 
-{{< icon name="users" pack="fas" >}} Learn more about the [**research**](https://realitybending.github.io/) that we do at ReBeL.
+{{< icon name="microscope" pack="fas" >}} Learn more about the [**Reality Bending Lab**](https://realitybending.github.io/).
+
+{{< icon name="users" pack="fas" >}} I am looking for [**PhD applicants**](https://realitybending.github.io/jobs/phd/).
 
 {{% /callout %}}
 
