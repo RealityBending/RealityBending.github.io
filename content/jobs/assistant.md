@@ -22,6 +22,11 @@ More info are available on the [Sussex recruitment page](https://www.sussex.ac.u
 **Contact.** Send questions or CV to **D.Makowski@sussex.ac.uk**.
 
 
+## The Sussex Junior Research Associate (JRA) Program
+
+If you are a Sussex undergrad interested in developing your research skills and experience, you can apply to the [**JRA program**](http://www.sussex.ac.uk/suro/jra) to become a research associate and undertake an intensive eight-week research project. Find out more information on [**how to apply here**](http://www.sussex.ac.uk/suro/applying).
+
+
 {{% callout warning %}}
 **Don't rely on what is written!**
 

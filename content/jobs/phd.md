@@ -24,6 +24,10 @@ I am taking new PhD students! **Send questions or CV to D.Makowski@sussex.ac.uk*
 - The [**South Coast Biosciences Network (SoCoBio)**](https://southcoastdtp.ac.uk/funding/) (UK and international students)
 
 
+{{% callout note %}}
+More info are available on the [university PhD information page](https://www.sussex.ac.uk/schools/psychology/study/phd).
+{{% /callout %}}
+
 ## Clinical Psychology PhD or DClinPsy
 
 Unfortunately, the University of Sussex does not offer at the moment a PhD in ***Clinical Psychology*** that contains clinical placements and internships. However, if you are interested in working with patients, it is entirely possible to have a research project that involves clinical populations, and specialize in "clinical" research. Some people then complement this kind of PhD with clinical trainings (e.g., psychotherapy) to transition from research to practice.
@@ -32,10 +36,6 @@ Unfortunately, the University of Sussex does not offer at the moment a PhD in **
 
 Neuropsychology is both an approach (centering on the relationship between the brain and its output in the form of behaviour and thought) and a practice (involving neuropsychological assessments and rehabilitation). The latter is considered a specialization of Clinical Psychology, which means that one must be a clinical psychologist to be a clinical neuropsychologist. As said above, the University of Sussex unfortunately does not offer, at the moment, a formal PhD in clinical psychology or clinical neuropsychology. However, joining the **Reality Bending Lab** will get you well-prepared to eventually pursue this type of program, as the methods and mindset that we have draws heavily on neuropsychology (the use of neuropsychological tests, the focus on neurocognitive theories, etc.). In fact, some of our past members have become brilliant neuropsychologists, so feel free to ask them!
 
-
-{{% callout note %}}
-More info are available on the [university PhD information page](https://www.sussex.ac.uk/schools/psychology/study/phd).
-{{% /callout %}}
 
 {{% callout warning %}}
 **Don't rely on what is written!**
