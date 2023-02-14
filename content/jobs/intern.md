@@ -1,10 +1,20 @@
 ---
-title: Internship in Psychology/Neuroscience
+title: Internship in Psychology / Neuroscience
 linkTitle: Internship
 date: '2023-02-02'
 type: book
 weight: 50
 toc: false
+tags:
+  - Internship
+  - Intern
+  - Opportunity
+  - University of Sussex
+  - UK
+  - Research Experience
+  - Psychology
+  - Neuroscience
+  - Consciousness
 ---
 
 {{< icon name="calendar" pack="fa" >}} Flexible

@@ -1,10 +1,30 @@
 ---
-title: PhD in Psychology/Neuroscience
+title: PhD in Psychology / Neuroscience
 linkTitle: PhD
 date: '2022-11-22'
 type: book
 weight: 30
 toc: false
+tags:
+  - PhD
+  - Doctoral
+  - PhD Supervisor
+  - Funding
+  - Fellowship
+  - Position
+  - Program
+  - Opportunity
+  - Job
+  - Paid
+  - Salary
+  - University of Sussex
+  - UK
+  - Research
+  - Psychology
+  - Neuroscience
+  - Consciousness
+  - Neuropsychology
+  - Neuropsychologist
 ---
 
 {{< icon name="calendar" pack="fa" >}} Flexible
@@ -14,6 +34,12 @@ toc: false
 
 
 I am taking new PhD students! **Send questions or CV to D.Makowski@sussex.ac.uk**.
+
+## What you will get
+
+- Join a young and dynamic team with a vibrant lab life
+- A supervisor that actually supervises 🤯
+- A super interesting research topic
 
 ## How to do a PhD in Psychology?
 

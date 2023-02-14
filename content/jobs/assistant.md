@@ -1,10 +1,27 @@
 ---
-title: Research Assistant in Psychology/Neuroscience
+title: Research Assistant in Psychology / Neuroscience
 linkTitle: Research Assistant
 date: '2023-02-02'
 type: book
 weight: 40
 toc: false
+tags:
+  - Research Assistant
+  - Internship
+  - Funding
+  - Paid
+  - Position
+  - Program
+  - Opportunity
+  - Job
+  - University of Sussex
+  - UK
+  - Research
+  - Psychology
+  - Neuroscience
+  - Consciousness
+  - Neuropsychology
+  - Neuropsychologist
 ---
 
 {{< icon name="calendar" pack="fa" >}} Flexible
@@ -12,7 +29,7 @@ toc: false
 
 ![](ResearchAssistant.jpg)
 
-Working as a research assistant is a formidable opportunity to take on before - eventually - signing up for a PhD. It is a flexible and varied position, and a perfect position to develop key research skills like writing, data analysis or neuroimaging. As a bonus, it can even be sometimes funded!
+Working as a research assistant (RA) is a formidable opportunity to take on before - eventually - signing up for a PhD. It is a flexible and varied position, and a perfect position to develop key research skills like writing, data analysis or neuroimaging; and eventually later pursue a postgraduate program in psychology / neuroscience / neuropsychology. As a bonus, an RA position cab even be sometimes funded!
 
 
 {{% callout note %}}

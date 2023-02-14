@@ -5,6 +5,23 @@ date: '2022-11-22'
 type: book
 weight: 20
 toc: false
+tags:
+  - Postdoc
+  - Postdoctoral
+  - Funding
+  - Paid
+  - Salary
+  - Fellowship
+  - Position
+  - Program
+  - Opportunity
+  - Job
+  - University of Sussex
+  - UK
+  - Research
+  - Psychology
+  - Neuroscience
+  - Consciousness
 ---
 
 {{< icon name="calendar" pack="fa" >}} Start date early 2023
