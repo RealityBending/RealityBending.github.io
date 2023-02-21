@@ -48,7 +48,7 @@ I am taking new PhD students! **Send questions or CV to D.Makowski@sussex.ac.uk*
 - The [**Sussex Psychology Doctoral Research Studentship**](https://archive.sussex.ac.uk/study/scholarships/1525-Psychology-Doctoral-Research-Studentship-UK-and-International) (UK and international students)
 - The [**South East Network of Social Scientists (SeNSS)**](https://senss-dtp.ac.uk/apply) (UK and international students)
 - The [**South Coast Biosciences Network (SoCoBio)**](https://southcoastdtp.ac.uk/funding/) (UK and international students)
-- The [**Sussex Neuroscience 4-years PhD**](https://www.sussex.ac.uk/research/centres/sussex-neuroscience/phd/4yearphd)
+- The [**Sussex Neuroscience 4-years PhD**](https://www.sussex.ac.uk/research/centres/sussex-neuroscience/phd/4yearphd) (UK and international students)
 
 {{% callout note %}}
 More info are available on the university's [**PhD in psychology**](https://www.sussex.ac.uk/schools/psychology/study/phd) and [**PhD in neuroscience**](https://www.sussex.ac.uk/research/centres/sussex-neuroscience/phd) information page.

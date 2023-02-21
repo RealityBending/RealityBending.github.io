@@ -46,7 +46,7 @@ main:
       parent: jobs
 
     - name: "Contact"
-      url: "contact/"
+      url: "#11_contact"
       weight: 80
 
     - name: '<i class="fab fa-github"; font-size: 1rem; line-height: 1.25"></i>'
