@@ -121,7 +121,7 @@ At the Clinical Brain Lab, the research focuses on uncovering the neuropsycholog
 &lt;li&gt;The &lt;a href=&#34;https://archive.sussex.ac.uk/study/scholarships/1525-Psychology-Doctoral-Research-Studentship-UK-and-International&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Sussex Psychology Doctoral Research Studentship&lt;/strong&gt;&lt;/a&gt; (UK and international students)&lt;/li&gt;
 &lt;li&gt;The &lt;a href=&#34;https://senss-dtp.ac.uk/apply&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;South East Network of Social Scientists (SeNSS)&lt;/strong&gt;&lt;/a&gt; (UK and international students)&lt;/li&gt;
 &lt;li&gt;The &lt;a href=&#34;https://southcoastdtp.ac.uk/funding/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;South Coast Biosciences Network (SoCoBio)&lt;/strong&gt;&lt;/a&gt; (UK and international students)&lt;/li&gt;
-&lt;li&gt;The &lt;a href=&#34;https://www.sussex.ac.uk/research/centres/sussex-neuroscience/phd/4yearphd&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Sussex Neuroscience 4-years PhD&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;The &lt;a href=&#34;https://www.sussex.ac.uk/research/centres/sussex-neuroscience/phd/4yearphd&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Sussex Neuroscience 4-years PhD&lt;/strong&gt;&lt;/a&gt; (UK and international students)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
@@ -1844,14 +1844,6 @@ save(d, file = &amp;quot;data.Rdata&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;Supplementary notes can be added here, including &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code, math, and images&lt;/a&gt;.&lt;/p&gt;
 </description>
-    </item>
-    
-    <item>
-      <title>Contact</title>
-      <link>https://realitybending.github.io/contact/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://realitybending.github.io/contact/</guid>
-      <description></description>
     </item>
     
     <item>
