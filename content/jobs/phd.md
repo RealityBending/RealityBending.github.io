@@ -49,10 +49,16 @@ I am taking new PhD students! **Send questions or CV to D.Makowski@sussex.ac.uk*
 - The [**South East Network of Social Scientists (SeNSS)**](https://senss-dtp.ac.uk/apply) (UK and international students)
 - The [**South Coast Biosciences Network (SoCoBio)**](https://southcoastdtp.ac.uk/funding/) (UK and international students)
 - The [**Sussex Neuroscience 4-years PhD**](https://www.sussex.ac.uk/research/centres/sussex-neuroscience/phd/4yearphd) (UK and international students)
+- The [**Joint China Scholarship**](https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1539-China-Scholarship-Council-CSC-University-of-Sussex-Joint-Scholarships-2023) (China)
+- If an external partner agrees to cover half the cost (approx. £35k over three years), the university could match the other half of the cost. Useful for applied projects and collaborations with startups, private companies or NGOs.
+
+Check-out this [*how to apply*](https://www.sussex.ac.uk/study/phd/apply) guide for additional information.
 
 {{% callout note %}}
-More info are available on the university's [**PhD in psychology**](https://www.sussex.ac.uk/schools/psychology/study/phd) and [**PhD in neuroscience**](https://www.sussex.ac.uk/research/centres/sussex-neuroscience/phd) information page.
+More info are available on the university's [**PhD in psychology**](https://www.sussex.ac.uk/schools/psychology/study/phd), [**PhD in cognitive science**](https://www.sussex.ac.uk/study/phd/degrees/cognitive-science-phd) and [**PhD in neuroscience**](https://www.sussex.ac.uk/research/centres/sussex-neuroscience/phd) information page.
 {{% /callout %}}
+
+https://www.sussex.ac.uk/study/phd/apply
 
 ## Clinical Psychology PhD or DClinPsy
 
