@@ -40,10 +40,10 @@ main:
       PageRef: jobs/intern.md
       weight: 40
       parent: jobs
-    - name: Companion
-      PageRef: jobs/companion.md
-      weight: 50
-      parent: jobs
+    # - name: Companion
+    #   PageRef: jobs/companion.md
+    #   weight: 50
+    #   parent: jobs
 
     - name: "Contact"
       url: "#11_contact"
