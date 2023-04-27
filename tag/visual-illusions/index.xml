@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Visual Illusions | Reality Bending Lab</title>
+    <link>https://realitybending.github.io/tag/visual-illusions/</link>
+      <atom:link href="https://realitybending.github.io/tag/visual-illusions/index.xml" rel="self" type="application/rss+xml" />
+    <description>Visual Illusions</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sat, 22 Apr 2023 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://realitybending.github.io/media/icon_hu43f9474a7b47cfb59c41895962a4d3bc_15500_512x512_fill_lanczos_center_3.png</url>
+      <title>Visual Illusions</title>
+      <link>https://realitybending.github.io/tag/visual-illusions/</link>
+    </image>
+    
+    <item>
+      <title>A Novel Visual Illusion Paradigm Provides Evidence for a General Factor of Illusion Sensitivity and Personality Correlates</title>
+      <link>https://realitybending.github.io/publication/makowski2023novel/</link>
+      <pubDate>Sat, 22 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/publication/makowski2023novel/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

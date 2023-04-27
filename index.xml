@@ -5,7 +5,7 @@
     <link>https://realitybending.github.io/</link>
       <atom:link href="https://realitybending.github.io/index.xml" rel="self" type="application/rss+xml" />
     <description>Reality Bending Lab</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 12 Apr 2023 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sun, 23 Apr 2023 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://realitybending.github.io/media/icon_hu43f9474a7b47cfb59c41895962a4d3bc_15500_512x512_fill_lanczos_center_3.png</url>
       <title>Reality Bending Lab</title>
@@ -248,6 +248,86 @@ At the Clinical Brain Lab, the research focuses on uncovering the neuropsycholog
   &lt;/div&gt;
 &lt;/div&gt;
 </description>
+    </item>
+    
+    <item>
+      <title>Companion</title>
+      <link>https://realitybending.github.io/jobs/companion/</link>
+      <pubDate>Sun, 23 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/jobs/companion/</guid>
+      <description>&lt;p&gt;
+  &lt;i class=&#34;fa fa-calendar  pr-1 fa-fw&#34;&gt;&lt;/i&gt; Flexible
+
+  &lt;i class=&#34;fa fa-location-pin  pr-1 fa-fw&#34;&gt;&lt;/i&gt; Anywhere&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
+               /media/companion_hu21205dc4f64d9317db1d424fe965ac99_223637_2e8c65fd9c93b1720dd6ebf2273345f2.webp 400w,
+               /media/companion_hu21205dc4f64d9317db1d424fe965ac99_223637_d4bd7ce8f31d709928ef78894c48fc41.webp 760w,
+               /media/companion_hu21205dc4f64d9317db1d424fe965ac99_223637_1200x1200_fit_q75_h2_lanczos.webp 1200w&#34;
+               src=&#34;https://realitybending.github.io/media/companion_hu21205dc4f64d9317db1d424fe965ac99_223637_2e8c65fd9c93b1720dd6ebf2273345f2.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;397&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;During the Middle Ages and the Renaissance, becoming a master craftsman or artist required to undertake a long journey that would bring the novice to gain the rank of master through &lt;em&gt;&amp;ldquo;companionship&amp;rdquo;&lt;/em&gt;. As such, the learner would learn from a teacher for a given period of time, after what she or he would decide to leave and move on to a new adventure.&lt;/p&gt;
+&lt;p&gt;You&amp;rsquo;re a student, a researcher-in-training, in-between jobs or looking for one, and &lt;strong&gt;you feel like you have time&lt;/strong&gt; &lt;em&gt;(and energy ⚡)&lt;/em&gt; &lt;strong&gt;to learn more?&lt;/strong&gt; And you also would like to &lt;strong&gt;learn new skills&lt;/strong&gt; and contribute to open-science? But you would also like this training to result in something academically valuable (like a publication)? In other words, &lt;strong&gt;you want it all&lt;/strong&gt;?&lt;/p&gt;
+&lt;p&gt;Good news, we might have something of interest for you. Being in touch with several open-access projects, I know some topics and areas in which there is a need for contributors, with different projects just waiting for some brilliant mind to push it forward. Some interesting stuff that you can investigate on your free time (but not at the expense of your main objectives, i.e., &lt;strong&gt;don&amp;rsquo;t drop school for that!&lt;/strong&gt;). Depending on your current skills - &lt;strong&gt;but most importantly the skills you want to develop&lt;/strong&gt; - you can check-out the list below to see if there is anything that could be of interest to you. If that&amp;rsquo;s the case, do contact us; we will provide you with assistance, guidance and help so you can start exploring it at your rhythm in a comfortable environment. It can be a good way to get in touch with us, be mentored, learn and initiate collaborations or future projects with funded positions :)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;strong&gt;An GAM-based Approach to EEG/ERP Analysis&lt;/strong&gt;. General Additive Models (GAM) are a powerful class of regression models that seem very appropriate to model ERP data. We have a &lt;a href=&#34;https://neurokit2.readthedocs.io/en/latest/studies/erp_gam.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;draft&lt;/a&gt; of a study that aims to be like a tutorial / guide to analyze ERP using GAMs.
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Skills that you will improve&lt;/em&gt;: Python (MNE), R, ERP/EEG, GAMs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;strong&gt;Deep learning model for ECG delineation&lt;/strong&gt;. Train, validate and make available (in &lt;a href=&#34;https://github.com/neuropsychology/NeuroKit&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NeuroKit&lt;/a&gt;) a model able to locate the different components of ECG signals (the different peaks, waves, etc.). Some work has already be done (&lt;a href=&#34;https://github.com/neuropsychology/NeuroKit/issues/89#issuecomment-653834058&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;1&lt;/a&gt;) it seems, so that we can have a basis on which improve such tool and make accessible.
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Skills that you will improve&lt;/em&gt;: Python, deep learning, ECG.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;strong&gt;Benchmarking of ECG Preprocessing Methods&lt;/strong&gt;. I really makes me crazy to see how there is no consensus nor guidelines on how to preprocess physiological signals. Time do remedy to that. We have a &lt;a href=&#34;https://neurokit2.readthedocs.io/en/latest/studies/ecg_preprocessing.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;draft&lt;/a&gt; of a study that aims at comparing different preprocessing methods to outline the best processing workflow.
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Skills that you will improve&lt;/em&gt;: Python, signal processing, ECG.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;strong&gt;EOG events templates&lt;/strong&gt;. We have a &lt;a href=&#34;https://neurokit2.readthedocs.io/en/latest/studies/eog_blinktemplate.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;draft&lt;/a&gt; of a study that aims at describing the different events in EOG signals (blinks, saccades, &amp;hellip;) and try to create their statistical templates.
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Skills that you will improve&lt;/em&gt;: Python, signal processing, EOG.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;strong&gt;The report package&lt;/strong&gt;. The &lt;a href=&#34;https://github.com/easystats/report&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;report&lt;/strong&gt;&lt;/a&gt; package is the pinnacle of the &lt;strong&gt;easystats&lt;/strong&gt; project, and one of its most demanded and used component. Unfortunately, it is a bit stuck at the moment and it would benefit from some fresh perspective on it. Are you up for the challenge?
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Skills that you will improve&lt;/em&gt;: R, statistics, methodological best practices.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Note that the amount of engagement and time you want to devote to such side-project is entirely up to you. As it is 100% based on self-engagement, we won&amp;rsquo;t ask for any target goals, so no pressure. Joining our network and working on these things should always be interesting (for you), useful (to you), and fun (for you&amp;hellip; and us ☺️).&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Contact.&lt;/strong&gt; Send email to &lt;a href=&#34;mailto:dom.makowski@gmail.com&#34;&gt;dom.makowski@gmail.com&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>A Novel Visual Illusion Paradigm Provides Evidence for a General Factor of Illusion Sensitivity and Personality Correlates</title>
+      <link>https://realitybending.github.io/publication/makowski2023novel/</link>
+      <pubDate>Sat, 22 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/publication/makowski2023novel/</guid>
+      <description></description>
     </item>
     
     <item>
