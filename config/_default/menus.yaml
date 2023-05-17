@@ -40,6 +40,10 @@ main:
       PageRef: jobs/intern.md
       weight: 40
       parent: jobs
+    - name: Final Year Projects
+      PageRef: jobs/finalyearprojects.md
+      weight: 50
+      parent: jobs
     # - name: Companion
     #   PageRef: jobs/companion.md
     #   weight: 50
