@@ -37,9 +37,10 @@ I am taking new PhD students! **Send questions or CV to D.Makowski@sussex.ac.uk*
 
 ## What you will get
 
-- Join a young and dynamic team with a vibrant lab life
+- Join a dynamic team with a vibrant lab life
 - A supervisor that actually supervises 🤯
 - A super interesting research topic
+- A French-style thesis defense to celebrate your accomplishments 🧀🍷
 
 ## How to do a PhD in Psychology?
 
