@@ -44,6 +44,7 @@ The lab is open to final year projects of Sussex students. Research in the **Rea
 ## Assessment of - and relationship between - bodily and cognitive abilities
 
 - **Neuropsychological assessment of Cognitive Control**: This project focuses on the development, validation and improvement of a neuropsychological task to reliably measure "cognitive control" (executive functions). This project requires some interest in neuropsychological assessment, task development and associated technical skills (programming, game development).
+- **Physiological Control**: development of measures (questionnaires, physiological tasks) measuring the ability to voluntarily regulate one's physiology (e.g., heart rate, autonomic reactions, etc.).
 - Relationship between **Interoception** and higher-order functions: This project involves measuring various aspects of our relationship with our body (e.g., by measuring cardiac activity) and analyzing its relationship with cognitive abilities (e.g., Self control, emotion regulation) or higher-order constructs (e.g., primal world beliefsLinks to an external site.).
 - Secondary **EEG data analysis**: Investigating an existing dataset containing resting state EEG signal, from which one would extract features to try predicting dispositional indices (such as primal world beliefs).
 
@@ -59,7 +60,7 @@ The lab is open to final year projects of Sussex students. Research in the **Rea
 - Investigation of **scientific practices**: to what extent scientists engage in "new" practices (e.g., open science, slow science, preregistration, registered reports, ...) and what factors (e.g., career level, time, ideology, ...) are driving their adoption (or lack thereof). This might involve things like validating assessment tools (such as questionnaires or gamified measures like quizzes), distributing it widely and analysing the results.
 - Improving access of **R** to psychologists: R outputs can be complex, and we are developing tools to facilitate its understanding (e.g., the reportLinks to an external site. package). This project involves implementing functions in R to help communicate and interpret statistical results. This project requires some interest in programming and stats.
 - Neurophysiological signal analysis in **Python**: implementation and validation of new algorithms in Python, related for instance to chaos theory, EEG signal analysis, etc. This project requires some interest in programming, computer science and mathematics.
-
+- **Psychophysiological methods**: what is the optimal electrode configuration for recording skin conductance responses (often used as a marker of emotions).
 
 Some of these projects share strong links with philosophical concepts (e.g., the [paradox of fiction](https://en.wikipedia.org/wiki/Paradox_of_fiction)) and/or carry some clinical relevance (e.g., for the understanding and treatment of mood/psychotic/dissociative disorders). Also, note that the lab is radically engaged in open science and, ultimately, quantitative methodologies: thus, **most projects would typically require a substantial use of R** (or Python) at some stage. However, it's totally okay not to feel proficient at these skills at the start, but the important thing is to be interested and motivated to learn.
 
