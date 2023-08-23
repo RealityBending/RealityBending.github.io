@@ -25,7 +25,7 @@ hero_media: "ReBeL_LogoOnly.png" # Maggrix.png
 
 Exploring the neuropsychology of reality and its distortions.
 
-<sub>We're a team led by [Dominique Makowski](https://dominiquemakowski.github.io/) at the **University of Sussex** in Brighton, UK. We research reality perception, fake news, illusions, fiction, deception, self-control, and more, using a combination of EEG and physiological signals (ECG, EDA...). We analyze them using advanced computational modelling (Bayesian stats, chaos theory, mixed models...), and we also develop [open-source tools](https://github.com/RealityBending) and software.</sub>
+<sub>We're a team led by [Dominique Makowski](https://dominiquemakowski.github.io/) at the **University of Sussex** in Brighton, UK. We research reality perception, fake news, illusions, fiction, deception, self-control and more, by recording signals from the the body (ECG, EDA...) and the brain (EEG). We analyze data using advanced computational modelling (Bayesian stats, chaos theory, mixed models...), and we also develop [open-source tools](https://github.com/RealityBending) and software to improve neuropsychological sciences.</sub>
 
 
 <!-- <figure> -->

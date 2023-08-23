@@ -24,7 +24,8 @@ tags:
   - Consciousness
 ---
 
-<!-- https://marie-sklodowska-curie-actions.ec.europa.eu/actions/postdoctoral-fellowships -->
+
+## Funded Position Available
 
 {{< icon name="calendar" pack="fa" >}} As soon as possible
 {{< icon name="location-pin" pack="fa" >}} Singapore
@@ -47,6 +48,21 @@ At the Clinical Brain Lab, the research focuses on uncovering the neuropsycholog
 
 **Contact.** Send questions or CV to Prof Annabel (annabelchen@ntu.edu.sg) and Dr Dominique Makowski (D.Makowski@sussex.ac.uk).
 
+
+## Getting your own Postdoc Funding
+
+{{< icon name="calendar" pack="fa" >}} Flexible
+{{< icon name="location-pin" pack="fa" >}} University of Sussex, Brighton, UK
+
+If you're a recent PhD graduate (or soon to be), you could consider applying for a postdoc fellowship to join the lab on your own terms, and develop your own research project.
+Here are some existing opportunities:
+
+- [Marie-curie postdoc fellowships (MSCA)](https://marie-sklodowska-curie-actions.ec.europa.eu/actions/postdoctoral-fellowships)
+- [British Academy](https://www.thebritishacademy.ac.uk/funding/postdoctoral-fellowships/)
+- [FYSSEN](https://www.fondationfyssen.fr/en/study-grants/aim-award/) (French PhD holders)
+- UKRI Future Leaders
+
+Get in touch with me once you have an opportunity in mind and a rough project idea, we can then refine your application to maximize your chances of getting it.
 
 {{% callout note %}}
 **Don't rely on what is written!**
