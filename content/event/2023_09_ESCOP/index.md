@@ -11,7 +11,7 @@ authors: []
 date: "2023-09-06"
 date_end: "2023-09-09"
 event: ESCOP
-# event_url: https://www.humanbrainmapping.org/
+event_url: https://escop2023.org/
 featured: false
 # image:
 #   caption: 'Image credit: [**Unsplash**](https://unsplash.com/photos/bzdhc5b3Bxs)'
