@@ -8,8 +8,8 @@ address:
   street: ""
 all_day: true
 authors: []
-date: "2023-09-06"
-date_end: "2023-09-09"
+date: "2023-09-06T13:00:00Z"
+date_end: "2023-09-09T13:00:00Z"
 event: ESCOP
 event_url: https://escop2023.org/
 featured: false
