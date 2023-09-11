@@ -67,7 +67,7 @@ social:
 #   link: https://dominiquemakowski.github.io/CV/
 
 # Enter email to display Gravatar (if Gravatar enabled in Config)
-email: "d.makowski@sussex.ac.uk"
+email: "D.Makowski@sussex.ac.uk"
 
 # Highlight the author in author lists? (true/false)
 highlight_name: false

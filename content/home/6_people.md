@@ -10,7 +10,6 @@ headless: true
 weight: 60
 
 title: 'The REBEL Team'
-subtitle:
 
 content:
   # Choose which groups/teams of users to display.
@@ -31,6 +30,3 @@ design:
 ---
 
 [<p style="text-align:center"><b>Meet all the people →</b></p>](./people/)
-<!-- {{% cta cta_link="./people/" cta_text="Meet all the people →" %}} -->
-
-<!-- My team and I are part of the [**Clinical Brain Lab'**](http://www.clinicalbrain.org/), in which we chart a new research direction. -->
