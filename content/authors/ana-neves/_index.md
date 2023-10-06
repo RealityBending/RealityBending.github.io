@@ -11,9 +11,9 @@ social:
   link: https://github.com/AuzMoore
 role: Research Assistant<sub><sup><br>University of Sussex</sup></sub>
 interests:
--staying alive
--plants
--food
+- staying alive
+- plants
+- food
 education:
   courses:
   - course: BSc, Psychology with Cognitive Sciences
