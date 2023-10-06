@@ -11,14 +11,16 @@ social:
   link: https://github.com/AuzMoore
 role: Junior Research Assistant<sub><sup><br>University of Sussex</sup></sub>
 interests:
-- Philosophy
-- Sense of Self in social & cultural framework
-- Psychology of Derangement
+-staying alive
+-plants
+-food
 education:
   courses:
-  - course: BSc, Psychology
+  - course: BSc, Psychology with Cognitive Sciences
     institution: University of Sussex
-    year: 2021 - present
+    year: 2018 - 2022
+  - Course: Mres Psychological Methods 
+    year: 2023- Present 
 title: Auz Moore
 superuser: false
 user_groups:
