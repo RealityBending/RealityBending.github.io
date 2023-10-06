@@ -9,7 +9,7 @@ social:
 - icon: github
   icon_pack: fab
   link: https://github.com/AuzMoore
-role: Junior Research Assistant<sub><sup><br>University of Sussex</sup></sub>
+role: Research Assistant<sub><sup><br>University of Sussex</sup></sub>
 interests:
 -staying alive
 -plants
@@ -19,9 +19,9 @@ education:
   - course: BSc, Psychology with Cognitive Sciences
     institution: University of Sussex
     year: 2018 - 2022
-  - Course: Mres Psychological Methods 
-    year: 2023- Present 
-title: Auz Moore
+  - Course: Mres Psychological Methods
+    year: 2023- Present
+title: Ana Neves
 superuser: false
 user_groups:
 - Research Assistants
