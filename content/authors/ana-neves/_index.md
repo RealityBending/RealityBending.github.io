@@ -11,7 +11,6 @@ social:
   link: https://github.com/AuzMoore
 role: Junior Research Assistant<sub><sup><br>University of Sussex</sup></sub>
 interests:
-- Anarchism in Academia
 - Philosophy
 - Sense of Self in social & cultural framework
 - Psychology of Derangement
