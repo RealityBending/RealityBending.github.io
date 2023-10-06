@@ -25,5 +25,5 @@ social:
 superuser: false
 title: Jing Xu
 user_groups:
-- Research Assistants
+- Final Year Students
 ---

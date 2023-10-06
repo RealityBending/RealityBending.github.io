@@ -24,7 +24,7 @@ education:
 title: Auz Moore
 superuser: false
 user_groups:
-- Research Assistants
+- Final Year Students
 ---
 
 The ultimate, hidden truth of the world is that it is something that we make, and could just as easily make differently.
