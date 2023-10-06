@@ -52,7 +52,7 @@ The lab is open to final year projects of Sussex students. Research in the **Rea
 ## Non-invasive induction of altered states of consciousness
 
 - **Emotion regulation via distancing**: by instructing people to change their state of mind (e.g., "see the events in a detached manner, like a fly on the wall"), we hope to manipulate aspects of the sense of reality - such as absorption and psychological distance - and compare its effect (in particular on emotions) with that of other emotion regulation strategies.
-- Can we **manipulate the conscious state** and observe actual effects on the performance at various cognitive tasks? For instance, via hypnosis or mindfulness-like instructions or sound stimulation (binaural beats, drumming, ...). We study the role of expectations and try to isolate the mechanism of change.
+- Can we **manipulate the state of consciousness** and observe actual effects on the performance at various cognitive tasks? For instance, via hypnosis or mindfulness-like instructions, sound stimulation (binaural beats, drumming, ...), sensory deprivation ("floating" tanks). We study the role of expectations and try to isolate the mechanism of change.
 
 
 ## Metascience / Data science / Software development
