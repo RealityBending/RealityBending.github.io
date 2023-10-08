@@ -1,19 +1,16 @@
 ---
 authors:
 - Ana Neves
-bio: Sussex Student currently making their first foray into academia, a wide set of interests and a passion for change
+bio: Sussex Student currently working towards a career as researcher 
 social:
-- icon: twitter
-  icon_pack: fab
-  link: https://twitter.com/AuzzzMoore
 - icon: github
   icon_pack: fab
-  link: https://github.com/AuzMoore
-role: Junior Research Assistant<sub><sup><br>University of Sussex</sup></sub>
+  link: https://github.com/AnafNeves
+role: Research Assistant<sub><sup><br>University of Sussex</sup></sub>
 interests:
--staying alive
--plants
--food
+- Consciousness 
+- Staying alive
+- Art  
 education:
   courses:
   - course: BSc, Psychology with Cognitive Sciences
@@ -21,7 +18,7 @@ education:
     year: 2018 - 2022
   - Course: Mres Psychological Methods 
     year: 2023- Present 
-title: Auz Moore
+title: Ana Neves
 superuser: false
 user_groups:
 - Research Assistants
