@@ -7,20 +7,20 @@
 {{ $block := .wcBlock }}
 
 <div class="row featurette">
-  {{ with $block.Title }}
+  {{ with $block.content.title }}
   <div class="col-md-12 section-heading">
     <h1>{{ . | markdownify | emojify }}</h1>
-    {{ if $block.Params.subtitle }}<p>{{ $block.Params.subtitle | markdownify | emojify }}</p>{{ end }}
+    {{ if $block.content.subtitle }}<p>{{ $block.content.subtitle | markdownify | emojify }}</p>{{ end }}
   </div>
   {{ end }}
 
-  {{ with $block.Content }}
+  {{ with $block.content.text }}
   <div class="col-md-12">
-    {{ . }}
+    {{ . | emojify | $page.RenderString }}
   </div>
   {{ end }}
 
-  {{ range $block.Params.feature }}
+  {{ range $block.content.items }}
   {{ $pack := or .icon_pack "fas" }}
   {{ $pack_prefix := $pack }}
   {{ if in (slice "fab" "fas" "far" "fal") $pack }}

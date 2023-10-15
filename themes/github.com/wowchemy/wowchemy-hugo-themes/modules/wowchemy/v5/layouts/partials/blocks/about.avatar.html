@@ -10,7 +10,7 @@
 {{ if .author }}
   {{ $author = .author }}
 {{ else }}
-  {{ $author = $block.Params.author }}
+  {{ $author = $block.content.username }}
 {{end}}
 
 {{ $person_page_path := (printf "/authors/%s" $author) }}
@@ -82,9 +82,11 @@
     {{ end }}
   </ul>
 
-  {{ with $block.Content }}
-  <div class="article-style pt-1">
-    {{ . }}
+  {{ with ($block.content.text | emojify | $page.RenderString) | default $person_page.Content }}
+  <div class="article-style pt-2 d-flex justify-content-center">
+    <div class="bio-text">
+      {{ . }}
+    </div>
   </div>
   {{ end }}
 
