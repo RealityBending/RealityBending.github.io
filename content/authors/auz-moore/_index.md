@@ -1,6 +1,10 @@
 ---
+# Name
+title: Auz Moore
+# Name of the folder
 authors:
-- Auz Moore
+- auz-moore
+superuser: false
 bio: Sussex Student currently making their first foray into academia, a wide set of interests and a passion for change
 # pronouns: they/them
 social:
@@ -21,8 +25,7 @@ education:
   - course: BSc, Psychology
     institution: University of Sussex
     year: 2021 - present
-title: Auz Moore
-superuser: false
+
 user_groups:
 - Final Year Students
 ---
