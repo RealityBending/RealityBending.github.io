@@ -1,14 +1,14 @@
 ---
+# Name
+title: Ana Neves
+# Folder name
 authors:
-- Ana Neves
+- ana-neves
 bio: Sussex Student currently making their first foray into academia, a wide set of interests and a passion for change
 social:
-- icon: twitter
-  icon_pack: fab
-  link: https://twitter.com/AuzzzMoore
 - icon: github
   icon_pack: fab
-  link: https://github.com/AuzMoore
+  link: https://github.com/AnafNeves
 role: Research Assistant<sub><sup><br>University of Sussex</sup></sub>
 interests:
 - staying alive
@@ -20,8 +20,8 @@ education:
     institution: University of Sussex
     year: 2018 - 2022
   - Course: Mres Psychological Methods
-    year: 2023- Present
-title: Ana Neves
+    institution: University of Sussex
+    year: 2023 - Present
 superuser: false
 user_groups:
 - Research Assistants

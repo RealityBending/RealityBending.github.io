@@ -1,9 +1,7 @@
 ---
+title: Stephanie Kirk
 authors:
-- Stephanie Kirk
-
-alias:
-- Steph
+- stephanie-kirk
 
 bio: Stephanie is currently a research assistant at the Clinical Brain Lab in NTU.
 
@@ -46,7 +44,6 @@ social:
 
 superuser: false
 
-title: Stephanie Kirk
 user_groups:
 - Research Assistants
 

@@ -10,8 +10,8 @@ interests:
 education:
   courses:
   - course: Mystic Arts
-  - course: PhD
   - course: MD
+  - course: PhD
 name: Dr Strange
 title: Dr Strange
 organizations:
@@ -23,4 +23,4 @@ user_groups:
 - Consultants
 ---
 
-**Dormammu, I've Come To Bargain.**
+*"Dormammu, I've Come To Bargain."*
