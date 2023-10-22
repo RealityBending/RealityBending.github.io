@@ -55,7 +55,7 @@ Here are some opportunities:
 - The [**Welcome Trust PhD Studentships**](https://wellcome.org/grant-funding/schemes/four-year-phd-programmes-studentships-basic-scientists)
 - The [**South East Network of Social Scientists (SeNSS)**](https://senss-dtp.ac.uk/apply)
 - The [**South Coast Biosciences Network (SoCoBio)**](https://southcoastdtp.ac.uk/funding/)
-- The [**Joint China Scholarship**](https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1539-China-Scholarship-Council-CSC-University-of-Sussex-Joint-Scholarships-2023) (China)
+- The [**Joint China Scholarship**](https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1625-China-Scholarship-Council-CSC-University-of-Sussex-Joint-Scholarships-2024) (China)
 
 As well as other options:
 
