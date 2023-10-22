@@ -46,3 +46,6 @@ vignettes/*.pdf
 public/
 jsconfig.json
 node_modules/
+
+# OS generated files
+*.DS_Store
