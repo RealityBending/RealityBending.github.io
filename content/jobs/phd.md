@@ -46,16 +46,21 @@ I am open to new PhD students!
 ## How to do a PhD in Psychology?
 
 1. The first step is usually to contact the potential supervisor to discuss a rough research project outline. Write an email with your CV, your research interests and - if you have - some ideas for a research project that matches your supervisor's line of research. If you **don't have ideas yet**, it's perfectly fine! I will likely propose some avenues of research that might match your interest, and refine them down the line.
-2. Once you have an in-principle approval, the next step is to get **funding**. There are usually 3 types of profiles: 1) the student and the supervisor come up with a research project, with which the student then applies to get some scholarship: 2) the supervisor already has a scholarship for a specific project that he obtained a grant for, and will recruit a PhD for that research project; 3) the student already secured a scholarship that allows them to pursue a PhD with the supervisor of their choice. However, funding is a complicated topic, with many other possibilities and case-by-case considerations.
+2. Once you have an in-principle approval, the next step is to get **funding**. There are typically 4 types of profiles: 1) the *student and the supervisor* come up with a tentative research project, with which the student then applies to scholarship opportunities. 2) the *supervisor* already has a scholarship for a specific project that he obtained a grant for, and will recruit a PhD for that specific research project; 3) the *student* already secured a scholarship that allows them to pursue a PhD with the supervisor of their choice (e.g., some schemes exist from countries for their nationals to do their PhD abroad). 4) Self-funding, which we don't recommend unless you're one of the lucky few with money to spare.
+
+Funding is a complicated topic, and often the main barrier between one's goal and its achievement. Keep in mind that there are many other possibilities and case-by-case considerations.
 
 Here are some opportunities:
 
 - The [**Sussex Psychology Doctoral Research Studentship**](https://archive.sussex.ac.uk/study/scholarships/1525-Psychology-Doctoral-Research-Studentship-UK-and-International)
-- The [**Sussex Neuroscience 4-years PhD**](https://www.sussex.ac.uk/research/centres/sussex-neuroscience/phd/4yearphd)
+- The [**Sussex Neuroscience 3+1 years PhD**](https://www.sussex.ac.uk/research/centres/sussex-neuroscience/phd/4yearphd)
 - The [**Welcome Trust PhD Studentships**](https://wellcome.org/grant-funding/schemes/four-year-phd-programmes-studentships-basic-scientists)
+- The [**UKRI studentship**](https://www.ukri.org/what-we-do/developing-people-and-skills/find-studentships-and-doctoral-training/get-a-studentship-to-fund-your-doctorate/)
 - The [**South East Network of Social Scientists (SeNSS)**](https://senss-dtp.ac.uk/apply)
 - The [**South Coast Biosciences Network (SoCoBio)**](https://southcoastdtp.ac.uk/funding/)
-- The [**Joint China Scholarship**](https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1539-China-Scholarship-Council-CSC-University-of-Sussex-Joint-Scholarships-2023) (China)
+- The [**Chevening Scholarship**](https://www.chevening.org/scholarships/) (International only)
+- The [**Joint China Scholarship**](https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1625-China-Scholarship-Council-CSC-University-of-Sussex-Joint-Scholarships-2024) (China)
+- Scholarship Opportunities for [**Singaporeans**](https://www.gov.uk/government/news/compilation-of-scholarships-and-fellowships-for-singaporeans)
 
 As well as other options:
 
@@ -75,7 +80,7 @@ Unfortunately, the University of Sussex does not offer at the moment a PhD in **
 
 ## How to become a Neuropsychologist?
 
-Neuropsychology is both an approach (centering on the relationship between the brain and its output in the form of behaviour and thought) and a practice (involving neuropsychological assessments and rehabilitation). The latter is considered a specialization of Clinical Psychology, which means that one must be a clinical psychologist to be a clinical neuropsychologist. As said above, the University of Sussex unfortunately does not offer, at the moment, a formal PhD in clinical psychology or clinical neuropsychology. However, joining the **Reality Bending Lab** will get you well-prepared to eventually pursue this type of program, as the methods and mindset that we have draws heavily on neuropsychology (the use of neuropsychological tests, the focus on neurocognitive theories, etc.). In fact, some of our past members have become brilliant neuropsychologists, so feel free to ask them!
+Neuropsychology is both an approach (focusing on the relationship between the brain and its output in the form of behaviour and thought) and a practice (involving neuropsychological assessments and rehabilitation). The latter is considered a specialization of Clinical Psychology, which means that one must be a clinical psychologist to be a clinical neuropsychologist. As said above, the University of Sussex unfortunately does not offer, at the moment, a formal PhD in clinical psychology or clinical neuropsychology. However, joining the **Reality Bending Lab** will get you well-prepared to eventually pursue this type of program, as the methods and mindset that we have draws heavily on neuropsychology (the use of neuropsychological tests, the focus on neurocognitive theories, etc.). In fact, some of our past members have become brilliant neuropsychologists, so feel free to ask them!
 
 
 {{% callout warning %}}

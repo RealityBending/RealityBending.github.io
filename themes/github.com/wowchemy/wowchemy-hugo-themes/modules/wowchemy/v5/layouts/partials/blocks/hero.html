@@ -5,29 +5,29 @@
 {{/* Initialise */}}
 {{ $page := .wcPage }}
 {{ $block := .wcBlock }}
-{{ $bg := $block.Params.design.background }}
+{{ $bg := $block.design.background }}
 
-{{ if $block.Params.hero_media }}
+{{ if $block.content.image.filename }}
 <div class="row">
   <div class="col-12 col-md-6 text-center text-md-left">
 {{ end }}
 
-    {{ with $block.Title }}
+    {{ with $block.content.title }}
       <h1 class="hero-title">{{ . | markdownify }}</h1>
     {{ end }}
 
-    {{ with $block.Content }}
-      <div class="hero-lead">{{ . }}</div>
+    {{ with $block.content.text }}
+      <div class="hero-lead">{{ . | $page.RenderString | emojify }}</div>
     {{ end }}
 
     {{/* Call-to-action link */}}
-    {{ if $block.Params.cta.url }}
-      {{ $pack := or $block.Params.cta.icon_pack "fas" }}
+    {{ if $block.content.cta.url }}
+      {{ $pack := or $block.content.cta.icon_pack "fas" }}
       {{ $pack_prefix := $pack }}
       {{ if in (slice "fab" "fas" "far" "fal") $pack }}
         {{ $pack_prefix = "fa" }}
       {{ end }}
-      {{ $link := $block.Params.cta.url }}
+      {{ $link := $block.content.cta.url }}
       {{ $scheme := (urls.Parse $link).Scheme }}
       {{ $target := "" }}
       {{ if not $scheme }}
@@ -36,11 +36,11 @@
         {{ $target = "target=\"_blank\" rel=\"noopener\"" }}
       {{ end }}
     <p class="cta-btns">
-      <a href="{{ $link | safeURL }}" {{ $target | safeHTMLAttr }} class="btn {{if $bg.text_color_light}}btn-light{{else}}btn-primary{{end}} btn-lg mb-md-1">{{ if $block.Params.cta.icon }}<i class="{{ $pack }} {{ $pack_prefix }}-{{ $block.Params.cta.icon }} pr-1" aria-hidden="true"></i>{{end}}{{ $block.Params.cta.label | markdownify | emojify | safeHTML }}</a>
+      <a href="{{ $link | safeURL }}" {{ $target | safeHTMLAttr }} class="btn {{if $bg.text_color_light}}btn-light{{else}}btn-primary{{end}} btn-lg mb-md-1">{{ if $block.content.cta.icon }}<i class="{{ $pack }} {{ $pack_prefix }}-{{ $block.content.cta.icon }} pr-1" aria-hidden="true"></i>{{end}}{{ $block.content.cta.label | markdownify | emojify | safeHTML }}</a>
 
       {{/* Alternative Call-to-action link */}}
-      {{ if $block.Params.cta_alt.url }}
-        {{ $link := $block.Params.cta_alt.url }}
+      {{ if $block.content.cta_alt.url }}
+        {{ $link := $block.content.cta_alt.url }}
         {{ $scheme := (urls.Parse $link).Scheme }}
         {{ $target := "" }}
         {{ if not $scheme }}
@@ -48,34 +48,28 @@
         {{ else if in (slice "http" "https") $scheme }}
           {{ $target = "target=\"_blank\" rel=\"noopener\"" }}
         {{ end }}
-      <a href="{{ $link | safeURL }}" {{ $target | safeHTMLAttr }} class="hero-cta-alt btn-lg pl-md-4">{{ $block.Params.cta_alt.label | markdownify | emojify | safeHTML }} <i class="fas fa-angle-right"></i></a>
+      <a href="{{ $link | safeURL }}" {{ $target | safeHTMLAttr }} class="hero-cta-alt btn-lg pl-md-4">{{ $block.content.cta_alt.label | markdownify | emojify | safeHTML }} <i class="fas fa-angle-right"></i></a>
       {{ end }}
     </p>
     {{ end }}
 
     {{/* Call-to-action note */}}
-    {{ with $block.Params.cta_note }}
+    {{ with $block.content.cta_note }}
     <p class="hero-note text-muted mb-3 mb-md-1">
       {{ .label | markdownify | emojify | safeHTML }}
     </p>
     {{ end }}
 
   {{/* Hero image */}}
-  {{ if $block.Params.hero_media }}
+  {{ if $block.content.image.filename }}
   </div>
-  <div class="col-12 mx-auto col-md-6 {{if $block.Params.design.flip}}order-md-first{{end}} hero-media">
-    {{- $image := ($block.Parent.Resources.ByType "image").GetMatch $block.Params.hero_media -}}
-    {{- if not $image -}}
-      {{- $image = resources.Get (path.Join "media" $block.Params.hero_media) -}}
-    {{- end -}}
+  <div class="col-12 mx-auto col-md-6 {{if $block.content.design.flip}}order-md-first{{end}} hero-media">
+    {{- $image := resources.Get (path.Join "media" $block.content.image.filename) -}}
     {{ if $image }}
       {{ $isSVG := eq $image.MediaType.SubType "svg" }}
       {{ if $isSVG -}}
-
         <img src="{{ $image.RelPermalink }}" alt="{{ $block.Title }}">
-
       {{- else }}
-
         {{ $legacy_img := $image.Resize "400x" }}
         {{ $img_src := "" }}
         {{ $img_src_set := slice }}

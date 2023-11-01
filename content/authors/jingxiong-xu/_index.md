@@ -1,8 +1,12 @@
 ---
+# Name
+title: Jing Xu
+# Name of the folder
 authors:
-- Jing Xu
+- jingxiong-xu
+superuser: false
 bio: Psychology BSc student at Sussex aiming at developing a career in research
-role: Junior Research Assistant<sub><sup><br>University of Sussex</sup></sub>
+role: Final year student<sub><sup><br>University of Sussex</sup></sub>
 interests:
 - Clinical psychology (Post-traumatic stress disorder)
 - Developmental psychology (Parenting styles)
@@ -22,8 +26,6 @@ social:
 - icon: github
   icon_pack: fab
   link: https://github.com/JingxiongXu
-superuser: false
-title: Jing Xu
 user_groups:
-- Research Assistants
+- Final Year Students
 ---

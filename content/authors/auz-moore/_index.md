@@ -1,8 +1,11 @@
 ---
+# Name
+title: Auz Moore
+# Name of the folder
 authors:
-- Auz Moore
+- auz-moore
+superuser: false
 bio: Sussex Student currently making their first foray into academia, a wide set of interests and a passion for change
-# pronouns: they/them
 social:
 - icon: twitter
   icon_pack: fab
@@ -10,7 +13,7 @@ social:
 - icon: github
   icon_pack: fab
   link: https://github.com/AuzMoore
-role: Junior Research Assistant<sub><sup><br>University of Sussex</sup></sub>
+role: Final year student<sub><sup><br>University of Sussex</sup></sub>
 interests:
 - Anarchism in Academia
 - Philosophy
@@ -21,10 +24,8 @@ education:
   - course: BSc, Psychology
     institution: University of Sussex
     year: 2021 - present
-title: Auz Moore
-superuser: false
 user_groups:
-- Research Assistants
+- Final Year Students
 ---
 
 The ultimate, hidden truth of the world is that it is something that we make, and could just as easily make differently.

@@ -18,6 +18,7 @@ content:
   user_groups:
   - Principal Investigator
   - Research Assistants
+  - Final Year Students
   - Associates
   - Grad Students
   - Administration
