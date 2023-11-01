@@ -322,7 +322,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1.536573  0.01524  1.355543  4.720953  1.0  ... 1.017423  1.638357  1.691036
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To understand more about complexity science, we recommend reading our &lt;a href=&#34;https://github.com/neuropsychology/NeuroKit&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;preprint&lt;/a&gt;, which introduces the theoretical (and mathematical) meanings of complexity and reviews the existing studies of complexity analysis across multiple fields of psychology.&lt;/p&gt;
 &lt;p&gt;Of course, the &lt;a href=&#34;https://github.com/neuropsychology/NeuroKit&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;NeuroKit2&lt;/em&gt; Python package&lt;/a&gt; also includes tons of other useful features for physiological signal processing (see this &lt;a href=&#34;https://github.com/neuropsychology/NeuroKit#quick-example&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;quick example&lt;/strong&gt;&lt;/a&gt;)!&lt;/p&gt;
-&lt;p&gt;Don&amp;rsquo;t forget to watch our repo to keep a look out for more complexity functionalities coming up! 👀&lt;/p&gt;
+&lt;p&gt;Don&amp;rsquo;t forget to watch our repo to keep a look out for more complexity functionalities coming up! &amp;#x1f440;&lt;/p&gt;
 </description>
     </item>
     
@@ -367,7 +367,7 @@
 &lt;li&gt;Ioannidis, J. P. (2018). The proposal to lower P value thresholds to .005. Jama, 319(14), 1429-1430.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
-&lt;p&gt;&lt;em&gt;Thanks for reading! Do not hesitate to share or tweet this post, or leave a comment below&lt;/em&gt; 🤗&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Thanks for reading! Do not hesitate to share or tweet this post, or leave a comment below&lt;/em&gt; &amp;#x1f917;&lt;/p&gt;
 </description>
     </item>
     
@@ -385,14 +385,14 @@
 &lt;li&gt;Go to the settings of the personal website repo (the source from which the content will be copied), to &amp;ldquo;Secrets&amp;rdquo;, and add a new secret called &amp;ldquo;API_TOKEN_GITHUB&amp;rdquo; (with the key you just copied).&lt;/li&gt;
 &lt;li&gt;Create a new GitHub action workflow such as &lt;a href=&#34;https://github.com/DominiqueMakowski/DominiqueMakowski.github.io/blob/master/.github/workflows/copy_content.yml&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;this one&lt;/strong&gt;&lt;/a&gt;. The things to change are the &lt;code&gt;source_file&lt;/code&gt;, &lt;code&gt;destination_repo&lt;/code&gt; and &lt;code&gt;destination_folder&lt;/code&gt;.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;Tada 🎉 Everytime I push to my personal repo, the new content of one of the subfolder gets copied to another repo.&lt;/p&gt;
+&lt;p&gt;Tada &amp;#x1f389; Everytime I push to my personal repo, the new content of one of the subfolder gets copied to another repo.&lt;/p&gt;
 &lt;h2 id=&#34;notes&#34;&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;This is a one-way sync, so updates on the target repo won&amp;rsquo;t affect the source repo (but might get overridden!).&lt;/li&gt;
 &lt;li&gt;if you want to preserve the original commit message, set &lt;code&gt;commit_message: ${{ github.event.head_commit.message }}&lt;/code&gt; &lt;sub&gt;(thanks &lt;a href=&#34;https://github.com/DominiqueMakowski/DominiqueMakowski.github.io/issues/2&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;@dobbelina&lt;/a&gt;)&lt;/sub&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
-&lt;p&gt;&lt;em&gt;Thanks for reading! Do not hesitate to share or tweet this post, or leave a comment below&lt;/em&gt; 🤗&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Thanks for reading! Do not hesitate to share or tweet this post, or leave a comment below&lt;/em&gt; &amp;#x1f917;&lt;/p&gt;
 </description>
     </item>
     
@@ -402,7 +402,7 @@
       <pubDate>Wed, 30 Jun 2021 00:00:00 +0000</pubDate>
       <guid>https://realitybending.github.io/post/2021-06-30-logo_meaning/</guid>
       <description>&lt;p&gt;The Reality Bending logo includes several references to various concepts. &lt;strong&gt;Can you try to guess them?&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;👇 👇 👇 👇 👇 👇 👇 👇&lt;/p&gt;
+&lt;p&gt;&amp;#x1f447; &amp;#x1f447; &amp;#x1f447; &amp;#x1f447; &amp;#x1f447; &amp;#x1f447; &amp;#x1f447; &amp;#x1f447;&lt;/p&gt;
 &lt;figure align=&#34;center&#34;&gt;
     &lt;img src=&#39;Spoiler_alert.jpg&#39; width=&#34;90%&#34; /&gt;
 &lt;/figure&gt;
@@ -440,7 +440,7 @@
 &lt;/figure&gt;
 &lt;h3 id=&#34;eyepatch&#34;&gt;Eyepatch&lt;/h3&gt;
 &lt;p&gt;For any mythology fan, a bearded figure with an eyepatch (or a missing eye) is known to represent &lt;a href=&#34;https://en.wikipedia.org/wiki/Odin&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Odin&lt;/strong&gt;&lt;/a&gt;, the chief deity of the norse pantheon. He&amp;rsquo;s a very complex character, with a deeply ambivalent nature. One of the key moment of Odin&amp;rsquo;s story is when he sacrifices one of his eyes in return for wisdom&amp;hellip;&lt;/p&gt;
-&lt;p&gt;Losing &lt;em&gt;direct sight&lt;/em&gt; of reality in return for a &lt;strong&gt;deeper knowledge&lt;/strong&gt; of reality - here is an interesting idea that we can discuss and (over)interpret with some drinks 🍺&lt;/p&gt;
+&lt;p&gt;Losing &lt;em&gt;direct sight&lt;/em&gt; of reality in return for a &lt;strong&gt;deeper knowledge&lt;/strong&gt; of reality - here is an interesting idea that we can discuss and (over)interpret with some drinks &amp;#x1f37a;&lt;/p&gt;
 &lt;figure align=&#34;center&#34;&gt;
     &lt;img src=&#39;odin.jpg&#39; width=&#34;90%&#34; /&gt;
     &lt;figcaption&gt;Odin portrayed by one of my favourite actor.&lt;/figcaption&gt;
@@ -465,7 +465,7 @@
     &lt;img src=&#39;Makowski_Poppy.png&#39; title = &#34;The Poppy Flower of the Coat of Arms of the Makowski Family&#34; alt = &#39;The Poppy Flower of the Coat of Arms of the Makowski Family&#39; width=&#34;33%&#34; /&gt;
     &lt;figcaption&gt;The Makowski&#39;s Poppy Flower.&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;p&gt;Did you spot any more 😏? Let us know!&lt;/p&gt;
+&lt;p&gt;Did you spot any more &amp;#x1f60f;? Let us know!&lt;/p&gt;
 </description>
     </item>
     
@@ -494,7 +494,7 @@
 &lt;p&gt;☝️☝️☝️☝️☝️☝️☝️☝️☝️☝️☝️☝️☝️☝️☝️☝️☝️☝️☝️☝️☝️☝️☝️☝️☝️☝️☝️☝️☝️&lt;/p&gt;
 &lt;p&gt;And &lt;strong&gt;let us know what you think!&lt;/strong&gt; You can open an issue on the &lt;a href=&#34;https://github.com/RealityBending/TemplateResults/issues&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;repo&lt;/a&gt; or even contribute to help us improve it :)&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;&lt;em&gt;Thanks for reading! Do not hesitate to tweet and share this post, and leave a comment below&lt;/em&gt; 🤗&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Thanks for reading! Do not hesitate to tweet and share this post, and leave a comment below&lt;/em&gt; &amp;#x1f917;&lt;/p&gt;
 &lt;p&gt;🐦 &lt;em&gt;Don&amp;rsquo;t forget to join me on Twitter&lt;/em&gt; &lt;a href=&#34;https://twitter.com/Dom_Makowski&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;@Dom_Makowski&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
@@ -631,7 +631,7 @@
 &lt;figure&gt;
   &lt;img src=&#34;determinism.jpg&#34; alt=&#34;determinism&#34;/&gt;
 &lt;/figure&gt;
-&lt;p&gt;Note that this position is not incompatible with a &lt;strong&gt;probabilistic view of the world&lt;/strong&gt; (I am also a rather radical Bayesianist 😁). In this context, the probabilistic perspective is mostly a framework to describe uncertainty and hidden mechanisms. For instance, if I flip a coin, a probabilistic approach would be to consider that there is a 50/50 probability on the outcome. That said, if we manage to gather information on all the parameters (the starting position of the coin, the velocity and angle of the tossing, gravity, the weight distribution on the coin, its resistance to air, characteristics of air pressure, wind etc.), one could pretty much accurately predict what the outcome would be. In other words, the outcome is already &amp;ldquo;determined&amp;rdquo; once the coined has been tossed. That doesn&amp;rsquo;t mean that a probabilistic model is not convenient to describe it, especially when we don&amp;rsquo;t have access to all these parameters (or powerful enough models to integrate them).&lt;/p&gt;
+&lt;p&gt;Note that this position is not incompatible with a &lt;strong&gt;probabilistic view of the world&lt;/strong&gt; (I am also a rather radical Bayesianist &amp;#x1f601;). In this context, the probabilistic perspective is mostly a framework to describe uncertainty and hidden mechanisms. For instance, if I flip a coin, a probabilistic approach would be to consider that there is a 50/50 probability on the outcome. That said, if we manage to gather information on all the parameters (the starting position of the coin, the velocity and angle of the tossing, gravity, the weight distribution on the coin, its resistance to air, characteristics of air pressure, wind etc.), one could pretty much accurately predict what the outcome would be. In other words, the outcome is already &amp;ldquo;determined&amp;rdquo; once the coined has been tossed. That doesn&amp;rsquo;t mean that a probabilistic model is not convenient to describe it, especially when we don&amp;rsquo;t have access to all these parameters (or powerful enough models to integrate them).&lt;/p&gt;
 &lt;p&gt;Many attempts have been made to attack determinism (and especially by people trying to defend the possibility of free will), and recent advances in physics have giving them a lot of ammunition (the most striking example being the - often misunderstood - usage of &lt;strong&gt;quantum uncertainty to explain randomness, free-will, consciousness, god&lt;/strong&gt; and pretty much everything). Nonetheless, determinism is one of the simplest assumption that can be made regarding causality and evolution.&lt;/p&gt;
 &lt;h2 id=&#34;the-future-is-now&#34;&gt;The future is now&lt;/h2&gt;
 &lt;p&gt;Determinism has one important consequence. As all events stem one from the others, in a unique chain of causal events, then if we know the exact state of the system (i.e., you know the state of &lt;em&gt;all&lt;/em&gt; of the variables of the system) at one point in time, as well as the rules governing the system, we can predict with certainty the system&amp;rsquo;s state at the next point in time, at &lt;em&gt;t&lt;/em&gt;+1. If we repeat the process, &lt;strong&gt;we know the state of the system at &lt;em&gt;t&lt;/em&gt;+2, and so on, until the end of times.&lt;/strong&gt;&lt;/p&gt;
@@ -673,10 +673,10 @@
   &lt;img src=&#34;https://thumbs.gfycat.com/BiodegradableSeriousLacewing-size_restricted.gif&#34; alt=&#34;gandalf&#34;/&gt;
   &lt;figcaption&gt;&#34;Riddles in the dark...&#34;&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;p&gt;While these are fun thought experiments to ponder over, note that until there, I have mainly speculated about time as we phenomenologically experience it. I haven&amp;rsquo;t even touched on the possible relationship between the idea of time as a computational limit, and time as it conceived in modern theoretical physics (for instance, as a geometrical dimension of the time-space continuum that can be deformed and, potentially, navigated in). &lt;strong&gt;But for this, you&amp;rsquo;ll need to get me talking after more beers&lt;/strong&gt; 🍻&lt;/p&gt;
+&lt;p&gt;While these are fun thought experiments to ponder over, note that until there, I have mainly speculated about time as we phenomenologically experience it. I haven&amp;rsquo;t even touched on the possible relationship between the idea of time as a computational limit, and time as it conceived in modern theoretical physics (for instance, as a geometrical dimension of the time-space continuum that can be deformed and, potentially, navigated in). &lt;strong&gt;But for this, you&amp;rsquo;ll need to get me talking after more beers&lt;/strong&gt; &amp;#x1f37b;&lt;/p&gt;
 &lt;p&gt;Cheers!&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;&lt;em&gt;Thanks for reading! Do not hesitate to tweet and share this post, and leave a comment below&lt;/em&gt; 🤗&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Thanks for reading! Do not hesitate to tweet and share this post, and leave a comment below&lt;/em&gt; &amp;#x1f917;&lt;/p&gt;
 &lt;p&gt;🐦 &lt;em&gt;Don&amp;rsquo;t forget to join me on Twitter&lt;/em&gt; &lt;a href=&#34;https://twitter.com/Dom_Makowski&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;@Dom_Makowski&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
@@ -687,7 +687,7 @@
       <pubDate>Mon, 28 Sep 2020 00:00:00 +0000</pubDate>
       <guid>https://realitybending.github.io/post/2020-09-28-what_is_realitybending/</guid>
       <description>&lt;p&gt;As you know, &lt;strong&gt;reality bending&lt;/strong&gt; is my primary research direction. However, it is not (yet) a well-established scientific topic, nor is it clearly defined. In fact, &lt;strong&gt;it is not defined at all, hence the purpose of this article&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;But what does it refer too? Is it some kind of &lt;a href=&#34;https://en.wikipedia.org/wiki/Avatar:_The_Last_Airbender&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;Avatar: The Last Airbender&lt;/em&gt;&lt;/a&gt; thing? Or some &lt;a href=&#34;https://marvel-movies.fandom.com/wiki/Reality_Stone&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;Avengers&lt;/em&gt;&lt;/a&gt;-style superpower? Well&amp;hellip; I sure wish it was 😁&lt;/p&gt;
+&lt;p&gt;But what does it refer too? Is it some kind of &lt;a href=&#34;https://en.wikipedia.org/wiki/Avatar:_The_Last_Airbender&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;Avatar: The Last Airbender&lt;/em&gt;&lt;/a&gt; thing? Or some &lt;a href=&#34;https://marvel-movies.fandom.com/wiki/Reality_Stone&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;Avengers&lt;/em&gt;&lt;/a&gt;-style superpower? Well&amp;hellip; I sure wish it was &amp;#x1f601;&lt;/p&gt;
 &lt;p&gt;Essentially, &lt;strong&gt;reality bending&lt;/strong&gt; refers to the study of the internal and external determinants of subjective reality. In other words, we seek to understand the processes that modulate our conscious experience of reality. The word &amp;ldquo;bending&amp;rdquo; encapsulates the active nature of the mechanisms at stake. Indeed, being anything but stable, our perception of reality can be quite easily influenced, whether voluntarily or not, sometimes to extreme degrees of alteration.&lt;/p&gt;
 &lt;figure&gt;
   &lt;img src=&#34;DonQuixote.jpg&#34; alt=&#34;github for psychologists&#34;/&gt;
@@ -704,7 +704,7 @@
 &lt;h2 id=&#34;altered-states-of-consciousness&#34;&gt;Altered states of consciousness&lt;/h2&gt;
 &lt;p&gt;Naturally, states in which our sense of reality is distorted (as compared to the consensual collective experience) are of particular interest as models or study-cases of our ideas and theories. They include long-term affections (e.g., neuropsychiatric disorders such as schizophrenia) or transcient states (induced by psychoactive substances or specific practices like meditation and trance).&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;&lt;em&gt;Thanks for reading! Don&amp;rsquo;t forget to join me on Twitter&lt;/em&gt; &lt;a href=&#34;https://twitter.com/Dom_Makowski&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;@Dom_Makowski&lt;/a&gt; 🤗&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Thanks for reading! Don&amp;rsquo;t forget to join me on Twitter&lt;/em&gt; &lt;a href=&#34;https://twitter.com/Dom_Makowski&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;@Dom_Makowski&lt;/a&gt; &amp;#x1f917;&lt;/p&gt;
 </description>
     </item>
     
@@ -991,7 +991,7 @@ save(d, file = &amp;quot;data.Rdata&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;sub&gt;You can reference this post as follows:&lt;/sub&gt;&lt;/p&gt;
 &lt;p&gt;&lt;sub&gt;- Makowski, D. (2020, September 14). How to extract individual scores from repeated measures. Retrieved from &lt;a href=&#34;https://dominiquemakowski.github.io/post/individual_scores/&#34; class=&#34;uri&#34;&gt;https://dominiquemakowski.github.io/post/individual_scores/&lt;/a&gt;&lt;/sub&gt;&lt;/p&gt;
 &lt;hr /&gt;
-&lt;p&gt;&lt;em&gt;Thanks for reading! Do not hesitate to share this post, and leave a comment below&lt;/em&gt; 🤗&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Thanks for reading! Do not hesitate to share this post, and leave a comment below&lt;/em&gt; :hugs:&lt;/p&gt;
 &lt;p&gt;🐦 &lt;em&gt;And don’t forget to join me on Twitter&lt;/em&gt; &lt;span class=&#34;citation&#34;&gt;[@Dom_Makowski]&lt;/span&gt;(&lt;a href=&#34;https://twitter.com/Dom_Makowski&#34; class=&#34;uri&#34;&gt;https://twitter.com/Dom_Makowski&lt;/a&gt;)&lt;/p&gt;
 &lt;/div&gt;
 </description>
@@ -1031,7 +1031,7 @@ save(d, file = &amp;quot;data.Rdata&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;!-- La neuropsychologie expérimentale étudie les variabilités du cerveau et de la cognition (qu’elles soient d’origine pathologique ou non) pour tester des modèles et développer des théories sur le fonctionnement mental, visant ainsi à une meilleure compréhension de l’Homme. --&gt;
 &lt;!-- La neuropsychologie clinique utilise les théories et les modèles sur le fonctionnement mental pour mieux détecter et appréhender les troubles et les déficits d’une pathologie, menant à un diagnostic précis, tout en développant et appliquant des prises en charges modernes et adaptées. --&gt;
 &lt;!-- La neuropsychologie se situe au centre de la nébuleuse des neurosciences, au carrefour de la théorie et de la pratique. Ses praticiens, les neuropsychologues, sont liés par une formation commune, des bases théoriques spécifiques, un canevas d’analyse et d’interprétation sous-tendu par une méthode d’investigation rigoureuse et scientifique.  --&gt;
-&lt;p&gt;&lt;em&gt;Thanks for reading! Do not hesitate to tweet and share this post, and leave a comment below&lt;/em&gt; 🤗&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Thanks for reading! Do not hesitate to tweet and share this post, and leave a comment below&lt;/em&gt; &amp;#x1f917;&lt;/p&gt;
 &lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Nicolas, S., &amp;amp; Murray, D. J. (1999). Théodule Ribot (1839–1916), founder of French psychology: A biographical introduction. History of Psychology, 2(4), 277.&lt;/li&gt;
@@ -1217,7 +1217,7 @@ save(d, file = &amp;quot;data.Rdata&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;👉 &lt;a href=&#34;https://lindeloev.github.io/shiny-rt/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Reaction time distributions: an interactive overview&lt;/strong&gt;&lt;/a&gt; 👈&lt;/p&gt;
 &lt;p&gt;It is a must-read for all psychologist. Do check-it out!!&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;&lt;em&gt;Thanks for reading! Do not hesitate to tweet and share this post, and leave a comment below&lt;/em&gt; 🤗&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Thanks for reading! Do not hesitate to tweet and share this post, and leave a comment below&lt;/em&gt; &amp;#x1f917;&lt;/p&gt;
 &lt;p&gt;🐦 &lt;em&gt;And don&amp;rsquo;t forget to join me on Twitter&lt;/em&gt; &lt;a href=&#34;https://twitter.com/Dom_Makowski&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;@Dom_Makowski&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
@@ -1252,7 +1252,7 @@ save(d, file = &amp;quot;data.Rdata&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;👉 &lt;a href=&#34;https://github.com/neuropsychology/NeuroKit#quick-example&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Discover more about NeuroKit here&lt;/strong&gt;&lt;/a&gt; 👈&lt;/p&gt;
 &lt;p&gt;Have fun!&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;&lt;em&gt;Thanks for reading! Do not hesitate to tweet and share this post, and leave a comment below&lt;/em&gt; 🤗&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Thanks for reading! Do not hesitate to tweet and share this post, and leave a comment below&lt;/em&gt; &amp;#x1f917;&lt;/p&gt;
 &lt;p&gt;🐦 &lt;em&gt;Don&amp;rsquo;t forget to join me on Twitter&lt;/em&gt; &lt;a href=&#34;https://twitter.com/Dom_Makowski&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;@Dom_Makowski&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
@@ -1266,7 +1266,7 @@ save(d, file = &amp;quot;data.Rdata&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Magical numbers, or conventional thresholds, have bad press in statistics, and there are many of them. For instance, &lt;strong&gt;.05&lt;/strong&gt; (for the &lt;em&gt;p&lt;/em&gt;-value), or the &lt;strong&gt;95%&lt;/strong&gt; range for the &lt;strong&gt;Confidence Interval&lt;/strong&gt; (CI). Indeed, why 95 and not 94 or 90?&lt;/p&gt;
 &lt;p&gt;👉 &lt;a href=&#34;https://easystats.github.io/blog/posts/bayestestr_95/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Read my complete post on the easystats&amp;rsquo; blog&lt;/strong&gt;&lt;/a&gt; 👈&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;&lt;em&gt;Thanks for reading! Do not hesitate to tweet and share this post, and leave a comment below&lt;/em&gt; 🤗&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Thanks for reading! Do not hesitate to tweet and share this post, and leave a comment below&lt;/em&gt; &amp;#x1f917;&lt;/p&gt;
 </description>
     </item>
     
@@ -1281,7 +1281,7 @@ save(d, file = &amp;quot;data.Rdata&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;You can find the link here:&lt;/p&gt;
 &lt;p&gt;👉 &lt;a href=&#34;https://easystats.github.io/bayestestR/articles/bayestestR.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Get Started with Bayesian Statistics using R&lt;/strong&gt;&lt;/a&gt; 👈&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;&lt;em&gt;Thanks for reading! Do not hesitate to tweet and share this post, and leave a comment below&lt;/em&gt; 🤗&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Thanks for reading! Do not hesitate to tweet and share this post, and leave a comment below&lt;/em&gt; &amp;#x1f917;&lt;/p&gt;
 &lt;p&gt;🐦 &lt;em&gt;Don&amp;rsquo;t forget to join me on Twitter&lt;/em&gt; &lt;a href=&#34;https://twitter.com/Dom_Makowski&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;@Dom_Makowski&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
@@ -1367,7 +1367,7 @@ save(d, file = &amp;quot;data.Rdata&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;h1 id=&#34;references&#34;&gt;References&lt;/h1&gt;
 &lt;p&gt;McSharry, P. E., Clifford, G. D., Tarassenko, L., &amp;amp; Smith, L. A. (2003). A dynamical model for generating synthetic electrocardiogram signals. IEEE transactions on biomedical engineering, 50(3), 289-294.&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;&lt;em&gt;Thanks for reading! Do not hesitate to tweet and share this post, and leave a comment below&lt;/em&gt; 🤗&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Thanks for reading! Do not hesitate to tweet and share this post, and leave a comment below&lt;/em&gt; &amp;#x1f917;&lt;/p&gt;
 &lt;p&gt;🐦 &lt;em&gt;Don&amp;rsquo;t forget to join me on Twitter&lt;/em&gt; &lt;a href=&#34;https://twitter.com/Dom_Makowski&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;@Dom_Makowski&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
