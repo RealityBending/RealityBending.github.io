@@ -16,12 +16,12 @@ interests:
 - food
 education:
   courses:
+  - course: Mres Psychological Methods
+    institution: University of Sussex
+    year: 2023 - Present
   - course: BSc, Psychology with Cognitive Sciences
     institution: University of Sussex
     year: 2018 - 2022
-  - Course: Mres Psychological Methods
-    institution: University of Sussex
-    year: 2023 - Present
 superuser: false
 user_groups:
 - Research Assistants
