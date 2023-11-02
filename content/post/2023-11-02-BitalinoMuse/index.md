@@ -24,7 +24,7 @@ tags:
 - Muse 2 EEG
 - Bitalino
 - Plux
-- Psychokit
+- Psychobit
 - LSL
 - Lab Streaming Layer
 - Synchronize
@@ -32,40 +32,32 @@ tags:
 ---
 
 
-## **About**
+## Equipment
 
+The setup used here is a low cost (< 1000€), easy-to-setup solution for comprehensive bodily recordings with a bit of EEG.
 
-This guide pertains only the **Interoception** and **Primal World Beliefs** project.
+### Bitalino
 
-  - Interoception refers to the perception of the internal state of one’s body (Craig, 2002).
-  - Primal World Beliefs refer to beliefs that one has about the basic character or the world, such as thinking of the world as ‘safe’, ‘alive’ and ‘enticing’ (Clifton et al., 2019).
+- Record bodily signals (ECG, PPG, RSP, EDA, ...)
+- 420€
+- [Official website](https://www.pluxbiosignals.com/products/psychobit)
 
-## **Data**
-
-To capture **subjective measures** of interoception abilities and primal world beliefs, we use the following questionnaires:
-
-1. Interoceptive Accuracy Scale (IAS, Murphy et al., 2020)
-2. Multidimensional Assessment of Interoceptive Awareness second version (MAIA-2, Mehling et al., 2018)
-3. Primal Inventory 99 (PI-99, Clifton et al., 2019)
-
-To capture **objective measures** of interoceptive abilities we use the following tasks:
-
-1.	Resting state task (Diaz et al., 2013)
-2.	Heartbeat counting task (HCT, Schandry, 1981)
-3.	Tapping task (Tap)
-
-## **Devices**
-
-
-**BItalino**
 ![Alt text](images/BItalino.png)
 
-**MUSE 2 Headset**
+
+
+### Muse 2 EEG Headset
+
+- Record PPG and 4 EEG channels (TP9, TP10, AF7, AF8)
+- 269.99€
+- [Official website](https://eu.choosemuse.com/products/muse-2)
+
+
 ![Alt text](images/MUSE.png)
 
 
 
-## **Software**
+## Software
 
 The following software is needed to collect, record and analyse physiological data.
 
@@ -105,7 +97,7 @@ The following software is needed to collect, record and analyse physiological da
 1. Download here: https://code.visualstudio.com/download
 
 
-**MUSE LSL**: python package to stream, visualise, and record EEG data from the Muse 2 headset.
+MUSE LSL: python package to stream, visualise, and record EEG data from the Muse 2 headset.
 
 1. Open VS Code, click New Terminal.
 2. On the Terminal, write 'pip install muselsl' and press enter.
@@ -147,22 +139,9 @@ For Windows:
 
 
 
-## **How to record data**
+## How to record data
 
  ADD HOW TO STREAM WITH THE MUSE
 - ADD HOW TO RECORD WITH THE LAB RECORDER
 
 
-## References - add links
-
-Diaz, B. A., Van Der Sluis, S., Moens, S., Benjamins, J. S., Migliorati, F., Stoffers, D., ... & Linkenkaer-Hansen, K. (2013). The Amsterdam Resting-State Questionnaire reveals multiple phenotypes of resting-state cognition. Frontiers in human neuroscience, 7, 446.
-
-Schandry, R. (1981). Heart beat perception and emotional experience. Psychophysiology, 18(4), 483-488.
-
-Craig, A. D. (2002). How do you feel? Interoception: the sense of the physiological condition of the body. Nature reviews neuroscience, 3(8), 655-666.
-
-Murphy, J., Brewer, R., Plans, D., Khalsa, S. S., Catmur, C., & Bird, G. (2020). Testing the independence of self-reported interoceptive accuracy and attention. Quarterly Journal of Experimental Psychology, 73(1), 115-133.
-
-Mehling, W. E., Acree, M., Stewart, A., Silas, J., & Jones, A. (2018). The multidimensional assessment of interoceptive awareness, version 2 (MAIA-2). PloS one, 13(12), e0208034.
-
-Clifton, J. D., Baker, J. D., Park, C. L., Yaden, D. B., Clifton, A. B., Terni, P., ... & Seligman, M. E. (2019). Primal world beliefs. Psychological Assessment, 31(1), 82.
