@@ -61,7 +61,9 @@ The setup used here is a low cost (< 1000€), easy-to-setup solution for compre
 
 The following software is needed to collect, record and analyse physiological data.
 
-**Open Signals**: used to visualise the signals recorded from BItalino.
+### Open Signals
+
+- [x] Used to visualise the signals recorded from BItalino.
 
 1. Download OpenSignals (r)evolution here: https://biosignalsplux.com/index.php/software
 2. Open device manager to access and configure your biosignalsplux device
@@ -86,7 +88,9 @@ The following software is needed to collect, record and analyse physiological da
 
 -*add screenshot of how the signals look
 
-**Python**
+### Python
+
+- [x] Necessary to run the software to stream Muse signals
 
 1. Download here:  https://www.python.org/downloads/
 2. IMPORTANT!!! Make sure to click on 'Add python.exe to PATH' at the bottom.
@@ -97,19 +101,23 @@ The following software is needed to collect, record and analyse physiological da
 1. Download here: https://code.visualstudio.com/download
 
 
-MUSE LSL: python package to stream, visualise, and record EEG data from the Muse 2 headset.
+### MuseLSL2
+
+- [x] python package to stream, visualise, and record EEG data from the Muse 2 headset.
 
 1. Open VS Code, click New Terminal.
-2. On the Terminal, write 'pip install muselsl' and press enter.
+2. On the Terminal, write `pip install https://github.com/DominiqueMakowski/MuseLSL2/zipball/main` and press enter.
 ![Alt text](images/image-4.png)
 
-1. If it does not work, open your computer Terminal, and write 'pip install muselsl' and press enter.
+1. If it does not work, open your computer Terminal, and write `pip install https://github.com/DominiqueMakowski/MuseLSL2/zipball/main` and press enter.
 ![Alt text](images/image-5.png)
 
-For more information go to: https://github.com/alexandrebarachant/muse-lsl
+For more information go to: https://github.com/DominiqueMakowski/MuseLSL2
 
 
-**Lab Recorder**: it logs all streams on the lab network into a single file, with time synchronization between streams.
+### Lab Recorder
+
+- [x] It logs all streams on the lab network into a single file, with time synchronization between streams.
 
 For Windows:
 
