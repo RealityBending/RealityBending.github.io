@@ -4,16 +4,16 @@ title: Ana Neves
 # Folder name
 authors:
 - ana-neves
-bio: Sussex Student currently making their first foray into academia, a wide set of interests and a passion for change
+bio: Sussex Student currently working towards a career as researcher
 social:
 - icon: github
   icon_pack: fab
   link: https://github.com/AnafNeves
 role: Research Assistant<sub><sup><br>University of Sussex</sup></sub>
 interests:
-- staying alive
-- plants
-- food
+- Consciousness
+- Staying alive
+- Art
 education:
   courses:
   - course: Mres Psychological Methods
