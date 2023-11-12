@@ -35,9 +35,11 @@ tags:
 
 <!-- I am open to new PhD students! -->
 🔥**NEW**🔥 There is a fully-funded PhD position available with me at Sussex (**DEADLINE TO APPLY: 4 January 2024**). It covers:
-- University fees (£25,000 per year)
-- Stipend (= salary) of £18,622 per year, + paid teaching available
-- Research/training funds of £750 per year
+
+- [x] University fees (£25,000 per year)
+- [x] Salary of £18,622 per year, + additionally paid teaching available
+- [x] Research/training funds of £750 per year
+
 **Send inquiries and CV to D.Makowski@sussex.ac.uk**.
 
 ## What you will get

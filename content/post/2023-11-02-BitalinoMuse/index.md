@@ -6,7 +6,7 @@ categories:
 - Biosignals
 date: "2023-11-02"
 title: "Record and Synchronize biosignals from Bitalino with EEG from Muse"
-draft: false
+draft: true
 featured: false
 image:
   caption: ''
@@ -34,9 +34,9 @@ tags:
 
 ## Equipment
 
-The setup used here is a low cost (< 1000€), easy-to-setup solution for comprehensive bodily recordings with a bit of EEG.
+The setup used here is a low cost (~700€), easy-to-setup solution for comprehensive bodily recordings (ECG, PPG, RSP, EDA, ...) with a bit of EEG. For that, we need two devices.
 
-### Bitalino
+### BITalino
 
 - Record bodily signals (ECG, PPG, RSP, EDA, ...)
 - 420€
@@ -48,7 +48,7 @@ The setup used here is a low cost (< 1000€), easy-to-setup solution for compre
 
 ### Muse 2 EEG Headset
 
-- Record PPG and 4 EEG channels (TP9, TP10, AF7, AF8)
+- Record PPG and 4 EEG channels (TP9, TP10, AF7, AF8) + PPG
 - 269.99€
 - [Official website](https://eu.choosemuse.com/products/muse-2)
 
@@ -59,34 +59,27 @@ The setup used here is a low cost (< 1000€), easy-to-setup solution for compre
 
 ## Software
 
-The following software is needed to collect, record and analyse physiological data.
+The following software is needed to record the data data.
 
 ### Open Signals
 
-- [x] Used to visualise the signals recorded from BItalino.
+- [x] Used to visualise and stream signals recorded from BItalino.
 
 1. Download OpenSignals (r)evolution here: https://biosignalsplux.com/index.php/software
 2. Open device manager to access and configure your biosignalsplux device
 ![Alt text](images/image.png)
 
-3. Select advise intended to use.
+3. Select device intended to use.
 ![Alt text](images/image-1.png)
 
-4. Access the settings by clicking on the biosignalsplux. Select the channel to which the sensors are connected to.
+4. Access the settings by clicking on the biosignalsplux. Configure the channels to reflect what you connect to them.
 
-- *add screenshot*
-(A1) – respiration belt
-(A2) – ECG electrodes
-(A3) – Photosensor/ LUX
-(A4) -  Pulse sensor
-
-5.  Go to Open signals settings, then the integration tab and click on the lab streaming layer.
+5. **Important**: Go to Open signals settings, then the integration tab and click on the **lab streaming layer**. This will allow the synchronization of BITalino with the Muse EEG.
 ![Alt text](images/image-3.png)
 
-6. Start recording.
+6. Start recording to visualize the signals.
 ![Alt text](<images/image-4 .png>)
 
--*add screenshot of how the signals look
 
 ### Python
 
