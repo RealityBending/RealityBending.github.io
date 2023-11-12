@@ -86,12 +86,10 @@ The following software is needed to record the data data.
 - [x] Necessary to run the software to stream Muse signals
 
 1. Download here:  https://www.python.org/downloads/
-2. IMPORTANT!!! Make sure to click on 'Add python.exe to PATH' at the bottom.
+2. **Important**: Make sure to click on 'Add python.exe to PATH' at the bottom.
 ![Alt text](images/image-2.png)
 
-**VS Code**: code editor for python.
-
-1. Download here: https://code.visualstudio.com/download
+3. Best is to use VS Code as an editor for Python. Download here: https://code.visualstudio.com/download
 
 
 ### MuseLSL2
