@@ -62,6 +62,10 @@ The lab is open to final year projects of Sussex students. Research in the **Rea
 - Neurophysiological signal analysis in **Python**: implementation and validation of new algorithms in Python, related for instance to chaos theory, EEG signal analysis, etc. This project requires some interest in programming, computer science and mathematics.
 - **Psychophysiological methods**: what is the optimal electrode configuration for recording skin conductance responses (often used as a marker of emotions).
 
+## Other / Collaborations
+
+- With [Theodoros Karapanagiotidis](https://canvas.sussex.ac.uk/courses/30420/pages/theodoros-karapanagiotidis-2-2): project involving secondary behavioural data analysis, exploring questions about the nature of thoughts, their patterns, the impact of mood and ongoing experience , and how they vary in in real-life settings. By analysing existing data, students will be able to examine the links between ongoing thoughts, brain structure and function, and their potential implications for mental health and well-being.
+
 Some of these projects share strong links with philosophical concepts (e.g., the [paradox of fiction](https://en.wikipedia.org/wiki/Paradox_of_fiction)) and/or carry some clinical relevance (e.g., for the understanding and treatment of mood/psychotic/dissociative disorders). Also, note that the lab is radically engaged in open science and, ultimately, quantitative methodologies: thus, **most projects would typically require a substantial use of R** (or Python) at some stage. However, it's totally okay not to feel proficient at these skills at the start, but the important thing is to be interested and motivated to learn.
 
 Projects might be conducted individually, in pairs, or in a group, depending on needs. Attending weekly lab meetings is also expected.
