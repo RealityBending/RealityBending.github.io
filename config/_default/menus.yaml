@@ -40,7 +40,7 @@ main:
       PageRef: jobs/intern.md
       weight: 40
       parent: jobs
-    - name: Final Year Projects
+    - name: Research Projects
       PageRef: jobs/projects.md
       weight: 50
       parent: jobs
