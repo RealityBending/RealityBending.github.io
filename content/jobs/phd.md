@@ -39,7 +39,7 @@ tags:
 - [x] University fees (£25,000 per year)
 - [x] Salary of £18,622 per year, + additionally paid teaching available
 - [x] Research/training funds of £750 per year
-- [x] Open research project (see [themes](https://realitybending.github.io/jobs/finalyearprojects/))
+- [x] Open research project (see [themes](https://realitybending.github.io/jobs/projects/))
 
 **Send inquiries and CV to D.Makowski@sussex.ac.uk**.
 

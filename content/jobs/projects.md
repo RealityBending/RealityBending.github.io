@@ -1,11 +1,13 @@
 ---
-title: Final Year Projects
-linkTitle: Final Year Projects
+title: Research Projects
+linkTitle: Research Projects
 date: '2023-02-02'
 type: book
 weight: 50
 toc: false
 tags:
+  - Research topics
+  - Dissertation topics
   - Final Year Projects
   - Research Assistant
   - Internship
@@ -29,9 +31,9 @@ tags:
 {{< icon name="calendar" pack="fa" >}} Flexible
 {{< icon name="location-pin" pack="fa" >}} University of Sussex, Brighton, UK
 
-![](finalyearprojects.jpg)
+![](projects.jpg)
 
-The lab is open to final year projects of Sussex students. Research in the **Reality Bending Lab** focuses primarily on the physiological and neurocognitive underpinnings of reality perception and aspects of **reality bending** (e.g., fiction, deception, fake news, illusions, and altered states of consciousness such as through meditation or immersion). Possible projects include (but are not limited to):
+Research in the **Reality Bending Lab** focuses primarily on the physiological and neurocognitive underpinnings of reality perception and aspects of **reality bending** (e.g., fiction, deception, fake news, illusions, and altered states of consciousness such as through meditation or immersion). Possible projects include (but are not limited to):
 
 
 ## How do we know what is real? And what does it change?
