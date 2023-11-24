@@ -25,7 +25,7 @@ tags:
 ---
 
 
-## Funded Position Available
+<!-- ## Funded Position Available
 
 {{< icon name="calendar" pack="fa" >}} As soon as possible
 {{< icon name="location-pin" pack="fa" >}} Singapore
@@ -46,7 +46,7 @@ At the Clinical Brain Lab, the research focuses on uncovering the neuropsycholog
 
 **Starting date.** As soon as possible.
 
-**Contact.** Send questions or CV to Prof Annabel (annabelchen@ntu.edu.sg) and Dr Dominique Makowski (D.Makowski@sussex.ac.uk).
+**Contact.** Send questions or CV to Prof Annabel (annabelchen@ntu.edu.sg) and Dr Dominique Makowski (D.Makowski@sussex.ac.uk). -->
 
 
 ## Getting your own Postdoc Funding
