@@ -32,6 +32,6 @@ design:
   show_social: true
 ---
 
-The Reality Bending Lab is not a place or an institution; it is the people.
+<!-- The Reality Bending Lab is not a place or an institution; it is the people. -->
 
-<!-- My team and I are part of the [**Clinical Brain Lab'**](http://www.clinicalbrain.org/), in which we chart a new research direction. -->
+Meet the brilliant minds that form the Reality Bending Lab.
