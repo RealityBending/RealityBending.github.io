@@ -13,7 +13,7 @@ hero_media: ''
 #   Display link(s) by specifying a URL and label below. Icon is optional for `cta`.
 #   Remove a link/note by deleting a cta/note block.
 cta:
-  url: 'https://www.sussex.ac.uk/study/phd/degrees/psychology-phd'
+  url: 'https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1658-Psychology-Doctoral-Research-Studentship-How-affective-and-embodied-processes-shape-our-conscious-and-unconscious-experience-of-reality-A-PhD-at-the-Reality-Bending-Lab'
   label: Apply
   icon_pack: fas
   icon: upload

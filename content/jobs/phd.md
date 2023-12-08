@@ -34,7 +34,7 @@ tags:
 
 
 <!-- I am open to new PhD students! -->
-🔥**NEW**🔥 There is a fully-funded PhD position (for September 2024) available with me at Sussex (**DEADLINE TO APPLY: 4 January 2024**). It covers:
+🔥**NEW**🔥 There is a [fully-funded](https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1658-Psychology-Doctoral-Research-Studentship-How-affective-and-embodied-processes-shape-our-conscious-and-unconscious-experience-of-reality-A-PhD-at-the-Reality-Bending-Lab) PhD position (for September 2024) available with me at Sussex (**DEADLINE TO APPLY: 24 January 2024**). It covers:
 
 - [x] University fees (£25,000 per year)
 - [x] Salary of £18,622 per year (+ additionally paid teaching available)
