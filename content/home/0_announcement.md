@@ -33,4 +33,4 @@ design:
     text_color_light: true
 ---
 
-🔥**NEW**🔥 There is a fully-funded PhD position available with me at Sussex (**application deadline: 4 January 2024**)
+🔥**NEW**🔥 There is a fully-funded PhD position available with me at Sussex (**application deadline: 24 January 2024**)
