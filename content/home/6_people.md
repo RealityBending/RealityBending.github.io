@@ -29,4 +29,6 @@ design:
   show_social: true
 ---
 
-[<p style="text-align:center"><b>Meet all the people →</b></p>](./people/)
+We pride ourselves with having a vibrant lab life with many students and collaborators a variety of backgrounds and levels, with regular informal events and chats. **Consider joining us our fantastic team!**
+
+[<p style="text-align:center"><b>Meet all the brilliant REBEL minds →</b></p>](./people/)
