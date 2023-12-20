@@ -34,8 +34,20 @@ sections:
 
 gallery_item:
   - album: social
+    image: 2023_dommarco_escop.jpg
+    caption: "2023 - ESCOP Porto: Men in Black (Dom and Marco Sperduti)"
+  - album: social
+    image: 2023_dom_ohbm.jpg
+    caption: "2023 - OHBM Montréal: Dom exposing 'NeuropsyXart'"
+  - album: social
+    image: 2023_domstefano_ohbm.jpg
+    caption: "2023 - OHBM Montréal: Panel with Dom and the PhysioPy team"
+  - album: social
+    image: 2023_domstephanie_ohbm.jpg
+    caption: "2023 - OHBM Montréal: Party (Danielle Benesch, Stephanie Kirk, and Dom)"
+  - album: social
     image: 2022_wakepark.jpg
-    caption: 2022 - Outdoor work sesh (An Shu, Stephanie, Max and Dom)
+    caption: 2022 - Singapore, Outdoor work sesh (An Shu, Stephanie, Max and Dom)
   - album: social
     image: 2022_stephaniemax_eeg.jpg
     caption: 2022 - EEG test (Max and Stephanie)
