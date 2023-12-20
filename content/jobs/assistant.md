@@ -37,14 +37,17 @@ Working as a research assistant (RA) is a formidable opportunity to take on befo
 Funded RA positions at Sussex can be seen on the [recruitment page](https://www.sussex.ac.uk/about/jobs/research-assistant-ref-10411).
 {{% /callout %}}
 
+## Sussex Psychology Placement Year
+
+Students at the University of Sussex can also opt for a [placement year](https://www.sussex.ac.uk/study/undergraduate/courses/psychology-with-a-professional-placement-year-bsc) between the second and third year of their studies. All undergraduates within the School are eligible to complete a placement year. 
+
+While it might seem like it would "add" one year and *delay* the end of the studies, the experience that you could gain is quite invaluable. Doing a full-year placement year in a research lab is the best way to take on larger projects and acquire a comprehensive research experience. Beyond providing you with a massive headstart for the final year, it is a great opportunity to learn new skills and meet many researchers, which will help you refine your career trajectory and maximize your chances of **achieving your goals**.
+
+More information [**here**](http://www.sussex.ac.uk/psychology/internal/students/placements).
 
 ## Sussex Junior Research Associate (JRA)
 
-If you are a Sussex undergrad interested in developing your research skills and experience, you can apply to the [**Sussex Junior Research Associate (JRA) program**](http://www.sussex.ac.uk/suro/jra) to become a research associate and undertake an intensive eight-week research project. Find out more information on [**how to apply here**](http://www.sussex.ac.uk/suro/applying).
-
-## Sussex Placement Year
-
-Students at the University of Sussex can also opt for a placement year between the second and third year of their studies. All undergraduates within the School are eligible to complete a placement year. Doing a full-year placement year in a research lab is the best way to take on larger projects and acquire a comprehensive research experience. It also gives a great head-start for the final year project. It is a great opportunity for students that are interested in pursuing a PhD and want to maximize their chances of success. More information [**here**](http://www.sussex.ac.uk/psychology/internal/students/placements).
+Sussex also offers short **summer internship** opportunities for undergrads interested in developing your research skills and experience. You can apply to the [**Sussex Junior Research Associate (JRA) program**](http://www.sussex.ac.uk/suro/jra) to become a research associate and undertake an intensive eight-week research project over the summer break. Find out more information on [**how to apply here**](http://www.sussex.ac.uk/suro/applying).
 
 ## Volunteer Research assistant
 

@@ -27,6 +27,9 @@ tags:
 
 If you are a undergrad student, doing a **voluntary internship** can be a good idea to get some first exposure with research, develop some useful skills and start growing your professional network. **This is not by any means a necessity or a requirement**, so don't worry *at all* if you cannot afford (financially or in term of availabilities) to volunteer, and check-out instead possibly [funded](https://realitybending.github.io/jobs/assistant/) positions.
 
+- **Sussex Psychology Placement Year**: Check-out the [Research Assistant](https://realitybending.github.io/jobs/assistant/) page
+- **Sussex Junior Research Assistant (JRA)**: Check-out the [Research Assistant](https://realitybending.github.io/jobs/assistant/) page
+
 **Contact.** Send CV to **D.Makowski@sussex.ac.uk** and *explicitly* say that you are interested in volunteering.
 
 {{% callout warning %}}
