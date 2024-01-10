@@ -26,7 +26,7 @@ email: "stephanie.morgank@gmail.com"
 organizations:
 - name: Nanyang Technological University
   url: ""
-role: Research Assistant<sub><sup><br>Nanyang Technological University<br>Singapore</sup></sub>
+role: Research Assistant (2022-24)
 
 social:
 - icon: envelope
@@ -45,7 +45,7 @@ social:
 superuser: false
 
 user_groups:
-- Research Assistants
+- Alumni
 
 ---
 
