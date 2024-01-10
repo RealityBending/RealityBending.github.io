@@ -1,6 +1,7 @@
+---
 authors: 
 - Magdalena Pfaff
-bio: Magdalena graduated from University College Maastricht (BSc Honours) in 2023. She is currently doing the Sussex Neuroscience PhD. Her research interests include brain-body interaction, interoception, and mental health. 
+bio: ""
 education: "" 
 email: ""
 interests:
@@ -33,3 +34,4 @@ superuser: false
 user_groups:
 - PhD Student
 ---
+ Magdalena graduated from University College Maastricht (BSc Honours) in 2023. She is currently doing the Sussex Neuroscience PhD. Her research interests include brain-body interaction, interoception, and mental health. 
