@@ -32,6 +32,6 @@ organizations:
 role: PhD Student 
 superuser: false
 user_groups:
-- PhD Student
+- Research Assistants
 ---
  Magdalena graduated from University College Maastricht (BSc Honours) in 2023. She is currently doing the Sussex Neuroscience PhD. Her research interests include brain-body interaction, interoception, and mental health. 
