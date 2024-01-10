@@ -1,22 +1,35 @@
 ---
-authors: 
-- Magdalena Pfaff
+title: "Magdalena Pfaff"
+authors:
+- magdalena-pfaff
+
 bio: ""
-education: "" 
-email: ""
+
+education:
+  courses:
+  - course: Sussex Neuroscience 
+    institution: University of Sussex
+    year: 2023 - present
+  - course: Liberal Arts and Sciences (BSc) (Hons)
+    institution: Maastricht University
+    year: 2019-2023
+
 interests:
 - Brain-body interactions
 - Interoception 
 - Mindfulness
 - Consciousness and reality perception 
 - Clinical Psychology 
-education: 
-course: Sussex Neuroscience 
-institution: University of Sussex
-year: 2023 - present
-course: Liberal Arts and Sciences (BSc) (Hons)
-instituion: Maastricht University
-year: 2019-2023
+
+
+email: "mp667@sussex.ac.uk "
+
+
+organizations:
+- name: University of Sussex
+  url: ""
+role: PhD Student (Rotation)<sub><sup><br>University of Sussex</sup></sub>
+
 social:
 - icon: envelope
   icon_pack: fas
@@ -24,14 +37,11 @@ social:
 - icon: github
   icon_pack: fab
   link: https://github.com/magdapf
-name: Magdalena Pfaff
-title: ""
-organizations:
-- name: University of Sussex
-  url: ""
-role: PhD Student 
+
 superuser: false
+
 user_groups:
 - Research Assistants
 ---
- Magdalena graduated from University College Maastricht (BSc Honours) in 2023. She is currently doing the Sussex Neuroscience PhD. Her research interests include brain-body interaction, interoception, and mental health. 
+
+Magdalena graduated from University College Maastricht (BSc Honours) in 2023. She is currently doing the Sussex Neuroscience PhD. Her research interests include brain-body interaction, interoception, and mental health. 
