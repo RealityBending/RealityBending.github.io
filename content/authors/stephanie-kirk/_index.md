@@ -50,5 +50,3 @@ user_groups:
 ---
 
 Stephanie graduated from the University of British Columbia with a Bachelors in Psychology in 2019, and from the National University of Singapore with a Masters in Museum Studies and Curatorial Practices in 2021. Her primary research interests are in neuroaesthetics and the environment, as well as topics related to post-traumatic stress disorder, including post-traumatic growth.
-
----
