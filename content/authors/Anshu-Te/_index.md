@@ -20,7 +20,7 @@ interests:
 organizations:
 - name: Nanyang Technological University
   url: ""
-role: Research Assistant<sub><sup><br>Nanyang Technological University<br>Singapore</sup></sub>
+role: "Research Assistant (2021-23)<sub><br>Current: Student (master of clinical psychology)</sub>"
 social:
 - icon: envelope
   icon_pack: fas
@@ -39,7 +39,7 @@ superuser: false
 
 title: An-Shu Te
 user_groups:
-- Research Assistants
+- Alumni
 
 ---
 

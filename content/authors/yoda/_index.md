@@ -5,7 +5,7 @@ bio: "You must unlearn what you have learned."
 education: ""
 email: ""
 interests:
-- The Force
+- Doing, not trying
 - The Wookie
 education:
   courses:
@@ -13,7 +13,7 @@ education:
 name: Yoda
 title: Yoda
 organizations:
-- name: Jedi
+- name: Dagobah
   url: ""
 role: Jedi Master
 superuser: false
@@ -21,4 +21,4 @@ user_groups:
 - Consultants
 ---
 
-**You must unlearn what you have learned.**
+*"You must unlearn what you have learned."*

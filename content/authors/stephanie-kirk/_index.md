@@ -1,9 +1,7 @@
 ---
+title: Stephanie Kirk
 authors:
-- Stephanie Kirk
-
-alias:
-- Steph
+- stephanie-kirk
 
 bio: Stephanie is currently a research assistant at the Clinical Brain Lab in NTU.
 
@@ -28,7 +26,7 @@ email: "stephanie.morgank@gmail.com"
 organizations:
 - name: Nanyang Technological University
   url: ""
-role: Research Assistant<sub><sup><br>Nanyang Technological University<br>Singapore</sup></sub>
+role: Research Assistant (2022-24)
 
 social:
 - icon: envelope
@@ -46,9 +44,8 @@ social:
 
 superuser: false
 
-title: Stephanie Kirk
 user_groups:
-- Research Assistants
+- Alumni
 
 ---
 

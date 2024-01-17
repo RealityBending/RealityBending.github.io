@@ -10,7 +10,6 @@ headless: true
 weight: 60
 
 title: 'The REBEL Team'
-subtitle:
 
 content:
   # Choose which groups/teams of users to display.
@@ -30,7 +29,6 @@ design:
   show_social: true
 ---
 
-[<p style="text-align:center"><b>Meet all the people →</b></p>](./people/)
-<!-- {{% cta cta_link="./people/" cta_text="Meet all the people →" %}} -->
+We pride ourselves with having a **vibrant lab life** with many students and collaborators a variety of backgrounds and levels, with regular informal events and chats. **Consider joining our fantastic team!**
 
-<!-- My team and I are part of the [**Clinical Brain Lab'**](http://www.clinicalbrain.org/), in which we chart a new research direction. -->
+[<p style="text-align:center"><b>Meet all the brilliant REBEL minds →</b></p>](./people/)
