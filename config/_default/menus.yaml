@@ -20,6 +20,10 @@ main:
       url: "publication/"
       weight: 60
 
+    - name: Participate
+      url: "research#participate"
+      weight: 65
+
     - name: "Join us"
       url: "jobs/"
       weight: 70
