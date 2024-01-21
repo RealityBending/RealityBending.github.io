@@ -28,7 +28,7 @@ design:
 
 
 <table style="width:100%; border-collapse: collapse;" class="custom-table">
-    <tr style="background-color: #212121;">
+    <tr style="background-color: transparent;">
         <td style="width: 70%;">
             <b>Are you aroused by AI-generated erotic content?</b><br>
             ~20min; > 18 years old<br>
@@ -40,7 +40,7 @@ design:
             </a>
         </td>
     </tr>
-    <tr style="background-color: #212121;">
+    <tr style="background-color: transparent;">
         <td style="width: 70%;">
             <b>Can you resist Visual Illusions?</b><br>
             ~35min<br>
