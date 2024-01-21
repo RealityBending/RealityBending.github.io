@@ -18,10 +18,10 @@ subtitle: "*<sup>See how our experiments look like and contribute to science</su
 design:
   columns: "1"
   spacing:
-    padding: ["10px", "0", "10px", "0"]
+    padding: ["20px", "0", "20px", "0"]
   background:
-    gradient_start: '#303F9F'
-    gradient_end: '#7B1FA2'
+    gradient_start: '#BA68C8'
+    gradient_end: '#BA68C8'
 ---
 
 
