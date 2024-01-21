@@ -20,7 +20,7 @@ design:
   spacing:
     padding: ["20px", "0", "20px", "0"]
   background:
-    gradient_start: '#BA68C8'
+    gradient_start: '#7986CB'
     gradient_end: '#BA68C8'
 ---
 
