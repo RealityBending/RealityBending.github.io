@@ -12,7 +12,7 @@ headless: true
 # Order that this section appears on the page.
 weight: 15
 
-title: "Participate in our research"
+title: "**Participate in our research**"
 subtitle: "*<sup>See how our experiments look like and contribute to science</sup>*"
 
 design:
