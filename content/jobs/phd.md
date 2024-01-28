@@ -33,18 +33,22 @@ tags:
 ![](doctorate.jpg)
 
 
-<!-- I am open to new PhD students! -->
-🔥**NEW**🔥 There is a [fully-funded](https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1658-Psychology-Doctoral-Research-Studentship-How-affective-and-embodied-processes-shape-our-conscious-and-unconscious-experience-of-reality-A-PhD-at-the-Reality-Bending-Lab) PhD position (for September 2024) available with me at Sussex (**DEADLINE TO APPLY: 24 January 2024**). It covers:
+<!-- 🔥**NEW**🔥 There is a [fully-funded](https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1658-Psychology-Doctoral-Research-Studentship-How-affective-and-embodied-processes-shape-our-conscious-and-unconscious-experience-of-reality-A-PhD-at-the-Reality-Bending-Lab) PhD position (for September 2024) available with me at Sussex (**DEADLINE TO APPLY: 24 January 2024**). It covers:
 
 - [x] University fees (£25,000 per year)
 - [x] Salary of £18,622 per year (+ additionally paid teaching available)
 - [x] Research/training funds of £750 per year
 - [x] Open research project (see [themes](https://realitybending.github.io/jobs/projects/))
 
-**Send inquiries and CV to D.Makowski@sussex.ac.uk**.
+**Send inquiries and CV to D.Makowski@sussex.ac.uk**. -->
+## Open Opportunities
 
+- **Deadline 19 February**: [Sussex Neuroscience 3+1 PhD Program](https://www.sussex.ac.uk/study/phd/degrees/sussex-neuroscience-4-year-programme-phd)
+  - [x] Fully funded for local and international students
+  - [x] You don't need to chose a supervisor before applying. The first year is made of 3 different rotations in different labs. 
+  - [x] Selection is based mostly on the candidate's CV. 
 
-## What you will get
+## A PhD at REBEL? What you will get:
 
 - Joining a dynamic team with a vibrant lab life
 - A supervisor that actually supervises 🤯
