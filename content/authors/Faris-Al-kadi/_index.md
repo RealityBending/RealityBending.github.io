@@ -28,7 +28,7 @@ education:
     year: 2018 - 2022
 superuser: false
 user_groups:
-- Master students
+- Final Year Students
 ---
 
 Amplexus ogne speranza, voi ch'intrate! 😇
