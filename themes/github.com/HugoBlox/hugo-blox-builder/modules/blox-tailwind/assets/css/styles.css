@@ -2,6 +2,8 @@
 @import "./tailwind.css";
 
 /*! Hugo Blox Components | https://hugoblox.com */
+@import "main.css";
+@import "nav.css";
 @import "./components/all.css";
-@import "./blocks/all.css";
-@import "themes/default.css";
+@import "./blox/all.css";
+@import "chroma.css";

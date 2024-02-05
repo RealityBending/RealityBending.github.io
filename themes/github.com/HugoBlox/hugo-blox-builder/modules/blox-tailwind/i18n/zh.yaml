@@ -114,10 +114,16 @@
 
 # Experience widget
 
+- id: work_experience
+  translation: 工作经历
+
 - id: present
   translation: 现在
 
 # Pages widget
+
+- id: read_more
+  translation: 阅读文章
 
 - id: more_pages
   translation: 查看全部

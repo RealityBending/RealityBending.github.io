@@ -45,9 +45,19 @@
   {{ end }}
   <link rel="alternate" hreflang="{{ site.LanguageCode | default "en-us" }}" href="{{ .Permalink }}" />
 
+  {{/* Hugo Blox Color Theme Initialization */}}
+  {{ $theme_name := (lower site.Params.appearance.color) | default "blue" }}
+  {{ $theme_path := printf "css/themes/%s.css" $theme_name }}
+  {{ if not (fileExists (printf "assets/%s" $theme_path)) }}
+    {{ errorf "The specified color theme `%s.css` was not found in `assets/css/themes/`. Either install your custom color theme in the folder or set the `color` theme value in `params.yaml` to an existing theme such as `blue`." }}
+  {{ else }}
+    {{ $theme_css := resources.Get $theme_path | minify }}
+    <link rel="stylesheet" href="{{ $theme_css.RelPermalink }}" />
+  {{ end }}
+
   {{/* Style */}}
-  {{ if fileExists "assets/dist/wc.css" }}
-    {{ $styles := resources.Get "dist/wc.css" }}
+  {{ if ne (os.Getenv "WC_POSTCSS") "true" }}
+    {{ $styles := resources.Get "dist/wc.min.css" }}
     <link href="{{ $styles.RelPermalink }}" rel="stylesheet" />
   {{ else }}
     {{ $options := dict "inlineImports" true }}
@@ -59,9 +69,14 @@
     <link href="{{ $styles.RelPermalink }}" rel="stylesheet" />
   {{ end }}
 
+  {{ if fileExists "assets/css/custom.css" }}
+    {{ $styles := resources.Get "css/custom.css" | minify | fingerprint "sha256" }}
+    <link href="{{ $styles.RelPermalink }}" rel="stylesheet" />
+  {{ end }}
+
   <script>
     /* Hugo Blox JS Global Init */
-    window.wowchemy = {
+    window.hbb = {
        defaultTheme: document.documentElement.dataset.wcThemeDefault,
        setDarkTheme: () => {
         document.documentElement.classList.add("dark");
@@ -73,14 +88,14 @@
       }
     }
 
-    console.debug(`Default Hugo Blox Builder theme is ${window.wowchemy.defaultTheme}`);
+    console.debug(`Default Hugo Blox Builder theme is ${window.hbb.defaultTheme}`);
 
     if ("wc-color-theme" in localStorage) {
-      localStorage.getItem("wc-color-theme") === "dark" ? window.wowchemy.setDarkTheme() : window.wowchemy.setLightTheme();
+      localStorage.getItem("wc-color-theme") === "dark" ? window.hbb.setDarkTheme() : window.hbb.setLightTheme();
     } else {
-      window.wowchemy.defaultTheme === "dark" ? window.wowchemy.setDarkTheme() : window.wowchemy.setLightTheme();
-      if (window.wowchemy.defaultTheme === "system") {
-        window.matchMedia("(prefers-color-scheme: dark)").matches ? window.wowchemy.setDarkTheme() : window.wowchemy.setLightTheme();
+      window.hbb.defaultTheme === "dark" ? window.hbb.setDarkTheme() : window.hbb.setLightTheme();
+      if (window.hbb.defaultTheme === "system") {
+        window.matchMedia("(prefers-color-scheme: dark)").matches ? window.hbb.setDarkTheme() : window.hbb.setLightTheme();
       }
     }
   </script>
@@ -108,35 +123,8 @@
     });
   </script>
 
-  {{/* Hugo Chroma Syntax Highlighter Initialization */}}
-  {{/* TODO: optimize to only include the Chroma CSS themes when the page has code blocks. */}}
-  {{ $hl_theme_light := site.Params.features.syntax_highlighter.theme_light | default "github-light" }}
-  {{ $hl_theme_dark := site.Params.features.syntax_highlighter.theme_dark | default "dracula" }}
-  {{ $hl_theme_light_path := printf "css/libs/chroma/%s.css" $hl_theme_light }}
-  {{ $hl_theme_dark_path := printf "css/libs/chroma/%s.css" $hl_theme_dark }}
-  {{ if not (fileExists (printf "assets/%s" $hl_theme_light_path)) | or (not (fileExists (printf "assets/%s" $hl_theme_dark_path))) }}
-    {{ errorf "Hugo Chroma themes %s.css and %s.css not found in `css/libs/chroma/`. See https://gohugo.io/commands/hugo_gen_chromastyles/" $hl_theme_light $hl_theme_dark }}
-  {{ else }}
-    {{ $hl_theme_light_css := resources.Get $hl_theme_light_path | minify }}
-    {{ $hl_theme_dark_css := resources.Get $hl_theme_dark_path | minify }}
-    <link rel="stylesheet" href="{{ $hl_theme_light_css.RelPermalink }}" title="hl-light" media="print" onload="this.media='all'" {{ if ne ($scr.Get "light") true }}disabled{{end}}>
-    <link rel="stylesheet" href="{{ $hl_theme_dark_css.RelPermalink }}" title="hl-dark" media="print" onload="this.media='all'" {{ if eq ($scr.Get "light") true }}disabled{{end}}>
-  {{ end }}
-
-  {{/* Marketing */}}
-  {{ with site.Params.marketing.verification.google }}
-    <meta name="google-site-verification" content="{{ . }}" />
-  {{- end -}}
-  {{ with site.Params.marketing.verification.baidu }}
-    <meta name="baidu-site-verification" content="{{ . }}" />
-  {{- end -}}
-  {{ with site.Params.marketing.verification.bing }}
-    <meta name="msvalidate.01" content="{{ . }}" />
-  {{- end -}}
-  {{ partial "marketing/google_analytics" . }}
-  {{ partial "marketing/google_tag_manager" . }}
-  {{ partial "marketing/microsoft_clarity" . }}
-  {{ partial "marketing/baidu_tongji" . }}
+  {{/* Analytics & Verification */}}
+  {{ partial "blox-analytics/index" . }}
 
   {{/* RSS Feed */}}
   {{ with .OutputFormats.Get "RSS" }}
@@ -260,10 +248,12 @@
   {{ $js_bundle_head := $js_license | resources.FromString "js/bundle-head.js" }}
   {{ $i18n := dict "copy" (i18n "btn_copy") "copied" (i18n "btn_copied" | default "Copied") }}
   {{ $js_params := dict "hugoEnvironment" hugo.Environment "i18n" $i18n }}
-  {{ $js_academic := resources.Get "js/wowchemy-code-copy.js" | js.Build (dict "targetPath" (printf "js/wow-core-%s.js" .Lang ) "params" $js_params) }}
+  {{ $js_academic := resources.Get "js/hb-code-copy.js" | js.Build (dict "targetPath" (printf "js/wow-core-%s.js" .Lang ) "params" $js_params) }}
   {{ $js_academic := $js_academic | resources.Minify }}
-  {{- $js_theme := resources.Get "js/wowchemy-theme.js" | resources.Minify -}}
-  {{ $js_bundle := slice $js_bundle_head $js_academic $js_theme | resources.Concat (printf "js/wowchemy-%s.min.js" .Lang) }}
+  {{- $js_theme := resources.Get "js/hb-theme.js" | resources.Minify -}}
+  {{- $js_lang := resources.Get "js/hb-i18n.js" | resources.Minify -}}
+  {{- $js_nav := resources.Get "js/hb-nav.js" | resources.Minify -}}
+  {{ $js_bundle := slice $js_bundle_head $js_academic $js_theme $js_lang $js_nav | resources.Concat (printf "js/hugo-blox-%s.min.js" .Lang) }}
   {{- if hugo.IsProduction -}}
     {{ $js_bundle = $js_bundle | fingerprint "sha256" }}
   {{- end -}}

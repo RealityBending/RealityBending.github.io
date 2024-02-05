@@ -7,7 +7,7 @@
   translation: Table of Contents
 
 - id: on_this_page
-  translation: Contents
+  translation: On this page
 
 - id: back_to_top
   translation: Back to top
@@ -114,10 +114,16 @@
 
 # Experience widget
 
+- id: experience
+  translation: Experience
+
 - id: present
   translation: Present
 
 # Pages widget
+
+- id: read_more
+  translation: Read more
 
 - id: more_pages
   translation: See all
