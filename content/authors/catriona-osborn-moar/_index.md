@@ -29,7 +29,7 @@ interests:
 organizations:
 - name: University of Sussex
   url: ""
-role: PhD Student (Rotation)<sub><sup><br>University of Sussex
+role: Complexity<sub><sup><br>University of Sussex
 social:
 - icon: envelope
   icon_pack: fas
@@ -45,7 +45,7 @@ social:
 superuser: false
 
 user_groups:
-- Research Assistants
+- PhD Students
 
 ---
 

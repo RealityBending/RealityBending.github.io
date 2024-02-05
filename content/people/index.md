@@ -10,6 +10,7 @@ sections:
       text: "Meet the brilliant minds that form the Reality Bending Lab."
       user_groups:
         - Principal Investigator
+        - PhD Students
         - Research Assistants
         - Final Year Students
         - Associates
@@ -18,7 +19,6 @@ sections:
         - Visitors
         - Close Collaborators
         - Consultants
-        - Alumni
     design:
       show_interests: false
       show_role: true
@@ -31,6 +31,17 @@ sections:
         {{< gallery album="social" order="desc" >}}
     design:
       columns: '1'
+  - block: people
+    content:
+      title: "Alumni"
+      subtitle: 'For Auld Lang Syne'
+      text: ""
+      user_groups:
+        - Alumni
+    design:
+      show_interests: false
+      show_role: true
+      show_social: true
 
 gallery_item:
   - album: social
