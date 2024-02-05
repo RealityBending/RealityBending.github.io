@@ -28,7 +28,7 @@ email: "mp667@sussex.ac.uk "
 organizations:
 - name: University of Sussex
   url: ""
-role: PhD Student (Rotation)<sub><sup><br>University of Sussex</sup></sub>
+role: Interoception<sub><sup><br>University of Sussex</sup></sub>
 
 social:
 - icon: envelope
@@ -41,7 +41,7 @@ social:
 superuser: false
 
 user_groups:
-- Research Assistants
+- PhD Students
 ---
 
 Magdalena graduated from University College Maastricht (BSc Honours) in 2023. She is currently doing the Sussex Neuroscience PhD. Her research interests include brain-body interaction, interoception, and mental health. 

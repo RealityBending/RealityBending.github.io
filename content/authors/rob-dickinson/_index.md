@@ -1,7 +1,7 @@
 ---
 title: Rob Dickinson
 authors:
-- r-dickinson
+- rob-dickinson
 
 bio: Rob is a PhD Candidate at Sussex
 
@@ -26,18 +26,12 @@ email: "rd321@sussex.ac.uk"
 organizations:
 - name: University of Sussex
   url: ""
-role: Hive Scholar, PhD Candidate
+role: Misinformation<sub><sup><br>University of Sussex</sup></sub>
 
 social:
 - icon: envelope
   icon_pack: fas
   link: mailto:rd321@sussex.ac.uk
-- icon: twitter
-  icon_pack: fab
-  link: 
-- icon: researchgate
-  icon_pack: ai
-  link:
 - icon: github
   icon_pack: fab
   link: https://github.com/r-dickinson
@@ -45,7 +39,7 @@ social:
 superuser: false
 
 user_groups:
-- 
+- PhD Students
 
 ---
 
