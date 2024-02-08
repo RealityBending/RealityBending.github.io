@@ -3,13 +3,13 @@
 title: Sofia Turcany Diaz
 # Folder name
 authors:
-- Sofia Turcany Diaz
+- sofia-turcany
 bio: Cognitive Neuroscience Master Student with a keen interest in perception of reality, attention and emotion regulation. I am particularly interested in the evolutionary trajectory of cognition across animal species. Furthermore, I would like to explore the effects of physical activity on cognition and emotion regulation.
 social:
 - icon: github
   icon_pack: fab
   link: https://github.com/SofiaTurcany
-role: Master Student, University of Sussex
+role: Master Student<sub><sup><br>University of Sussex</sup></sub>
 interests:
 - Cognition
 - Attention
