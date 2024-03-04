@@ -29,6 +29,7 @@ If you are a undergrad student, doing a **voluntary internship** can be a good i
 
 - **Sussex Psychology Placement Year**: Check-out the [Research Assistant](https://realitybending.github.io/jobs/assistant/) page
 - **Sussex Junior Research Assistant (JRA)**: Check-out the [Research Assistant](https://realitybending.github.io/jobs/assistant/) page
+- **SoSocBio Undergraduate Summer Studentship**: Check-out the [Research Assistant](https://realitybending.github.io/jobs/assistant/) page
 
 **Contact.** Send CV to **D.Makowski@sussex.ac.uk** and *explicitly* say that you are interested in volunteering.
 

@@ -49,6 +49,13 @@ More information [**here**](http://www.sussex.ac.uk/psychology/internal/students
 
 Sussex also offers short **summer internship** opportunities for undergrads interested in developing your research skills and experience. You can apply to the [**Sussex Junior Research Associate (JRA) program**](http://www.sussex.ac.uk/suro/jra) to become a research associate and undertake an intensive eight-week research project over the summer break. Find out more information on [**how to apply here**](http://www.sussex.ac.uk/suro/applying).
 
+## SoSocBio Undergraduate Summer Studentship
+
+Undergraduates residing in the UK can apply for a paid 6 weeks (30hr per week) internship between 1 July and 30 September.
+
+More information [**here**](https://southcoastbiosciencesdtp.ac.uk/undergraduate-summer-studentship-programme/).
+
+
 ## Volunteer Research assistant
 
 Check the [voluntary internships](https://realitybending.github.io/jobs/intern/) page for more information.
