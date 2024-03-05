@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mr Anderson | Reality Bending Lab</title>
+    <link>https://realitybending.github.io/authors/neo/</link>
+      <atom:link href="https://realitybending.github.io/authors/neo/index.xml" rel="self" type="application/rss+xml" />
+    <description>Mr Anderson</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language>
+    <image>
+      <url>https://realitybending.github.io/authors/neo/avatar_hu10fb97d100de239e7ee0da56621de02a_92021_270x270_fill_q75_lanczos_center.jpg</url>
+      <title>Mr Anderson</title>
+      <link>https://realitybending.github.io/authors/neo/</link>
+    </image>
+    
+    <item>
+      <title>Mr Anderson</title>
+      <link>https://realitybending.github.io/authors/neo/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/authors/neo/</guid>
+      <description>&lt;p&gt;&lt;em&gt;&amp;ldquo;You ever have that feeling where you’re not sure if you’re awake or still dreaming?&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

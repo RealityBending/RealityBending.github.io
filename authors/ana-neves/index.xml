@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ana Neves | Reality Bending Lab</title>
+    <link>https://realitybending.github.io/authors/ana-neves/</link>
+      <atom:link href="https://realitybending.github.io/authors/ana-neves/index.xml" rel="self" type="application/rss+xml" />
+    <description>Ana Neves</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language>
+    <image>
+      <url>https://realitybending.github.io/authors/ana-neves/avatar_hu7905612b824bbc4e5af2aca94e14764b_89256_270x270_fill_q75_lanczos_center.jpg</url>
+      <title>Ana Neves</title>
+      <link>https://realitybending.github.io/authors/ana-neves/</link>
+    </image>
+    
+    <item>
+      <title>Ana Neves</title>
+      <link>https://realitybending.github.io/authors/ana-neves/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/authors/ana-neves/</guid>
+      <description>&lt;p&gt;The ultimate, hidden truth of the world is that it is something that we make, and could just as easily make differently.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

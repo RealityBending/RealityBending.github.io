@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sophie Blanchet | Reality Bending Lab</title>
+    <link>https://realitybending.github.io/authors/sophie-blanchet/</link>
+      <atom:link href="https://realitybending.github.io/authors/sophie-blanchet/index.xml" rel="self" type="application/rss+xml" />
+    <description>Sophie Blanchet</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Tue, 01 Sep 2015 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://realitybending.github.io/media/icon_hu43f9474a7b47cfb59c41895962a4d3bc_15500_512x512_fill_lanczos_center_3.png</url>
+      <title>Sophie Blanchet</title>
+      <link>https://realitybending.github.io/authors/sophie-blanchet/</link>
+    </image>
+    
+    <item>
+      <title>Emotion regulation and the cognitive decline in aging: beyond the paradox</title>
+      <link>https://realitybending.github.io/publication/makowski2015emotion/</link>
+      <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/publication/makowski2015emotion/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

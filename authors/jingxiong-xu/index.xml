@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jing Xu | Reality Bending Lab</title>
+    <link>https://realitybending.github.io/authors/jingxiong-xu/</link>
+      <atom:link href="https://realitybending.github.io/authors/jingxiong-xu/index.xml" rel="self" type="application/rss+xml" />
+    <description>Jing Xu</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language>
+    <image>
+      <url>https://realitybending.github.io/authors/jingxiong-xu/avatar_hu24b5641b1ad1dbe03ab5bcb2b8cf2086_6180229_270x270_fill_lanczos_center_3.png</url>
+      <title>Jing Xu</title>
+      <link>https://realitybending.github.io/authors/jingxiong-xu/</link>
+    </image>
+    
+    <item>
+      <title>Jing Xu</title>
+      <link>https://realitybending.github.io/authors/jingxiong-xu/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/authors/jingxiong-xu/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

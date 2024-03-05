@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Wilson Lim | Reality Bending Lab</title>
+    <link>https://realitybending.github.io/authors/wilson-lim/</link>
+      <atom:link href="https://realitybending.github.io/authors/wilson-lim/index.xml" rel="self" type="application/rss+xml" />
+    <description>Wilson Lim</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language>
+    <image>
+      <url>https://realitybending.github.io/authors/wilson-lim/avatar_huc2028e64f542bc975153591a27887460_130948_270x270_fill_lanczos_center_3.png</url>
+      <title>Wilson Lim</title>
+      <link>https://realitybending.github.io/authors/wilson-lim/</link>
+    </image>
+    
+    <item>
+      <title>Wilson Lim</title>
+      <link>https://realitybending.github.io/authors/wilson-lim/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/authors/wilson-lim/</guid>
+      <description>&lt;p&gt;Wilson most recently graduated from University College London (UCL) with a Master of Research in Cognitive Neuroscience (Distinction) in 2021, having previously attained a Bachelor of Science in Psychology (First Class Honours) at UCL in 2020. His research interests include neuropsychology and cognitive neuroscience research, with a keen interest in investigating cognition, emotion, mental health, and their interactions with the brain and body, particularly from an individual differences and developmental perspective.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

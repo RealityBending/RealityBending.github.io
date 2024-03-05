@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Neuroscience | Reality Bending Lab</title>
+    <link>https://realitybending.github.io/tag/neuroscience/</link>
+      <atom:link href="https://realitybending.github.io/tag/neuroscience/index.xml" rel="self" type="application/rss+xml" />
+    <description>Neuroscience</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Thu, 02 Feb 2023 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://realitybending.github.io/media/icon_hu43f9474a7b47cfb59c41895962a4d3bc_15500_512x512_fill_lanczos_center_3.png</url>
+      <title>Neuroscience</title>
+      <link>https://realitybending.github.io/tag/neuroscience/</link>
+    </image>
+    
+    <item>
+      <title>Postdoc in Psychology/Neuroscience</title>
+      <link>https://realitybending.github.io/jobs/postdoc/</link>
+      <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/jobs/postdoc/</guid>
+      <description>&lt;!-- ## Funded Position Available
+
+
+  &lt;i class=&#34;fa fa-calendar  pr-1 fa-fw&#34;&gt;&lt;/i&gt; As soon as possible
+
+  &lt;i class=&#34;fa fa-location-pin  pr-1 fa-fw&#34;&gt;&lt;/i&gt; Singapore
+
+  &lt;i class=&#34;fa fa-clock  pr-1 fa-fw&#34;&gt;&lt;/i&gt; 2-years
+
+![](singapore.jpg)
+
+
+
+
+  &lt;i class=&#34;fa fa-microscope  pr-1 fa-fw&#34;&gt;&lt;/i&gt; **Themes: Fake news, EEG, deception, perception of reality**
+
+We are currently seeking a postdoctoral fellow to join us in Singapore for a **2-years** project investigating the neural mechanisms and socio/psycho/cognitive correlates of **beliefs in fake news and misinformation**. We welcome applicants with a PhD in psychology or neuroscience to work in the [Clinical Brain Lab](https://www.clinicalbrain.org/) at Nanyang Technological University (NTU), with Prof Annabel Chen (https://www.clinicalbrain.org/) and Dr Dominique Makowski (https://dominiquemakowski.github.io/).
+
+This is a fantastic opportunity for postdoctoral fellows to develop an exciting research project with important theoretical ties and applied outcomes (in terms of fake news, misinformation management, policy implications etc.,).
+At the Clinical Brain Lab, the research focuses on uncovering the neuropsychological mechanisms underlying cognitive processes and behaviour. Our main research modalities include the use of Magnetic Resonance Imaging (MRI), neurostimulation (TMS &amp; TDCs), EEG and fNIRS, as well as cognitive behavioural and neuropsychological assessment tools.
+
+**Desired skills.** Experience in EEG, physiological signals (ECG, EDA, ...), neuropsychological/cognitive tests administration, experimental psychology task design and implementation, signal processing and statistics is helpful. Proficiency with R and/or Python is a plus, and a dedication to open science is welcome.
+
+**Starting date.** As soon as possible.
+
+**Contact.** Send questions or CV to Prof Annabel (annabelchen@ntu.edu.sg) and Dr Dominique Makowski (D.Makowski@sussex.ac.uk). --&gt;
+&lt;h2 id=&#34;getting-your-own-postdoc-funding&#34;&gt;Getting your own Postdoc Funding&lt;/h2&gt;
+&lt;p&gt;
+  &lt;i class=&#34;fa fa-calendar  pr-1 fa-fw&#34;&gt;&lt;/i&gt; Flexible
+
+  &lt;i class=&#34;fa fa-location-pin  pr-1 fa-fw&#34;&gt;&lt;/i&gt; University of Sussex, Brighton, UK&lt;/p&gt;
+&lt;p&gt;If you&amp;rsquo;re a recent PhD graduate (or soon to be), you could consider applying for a postdoc fellowship to join the lab on your own terms, and develop your own research project.&lt;/p&gt;
+&lt;p&gt;Here are some existing opportunities:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://marie-sklodowska-curie-actions.ec.europa.eu/actions/postdoctoral-fellowships&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Marie-curie postdoc fellowships (MSCA)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.thebritishacademy.ac.uk/funding/postdoctoral-fellowships/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;British Academy&lt;/a&gt; (UK PhDs holders)&lt;/li&gt;
+&lt;li&gt;UKRI Future Leaders&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.fondationfyssen.fr/en/study-grants/aim-award/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;FYSSEN&lt;/a&gt; (French PhDs holders)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.sshrc-crsh.gc.ca/funding-financement/programs-programmes/fellowships/postdoctoral-postdoctorale-fra.aspx&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CRSH&lt;/a&gt;, &lt;a href=&#34;https://frq.gouv.qc.ca/programme/frqsc-bourse-postdoctorale-b3z-concours-automne-2023-2024-2025/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;FRQSC&lt;/a&gt;, &lt;a href=&#34;https://banting.fellowships-bourses.gc.ca/fr/app-dem_overview-apercu.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Banting&lt;/a&gt; (Canadian PhDs holders)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Get in touch with me once you have an opportunity in mind and a rough project idea, we can then refine your application to maximize your chances of getting it.&lt;/p&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;&lt;strong&gt;Don&amp;rsquo;t rely on what is written!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Ask directly &lt;a href=&#34;https://realitybending.github.io/people/&#34;&gt;members of team&lt;/a&gt; (current and past) about their experience in the lab!&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>PhD in Psychology / Neuroscience</title>
+      <link>https://realitybending.github.io/jobs/phd/</link>
+      <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/jobs/phd/</guid>
+      <description>&lt;p&gt;
+  &lt;i class=&#34;fa fa-calendar  pr-1 fa-fw&#34;&gt;&lt;/i&gt; Flexible
+
+  &lt;i class=&#34;fa fa-location-pin  pr-1 fa-fw&#34;&gt;&lt;/i&gt; University of Sussex, Brighton, UK&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
+               /media/doctorate_hu9f83618e5a08aed22ad447814c02635b_87822_4558e77b8f4b664c3bc0bdce645f9063.webp 400w,
+               /media/doctorate_hu9f83618e5a08aed22ad447814c02635b_87822_4fcb25a392531e1aa5444fe02b9c0f9e.webp 760w,
+               /media/doctorate_hu9f83618e5a08aed22ad447814c02635b_87822_1200x1200_fit_q75_h2_lanczos.webp 1200w&#34;
+               src=&#34;https://realitybending.github.io/media/doctorate_hu9f83618e5a08aed22ad447814c02635b_87822_4558e77b8f4b664c3bc0bdce645f9063.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;343&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;!-- 🔥**NEW**🔥 There is a [fully-funded](https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1658-Psychology-Doctoral-Research-Studentship-How-affective-and-embodied-processes-shape-our-conscious-and-unconscious-experience-of-reality-A-PhD-at-the-Reality-Bending-Lab) PhD position (for September 2024) available with me at Sussex (**DEADLINE TO APPLY: 24 January 2024**). It covers:
+
+- [x] University fees (£25,000 per year)
+- [x] Salary of £18,622 per year (+ additionally paid teaching available)
+- [x] Research/training funds of £750 per year
+- [x] Open research project (see [themes](https://realitybending.github.io/jobs/projects/))
+
+**Send inquiries and CV to D.Makowski@sussex.ac.uk**. --&gt;
+&lt;h2 id=&#34;open-opportunities&#34;&gt;Open Opportunities&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Deadline 19 February&lt;/strong&gt;: &lt;a href=&#34;https://www.sussex.ac.uk/study/phd/degrees/sussex-neuroscience-4-year-programme-phd&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Sussex Neuroscience 3+1 PhD Program&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Fully funded for local and international students&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; You don&amp;rsquo;t need to chose a supervisor before applying. The first year is made of 3 different rotations in different labs.&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Selection is based mostly on the candidate&amp;rsquo;s CV.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;a-phd-at-rebel-what-you-will-get&#34;&gt;A PhD at REBEL? What you will get:&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Joining a dynamic team with a vibrant lab life&lt;/li&gt;
+&lt;li&gt;A supervisor that actually supervises 🤯&lt;/li&gt;
+&lt;li&gt;A super interesting research topic&lt;/li&gt;
+&lt;li&gt;A French-style thesis defense to celebrate your accomplishments 🧀🍷&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;how-to-do-a-phd-in-psychology&#34;&gt;How to do a PhD in Psychology?&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;The first step is usually to contact the potential supervisor to discuss a rough research project outline. Write an email with your CV, your research interests and - if you have - some ideas for a research project that matches your supervisor&amp;rsquo;s line of research. If you &lt;strong&gt;don&amp;rsquo;t have ideas yet&lt;/strong&gt;, it&amp;rsquo;s perfectly fine! I will likely propose some avenues of research that might match your interest, and refine them down the line.&lt;/li&gt;
+&lt;li&gt;Once you have an in-principle approval, the next step is to get &lt;a href=&#34;https://www.sussex.ac.uk/study/phd/degrees/psychology-phd#funding-fees&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;funding&lt;/strong&gt;&lt;/a&gt;. There are typically 4 types of profiles: 1) the &lt;em&gt;student and the supervisor&lt;/em&gt; come up with a tentative research project, with which the student then applies to scholarship opportunities. 2) the &lt;em&gt;supervisor&lt;/em&gt; already has a scholarship for a specific project that he obtained a grant for, and will recruit a PhD for that specific research project; 3) the &lt;em&gt;student&lt;/em&gt; already secured a scholarship that allows them to pursue a PhD with the supervisor of their choice (e.g., some schemes exist from countries for their nationals to do their PhD abroad). 4) Self-funding, which we don&amp;rsquo;t recommend unless you&amp;rsquo;re one of the lucky few with money to spare.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Funding is a complicated topic, and often the main barrier between one&amp;rsquo;s goal and its achievement. Keep in mind that there are many other possibilities and case-by-case considerations.&lt;/p&gt;
+&lt;p&gt;Here are some opportunities:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;a href=&#34;https://archive.sussex.ac.uk/study/scholarships/1525-Psychology-Doctoral-Research-Studentship-UK-and-International&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Sussex Psychology Doctoral Research Studentship&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;The &lt;a href=&#34;https://www.sussex.ac.uk/research/centres/sussex-neuroscience/phd/4yearphd&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Sussex Neuroscience 3+1 years PhD&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;The &lt;a href=&#34;https://wellcome.org/grant-funding/schemes/four-year-phd-programmes-studentships-basic-scientists&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Welcome Trust PhD Studentships&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;The &lt;a href=&#34;https://www.ukri.org/what-we-do/developing-people-and-skills/find-studentships-and-doctoral-training/get-a-studentship-to-fund-your-doctorate/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;UKRI studentship&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- - The [**South East Network of Social Scientists (SeNSS)**](https://senss-dtp.ac.uk/apply) --&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;a href=&#34;https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1639-SEDarc-%28ESRC%29-PhD-scholarships-for-research-in-the-Social-Sciences&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;SEDarc studentships&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;The &lt;a href=&#34;https://southcoastdtp.ac.uk/funding/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;South Coast Biosciences Network (SoCoBio)&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;The &lt;a href=&#34;https://www.chevening.org/scholarships/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Chevening Scholarship&lt;/strong&gt;&lt;/a&gt; (International only)&lt;/li&gt;
+&lt;li&gt;The &lt;a href=&#34;https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1625-China-Scholarship-Council-CSC-University-of-Sussex-Joint-Scholarships-2024&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Joint China Scholarship&lt;/strong&gt;&lt;/a&gt; (China)&lt;/li&gt;
+&lt;li&gt;Scholarship Opportunities for &lt;a href=&#34;https://www.gov.uk/government/news/compilation-of-scholarships-and-fellowships-for-singaporeans&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Singaporeans&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As well as other options:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Partnership&lt;/strong&gt;: If an external partner agrees to cover half the cost (approx. £35k over three years), the university can match the other half of the cost. Useful for applied projects and collaborations with &lt;strong&gt;startups, private companies or NGOs&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Collaboration&lt;/strong&gt;: Many universities allow for co-supervisorship. This means that you could do the main part of your PhD in another university (for instance in France), and come to Sussex sporadically as part of a collaboration. Note that official frameworks can exist for this type of configurations, such as the &lt;a href=&#34;https://u-paris.fr/cotutelle-internationale-de-these/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;cotutelles&lt;/em&gt;&lt;/a&gt; in France.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Check-out this &lt;a href=&#34;https://www.sussex.ac.uk/study/phd/apply&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;how to apply&lt;/em&gt;&lt;/a&gt; guide for additional information.&lt;/p&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    More info are available on the university&amp;rsquo;s &lt;a href=&#34;https://www.sussex.ac.uk/schools/psychology/study/phd&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;PhD in psychology&lt;/strong&gt;&lt;/a&gt;, &lt;a href=&#34;https://www.sussex.ac.uk/study/phd/degrees/psychology-phd#funding-fees&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Funding&lt;/strong&gt;&lt;/a&gt;, &lt;a href=&#34;https://www.sussex.ac.uk/study/phd/degrees/cognitive-science-phd&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;PhD in cognitive science&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&#34;https://www.sussex.ac.uk/research/centres/sussex-neuroscience/phd&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;PhD in neuroscience&lt;/strong&gt;&lt;/a&gt; information page.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;clinical-psychology-phd-or-dclinpsy&#34;&gt;Clinical Psychology PhD or DClinPsy&lt;/h2&gt;
+&lt;p&gt;Unfortunately, the University of Sussex does not offer at the moment a PhD in &lt;em&gt;&lt;strong&gt;Clinical Psychology&lt;/strong&gt;&lt;/em&gt; that includes clinical placements and internships in hospitals. However, if you are interested in working with patients, it is entirely possible to have a research project that involves clinical populations, and specialize in &amp;ldquo;clinical&amp;rdquo; research. Some people then complement this kind of PhD with clinical trainings (e.g., psychotherapy) to transition from research to practice.&lt;/p&gt;
+&lt;h2 id=&#34;how-to-become-a-neuropsychologist&#34;&gt;How to become a Neuropsychologist?&lt;/h2&gt;
+&lt;p&gt;Neuropsychology is both an approach (focusing on the relationship between the brain and its output in the form of behaviour and thought) and a practice (involving neuropsychological assessments and rehabilitation). The latter is considered a specialization of Clinical Psychology, which means that one must be a clinical psychologist to be a clinical neuropsychologist. As said above, the University of Sussex unfortunately does not offer, at the moment, a formal PhD in clinical psychology or clinical neuropsychology. However, joining the &lt;strong&gt;Reality Bending Lab&lt;/strong&gt; will get you well-prepared to eventually pursue this type of program, as the methods and mindset that we have draws heavily on neuropsychology (the use of neuropsychological tests, the focus on neurocognitive theories, etc.). In fact, some of our past members have become brilliant neuropsychologists, so feel free to ask them!&lt;/p&gt;
+&lt;h2 id=&#34;other-funding&#34;&gt;Other Funding&lt;/h2&gt;
+&lt;p&gt;Mostly for those already registered as PhD students.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://editing.press/bassi&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Laura Bassi Scholarship&lt;/a&gt;: Masters and PhD on &amp;ldquo;neglected&amp;rdquo; research topics.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;&lt;strong&gt;Don&amp;rsquo;t rely on what is written!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Ask directly &lt;a href=&#34;https://realitybending.github.io/people/&#34;&gt;members of team&lt;/a&gt; (current and past) about their experience in the lab!&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Research Assistant in Psychology / Neuroscience</title>
+      <link>https://realitybending.github.io/jobs/assistant/</link>
+      <pubDate>Thu, 02 Feb 2023 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/jobs/assistant/</guid>
+      <description>&lt;p&gt;
+  &lt;i class=&#34;fa fa-calendar  pr-1 fa-fw&#34;&gt;&lt;/i&gt; Flexible
+
+  &lt;i class=&#34;fa fa-location-pin  pr-1 fa-fw&#34;&gt;&lt;/i&gt; University of Sussex, Brighton, UK&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
+               /media/ResearchAssistant_hu047a13864c1c5f4663f4f8c2cbb91c5b_57192_a604be98f8756b4c9ea26f108ada217f.webp 400w,
+               /media/ResearchAssistant_hu047a13864c1c5f4663f4f8c2cbb91c5b_57192_6bfdc3da1f65dd7b626fe503d7c155f3.webp 760w,
+               /media/ResearchAssistant_hu047a13864c1c5f4663f4f8c2cbb91c5b_57192_1200x1200_fit_q75_h2_lanczos.webp 1200w&#34;
+               src=&#34;https://realitybending.github.io/media/ResearchAssistant_hu047a13864c1c5f4663f4f8c2cbb91c5b_57192_a604be98f8756b4c9ea26f108ada217f.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;428&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Working as a research assistant (RA) is a formidable opportunity to take on before - eventually - signing up for a PhD. It is a flexible and varied position, and a perfect position to develop key research skills like writing, data analysis or neuroimaging; and eventually later pursue a postgraduate program in psychology/neuroscience/neuropsychology.&lt;/p&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Funded RA positions at Sussex can be seen on the &lt;a href=&#34;https://www.sussex.ac.uk/about/jobs/research-assistant-ref-10411&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;recruitment page&lt;/a&gt;.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;sussex-psychology-placement-year&#34;&gt;Sussex Psychology Placement Year&lt;/h2&gt;
+&lt;p&gt;Students at the University of Sussex can also opt for a &lt;a href=&#34;https://www.sussex.ac.uk/study/undergraduate/courses/psychology-with-a-professional-placement-year-bsc&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;placement year&lt;/a&gt; between the second and third year of their studies. All undergraduates within the School are eligible to complete a placement year.&lt;/p&gt;
+&lt;p&gt;While it might seem like it would &amp;ldquo;add&amp;rdquo; one year and &lt;em&gt;delay&lt;/em&gt; the end of the studies, the experience that you could gain is quite invaluable. Doing a full-year placement year in a research lab is the best way to take on larger projects and acquire a comprehensive research experience. Beyond providing you with a massive headstart for the final year, it is a great opportunity to learn new skills and meet many researchers, which will help you refine your career trajectory and maximize your chances of &lt;strong&gt;achieving your goals&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;More information &lt;a href=&#34;http://www.sussex.ac.uk/psychology/internal/students/placements&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;here&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;sussex-junior-research-associate-jra&#34;&gt;Sussex Junior Research Associate (JRA)&lt;/h2&gt;
+&lt;p&gt;Sussex also offers short &lt;strong&gt;summer internship&lt;/strong&gt; opportunities for undergrads interested in developing your research skills and experience. You can apply to the &lt;a href=&#34;http://www.sussex.ac.uk/suro/jra&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Sussex Junior Research Associate (JRA) program&lt;/strong&gt;&lt;/a&gt; to become a research associate and undertake an intensive eight-week research project over the summer break. Find out more information on &lt;a href=&#34;http://www.sussex.ac.uk/suro/applying&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;how to apply here&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;sosocbio-undergraduate-summer-studentship&#34;&gt;SoSocBio Undergraduate Summer Studentship&lt;/h2&gt;
+&lt;p&gt;Undergraduates residing in the UK can apply for a paid 6 weeks (30hr per week) internship between 1 July and 30 September.&lt;/p&gt;
+&lt;p&gt;More information &lt;a href=&#34;https://southcoastbiosciencesdtp.ac.uk/undergraduate-summer-studentship-programme/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;here&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;volunteer-research-assistant&#34;&gt;Volunteer Research assistant&lt;/h2&gt;
+&lt;p&gt;Check the &lt;a href=&#34;https://realitybending.github.io/jobs/intern/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;voluntary internships&lt;/a&gt; page for more information.&lt;/p&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;&lt;strong&gt;Don&amp;rsquo;t rely on what is written!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Ask directly &lt;a href=&#34;https://realitybending.github.io/people/&#34;&gt;members of team&lt;/a&gt; (current and past) about their experience in the lab!&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Internship in Psychology / Neuroscience</title>
+      <link>https://realitybending.github.io/jobs/intern/</link>
+      <pubDate>Thu, 02 Feb 2023 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/jobs/intern/</guid>
+      <description>&lt;p&gt;
+  &lt;i class=&#34;fa fa-calendar  pr-1 fa-fw&#34;&gt;&lt;/i&gt; Flexible
+
+  &lt;i class=&#34;fa fa-location-pin  pr-1 fa-fw&#34;&gt;&lt;/i&gt; University of Sussex, Brighton, UK&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
+               /media/internship_hu9813a50798627cf10aac966dec0d8123_28039_79d020e8a36a80453f01606f3b1a930b.webp 400w,
+               /media/internship_hu9813a50798627cf10aac966dec0d8123_28039_00e2aa92befd3d389ecebb1b91904d17.webp 760w,
+               /media/internship_hu9813a50798627cf10aac966dec0d8123_28039_1200x1200_fit_q75_h2_lanczos.webp 1200w&#34;
+               src=&#34;https://realitybending.github.io/media/internship_hu9813a50798627cf10aac966dec0d8123_28039_79d020e8a36a80453f01606f3b1a930b.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;428&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;If you are a undergrad student, doing a &lt;strong&gt;voluntary internship&lt;/strong&gt; can be a good idea to get some first exposure with research, develop some useful skills and start growing your professional network. &lt;strong&gt;This is not by any means a necessity or a requirement&lt;/strong&gt;, so don&amp;rsquo;t worry &lt;em&gt;at all&lt;/em&gt; if you cannot afford (financially or in term of availabilities) to volunteer, and check-out instead possibly &lt;a href=&#34;https://realitybending.github.io/jobs/assistant/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;funded&lt;/a&gt; positions.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Sussex Psychology Placement Year&lt;/strong&gt;: Check-out the &lt;a href=&#34;https://realitybending.github.io/jobs/assistant/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Research Assistant&lt;/a&gt; page&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sussex Junior Research Assistant (JRA)&lt;/strong&gt;: Check-out the &lt;a href=&#34;https://realitybending.github.io/jobs/assistant/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Research Assistant&lt;/a&gt; page&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SoSocBio Undergraduate Summer Studentship&lt;/strong&gt;: Check-out the &lt;a href=&#34;https://realitybending.github.io/jobs/assistant/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Research Assistant&lt;/a&gt; page&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Contact.&lt;/strong&gt; Send CV to &lt;strong&gt;&lt;a href=&#34;mailto:D.Makowski@sussex.ac.uk&#34;&gt;D.Makowski@sussex.ac.uk&lt;/a&gt;&lt;/strong&gt; and &lt;em&gt;explicitly&lt;/em&gt; say that you are interested in volunteering.&lt;/p&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;&lt;strong&gt;Don&amp;rsquo;t rely on what is written!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Ask directly &lt;a href=&#34;https://realitybending.github.io/people/&#34;&gt;members of team&lt;/a&gt; (current and past) about their experience in the lab!&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Research Projects</title>
+      <link>https://realitybending.github.io/jobs/projects/</link>
+      <pubDate>Thu, 02 Feb 2023 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/jobs/projects/</guid>
+      <description>&lt;p&gt;
+  &lt;i class=&#34;fa fa-calendar  pr-1 fa-fw&#34;&gt;&lt;/i&gt; Flexible
+
+  &lt;i class=&#34;fa fa-location-pin  pr-1 fa-fw&#34;&gt;&lt;/i&gt; University of Sussex, Brighton, UK&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
+               /media/projects_hufda7ce26936a468bfdf9c0fd8ba5e4dc_259429_42ac0e54e1451665e51839be9b7fd82d.webp 400w,
+               /media/projects_hufda7ce26936a468bfdf9c0fd8ba5e4dc_259429_64d0c70e21d77587e5f1ab3080d2ee2c.webp 760w,
+               /media/projects_hufda7ce26936a468bfdf9c0fd8ba5e4dc_259429_1200x1200_fit_q75_h2_lanczos.webp 1200w&#34;
+               src=&#34;https://realitybending.github.io/media/projects_hufda7ce26936a468bfdf9c0fd8ba5e4dc_259429_42ac0e54e1451665e51839be9b7fd82d.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;580&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h2 id=&#34;projects&#34;&gt;Projects&lt;/h2&gt;
+&lt;p&gt;Research in the &lt;strong&gt;Reality Bending Lab&lt;/strong&gt; focuses primarily on the physiological and neurocognitive underpinnings of reality perception and aspects of &lt;strong&gt;reality bending&lt;/strong&gt; (e.g., fiction, deception, fake news, illusions, and altered states of consciousness such as through meditation or immersion). Possible projects include (but are not limited to):&lt;/p&gt;
+&lt;h3 id=&#34;how-do-we-know-what-is-real-and-what-does-it-change&#34;&gt;How do we know what is real? And what does it change?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Real vs. Fake&lt;/strong&gt;: This project will typically involve presenting some real vs. &amp;ldquo;fake&amp;rdquo; stimuli (e.g., fake news, AI-generated images, &amp;hellip;) to participants and investigate what interindividual/cognitive/emotional factors allows them to discriminate between the two.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Emotion regulation via fiction&lt;/strong&gt;: believing that something is unreal (regardless of whether it actually is or is not) seem to have some ripple effect on various facets of our body and brain, such as emotions. This project studies the characteristics and potential use of fiction as an emotion regulation strategy. This project can be focused on negative emotions (with threatening/unpleasant stimuli) or &amp;ldquo;positive&amp;rdquo; emotions (e.g., sexual arousal, attractiveness).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Authenticity &amp;amp; Neuroaesthetics&lt;/strong&gt;: This project investigates the effect of believing that an artwork is &amp;ldquo;forged&amp;rdquo; (e.g., an imitation of a great painter) on our appraisal of beauty.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;assessment-of---and-relationship-between---bodily-and-cognitive-abilities&#34;&gt;Assessment of - and relationship between - bodily and cognitive abilities&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Neuropsychological assessment of Cognitive Control&lt;/strong&gt;: This project focuses on the development, validation and improvement of a neuropsychological task to reliably measure &amp;ldquo;cognitive control&amp;rdquo; (executive functions). This project requires some interest in neuropsychological assessment, task development and associated technical skills (programming, game development).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Physiological Control&lt;/strong&gt;: development of measures (questionnaires, physiological tasks) measuring the ability to voluntarily regulate one&amp;rsquo;s physiology (e.g., heart rate, autonomic reactions, etc.).&lt;/li&gt;
+&lt;li&gt;Relationship between &lt;strong&gt;Interoception&lt;/strong&gt; and higher-order functions: This project involves measuring various aspects of our relationship with our body (e.g., by measuring cardiac activity) and analyzing its relationship with cognitive abilities (e.g., Self control, emotion regulation) or higher-order constructs (e.g., primal world beliefsLinks to an external site.).&lt;/li&gt;
+&lt;li&gt;Secondary &lt;strong&gt;EEG data analysis&lt;/strong&gt;: Investigating an existing dataset containing resting state EEG signal, from which one would extract features to try predicting dispositional indices (such as primal world beliefs).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;non-invasive-induction-of-altered-states-of-consciousness&#34;&gt;Non-invasive induction of altered states of consciousness&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Emotion regulation via distancing&lt;/strong&gt;: by instructing people to change their state of mind (e.g., &amp;ldquo;see the events in a detached manner, like a fly on the wall&amp;rdquo;), we hope to manipulate aspects of the sense of reality - such as absorption and psychological distance - and compare its effect (in particular on emotions) with that of other emotion regulation strategies.&lt;/li&gt;
+&lt;li&gt;Can we &lt;strong&gt;manipulate the state of consciousness&lt;/strong&gt; and observe actual effects on the performance at various cognitive tasks? For instance, via hypnosis or mindfulness-like instructions, sound stimulation (binaural beats, drumming, &amp;hellip;), sensory deprivation (&amp;ldquo;floating&amp;rdquo; tanks). We study the role of expectations and try to isolate the mechanism of change.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Qualitative + quantitative&lt;/strong&gt; project: Investigation into the world of &amp;ldquo;reality shifters&amp;rdquo;, people claiming that have shifted between realities. Understand their language, personality, etc.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;metascience--data-science--software-development&#34;&gt;Metascience / Data science / Software development&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Investigation of &lt;strong&gt;scientific practices&lt;/strong&gt;: to what extent scientists engage in &amp;ldquo;new&amp;rdquo; practices (e.g., open science, slow science, preregistration, registered reports, &amp;hellip;) and what factors (e.g., career level, time, ideology, &amp;hellip;) are driving their adoption (or lack thereof). This might involve things like validating assessment tools (such as questionnaires or gamified measures like quizzes), distributing it widely and analysing the results.&lt;/li&gt;
+&lt;li&gt;Improving access of &lt;strong&gt;R&lt;/strong&gt; to psychologists: R outputs can be complex, and we are developing tools to facilitate its understanding (e.g., the reportLinks to an external site. package). This project involves implementing functions in R to help communicate and interpret statistical results. This project requires some interest in programming and stats.&lt;/li&gt;
+&lt;li&gt;Neurophysiological signal analysis in &lt;strong&gt;Python&lt;/strong&gt;: implementation and validation of new algorithms in Python, related for instance to chaos theory, EEG signal analysis, etc. This project requires some interest in programming, computer science and mathematics.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Psychophysiological methods&lt;/strong&gt;: what is the optimal electrode configuration for recording skin conductance responses (often used as a marker of emotions).&lt;/li&gt;
+&lt;li&gt;Role of beauty in science: Is the impact of research publications related to the aeshetic qualities of figures.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;other--collaborations&#34;&gt;Other / Collaborations&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;With &lt;a href=&#34;https://canvas.sussex.ac.uk/courses/30420/pages/theodoros-karapanagiotidis-2-2&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Theodoros Karapanagiotidis&lt;/a&gt;: project involving secondary behavioural data analysis, exploring questions about the nature of thoughts, their patterns, the impact of mood and ongoing experience , and how they vary in in real-life settings. By analysing existing data, students will be able to examine the links between ongoing thoughts, brain structure and function, and their potential implications for mental health and well-being.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Some of these projects share strong links with philosophical concepts (e.g., the &lt;a href=&#34;https://en.wikipedia.org/wiki/Paradox_of_fiction&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;paradox of fiction&lt;/a&gt;) and/or carry some clinical relevance (e.g., for the understanding and treatment of mood/psychotic/dissociative disorders). Also, note that the lab is radically engaged in open science and, ultimately, quantitative methodologies: thus, &lt;strong&gt;most projects would typically require a substantial use of R&lt;/strong&gt; (or Python) at some stage. However, it&amp;rsquo;s totally okay not to feel proficient at these skills at the start, but the important thing is to be interested and motivated to learn.&lt;/p&gt;
+&lt;p&gt;Projects might be conducted individually, in pairs, or in a group, depending on needs. Attending weekly lab meetings is also expected.&lt;/p&gt;
+&lt;h2 id=&#34;skills&#34;&gt;Skills&lt;/h2&gt;
+&lt;p&gt;Joining the &lt;strong&gt;Reality Bending Lab&lt;/strong&gt; will help you develop unique skills that your might not find in other labs, that will give an edge to your profile for future applications. These include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Neuroimaging (EEG)&lt;/li&gt;
+&lt;li&gt;Psychophysiology (multimodal bodily recordings)&lt;/li&gt;
+&lt;li&gt;Computational Bayesian modelling with R&lt;/li&gt;
+&lt;li&gt;Advanced programming with Python&lt;/li&gt;
+&lt;li&gt;Open science best practices (using GitHub and various cutting edge tools)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;&lt;strong&gt;Don&amp;rsquo;t rely on what is written!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Ask directly &lt;a href=&#34;https://realitybending.github.io/people/&#34;&gt;members of team&lt;/a&gt; (current and past) about their experience in the lab!&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Podcast &#39;Learn Bayesian Stats&#39; with Dominique Makowski</title>
+      <link>https://realitybending.github.io/post/2022-02-01-learnbayesstats/</link>
+      <pubDate>Tue, 01 Feb 2022 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/post/2022-02-01-learnbayesstats/</guid>
+      <description>&lt;h2 id=&#34;the-learning-bayesian-statistics-podcast&#34;&gt;The &amp;lsquo;Learning Bayesian Statistics&amp;rsquo; Podcast&lt;/h2&gt;
+&lt;p&gt;I had the chance of being invited to talk about R, Python, Reality Bending and much more! It was my first experience of that kind, so thanks a ton to the host of the podcast &lt;a href=&#34;https://twitter.com/alex_andorra&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Alex Andorra&lt;/a&gt;. Listen to it here:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.learnbayesstats.com/episode/55-neuropsychology-illusions-bending-reality-dominique-makowski&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://www.learnbayesstats.com/episode/55-neuropsychology-illusions-bending-reality-dominique-makowski&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>We&#39;re recruiting a Research Assistant!</title>
+      <link>https://realitybending.github.io/post/2021-12-01-recruiting_nice/</link>
+      <pubDate>Wed, 01 Dec 2021 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/post/2021-12-01-recruiting_nice/</guid>
+      <description>&lt;h2 id=&#34;were-recruiting-a-research-assistant&#34;&gt;We&amp;rsquo;re recruiting a Research Assistant!&lt;/h2&gt;
+&lt;p&gt;In the context of a new collaboration between Nanyang Technological University (NTU Singapore) and Future Cities Laboratory, &lt;a href=&#34;https://dominiquemakowski.github.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;myself&lt;/a&gt; and &lt;a href=&#34;https://fcl.ethz.ch/people/Module-Lead/PanagiotisMavros.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Dr Panos Mavros&lt;/a&gt; are recruiting a Research Assistant in psychology/neuroscience (bachelor/master) to contribute to an exciting new research project that combines a neuroscientific approach to studying the interaction between beauty and the perception of urban spaces.&lt;/p&gt;
+&lt;p&gt;Perfect for psychology graduates interested in joining a cool team and learning skills like EEG, physiological techniques, advanced statistics and more!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Apply through &lt;a href=&#34;https://ntu.wd3.myworkdayjobs.com/en-US/Careers/job/NTU-Main-Campus-Singapore/Research-Assistant--Psychology-_R00008329&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;this portal&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;More &lt;a href=&#34;https://fcl.ethz.ch/research/research-projects/NICE.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;info here&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Pyllusion has been published</title>
+      <link>https://realitybending.github.io/post/2021-11-30-pyllusion/</link>
+      <pubDate>Tue, 30 Nov 2021 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/post/2021-11-30-pyllusion/</guid>
+      <description>&lt;h2 id=&#34;pyllusion-has-been-published&#34;&gt;Pyllusion has been published!&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/RealityBending/Pyllusion&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Pyllusion&lt;/a&gt; is a package for &lt;strong&gt;Python&lt;/strong&gt; that implements a systematic way to manipulate and generate illusions using a set of parameters.&lt;/p&gt;
+&lt;p&gt;For instance, the famous &lt;a href=&#34;https://en.wikipedia.org/wiki/M%C3%BCller-Lyer_illusion&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Müller-Lyer&lt;/a&gt; illusion below, which causes the observer to perceive the 2 segments of being different lengths depending on the shape of the arrows, can be generated wit the following lines of code:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;mullerlyer&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pyllusion&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;MullerLyer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;illusion_strength&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;30&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;mullerlyer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;to_image&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://github.com/RealityBending/Pyllusion/blob/master/docs/img/README_mullerlyer1.png?raw=true&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;To understand more about the parametric approach being implemented in the &lt;em&gt;Pyllusion&lt;/em&gt; package, we recommend reading our &lt;a href=&#34;https://dominiquemakowski.github.io/publication/makowski2021parametric/makowski2021parametric.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;paper&lt;/a&gt;, which includes a hands-on example on how to generate some classic illusions (such as the &lt;a href=&#34;https://en.wikipedia.org/wiki/Delboeuf_illusion&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Delbeouf Illusion&lt;/a&gt;), and discusses how &lt;em&gt;Pyllusion&lt;/em&gt; contributes to address conceptual and methodological issues in illusion science.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;pyllusion&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;delboeuf&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pyllusion&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Delboeuf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;illusion_strength&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;delboeuf&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;to_image&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://github.com/RealityBending/Pyllusion/blob/master/docs/img/README_delboeuf1.png?raw=true&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Don&amp;rsquo;t forget to keep a look out for our &lt;a href=&#34;https://github.com/RealityBending/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;repo&lt;/a&gt; for more exciting open-source projects!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The symbolism behind the ReBeL logo</title>
+      <link>https://realitybending.github.io/post/2021-06-30-logo_meaning/</link>
+      <pubDate>Wed, 30 Jun 2021 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/post/2021-06-30-logo_meaning/</guid>
+      <description>&lt;p&gt;The Reality Bending logo includes several references to various concepts. &lt;strong&gt;Can you try to guess them?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&amp;#x1f447; &amp;#x1f447; &amp;#x1f447; &amp;#x1f447; &amp;#x1f447; &amp;#x1f447; &amp;#x1f447; &amp;#x1f447;&lt;/p&gt;
+&lt;figure align=&#34;center&#34;&gt;
+    &lt;img src=&#39;Spoiler_alert.jpg&#39; width=&#34;90%&#34; /&gt;
+&lt;/figure&gt;
+&lt;!-- **.**
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+**.**
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+**.**
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt; --&gt;
+&lt;h3 id=&#34;wizard&#34;&gt;Wizard&lt;/h3&gt;
+&lt;p&gt;One of the most striking feature of the logo is the guy in the middle, which represents a wizard. It represent us, the people who delve in the science of &lt;a href=&#34;https://realitybending.github.io/post/2020-09-28-what_is_realitybending/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;reality bending&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Wizards are a powerful &lt;a href=&#34;https://susannabarlow.com/2021/03/26/understanding-the-magician-archetype/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;archetype&lt;/a&gt;, that are primarily defined through the learned ability (by seeking, studying and gathering arcane knowledge) of controlling and manipulating reality. Though many specializations and facets exist, the understanding of the true nature of the world is a core facets that binds all wizards.&lt;/p&gt;
+&lt;figure align=&#34;center&#34;&gt;
+    &lt;img src=&#39;gandalf.jpeg&#39; width=&#34;90%&#34; /&gt;
+    &lt;figcaption&gt;the wizard Gandalf facing the forces of darkness with his light.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;!-- ### Hat --&gt;
+&lt;!-- Harry potter? --&gt;
+&lt;h3 id=&#34;beard&#34;&gt;Beard&lt;/h3&gt;
+&lt;p&gt;In Greco-Roman antiquity, the beard was seen as the defining feature of a philosopher (see the &lt;a href=&#34;https://en.wikipedia.org/wiki/Beard#The_%22Philosopher%27s_beard%22&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Philosopher&amp;rsquo;s beard&lt;/a&gt; on wikipedia), expressing the idea that philosophy is no mere intellectual hobby but rather a way of life that, by definition, transforms every aspect of one&amp;rsquo;s behavior (including one&amp;rsquo;s shaving habits).&lt;/p&gt;
+&lt;p&gt;Show me your beard and I&amp;rsquo;ll tell you what philosopher you are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Cynics had long dirty beards to indicate their &lt;em&gt;&amp;ldquo;strict indifference to all external goods and social customs&amp;rdquo;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Stoics were occasionally trimming and washing their beards in accordance with their view &lt;em&gt;&amp;ldquo;that it is acceptable to prefer certain external goods so long as they are never valued above virtue&amp;rdquo;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Peripatetics took great care of their beards believing in accordance with Aristotle that &lt;em&gt;&amp;ldquo;external goods and social status were necessary for the good life together with virtue&amp;rdquo;&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure align=&#34;center&#34;&gt;
+    &lt;img src=&#39;beard.jpg&#39; width=&#34;33%&#34; /&gt;
+    &lt;figcaption&gt;A glorious beard.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h3 id=&#34;eyepatch&#34;&gt;Eyepatch&lt;/h3&gt;
+&lt;p&gt;For any mythology fan, a bearded figure with an eyepatch (or a missing eye) is known to represent &lt;a href=&#34;https://en.wikipedia.org/wiki/Odin&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Odin&lt;/strong&gt;&lt;/a&gt;, the chief deity of the norse pantheon. He&amp;rsquo;s a very complex character, with a deeply ambivalent nature. One of the key moment of Odin&amp;rsquo;s story is when he sacrifices one of his eyes in return for wisdom&amp;hellip;&lt;/p&gt;
+&lt;p&gt;Losing &lt;em&gt;direct sight&lt;/em&gt; of reality in return for a &lt;strong&gt;deeper knowledge&lt;/strong&gt; of reality - here is an interesting idea that we can discuss and (over)interpret with some drinks &amp;#x1f37a;&lt;/p&gt;
+&lt;figure align=&#34;center&#34;&gt;
+    &lt;img src=&#39;odin.jpg&#39; width=&#34;90%&#34; /&gt;
+    &lt;figcaption&gt;Odin portrayed by one of my favourite actor.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h3 id=&#34;pipe&#34;&gt;Pipe&lt;/h3&gt;
+&lt;p&gt;The pipe refers to the most famous painting of the surrealist René Magritte. One of the common interpretation suggests that it symbolizes the difference between the authentic thing (a real pipe) and its representation. This, we believe, is just one level that differentiates the real from the unreal&amp;hellip;&lt;/p&gt;
+&lt;figure align=&#34;center&#34;&gt;
+    &lt;img src=&#39;pipe.jpg&#39; width=&#34;90%&#34; /&gt;
+    &lt;figcaption&gt;The Treachery of Images (Magritte, 1929).&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h3 id=&#34;smoke&#34;&gt;Smoke&lt;/h3&gt;
+&lt;p&gt;The smoke takes the form of a Psi letter Ψ, which is the symbol of &lt;strong&gt;psychology&lt;/strong&gt;.&lt;/p&gt;
+&lt;figure align=&#34;center&#34;&gt;
+    &lt;img src=&#39;neuropsydia.png&#39; width=&#34;50%&#34; /&gt;
+    &lt;figcaption&gt;The Psi within the brain, a representation of neuropsychology, and the logo of the &lt;a href=&#34;[url](https://github.com/neuropsychology/Neuropsydia.py)&#34;&gt;Neuropsydia&lt;/a&gt; software.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h3 id=&#34;the-flower&#34;&gt;The Flower&lt;/h3&gt;
+&lt;!-- ### The Flower &lt;img src=&#39;Makowski_Poppy.png&#39; title = &#34;The Poppy Flower of the Coat of Arms of the Makowski Family&#34; alt = &#39;The Poppy Flower of the Coat of Arms of the Makowski Family&#39; align=&#34;right&#34; height=&#34;139&#34; /&gt; --&gt;
+&lt;p&gt;The flower in the background is not just any flower. It is a &lt;a href=&#34;https://en.wikipedia.org/wiki/Poppy&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;poppy flower&lt;/a&gt;, from which the seed have been used throughout history to create diverse substances to alter our perception of reality&amp;hellip;&lt;/p&gt;
+&lt;p&gt;Incidentally, it is also the symbol of the &lt;em&gt;Makowski&lt;/em&gt; family (which names refers to &amp;ldquo;poppy seed&amp;rdquo; in polish).&lt;/p&gt;
+&lt;figure align=&#34;center&#34;&gt;
+    &lt;img src=&#39;Makowski_Poppy.png&#39; title = &#34;The Poppy Flower of the Coat of Arms of the Makowski Family&#34; alt = &#39;The Poppy Flower of the Coat of Arms of the Makowski Family&#39; width=&#34;33%&#34; /&gt;
+    &lt;figcaption&gt;The Makowski&#39;s Poppy Flower.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Did you spot any more &amp;#x1f60f;? Let us know!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>What visual agnosia might feel like</title>
+      <link>https://realitybending.github.io/post/2021-01-03-visual_agnosia/</link>
+      <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/post/2021-01-03-visual_agnosia/</guid>
+      <description>&lt;h3 id=&#34;name-one-thing-in-this-photo&#34;&gt;Name One Thing In This Photo&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Can you name &lt;em&gt;one&lt;/em&gt; thing in the image above?&lt;/strong&gt; It all looks familiar, but something is off. The image makes &amp;ldquo;sense&amp;rdquo; overall; there are well-defined shapes and objects, that seem to be placed in a plausible - albeit chaotic - fashion, like some random rubbish thrown in the corner of a room. Even the colors, the lightning, the quality, is coherent, and helps making it believable. And yet, chances are you cannot name one single element that composes it.&lt;/p&gt;
+&lt;p&gt;This image, after appearing on &lt;a href=&#34;https://twitter.com/melip0ne/status/1120503955526750208?s=20&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;twitter&lt;/a&gt; in April 2019, surfaced on reddit with the caption &amp;ldquo;This picture is &lt;strong&gt;designed to give the viewer the simulated experience of having a stroke&lt;/strong&gt; (particularly in the &lt;strong&gt;occipital lobe&lt;/strong&gt; of the cerebral cortex, where visual perception occurs.) &lt;strong&gt;Everything looks hauntingly familiar but you just can&amp;rsquo;t quite recognize anything&lt;/strong&gt;&amp;rdquo;, and became subsequently &lt;a href=&#34;https://www.dailymail.co.uk/news/article-6959547/Extremely-frustrating-slightly-disturbing-image-goes-viral.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;viral&lt;/a&gt;. However, the author of the caption later admitted that he made this description up.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;So where does the image come from?&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;One can trace back the original publication to an &lt;a href=&#34;https://youtu.be/0F7XBwFwA-M?t=104&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;instagram account&lt;/a&gt;, which author declared having made the image using &lt;a href=&#34;https://www.artbreeder.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;ArtBreeder.com&lt;/strong&gt;&lt;/a&gt;. This website gives access to an AI algorithm (Generative Adversarial Networks - GAN), commonly used in the processing and generation of images (one mindblowing example can be found on &lt;a href=&#34;https://thispersondoesnotexist.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;thispersondoesnotexist.com&lt;/em&gt;&lt;/a&gt;, which generates realistic pictures of non-existing people). There were even some attempts to &lt;em&gt;reverse engineer&lt;/em&gt; the process to retrieve what the original image could have been like.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://i.kym-cdn.com/photos/images/original/001/486/325/1dd.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;After all, it seems like there is no intelligent design behind this image. No clever neuropsychologist carefully crafting a meaningful experience. Just one of these lucky accident.&lt;/p&gt;
+&lt;p&gt;Nonetheless, it&amp;rsquo;s still an intriguing image, falling in this uncanny abyss of things that we recognize as familiar, but slightly too alien for our sense-seeking brains to dissolve in meaning. &lt;strong&gt;Could it tell something about brain processes?&lt;/strong&gt; Surely, but &lt;strong&gt;brain disorders?&lt;/strong&gt; Maybe.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;&amp;ldquo;occipital stroke&amp;rdquo; hypothesis&lt;/strong&gt; mentioned above suggests, by its formulation, a lesion to the primary visual cortices. However, as neuroscientists know, these brain regions, located at the extreme back of the brain, are mostly supporting lower level aspects of visual processing, and their damage is usually related to alterations of a somewhat different nature than of that above, such as vision loss, visual hallucinations, visual deformations, loss of color, movement, stereoscopy, etc.&lt;/p&gt;
+&lt;p&gt;However, there is another neuropsychological disorder, referred to as &lt;strong&gt;&amp;ldquo;visual agnosia&amp;rdquo;&lt;/strong&gt;, in which patients experience difficulties to recognize visually presented objects, despite preserving an intact vision. In fact, it is more an umbrella term for different subcategories of deficits, and the image above could be reminiscent of visual agnosia of the &lt;em&gt;associative&lt;/em&gt; type, which corresponds to a a specific impairment in the assignment of meaning to a stimulus that is accurately perceived (and can be visually described). This symptom is often related to injuries in the left occipito-temporal region, located on the ventral &amp;ldquo;what&amp;rdquo; stream of the brain (as opposed to the so-called &amp;ldquo;where&amp;rdquo; dorsal stream).&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
+               /post/2021-01-03-visual_agnosia/whatstream_hu7b3e2a15287cf91a80e194bf11a946d3_304646_95f8a76f1c53f82cbec4d1702d02d3f5.webp 400w,
+               /post/2021-01-03-visual_agnosia/whatstream_hu7b3e2a15287cf91a80e194bf11a946d3_304646_e70bb1dbafa790ae59e5e184befc5bb7.webp 760w,
+               /post/2021-01-03-visual_agnosia/whatstream_hu7b3e2a15287cf91a80e194bf11a946d3_304646_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://realitybending.github.io/post/2021-01-03-visual_agnosia/whatstream_hu7b3e2a15287cf91a80e194bf11a946d3_304646_95f8a76f1c53f82cbec4d1702d02d3f5.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;513&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;ivan-seals-art&#34;&gt;Ivan Seal&amp;rsquo;s Art&lt;/h3&gt;
+&lt;p&gt;From there, the youtuber &lt;a href=&#34;https://www.youtube.com/channel/UCR6LasBpceuYUhuLToKBzvQ&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;Solar Sands&lt;/em&gt;&lt;/a&gt; helped me discover the artist &lt;a href=&#34;https://en.wikipedia.org/wiki/Ivan_Seal&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Ivan Seal&lt;/strong&gt;&lt;/a&gt;, which work is somewhat akin to the image above. They are not purely abstract renditions, or depictions of impossible entities, but plausible objects that sit in this awkward space, deep between boring reality and total weirdness.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://rca-media.rca.ac.uk/images/dumtrimiestonmo_blurosperiod150x100_cm_-_Phot.width-1000.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://i.redd.it/ywee14vpk8y41.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;Thanks for reading! Do not hesitate to tweet and share this post and don&amp;rsquo;t forget to join me on Twitter&lt;/em&gt; 🐦 &lt;a href=&#34;https://twitter.com/Dom_Makowski&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;@Dom_Makowski&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

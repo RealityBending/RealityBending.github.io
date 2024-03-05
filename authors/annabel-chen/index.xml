@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Annabel Chen | Reality Bending Lab</title>
+    <link>https://realitybending.github.io/authors/annabel-chen/</link>
+      <atom:link href="https://realitybending.github.io/authors/annabel-chen/index.xml" rel="self" type="application/rss+xml" />
+    <description>Annabel Chen</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language>
+    <image>
+      <url>https://realitybending.github.io/authors/annabel-chen/avatar_hu09a23d9ba926f51b1f1e761f8af98bd2_120913_270x270_fill_lanczos_center_3.png</url>
+      <title>Annabel Chen</title>
+      <link>https://realitybending.github.io/authors/annabel-chen/</link>
+    </image>
+    
+  </channel>
+</rss>
