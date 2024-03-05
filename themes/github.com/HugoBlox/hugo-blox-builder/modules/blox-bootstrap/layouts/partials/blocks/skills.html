@@ -11,7 +11,7 @@
 {{ $person_page_path := (printf "/authors/%s" $author) }}
 {{ $person_page := site.GetPage $person_page_path }}
 {{ if not $person_page }}
-  {{ errorf "Could not find an author page at `%s`. Please check the value of `author` in your Skill block and create an associated author page if one does not already exist. See https://hugoblox.com/docs/page-builder/#about " $person_page_path }}
+  {{ errorf "Could not find an author page at `%s`. Please check the value of `author` in your Skill block and create an associated author page if one does not already exist. See https://docs.hugoblox.com/page-builder/#about " $person_page_path }}
 {{end}}
 {{ $skills := $person_page.Params.skills }}
 
@@ -59,9 +59,11 @@
         {{ .name | markdownify | emojify }}
         {{ with .description }}<p class="skills-description">{{ . | markdownify | emojify }}</p>{{ end }}
       </span>
+      {{ if .percent }}
       <div class="skills-wrapper" {{with $color_border}}{{ (printf "style=\"border-color: %s\"" .) | safeHTMLAttr }}{{end}}>
         <div class="skills-percent" style="width: {{ (printf "%s" (cast.ToString (.percent | default 100))) | safeCSS }}%; {{with $color}}{{ (printf "background-color: %s" .) | safeCSS }}{{end}}"></div>
       </div>
+      {{ end }}
     </div>
   {{ end }}
 </div>
