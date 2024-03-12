@@ -6,7 +6,7 @@ categories:
 - University of Sussex
 date: "2023-11-02"
 title: "Junior Research Assistant (JRA) at Sussex: is it worth it?"
-draft: true
+draft: false
 featured: false
 image:
   caption: ''
