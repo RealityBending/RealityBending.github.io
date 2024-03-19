@@ -45,6 +45,9 @@ sections:
 
 gallery_item:
   - album: social
+    image: IllusionCardGame.gif
+    caption: "2024 - Beta-testing the Illusion Card Game (Dom, Ana Neves and friends)"
+  - album: social
     image: 2023_dommarco_escop.jpg
     caption: "2023 - ESCOP Porto: Men in Black (Dom and Marco Sperduti)"
   - album: social
