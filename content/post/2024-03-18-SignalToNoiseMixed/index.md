@@ -7,9 +7,9 @@ categories:
 date: "2024-03-18"
 draft: false
 featured: false
-title: "Task Reliability"
+title: "How to Assess Task Reliability using Bayesian Mixed Models"
 subtitle: ""
-summary: ""
+summary: "Task reliability in assessing inter-individual differences is a key issue for differential psychology and neuropsychology."
 tags:
 - Reality Bending Lab
 - ReBeL
