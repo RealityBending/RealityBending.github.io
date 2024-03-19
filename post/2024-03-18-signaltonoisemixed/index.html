@@ -318,7 +318,7 @@
 
   
 
-<meta name="description" content="Task reliability in assessing inter-individual differences is a key issue for differential psychology and neuropsychology. Recently, a new approach has emerged to assess task sensitivity to inter-individual differences leveraging mixed models." />
+<meta name="description" content="Task reliability in assessing inter-individual differences is a key issue for differential psychology and neuropsychology. Recently, a new approach has emerged, suggesting to assess task sensitivity to inter-individual differences by leveraging mixed models." />
 
 
 
@@ -366,7 +366,7 @@
 <meta property="og:site_name" content="Reality Bending Lab" />
 <meta property="og:url" content="https://realitybending.github.io/post/2024-03-18-signaltonoisemixed/" />
 <meta property="og:title" content="Task Reliability | Reality Bending Lab" />
-<meta property="og:description" content="Task reliability in assessing inter-individual differences is a key issue for differential psychology and neuropsychology. Recently, a new approach has emerged to assess task sensitivity to inter-individual differences leveraging mixed models." /><meta property="og:image" content="https://realitybending.github.io/post/2024-03-18-signaltonoisemixed/featured.png" /><meta property="og:locale" content="en-us" />
+<meta property="og:description" content="Task reliability in assessing inter-individual differences is a key issue for differential psychology and neuropsychology. Recently, a new approach has emerged, suggesting to assess task sensitivity to inter-individual differences by leveraging mixed models." /><meta property="og:image" content="https://realitybending.github.io/post/2024-03-18-signaltonoisemixed/featured.png" /><meta property="og:locale" content="en-us" />
 
   
     <meta
@@ -425,7 +425,7 @@
       "url": "https://realitybending.github.io/media/icon_hu43f9474a7b47cfb59c41895962a4d3bc_15500_192x192_fill_lanczos_center_3.png"
     }
   },
-  "description": "Task reliability in assessing inter-individual differences is a key issue for differential psychology and neuropsychology. Recently, a new approach has emerged to assess task sensitivity to inter-individual differences leveraging mixed models."
+  "description": "Task reliability in assessing inter-individual differences is a key issue for differential psychology and neuropsychology. Recently, a new approach has emerged, suggesting to assess task sensitivity to inter-individual differences by leveraging mixed models."
 }
 </script>
 
@@ -968,8 +968,8 @@
   <div class="article-container">
 
     <div class="article-style">
-      <p>Task reliability in assessing inter-individual differences is a key issue for differential psychology and neuropsychology. Recently, a new approach has emerged to assess task sensitivity to inter-individual differences leveraging mixed models.
-In essence, the idea is to fit a statistical model that tests for the <strong>general population level</strong> effect of a manipulation in a given task/experiment (e.g., the impact of a variable <strong>V1</strong> on another variable <strong>V2</strong>), and incorporates a <strong>random effect</strong> for each participant. This &ldquo;full&rdquo; mixed model essentially models the general population level by taking into account all the inter-individual effects.</p>
+      <p>Task reliability in assessing inter-individual differences is a key issue for differential psychology and neuropsychology. Recently, a new approach has emerged, suggesting to assess task sensitivity to inter-individual differences by leveraging mixed models.
+In essence, the idea is to fit a statistical model that tests for the <strong>general population level</strong> effect of a manipulation in a given task/experiment (e.g., the impact of a variable <strong>Difficulty</strong> on another variable <strong>RT</strong>), and incorporates a <strong>random effect</strong> for each participant. This &ldquo;full&rdquo; mixed model essentially models the general population level by taking into account all the inter-individual effects and - as a side effect - <strong>estimates the effects of interest for each participant separately</strong>.</p>
 <p>When fitting these models under a Bayesian framework, one can easily estimate the &ldquo;variability&rdquo; (or certainty) of the effect in each participant. This is great, because it allows us to assess a &ldquo;signal-to-noise&rdquo; ratio, an index of how much the interindividual variability (how participants vary) is larger than the intraindividual variability (e.g., how much participants vary across trial, or how precisely participants&rsquo; effects are estimated).</p>
 <p>In this &ldquo;Signal-To-Noise Ratio as Effect Reliability&rdquo; framework, an ideal task/manipulation would have a strong inter-individual variability (i.e., participants would on average vary a lot) and a low intra-individual variability (each participant would have very consistent effects), which leads to a reliable measure of interindividual effects.</p>
 <p>Let&rsquo;s see how we can do that in R using the <code>brms</code> package for fitting Bayesian mixed model. First, let&rsquo;s start to generate 4 datasets with different levels of inter-individual and intra-individual variability.</p>
