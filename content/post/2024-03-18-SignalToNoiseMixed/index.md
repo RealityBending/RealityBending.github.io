@@ -21,7 +21,7 @@ tags:
 - Bayesian
 ---
 
-Task reliability in assessing inter-individual differences is a key issue for differential psychology and neuropsychology. Recently, a new approach has emerged, suggesting to assess task sensitivity to inter-individual differences by leveraging mixed models. 
+Task reliability in assessing inter-individual differences is a key issue for differential psychology and neuropsychology. Recently, a new approach has emerged, suggesting to assess task sensitivity to inter-individual differences by leveraging mixed models ([Rouder et al., 2024](https://doi.org/10.1177/09637214231220923)). 
 In essence, the idea is to fit a statistical model that tests for the **general population level** effect of a manipulation in a given task/experiment (e.g., the impact of a variable **Difficulty** on another variable **RT**), and incorporates a **random effect** for each participant. This "full" mixed model essentially models the general population level by taking into account all the inter-individual effects and - as a side effect - **estimates the effects of interest for each participant separately**.
 
 When fitting these models under a Bayesian framework, one can easily estimate the "variability" (or certainty) of the effect in each participant. This is great, because it allows us to assess a "signal-to-noise" ratio, an index of how much the interindividual variability (how participants vary) is larger than the intraindividual variability (e.g., how much participants vary across trial, or how precisely participants' effects are estimated).
