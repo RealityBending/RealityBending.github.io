@@ -75,9 +75,13 @@ rbind(df1, df2, df3, df4) |>
 
 ![](fig1.png)
 
-In each of the dataset, we simulated the data of **20 participants** undergoing a task with *n* trials varying in **difficulty**, and we recorded their **reaction time (RT)**.
+In each of the dataset, we simulated the data of **20 participants** undergoing a task with *n* trials varying in **difficulty**, and we recorded their **reaction time (RT)**. Note that while in our example *difficulty* is a continuous variable, it would work the same if it was categorical variable (e.g., effect of condition B over A, intervention vs. baseline, incongruent vs. congruent, etc.).
 
-- **Dataset 1**: Both the RT intercept (**the "baseline" RT**) and the effect of the manipulation (the **effect of diffcilty**) vary across participants.
+When we fit a linear regression of the form *RT ~ difficulty*, we are estimating two parameters; the *intercept* (which can be seen as the "baseline" RT, i.e., **participants' baseline processing speed** when the difficulty is 0) and the *slope* (how much participants are impacted by this variable). These two parameters are in principle independent (a participant can be very fast regardless of the difficulty, and another one could be equally fast at baseline - same intercept - but very slow when the task is difficult - strong slope). 
+
+We simulated 4 datasets with different participant characteristics:
+
+- **Dataset 1**: Both the RT intercept (**the "baseline" RT**) and the effect of the manipulation (the **effect of difficulty**) vary across participants.
 - **Dataset 2**: Not much interindividual variability in the effect (only the baseline RT varies).
 - **Dataset 3**: Not much interindividual variability in the baseline RT (only the effect of difficulty varies from participant to participant).
 - **Dataset 4**: Same as dataset 1, but with more trials (200 instead of 20). As you can see, the "precision" ribbon around the regression line is much narrower, indicating that the effect is more precisely estimated.

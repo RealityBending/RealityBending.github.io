@@ -45,7 +45,10 @@ sections:
 
 gallery_item:
   - album: social
-    image: IllusionCardGame.gif
+    image: 2024_Basel.jpg
+    caption: "2024 - Workshop on physiological signals at the University of Basel (Dom and Basel PhD students)"
+  - album: social
+    image: 2024_IllusionCardGame.gif
     caption: "2024 - Beta-testing the Illusion Card Game (Dom, Ana Neves and friends)"
   - album: social
     image: 2023_dommarco_escop.jpg
