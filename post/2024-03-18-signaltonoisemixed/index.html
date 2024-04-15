@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- This site was created with Hugo Blox. https://hugoblox.com -->
-<!-- Last Published: March 28, 2024 --><html lang="en-us" >
+<!-- Last Published: April 15, 2024 --><html lang="en-us" >
 
 
 <head>
@@ -1038,9 +1038,11 @@ In essence, the idea is to fit a statistical model that tests for the <strong>ge
                loading="lazy" data-zoomable /></div>
   </div></figure>
 </p>
-<p>In each of the dataset, we simulated the data of <strong>20 participants</strong> undergoing a task with <em>n</em> trials varying in <strong>difficulty</strong>, and we recorded their <strong>reaction time (RT)</strong>.</p>
+<p>In each of the dataset, we simulated the data of <strong>20 participants</strong> undergoing a task with <em>n</em> trials varying in <strong>difficulty</strong>, and we recorded their <strong>reaction time (RT)</strong>. Note that while in our example <em>difficulty</em> is a continuous variable, it would work the same if it was categorical variable (e.g., effect of condition B over A, intervention vs. baseline, incongruent vs. congruent, etc.).</p>
+<p>When we fit a linear regression of the form <em>RT ~ difficulty</em>, we are estimating two parameters; the <em>intercept</em> (which can be seen as the &ldquo;baseline&rdquo; RT, i.e., <strong>participants&rsquo; baseline processing speed</strong> when the difficulty is 0) and the <em>slope</em> (how much participants are impacted by this variable). These two parameters are in principle independent (a participant can be very fast regardless of the difficulty, and another one could be equally fast at baseline - same intercept - but very slow when the task is difficult - strong slope).</p>
+<p>We simulated 4 datasets with different participant characteristics:</p>
 <ul>
-<li><strong>Dataset 1</strong>: Both the RT intercept (<strong>the &ldquo;baseline&rdquo; RT</strong>) and the effect of the manipulation (the <strong>effect of diffcilty</strong>) vary across participants.</li>
+<li><strong>Dataset 1</strong>: Both the RT intercept (<strong>the &ldquo;baseline&rdquo; RT</strong>) and the effect of the manipulation (the <strong>effect of difficulty</strong>) vary across participants.</li>
 <li><strong>Dataset 2</strong>: Not much interindividual variability in the effect (only the baseline RT varies).</li>
 <li><strong>Dataset 3</strong>: Not much interindividual variability in the baseline RT (only the effect of difficulty varies from participant to participant).</li>
 <li><strong>Dataset 4</strong>: Same as dataset 1, but with more trials (200 instead of 20). As you can see, the &ldquo;precision&rdquo; ribbon around the regression line is much narrower, indicating that the effect is more precisely estimated.</li>
