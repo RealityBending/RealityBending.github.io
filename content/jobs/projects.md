@@ -4,7 +4,7 @@ linkTitle: Research Projects
 date: '2023-02-02'
 type: book
 weight: 50
-toc: false
+toc: true
 tags:
   - Research topics
   - Dissertation topics
@@ -31,7 +31,7 @@ tags:
 {{< icon name="calendar" pack="fa" >}} Flexible
 {{< icon name="location-pin" pack="fa" >}} University of Sussex, Brighton, UK
 
-![](projects.jpg)
+![](research_diagram.png)
 
 ## Projects
 
@@ -44,7 +44,7 @@ Research in the **Reality Bending Lab** focuses primarily on the physiological a
 - **Authenticity & Neuroaesthetics**: This project investigates the effect of believing that an artwork is "forged" (e.g., an imitation of a great painter) on our appraisal of beauty.
 
 
-### Assessment of - and relationship between - bodily and cognitive abilities
+### Assessment of bodily and cognitive abilities and their relationship
 
 - **Neuropsychological assessment of Cognitive Control**: This project focuses on the development, validation and improvement of a neuropsychological task to reliably measure "cognitive control" (executive functions). This project requires some interest in neuropsychological assessment, task development and associated technical skills (programming, game development).
 - **Physiological Control**: development of measures (questionnaires, physiological tasks) measuring the ability to voluntarily regulate one's physiology (e.g., heart rate, autonomic reactions, etc.).
@@ -83,6 +83,32 @@ Joining the **Reality Bending Lab** will help you develop unique skills that you
 - Computational Bayesian modelling with R
 - Advanced programming with Python
 - Open science best practices (using GitHub and various cutting edge tools)
+
+
+## Advice for Students
+
+### Choosing Options
+
+Most psychology programs are proposing some optionality, i.e., some modules that you can pick.
+While many of them look interesting, you often have to make hard choices.
+Many students pick what looks interesting, from various psychology domains (e.g., a bit of social psychology, a module from cognitive, one from clinical etc.).
+They might also believe that picking a variety of options will provide them with a **multidisciplinary profile**, which might be valued later on.
+
+While this is, in principle, true, in practice, **a "consistent" profile is often much more appealing to recruiters**. For instance, having a set of clinically-relevant options, or cognitive/neuroscience ones, will give you an edge (and sometimes, even for say a "neuroscience" opportunity, recruiters would prefer a clearly clinical profile rather than a "jack of all trades master of none" type of one). **Make your choices wisely, and make them with a plan.**
+
+> But I *don't know* what I want to do later, so I want to keep most doors open.
+
+Yes, that's a common issue. You can still keep doors open while at the same time having a coherent profile. You *should* at least have an idea of what subbranch of psychology you *don't* want to do (e.g., social psychology).
+
+For psychology students at Sussex, if you would like to work with me, I recommend picking some of the following options:
+
+- Cognitive Neuroscience *(must have)*
+- Conscious and Unconscious Mental Processes
+- Biological Psychology of Mental Health
+- Perspectives on Psychology
+- Self Regulation: The Science of Achieving Your Goals
+- Attention: Distraction, Daydreaming and Diversity
+- Drugs, Brain and Behaviour
 
 
 {{% callout warning %}}

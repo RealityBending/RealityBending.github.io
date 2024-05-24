@@ -4,7 +4,7 @@ linkTitle: PhD
 date: '2022-11-22'
 type: book
 weight: 30
-toc: false
+toc: true
 tags:
   - PhD
   - Doctoral
@@ -43,12 +43,12 @@ tags:
 **Send inquiries and CV to D.Makowski@sussex.ac.uk**. -->
 ## Open Opportunities
 
-- **Deadline 19 February**: [Sussex Neuroscience 3+1 PhD Program](https://www.sussex.ac.uk/study/phd/degrees/sussex-neuroscience-4-year-programme-phd)
+- **Deadline in early 2025 (TO BE CONFIRMED)**: [Sussex Neuroscience 3+1 PhD Program](https://www.sussex.ac.uk/study/phd/degrees/sussex-neuroscience-4-year-programme-phd)
   - [x] Fully funded for local and international students
   - [x] You don't need to chose a supervisor before applying. The first year is made of 3 different rotations in different labs. 
   - [x] Selection is based mostly on the candidate's CV. 
 
-## A PhD at REBEL? What you will get:
+## Doing a PhD at Sussex with Dominique Makowski? What you will get:
 
 - Joining a dynamic team with a vibrant lab life
 - A supervisor that actually supervises 🤯
@@ -59,6 +59,8 @@ tags:
 
 1. The first step is usually to contact the potential supervisor to discuss a rough research project outline. Write an email with your CV, your research interests and - if you have - some ideas for a research project that matches your supervisor's line of research. If you **don't have ideas yet**, it's perfectly fine! I will likely propose some avenues of research that might match your interest, and refine them down the line.
 2. Once you have an in-principle approval, the next step is to get [**funding**](https://www.sussex.ac.uk/study/phd/degrees/psychology-phd#funding-fees). There are typically 4 types of profiles: 1) the *student and the supervisor* come up with a tentative research project, with which the student then applies to scholarship opportunities. 2) the *supervisor* already has a scholarship for a specific project that he obtained a grant for, and will recruit a PhD for that specific research project; 3) the *student* already secured a scholarship that allows them to pursue a PhD with the supervisor of their choice (e.g., some schemes exist from countries for their nationals to do their PhD abroad). 4) Self-funding, which we don't recommend unless you're one of the lucky few with money to spare.
+
+### Funding Opportunities 
 
 Funding is a complicated topic, and often the main barrier between one's goal and its achievement. Keep in mind that there are many other possibilities and case-by-case considerations.
 
@@ -77,8 +79,8 @@ Here are some opportunities:
 
 As well as other options:
 
-- **Partnership**: If an external partner agrees to cover half the cost (approx. £35k over three years), the university can match the other half of the cost. Useful for applied projects and collaborations with **startups, private companies or NGOs**.
-- **Collaboration**: Many universities allow for co-supervisorship. This means that you could do the main part of your PhD in another university (for instance in France), and come to Sussex sporadically as part of a collaboration. Note that official frameworks can exist for this type of configurations, such as the [*cotutelles*](https://u-paris.fr/cotutelle-internationale-de-these/) in France.
+- **Partnership**: If an external partner agrees to cover half the cost (approx. £35k over three years), the university can match the other half of the cost. Useful for applied projects and collaborations with **startups, private companies or NGOs**. If you're thinking of developing a product, a software or a service, this could be a good option.
+- **Collaboration**: Many universities allow some form of co-supervisorship. This means that you could do the main part of your PhD in another university, and come to Sussex sporadically as part of a collaboration. Note that official frameworks can exist for this type of configurations, such as the [*cotutelles*](https://u-paris.fr/cotutelle-internationale-de-these/) in France.
 
 Check-out this [*how to apply*](https://www.sussex.ac.uk/study/phd/apply) guide for additional information.
 
@@ -86,21 +88,27 @@ Check-out this [*how to apply*](https://www.sussex.ac.uk/study/phd/apply) guide 
 More info are available on the university's [**PhD in psychology**](https://www.sussex.ac.uk/schools/psychology/study/phd), [**Funding**](https://www.sussex.ac.uk/study/phd/degrees/psychology-phd#funding-fees), [**PhD in cognitive science**](https://www.sussex.ac.uk/study/phd/degrees/cognitive-science-phd) and [**PhD in neuroscience**](https://www.sussex.ac.uk/research/centres/sussex-neuroscience/phd) information page.
 {{% /callout %}}
 
-
-## Clinical Psychology PhD or DClinPsy
-
-Unfortunately, the University of Sussex does not offer at the moment a PhD in ***Clinical Psychology*** that includes clinical placements and internships in hospitals. However, if you are interested in working with patients, it is entirely possible to have a research project that involves clinical populations, and specialize in "clinical" research. Some people then complement this kind of PhD with clinical trainings (e.g., psychotherapy) to transition from research to practice.
-
-## How to become a Neuropsychologist?
-
-Neuropsychology is both an approach (focusing on the relationship between the brain and its output in the form of behaviour and thought) and a practice (involving neuropsychological assessments and rehabilitation). The latter is considered a specialization of Clinical Psychology, which means that one must be a clinical psychologist to be a clinical neuropsychologist. As said above, the University of Sussex unfortunately does not offer, at the moment, a formal PhD in clinical psychology or clinical neuropsychology. However, joining the **Reality Bending Lab** will get you well-prepared to eventually pursue this type of program, as the methods and mindset that we have draws heavily on neuropsychology (the use of neuropsychological tests, the focus on neurocognitive theories, etc.). In fact, some of our past members have become brilliant neuropsychologists, so feel free to ask them!
-
-
-## Other Funding
+### Other Pots of Money
 
 Mostly for those already registered as PhD students.
 
 - [Laura Bassi Scholarship](https://editing.press/bassi): Masters and PhD on "neglected" research topics.
+
+
+## Questions and Answers
+
+### Clinical Psychology PhD or DClinPsy?
+
+Unfortunately, the University of Sussex does not offer at the moment a PhD in ***Clinical Psychology*** that includes clinical placements and internships in hospitals. However, if you are interested in working with patients, it is entirely possible to have a research project that involves clinical populations, and specialize in "clinical" research. Some people then complement this kind of PhD with clinical trainings (e.g., psychotherapy) to transition from research to practice.
+
+### How to become a Neuropsychologist?
+
+Neuropsychology is both an approach (focusing on the relationship between the brain and its output in the form of behaviour and thought) and a practice (involving neuropsychological assessments and rehabilitation). The latter is considered a specialization of Clinical Psychology, which means that one must be a clinical psychologist to be a clinical neuropsychologist. As said above, the University of Sussex unfortunately does not offer, at the moment, a formal PhD in clinical psychology or clinical neuropsychology. However, joining the **Reality Bending Lab** will get you well-prepared to eventually pursue this type of program, as the methods and mindset that we have draws heavily on neuropsychology (the use of neuropsychological tests, the focus on neurocognitive theories, etc.). In fact, some of our past members have become brilliant neuropsychologists, so feel free to ask them!
+
+### How to work on psychedelics?
+
+Psychedelics and altered states of consciousness are a hot topic in psychology and neuroscience. Unfortunately, it is still *extremely* difficulty to get authorizations to work with these substances. I would not recommend to base your PhD project on this potentiality, as it's too risky that things might not work out (due to ethical, administrative, or political reasons). That said, we do have projects running in collaborations with experts in the field, and are always on the lookout for opportunities to work on these topics. Additionally, we think it's also very interesting to study how altered states of consciousness can be induced *without* external substances (e.g., through meditation, hypnosis, sensory deprivation, psychedelic stimulation, ...), which might be a more sustainable and ethical way to approach these phenomena.
+
 
 
 {{% callout warning %}}
