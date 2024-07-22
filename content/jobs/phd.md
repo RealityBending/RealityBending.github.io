@@ -74,6 +74,7 @@ Here are some opportunities:
 - The [**SEDarc studentships**](https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1639-SEDarc-(ESRC)-PhD-scholarships-for-research-in-the-Social-Sciences)
 - The [**South Coast Biosciences Network (SoCoBio)**](https://southcoastdtp.ac.uk/funding/)
 - The [**Chevening Scholarship**](https://www.chevening.org/scholarships/) (International only)
+- The [**FIRE French scholarships**](https://phd.learningplanetinstitute.org/en/join-us) (must be a collaboration with a Paris-based lab)
 - The [**Joint China Scholarship**](https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1625-China-Scholarship-Council-CSC-University-of-Sussex-Joint-Scholarships-2024) (China)
 - Scholarship Opportunities for [**Singaporeans**](https://www.gov.uk/government/news/compilation-of-scholarships-and-fellowships-for-singaporeans)
 
