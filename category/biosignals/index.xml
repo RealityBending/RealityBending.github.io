@@ -7,7 +7,7 @@
     <description>Biosignals</description>
     <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Fri, 17 May 2019 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://realitybending.github.io/media/icon_hu43f9474a7b47cfb59c41895962a4d3bc_15500_512x512_fill_lanczos_center_3.png</url>
+      <url>https://realitybending.github.io/media/icon_hu11326173534259092558.png</url>
       <title>Biosignals</title>
       <link>https://realitybending.github.io/category/biosignals/</link>
     </image>
@@ -45,10 +45,10 @@
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;png&#34; srcset=&#34;
-               /post/2019-05-17-simulate_ecg/output_1_0_hu301c55808c524ccedc27d6987a9931d0_65591_b5ca2926495077c56fd26dba70b5d3c2.webp 400w,
-               /post/2019-05-17-simulate_ecg/output_1_0_hu301c55808c524ccedc27d6987a9931d0_65591_70748bdd2eee43ebc1f6443f086cb17a.webp 760w,
-               /post/2019-05-17-simulate_ecg/output_1_0_hu301c55808c524ccedc27d6987a9931d0_65591_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://realitybending.github.io/post/2019-05-17-simulate_ecg/output_1_0_hu301c55808c524ccedc27d6987a9931d0_65591_b5ca2926495077c56fd26dba70b5d3c2.webp&#34;
+               /post/2019-05-17-simulate_ecg/output_1_0_hu11787761316039790519.webp 400w,
+               /post/2019-05-17-simulate_ecg/output_1_0_hu17967129268425577069.webp 760w,
+               /post/2019-05-17-simulate_ecg/output_1_0_hu14732170511832305770.webp 1200w&#34;
+               src=&#34;https://realitybending.github.io/post/2019-05-17-simulate_ecg/output_1_0_hu11787761316039790519.webp&#34;
                width=&#34;760&#34;
                height=&#34;389&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -78,10 +78,10 @@
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;png&#34; srcset=&#34;
-               /post/2019-05-17-simulate_ecg/output_2_0_hu1de2e204eb6440421cb1558530d93b9a_48080_a708d7209ac46563378e6dcd1c4b6431.webp 400w,
-               /post/2019-05-17-simulate_ecg/output_2_0_hu1de2e204eb6440421cb1558530d93b9a_48080_d4463a34939a81d13c14cf0c782b5a19.webp 760w,
-               /post/2019-05-17-simulate_ecg/output_2_0_hu1de2e204eb6440421cb1558530d93b9a_48080_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://realitybending.github.io/post/2019-05-17-simulate_ecg/output_2_0_hu1de2e204eb6440421cb1558530d93b9a_48080_a708d7209ac46563378e6dcd1c4b6431.webp&#34;
+               /post/2019-05-17-simulate_ecg/output_2_0_hu8319302088129654127.webp 400w,
+               /post/2019-05-17-simulate_ecg/output_2_0_hu11479398410743596389.webp 760w,
+               /post/2019-05-17-simulate_ecg/output_2_0_hu3121488328096077602.webp 1200w&#34;
+               src=&#34;https://realitybending.github.io/post/2019-05-17-simulate_ecg/output_2_0_hu8319302088129654127.webp&#34;
                width=&#34;760&#34;
                height=&#34;393&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
