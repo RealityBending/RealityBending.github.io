@@ -45,6 +45,9 @@ sections:
 
 gallery_item:
   - album: social
+    image: 2024_LightFest.png
+    caption: "2024 - Lightfest (summer solstice celebration)"
+  - album: social
     image: 2024_Basel.jpg
     caption: "2024 - Workshop on physiological signals at the University of Basel (Dom and Basel PhD students)"
   - album: social
