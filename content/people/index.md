@@ -43,7 +43,7 @@ sections:
       show_role: true
       show_social: true
 
-gallery_item:
+gallery_item:  
   - album: social
     image: 2024_LightFest.png
     caption: "2024 - Lightfest (summer solstice celebration)"
@@ -65,6 +65,9 @@ gallery_item:
   - album: social
     image: 2023_domstephanie_ohbm.jpg
     caption: "2023 - OHBM Montréal: Party (Danielle Benesch, Stephanie Kirk, and Dom)"
+  - album: social
+    image: 2023_LightFest.gif
+    caption: "2023 - Lightfest (summer solstice celebration)"
   - album: social
     image: 2022_wakepark.jpg
     caption: 2022 - Singapore, Outdoor work sesh (An Shu, Stephanie, Max and Dom)

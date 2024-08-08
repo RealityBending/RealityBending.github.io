@@ -58,13 +58,13 @@ tags:
 ## How to do a PhD in Psychology?
 
 1. The first step is usually to contact the potential supervisor to discuss a rough research project outline. Write an email with your CV, your research interests and - if you have - some ideas for a research project that matches your supervisor's line of research. If you **don't have ideas yet**, it's perfectly fine! I will likely propose some avenues of research that might match your interest, and refine them down the line.
-2. Once you have an in-principle approval, the next step is to get [**funding**](https://www.sussex.ac.uk/study/phd/degrees/psychology-phd#funding-fees). There are typically 4 types of profiles: 1) the *student and the supervisor* come up with a tentative research project, with which the student then applies to scholarship opportunities. 2) the *supervisor* already has a scholarship for a specific project that he obtained a grant for, and will recruit a PhD for that specific research project; 3) the *student* already secured a scholarship that allows them to pursue a PhD with the supervisor of their choice (e.g., some schemes exist from countries for their nationals to do their PhD abroad). 4) Self-funding, which we don't recommend unless you're one of the lucky few with money to spare.
+2. Ideally, you would also want to come up with a plan for [**funding**](https://www.sussex.ac.uk/study/phd/degrees/psychology-phd#funding-fees). This is the most challenging part, unfortunately. There are typically 4 types of profiles: 1) the *student and the supervisor* come up with a tentative research project, with which the student then applies to scholarship opportunities. 2) the *supervisor* already has a scholarship for a specific project that he obtained a grant for, and will recruit a PhD for that specific research project; 3) the *student* already secured a scholarship that allows them to pursue a PhD with the supervisor of their choice (e.g., some schemes exist from countries for their nationals to do their PhD abroad). 4) Self-funding, which we don't recommend unless you're one of the lucky few with money to spare.
 
 ### Funding Opportunities 
 
 Funding is a complicated topic, and often the main barrier between one's goal and its achievement. Keep in mind that there are many other possibilities and case-by-case considerations.
 
-Here are some opportunities:
+Here are some funding opportunities for PhDs in the UK: 
 
 - The [**Sussex Psychology Doctoral Research Studentship**](https://archive.sussex.ac.uk/study/scholarships/1525-Psychology-Doctoral-Research-Studentship-UK-and-International)
 - The [**Sussex Neuroscience 3+1 years PhD**](https://www.sussex.ac.uk/research/centres/sussex-neuroscience/phd/4yearphd)
@@ -76,7 +76,12 @@ Here are some opportunities:
 - The [**Chevening Scholarship**](https://www.chevening.org/scholarships/) (International only)
 - The [**FIRE French scholarships**](https://phd.learningplanetinstitute.org/en/join-us) (must be a collaboration with a Paris-based lab)
 - The [**Joint China Scholarship**](https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1625-China-Scholarship-Council-CSC-University-of-Sussex-Joint-Scholarships-2024) (China)
-- Scholarship Opportunities for [**Singaporeans**](https://www.gov.uk/government/news/compilation-of-scholarships-and-fellowships-for-singaporeans)
+- Scholarship Opportunities for **Singaporeans**:
+  - [**gov.uk information**](https://www.gov.uk/government/news/compilation-of-scholarships-and-fellowships-for-singaporeans)
+  - [**A*STAR Scholarship**](https://www.a-star.edu.sg/Scholarships/for-graduate-studies/national-science-scholarship-phd)
+  - [**SMU Postgraduate Scholarship**](https://www.smu.edu.sg/MOE-start/overseas-pg-scholarship)
+  - [**NTU's Humanities International PhD/Postdoctoral Scholarship (HIPS)**](https://www.ntu.edu.sg/hass/admissions/graduate-programmes/hips2024)
+
 
 As well as other options:
 

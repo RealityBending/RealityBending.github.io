@@ -56,13 +56,14 @@ At the Clinical Brain Lab, the research focuses on uncovering the neuropsycholog
 
 If you're a recent PhD graduate (or soon to be), you could consider applying for a postdoc fellowship to join the lab on your own terms, and develop your own research project.
 
-Here are some existing opportunities:
+Here are some existing opportunities for postdoc funding:
 
-- [Marie-curie postdoc fellowships (MSCA)](https://marie-sklodowska-curie-actions.ec.europa.eu/actions/postdoctoral-fellowships)
-- [British Academy](https://www.thebritishacademy.ac.uk/funding/postdoctoral-fellowships/) (UK PhDs holders)
+- [**Marie-curie postdoc fellowships (MSCA)**](https://marie-sklodowska-curie-actions.ec.europa.eu/actions/postdoctoral-fellowships)
+- [**British Academy**](https://www.thebritishacademy.ac.uk/funding/postdoctoral-fellowships/) (UK PhDs holders)
 - UKRI Future Leaders
-- [FYSSEN](https://www.fondationfyssen.fr/en/study-grants/aim-award/) (French PhDs holders)
-- [CRSH](https://www.sshrc-crsh.gc.ca/funding-financement/programs-programmes/fellowships/postdoctoral-postdoctorale-fra.aspx), [FRQSC](https://frq.gouv.qc.ca/programme/frqsc-bourse-postdoctorale-b3z-concours-automne-2023-2024-2025/), [Banting](https://banting.fellowships-bourses.gc.ca/fr/app-dem_overview-apercu.html) (Canadian PhDs holders)
+- [**FYSSEN**](https://www.fondationfyssen.fr/en/study-grants/aim-award/) (French PhDs holders)
+- [**CRSH**](https://www.sshrc-crsh.gc.ca/funding-financement/programs-programmes/fellowships/postdoctoral-postdoctorale-fra.aspx), [FRQSC](https://frq.gouv.qc.ca/programme/frqsc-bourse-postdoctorale-b3z-concours-automne-2023-2024-2025/), [Banting](https://banting.fellowships-bourses.gc.ca/fr/app-dem_overview-apercu.html) (Canadian PhDs holders)
+- [**NTU's Humanities International Postdoctoral Scholarship (HIPS)**](https://www.ntu.edu.sg/hass/admissions/graduate-programmes/hips2024) (Singaporeans)
 
 Get in touch with me once you have an opportunity in mind and a rough project idea, we can then refine your application to maximize your chances of getting it.
 
