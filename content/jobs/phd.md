@@ -8,12 +8,16 @@ toc: true
 tags:
   - PhD
   - Doctoral
+  - Doctorate
   - PhD Supervisor
   - Funding
   - Fellowship
   - Position
   - Program
   - Opportunity
+  - Scholarship
+  - Bourse
+  - Funded
   - Job
   - Paid
   - Salary
@@ -48,12 +52,21 @@ tags:
   - [x] You don't need to chose a supervisor before applying. The first year is made of 3 different rotations in different labs. 
   - [x] Selection is based mostly on the candidate's CV. 
 
-## Doing a PhD at Sussex with Dominique Makowski? What you will get:
+## What you will get
+
+Doing a PhD at Sussex with Dominique Makowski means:
 
 - Joining a dynamic team with a vibrant lab life
 - A supervisor that actually supervises 🤯
 - A super interesting research topic
 - A French-style thesis defense to celebrate your accomplishments 🧀🍷
+
+{{% callout warning %}}
+**Don't rely on what is written!**
+
+Ask directly [members of team](/people/) (current and past) about their experience in the lab!
+{{% /callout %}}
+
 
 ## How to do a PhD in Psychology?
 
@@ -64,7 +77,7 @@ tags:
 
 Funding is a complicated topic, and often the main barrier between one's goal and its achievement. Keep in mind that there are many other possibilities and case-by-case considerations.
 
-Here are some funding opportunities for PhDs in the UK: 
+Here are some scholarship opportunities for funded PhDs in the UK: 
 
 - The [**Sussex Psychology Doctoral Research Studentship**](https://archive.sussex.ac.uk/study/scholarships/1525-Psychology-Doctoral-Research-Studentship-UK-and-International)
 - The [**Sussex Neuroscience 3+1 years PhD**](https://www.sussex.ac.uk/research/centres/sussex-neuroscience/phd/4yearphd)
@@ -118,8 +131,3 @@ Psychedelics and altered states of consciousness are a hot topic in psychology a
 
 
 
-{{% callout warning %}}
-**Don't rely on what is written!**
-
-Ask directly [members of team](/people/) (current and past) about their experience in the lab!
-{{% /callout %}}
