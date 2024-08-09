@@ -78,6 +78,7 @@ Here are some funding opportunities for PhDs in the UK:
 - The [**Joint China Scholarship**](https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1625-China-Scholarship-Council-CSC-University-of-Sussex-Joint-Scholarships-2024) (China)
 - Scholarship Opportunities for **Singaporeans**:
   - [**gov.uk information**](https://www.gov.uk/government/news/compilation-of-scholarships-and-fellowships-for-singaporeans)
+  - [**Lee Kuan Yew Scholarship**](https://www.psc.gov.sg/scholarships/postgraduate-scholarships/lee-kuan-yew-scholarship)
   - [**A*STAR Scholarship**](https://www.a-star.edu.sg/Scholarships/for-graduate-studies/national-science-scholarship-phd)
   - [**SMU Postgraduate Scholarship**](https://www.smu.edu.sg/MOE-start/overseas-pg-scholarship)
   - [**NTU's Humanities International PhD/Postdoctoral Scholarship (HIPS)**](https://www.ntu.edu.sg/hass/admissions/graduate-programmes/hips2024)
