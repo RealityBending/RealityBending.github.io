@@ -25,7 +25,7 @@ interests:
 organizations:
 - name: Nanyang Technological University
   url: ""
-role: Research Associate<sub><sup><br>Nanyang Technological University<br>Singapore</sup></sub>
+role: "Research Associate (2022-24)<sub><br>Now: PhD Student (UCL)</sub>"
 social:
 - icon: envelope
   icon_pack: fas
@@ -47,7 +47,7 @@ social:
 superuser: false
 
 user_groups:
-- Research Assistants
+- Alumni
 
 ---
 

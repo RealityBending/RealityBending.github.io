@@ -18,7 +18,7 @@ title: Zen J. Lau
 organizations:
 - name: Nanyang Technological University, Singapore
   url: ""
-role: "Research Assistant (2020-22)<sub><br>Current: Student (master of neuropsychology)</sub>"
+role: "Research Assistant (2020-22)<sub><br>Now: Clinical Neuropsychologist</sub>"
 social:
 - icon: envelope
   icon_pack: fas

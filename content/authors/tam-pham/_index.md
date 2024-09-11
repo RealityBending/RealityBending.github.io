@@ -19,7 +19,7 @@ title: Tam Pham
 organizations:
 - name: Nanyang Technological University, Singapore
   url: ""
-role: "Research Assistant (2019-22)<sub><br>Current: Student (master of clinical psychology)</sub>"
+role: "Research Assistant (2019-22)<sub><br>Now: PhD Student (Macquarie)</sub>"
 social:
 - icon: envelope
   icon_pack: fas

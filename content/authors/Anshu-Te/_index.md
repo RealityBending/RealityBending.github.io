@@ -20,7 +20,7 @@ interests:
 organizations:
 - name: Nanyang Technological University
   url: ""
-role: "Research Assistant (2021-23)<sub><br>Current: Student (master of clinical psychology)</sub>"
+role: "Research Assistant (2021-23)<sub><br>Now: Clinical Psychologist</sub>"
 social:
 - icon: envelope
   icon_pack: fas
