@@ -81,13 +81,14 @@ Here are some scholarship opportunities for funded PhDs in the UK:
 
 - The [**Sussex Psychology Doctoral Research Studentship**](https://archive.sussex.ac.uk/study/scholarships/1525-Psychology-Doctoral-Research-Studentship-UK-and-International)
 - The [**Sussex Neuroscience 3+1 years PhD**](https://www.sussex.ac.uk/research/centres/sussex-neuroscience/phd/4yearphd)
+- The [**SEDarc studentships**](https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1639-SEDarc-(ESRC)-PhD-scholarships-for-research-in-the-Social-Sciences) (see also [here](https://sedarc.ac.uk/thematic-pathways/))
 - The [**Welcome Trust PhD Studentships**](https://wellcome.org/grant-funding/schemes/four-year-phd-programmes-studentships-basic-scientists)
 - The [**UKRI studentship**](https://www.ukri.org/what-we-do/developing-people-and-skills/find-studentships-and-doctoral-training/get-a-studentship-to-fund-your-doctorate/)
 <!-- - The [**South East Network of Social Scientists (SeNSS)**](https://senss-dtp.ac.uk/apply) -->
-- The [**SEDarc studentships**](https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1639-SEDarc-(ESRC)-PhD-scholarships-for-research-in-the-Social-Sciences)
 - The [**South Coast Biosciences Network (SoCoBio)**](https://southcoastdtp.ac.uk/funding/)
 - The [**Chevening Scholarship**](https://www.chevening.org/scholarships/) (International only)
 - The [**FIRE French scholarships**](https://phd.learningplanetinstitute.org/en/join-us) (must be a collaboration with a Paris-based lab)
+- The [**DAAD scholarships**](https://www.daad.de/en/study-research-teach-abroad/) (Germans)
 - The [**Joint China Scholarship**](https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1625-China-Scholarship-Council-CSC-University-of-Sussex-Joint-Scholarships-2024) (China)
 - Scholarship Opportunities for **Singaporeans**:
   - [**gov.uk information**](https://www.gov.uk/government/news/compilation-of-scholarships-and-fellowships-for-singaporeans)
