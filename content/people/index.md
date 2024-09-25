@@ -45,6 +45,9 @@ sections:
 
 gallery_item:  
   - album: social
+    image: 2024_Rome.jpg
+    caption: "2024 - Rome, Italian Association for Cognitive Sciences Conference (Ana, Dom and Marco Sperduti)"
+  - album: social
     image: 2024_LightFest.png
     caption: "2024 - Lightfest (summer solstice celebration)"
   - album: social
