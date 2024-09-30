@@ -30,7 +30,7 @@ url_poster: ""
 url_project: ""
 url_slides: ""
 url_source: ""
-url_video: ""
+url_video: "https://realitybending.github.io/publication/makowski2023novel/podcast_makowski2023novel.mp3"
 ---
 
 {{% callout tip %}}
