@@ -44,5 +44,7 @@ design:
 
 {{< audio src="podcast.mp3" >}}
 
+<sup>*PS: this podcast was AI-generated and might contain some BS...*</sup>
+
 {{% /callout %}}
 
