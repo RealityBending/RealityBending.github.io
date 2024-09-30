@@ -32,3 +32,15 @@ url_slides: ""
 url_source: ""
 url_video: ""
 ---
+
+{{% callout tip %}}
+
+**Audio Summary**
+
+*Listen to a podcast summary of the paper!*
+
+{{< audio src="podcast_makowski2023novel.mp3" >}}
+
+{{% /callout %}}
+
+
