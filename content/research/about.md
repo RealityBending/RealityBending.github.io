@@ -42,7 +42,7 @@ design:
 
 *Listen to a podcast summary of the lab!*
 
-{{< audio src="https://realitybending.github.io/assets/media/podcast.mp3" >}}
+{{< audio src="podcast.mp3" >}}
 
 {{% /callout %}}
 
