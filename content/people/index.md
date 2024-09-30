@@ -43,7 +43,7 @@ sections:
       show_role: true
       show_social: true
 
-gallery_item:  
+gallery_item:
   - album: social
     image: 2024_Rome.jpg
     caption: "2024 - Rome, Italian Association for Cognitive Sciences Conference (Ana, Dom and Marco Sperduti)"
