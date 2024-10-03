@@ -14,7 +14,6 @@ education:
   courses:
   - course: BSc Psychology
 name: Maisie Bennett
-title: Miss
 organizations:
 - name: The Reality Bending Lab
   url: "https://realitybending.github.io/"
