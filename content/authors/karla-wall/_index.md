@@ -1,6 +1,9 @@
 ---
+# Name
+title: Karla Wall
+# Folder name
 authors:
-- Karla Wall
+- karla-wall
 bio: Current student studying Psychological Methods MRes at the University of Sussex.
 email: "kw459@sussex.ac.uk"
 interests:

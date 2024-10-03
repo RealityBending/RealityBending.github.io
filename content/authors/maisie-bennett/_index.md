@@ -1,4 +1,7 @@
 ---
+# Name
+title: Maisie Bennett
+# Folder name
 authors:
 - maisie-bennett
 bio: Placement student and Research assistant at Reality Bending Lab😄
