@@ -1266,9 +1266,6 @@
     <lastmod>2013-07-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://realitybending.github.io/authors/karla-wall/</loc>
-    <changefreq>weekly</changefreq>
-  </url><url>
     <loc>https://realitybending.github.io/people/</loc>
     <changefreq>weekly</changefreq>
   </url><url>
@@ -1291,6 +1288,9 @@
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://realitybending.github.io/authors/gandalf/</loc>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://realitybending.github.io/authors/karla-wall/</loc>
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://realitybending.github.io/authors/leah-walker/</loc>
