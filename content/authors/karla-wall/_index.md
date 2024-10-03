@@ -11,8 +11,10 @@ education:
   courses:
   - course: Applied Psychology BSc
 name: Karla Wall
-role: Student
+role: Research Assistant<sub><sup><br>University of Sussex</sup></sub>
 superuser: false
+user_groups:
+- Research Assistants
 ---
 
 *"Life is not a problem to be solved but a reality to be experienced."*
