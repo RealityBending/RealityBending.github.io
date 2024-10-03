@@ -15,8 +15,8 @@ title: Miss
 organizations:
 - name: The Reality Bending Lab
   url: "https://realitybending.github.io/"
-role: Research Assistant 
+role: Research Assistant
 superuser: false
 user_groups:
-- Consultants
+- Research Assistants
 ---
