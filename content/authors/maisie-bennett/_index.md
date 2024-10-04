@@ -1,11 +1,14 @@
----
+--
+# Name
+title: Maisie Bennett
+# Folder name
 authors:
-- Maisie
+- maisie-bennett
 bio: Placement student and Research assistant at Reality Bending Lab😄
-education: " BSc Psychology student at University of Sussex "
-email: "mb2021@sussex.ac.uk"
-  icon_pack: fab
+role: Placement student<sub><sup><br>University of Sussex</sup></sub>
+social:
   - icon: github
+  icon_pack: fab
   link: https://github.com/Maisiebennett
 - icon: envelope
   icon_pack: fas
@@ -20,16 +23,10 @@ interests:
 - Cognitive Psychology
 - Statistics
 education:
-courses:
-- course: BSc Psychology
-institution: University of Sussex
-  yrar: 2022 - 2025
-name: Maisie Bennett
-title: Miss
-organizations:
-- name: The Reality Bending Lab
-url: "https://realitybending.github.io/"
-role: Research Assistant 
+- courses:
+   course - BSc Psychology student  University of Sussex
+   institution: University of Sussex
+   year: 2022 - 2025
 superuser: false
 user_groups:
 - Research Assistants
