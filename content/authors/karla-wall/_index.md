@@ -13,6 +13,13 @@ interests:
 education:
   courses:
   - course: Applied Psychology BSc
+social:
+- icon: envelope
+  icon_pack: fas
+  link: mailto:kw459@sussex.ac.uk
+- icon: github
+  icon_pack: fab
+  link: https://github.com/KarlaWall
 name: Karla Wall
 role: Research Assistant<sub><sup><br>University of Sussex</sup></sub>
 superuser: false
