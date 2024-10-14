@@ -18,4 +18,6 @@ education:
       institution: University of Sussex
       year: 2021 - 2025
 superuser: false
+user_groups:
+- Final Year Students
 ---
