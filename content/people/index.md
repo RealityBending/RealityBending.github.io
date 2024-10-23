@@ -45,6 +45,9 @@ sections:
 
 gallery_item:
   - album: social
+    image: 2024_SCCSLaunch.jpg
+    caption: "2024 - Sussex Centre for Consciousness Studies launch (Rebel team and associates)"
+  - album: social
     image: 2024_Rome.jpg
     caption: "2024 - Rome, Italian Association for Cognitive Sciences Conference (Ana, Dom and Marco Sperduti)"
   - album: social
