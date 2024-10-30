@@ -47,10 +47,16 @@ tags:
 **Send inquiries and CV to D.Makowski@sussex.ac.uk**. -->
 ## Open Opportunities
 
-- **Deadline in early 2025 (TO BE CONFIRMED)**: [Sussex Neuroscience 3+1 PhD Program](https://www.sussex.ac.uk/study/phd/degrees/sussex-neuroscience-4-year-programme-phd)
+- **13th January**: [Sussex Neuroscience 3+1 PhD Program](https://www.sussex.ac.uk/research/centres/sussex-neuroscience/phd/4yearphd)
   - [x] Fully funded for local and international students
   - [x] You don't need to chose a supervisor before applying. The first year is made of 3 different rotations in different labs. 
   - [x] Selection is based mostly on the candidate's CV. 
+
+- **13th December**: [Sussex Psychology PhD Program](https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1754-Psychology-Doctoral-Research-Studentship-UK-and-International)
+  - [x] Fully funded for local and international students
+  - [x] Selection is based on the candidate's CV as well as on the project proposal.
+  - [x] Get in touch with potential supervisors before applying! 
+
 
 ## What you will get
 
