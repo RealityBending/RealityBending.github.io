@@ -48,6 +48,10 @@ At the Clinical Brain Lab, the research focuses on uncovering the neuropsycholog
 
 **Contact.** Send questions or CV to Prof Annabel (annabelchen@ntu.edu.sg) and Dr Dominique Makowski (D.Makowski@sussex.ac.uk). -->
 
+## New Opportunities
+
+- ⚠️ SEDARC postdoc competition: https://www.sedarc.ac.uk/postdoctoral-fellowship-competition/ (deadline: 15 January 2025)
+
 
 ## Getting your own Postdoc Funding
 
