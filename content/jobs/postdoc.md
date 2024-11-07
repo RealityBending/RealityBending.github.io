@@ -50,13 +50,13 @@ At the Clinical Brain Lab, the research focuses on uncovering the neuropsycholog
 
 ## New Opportunities
 
-- ⚠️ SEDARC postdoc competition: https://www.sedarc.ac.uk/postdoctoral-fellowship-competition/ (deadline: 15 January 2025)
+{{< icon name="calendar" pack="fa" >}} Flexible
+{{< icon name="location-pin" pack="fa" >}} University of Sussex, Brighton, UK
+
+- ⚠️ [**SEDARC Postdoc Fellozship competition**](https://www.sedarc.ac.uk/postdoctoral-fellowship-competition) *(deadline: 15 January 2025)*
 
 
 ## Getting your own Postdoc Funding
-
-{{< icon name="calendar" pack="fa" >}} Flexible
-{{< icon name="location-pin" pack="fa" >}} University of Sussex, Brighton, UK
 
 If you're a recent PhD graduate (or soon to be), you could consider applying for a postdoc fellowship to join the lab on your own terms, and develop your own research project.
 
