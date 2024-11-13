@@ -25,7 +25,7 @@ tags:
 title: 'A Novel Visual Illusion Paradigm Provides Evidence for a General Factor of Illusion Sensitivity and Personality Correlates'
 url_code: "https://github.com/RealityBending/IllusionGameValidation"
 url_dataset: "https://github.com/RealityBending/IllusionGameValidation"
-url_pdf: https://dominiquemakowski.github.io/publication/makowski2023editorial/makowski2023novel.pdf
+url_pdf: https://realitybending.github.io/publication/makowski2023novel/makowski2023novel.pdf
 url_poster: ""
 url_project: ""
 url_slides: ""
