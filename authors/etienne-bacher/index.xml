@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Etienne Bacher | Reality Bending Lab</title>
+    <link>https://realitybending.github.io/authors/etienne-bacher/</link>
+      <atom:link href="https://realitybending.github.io/authors/etienne-bacher/index.xml" rel="self" type="application/rss+xml" />
+    <description>Etienne Bacher</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Sun, 09 Oct 2022 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://realitybending.github.io/media/icon_hu11326173534259092558.png</url>
+      <title>Etienne Bacher</title>
+      <link>https://realitybending.github.io/authors/etienne-bacher/</link>
+    </image>
+    
+    <item>
+      <title>datawizard: An R Package for Easy Data Preparation and Statistical Transformations</title>
+      <link>https://realitybending.github.io/publication/patil2022datawizard/</link>
+      <pubDate>Sun, 09 Oct 2022 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/publication/patil2022datawizard/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
