@@ -47,10 +47,16 @@ tags:
 **Send inquiries and CV to D.Makowski@sussex.ac.uk**. -->
 ## Open Opportunities
 
-- **Deadline in early 2025 (TO BE CONFIRMED)**: [Sussex Neuroscience 3+1 PhD Program](https://www.sussex.ac.uk/study/phd/degrees/sussex-neuroscience-4-year-programme-phd)
+- **13th January**: [Sussex Neuroscience 3+1 PhD Program](https://www.sussex.ac.uk/research/centres/sussex-neuroscience/phd/4yearphd)
   - [x] Fully funded for local and international students
   - [x] You don't need to chose a supervisor before applying. The first year is made of 3 different rotations in different labs. 
   - [x] Selection is based mostly on the candidate's CV. 
+
+- **13th December**: [Sussex Psychology PhD Program](https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1754-Psychology-Doctoral-Research-Studentship-UK-and-International)
+  - [x] Fully funded for local and international students
+  - [x] Selection is based on the candidate's CV as well as on the project proposal.
+  - [x] Get in touch with potential supervisors before applying! 
+
 
 ## What you will get
 
@@ -81,6 +87,7 @@ Here are some scholarship opportunities for funded PhDs in the UK:
 
 - The [**Sussex Psychology Doctoral Research Studentship**](https://archive.sussex.ac.uk/study/scholarships/1525-Psychology-Doctoral-Research-Studentship-UK-and-International)
 - The [**Sussex Neuroscience 3+1 years PhD**](https://www.sussex.ac.uk/research/centres/sussex-neuroscience/phd/4yearphd)
+- The [**Sussex AI PhD**](https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1807-Sussex-AI-PhD-studentships) (you will need a primary supervisor from the *School of Engineering and Informatics* but I can be a cosupervisor)
 - The [**SEDarc studentships**](https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1639-SEDarc-(ESRC)-PhD-scholarships-for-research-in-the-Social-Sciences) (see also [here](https://sedarc.ac.uk/thematic-pathways/))
 - The [**Welcome Trust PhD Studentships**](https://wellcome.org/grant-funding/schemes/four-year-phd-programmes-studentships-basic-scientists)
 - The [**UKRI studentship**](https://www.ukri.org/what-we-do/developing-people-and-skills/find-studentships-and-doctoral-training/get-a-studentship-to-fund-your-doctorate/)
@@ -128,7 +135,15 @@ Neuropsychology is both an approach (focusing on the relationship between the br
 
 ### How to work on psychedelics?
 
-Psychedelics and altered states of consciousness are a hot topic in psychology and neuroscience. Unfortunately, it is still *extremely* difficulty to get authorizations to work with these substances. I would not recommend to base your PhD project on this potentiality, as it's too risky that things might not work out (due to ethical, administrative, or political reasons). That said, we do have projects running in collaborations with experts in the field, and are always on the lookout for opportunities to work on these topics. Additionally, we think it's also very interesting to study how altered states of consciousness can be induced *without* external substances (e.g., through meditation, hypnosis, sensory deprivation, psychedelic stimulation, ...), which might be a more sustainable and ethical way to approach these phenomena.
+Psychedelics and altered states of consciousness are a hot topic in psychology and neuroscience. Unfortunately, it is still *extremely* difficulty to get authorizations to work with these substances. I would not recommend to base your PhD project on this potentiality, as it's too risky that things might not work out (due to ethical, administrative, or political reasons). That said, we do have projects running in collaborations with experts in the field, and are always on the lookout for opportunities to work on these topics. Additionally, we think it's also very interesting to study how altered states of consciousness can be induced *without* external substances (e.g., through meditation, hypnosis, sensory deprivation, neural stimulation, ...), which might be a more sustainable and ethical way to approach these phenomena.
 
+## Application Advice
 
+A few tips for your writing up your application dossier, in particular pertaining your CV and cover letter. 
+Note that these are general guidelines that also apply to other contexts (master's programs, industry jobs, etc.).
 
+The key thing is to keep in mind that we receive a ***lot*** of applications (few hundreds for some positions). The first mistake you want to avoid is to have a generic, impersonal application: do address specific people (and **do not make mistakes in the spelling of their names**, it happens often and is a turn-off), and try to concisely paint a profile of yourself that the recruiter can easily picture and form an image of: what is your background, where do you come from, what are your expertise, interests and goals. This should really be one tightly written paragraph (you can expand on this in your CV). We often see long and convoluted CVs and cover letters, that try to show "a bit of everything", leaving the reader with little more than a sense of confusion. 
+
+Next, after providing a clear depiction of who you are, you want to show that you have **done your homework about where you are applying**: be specific about the people of the department (e.g., "I am particularly interested in working with Dr. X because of their work on Y"), or the papers ("I particularly enjoyed your paper on X because of Y"). This shows that you are motivated and that you are not just sending the same application to 100 different places.
+
+Finally, you want to show that you are a good fit for the position, and show that you have experience in the methods that are used in the lab, that you have experience in the field, etc.

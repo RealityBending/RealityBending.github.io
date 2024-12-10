@@ -48,11 +48,15 @@ At the Clinical Brain Lab, the research focuses on uncovering the neuropsycholog
 
 **Contact.** Send questions or CV to Prof Annabel (annabelchen@ntu.edu.sg) and Dr Dominique Makowski (D.Makowski@sussex.ac.uk). -->
 
-
-## Getting your own Postdoc Funding
+## New Opportunities
 
 {{< icon name="calendar" pack="fa" >}} Flexible
 {{< icon name="location-pin" pack="fa" >}} University of Sussex, Brighton, UK
+
+- ⚠️ [**SEDARC Postdoc Fellowship competition**](https://www.sedarc.ac.uk/postdoctoral-fellowship-competition) *(deadline: 15 January 2025)*
+
+
+## Getting your own Postdoc Funding
 
 If you're a recent PhD graduate (or soon to be), you could consider applying for a postdoc fellowship to join the lab on your own terms, and develop your own research project.
 

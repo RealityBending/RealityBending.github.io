@@ -43,7 +43,10 @@ sections:
       show_role: true
       show_social: true
 
-gallery_item:  
+gallery_item:
+  - album: social
+    image: 2024_SCCSLaunch.jpg
+    caption: "2024 - Sussex Centre for Consciousness Studies launch (Rebel team and associates)"
   - album: social
     image: 2024_TheoBirthday.jpg
     caption: "2024 - Theodoros Karapanagiotidis' birthday party"

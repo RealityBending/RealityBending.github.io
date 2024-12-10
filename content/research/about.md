@@ -37,3 +37,14 @@ design:
 **Topics**. This includes investigating the role of active mechanisms (e.g. cognitive control, emotions, interoception, immersion, meditation, deception...) in shaping our **sense of reality** (i.e., the feeling and belief that we - and our environment - are real), as well as their crystallised form giving rise to dispositional characteristics in the form of **personality** phenotypes and **neuropsychological profiles**. Additionally, we develop **novel methods** (advanced statistical algorithms, tasks and tests) and apply **cutting-edge techniques** (multimodal neurophysiological recordings) to gain insight into the processes at stake. Finally, we try to understand our research in a larger **historical**, epistemological and philosophical frame.
 
 **Approach**. We place ourselves within a [**neuropsychological perspective**](https://dominiquemakowski.github.io/post/what_is_neuropsychology/); we analyse and dissect the phenomena of interest in terms of dynamic interaction between neurocognitive mechanisms and brain processes, and aim at validating and/or extending our results to particular populations, such as patients suffering from neuropsychiatric conditions.
+
+{{% callout tip %}}
+
+*Listen to a podcast summary of the lab!*
+
+{{< audio src="podcast.mp3" >}}
+
+<sup>*Note: this podcast was AI-generated and contains a lot of BS.*</sup>
+
+{{% /callout %}}
+

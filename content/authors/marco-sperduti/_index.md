@@ -1,7 +1,7 @@
 ---
 authors:
 - Marco Sperduti
-bio: "Assistant professor of psychology @ Université de Paris."
+bio: "Assistant professor of psychology @ Roma Tor Vergata."
 webpage: "[Marco Sperduti](https://www.researchgate.net/profile/Marco-Sperduti)"
 education: ""
 email: ""
@@ -12,9 +12,9 @@ interests:
 name: Marco Sperduti
 title: Marco Sperduti
 organizations:
-- name: Université de Paris, France
+- name: University Roma Tor Vergata, Italy
   url: ""
-role: Assistant Professor<sub><sup><br>Université Paris Cité<br>France</sup></sub>
+role: Assistant Professor<sub><sup><br>University Roma Tor Vergata<br>Italy</sup></sub>
 social:
 - icon: envelope
   icon_pack: fas
