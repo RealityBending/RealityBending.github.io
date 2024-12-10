@@ -87,6 +87,7 @@ Here are some scholarship opportunities for funded PhDs in the UK:
 
 - The [**Sussex Psychology Doctoral Research Studentship**](https://archive.sussex.ac.uk/study/scholarships/1525-Psychology-Doctoral-Research-Studentship-UK-and-International)
 - The [**Sussex Neuroscience 3+1 years PhD**](https://www.sussex.ac.uk/research/centres/sussex-neuroscience/phd/4yearphd)
+- The [**Sussex AI PhD**](https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1807-Sussex-AI-PhD-studentships) (you will need a primary supervisor from the *School of Engineering and Informatics* but I can be a cosupervisor)
 - The [**SEDarc studentships**](https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1639-SEDarc-(ESRC)-PhD-scholarships-for-research-in-the-Social-Sciences) (see also [here](https://sedarc.ac.uk/thematic-pathways/))
 - The [**Welcome Trust PhD Studentships**](https://wellcome.org/grant-funding/schemes/four-year-phd-programmes-studentships-basic-scientists)
 - The [**UKRI studentship**](https://www.ukri.org/what-we-do/developing-people-and-skills/find-studentships-and-doctoral-training/get-a-studentship-to-fund-your-doctorate/)
