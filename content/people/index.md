@@ -46,7 +46,7 @@ sections:
 gallery_item:  
   - album: social
     image: 2024_TheoBirthday.jpg
-    caption: "2024 - Theo's birthday party"
+    caption: "2024 - Theodoros Karapanagiotidis' birthday party"
   - album: social
     image: 2024_ChristmasDinner.jpg
     caption: "2024 - Christmas Dinner (Dom, Ana and Emma)"
