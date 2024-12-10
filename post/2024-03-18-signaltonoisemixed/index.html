@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+<!-- This site was created with Hugo Blox. https://hugoblox.com -->
+<!-- Last Published: December 10, 2024 --><html lang="en-us" >
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Hugo Blox Builder 5.9.7" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+
+  
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.26c458e6907dc03073573976b7f4044e.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.4/css/academicons.min.css" integrity="sha512-IW0nhlW5MgNydsXJO40En2EoCkTTjZhI3yuODrZIc8cQ4h1XcF53PsqDHa09NqnkXuIe0Oiyyj171BqZFwISBw==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.min.css" integrity="" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.e60d16fbfde4e9e2ab3747eec8c94e52.css" />
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="/css/libs/chroma/github-light.min.css" title="hl-light" media="print" onload="this.media='all'" >
+    <link rel="stylesheet" href="/css/libs/chroma/dracula.min.css" title="hl-dark" media="print" onload="this.media='all'" disabled>
+  
+
+  
+  
+
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6PL469S5F7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'G-6PL469S5F7', {});
+  gtag('set', {'cookie_flags': 'SameSite=None;Secure'});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+  <meta name="author" content="Dominique Makowski" />
+
+
+
+
+
+  
+
+<meta name="description" content="Task reliability in assessing inter-individual differences is a key issue for differential psychology and neuropsychology." />
+
+
+
+<link rel="alternate" hreflang="en-us" href="https://realitybending.github.io/post/2024-03-18-signaltonoisemixed/" />
+<link rel="canonical" href="https://realitybending.github.io/post/2024-03-18-signaltonoisemixed/" />
+
+
+
+  <link rel="manifest" href="/manifest.webmanifest" />
+
+
+
+<link rel="icon" type="image/png" href="/media/icon_hu9828512474117802568.png" />
+<link rel="apple-touch-icon" type="image/png" href="/media/icon_hu18439377166325615751.png" />
+
+<meta name="theme-color" content="#9C27B0" />
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<meta property="twitter:card" content="summary_large_image" />
+
+  <meta property="twitter:site" content="@Dom_Makowski" />
+  <meta property="twitter:creator" content="@Dom_Makowski" />
+<meta property="twitter:image" content="https://realitybending.github.io/post/2024-03-18-signaltonoisemixed/featured.png" />
+
+
+
+  
+
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Reality Bending Lab" />
+<meta property="og:url" content="https://realitybending.github.io/post/2024-03-18-signaltonoisemixed/" />
+<meta property="og:title" content="How to Assess Task Reliability using Bayesian Mixed Models | Reality Bending Lab" />
+<meta property="og:description" content="Task reliability in assessing inter-individual differences is a key issue for differential psychology and neuropsychology." /><meta property="og:image" content="https://realitybending.github.io/post/2024-03-18-signaltonoisemixed/featured.png" /><meta property="og:locale" content="en-us" />
+
+  
+    <meta
+      property="article:published_time"
+      content="2024-03-18T00:00:00&#43;00:00"
+    />
+  
+  
+    <meta property="article:modified_time" content="2024-03-18T00:00:00&#43;00:00">
+  
+
+
+
+
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://realitybending.github.io/post/2024-03-18-signaltonoisemixed/"
+  },
+  "headline": "How to Assess Task Reliability using Bayesian Mixed Models",
+  
+  "image": [
+    "https://realitybending.github.io/post/2024-03-18-signaltonoisemixed/featured.png"
+  ],
+  
+  "datePublished": "2024-03-18T00:00:00Z",
+  "dateModified": "2024-03-18T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Dominique Makowski"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Reality Bending Lab",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://realitybending.github.io/media/icon_hu10584776241471743047.png"
+    }
+  },
+  "description": "Task reliability in assessing inter-individual differences is a key issue for differential psychology and neuropsychology."
+}
+</script>
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+  
+
+  
+
+
+  
+  <title>How to Assess Task Reliability using Bayesian Mixed Models | Reality Bending Lab</title>
+
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="2bc4a90ff1016d4cf923cfa29c213e95" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.4d86d96dd75d4de5d4f64fa2bd71da1c.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header header--fixed">
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+    <div class="container-xl">
+
+      
+      <div class="d-none d-lg-inline-flex">
+        <a class="navbar-brand" href="/">Reality Bending Lab</a>
+      </div>
+      
+
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+      <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+      
+      <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+        <a class="navbar-brand" href="/">Reality Bending Lab</a>
+      </div>
+      
+
+      
+      
+      <div class="navbar-collapse main-menu-item collapse justify-content-end" id="navbar-content">
+
+        
+        <ul class="navbar-nav d-md-inline-flex">
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/people/"><span>People</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/research/"><span>Research</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link  active" href="/post/"><span>Blog</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/publication/"><span>Publications</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/research#participate"><span>Participate</span></a>
+          </li>
+
+          
+          
+
+          
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>Join us</span><span class="caret"></span>
+            </a>
+            <div class="dropdown-menu">
+              
+                <a class="dropdown-item" href="/jobs/postdoc/"><span>Postdoc</span></a>
+              
+                <a class="dropdown-item" href="/jobs/phd/"><span>PhD</span></a>
+              
+                <a class="dropdown-item" href="/jobs/assistant/"><span>Research Assistant</span></a>
+              
+                <a class="dropdown-item" href="/jobs/intern/"><span>Internship</span></a>
+              
+                <a class="dropdown-item" href="/jobs/projects/"><span>Research Projects</span></a>
+              
+            </div>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#11_contact"><span>Contact</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+              
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="https://github.com/RealityBending" target="_blank" rel="noopener"><span><i class="fab fa-github"; font-size: 1rem; line-height: 1.25"></i></span></a>
+          </li>
+
+          
+          
+
+        
+
+          
+        </ul>
+      </div>
+
+      <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+        
+        
+          
+        
+
+        
+        
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        
+        
+
+        
+        
+
+      </ul>
+
+    </div>
+  </nav>
+</header>
+
+
+  </div>
+
+  <div class="page-body">
+    
+    
+    
+
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+<div class="article-container pt-3">
+  <h1>How to Assess Task Reliability using Bayesian Mixed Models</h1>
+
+  
+
+  
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  <span >
+      <a href="/authors/dominique-makowski/">Dominique Makowski</a></span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Mar 18, 2024
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    7 min read
+  </span>
+  
+
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/r/">R</a>, <a href="/category/statistics/">Statistics</a></span>
+  
+
+</div>
+
+  
+
+
+
+
+
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 720px;">
+  <div style="position: relative">
+    <img src="/post/2024-03-18-signaltonoisemixed/featured_hu11595219512486798007.webp" width="720" height="720" alt="" class="featured-image">
+    
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <p>Using reliable tasks when assessing inter-individual differences is a key issue for differential psychology and neuropsychology, and many research areas are clouded with mixed evidence stemming out of the suboptimal computation of individual scores (e.g., tasks with not enough trials, scores consisting in computing the difference, aka the <strong>contrast</strong> between two conditions; see <a href="https://osf.io/preprints/psyarxiv/8ktn6" target="_blank" rel="noopener">Rouder et al., 2024</a>). As such, measuring and reporting the reliability of the paradigms used could be an important step for <strong>increasing results replicability</strong>.</p>
+<p>Recently, a new approach has emerged, suggesting to assess task sensitivity to inter-individual differences by leveraging mixed models (<a href="https://doi.org/10.1177/09637214231220923" target="_blank" rel="noopener">Rouder et al., 2024</a>).
+In essence, the idea is to fit a statistical model that tests for the <strong>general population level</strong> effect of a manipulation in a given task/experiment (e.g., the impact of a variable <strong>Difficulty</strong> on another variable <strong>RT</strong>), and incorporates a <strong>random effect</strong> for each participant. This &ldquo;full&rdquo; mixed model essentially models the general population level by taking into account all the inter-individual effects and - as a side effect - <strong>estimates the effects of interest for each participant separately</strong>.</p>
+<p>When fitting these models under a Bayesian framework, one can easily estimate the &ldquo;variability&rdquo; (or certainty) of the effect in each participant. This is great, because it allows us to assess a &ldquo;signal-to-noise&rdquo; ratio, an index of how much the interindividual variability (how participants vary) is larger than the intraindividual variability (e.g., how much participants vary across trial, or how precisely participants&rsquo; effects are estimated).</p>
+<p>In this &ldquo;Signal-To-Noise Ratio as Effect Reliability&rdquo; framework, an ideal task/manipulation would have a strong inter-individual variability (i.e., participants would on average vary a lot) and a low intra-individual variability (each participant would have very consistent effects), which leads to a reliable measure of interindividual effects.</p>
+<p>Let&rsquo;s see how we can do that in R using the <code>brms</code> package for fitting Bayesian mixed model. First, let&rsquo;s start to generate 4 datasets with different levels of inter-individual and intra-individual variability.</p>
+<details>
+  <summary>Show code</summary>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">easystats</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">brms</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">patchwork</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Make function to generate data</span>
+</span></span><span class="line"><span class="cl"><span class="n">generate_data</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">n_trials</span><span class="o">=</span><span class="m">25</span><span class="p">,</span> <span class="n">effect_sd</span> <span class="o">=</span> <span class="m">0.4</span><span class="p">,</span> <span class="n">intercept_sd</span><span class="o">=</span><span class="m">0.4</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="m">0.8</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#34;df&#34;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">df</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">for</span><span class="p">(</span><span class="n">participant</span> <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="m">20</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">rnorm</span><span class="p">(</span><span class="n">n_trials</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="m">1</span> <span class="o">+</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">effect_sd</span><span class="p">))</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">intercept_sd</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y</span> <span class="o">&lt;-</span> <span class="n">y</span> <span class="o">+</span> <span class="nf">rnorm</span><span class="p">(</span><span class="n">n_trials</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">noise</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">df</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">Difficulty</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">RT</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                               <span class="n">Participant</span><span class="o">=</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&#34;S&#34;</span><span class="p">,</span> <span class="n">participant</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="n">df</span><span class="o">$</span><span class="n">Name</span> <span class="o">&lt;-</span> <span class="n">name</span>
+</span></span><span class="line"><span class="cl">  <span class="n">df</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Generate 4 datasets</span>
+</span></span><span class="line"><span class="cl"><span class="n">df1</span> <span class="o">&lt;-</span> <span class="nf">generate_data</span><span class="p">(</span><span class="n">n_trials</span><span class="o">=</span><span class="m">20</span><span class="p">,</span> <span class="n">effect_sd</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">,</span> <span class="n">intercept_sd</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#34;1. Intercept and Effect&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">df2</span> <span class="o">&lt;-</span> <span class="nf">generate_data</span><span class="p">(</span><span class="n">n_trials</span><span class="o">=</span><span class="m">20</span><span class="p">,</span> <span class="n">effect_sd</span> <span class="o">=</span> <span class="m">0.1</span><span class="p">,</span> <span class="n">intercept_sd</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#34;2. Intercept Only&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">df3</span> <span class="o">&lt;-</span> <span class="nf">generate_data</span><span class="p">(</span><span class="n">n_trials</span><span class="o">=</span><span class="m">20</span><span class="p">,</span> <span class="n">effect_sd</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">,</span> <span class="n">intercept_sd</span><span class="o">=</span><span class="m">0.1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#34;3. Effect Only&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">df4</span> <span class="o">&lt;-</span> <span class="nf">generate_data</span><span class="p">(</span><span class="n">n_trials</span><span class="o">=</span><span class="m">200</span><span class="p">,</span> <span class="n">effect_sd</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">,</span> <span class="n">intercept_sd</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#34;4. More trials&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Plot data</span>
+</span></span><span class="line"><span class="cl"><span class="nf">rbind</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">df3</span><span class="p">,</span> <span class="n">df4</span><span class="p">)</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Difficulty</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">RT</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">Participant</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">Participant</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_point2</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="m">0.5</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s">&#34;lm&#34;</span><span class="p">,</span> <span class="n">se</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="m">0.2</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">theme_minimal</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_fill_material_d</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_color_material_d</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">Name</span><span class="p">,</span> <span class="n">scales</span><span class="o">=</span><span class="s">&#34;free&#34;</span><span class="p">)</span>
+</span></span></code></pre></div></details>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="" srcset="
+               /post/2024-03-18-signaltonoisemixed/fig1_hu10916532941443093308.webp 400w,
+               /post/2024-03-18-signaltonoisemixed/fig1_hu10510732651174981726.webp 760w,
+               /post/2024-03-18-signaltonoisemixed/fig1_hu11011503002427766931.webp 1200w"
+               src="/post/2024-03-18-signaltonoisemixed/fig1_hu10916532941443093308.webp"
+               width="760"
+               height="760"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>In each of the dataset, we simulated the data of <strong>20 participants</strong> undergoing a task with <em>n</em> trials varying in <strong>difficulty</strong>, and we recorded their <strong>reaction time (RT)</strong>. Note that while in our example <em>difficulty</em> is a continuous variable, it would work the same if it was categorical variable (e.g., effect of condition B over A, intervention vs. baseline, incongruent vs. congruent, etc.).</p>
+<p>When we fit a linear regression of the form <em>RT ~ difficulty</em>, we are estimating two parameters; the <em>intercept</em> (which can be seen as the &ldquo;baseline&rdquo; RT, i.e., <strong>participants&rsquo; baseline processing speed</strong> when the difficulty is 0) and the <em>slope</em> (how much participants are impacted by this variable). These two parameters are in principle independent (a participant can be very fast regardless of the difficulty, and another one could be equally fast at baseline - same intercept - but very slow when the task is difficult - strong slope).</p>
+<p>We simulated 4 datasets with different participant characteristics:</p>
+<ul>
+<li><strong>Dataset 1</strong>: Both the RT intercept (<strong>the &ldquo;baseline&rdquo; RT</strong>) and the effect of the manipulation (the <strong>effect of difficulty</strong>) vary across participants.</li>
+<li><strong>Dataset 2</strong>: Not much interindividual variability in the effect (only the baseline RT varies).</li>
+<li><strong>Dataset 3</strong>: Not much interindividual variability in the baseline RT (only the effect of difficulty varies from participant to participant).</li>
+<li><strong>Dataset 4</strong>: Same as dataset 1, but with more trials (200 instead of 20). As you can see, the &ldquo;precision&rdquo; ribbon around the regression line is much narrower, indicating that the effect is more precisely estimated.</li>
+</ul>
+<p>We expect that reliability of the paradigm to measure 1) the sensitivity to <strong>difficulty</strong> and 2) the <strong>baseline RT</strong> will be higher in dataset 4 (because more trials) than in dataset 1. Moreover, the sensitivity to <strong>difficulty</strong> will be particularly low in dataset 2 (where only the baseline RT is set to varies), and similarly for baseline RT in dataset 3 <em>mutatis mutandis</em>.</p>
+<p>Now, let&rsquo;s fit a Bayesian linear mixed model to each of these datasets (note that we specify the effect of Difficulty as a random <em>slope</em> in addition to estimating the random intercept).</p>
+<details>
+  <summary>Show code</summary>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">model1</span> <span class="o">&lt;-</span> <span class="n">brms</span><span class="o">::</span><span class="nf">brm</span><span class="p">(</span><span class="n">RT</span> <span class="o">~</span> <span class="n">Difficulty</span> <span class="o">+</span> <span class="p">(</span><span class="m">1</span><span class="o">+</span><span class="n">Difficulty</span><span class="o">|</span><span class="n">Participant</span><span class="p">),</span> <span class="n">data</span><span class="o">=</span><span class="n">df1</span><span class="p">,</span> <span class="n">iter</span><span class="o">=</span><span class="m">600</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">model2</span> <span class="o">&lt;-</span> <span class="n">brms</span><span class="o">::</span><span class="nf">brm</span><span class="p">(</span><span class="n">RT</span> <span class="o">~</span> <span class="n">Difficulty</span> <span class="o">+</span> <span class="p">(</span><span class="m">1</span><span class="o">+</span><span class="n">Difficulty</span><span class="o">|</span><span class="n">Participant</span><span class="p">),</span> <span class="n">data</span><span class="o">=</span><span class="n">df2</span><span class="p">,</span> <span class="n">iter</span><span class="o">=</span><span class="m">600</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">model3</span> <span class="o">&lt;-</span> <span class="n">brms</span><span class="o">::</span><span class="nf">brm</span><span class="p">(</span><span class="n">RT</span> <span class="o">~</span> <span class="n">Difficulty</span> <span class="o">+</span> <span class="p">(</span><span class="m">1</span><span class="o">+</span><span class="n">Difficulty</span><span class="o">|</span><span class="n">Participant</span><span class="p">),</span> <span class="n">data</span><span class="o">=</span><span class="n">df3</span><span class="p">,</span> <span class="n">iter</span><span class="o">=</span><span class="m">600</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">model4</span> <span class="o">&lt;-</span> <span class="n">brms</span><span class="o">::</span><span class="nf">brm</span><span class="p">(</span><span class="n">RT</span> <span class="o">~</span> <span class="n">Difficulty</span> <span class="o">+</span> <span class="p">(</span><span class="m">1</span><span class="o">+</span><span class="n">Difficulty</span><span class="o">|</span><span class="n">Participant</span><span class="p">),</span> <span class="n">data</span><span class="o">=</span><span class="n">df4</span><span class="p">,</span> <span class="n">iter</span><span class="o">=</span><span class="m">600</span><span class="p">)</span>
+</span></span></code></pre></div></details>
+<p>This model basically computes the overall relationship (Intercept + Slope) between difficulty and RT, as well as <strong>for each participant</strong>.
+We can then extract the <strong>posterior distribution</strong> of these individual effects (i.e., the value of the <strong>Intercept</strong> and the <strong>Slope</strong> for each participant).</p>
+<details>
+  <summary>Show code</summary>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Random effects extraction</span>
+</span></span><span class="line"><span class="cl"><span class="n">extract_individual</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#34;df&#34;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">coefs</span> <span class="o">&lt;-</span> <span class="nf">coef</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">summary</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="o">$</span><span class="n">Participant</span>
+</span></span><span class="line"><span class="cl">  <span class="n">data</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">as.data.frame</span><span class="p">(</span><span class="n">coefs[</span><span class="p">,</span> <span class="p">,</span> <span class="s">&#34;Intercept&#34;</span><span class="n">]</span><span class="p">)</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">pivot_longer</span><span class="p">(</span><span class="nf">everything</span><span class="p">(),</span> <span class="n">names_to</span><span class="o">=</span><span class="s">&#34;Participant&#34;</span><span class="p">,</span> <span class="n">values_to</span><span class="o">=</span><span class="s">&#34;Value&#34;</span><span class="p">)</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">mutate</span><span class="p">(</span><span class="n">Parameter</span><span class="o">=</span><span class="s">&#34;Intercept&#34;</span><span class="p">,</span> <span class="n">Name</span><span class="o">=</span><span class="n">name</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">as.data.frame</span><span class="p">(</span><span class="n">coefs[</span><span class="p">,</span> <span class="p">,</span> <span class="s">&#34;Difficulty&#34;</span><span class="n">]</span><span class="p">)</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">pivot_longer</span><span class="p">(</span><span class="nf">everything</span><span class="p">(),</span> <span class="n">names_to</span><span class="o">=</span><span class="s">&#34;Participant&#34;</span><span class="p">,</span> <span class="n">values_to</span><span class="o">=</span><span class="s">&#34;Value&#34;</span><span class="p">)</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">mutate</span><span class="p">(</span><span class="n">Parameter</span><span class="o">=</span><span class="s">&#34;Difficulty&#34;</span><span class="p">,</span> <span class="n">Name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">data</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">re1</span> <span class="o">&lt;-</span> <span class="nf">extract_individual</span><span class="p">(</span><span class="n">model1</span><span class="p">,</span> <span class="s">&#34;1. Intercept and Effect&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">re2</span> <span class="o">&lt;-</span> <span class="nf">extract_individual</span><span class="p">(</span><span class="n">model2</span><span class="p">,</span> <span class="s">&#34;2. Intercept Only&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">re3</span> <span class="o">&lt;-</span> <span class="nf">extract_individual</span><span class="p">(</span><span class="n">model3</span><span class="p">,</span> <span class="s">&#34;3. Effect Only&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">re4</span> <span class="o">&lt;-</span> <span class="nf">extract_individual</span><span class="p">(</span><span class="n">model4</span><span class="p">,</span> <span class="s">&#34;4. More trials&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Plot Random effects</span>
+</span></span><span class="line"><span class="cl"><span class="nf">rbind</span><span class="p">(</span><span class="n">re1</span><span class="p">,</span> <span class="n">re2</span><span class="p">,</span> <span class="n">re3</span><span class="p">,</span> <span class="n">re4</span><span class="p">)</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Value</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">Participant</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">Participant</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ggdist</span><span class="o">::</span><span class="nf">stat_slabinterval</span><span class="p">(</span><span class="n">adjust</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="m">0.5</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_fill_material_d</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">theme_minimal</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">facet_grid</span><span class="p">(</span><span class="n">Name</span><span class="o">~</span><span class="n">Parameter</span><span class="p">,</span> <span class="n">scales</span><span class="o">=</span><span class="s">&#34;free&#34;</span><span class="p">)</span>
+</span></span></code></pre></div></details>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="" srcset="
+               /post/2024-03-18-signaltonoisemixed/fig2_hu16405151688740038151.webp 400w,
+               /post/2024-03-18-signaltonoisemixed/fig2_hu8111061218773066308.webp 760w,
+               /post/2024-03-18-signaltonoisemixed/fig2_hu7518281655070277663.webp 1200w"
+               src="/post/2024-03-18-signaltonoisemixed/fig2_hu16405151688740038151.webp"
+               width="570"
+               height="760"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>Each participant&rsquo;s &ldquo;score&rdquo; (for the baseline RT score, i.e., the intercept; and the effect of difficulty, i.e., the slope) is represented by <strong>a distribution</strong>.
+This distribution is wider when there is less trials, which can be interpreted as more uncertainty about the exact estimate.
+Some datasets have a low interindividual variability for some parameters (e.g., dataset 2 has not much interindividual variability in the effect of difficulty).</p>
+<p>We can now compute, for each participant, the &ldquo;mean&rdquo; of its effects (for the intercept and the slope), as well as its own effect SD (intra-individual variability).</p>
+<details>
+  <summary>Show code</summary>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">scores</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">re1</span><span class="p">,</span> <span class="n">re2</span><span class="p">,</span> <span class="n">re3</span><span class="p">,</span> <span class="n">re4</span><span class="p">)</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">summarize</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Mean</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">Value</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SD</span> <span class="o">=</span> <span class="nf">sd</span><span class="p">(</span><span class="n">Value</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">.by</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;Name&#34;</span><span class="p">,</span> <span class="s">&#34;Parameter&#34;</span><span class="p">,</span> <span class="s">&#34;Participant&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+</span></span></code></pre></div></details>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Name</th>
+          <th style="text-align: left">Parameter</th>
+          <th style="text-align: left">Participant</th>
+          <th style="text-align: right">Mean</th>
+          <th style="text-align: right">SD</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">1. Intercept and Effect</td>
+          <td style="text-align: left">Intercept</td>
+          <td style="text-align: left">S1</td>
+          <td style="text-align: right">0.37</td>
+          <td style="text-align: right">0.20</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">1. Intercept and Effect</td>
+          <td style="text-align: left">Intercept</td>
+          <td style="text-align: left">S10</td>
+          <td style="text-align: right">-1.05</td>
+          <td style="text-align: right">0.20</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">1. Intercept and Effect</td>
+          <td style="text-align: left">Intercept</td>
+          <td style="text-align: left">S11</td>
+          <td style="text-align: right">0.88</td>
+          <td style="text-align: right">0.19</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">1. Intercept and Effect</td>
+          <td style="text-align: left">Intercept</td>
+          <td style="text-align: left">S12</td>
+          <td style="text-align: right">-0.30</td>
+          <td style="text-align: right">0.18</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">1. Intercept and Effect</td>
+          <td style="text-align: left">Intercept</td>
+          <td style="text-align: left">S13</td>
+          <td style="text-align: right">0.16</td>
+          <td style="text-align: right">0.19</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">1. Intercept and Effect</td>
+          <td style="text-align: left">Intercept</td>
+          <td style="text-align: left">S14</td>
+          <td style="text-align: right">0.57</td>
+          <td style="text-align: right">0.19</td>
+      </tr>
+  </tbody>
+</table>
+<p>Finally, we can compute the <strong>Signal-to-Noise Ratio</strong> for each parameter for each dataset, which is the ratio of the interindividual variability (the SD of the individual mean scores) over the average intraindividual variability (the average of the individual SDs).</p>
+<details>
+  <summary>Show code</summary>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">summarize</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">SNR</span> <span class="o">=</span> <span class="nf">sd</span><span class="p">(</span><span class="n">Mean</span><span class="p">)</span> <span class="o">/</span> <span class="nf">mean</span><span class="p">(</span><span class="n">SD</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">          <span class="n">.by</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;Name&#34;</span><span class="p">,</span> <span class="s">&#34;Parameter&#34;</span><span class="p">))</span>
+</span></span></code></pre></div></details>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Name</th>
+          <th style="text-align: left">Parameter</th>
+          <th style="text-align: right">SNR</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">1. Intercept and Effect</td>
+          <td style="text-align: left">Intercept</td>
+          <td style="text-align: right">2.87</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">1. Intercept and Effect</td>
+          <td style="text-align: left">Difficulty</td>
+          <td style="text-align: right">3.00</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">2. Intercept Only</td>
+          <td style="text-align: left">Intercept</td>
+          <td style="text-align: right">2.57</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">2. Intercept Only</td>
+          <td style="text-align: left">Difficulty</td>
+          <td style="text-align: right">0.55</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">3. Effect Only</td>
+          <td style="text-align: left">Intercept</td>
+          <td style="text-align: right">0.88</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">3. Effect Only</td>
+          <td style="text-align: left">Difficulty</td>
+          <td style="text-align: right">2.59</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">4. More trials</td>
+          <td style="text-align: left">Intercept</td>
+          <td style="text-align: right">8.88</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">4. More trials</td>
+          <td style="text-align: left">Difficulty</td>
+          <td style="text-align: right">7.97</td>
+      </tr>
+  </tbody>
+</table>
+<p>As predicted, the &ldquo;reliability&rdquo; of the paradigm to measure the interindividual effect of difficulty on RT is low in dataset 2 (where only the baseline RT varies), moderate in dataset 1 and 3, and high in dataset 4 where there are more trials.</p>
+
+    </div>
+
+    
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/reality-bending-lab/">Reality Bending Lab</a>
+  
+  <a class="badge badge-light" href="/tag/rebel/">ReBeL</a>
+  
+  <a class="badge badge-light" href="/tag/psychology/">Psychology</a>
+  
+  <a class="badge badge-light" href="/tag/neuropsychology/">Neuropsychology</a>
+  
+  <a class="badge badge-light" href="/tag/statistics/">Statistics</a>
+  
+  <a class="badge badge-light" href="/tag/r/">R</a>
+  
+  <a class="badge badge-light" href="/tag/mixed-models/">Mixed Models</a>
+  
+  <a class="badge badge-light" href="/tag/bayesian/">Bayesian</a>
+  
+</div>
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Frealitybending.github.io%2Fpost%2F2024-03-18-signaltonoisemixed%2F&amp;text=How&#43;to&#43;Assess&#43;Task&#43;Reliability&#43;using&#43;Bayesian&#43;Mixed&#43;Models" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Frealitybending.github.io%2Fpost%2F2024-03-18-signaltonoisemixed%2F&amp;t=How&#43;to&#43;Assess&#43;Task&#43;Reliability&#43;using&#43;Bayesian&#43;Mixed&#43;Models" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a href="mailto:?subject=How%20to%20Assess%20Task%20Reliability%20using%20Bayesian%20Mixed%20Models&amp;body=https%3A%2F%2Frealitybending.github.io%2Fpost%2F2024-03-18-signaltonoisemixed%2F" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https%3A%2F%2Frealitybending.github.io%2Fpost%2F2024-03-18-signaltonoisemixed%2F&amp;title=How&#43;to&#43;Assess&#43;Task&#43;Reliability&#43;using&#43;Bayesian&#43;Mixed&#43;Models" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=How&#43;to&#43;Assess&#43;Task&#43;Reliability&#43;using&#43;Bayesian&#43;Mixed&#43;Models%20https%3A%2F%2Frealitybending.github.io%2Fpost%2F2024-03-18-signaltonoisemixed%2F" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Frealitybending.github.io%2Fpost%2F2024-03-18-signaltonoisemixed%2F&amp;title=How&#43;to&#43;Assess&#43;Task&#43;Reliability&#43;using&#43;Bayesian&#43;Mixed&#43;Models" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+
+
+
+  
+  
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="/authors/dominique-makowski/"><img class="avatar mr-3 avatar-circle" src="/authors/dominique-makowski/avatar_hu5828840574540048779.png" alt="Dominique Makowski"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="/authors/dominique-makowski/">Dominique Makowski</a></h5>
+      <h6 class="card-subtitle">Lecturer in Psychology</h6>
+      <p class="card-text">Trained as neuropsychologist and CBT psychotherapist, I am currently working as a lecturer at the University of Sussex, on the neuroscience of reality perception.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/Dom_Makowski" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.fr/citations?user=bg0BZ-QAAAAJ&amp;hl=en" target="_blank" rel="noopener">
+        <i class="ai ai-google-scholar"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.researchgate.net/profile/Dominique_Makowski" target="_blank" rel="noopener">
+        <i class="fab fa-researchgate"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/DominiqueMakowski" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <p class="powered-by copyright-license-text">
+    © 2024 Dominique Makowski
+  </p>
+  
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://hugoblox.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Hugo Blox Builder</a> — the free, <a href="https://github.com/HugoBlox/hugo-blox-builder" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+
+
+<script src="/js/vendor-bundle.min.50933d940896e49f984a778650d5f7f5.js"></script>
+
+
+
+
+  
+
+  
+  
+
+  
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.min.js" integrity="" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+  
+  <script id="search-hit-fuse-template" type="text/x-template">
+    <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+    </div>
+  </script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/krisk/Fuse@v3.2.1/dist/fuse.min.js" integrity="sha512-o38bmzBGX+hD3JHWUFCDA09btWaqrNmoJ3RXLlrysA7PP01Kgs4UlE4MhelE1v5dJR3+cxlR4qQlotsW7jKsnw==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/julmot/mark.js@8.11.1/dist/jquery.mark.min.js" integrity="sha512-mhbv5DqBMgrWL+32MmsDOt/OAvqr/cHimk6B8y/bx/xS88MVkYGPiVv2ixKVrkywF2qHplNRUvFsAHUdxZ3Krg==" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script id="page-data" type="application/json">{"use_headroom":true}</script>
+
+
+  <script src="/js/wowchemy-headroom.db4755770454eb63685f8de785c0a172.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<script src="/en/js/wowchemy.min.7f5ebaff62ae468cff8bb3dd1337bb9b.js"></script>
+
+
+
+  <script src="/js/wowchemy-map.a26e9d2f7238ba5b868384f1c5bc6477.js" type="module"></script>
+
+
+
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <pre><code></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <script src="/js/wowchemy-publication.9c0e895144aef5a693008b5c5d450147.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
