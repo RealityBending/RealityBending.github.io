@@ -48,7 +48,7 @@ gallery_item:
     image: 2024_TheoBirthday.jpg
     caption: "2024 - Theo's birthday party"
   - album: social
-    image: 2024_ChristmasDinner
+    image: 2024_ChristmasDinner.jpg
     caption: "2024 - Christmas Dinner (Dom, Ana and Emma)"
   - album: social
     image: 2024_ChristmasCrackers
