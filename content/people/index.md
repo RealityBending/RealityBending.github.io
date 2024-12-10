@@ -45,7 +45,7 @@ sections:
 
 gallery_item:  
   - album: social
-    image: 2024_TheoBirthday
+    image: 2024_TheoBirthday.jpg
     caption: "2024 - Theo's birthday party"
   - album: social
     image: 2024_ChristmasDinner
