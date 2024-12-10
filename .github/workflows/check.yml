@@ -29,3 +29,4 @@ jobs:
 
             - name: Build site with blogdown
               run: Rscript -e "blogdown::build_site()"
+              

@@ -48,6 +48,15 @@ gallery_item:
     image: 2024_SCCSLaunch.jpg
     caption: "2024 - Sussex Centre for Consciousness Studies launch (Rebel team and associates)"
   - album: social
+    image: 2024_TheoBirthday.jpg
+    caption: "2024 - Theodoros Karapanagiotidis' birthday party"
+  - album: social
+    image: 2024_ChristmasDinner.jpg
+    caption: "2024 - Christmas Dinner (Dom, Ana and Emma)"
+  - album: social
+    image: 2024_ChristmasCrackers.gif
+    caption: "2024 - Pulling the Christmas crackers (Ana and Emma)"
+  - album: social
     image: 2024_Rome.jpg
     caption: "2024 - Rome, Italian Association for Cognitive Sciences Conference (Ana, Dom and Marco Sperduti)"
   - album: social
