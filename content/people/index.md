@@ -51,7 +51,7 @@ gallery_item:
     image: 2024_ChristmasDinner.jpg
     caption: "2024 - Christmas Dinner (Dom, Ana and Emma)"
   - album: social
-    image: 2024_ChristmasCrackers
+    image: 2024_ChristmasCrackers.gif
     caption: "2024 - Pulling the Christmas crackers (Ana and Emma)"
   - album: social
     image: 2024_Rome.jpg
