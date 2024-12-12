@@ -58,7 +58,7 @@ gallery_item:
     caption: "2024 - Pulling the Christmas crackers (Ana and Emma)"
   - album: social
     image: 2024_ChristmasParty.jpg
-    caption: "2024 - Theo & the oopaloompas"
+    caption: "2024 - Sussex Neuroscience Winter Party"
   - album: social
     image: 2024_Rome.jpg
     caption: "2024 - Rome, Italian Association for Cognitive Sciences Conference (Ana, Dom and Marco Sperduti)"
