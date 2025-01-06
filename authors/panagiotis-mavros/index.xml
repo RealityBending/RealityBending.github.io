@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Panagiotis Mavros | Reality Bending Lab</title>
+    <link>https://realitybending.github.io/authors/panagiotis-mavros/</link>
+      <atom:link href="https://realitybending.github.io/authors/panagiotis-mavros/index.xml" rel="self" type="application/rss+xml" />
+    <description>Panagiotis Mavros</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Thu, 19 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://realitybending.github.io/media/icon_hu11326173534259092558.png</url>
+      <title>Panagiotis Mavros</title>
+      <link>https://realitybending.github.io/authors/panagiotis-mavros/</link>
+    </image>
+    
+    <item>
+      <title>Too beautiful to be fake: Attractive faces are less likely to be judged as artificially generated</title>
+      <link>https://realitybending.github.io/publication/makowski2024fakeface/</link>
+      <pubDate>Thu, 19 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/publication/makowski2024fakeface/</guid>
+      <description>&lt;div class=&#34;alert alert-tip&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;&lt;strong&gt;Audio Summary&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Listen to a podcast summary of the paper!&lt;/em&gt;&lt;/p&gt;
+&lt;!-- 
+&lt;audio controls &gt;
+  &lt;source src=&#34;makowski2024heart.mp3&#34; type=&#34;audio/mpeg&#34;&gt;
+&lt;/audio&gt;
+ --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
