@@ -29,12 +29,12 @@ tags:
 title: 'Too beautiful to be fake: Attractive faces are less likely to be judged as artificially generated'
 url_code: "https://github.com/RealityBending/FakeFace"
 url_dataset: "https://github.com/RealityBending/FakeFace"
-url_pdf: https://realitybendinglab.github.io/publication/makowski2024heart/makowski2024fakeface.pdf
+url_pdf: https://realitybendinglab.github.io/publication/makowski2025toobeautiful/makowski2025toobeautiful.pdf
 url_poster: ""
 url_project: ""
 url_slides: ""
 url_source: ""
-url_video: ""
+url_video: ""https://realitybending.github.io/publication/makowski2025toobeautiful/makowski2025toobeautiful.mp3"
 ---
 
 {{% callout tip %}}
@@ -43,7 +43,7 @@ url_video: ""
 
 *Listen to a podcast summary of the paper!*
 
-{{< audio src="makowski2024toobeautiful.mp3" >}}
+{{< audio src="makowski2025toobeautiful.mp3" >}}
 
 {{% /callout %}}
 
