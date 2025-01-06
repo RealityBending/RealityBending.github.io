@@ -34,7 +34,7 @@ url_poster: ""
 url_project: ""
 url_slides: ""
 url_source: ""
-url_video: ""https://realitybending.github.io/publication/makowski2025toobeautiful/makowski2025toobeautiful.mp3"
+url_video: "https://realitybending.github.io/publication/makowski2025toobeautiful/makowski2025toobeautiful.mp3"
 ---
 
 {{% callout tip %}}
