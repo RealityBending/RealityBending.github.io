@@ -43,6 +43,9 @@
   {{ $archive_page = site.GetPage (printf "publication_types/%s" $block.content.filters.publication_type) }}
   {{ $query = $query | intersect $archive_page.Pages }}
 {{ end }}
+{{ if $block.content.filters.exclude_publication_type }}
+  {{ $query = $query | complement (site.GetPage (printf "publication_types/%s" $block.content.filters.exclude_publication_type)).Pages }}
+{{ end }}
 {{ if $block.content.filters.author }}
   {{ $archive_page = site.GetPage (printf "authors/%s" (urlize $block.content.filters.author)) }}
   {{ $query = $query | intersect $archive_page.Pages }}
@@ -78,8 +81,8 @@
 
 {{ $columns := $block.design.columns | default "2" }}
 
-{{ if $block.content.text }}
-<div class="flex flex-col items-center max-w-prose mx-auto gap-3 justify-center">
+{{ if $block.content.title }}
+<div class="flex flex-col items-center max-w-prose mx-auto gap-3 justify-center px-6 md:px-0">
 
   <div class="mb-6 text-3xl font-bold text-gray-900 dark:text-white">
     {{ $block.content.title | emojify | $page.RenderString }}
@@ -89,12 +92,13 @@
 </div>
 {{ end }}
 
-<div class="flex flex-col items-center">
+<div class="flex flex-col items-center px-6">
 
-  {{ partial "functions/render_view" (dict "fragment" "start" "page" $block "item" . "view" $view) }}
+  {{ $config := dict "columns" ($block.design.columns | default 2) "len" (len $query) "fill_image" ($block.design.fill_image | default true) }}
+  {{ partial "functions/render_view" (dict "fragment" "start" "page" $block "item" . "view" $view "config" $config) }}
 
   {{ range $index, $item := $query }}
-    {{ partial "functions/render_view" (dict "page" $block "item" . "view" $view "index" $index) }}
+    {{ partial "functions/render_view" (dict "page" $block "item" . "view" $view "index" $index "config" $config) }}
   {{end}}
 
   {{ partial "functions/render_view" (dict "fragment" "end" "page" $block "item" . "view" $view) }}

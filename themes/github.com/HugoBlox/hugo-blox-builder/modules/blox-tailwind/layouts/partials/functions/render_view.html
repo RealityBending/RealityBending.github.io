@@ -15,9 +15,9 @@
 {{ end }}
 
 {{ if eq $fragment "body" }}
-  {{ $html = (partial (printf "views/%s" $view) (dict "page" $page "item" $item "index" $index)) }}
+  {{ $html = (partial (printf "views/%s" $view) (dict "page" $page "item" $item "index" $index "config" (.config | default dict))) }}
 {{ else }}
-  {{ $html = (partial (printf "views/%s.%s" $view $fragment) (dict "page" $page "item" $item "index" $index)) }}
+  {{ $html = (partial (printf "views/%s.%s" $view $fragment) (dict "page" $page "item" $item "index" $index "config" (.config | default dict))) }}
 {{ end }}
 
 {{ return $html }}

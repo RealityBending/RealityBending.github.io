@@ -14,6 +14,7 @@ module.exports = {
     './layouts/**/*.html',
     '**/libs/chroma/*.css',
     './**/*.svg',
+    '../../starters/**/*.md',
     ...content_extra,
     // ...(process.env.HB_TPL ? '../../starters/'+process.env.HB_TPL+'/hugo_stats.json' : './hugo_stats.json'),
   ],
@@ -24,8 +25,33 @@ module.exports = {
     'task-list',   /* As it's added via JS */
     'pl-4', 'pl-8', 'pl-12',   /* TOC indents */
     'min-h-screen', /* Blox options */
+    {
+      /* For dynamic article-grid.start */
+      pattern: /grid-cols-+/,
+      variants: ['md'],
+    },
+    {
+      pattern: /bg-white+/,
+    },
+    {
+      pattern: /bg-gray+/,
+    },
+    {
+      pattern: /bg-primary+/,
+    },
+    {
+      pattern: /bg-gradient+/,
+    },
+    {
+      pattern: /from-primary+/,
+    },
+    {
+      pattern: /to-primary+/,
+    },
   ],
-  whitelistPatterns: [/^bg-white/, /^bg-gray-/, /^bg-primary-/], /* /^pl-/ for TOC */
+    /* /^bg-white/, /^bg-gray-/, /^bg-primary-/, /^bg-gradient-/, /^from-primary-/, /^to-primary-/,
+  /^md:grid-cols-+/], */
+  /* /^pl-/ for TOC */
   darkMode: ['class'],
   theme: {
     extend: {

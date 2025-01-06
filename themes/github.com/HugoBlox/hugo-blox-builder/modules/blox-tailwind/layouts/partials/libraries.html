@@ -1,3 +1,10 @@
+{{/* Load Alpine JS extension? */}}
+{{ if (.Page.Store.Get "has_alpine") }}
+  {{ $alpine_js := resources.Get "dist/lib/alpinejs/cdn.min.js" }}
+  {{ $alpine_js = $alpine_js | resources.Fingerprint "sha256" }}
+  <script src="{{ $alpine_js.RelPermalink }}" integrity="{{ $alpine_js.Data.Integrity }}" defer></script>
+{{ end }}
+
 {{/* Show site search? */}}
 {{ $show_search := site.Params.header.navbar.show_search | default false }}
 {{ if $show_search }}
@@ -7,6 +14,9 @@
 {{ $pf_js := resources.Get "dist/pagefind/pagefind-ui.js" }}
 {{ $pf_js = $pf_js | resources.Fingerprint "sha256" }}
 <script src="{{ $pf_js.RelPermalink }}" integrity="{{ $pf_js.Data.Integrity }}"></script>
+
+{{ $search_config := dict "baseUrl" (relURL "") }}
+{{ printf "<script>window.hbb.pagefind = %s;</script>" ($search_config | jsonify) | safeHTML }}
 
 <style>
   html.dark {
@@ -20,7 +30,12 @@
 
 <script>
   window.addEventListener('DOMContentLoaded', (event) => {
-    new PagefindUI({ element: "#search", showSubResults: true });
+    new PagefindUI({
+      element: "#search",
+      showSubResults: true,
+      baseUrl: window.hbb.pagefind.baseUrl,
+      bundlePath: window.hbb.pagefind.baseUrl + "pagefind/",
+    });
   });
   document.addEventListener('DOMContentLoaded', () => {
     let element = document.getElementById('search');

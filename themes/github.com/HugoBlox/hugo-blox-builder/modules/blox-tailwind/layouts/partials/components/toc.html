@@ -38,6 +38,8 @@
     </div>
     {{- end -}}
 
+    {{ partial "components/backlinks" . }}
+
     {{ partial "functions/get_hook" (dict "hook" "toc-end" "context" .) }}
 
   </div>
@@ -48,7 +50,7 @@
 {{- define "toc-headings" -}}
   {{- $headings := .headings -}}
   {{- $level := .level -}}
-  {{- if ge $level 5 -}}
+  {{- if ge $level 4 -}}
     {{ return }}
   {{- end -}}
 

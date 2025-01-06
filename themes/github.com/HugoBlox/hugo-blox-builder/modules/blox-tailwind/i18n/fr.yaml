@@ -114,6 +114,9 @@
 
 # Experience widget
 
+- id: experience
+  translation: Expériences
+
 - id: present
   translation: Actuellement
 
@@ -174,7 +177,7 @@
 - id: location
   translation: Lieu
 
-- id: paper-conference
+- id: pub_paper_conference
   translation: Article de conférence
 
 - id: pub_article_journal
@@ -262,4 +265,4 @@
 # Published with
 
 - id: published_with
-  translation: Publié avec {hugoblox} — le générateur {repo_link}libre{/repo_link} de site web gratuit permetant aux créateurs de s'épanouir.
+  translation: Publié avec {hugoblox} — le générateur {repo_link}libre{/repo_link} de site web gratuit permettant aux créateurs de s'épanouir.
