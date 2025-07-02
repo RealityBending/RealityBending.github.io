@@ -5,7 +5,7 @@
     <link>https://realitybending.github.io/tag/psychology/</link>
       <atom:link href="https://realitybending.github.io/tag/psychology/index.xml" rel="self" type="application/rss+xml" />
     <description>Psychology</description>
-    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Tue, 19 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Wed, 02 Jul 2025 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://realitybending.github.io/media/icon_hu11326173534259092558.png</url>
       <title>Psychology</title>
@@ -426,6 +426,79 @@ They might also believe that picking a variety of options will provide them with
 &lt;p&gt;Ask directly &lt;a href=&#34;https://realitybending.github.io/people/&#34;&gt;members of team&lt;/a&gt; (current and past) about their experience in the lab!&lt;/p&gt;
   &lt;/div&gt;
 &lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>How to collect and save data with DataPipe in OSF</title>
+      <link>https://realitybending.github.io/post/2025-07-02-datapipeosf/</link>
+      <pubDate>Wed, 02 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/post/2025-07-02-datapipeosf/</guid>
+      <description>&lt;p&gt;Hello there! 👋
+Let&amp;rsquo;s learn how to set up DataPipe to collect and save data in OSF.&lt;/p&gt;
+&lt;p&gt;Lets start with some basics!&lt;/p&gt;
+&lt;h2 id=&#34;what-is-datapipe&#34;&gt;What is DataPipe?&lt;/h2&gt;
+&lt;p&gt;DataPipe is a tool that allows you to collect and save data in OSF (Open Science Framework). It is designed to help researchers manage their data collection process efficiently, ensuring that data is stored securely and can be easily accessed for analysis.&lt;/p&gt;
+&lt;h2 id=&#34;how-to-set-up-datapipe-in-osf&#34;&gt;How to set up DataPipe in OSF&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Create an OSF Project&lt;/strong&gt;: Start by creating a new project in &lt;a href=&#34;https://osf.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;OSF&lt;/a&gt;. This will be the container for your data and any related files. You can set up an account if you don&amp;rsquo;t have one already, quite easily!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Go to the OSF homepage and log in or create an account. You can easily sign up through institutional access.&lt;/li&gt;
+&lt;li&gt;Click on &amp;ldquo;Create a New Project&amp;rdquo; and fill in the necessary details such as project title, description, and visibility settings. &lt;em&gt;&lt;strong&gt;DO NOT SET IT AS PUBLIC&lt;/strong&gt;&lt;/em&gt; as the data being saved will not be anonymized and may contain sensitive information.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Create OSF Token&lt;/strong&gt;: You will need to create a token to grant DataPipe the necessary permissions to access your OSF project.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Go to your OSF account settings and navigate to the &amp;ldquo;personal access tokens&amp;rdquo; section.&lt;/li&gt;
+&lt;li&gt;Click on &amp;ldquo;Create a new token&amp;rdquo; and give it a name (e.g., &amp;ldquo;DataPipe Token&amp;rdquo;).&lt;/li&gt;
+&lt;li&gt;Set the permissions for the token, ensuring it has access to read and write data in your project.&lt;/li&gt;
+&lt;li&gt;Copy the generated token; you will need it later.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Link OSF to DataPipe&lt;/strong&gt;: In DataPipe, you will need to link your OSF project using the token you created.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Open DataPipe, click Account on the top right corner and select settings.&lt;/li&gt;
+&lt;li&gt;Click on the &amp;lsquo;Set OSF Token&amp;rsquo; button and paste the token you copied earlier.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Create new experiment on DataPipe&lt;/strong&gt;: Now that your OSF project is linked, you can create a new experiment in DataPipe.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Click on &amp;ldquo;Create New Experiment&amp;rdquo; in DataPipe.&lt;/li&gt;
+&lt;li&gt;Give the experiment a name - I recommend using the same name as your OSF project for consistency.&lt;/li&gt;
+&lt;li&gt;Add the OSF project ID to the experiment settings. You can find the project ID in the URL of your OSF project (it is the alphanumeric string after osf.io/)&lt;/li&gt;
+&lt;li&gt;Create a new OSF Data component called &amp;lsquo;data&amp;rsquo;. This will create a folder - named data -  in your OSF project where all the data collected will be saved.&lt;/li&gt;
+&lt;li&gt;Choose Germany - Frankfurt as the server location for your DataPipe experiment. This is important for data privacy and compliance with regulations such as GDPR.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Configure Data Collection&lt;/strong&gt;: Once the experiment is set up on DataPipe enable data collection on the Status section.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Save the data from the experiment hosted on GitHub&lt;/strong&gt;: If you are using a GitHub repository to host your experiment, you can save the data collected by writing the bellow code to the experiment HTML file. This bit of code should be called at the end of your experiment to ensure that all data is saved to the OSF project&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Here is what the code should look like in your experiment HTML file:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// Save data via DataPipe
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;nx&#34;&gt;timeline&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;push&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nx&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;jsPsychPipe&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nx&#34;&gt;action&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;save&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nx&#34;&gt;experiment_id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;xxxxxxxxxx&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// This in generated in the DataPipe interface
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;nx&#34;&gt;filename&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;participantID&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;sb&#34;&gt;.csv`&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nx&#34;&gt;data_string&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;jsPsych&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;().&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;csv&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(),&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;On the experiment created on DataPipe, there is an &amp;lsquo;Experiment ID&amp;rsquo; field. This is the ID you need to add to the &lt;code&gt;experiment_id&lt;/code&gt; field in the code above.&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;filename&lt;/code&gt; field can be customized to include the participant ID or any other identifier you prefer.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Run Your Experiment&lt;/strong&gt;: With everything set up, you can now run your experiment. DataPipe will automatically collect and save the data to your OSF project as specified. &lt;em&gt;Give it a try!&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 </description>
     </item>
     
