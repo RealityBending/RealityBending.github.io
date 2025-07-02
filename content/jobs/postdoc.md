@@ -53,7 +53,7 @@ At the Clinical Brain Lab, the research focuses on uncovering the neuropsycholog
 {{< icon name="calendar" pack="fa" >}} Flexible
 {{< icon name="location-pin" pack="fa" >}} University of Sussex, Brighton, UK
 
-- ⚠️ [**SEDARC Postdoc Fellowship competition**](https://www.sedarc.ac.uk/postdoctoral-fellowship-competition) *(deadline: 15 January 2025)*
+- ⚠️ [**Fyssen Postdoc Fellowship competition**](https://www.fondationfyssen.fr/en/study-grants/aim-award/) *(French PhDs only, deadline: 31 March 2025)*
 
 
 ## Getting your own Postdoc Funding
@@ -63,6 +63,7 @@ If you're a recent PhD graduate (or soon to be), you could consider applying for
 Here are some existing opportunities for postdoc funding:
 
 - [**Marie-curie postdoc fellowships (MSCA)**](https://marie-sklodowska-curie-actions.ec.europa.eu/actions/postdoctoral-fellowships)
+- [**Newton International Fellowships**](https://royalsociety.org/grants/newton-international/) (non-UK)
 - [**British Academy**](https://www.thebritishacademy.ac.uk/funding/postdoctoral-fellowships/) (UK PhDs holders)
 - UKRI Future Leaders
 - [**FYSSEN**](https://www.fondationfyssen.fr/en/study-grants/aim-award/) (French PhDs holders)

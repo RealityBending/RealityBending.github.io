@@ -37,25 +37,18 @@ tags:
 ![](doctorate.jpg)
 
 
-<!-- 🔥**NEW**🔥 There is a [fully-funded](https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1658-Psychology-Doctoral-Research-Studentship-How-affective-and-embodied-processes-shape-our-conscious-and-unconscious-experience-of-reality-A-PhD-at-the-Reality-Bending-Lab) PhD position (for September 2024) available with me at Sussex (**DEADLINE TO APPLY: 24 January 2024**). It covers:
 
-- [x] University fees (£25,000 per year)
-- [x] Salary of £18,622 per year (+ additionally paid teaching available)
-- [x] Research/training funds of £750 per year
-- [x] Open research project (see [themes](https://realitybending.github.io/jobs/projects/))
+<!-- ## Open Opportunities -->
 
-**Send inquiries and CV to D.Makowski@sussex.ac.uk**. -->
-## Open Opportunities
-
-- **13th January**: [Sussex Neuroscience 3+1 PhD Program](https://www.sussex.ac.uk/research/centres/sussex-neuroscience/phd/4yearphd)
-  - [x] Fully funded for local and international students
-  - [x] You don't need to chose a supervisor before applying. The first year is made of 3 different rotations in different labs. 
-  - [x] Selection is based mostly on the candidate's CV. 
+<!-- - **13th January**: [Sussex Neuroscience 3+1 PhD Program](https://www.sussex.ac.uk/research/centres/sussex-neuroscience/phd/4yearphd)
+  - [x] Fully funded for local and international students (i.e., pays university fees + gives you a salary)
+  - [x] You don't need to chose a supervisor before applying. The first year is made of 3 different rotations in different labs.
+  - [x] Selection is based mostly on the candidate's CV.
 
 - **13th December**: [Sussex Psychology PhD Program](https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1754-Psychology-Doctoral-Research-Studentship-UK-and-International)
-  - [x] Fully funded for local and international students
+  - [x] Fully funded for local and international students (i.e., pays university fees + gives you a salary)
   - [x] Selection is based on the candidate's CV as well as on the project proposal.
-  - [x] Get in touch with potential supervisors before applying! 
+  - [x] Get in touch with potential supervisors before applying! -->
 
 
 ## What you will get
@@ -79,11 +72,11 @@ Ask directly [members of team](/people/) (current and past) about their experien
 1. The first step is usually to contact the potential supervisor to discuss a rough research project outline. Write an email with your CV, your research interests and - if you have - some ideas for a research project that matches your supervisor's line of research. If you **don't have ideas yet**, it's perfectly fine! I will likely propose some avenues of research that might match your interest, and refine them down the line.
 2. Ideally, you would also want to come up with a plan for [**funding**](https://www.sussex.ac.uk/study/phd/degrees/psychology-phd#funding-fees). This is the most challenging part, unfortunately. There are typically 4 types of profiles: 1) the *student and the supervisor* come up with a tentative research project, with which the student then applies to scholarship opportunities. 2) the *supervisor* already has a scholarship for a specific project that he obtained a grant for, and will recruit a PhD for that specific research project; 3) the *student* already secured a scholarship that allows them to pursue a PhD with the supervisor of their choice (e.g., some schemes exist from countries for their nationals to do their PhD abroad). 4) Self-funding, which we don't recommend unless you're one of the lucky few with money to spare.
 
-### Funding Opportunities 
+### Funding Opportunities
 
 Funding is a complicated topic, and often the main barrier between one's goal and its achievement. Keep in mind that there are many other possibilities and case-by-case considerations.
 
-Here are some scholarship opportunities for funded PhDs in the UK: 
+Here are some scholarship opportunities for funded PhDs in the UK:
 
 - The [**Sussex Psychology Doctoral Research Studentship**](https://archive.sussex.ac.uk/study/scholarships/1525-Psychology-Doctoral-Research-Studentship-UK-and-International)
 - The [**Sussex Neuroscience 3+1 years PhD**](https://www.sussex.ac.uk/research/centres/sussex-neuroscience/phd/4yearphd)
@@ -139,10 +132,10 @@ Psychedelics and altered states of consciousness are a hot topic in psychology a
 
 ## Application Advice
 
-A few tips for your writing up your application dossier, in particular pertaining your CV and cover letter. 
+A few tips for your writing up your application dossier, in particular pertaining your CV and cover letter.
 Note that these are general guidelines that also apply to other contexts (master's programs, industry jobs, etc.).
 
-The key thing is to keep in mind that we receive a ***lot*** of applications (few hundreds for some positions). The first mistake you want to avoid is to have a generic, impersonal application: do address specific people (and **do not make mistakes in the spelling of their names**, it happens often and is a turn-off), and try to concisely paint a profile of yourself that the recruiter can easily picture and form an image of: what is your background, where do you come from, what are your expertise, interests and goals. This should really be one tightly written paragraph (you can expand on this in your CV). We often see long and convoluted CVs and cover letters, that try to show "a bit of everything", leaving the reader with little more than a sense of confusion. 
+The key thing is to keep in mind that we receive a ***lot*** of applications (few hundreds for some positions). The first mistake you want to avoid is to have a generic, impersonal application: do address specific people (and **do not make mistakes in the spelling of their names**, it happens often and is a turn-off), and try to concisely paint a profile of yourself that the recruiter can easily picture and form an image of: what is your background, where do you come from, what are your expertise, interests and goals. This should really be one tightly written paragraph (you can expand on this in your CV). We often see long and convoluted CVs and cover letters, that try to show "a bit of everything", leaving the reader with little more than a sense of confusion.
 
 Next, after providing a clear depiction of who you are, you want to show that you have **done your homework about where you are applying**: be specific about the people of the department (e.g., "I am particularly interested in working with Dr. X because of their work on Y"), or the papers ("I particularly enjoyed your paper on X because of Y"). This shows that you are motivated and that you are not just sending the same application to 100 different places. That being said, do not list *everything* that is written on someone's website or profile, because it makes it look like you just copied and pasted it. Be genuine, personal and specific. It is tempting to use AI to generate these kinds of things, but I would advise against it. Putting it the time, effort, and hard work will pay off.
 
