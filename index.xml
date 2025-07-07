@@ -5,7 +5,7 @@
     <link>https://realitybending.github.io/</link>
       <atom:link href="https://realitybending.github.io/index.xml" rel="self" type="application/rss+xml" />
     <description>Reality Bending Lab</description>
-    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Wed, 02 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Mon, 07 Jul 2025 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://realitybending.github.io/media/icon_hu11326173534259092558.png</url>
       <title>Reality Bending Lab</title>
@@ -44,13 +44,15 @@ At the Clinical Brain Lab, the research focuses on uncovering the neuropsycholog
 
 **Contact.** Send questions or CV to Prof Annabel (annabelchen@ntu.edu.sg) and Dr Dominique Makowski (D.Makowski@sussex.ac.uk). --&gt;
 &lt;h2 id=&#34;new-opportunities&#34;&gt;New Opportunities&lt;/h2&gt;
-&lt;p&gt;
+&lt;ul&gt;
+&lt;li&gt;None :(&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- 
   &lt;i class=&#34;fa fa-calendar  pr-1 fa-fw&#34;&gt;&lt;/i&gt; Flexible
 
-  &lt;i class=&#34;fa fa-location-pin  pr-1 fa-fw&#34;&gt;&lt;/i&gt; University of Sussex, Brighton, UK&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;⚠️ &lt;a href=&#34;https://www.fondationfyssen.fr/en/study-grants/aim-award/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Fyssen Postdoc Fellowship competition&lt;/strong&gt;&lt;/a&gt; &lt;em&gt;(French PhDs only, deadline: 31 March 2025)&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
+  &lt;i class=&#34;fa fa-location-pin  pr-1 fa-fw&#34;&gt;&lt;/i&gt; University of Sussex, Brighton, UK
+
+- ⚠️ [**Fyssen Postdoc Fellowship competition**](https://www.fondationfyssen.fr/en/study-grants/aim-award/) *(French PhDs only, deadline: 31 March 2025)* --&gt;
 &lt;h2 id=&#34;getting-your-own-postdoc-funding&#34;&gt;Getting your own Postdoc Funding&lt;/h2&gt;
 &lt;p&gt;If you&amp;rsquo;re a recent PhD graduate (or soon to be), you could consider applying for a postdoc fellowship to join the lab on your own terms, and develop your own research project.&lt;/p&gt;
 &lt;p&gt;Here are some existing opportunities for postdoc funding:&lt;/p&gt;
@@ -110,16 +112,45 @@ At the Clinical Brain Lab, the research focuses on uncovering the neuropsycholog
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;/figure&gt;
 &lt;/p&gt;
-&lt;!-- ## Open Opportunities --&gt;
+&lt;h2 id=&#34;new-opportunities&#34;&gt;New Opportunities&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1856-Psychology-Doctoral-Research-Studentship-Sleep-and-Circadian-Rhythms-in-Elite-Sport-Co-funded-by-Brighton-Hove-Albion-FC&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Sussex Psychology PhD Program&lt;/strong&gt;&lt;/a&gt; &lt;em&gt;(Application Deadline 25 July)&lt;/em&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Fully funded for local and international students (i.e., pays university fees + gives you a salary)&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Supervised by a great team (mainly Giulia Poreiro, and co-supervised Dominique Makowski + other experts)&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Project related to sleep, biological rhythms and signals, and performance (should be relevant to elite sports)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://media.licdn.com/dms/image/v2/D4E22AQE87QMg9zXFlw/feedshare-shrink_1280/B4EZeomw49HYAk-/0/1750880424520?e=1754524800&amp;amp;v=beta&amp;amp;t=4cHB_CcBSi5EHaA1YREwROCpBG3lMfM2mev49jiAvWY&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
 &lt;!-- - **13th January**: [Sussex Neuroscience 3+1 PhD Program](https://www.sussex.ac.uk/research/centres/sussex-neuroscience/phd/4yearphd)
   - [x] Fully funded for local and international students (i.e., pays university fees + gives you a salary)
   - [x] You don&#39;t need to chose a supervisor before applying. The first year is made of 3 different rotations in different labs.
-  - [x] Selection is based mostly on the candidate&#39;s CV.
-
-- **13th December**: [Sussex Psychology PhD Program](https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1754-Psychology-Doctoral-Research-Studentship-UK-and-International)
+  - [x] Selection is based mostly on the candidate&#39;s CV. --&gt;
+&lt;!-- - **13th December**: [Sussex Psychology PhD Program](https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1754-Psychology-Doctoral-Research-Studentship-UK-and-International)
   - [x] Fully funded for local and international students (i.e., pays university fees + gives you a salary)
-  - [x] Selection is based on the candidate&#39;s CV as well as on the project proposal.
-  - [x] Get in touch with potential supervisors before applying! --&gt;
+  - [x] Selection is based on the candidate&#39;s CV as well as on the project proposal
+  - [x] Get in touch with potential supervisors before applying!  --&gt;
 &lt;h2 id=&#34;what-you-will-get&#34;&gt;What you will get&lt;/h2&gt;
 &lt;p&gt;Doing a PhD at Sussex with Dominique Makowski means:&lt;/p&gt;
 &lt;ul&gt;
@@ -498,6 +529,18 @@ They might also believe that picking a variety of options will provide them with
 &lt;/ul&gt;
 &lt;p&gt;&lt;em&gt;Note that the amount of engagement and time you want to devote to such side-project is entirely up to you. As it is 100% based on self-engagement, we won&amp;rsquo;t ask for any target goals, so no pressure. Joining our network and working on these things should always be interesting (for you), useful (to you), and fun (for you&amp;hellip; and us ☺️).&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Contact.&lt;/strong&gt; Send email to &lt;a href=&#34;mailto:dom.makowski@gmail.com&#34;&gt;dom.makowski@gmail.com&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Attractiveness shapes beliefs about whether faces are real or AI-generated, study finds</title>
+      <link>https://realitybending.github.io/post/2025-07-07-newsfakeface/</link>
+      <pubDate>Mon, 07 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/post/2025-07-07-newsfakeface/</guid>
+      <description>&lt;p&gt;Our recent paper on facial attractiveness and reality beliefs is in the news:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.psypost.org/attractiveness-shapes-beliefs-about-whether-faces-are-real-or-ai-generated-study-finds/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://www.psypost.org/attractiveness-shapes-beliefs-about-whether-faces-are-real-or-ai-generated-study-finds/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
