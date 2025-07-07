@@ -50,10 +50,13 @@ At the Clinical Brain Lab, the research focuses on uncovering the neuropsycholog
 
 ## New Opportunities
 
-{{< icon name="calendar" pack="fa" >}} Flexible
+- None :(
+
+
+<!-- {{< icon name="calendar" pack="fa" >}} Flexible
 {{< icon name="location-pin" pack="fa" >}} University of Sussex, Brighton, UK
 
-- ⚠️ [**Fyssen Postdoc Fellowship competition**](https://www.fondationfyssen.fr/en/study-grants/aim-award/) *(French PhDs only, deadline: 31 March 2025)*
+- ⚠️ [**Fyssen Postdoc Fellowship competition**](https://www.fondationfyssen.fr/en/study-grants/aim-award/) *(French PhDs only, deadline: 31 March 2025)* -->
 
 
 ## Getting your own Postdoc Funding

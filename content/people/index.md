@@ -45,6 +45,9 @@ sections:
 
 gallery_item:
   - album: social
+    image: 2025_SunFest.png
+    caption: "2025 - Sunfest (summer solstice celebration)"
+  - album: social
     image: 2024_SCCSLaunch.jpg
     caption: "2024 - Sussex Centre for Consciousness Studies launch (Rebel team and associates)"
   - album: social
@@ -64,7 +67,7 @@ gallery_item:
     caption: "2024 - Rome, Italian Association for Cognitive Sciences Conference (Ana, Dom and Marco Sperduti)"
   - album: social
     image: 2024_LightFest.png
-    caption: "2024 - Lightfest (summer solstice celebration)"
+    caption: "2024 - Sunfest (summer solstice celebration)"
   - album: social
     image: 2024_Basel.jpg
     caption: "2024 - Workshop on physiological signals at the University of Basel (Dom and Basel PhD students)"
@@ -85,7 +88,7 @@ gallery_item:
     caption: "2023 - OHBM Montréal: Party (Danielle Benesch, Stephanie Kirk, and Dom)"
   - album: social
     image: 2023_LightFest.gif
-    caption: "2023 - Lightfest (summer solstice celebration)"
+    caption: "2023 - Sunfest (summer solstice celebration)"
   - album: social
     image: 2022_wakepark.jpg
     caption: 2022 - Singapore, Outdoor work sesh (An Shu, Stephanie, Max and Dom)
