@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Oliver Collins | Reality Bending Lab</title>
+    <link>https://realitybending.github.io/authors/oliver-collins/</link>
+      <atom:link href="https://realitybending.github.io/authors/oliver-collins/index.xml" rel="self" type="application/rss+xml" />
+    <description>Oliver Collins</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language>
+    <image>
+      <url>https://realitybending.github.io/authors/oliver-collins/avatar_hu11240720277141665929.jpg</url>
+      <title>Oliver Collins</title>
+      <link>https://realitybending.github.io/authors/oliver-collins/</link>
+    </image>
+    
+    <item>
+      <title>Oliver Collins</title>
+      <link>https://realitybending.github.io/authors/oliver-collins/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/authors/oliver-collins/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
