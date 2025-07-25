@@ -45,6 +45,9 @@ sections:
 
 gallery_item:
   - album: social
+    image: 2025_Singapore.png
+    caption: "2025 - Singapore (with Marco Sperduti, Annabel Chen, Ryutaro Uchiyama)"
+  - album: social
     image: 2025_SunFest.png
     caption: "2025 - Sunfest (summer solstice celebration)"
   - album: social
