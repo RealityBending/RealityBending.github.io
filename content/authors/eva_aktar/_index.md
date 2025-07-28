@@ -10,8 +10,7 @@ interests:
 education:
   courses:
   - course: BSc Computer and Data Science
-name: Eva
-title: Eva
+name: Eva Aktar Mohamed Mala
 superuser: false
 user_groups:
 - Consultants
