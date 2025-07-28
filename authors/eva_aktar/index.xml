@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Reality Bending Lab</title>
+    <link>https://realitybending.github.io/authors/eva_aktar/</link>
+      <atom:link href="https://realitybending.github.io/authors/eva_aktar/index.xml" rel="self" type="application/rss+xml" />
+    <description>Reality Bending Lab</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language>
+    <image>
+      <url>https://realitybending.github.io/media/icon_hu11326173534259092558.png</url>
+      <title>Reality Bending Lab</title>
+      <link>https://realitybending.github.io/authors/eva_aktar/</link>
+    </image>
+    
+  </channel>
+</rss>
