@@ -46,7 +46,7 @@ sections:
 gallery_item:
     - album: social
       image: ASSCCrete.jpeg
-      caption: "2025 - ASSC in Crete (with Carmen McClean-Daoust, Clara Alonso, Sian Panton, Theodoros Karapanagiotidis)"
+      caption: "2025 - ASSC in Crete (Ana Neves and Sussex PhD students)"
     - album: social
       image: 2025_Singapore.png
       caption: "2025 - Singapore (with Marco Sperduti, Annabel Chen, Ryutaro Uchiyama)"
