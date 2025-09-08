@@ -22,21 +22,23 @@ For many students and early-career researchers, the rise of AI is scary. **The v
 
 While I don't have a full answer to that question, I do think there may be a silver lining for young scientists.
 For decades, becoming an established “big shot” professor was associated with focusing on the "big ideas", revelling in intellectual thinking and leaving the scientific grunt work to junior researchers.
-Therein lied the prestige: writing opinion pieces, commentaries, critiques and reviews. **The glamour was in thinking, not doing.**
+Therein lied the prestige: writing opinion pieces, commentaries, critiques and reviews. **The glamour was in thinking, not doing.**<sup>1</sup>
 
 In a fascinating twist, the rise of AI may disrupt this landscape. If AI excels at one thing, it is *precisely* writing, reviewing and summarising evidence, interpreting findings, and even formulating new hypotheses or planning experiments.
-What AI still cannot do, however, is roll up its sleeves and gather real-world data - **the true backbone of empirical science**<sup>1</sup>. It can't (yet) run studies, recruit participants, set up experiments, organise data management, or wrestle with messy datasets.
+What AI still cannot do, however, is roll up its sleeves and gather real-world data - **the true backbone of empirical science**<sup>2</sup>. It can't (yet) run studies, recruit participants, set up experiments, organise data management, or wrestle with messy datasets.
 
 
 The centre of gravity in science may thus shift towards **those who can *do***: Hands-on scientists, who might once have been relegated to the shadows, could see their skills and contributions gain new recognition.
 We may see less pressure to write endless papers and grants, and more emphasis on how the science was actually done: how data was collected, preprocessed, managed, and made accessible.
-Perhaps the introduction, discussion, and "key takeaways" sections of papers will become somewhat less important, while methods, results, and limitations gain greater prominence, allowing for more nuance and granularity<sup>2</sup>.
+Perhaps the introduction, discussion, and "key takeaways" sections of papers will become somewhat less important, while methods, results, and limitations gain greater prominence, allowing for more nuance and granularity<sup>3</sup>.
 
 Whether this shift will make science better or worse is unclear. And that "silver lining" might end up as a "glorification of the grind" and a devaluation of the intellectual aspects of research, devolving the job of "Researcher" into technician work.
 But it might also reshape the academic landscape in a way that proves beneficial for young researchers and those who enjoy the practical aspects of research.
 
 ---
 
-<sup>1</sup> Of note is following the "replication crisis" in psychology, a lot of voices have called for "more theory" and more "theorically-grounded research" (with the goal of cutting some of the nonsense out there). While theories are critical to guide data collection and interpretation, it is still the hard evidence that ultimately is the foundation of scientific knowledge.
+<sup>1</sup> Sure, thinking *is* important, and big shot professors are also *doing* a *lot*. Sometimes.
 
-<sup>2</sup> One of the pervasive issue is that Humans have limited "context window" (~ working memory). When reading a paper, it is already very hard to keep track of all the results and details in mind and integrate them into a coherent picture. Moreover, with the increasing role of social media, science had to be made more communicable, digestible, punchy, and "sexy". This has led to a tendency to oversimplify and overgeneralize findings. AI, with its ability to process and summarize large amounts of information, could perhaps help make more accurate and data-grounded interpretations and summaries. *(it might be wishful thinking, but who knows!)*
+<sup>2</sup> Of note is following the "replication crisis" in psychology, a lot of voices have called for "more theory" and more "theorically-grounded research" (with the goal of cutting some of the nonsense out there). While theories are critical to guide data collection and interpretation, it is still the hard evidence that ultimately is the foundation of scientific knowledge.
+
+<sup>3</sup> One of the pervasive issue is that Humans have limited "context window" (~ working memory). When reading a paper, it is already very hard to keep track of all the results and details in mind and integrate them into a coherent picture. Moreover, with the increasing role of social media, science had to be made more communicable, digestible, punchy, and "sexy". This has led to a tendency to oversimplify and overgeneralize findings. AI, with its ability to process and summarize large amounts of information, could perhaps help make more accurate and data-grounded interpretations and summaries. *(it might be wishful thinking, but who knows!)*
