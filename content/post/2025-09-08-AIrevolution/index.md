@@ -37,7 +37,7 @@ But it might also reshape the academic landscape in a way that proves beneficial
 
 ---
 
-<sup>1</sup> Sure, thinking *is* important, and big shot professors are also *doing* a *lot*. Sometimes.
+<sup>1</sup> Sure, thinking *is* important, and big shot professors are also *doing* a ***lot***... <sup><sub>sometimes.</sub></sup>
 
 <sup>2</sup> Of note is following the "replication crisis" in psychology, a lot of voices have called for "more theory" and more "theorically-grounded research" (with the goal of cutting some of the nonsense out there). While theories are critical to guide data collection and interpretation, it is still the hard evidence that ultimately is the foundation of scientific knowledge.
 
