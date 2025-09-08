@@ -65,6 +65,7 @@ If you're a recent PhD graduate (or soon to be), you could consider applying for
 
 Here are some existing opportunities for postdoc funding:
 
+- [**SENSS**](https://www.senss.ac.uk/post-doctoral-fellowships)
 - [**Marie-curie postdoc fellowships (MSCA)**](https://marie-sklodowska-curie-actions.ec.europa.eu/actions/postdoctoral-fellowships)
 - [**Newton International Fellowships**](https://royalsociety.org/grants/newton-international/) (non-UK)
 - [**British Academy**](https://www.thebritishacademy.ac.uk/funding/postdoctoral-fellowships/) (UK PhDs holders)

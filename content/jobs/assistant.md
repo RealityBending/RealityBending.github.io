@@ -56,6 +56,14 @@ Sussex also offers short **summer internship** opportunities for undergrads inte
 Undergraduates residing in the UK can apply for a paid 6 weeks (30hr per week) internship between 1 July and 30 September.
 
 More information [**here**](https://southcoastbiosciencesdtp.ac.uk/undergraduate-summer-studentship-programme/).
+
+
+## Other Bursaries 
+
+- [**Neuropsychology International Fellowship (NIF)**](https://www.the-bns.org/grants): Small bursaries from the British Neuropsychological Society to support small research internship.
+
+
+
 ## Volunteer Research assistant
 
 Check the [voluntary internships](https://realitybending.github.io/jobs/intern/) page for more information.
