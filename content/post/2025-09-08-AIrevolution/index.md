@@ -7,7 +7,7 @@ date: "2025-09-08"
 image:
   caption: ''
   placement: 0
-title: "The AI Revolution in Academia, a Silver Lining for Young Scientists?"
+title: "The AI revolution in academia: I see a silver lining for young scientists!"
 subtitle: ""
 summary: "For many students and early-career researchers, the rise of AI is scary. What's the future of research careers in the age of AI?"
 tags:
