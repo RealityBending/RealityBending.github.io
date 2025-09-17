@@ -7,7 +7,7 @@ role: Placement Student<sub><sup><br>University of Sussex</sup></sub>
 interests:
 - Statistics
 - Consciousness 
-- Chess (strictly informally!)
+- Chess 
 education:
     courses:
     - course: BSc Psychology
