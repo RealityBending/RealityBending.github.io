@@ -1,16 +1,13 @@
 ---
 
 title: "Róisín Sharma"
-
 authors:
 - roisin-sharma
 role: Placement Student<sub><sup><br>University of Sussex</sup></sub>
-
 interests:
 - Statistics
 - Consciousness 
 - Chess (strictly informally!)
-
 education:
     courses:
     - course: BSc Psychology
@@ -19,7 +16,6 @@ education:
 user_groups:
 - Research assistants
 superuser: false
-
 social:
 - icon: github
  icon_pack: fab
@@ -30,11 +26,9 @@ social:
 - icon: researchgate
  icon_pack: fab
  link: https://www.researchgate.net/profile/Roisin-Sharma
-
 superuser: false
 user_groups:
 - Research Assistants
-
 ---
 
 Let's treat each other well to mutually adjust our idiosyncratic perceptual constructions to be of a kinder reality!🪼
