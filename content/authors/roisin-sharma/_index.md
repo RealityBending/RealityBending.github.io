@@ -29,7 +29,7 @@ social:
  link: mailto:rs843@sussex.ac.uk
 - icon: researchgate
  icon_pack: fab
- link: 
+ link: https://www.researchgate.net/profile/Roisin-Sharma
 
 superuser: false
 user_groups:
