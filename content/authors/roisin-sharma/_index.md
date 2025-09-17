@@ -1,31 +1,30 @@
 ---
-
-title: "Róisín Sharma"
+title: Róisín Sharma
 authors:
 - roisin-sharma
+bio: Placement student and research assistant at the University of Sussex
 role: Placement Student<sub><sup><br>University of Sussex</sup></sub>
+social:
+- icon: github
+  icon_pack: fab
+  link: https://github.com/sh-roisin 
+- icon: envelope
+  icon_pack: fas
+  link: mailto:rs843@sussex.ac.uk
+- icon: researchgate
+  icon_pack: fab
+  link: https://www.researchgate.net/profile/Roisin-Sharma
 interests:
 - Statistics
 - Consciousness 
-- Chess 
+- Chess (strictly informally!)
 education:
     courses:
     - course: BSc Psychology
-     institution: University of Sussex
-     year: 2023 - 2027
+      institution: University of Sussex
+      year: 2023 - 2027
 user_groups:
 - Research assistants
-superuser: false
-social:
-- icon: github
- icon_pack: fab
- link: https://github.com/sh-roisin 
-- icon: envelope
- icon_pack: fas
- link: mailto:rs843@sussex.ac.uk
-- icon: researchgate
- icon_pack: fab
- link: https://www.researchgate.net/profile/Roisin-Sharma
 superuser: false
 user_groups:
 - Research Assistants
