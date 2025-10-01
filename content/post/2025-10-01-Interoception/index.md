@@ -80,6 +80,8 @@ We arrived at the final 33-item scale with 11 distinct facets and a stable hiera
 <br>
 An important application of the Mint is that it can be utilised for measuring altered interoception across clinical contexts (e.g., ADHD, alexithymia), where it has demonstrated greater predictive power than the other three scales for most conditions tested!
 
+<br>
+<br>
 *However*, it is important to acknowledge a few limitations of the Mint:
 - It has yet to be tested with “objective” interoception measures;
 - Perhaps a wider range of negative/positive contexts should be investigated, especially in regards to testing with clinical populations;
@@ -113,4 +115,5 @@ If you are interested, you can find ReBeL’s preprint for the Mint Scale here:
 [^5]: Interoceptive attention is the degree of attentiveness towards a detected internal signal, with interoceptive accuracy referring to the correctness of one’s perception of an internal signal. It has been suggested that these two constructs are distinct aspects of interoception, which raises theoretical questions over what “interoception” really is and how it should consequently be measured, illustrating the previous point about the present inconsistent conceptualisation of interoception.
 [^6]: Murphy, J., Brewer, R., Plans, D., Khalsa, S. S., Catmur, C., & Bird, G. (2019). Testing the independence of self-reported interoceptive accuracy and attention. Quarterly Journal of Experimental Psychology, 73(1), 115-133. [https://doi-org.sussex.idm.oclc.org/10.1177/1747021819879826](https://doi-org.sussex.idm.oclc.org/10.1177/1747021819879826)
 [^7]: Makowski, D., Neves, A., Benn, E., Bennett, M., & Poerio, G. (2025). The Mint Scale: A Fresh Validation of the Multimodal Interoception Questionnaire and Comparison to the MAIA, BPQ and IAS. [https://doi.org/10.31234/osf.io/8qrht_v1](https://doi.org/10.31234/osf.io/8qrht_v1)
+
 [^8]: Golino, H. F., & Epskamp, S. (2017). Exploratory graph analysis: A new approach for estimating the number of dimensions in psychological research. PLOS ONE, 12(6), e0174035. [https://doi.org/10.1371/journal.pone.0174035](https://doi.org/10.1371/journal.pone.0174035)
