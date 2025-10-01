@@ -41,7 +41,8 @@ Developed here at ReBeL, the **Mint (Multimodal Interoception Questionnaire) Sca
 
 <figure>
   <img src="modalities-facets.png" alt="The Modalities and Facets of the Mint Scale's Item Development (Makowski et al., 2025)"/>
-  <figcaption><i>A conceptual grid diagram from our paper showing the amount of each item in each category from the initial 120 items.</i></figcaption>
+  <figcaption><i>A conceptual grid diagram from our paper showing the amount of each item in each category from the initial 120 items.</i>
+  </figcaption>
 </figure>
 
 
@@ -64,7 +65,8 @@ Another lovely thing about our network-based method (called exploratory graph an
 
 <figure>
   <img src="dendrogram.png" alt="Mint Scale hierarchical clusters (Makowski et al., 2025)"/>
-  <figcaption><i>The hierarchical clusters from our analyses 🧠.</i></figcaption>
+  <figcaption><i>The hierarchical clusters from our analyses 🧠.</i>
+  </figcaption>
 </figure>
 
 
@@ -105,4 +107,5 @@ If you are interested, you can find ReBeL’s preprint for the Mint Scale here:
 [^5]: Interoceptive attention is the degree of attentiveness towards a detected internal signal, with interoceptive accuracy referring to the correctness of one’s perception of an internal signal. It has been suggested that these two constructs are distinct aspects of interoception, which raises theoretical questions over what “interoception” really is and how it should consequently be measured, illustrating the previous point about the present inconsistent conceptualisation of interoception.
 [^6]: Murphy, J., Brewer, R., Plans, D., Khalsa, S. S., Catmur, C., & Bird, G. (2019). Testing the independence of self-reported interoceptive accuracy and attention. Quarterly Journal of Experimental Psychology, 73(1), 115-133. [https://doi-org.sussex.idm.oclc.org/10.1177/1747021819879826](https://doi-org.sussex.idm.oclc.org/10.1177/1747021819879826)
 [^7]: Makowski, D., Neves, A., Benn, E., Bennett, M., & Poerio, G. (2025). The Mint Scale: A Fresh Validation of the Multimodal Interoception Questionnaire and Comparison to the MAIA, BPQ and IAS. [https://doi.org/10.31234/osf.io/8qrht_v1](https://doi.org/10.31234/osf.io/8qrht_v1)
+
 [^8]: Golino, H. F., & Epskamp, S. (2017). Exploratory graph analysis: A new approach for estimating the number of dimensions in psychological research. PLOS ONE, 12(6), e0174035. [https://doi.org/10.1371/journal.pone.0174035](https://doi.org/10.1371/journal.pone.0174035)
