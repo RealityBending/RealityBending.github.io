@@ -46,8 +46,7 @@ Developed here at ReBeL, the **Mint (Multimodal Interoception Questionnaire) Sca
 </figcaption>
 </figure>
 
-
-As this graph from our paper shows, the distinction between facets and modalities is an important one in our paper…
+<p>As this graph from our paper shows, the distinction between facets and modalities is an important one in our paper…</p>  
 
 #### Modalities are the "***what***"
 
@@ -111,5 +110,6 @@ If you are interested, you can find ReBeL’s preprint for the Mint Scale here:
 [^7]: Makowski, D., Neves, A., Benn, E., Bennett, M., & Poerio, G. (2025). The Mint Scale: A Fresh Validation of the Multimodal Interoception Questionnaire and Comparison to the MAIA, BPQ and IAS. [https://doi.org/10.31234/osf.io/8qrht_v1](https://doi.org/10.31234/osf.io/8qrht_v1)
 
 [^8]: Golino, H. F., & Epskamp, S. (2017). Exploratory graph analysis: A new approach for estimating the number of dimensions in psychological research. PLOS ONE, 12(6), e0174035. [https://doi.org/10.1371/journal.pone.0174035](https://doi.org/10.1371/journal.pone.0174035)
+
 
 
