@@ -41,7 +41,8 @@ Developed here at ReBeL, the **Mint (Multimodal Interoception Questionnaire) Sca
 
 <figure>
   <img src="modalities-facets.png" alt="The Modalities and Facets of the Mint Scale's Item Development (Makowski et al., 2025)"/>
-  <figcaption><i>A conceptual grid diagram from our paper showing the amount of each item in each category from the initial 120 items.</i>
+  <figcaption><i>A conceptual grid diagram from our paper showing the amount of each item in each category from the initial 120 items.
+  </i>
 </figcaption>
 </figure>
 
@@ -65,7 +66,8 @@ Another lovely thing about our network-based method (called exploratory graph an
 
 <figure>
   <img src="dendrogram.png" alt="Mint Scale hierarchical clusters (Makowski et al., 2025)"/>
-  <figcaption><i>The hierarchical clusters from our analyses 🧠.</i>
+  <figcaption><i>The hierarchical clusters from our analyses 🧠.
+  </i>
 </figcaption>
 </figure>
 
@@ -109,4 +111,5 @@ If you are interested, you can find ReBeL’s preprint for the Mint Scale here:
 [^7]: Makowski, D., Neves, A., Benn, E., Bennett, M., & Poerio, G. (2025). The Mint Scale: A Fresh Validation of the Multimodal Interoception Questionnaire and Comparison to the MAIA, BPQ and IAS. [https://doi.org/10.31234/osf.io/8qrht_v1](https://doi.org/10.31234/osf.io/8qrht_v1)
 
 [^8]: Golino, H. F., & Epskamp, S. (2017). Exploratory graph analysis: A new approach for estimating the number of dimensions in psychological research. PLOS ONE, 12(6), e0174035. [https://doi.org/10.1371/journal.pone.0174035](https://doi.org/10.1371/journal.pone.0174035)
+
 
