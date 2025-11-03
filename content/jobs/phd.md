@@ -41,22 +41,26 @@ tags:
 ## New Opportunities
 
 
-- [**Sussex Psychology PhD Program**](https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1856-Psychology-Doctoral-Research-Studentship-Sleep-and-Circadian-Rhythms-in-Elite-Sport-Co-funded-by-Brighton-Hove-Albion-FC) *(Application Deadline 25 July)*
-  - [x] Fully funded for local and international students (i.e., pays university fees + gives you a salary)
-  - [x] Supervised by a great team (mainly Giulia Poreiro, and co-supervised Dominique Makowski + other experts)
-  - [x] Project related to sleep, biological rhythms and signals, and performance (should be relevant to elite sports)
-
 ![](https://media.licdn.com/dms/image/v2/D4E22AQE87QMg9zXFlw/feedshare-shrink_1280/B4EZeomw49HYAk-/0/1750880424520?e=1754524800&v=beta&t=4cHB_CcBSi5EHaA1YREwROCpBG3lMfM2mev49jiAvWY)
 
-<!-- - **13th January**: [Sussex Neuroscience 3+1 PhD Program](https://www.sussex.ac.uk/research/centres/sussex-neuroscience/phd/4yearphd)
-  - [x] Fully funded for local and international students (i.e., pays university fees + gives you a salary)
-  - [x] You don't need to chose a supervisor before applying. The first year is made of 3 different rotations in different labs.
-  - [x] Selection is based mostly on the candidate's CV. -->
-
-<!-- - **13th December**: [Sussex Psychology PhD Program](https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1754-Psychology-Doctoral-Research-Studentship-UK-and-International)
+- **11 December 20205**: [Sussex Psychology PhD Program](https://www.sussex.ac.uk/study/phd/degrees/psychology-phd)
   - [x] Fully funded for local and international students (i.e., pays university fees + gives you a salary)
   - [x] Selection is based on the candidate's CV as well as on the project proposal
-  - [x] Get in touch with potential supervisors before applying!  -->
+  - [x] Get in touch with potential supervisors before applying! 
+
+- **11 December 20205**: [SEDarc PhD Scholarship](https://www.sussex.ac.uk/study/fees-funding/phd-funding/view/1863-SEDarc-(ESRC)-PhD-scholarships-for-research-in-the-Social-Sciences)
+  - [x] 3.5 years fully funded scholarship
+  - [x] Project must fit within the SEDarc themes (e.g., data science)
+  - [x] Selection is based on the candidate's CV as well as on the project proposal
+
+- **12 January 2026**: [Sussex Neuroscience 3+1 PhD Program](https://www.sussex.ac.uk/study/phd/degrees/sussex-neuroscience-4-year-programme-phd)
+  - [x] Fully funded for local and international students (i.e., pays university fees + gives you a salary)
+  - [x] You don't need to chose a supervisor before applying. The first year is made of 3 different rotations in different labs
+  - [x] Selection is based mostly on the candidate's CV
+
+
+
+
 
 
 ## What you will get
@@ -136,7 +140,7 @@ Neuropsychology is both an approach (focusing on the relationship between the br
 
 ### How to work on psychedelics?
 
-Psychedelics and altered states of consciousness are a hot topic in psychology and neuroscience. Unfortunately, it is still *extremely* difficulty to get authorizations to work with these substances. I would not recommend to base your PhD project on this potentiality, as it's too risky that things might not work out (due to ethical, administrative, or political reasons). That said, we do have projects running in collaborations with experts in the field, and are always on the lookout for opportunities to work on these topics. Additionally, we think it's also very interesting to study how altered states of consciousness can be induced *without* external substances (e.g., through meditation, hypnosis, sensory deprivation, neural stimulation, ...), which might be a more sustainable and ethical way to approach these phenomena.
+Psychedelics and altered states of consciousness are a hot topic in psychology and neuroscience. Unfortunately, it is still *extremely* difficult to get authorizations to work with these substances. I would not recommend to base your PhD project on this potentiality, as it's too risky that things might not work out (due to ethical, administrative, or political reasons). That said, we do have projects running in collaborations with experts in the field, and are always on the lookout for opportunities to work on these topics. Additionally, we think it's also very interesting to study how altered states of consciousness can be induced *without* external substances (e.g., through meditation, hypnosis, sensory deprivation, neural stimulation, ...), which might be a more sustainable and ethical way to approach these phenomena.
 
 ## Application Advice
 
