@@ -1,15 +1,16 @@
 ---
 authors:
-- roisin-sharma, oliver-collins
+- roisin-sharma
+- oliver-collins
 categories:
 - Reality Bending Lab
-- University of Sussex
 date: "2025-10-01"
 image:
   caption: ""
   placement: 0
 title: "What is the Best Interoception Scale?"
-summary: "Mint Scale"
+sbtitle: ""
+summary: "What is the Best Interoception Scale?"
 tags:
 - Reality Bending Lab
 - ReBeL
@@ -21,7 +22,7 @@ tags:
 - Self-Report Measures
 ---
 
-Hello👋! We are [Róisín](https://realitybending.github.io/authors/roisin-sharma/) and [Oliver](https://realitybending.github.io/authors/oliver-collins/), two Psychology Placement students at ReBeL 🧙, and today we are going to be discussing the tricky topic of self-report interoception scales.
+Hello👋! We are [Róisín](https://realitybending.github.io/authors/roisin-sharma/) and [Oliver](https://realitybending.github.io/authors/oliver-collins/), two Psychology Placement students at ReBeL 🧙, and today we are going to be discussing the tricky topic of self-reported interoception questionnaires.
 
 **Interoception**, essentially referring to one’s awareness of their internal bodily sensations, has been studied by scientists for over a century **[^1]**. However, existing definitions, theoretical considerations, and measures are often at odds with each other. This inconsistent conceptualisation of “interoception” has led to the development of various interoception measures, often based on differing philosophies, raising questions over a “**jingle fallacy**” of interoception scales. In terms of “subjective”, self-report scales - the focus of this blog - established measures include the **Multidimensional Assessment of Interoceptive Awareness (MAIA/MAIA-2)**, the **Body Perception Questionnaire (BPQ)**, and the **Interoceptive Accuracy Scale (IAS)**.
 
