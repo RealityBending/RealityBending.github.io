@@ -4,117 +4,278 @@ authors:
 - oliver-collins
 categories:
 - Reality Bending Lab
-date: "2025-10-01"
-image:
-  caption: ""
-  placement: 0
+date: "2025-09-30"
 title: "What is the Best Interoception Scale?"
 sbtitle: ""
-summary: "What is the Best Interoception Scale?"
+summary: "Lack of agreement in the world of interoception research has brought us to a standstill! We may have a solution..."
 tags:
 - Reality Bending Lab
 - ReBeL
 - University of Sussex
 - Psychology
 - Interoception
-- Scales
 - Mint Scale
 - Self-Report Measures
 ---
 
 Hello👋! We are [Róisín](https://realitybending.github.io/authors/roisin-sharma/) and [Oliver](https://realitybending.github.io/authors/oliver-collins/), two Psychology Placement students at ReBeL 🧙, and today we are going to be discussing the tricky topic of self-reported interoception questionnaires.
 
-**Interoception**, essentially referring to one's awareness of their internal bodily sensations, has been studied by scientists for over a century **[^1]**. However, existing definitions, theoretical considerations, and measures are often at odds with each other. This inconsistent conceptualisation of "interoception" has led to the development of various interoception measures, often based on differing philosophies, raising questions over a "**jingle fallacy**" of interoception scales. In terms of "subjective", self-report scales - the focus of this blog - established measures include the **Multidimensional Assessment of Interoceptive Awareness (MAIA/MAIA-2)**, the **Body Perception Questionnaire (BPQ)**, and the **Interoceptive Accuracy Scale (IAS)**.
+**Interoception**, essentially referring to one's sensation of their internal body, has been studied by scientists for over a century (Sherrington, 1906). It is a fundamental phenomenon that we rely on in everyday life, and has been linked to a variety of neurological states including ADHD, personality disorders and anxiety; making it important that we understand it in a broad sense and the various forms it takes. 
 
-To rival these established interoception measures, in an exciting development, shortly we will introduce a 💚**refreshing**💚 measure called the **Mint Scale**! Irresistible pun out the way, we hope you will leave this page feeling as invested in interoceptive measurement as us!
+However, existing definitions, theoretical considerations, and measures are often at odds with each other. This inconsistent conceptualisation of "interoception" has led to the development of various interoception measures, often based on differing philosophies, raising questions over a "**jingle fallacy**" of interoception scales. In terms of "subjective", self-report scales - the focus of this blog - established measures include the **Multidimensional Assessment of Interoceptive Awareness (MAIA/MAIA-2)**, the **Body Perception Questionnaire (BPQ)**, and the **Interoceptive Accuracy Scale (IAS)**. In this blog we will go through the trials and tribulations of interoceptive measurement, the benefits and pitfalls of these questionnaires and introduce our lab's newly developed interoceptive questionnaire: the **Mint scale**.
 
-## What have the other interoception scales done?
+When we think of sensation, the 5 that typically come to mind are vision, olfaction, gustation, audition and touch. We call these exteroceptive senses, because they are about sensing external stimuli. This means the source of the sensation is out in the world (as opposed to within the individual's internal state). This is promising for empirical investigation because researchers can directly manipulate external stimuli. This makes objective measurement relatively straight-forward. For example, if I wanted to measure sensation of vision, I could show you an image that flashes on a screen and ask you to say when it appears. This is an objective measure because I can validate your answer by checking if the image was actually on the screen at that point.
 
-The **Body Perception Questionnaire (BPQ)** is one of the earliest interoception scales, originally built by Porges in 1993 **[^2]**. The target was the autonomic nervous system **[^3]**, because this innervates most of our soft organs and helps the brain and body communicate. Here's the issue: this questionnaire focuses on stress responses, so mainly seeks to find out about internal sensing when there are problems (e.g., 'tremor in my lips', 'general jitteriness' being two items for body awareness). This makes sense as we are, of course, more aware of our body when experiencing discomfort. The problem is this is only one context in which we perceive our body, so it's also important to find out about the other times we sense inwards. Interoception is a regular part of all of our lives: whether it be when we feel hungry, decide to put our jacket on or go on a jog; it is a sense we all use all the time. Context will be a key criticism that pervades this blog, because we believe interoceptive processes will differ and mean different things depending on the context in which they arise.
+On the other hand, the main practical complication to measuring interoception objectively is that it is about internal states. Because interoceptive sensations come from inside the body (e.g., internal organs), it’s harder to compare what you report to your actual state. Naturally, we have some ways to overcome this issue. The main objective measure of interoception looks at cardioception (sensing of the heart) because we can accurately monitor heart rate with electrodes. Namely, the heart beat counting task (HCT) involves comparing when a participant thinks their heart is beating (without feeling their pulse), to when it actually is [(Schandry, 1981)](https://onlinelibrary-wiley-com.sussex.idm.oclc.org/doi/10.1111/j.1469-8986.1981.tb02486.x). This method comes with several drawbacks of its own, and while some other objective interoceptive methods exist, these are in their early stages of usage. In short, more work needs to be done. For now, we remain largely reliant on subective questionnaires to measure interoception. 
 
-There is however a scale that accounts for body awareness in positive states- deriving from the work on emotional regulation and pain arose *drumroll 🥁 please* the **Multidimensional Assessment of Interoceptive Awareness (MAIA)**, and later the MAIA-2 with additional scales. This scale was created because Mehling et al (2012) **[^4]** believed western medicine focused too much on bodily awareness as a maladaptive trait, even though research was increasingly finding health benefits from a sense of embodiment, such as that gained from mindfulness exercises. This scale therefore sought to find out if therapies that aimed to increase bodily awareness, actually worked. We found it had good predictive power for general wellbeing, although mainly for meta-cognitive beliefs about one's body on dimensions that we argue are less "core" facets of interoception. This is why we wanted to focus more on what we consider the main facets of interoception in the Mint Scale, such as visceral sensitivity. Essentially, MAIA is not as directly about interoception as the Mint Scale. It also does not take context into account, an issue we also found in the following scale…
+However, measuring interoception via self-report has many practical obstacles of its own. As you'd expect when relying on a participant to relay their sensory experience, there's an abundance of within-participant effects to be wary of. There's the typical culprits: participants may understand items differently, or struggle to interpret them if it's about an interoceptive process they struggle with. A particular response bias to be aware of is state dependency: participants often anchor to their current internal state when answering, which can distort how they report their general body awareness. Recency effects also come into play, because participants may find an item to be particularly salient if they happen to have recently experienced it. Even though we control for this where we can, for example by averaging scores, there's reason to tread with caution.
+  
 
-Next up, the relatively new **Interoceptive Accuracy Scale (IAS)** saw the removal of the dubious meta-cognitive constructs introduced in the MAIA(-2), and was designed to distinguish the effects of interoceptive *accuracy* from the usual interoceptive *attention* **[^5]** when making interoceptive judgements. Although the IAS has shown a correlation with objective interoception measures **[^6]** (somewhat rare for subjective interoception scales!), we believe that its items unfortunately neglect the **context** of individuals' interoceptive capabilities. This is where the IAS was NOT explicitly created with the idea of context influencing interoception baked into its development, with, for example, virtually every question of the 21-item scale only focusing on a general, context-free phrasing (i.e., "I can always accurately perceive when…") followed by an interoceptive phenomenon mostly without a circumstantial framework. We believe that such item development is problematic 😱 because it falls short of acknowledging the effects of interoception's strong variable homeostatic and physiological influences (which hence includes deeply context-dependent sensory phenomena) and also consequently fails to challenge potential memory biases associated with particularly salient interoceptive experiences (e.g., in a context-free item, somebody who went for a run *yesterday* may report perceiving their heartbeat more accurately than if they had not been for a run in *a year*). Basically, we argue that, although focusing on accuracy may converge particularly well with existing objective measures, the contextual reference of interoception still matters!
+## What interoception questionnaires are out there?
 
-## So, what does the Mint Scale do differently?
+<details>
+  <summary>>Click here to expand summary table<</summary>
 
-Developed here at ReBeL, the **Mint (Multimodal Interoception Questionnaire) Scale** was created with the intention of addressing the caveats of the established measures above by building on, and synthesising, this previous research. Fundamentally, the Mint takes a "**context-by-modality**" approach to item development, encompassing a wide range of (seven) **modalities** of interoceptive experience (not *just* cardio-respiratory sensations, and even includes a "general state" category) and the **contexts** in which these may differ (covering negative (*anxious*) and positive (*sexual*) arousal states). The Mint focuses on the "core" aspects of interoception (thus excluding meta-cognitive constructs) and also examines certain related **mechanisms** (e.g., accuracy, confusion). All of this shows just how comprehensive the Mint Scale really is! Here we will summarise what we found in our paper (Makowski et al., 2025 **[^7]**) while developing the Mint Scale.
+  <figure>
+    <img src="interoception-table.png" alt="Summary Table of Interoception Questionnaires"/>
+    <figcaption><i>A summary table of the main interoception questionnaires, plus our Mint and some others- as you can see, various approaches have been taken.</i></figcaption>
+  </figure>
+
+  <br>
+</details>
+
+### Body Perception Questionnaire (BPQ) 😱
+
+The **Body Perception Questionnaire (BPQ)** is one of the earliest interoception scales, originally built by [Porges in 1993](https://terpconnect.umd.edu/~sporges/body/body.txt). The target was the autonomic nervous system, because this innervates most of our soft organs and helps the brain and body communicate. This questionnaire focuses on stress responses, so mainly seeks to find out about internal sensing when there are problems (e.g., 'tremor in my lips', 'general jitteriness' being two items for body awareness). This makes the scale beneficial in clinical contexts to investigate maladaptive interoception, particularly in patients who have a dysregulated autonomic nervous systems. For instance, the BPQ can consistently inform clinicians about threat response in patients who find it hard to talk about their trauma [(Kolacz & Bjorum, 2023)](https://static1.squarespace.com/static/5f25b9efdb626835686c2dac/t/65367f748600fd5d0dcbd518/1698070389741/TSRC%2BMarch%2B2023%2BNewsletter.pdf). This can be objectively validated using electroencephalography (ECG), which measures heart rate. So the BPQ can provide further information to objective measures and has great practical applications, _if you're investigating stress_. The issue is that this is just one instance in which we sense inwardly. To explore interoception as a wider phenomenon, we also need to consider other moments and bodily regions that are involved.
+
+  
+
+### Multidimensional Assessment of Interoceptive Awareness (MAIA/MAIA-2)🧘‍♀️
+
+There is however a scale that accounts for body awareness in positive states- deriving from research on emotional regulation and pain arose the **Multidimensional Assessment of Interoceptive Awareness (MAIA)**, and later the MAIA-2 with additional scales. This questionnaire was created because [Mehling et al. (2012)](https://doi.org/10.1371/journal.pone.0048230) believed western medicine focused too much on bodily awareness as a maladaptive trait, even though research was increasingly finding health benefits from a sense of embodiment. It was specifically designed to assess mind-body therapies and was finalised based on data from individuals with various therapeutic backgrounds including yoga, tai chi and breath-work. So the MAIA reconceptualises bodily awareness not only as an anxiety-driven process but also mindful. Remember when we eluded to a jingle fallacy at the start of this blog? This questionnaire investigates interoception as a high-order cognition. This means it defines interoception not just as the immediate sensation of bodily states, but also as a _perception_, including things like decision-making and beliefs.
+
+  
+
+In the actual questionnaire, this translates to many of the questions focusing on _metacognitive beliefs_[^1] about one's body _and emotions_. The MAIA has been used to gain interesting insights into the personal experiences of patients of a wide variety of conditions including autism, eating disorders and depression, showing its effectiveness as a screening tool to enhance diagnostic processes and inform therapeutic approaches [(Paola Solano Durán et al., 2024)](https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2024.1244701/full).
+
+  
+
+A key issue is that the research context it emerged from didn't have established distinctions between interoception and mindfulness. Reflecting its inspiration from mindful practises, MAIA's dimension on attention regulation parallels [Bergomi et al. (2012)](https://doi-org.sussex.idm.oclc.org/10.1007/s12671-012-0110-9)'s first component of mindfulness. It's clear the two have things in common; the issue is we risk inflating correlations _if we're unclear on where these processes cross-over_. This is important because it affects the associations publications report, potentially misinforming further research. Minor tangent summarised: we may need to concretely revise the discrepancy between interoception and mindfulness before establishing their link.
+
+### Interoceptive Accuracy Scale (IAS) 🔍
+
+Next up, the relatively new **Interoceptive Accuracy Scale (IAS)** [(Murphy et al., 2019)](https://doi-org.sussex.idm.oclc.org/10.1177/1747021819879826) saw the removal of the dubious meta-cognitive constructs introduced in the MAIA(-2), and was designed to hone in on interoceptive _accuracy_ as a distinct construct from interoceptive _attention_[^2], to allow researchers to measure them independently. Its major win is that it's had more success than its predecessors in correlations with objective interoception measures (which basically just consist of heart rate measures). This has been helpful in advancing investigations into the role of interoception in psychopathology. In particular, the IAS has negatively correlated with **alexithymia**, a symptom of various conditions and forms of neurodivergence and a particularly fascinating area for work into the connections between emotions and the body. Virtually every question of the 21-item scale only use general, context-free phrasing (i.e., "I can always accurately perceive when…") followed by an interoceptive phenomenon mostly without a circumstantial framework. It was designed this way to account for those who have difficulty perceiving internal sensations...
+
+  
+
+Although this comes at the cost of addressing the strong variable homeostatic and physiological influences of interoception (which hence includes deeply context-dependent sensory phenomena). This consequently fails to challenge potential memory biases associated with particularly salient interoceptive experiences (e.g., in a context-free item, somebody who went for a run *yesterday* may report perceiving their heartbeat more accurately than if they had not been for a run in *a year*). Basically, we argue that, although focusing on accuracy may converge particularly well with existing objective measures, the contextual reference of interoception still matters!
+
+  
+
+_"Wow, it sure seems like context is a key criticism in this blog"_, says the attentive reader. _"I wonder if an interoception questionnaire has been specifically designed to cater for this gap in focu-_"
+
+  
+
+### Multimodal Interoception Questionnaire (Mint)🍃
+
+  
+
+Developed here at ReBeL, our (*drumroll 🥁 please*) **Mint (Multimodal Interoception Questionnaire) Scale** [(Makowski et al., 2025)](https://doi.org/10.31234/osf.io/8qrht_v1) was created with the intention of addressing the caveats of the established measures above by building on, and synthesising, this previous research. Fundamentally, the Mint takes a "**context-by-modality**" approach to item development, encompassing a wide range of (seven) **modalities**[^3] of interoceptive experience (not *just* cardio-respiratory sensations, and even includes a "general state" category) and the **contexts** in which these may differ (covering negative (*anxious*) and positive (*sexual*) arousal states). The Mint focuses on the "core" aspects of interoception (thus excluding meta-cognitive constructs) and also examines other related **facets**[^4] (e.g., accuracy, confusion).
+
+  
+  
 
 <figure>
-  <img src="modalities-facets.png" alt="The Modalities and Facets of the Mint Scale's Item Development (Makowski et al., 2025)"/>
-  <figcaption><i>A conceptual grid diagram from our paper showing the amount of each item in each category from the initial 120 items.
-  </i>
+
+  
+
+<img  src="modalities-facets.png"  alt="The Modalities and Facets of the Mint Scale's Item Development"/>
+
+  
+
+<figcaption><i>A conceptual grid diagram from our paper showing the amount of each item in each category from the initial 120 items.
+
+  
+
+</i>
+
+  
+
 </figcaption>
+
+  
+
 </figure>
 
-<br>
-<br>
-As this graph from our paper shows, the distinction between facets and modalities is an important one in our paper…
+  
 
-#### Modalities are the "***what***"
-
-You could think of modalities as the different ways interoception can occur. As this is to do with internally sensing our body's signal, we have included a range of locations in the body, as well as a general state to cover the integrated experience of sensing the whole body. 
-
-#### Facets are the "***how***"
-
-Facets are about the different aspects of the experience of interoception. As we have said, we wanted to highlight the importance of the context in which the bodily state arose, which is why this includes our positive (sexual arousal) and negative (anxious arousal) state. This also involved other aspects of how we perceive interoception.
-
-
-On the topic of analytical techniques, we used cutting-edge psychometric network-based techniques instead of factor analysis to arrive at the final items included in the Mint Scale, which is very cool because it conceptualises each item like nodes in a network, and lines between them show their associations **[^8]**. This technique overcomes some of the issues of factor analysis, such as issues with estimating the optimal number of factors. 
-
-In Study 1, we got participants to complete our initial 120 item Mint Scale. In Study 2, we got participants to complete our Mint Scale with some refinements from Study 1, alongside the scales we discussed earlier. What our network-based techniques basically do is take our data from participants, and show us how items *cluster* together into what we call "node communities", for us to see the most important items and how they relate to each other. These node communities are similar to dimensions- they may represent an underlying phenomenon, although unlike factor analysis, this method does not automatically assume this to be the case. 
-
-Another lovely thing about our network-based method (called exploratory graph analysis, or EGA for short) is that it estimates higher-order clusters, meaning as well as showing us the lower-level, specific items that group together, it also groups these communities more abstractly, into overarching "metaclusters", which allows us to look at the network in a hierarchical structure. This means complex links can be identified, which is handy as we want to investigate interoception as a highly complex phenomenon that is *greater than the sum of its parts*, as they say. The metaclusters we identified were *Interoceptive Deficit*, *Interoceptive Awareness* and *Visceroception*. Just to give you an idea of what this looks like, here is a diagram from our analyses. 
-
-<figure>
-  <img src="dendrogram.png" alt="Mint Scale hierarchical clusters (Makowski et al., 2025)"/>
-  <figcaption><i>The hierarchical clusters from our analyses 🧠.
-  </i>
-</figcaption>
-</figure>
+  
 
 <br>
-<br>
-We arrived at the final 33-item scale with 11 distinct facets and a stable hierarchical structure through numerous refinements in an iterative process. This means we went over the structure and removed items as necessary, until dimensions stayed the same across computational resamples of the data.
 
-<br>
-<br>
-An important application of the Mint is that it can be utilised for measuring altered interoception across clinical contexts (e.g., ADHD, alexithymia), where it has demonstrated greater predictive power than the other three scales for most conditions tested!
+  
 
-<br>
-<br>
-*However*, it is important to acknowledge a few limitations of the Mint:
-- It has yet to be tested with "objective" interoception measures;
-- Perhaps a wider range of negative/positive contexts should be investigated, especially in regards to testing with clinical populations;
-- Shorter versions are yet to be fully tested.
+We believe the Mint is a promising contender for furthering our scientific understanding because it has demonstrated greater **predictive power** than the other three scales for most conditions tested! However, its main limitations are that it's yet to be tested with 'objective' interoception measures, and shorter versions are yet to be fully tested.
+
+  
+
+We've taken this approach because interoception is an incredibly context-dependent phenomenon, therefore without a contextual reference point, respondents are likely to interpret questionnaire items differently. In some ways, interoceptive research is currently at an impasse. By focusing on how interoception varies across contexts, we aim to deepen understanding of body awareness in clinical conditions.
+
+  
+
+## Which Questionnaire should I pick?
+
+Of course, we hope you'll consider using the Mint in your interoceptive investigations as it synthesises previous work, making it a robust, comprehensive option. It's especially unique in the sense that it looks at positive contexts (sexual arousal), as well as negative (anxious arousal), drawing data on a wider range of emotional states compared to other questionnaires. In the future, it could be informative as a diagnostic tool given its potential to give clinicians extensive insight into patients' interoceptive experiences.
+
+  
+
+#### Context, context, context
+
+Naturally, it's not just the context of patient's interoceptive experience that counts, but also the context in which you plan to use the questionnaire! The other scales could be seen as more specific tools, as the Mint encapsulates them. That means:
+
+  
+
+- The BPQ could be a good option when examining trauma patients if you want to focus on their stress response, particularly in terms of autonomic dysregulation.
+
+  
+
+- We deliberately avoided metacognitive beliefs about one's body because we see these as a detour from the more 'core' facets. However if your focus is on higher-level metacognitive aspects of affective state and wellbeing, the MAIA (-2) is a great option.
+
+  
+
+- The IAS measures interoceptive accuracy rather than attention, which is a different facet. If this is all you want to measure this is a good choice, for example it can be a good screening tool for identifying interoceptive deficits.
+
+  
+  
+
+---
+
+  
+  
 
 ## To conclude...
 
-So, to bring our discussion to a close, ReBeL's *refreshing* (... sorry!) Mint Scale constitutes a theoretically robust and novel development to the awkward world of subjective interoception measurement. Most importantly, taking an innovative approach through our **modality-by-context** framework, underpinned by an EGA methodology, opens future research up to a deeper, more sophisticated understanding about the genuine variable nature of interoception.
+  
+  
 
-Interoception research is still relatively new, which means there is still a lot more work to be done into each of its diverse dimensions. This is why ReBeL has created the Mint interoception scale. It is now imperative that we synthesise previous approaches, by building on shortcomings and previous findings, because, as we find out more about interoception, we learn how to effectively find out even more. With this in mind, we hope you'll consider using the Mint Scale!
+Interoception research is still relatively new, which means there is still a lot more work to be done into each of its diverse dimensions. This is why ReBeL has created the Mint interoception scale: It is now imperative that we synthesise previous approaches, by building on shortcomings and previous findings, because, as we find out more about interoception, we learn how to effectively find out even more.
 
-If you are interested, you can find ReBeL's preprint for the Mint Scale here: 
+The Mint Scale offers a way to break through the current impasse in interoception research, providing a clearer, context-driven framework that reflects the complexity of our inner worlds.
+
+  
+
+If you are interested, you can find ReBeL's preprint for the Mint Scale here:
+
+  
+
+  
 
 - [https://www.researchgate.net/publication/394890454_The_Mint_Scale_A_Fresh_Validation_of_the_Multimodal_Interoception_Questionnaire_and_Comparison_to_the_MAIA_BPQ_and_IAS](https://www.researchgate.net/publication/394890454_The_Mint_Scale_A_Fresh_Validation_of_the_Multimodal_Interoception_Questionnaire_and_Comparison_to_the_MAIA_BPQ_and_IAS)
 
+  
+
+  
+
 ## Glossary
 
-- **Jingle fallacy** = a shared label making different things appear to be more synonymous than they are. In the context of interoception, it can be argued that previous scales have measured distinct constructs/facets all under the label of "interoception", which could thus be a misnomer.
-- **Meta-cognitive beliefs** = our self-awareness of our own beliefs- including how we regulates our thoughts, which relates to emotions. These have implications into what coping strategies we may use. 
-- **Visceral sensitivity** = sensitivity of sensation in internal organs in the main body cavities.
-- **Predictive power** = a variable's ability to forecast another separate variable.
-- **Dimensions** = the underlying thing that the questionnaire items are designed to measure.
-- **Latent** = the thing that underlies what we are measuring. We change latent variables into things we can measure to test them. For example, visceroception cannot be studied as a whole, but our individual items relating to it can inform us about it.
+  
 
-## Footnotes
+  
 
-[^1]: Sherrington C. S. (1906). The integrative action of the nervous system. Yale University Press.
-[^2]: Porges, S. W. (1993). Body Perception Questionnaire. Umd.edu. [https://terpconnect.umd.edu/~sporges/body/body.txt](https://terpconnect.umd.edu/~sporges/body/body.txt)
-[^3]: Kolacz, J., Holmes, L., & Porges, S. W. (2018). Body perception questionnaire (BPQ) manual. Traumatic Stress Research Consortium.
-[^4]: Mehling, Price, Daubenmier, Acree, Bartmess, & Stewart. (2012). The Multidimensional Assessment of Interoceptive Awareness (MAIA). Plos One, 7(11). [https://doi.org/10.1371/journal.pone.0048230.g001](https://doi.org/10.1371/journal.pone.0048230.g001)
-[^5]: Interoceptive attention is the degree of attentiveness towards a detected internal signal, with interoceptive accuracy referring to the correctness of one's perception of an internal signal. It has been suggested that these two constructs are distinct aspects of interoception, which raises theoretical questions over what "interoception" really is and how it should consequently be measured, illustrating the previous point about the present inconsistent conceptualisation of interoception.
-[^6]: Murphy, J., Brewer, R., Plans, D., Khalsa, S. S., Catmur, C., & Bird, G. (2019). Testing the independence of self-reported interoceptive accuracy and attention. Quarterly Journal of Experimental Psychology, 73(1), 115-133. [https://doi-org.sussex.idm.oclc.org/10.1177/1747021819879826](https://doi-org.sussex.idm.oclc.org/10.1177/1747021819879826)
-[^7]: Makowski, D., Neves, A., Benn, E., Bennett, M., & Poerio, G. (2025). The Mint Scale: A Fresh Validation of the Multimodal Interoception Questionnaire and Comparison to the MAIA, BPQ and IAS. [https://doi.org/10.31234/osf.io/8qrht_v1](https://doi.org/10.31234/osf.io/8qrht_v1)
+-  **Jingle fallacy** = a shared label making different things appear to be more synonymous than they are. In the context of interoception, it can be argued that previous scales have measured distinct constructs/facets all under the label of "interoception", which could be a misnomer.
 
-[^8]: Golino, H. F., & Epskamp, S. (2017). Exploratory graph analysis: A new approach for estimating the number of dimensions in psychological research. PLOS ONE, 12(6), e0174035. [https://doi.org/10.1371/journal.pone.0174035](https://doi.org/10.1371/journal.pone.0174035)
+  
+
+-  **Meta-cognitive beliefs** = our self-awareness of our own beliefs- including how we regulate our thoughts, which relates to emotions. These have implications into what coping strategies we may use.
+
+  
+
+-  **Alexithymia** = difficulty identifying and understanding one's emotions.
+
+  
+
+-  **Visceral sensitivity** = sensitivity of sensation in internal organs in the main body cavities.
+
+  
+
+-  **Predictive power** = a variable's ability to forecast another separate variable.
+
+  
+
+-  **Dimensions** = the underlying thing that the questionnaire items are designed to measure.
+
+  
+  
+  
+
+[^1]: Aka what they think about these thoughts (which we argue is a less 'core' facet of interoception, but more on that later...)
+
+  
+
+[^2]: Interoceptive attention is the degree of attentiveness towards a detected internal signal, with interoceptive accuracy referring to the correctness of one's perception of an internal signal.
+
+  
+
+[^3]: You could think of modalities as the different ways interoception can occur. As this is to do with internally sensing our body's signals, we have included a range of locations in the body, as well as a general state to cover the integrated experience of sensing the whole body.
+
+  
+
+[^4]: Facets are about the different aspects of the experience of interoception. As we have said, we wanted to highlight the importance of the context in which the bodily state arose, which is why this includes our positive (sexual arousal) and negative (anxious arousal) state. This also involved other aspects of how we perceive interoception.
+
+  
+
+## References
+
+Bergomi, C., Tschacher, W., & Kupper, Z. (2012). The Assessment of Mindfulness with Self-Report Measures: Existing Scales and Open Issues. _Mindfulness_, _4_(3), 191–202. https://doi.org/10.1007/s12671-012-0110-9
+
+  
+
+Gabriele, E., Spooner, R., Brewer, R., & Murphy, J. (2021). Dissociations between self-reported interoceptive accuracy and attention: Evidence from the interoceptive attention scale. _Biological Psychology_, _168_, 108243. https://doi.org/10.1016/j.biopsycho.2021.108243
+
+  
+
+Kolacz, J., & Bjorum, E. (2023). Measuring Autonomic Symptoms with the Body Perception Questionnaire. _The Traumatic Stress Research Consortium_ . https://www.traumascience.org/s/TSRCMarch2023Newsletter.pdf
+
+  
+
+Kolacz, J., Holmes, L., & Porges, S. W. (2018). Body perception questionnaire (BPQ) manual. Traumatic Stress Research Consortium.
+
+  
+
+Makowski, D., Neves, A., Benn, E., Bennett, M., & Poerio, G. (2025). The Mint Scale: A Fresh Validation of the Multimodal Interoception Questionnaire and Comparison to the MAIA, BPQ and IAS. [https://doi.org/10.31234/osf.io/8qrht_v1](https://doi.org/10.31234/osf.io/8qrht_v1)
+
+  
+
+Mehling, Price, Daubenmier, Acree, Bartmess, & Stewart. (2012). The Multidimensional Assessment of Interoceptive Awareness (MAIA). _Plos One_, _7_(11). https://doi.org/10.1371/journal.pone.0048230.g001
+
+  
+
+Mehling, W. E., Acree, M., Stewart, A., Silas, J., & Jones, A. (2018). The Multidimensional Assessment of Interoceptive Awareness, Version 2 (MAIA-2). _PLOS ONE_, _13_(12), e0208034. https://doi.org/10.1371/journal.pone.0208034
+
+  
+
+Miller, L. C., Murphy, R., & Buss, A. H. (1981). Consciousness of body: Private and public. _Journal of Personality and Social Psychology_, _41_(2), 397–406. https://doi.org/10.1037/0022-3514.41.2.397
+
+  
+
+Murphy, J., Brewer, R., Plans, D., Khalsa, S. S., Catmur, C., & Bird, G. (2019). Testing the independence of self-reported interoceptive accuracy and attention. _Quarterly Journal of Experimental Psychology_, _73_(1), 115–133. https://doi.org/10.1177/1747021819879826
+
+  
+
+Paola Solano Durán, Morales, J.-P., & Huepe, D. (2024). Interoceptive awareness in a clinical setting: the need to bring interoceptive perspectives into clinical evaluation. _Frontiers in Psychology_, _15_(1244701). https://doi.org/10.3389/fpsyg.2024.1244701
+
+  
+
+Porges. (1993). _Body Perception Questionnaire_. Umd.edu. https://terpconnect.umd.edu/~sporges/body/body.txt
+
+  
+
+Schandry, R. (1981). Heart Beat Perception and Emotional Experience. _Psychophysiology_, _18_(4), 483–488. https://doi.org/10.1111/j.1469-8986.1981.tb02486.x
+
+  
+
+Sherrington C. S. (1906). The integrative action of the nervous system. Yale University Press.
+
+  
+
+Vlemincx, E., Walentynowicz, M., Zamariola, G., Van Oudenhove, L., & Luminet, O. (2021). A novel self-report scale of interoception: the three-domain interoceptive sensations questionnaire (THISQ). _Psychology & Health_, _38_(9), 1–20. https://doi.org/10.1080/08870446.2021.2009479
