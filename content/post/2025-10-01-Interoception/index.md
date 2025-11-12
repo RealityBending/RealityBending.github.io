@@ -4,7 +4,7 @@ authors:
 - oliver-collins
 categories:
 - Reality Bending Lab
-date: "2025-09-30"
+date: "2025-11-12"
 title: "What is the Best Interoception Scale?"
 sbtitle: ""
 summary: "Lack of agreement in the world of interoception research has brought us to a standstill! We may have a solution..."
