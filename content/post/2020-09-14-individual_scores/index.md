@@ -329,4 +329,4 @@ save(d, file = "data.Rdata")
 
 *Thanks for reading! Do not hesitate to share this post, and leave a comment below* :hugs:
 
-🐦 *And don't forget to join me on Twitter* [@Dom_Makowski](https://x.com/Dom_Makowski)
+🐦 *And don't forget to join me on X* [@Dom_Makowski](https://x.com/Dom_Makowski)

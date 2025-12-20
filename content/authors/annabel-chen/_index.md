@@ -21,7 +21,7 @@ social:
 - icon: envelope
   icon_pack: fas
   link: mailto:your@annabelchen@ntu.edu.sg
-- icon: twitter
+- icon: x-twitter
   icon_pack: fab
   link: https://x.com/DrAnnabelChen
 - icon: google-scholar

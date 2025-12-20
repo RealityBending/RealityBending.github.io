@@ -57,6 +57,6 @@ From there, the youtuber [*Solar Sands*](https://www.youtube.com/channel/UCR6Las
 ---
 
 
-*Thanks for reading! Do not hesitate to tweet and share this post and don't forget to join me on Twitter* 🐦 [@Dom_Makowski](https://x.com/Dom_Makowski)
+*Thanks for reading! Do not hesitate to tweet and share this post and don't forget to join me on X* 🐦 [@Dom_Makowski](https://x.com/Dom_Makowski)
 
 

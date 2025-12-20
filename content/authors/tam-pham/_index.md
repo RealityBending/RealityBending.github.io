@@ -24,7 +24,7 @@ social:
 - icon: envelope
   icon_pack: fas
   link: "phamtt@ntu.edu.sg"
-- icon: twitter
+- icon: x-twitter
   icon_pack: fab
   link: https://x.com/tampham94
 - icon: google-scholar

@@ -77,4 +77,4 @@ McSharry, P. E., Clifford, G. D., Tarassenko, L., & Smith, L. A. (2003). A dynam
 
 *Thanks for reading! Do not hesitate to tweet and share this post, and leave a comment below* :hugs:
 
-🐦 *Don't forget to join me on Twitter* [@Dom_Makowski](https://x.com/Dom_Makowski)
+🐦 *Don't forget to join me on X* [@Dom_Makowski](https://x.com/Dom_Makowski)

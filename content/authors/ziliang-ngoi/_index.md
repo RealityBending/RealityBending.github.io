@@ -30,7 +30,7 @@ social:
 - icon: envelope
   icon_pack: fas
   link: mailto:ziliangngoi@gmail.com
-- icon: twitter
+- icon: x-twitter
   icon_pack: fab
   link: https://x.com/MaxNgoi
 - icon: researchgate

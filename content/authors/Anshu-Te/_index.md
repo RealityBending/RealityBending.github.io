@@ -25,7 +25,7 @@ social:
 - icon: envelope
   icon_pack: fas
   link: mailto:anshu.te@ntu.edu.sg
-- icon: twitter
+- icon: x-twitter
   icon_pack: fab
   link: https://x.com/anshu_te97
 - icon: researchgate

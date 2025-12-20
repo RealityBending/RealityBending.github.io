@@ -43,7 +43,7 @@ image:
 # - name: Follow
 #   url: https://twitter.com
 #   icon_pack: fab
-#   icon: twitter
+#   icon: x-twitter
 
 # Optional filename of your slides within your event's folder or a URL.
 url_slides:

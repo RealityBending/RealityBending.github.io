@@ -34,7 +34,7 @@ featured: false
 # - name: Follow
 #   url: https://twitter.com
 #   icon_pack: fab
-#   icon: twitter
+#   icon: x-twitter
 
 url_pdf:
 url_code:

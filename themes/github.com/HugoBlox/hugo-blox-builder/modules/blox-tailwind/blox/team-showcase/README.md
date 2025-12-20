@@ -61,7 +61,7 @@ social:
   - icon: envelope
     icon_pack: fas
     link: 'mailto:jane@example.edu'
-  - icon: twitter
+  - icon: x-twitter
     icon_pack: fab
     link: https://x.com/janedoe
   - icon: github

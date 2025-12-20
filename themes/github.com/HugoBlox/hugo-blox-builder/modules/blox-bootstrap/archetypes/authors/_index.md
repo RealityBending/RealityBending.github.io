@@ -42,7 +42,7 @@ social:
 - icon: envelope
   icon_pack: fas
   link: '#contact'  # For a direct email link, use "mailto:test@example.org".
-- icon: twitter
+- icon: x-twitter
   icon_pack: fab
   link: https://x.com/USERNAME
 - icon: google-scholar

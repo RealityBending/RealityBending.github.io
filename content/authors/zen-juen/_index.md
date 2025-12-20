@@ -23,7 +23,7 @@ social:
 - icon: envelope
   icon_pack: fas
   link: "zenjuen.lau@ntu.edu.sg"
-- icon: twitter
+- icon: x-twitter
   icon_pack: fab
   link: https://x.com/ZenJuen
 - icon: google-scholar

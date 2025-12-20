@@ -32,7 +32,7 @@ content:
   #   - 'Monday 10:00 to 13:00'
   #   - 'Wednesday 09:00 to 10:00'
   contact_links:
-    - icon: twitter
+    - icon: x-twitter
       icon_pack: fab
       name: Follow me
       link: 'https://x.com/Dom_Makowski'

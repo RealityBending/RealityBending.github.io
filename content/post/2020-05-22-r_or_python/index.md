@@ -157,6 +157,6 @@ It might be easier if you have mentors that can understand what you are doing an
 
 ---
 
-*Thanks for reading!* 🐦 *Don't forget to join me on Twitter* ([@Dom_Makowski](https://x.com/Dom_Makowski)) *and leave a comment below* 👇
+*Thanks for reading!* 🐦 *Don't forget to join me on X* ([@Dom_Makowski](https://x.com/Dom_Makowski)) *and leave a comment below* 👇
 
 
