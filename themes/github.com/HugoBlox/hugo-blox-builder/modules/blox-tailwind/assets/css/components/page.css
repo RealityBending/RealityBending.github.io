@@ -87,5 +87,11 @@
 
 /* For ToC shortcode, Spoiler shortcode, and direct HTML Details snippets. */
 details > summary {
-  @apply cursor-pointer font-semibold text-primary-700 dark:text-primary-300;
+  @apply cursor-pointer font-semibold;
+
+  color: var(--color-primary-700);
+}
+
+.dark details > summary {
+  color: var(--color-primary-300);
 }
