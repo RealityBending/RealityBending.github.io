@@ -26,8 +26,6 @@ education:
 user_groups:
 - Research assistants
 superuser: false
-user_groups:
-- Research Assistants
 ---
 
 Let's treat each other well to mutually adjust our idiosyncratic perceptual constructions to be of a kinder reality!🪼
