@@ -25,7 +25,7 @@ jobs:
               run: Rscript -e 'install.packages(c("rmarkdown","blogdown", "remotes"))'
 
             - name: Install hugo
-              run: Rscript -e 'blogdown::install_hugo(version="0.152.2")'  # Latest is currently broken
+              run: Rscript -e 'blogdown::install_hugo(version="0.139.4")'  # Latest is currently broken
 
             - name: Build site with blogdown
               run: Rscript -e 'if (!blogdown::build_site()) stop("Build failed")'
