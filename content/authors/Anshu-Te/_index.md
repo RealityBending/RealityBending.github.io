@@ -27,7 +27,7 @@ social:
   link: mailto:anshu.te@ntu.edu.sg
 - icon: twitter
   icon_pack: fab
-  link: https://twitter.com/anshu_te97
+  link: https://x.com/anshu_te97
 - icon: researchgate
   icon_pack: fab
   link: https://www.researchgate.net/profile/An_Shu_Te

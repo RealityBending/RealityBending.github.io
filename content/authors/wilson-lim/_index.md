@@ -32,7 +32,7 @@ social:
   link: mailto:wilson.lim@ntu.edu.sg
 - icon: twitter
   icon_pack: fab
-  link: https://twitter.com/WilsonLimPH
+  link: https://x.com/WilsonLimPH
 - icon: google-scholar
   icon_pack: ai
   link: https://scholar.google.com/citations?view_op=list_works&hl=en&user=qKbexJIAAAAJ

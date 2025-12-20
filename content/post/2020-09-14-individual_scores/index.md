@@ -49,7 +49,7 @@ We generate several datasets in which we manipulate the number of participants, 
 
 
 
-```r
+``` r
 library(tidyverse)
 library(easystats)
 
@@ -59,7 +59,7 @@ results <- get_results(data)
 
 <div class="figure">
 <img src="individual.png" alt="*Example of a dataset containing 20 participants (shown with different colors). As can be seen, we introduced modulations in the inter- and intra- individual variability.*" width="1575" />
-<p class="caption">Figure 1: *Example of a dataset containing 20 participants (shown with different colors). As can be seen, we introduced modulations in the inter- and intra- individual variability.*</p>
+<p class="caption"><span id="fig:unnamed-chunk-3"></span>Figure 1: *Example of a dataset containing 20 participants (shown with different colors). As can be seen, we introduced modulations in the inter- and intra- individual variability.*</p>
 </div>
 
 We will then compare the scores obtained by each method to the "true" score of each participant by substracting them from one another. As such, for each method, we obtain the absolute "distance" from the true score. 
@@ -70,7 +70,7 @@ We will then compare the scores obtained by each method to the "true" score of e
 Contrast analysis will be applied to compare the different methods together. 
 
 
-```r
+``` r
 model <- lm(Diff_Abs ~ Method, data=results)
 
 modelbased::estimate_contrasts(model) %>%
@@ -81,10 +81,10 @@ modelbased::estimate_contrasts(model) %>%
 ```
 
 ```
-## Level1                 |                 Level2 | Difference |            CI |      p
+## Level1                 | Level2                 | Difference |            CI |      p
 ## -------------------------------------------------------------------------------------
-## IndividualModel_Priors |        PopulationModel |  -1.85e-03 | [-0.01, 0.01] | > .999
-## IndividualModel_Freq   |        PopulationModel |   1.70e-03 | [-0.01, 0.01] | > .999
+## IndividualModel_Priors | PopulationModel        |  -1.85e-03 | [-0.01, 0.01] | > .999
+## IndividualModel_Freq   | PopulationModel        |   1.70e-03 | [-0.01, 0.01] | > .999
 ## IndividualModel_Freq   | IndividualModel_Priors |   3.55e-03 | [-0.01, 0.01] | > .999
 ```
 
@@ -94,12 +94,12 @@ modelbased::estimate_contrasts(model) %>%
 
 <div class="figure">
 <img src="featured.png" alt="*Average accuracy of the different methods (the closest to 0 the better).*" width="2250" />
-<p class="caption">Figure 2: *Average accuracy of the different methods (the closest to 0 the better).*</p>
+<p class="caption"><span id="fig:unnamed-chunk-6"></span>Figure 2: *Average accuracy of the different methods (the closest to 0 the better).*</p>
 </div>
 
 <div class="figure">
 <img src="n_participants.png" alt="*Accuracy depending on the number of total participants in the dataset.*" width="2250" />
-<p class="caption">Figure 3: *Accuracy depending on the number of total participants in the dataset.*</p>
+<p class="caption"><span id="fig:unnamed-chunk-7"></span>Figure 3: *Accuracy depending on the number of total participants in the dataset.*</p>
 </div>
 
 ### Conclusion
@@ -112,7 +112,7 @@ Though not significantly different, it seems that **raw basic estimates** (that 
 ### Functions
 
 
-```r
+``` r
 library(tidyverse)
 library(easystats)
 library(rstanarm)
@@ -329,4 +329,4 @@ save(d, file = "data.Rdata")
 
 *Thanks for reading! Do not hesitate to share this post, and leave a comment below* :hugs:
 
-🐦 *And don't forget to join me on Twitter* [@Dom_Makowski](https://twitter.com/Dom_Makowski)
+🐦 *And don't forget to join me on Twitter* [@Dom_Makowski](https://x.com/Dom_Makowski)

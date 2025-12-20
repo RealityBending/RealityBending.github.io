@@ -25,7 +25,7 @@ tags:
 
 **Can you name *one* thing in the image above?** It all looks familiar, but something is off. The image makes "sense" overall; there are well-defined shapes and objects, that seem to be placed in a plausible - albeit chaotic - fashion, like some random rubbish thrown in the corner of a room. Even the colors, the lightning, the quality, is coherent, and helps making it believable. And yet, chances are you cannot name one single element that composes it.
 
-This image, after appearing on [twitter](https://twitter.com/melip0ne/status/1120503955526750208?s=20) in April 2019, surfaced on reddit with the caption "This picture is **designed to give the viewer the simulated experience of having a stroke** (particularly in the **occipital lobe** of the cerebral cortex, where visual perception occurs.) **Everything looks hauntingly familiar but you just can't quite recognize anything**", and became subsequently [viral](https://www.dailymail.co.uk/news/article-6959547/Extremely-frustrating-slightly-disturbing-image-goes-viral.html). However, the author of the caption later admitted that he made this description up.
+This image, after appearing on [twitter](https://x.com/melip0ne/status/1120503955526750208?s=20) in April 2019, surfaced on reddit with the caption "This picture is **designed to give the viewer the simulated experience of having a stroke** (particularly in the **occipital lobe** of the cerebral cortex, where visual perception occurs.) **Everything looks hauntingly familiar but you just can't quite recognize anything**", and became subsequently [viral](https://www.dailymail.co.uk/news/article-6959547/Extremely-frustrating-slightly-disturbing-image-goes-viral.html). However, the author of the caption later admitted that he made this description up.
 
 *So where does the image come from?*
 
@@ -57,6 +57,6 @@ From there, the youtuber [*Solar Sands*](https://www.youtube.com/channel/UCR6Las
 ---
 
 
-*Thanks for reading! Do not hesitate to tweet and share this post and don't forget to join me on Twitter* 🐦 [@Dom_Makowski](https://twitter.com/Dom_Makowski)
+*Thanks for reading! Do not hesitate to tweet and share this post and don't forget to join me on Twitter* 🐦 [@Dom_Makowski](https://x.com/Dom_Makowski)
 
 

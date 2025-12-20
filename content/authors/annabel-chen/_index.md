@@ -23,7 +23,7 @@ social:
   link: mailto:your@annabelchen@ntu.edu.sg
 - icon: twitter
   icon_pack: fab
-  link: https://twitter.com/DrAnnabelChen
+  link: https://x.com/DrAnnabelChen
 - icon: google-scholar
   icon_pack: ai
   link: https://scholar.google.com/citations?user=kMqbNZYAAAAJ&hl=en&oi=ao

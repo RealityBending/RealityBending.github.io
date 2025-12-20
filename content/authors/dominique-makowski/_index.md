@@ -49,7 +49,7 @@ social:
   link: '#contact'
 - icon: twitter
   icon_pack: fab
-  link: https://twitter.com/Dom_Makowski
+  link: https://x.com/Dom_Makowski
 - icon: google-scholar
   icon_pack: ai
   link: https://scholar.google.fr/citations?user=bg0BZ-QAAAAJ&hl=en

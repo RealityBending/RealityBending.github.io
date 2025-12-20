@@ -35,7 +35,7 @@ content:
     - icon: twitter
       icon_pack: fab
       name: Follow me
-      link: 'https://twitter.com/Dom_Makowski'
+      link: 'https://x.com/Dom_Makowski'
     # - icon: skype
     #   icon_pack: fab
     #   name: Skype Me

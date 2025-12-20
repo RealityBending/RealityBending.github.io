@@ -34,7 +34,7 @@ social:
   link: mailto:stephanie.morgank@gmail.com
 - icon: twitter
   icon_pack: fab
-  link: https://twitter.com/morgkms
+  link: https://x.com/morgkms
 - icon: researchgate
   icon_pack: ai
   link:

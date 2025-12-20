@@ -25,7 +25,7 @@ social:
   link: "zenjuen.lau@ntu.edu.sg"
 - icon: twitter
   icon_pack: fab
-  link: https://twitter.com/ZenJuen
+  link: https://x.com/ZenJuen
 - icon: google-scholar
   icon_pack: ai
   link: https://scholar.google.com/citations?user=QNDb0QgAAAAJ&hl=en
