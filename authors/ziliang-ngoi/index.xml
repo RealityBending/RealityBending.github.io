@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Zi Liang Ngoi | Reality Bending Lab</title>
+    <link>https://realitybending.github.io/authors/ziliang-ngoi/</link>
+      <atom:link href="https://realitybending.github.io/authors/ziliang-ngoi/index.xml" rel="self" type="application/rss+xml" />
+    <description>Zi Liang Ngoi</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language>
+    <image>
+      <url>https://realitybending.github.io/authors/ziliang-ngoi/avatar_hu12377228752660923712.png</url>
+      <title>Zi Liang Ngoi</title>
+      <link>https://realitybending.github.io/authors/ziliang-ngoi/</link>
+    </image>
+    
+  </channel>
+</rss>

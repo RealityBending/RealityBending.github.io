@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ReBeL | Reality Bending Lab</title>
+    <link>https://realitybending.github.io/tag/rebel/</link>
+      <atom:link href="https://realitybending.github.io/tag/rebel/index.xml" rel="self" type="application/rss+xml" />
+    <description>ReBeL</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Sat, 20 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://realitybending.github.io/media/icon_hu11326173534259092558.png</url>
+      <title>ReBeL</title>
+      <link>https://realitybending.github.io/tag/rebel/</link>
+    </image>
+    
+    <item>
+      <title>What is the Best Interoception Questionnaire?</title>
+      <link>https://realitybending.github.io/post/2025-12-20-interoception/</link>
+      <pubDate>Sat, 20 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/post/2025-12-20-interoception/</guid>
+      <description>&lt;p&gt;Hello👋! We are &lt;a href=&#34;https://realitybending.github.io/authors/roisin-sharma/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Róisín&lt;/a&gt; and &lt;a href=&#34;https://realitybending.github.io/authors/oliver-collins/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Oliver&lt;/a&gt;, two &lt;a href=&#34;https://realitybending.github.io/jobs/assistant/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Research Assistants&lt;/a&gt; at the lab, and today we are going to be discussing the tricky topic of self-report interoception questionnaires.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Interoception&lt;/strong&gt;, essentially referring to one&amp;rsquo;s sensation of their internal body, is a fundamental phenomenon that we rely on in everyday life, and recent research highlights it as a trans-diagnostic underpinning of a variety of somatic and psychological difficulties.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;While we know interoception is very important, the specifics are still being worked out&lt;/strong&gt;. Debates continue on what the exactly interoceptions is, is not, and what it encompasses in terms of modalities or processes. Is it limited to visceral sensations (i.e., from internal organs)? Does it include proprioception (i.e., body position sense)? Pain? What about tactile sensations (i.e., touch and skin)? Does it include the interaction with higher-order processes like attention and beliefs?&lt;/p&gt;
+&lt;p&gt;This chaotic and moving landscape has been accompanied by the development and repurposing of different interoception (and interoception-adjacent) questionnaires, each with their own philosophies and approach. Carefully choosing a good measure of interoception is crucial to avoid adding to the &lt;a href=&#34;https://en.wikipedia.org/wiki/Jingle-jangle_fallacies&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;jingle-jangle fallacy&lt;/strong&gt;&lt;/a&gt; plaguing the field, in which discrepancies and contradictions of results &lt;em&gt;&amp;ldquo;related to interoception&amp;rdquo;&lt;/em&gt; are driven by differences in what aspect of it is actually being measured.&lt;/p&gt;
+&lt;p&gt;Moreover, unlike &lt;em&gt;exteroception&lt;/em&gt; (vision, audition, etc.), where researchers can easily manipulate external stimuli to validate a participant&amp;rsquo;s response, interoception presents a unique challenge: the stimuli originate from within the body. Because internal states are difficult to manipulate or observe directly, objective validation is complex. Nonetheless, especially as &amp;ldquo;objective&amp;rdquo; tasks like the Heart Beat Counting Task (HCT; &lt;a href=&#34;https://onlinelibrary-wiley-com.sussex.idm.oclc.org/doi/10.1111/j.1469-8986.1981.tb02486.x&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Schandry, 1981&lt;/a&gt;) have their own methodological drawbacks, self-report questionnaires remain a scalable, practical, and widely-used tools for assessing interoception. Let&amp;rsquo;s explore the most popular and established questionnaires.&lt;/p&gt;
+&lt;h2 id=&#34;questionnaires-overview&#34;&gt;Questionnaires Overview&lt;/h2&gt;
+&lt;h3 id=&#34;-body-perception-questionnaire-bpq&#34;&gt;😨 Body Perception Questionnaire (BPQ)&lt;/h3&gt;
+&lt;p&gt;The &lt;strong&gt;BPQ&lt;/strong&gt; is one of the earliest interoception scales, originally built by &lt;a href=&#34;https://terpconnect.umd.edu/~sporges/body/body.txt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Porges in 1993&lt;/a&gt;. This questionnaire focuses on the autonomic nervous system, involved in stress responses, and thus is mainly concerned with internal sensing when there are problems (e.g., &amp;rsquo;tremor in my lips&amp;rsquo;, &amp;lsquo;general jitteriness&amp;rsquo; being two items for body awareness). This makes the scale beneficial in clinical contexts to investigate maladaptive interoception, particularly in patients who have a dysregulated autonomic nervous systems. However, if you are interested in interoception in a wider context, other questionnaires may be more appropriate.&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src=&#34;ans.webp&#34; alt=&#34;The Autonomic Nervous System (ANS)&#34; width=&#34;50%&#34;/&gt;
+&lt;figcaption&gt;&lt;i&gt;The Autonomic Nervous System (ANS)&lt;/i&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h3 id=&#34;-multidimensional-assessment-of-interoceptive-awareness-maia&#34;&gt;🧘‍♀️ Multidimensional Assessment of Interoceptive Awareness (MAIA)&lt;/h3&gt;
+&lt;p&gt;The &lt;strong&gt;Multidimensional Assessment of Interoceptive Awareness (MAIA)&lt;/strong&gt; (the MAIA-2 being the most recent version) is another widely used questionnaire that accounts for body awareness in positive states - deriving from research on emotional regulation and pain. This questionnaire was created because &lt;a href=&#34;https://doi.org/10.1371/journal.pone.0048230&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Mehling et al. (2012)&lt;/a&gt; believed western medicine focused too much on bodily awareness as a maladaptive trait, even though research was increasingly finding health benefits from a sense of embodiment. It was specifically designed to assess mind-body therapies and was finalised based on data from individuals with various therapeutic backgrounds including yoga, tai chi and breath-work. The MAIA reconceptualises bodily awareness not only as an anxiety-related process but also an integral part of mindfulness. This translates to many of the questions focusing on &lt;em&gt;metacognitive beliefs&lt;/em&gt; about one&amp;rsquo;s body and emotions, as well as some targetting more directly other mindfulness-related processes, such as attention regulation and non-reactivity. The MAIA includes subscales encompassing self-regulation abilities which - while important - might be conceptualized as distinct from core interoception.&lt;/p&gt;
+&lt;h3 id=&#34;-interoceptive-accuracy-scale-ias&#34;&gt;🤧 Interoceptive Accuracy Scale (IAS)&lt;/h3&gt;
+&lt;p&gt;More recently, the &lt;strong&gt;Interoceptive Accuracy Scale (IAS)&lt;/strong&gt; &lt;a href=&#34;https://doi-org.sussex.idm.oclc.org/10.1177/1747021819879826&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;(Murphy et al., 2019)&lt;/a&gt; took the opposite route, trying to remove contamination by meta-cognitive processes to focus on interoceptive &lt;em&gt;accuracy&lt;/em&gt; (distinct from interoceptive &lt;em&gt;attention&lt;/em&gt;). It includes 21 questions (&amp;ldquo;I can always accurately perceive when&amp;hellip;&amp;rdquo;) pertaining discrete, clear, and &amp;ldquo;objectifiable&amp;rdquo; interoceptive events, hopefully being meaningful and consistently interpreted across participants (including those who have difficulty perceiving internal sensations).&lt;/p&gt;
+&lt;h3 id=&#34;-multimodal-interoception-questionnaire-mint&#34;&gt;🍃 Multimodal Interoception Questionnaire (Mint)&lt;/h3&gt;
+&lt;p&gt;The &lt;strong&gt;Multimodal Interoception Questionnaire (Mint;&lt;/strong&gt; &lt;a href=&#34;https://doi.org/10.31234/osf.io/8qrht_v1&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Makowski et al., 2025&lt;/strong&gt;&lt;/a&gt;) is the most recent interoception questionnaire, designed with the intention of addressing the caveats and limitations by building on established measures and synthesising the previous research and advances. Fundamentally, the Mint takes a &amp;ldquo;&lt;strong&gt;context-by-modality&lt;/strong&gt;&amp;rdquo; approach to item development, encompassing a wide range of (seven) &lt;strong&gt;modalities&lt;/strong&gt; of interoceptive experience (cardiac, respiratory, gastric, etc.) and also controlling for the &lt;strong&gt;contexts&lt;/strong&gt; in which these may appear (covering negative (&lt;em&gt;anxious&lt;/em&gt;) and positive (&lt;em&gt;sexual&lt;/em&gt;) arousal states). The Mint also incorporates both adaptive and maladaptive aspects of interoception (interoceptive confusion), as well as items targeting different levels of processing.&lt;/p&gt;
+&lt;p&gt;Importantly, this questionnaire was developed with the aim of addressing some of the methodological shortcomings of previous interoception questionnaires, such as limiting &lt;em&gt;interpretation Variance&lt;/em&gt;, &lt;em&gt;state Dependency&lt;/em&gt; (the fact that respondents &amp;ldquo;anchor&amp;rdquo; their answers to their current physiological state rather than their general trait), and &lt;em&gt;recency effects&lt;/em&gt; (recent, salient physical experiences disproportionately influencing scores), in particular by providing a clear contextual reference for each item. The validation study shows displayed strong correlations with the above questionnaires (suggesting that it can be used as a comprehensive replacement), while also demonstrating a superior predictive power for a variety of clinical conditions.&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src=&#34;mint.png&#34; alt=&#34;Items of the Multimodal Interoception Questionnaire (Mint)&#34; width=&#34;80%&#34;/&gt;
+&lt;figcaption&gt;&lt;i&gt;Items of the Multimodal Interoception Questionnaire (Mint)&lt;/i&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h3 id=&#34;others&#34;&gt;Others&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;strong&gt;Interoceptive Attention Scale (IATS; Gabriele et al., 2021)&lt;/strong&gt;: Attention to bodily signals. Designed as the orthogonal counterpart of the Interoceptive Accuracy Scale, also using consistent phrasing of all statements (&amp;lsquo;Most of the time my attention is focused on&amp;hellip;&amp;rsquo;).&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;Interoceptive Sensations Questionnaire (THISQ; &lt;a href=&#34;https://doi.org/10.1080/08870446.2021.2009479&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Vlemincx et al., 2021&lt;/a&gt;)&lt;/strong&gt;: Neutral internal sensations (not emotionally valenced), including cardiorespiratory activation, deactivation, and gastroesophageal sensations.&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;Interoception Sensory Questionnaire (ISQ; &lt;a href=&#34;https://link.springer.com/article/10.1007/s10803-018-3600-3&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Fiene, 2018&lt;/a&gt;)&lt;/strong&gt;: Designed to assess confusion about interoceptive bodily states unless these states are extreme (Alexisomia).&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;Interoceptive Confusion Questionnaire (ICQ; &lt;a href=&#34;https://royalsocietypublishing.org/rsos/article/3/10/150664/36458/Alexithymia-a-general-deficit-of&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Brewer, 2016&lt;/a&gt;)&lt;/strong&gt;: Assesses confusion and misinterpretation of bodily signals.&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;Body Consciousness scale (BCS; Miller et al., 1981)&lt;/strong&gt;: Awareness of the &amp;ldquo;private body&amp;rdquo; (internal sensations) and &amp;ldquo;public body&amp;rdquo;	(observable aspects of body)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;in-summary---which-interoception-questionnaire-should-i-pick&#34;&gt;In summary - which interoception questionnaire should I pick?&lt;/h2&gt;
+&lt;p&gt;Interoceptive questionnaires are a product of their time, often molded by specific contextual demands and underlying theoretical frameworks. As our understanding of interoception evolves, so too do the tools we use to measure it. It might seem like the best option is to pick a questionnaire based on the interoception facet you are interested in (e.g., confusion, attention, accuracy, &amp;hellip;), but as the field is still developing, and the theorethical models are in flux, it might be more useful to consider using a broader, more comprehensive, theory-agnostic questionnaire that captures multiple facets and modalities of interoception, such as the &lt;strong&gt;Mint&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;p&gt;Bergomi, C., Tschacher, W., &amp;amp; Kupper, Z. (2012). The Assessment of Mindfulness with Self-Report Measures: Existing Scales and Open Issues. &lt;em&gt;Mindfulness&lt;/em&gt;, &lt;em&gt;4&lt;/em&gt;(3), 191–202. &lt;a href=&#34;https://doi.org/10.1007/s12671-012-0110-9&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1007/s12671-012-0110-9&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Gabriele, E., Spooner, R., Brewer, R., &amp;amp; Murphy, J. (2021). Dissociations between self-reported interoceptive accuracy and attention: Evidence from the interoceptive attention scale. &lt;em&gt;Biological Psychology&lt;/em&gt;, &lt;em&gt;168&lt;/em&gt;, 108243. &lt;a href=&#34;https://doi.org/10.1016/j.biopsycho.2021.108243&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1016/j.biopsycho.2021.108243&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Kolacz, J., &amp;amp; Bjorum, E. (2023). Measuring Autonomic Symptoms with the Body Perception Questionnaire. &lt;em&gt;The Traumatic Stress Research Consortium&lt;/em&gt; . &lt;a href=&#34;https://www.traumascience.org/s/TSRCMarch2023Newsletter.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://www.traumascience.org/s/TSRCMarch2023Newsletter.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Kolacz, J., Holmes, L., &amp;amp; Porges, S. W. (2018). Body perception questionnaire (BPQ) manual. Traumatic Stress Research Consortium.&lt;/p&gt;
+&lt;p&gt;Makowski, D., Neves, A., Benn, E., Bennett, M., &amp;amp; Poerio, G. (2025). The Mint Scale: A Fresh Validation of the Multimodal Interoception Questionnaire and Comparison to the MAIA, BPQ and IAS. &lt;a href=&#34;https://doi.org/10.31234/osf.io/8qrht_v1&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.31234/osf.io/8qrht_v1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Mehling, Price, Daubenmier, Acree, Bartmess, &amp;amp; Stewart. (2012). The Multidimensional Assessment of Interoceptive Awareness (MAIA). &lt;em&gt;Plos One&lt;/em&gt;, &lt;em&gt;7&lt;/em&gt;(11). &lt;a href=&#34;https://doi.org/10.1371/journal.pone.0048230.g001&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1371/journal.pone.0048230.g001&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Mehling, W. E., Acree, M., Stewart, A., Silas, J., &amp;amp; Jones, A. (2018). The Multidimensional Assessment of Interoceptive Awareness, Version 2 (MAIA-2). &lt;em&gt;PLOS ONE&lt;/em&gt;, &lt;em&gt;13&lt;/em&gt;(12), e0208034. &lt;a href=&#34;https://doi.org/10.1371/journal.pone.0208034&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1371/journal.pone.0208034&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Miller, L. C., Murphy, R., &amp;amp; Buss, A. H. (1981). Consciousness of body: Private and public. &lt;em&gt;Journal of Personality and Social Psychology&lt;/em&gt;, &lt;em&gt;41&lt;/em&gt;(2), 397–406. &lt;a href=&#34;https://doi.org/10.1037/0022-3514.41.2.397&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1037/0022-3514.41.2.397&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Murphy, J., Brewer, R., Plans, D., Khalsa, S. S., Catmur, C., &amp;amp; Bird, G. (2019). Testing the independence of self-reported interoceptive accuracy and attention. &lt;em&gt;Quarterly Journal of Experimental Psychology&lt;/em&gt;, &lt;em&gt;73&lt;/em&gt;(1), 115–133. &lt;a href=&#34;https://doi.org/10.1177/1747021819879826&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1177/1747021819879826&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Paola Solano Durán, Morales, J.-P., &amp;amp; Huepe, D. (2024). Interoceptive awareness in a clinical setting: the need to bring interoceptive perspectives into clinical evaluation. &lt;em&gt;Frontiers in Psychology&lt;/em&gt;, &lt;em&gt;15&lt;/em&gt;(1244701). &lt;a href=&#34;https://doi.org/10.3389/fpsyg.2024.1244701&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.3389/fpsyg.2024.1244701&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Porges. (1993). &lt;em&gt;Body Perception Questionnaire&lt;/em&gt;. Umd.edu. &lt;a href=&#34;https://terpconnect.umd.edu/~sporges/body/body.txt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://terpconnect.umd.edu/~sporges/body/body.txt&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Schandry, R. (1981). Heart Beat Perception and Emotional Experience. &lt;em&gt;Psychophysiology&lt;/em&gt;, &lt;em&gt;18&lt;/em&gt;(4), 483–488. &lt;a href=&#34;https://doi.org/10.1111/j.1469-8986.1981.tb02486.x&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1111/j.1469-8986.1981.tb02486.x&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Sherrington C. S. (1906). The integrative action of the nervous system. Yale University Press.&lt;/p&gt;
+&lt;p&gt;Vlemincx, E., Walentynowicz, M., Zamariola, G., Van Oudenhove, L., &amp;amp; Luminet, O. (2021). A novel self-report scale of interoception: the three-domain interoceptive sensations questionnaire (THISQ). &lt;em&gt;Psychology &amp;amp; Health&lt;/em&gt;, &lt;em&gt;38&lt;/em&gt;(9), 1–20. &lt;a href=&#34;https://doi.org/10.1080/08870446.2021.2009479&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1080/08870446.2021.2009479&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>How to collect and save data with DataPipe in OSF</title>
+      <link>https://realitybending.github.io/post/2025-07-02-datapipeosf/</link>
+      <pubDate>Wed, 02 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/post/2025-07-02-datapipeosf/</guid>
+      <description>&lt;p&gt;Hello there! 👋 Let&amp;rsquo;s learn how to set up DataPipe to collect and save data in OSF.&lt;/p&gt;
+&lt;p&gt;Lets start with some basics!&lt;/p&gt;
+&lt;h2 id=&#34;what-is-datapipe&#34;&gt;What is DataPipe?&lt;/h2&gt;
+&lt;p&gt;DataPipe is a tool that allows you to collect and save data in OSF (Open Science Framework). It is designed to help researchers manage their data collection process efficiently, ensuring that data is stored securely and can be easily accessed for analysis.&lt;/p&gt;
+&lt;h2 id=&#34;how-to-set-up-datapipe-in-osf&#34;&gt;How to set up DataPipe in OSF&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Create an OSF Project&lt;/strong&gt;: Start by creating a new project in &lt;a href=&#34;https://osf.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;OSF&lt;/a&gt;. This will be the container for your data and any related files. You can set up an account if you don&amp;rsquo;t have one already, quite easily!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Go to the OSF homepage and log in or create an account. You can easily sign up through institutional access.&lt;/li&gt;
+&lt;li&gt;Click on &amp;ldquo;Create a New Project&amp;rdquo; and fill in the necessary details such as project title, description, and visibility settings. &lt;em&gt;&lt;strong&gt;DO NOT SET IT AS PUBLIC&lt;/strong&gt;&lt;/em&gt; as the data being saved will not be anonymized and may contain sensitive information.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Create OSF Token&lt;/strong&gt;: You will need to create a token to grant DataPipe the necessary permissions to access your OSF project.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Go to your OSF account settings and navigate to the &amp;ldquo;personal access tokens&amp;rdquo; section.&lt;/li&gt;
+&lt;li&gt;Click on &amp;ldquo;Create a new token&amp;rdquo; and give it a name (e.g., &amp;ldquo;DataPipe Token&amp;rdquo;).&lt;/li&gt;
+&lt;li&gt;Set the permissions for the token, ensuring it has access to read and write data in your project.&lt;/li&gt;
+&lt;li&gt;Copy the generated token; you will need it later.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Link OSF to DataPipe&lt;/strong&gt;: In DataPipe, you will need to link your OSF project using the token you created.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Open DataPipe, click Account on the top right corner and select settings.&lt;/li&gt;
+&lt;li&gt;Click on the &amp;lsquo;Set OSF Token&amp;rsquo; button and paste the token you copied earlier.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Create new experiment on DataPipe&lt;/strong&gt;: Now that your OSF project is linked, you can create a new experiment in DataPipe.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Click on &amp;ldquo;Create New Experiment&amp;rdquo; in DataPipe.&lt;/li&gt;
+&lt;li&gt;Give the experiment a name - I recommend using the same name as your OSF project for consistency.&lt;/li&gt;
+&lt;li&gt;Add the OSF project ID to the experiment settings. You can find the project ID in the URL of your OSF project (it is the alphanumeric string after osf.io/)&lt;/li&gt;
+&lt;li&gt;Create a new OSF Data component called &amp;lsquo;data&amp;rsquo;. This will create a folder - named data - in your OSF project where all the data collected will be saved.&lt;/li&gt;
+&lt;li&gt;Choose Germany - Frankfurt as the server location for your DataPipe experiment. This is important for data privacy and compliance with regulations such as GDPR.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Configure Data Collection&lt;/strong&gt;: Once the experiment is set up on DataPipe enable data collection on the Status section. You can optionally enable base64 data collection if you wish to encode any video, audio or image files as strings. &amp;lsquo;Condition assignment&amp;rsquo; can also be enabled- this makes DataPipe loop through the conditions when it requests the data. When deciding whether these features are suitable, it&amp;rsquo;s best to consider how you will preprocess the data. It&amp;rsquo;s advised that you only enable the minimum needed as a security measure.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Save the data from the experiment hosted on GitHub&lt;/strong&gt;: If you are using a GitHub repository to host your experiment, you can save the data collected by writing the below code to the experiment HTML file. This bit of code should be called at the end of your experiment to ensure that all data is saved to the OSF project&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Here is what the code should look like in your experiment HTML file:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// Save data via DataPipe
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;nx&#34;&gt;timeline&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;push&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nx&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;jsPsychPipe&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nx&#34;&gt;action&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;save&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nx&#34;&gt;experiment_id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;xxxxxxxxxx&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// This in generated in the DataPipe interface
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;nx&#34;&gt;filename&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;participantID&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;sb&#34;&gt;.csv`&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nx&#34;&gt;data_string&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;jsPsych&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;().&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;csv&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(),&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;On the experiment created on DataPipe, there is an &amp;lsquo;Experiment ID&amp;rsquo; field. This is the ID you need to add to the &lt;code&gt;experiment_id&lt;/code&gt; field in the code above.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The &lt;code&gt;filename&lt;/code&gt; field can be customized to include the participant ID or any other identifier you prefer.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;If publishing your experiment to GitHub, make sure the link is&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&amp;lsquo;https://[your username].github.io/[your repository name]&amp;rsquo;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;or &lt;em&gt;&amp;lsquo;https://[your username].github.io/[your repository name]/[name of experiment&amp;rsquo;s html file]&amp;rsquo;&lt;/em&gt; if the html file for your experiment is named anything other than &lt;code&gt;&#39;index.html&#39;&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Run Your Experiment&lt;/strong&gt;: With everything set up, you can now run your experiment. DataPipe will automatically collect and save the data to your OSF project as specified.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Give it a try!&lt;/em&gt; If you&amp;rsquo;d like further clarification, the &lt;a href=&#34;https://pipe.jspsych.org/getting-started&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DataPipe website&lt;/a&gt; includes a useful outline.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Sussex Psychological Methods MRes: Tips and Advice</title>
+      <link>https://realitybending.github.io/post/2024-03-19-mres/</link>
+      <pubDate>Tue, 19 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/post/2024-03-19-mres/</guid>
+      <description>&lt;p&gt;Ola! I&amp;rsquo;m &lt;a href=&#34;https://realitybending.github.io/authors/AnafNeves/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Ana&lt;/a&gt;. As I&amp;rsquo;m starting to approach the end of the year, it might be a good time to reflect and share my experience of doing a research masters in psychological methods at the University of Sussex, during the 2023/2024 academic year. First, I will talk a little bit about the modules I took; then I will mentioned all the reasons why you should choose to work with the Reality Bending Lab (ReBeL) and lastly, I will share some &lt;strong&gt;gems on how to survive the masters&lt;/strong&gt; 💎. Hopefully this blog will help you decide whether this degree is for you! Shall we start?&lt;/p&gt;
+&lt;h2 id=&#34;overview-of-the-modules&#34;&gt;Overview of the Modules&lt;/h2&gt;
+&lt;p&gt;Since this is a &lt;strong&gt;research masters&lt;/strong&gt; (MRes) aiming to prepare students for a future career as psychology researchers, the modules will have a significant focus on different research frameworks and practices, statistics and coding. During the Autumn semester you will have three main modules: 1) a (re)introduction to statistical models; 2) an introduction to Qualitative Methods; and 3) an introduction to better quality research practices. This term is super heavy on its content (no jokes) and will feel like a lot to do and learn (see below for tips on how to survive). However, there are plenty of materials to help you through this term, such as the R tutorials from our own in-house celebrity Professor Andy Field.&lt;/p&gt;
+&lt;p&gt;The Spring semester is less content heavy and more practical focus. There are again, three main modules: 1) a theoretical and practical module on how to use advanced statistical methods; 2) an introduction to the Bayesian framework; and 3) an introduction to Python programming and how to use it to implement experiments. This has been a delightful term, not because it is &lt;em&gt;easy&lt;/em&gt;, but because the focus is less on &lt;strong&gt;memorising&lt;/strong&gt; and more on &lt;strong&gt;learning how&lt;/strong&gt;. Similarly, there are plenty of amazing materials to help you through this term such as optional zoom meetings to help you understand the materials and continuous communication on discord between lecturers and students.&lt;/p&gt;
+&lt;p&gt;Additionally, there will be a research module that runs both in Autumn and Spring, and a dissertation module that starts in January and ends in August (i.e., when the dissertation project is due).&lt;/p&gt;
+&lt;h2 id=&#34;the-internship&#34;&gt;The Internship&lt;/h2&gt;
+&lt;p&gt;Critically, you will also do an &amp;ldquo;internship&amp;rdquo; as part of this masters (named the &amp;ldquo;research process&amp;rdquo; module 🤷‍♀️). This is by far &lt;strong&gt;the most exciting part&lt;/strong&gt; of this masters as you will learn first-hand what is like to be a researcher. You can essentially chose any psychology researcher from Sussex to work with, providing you with a great network and experience. Now&amp;hellip; you may be wondering &lt;strong&gt;what lab to choose?&lt;/strong&gt; And oh boy, do I have the answer for you!&lt;/p&gt;
+&lt;p&gt;Introducing the &lt;strong&gt;Reality Bending Lab (ReBeL)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Rebel is led by &lt;a href=&#34;https://realitybending.github.io/authors/dominique-makowski/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Dr. Dominique Makowski&lt;/a&gt;. He will be your Mr. Miyagi during the Autumn and Spring term (and also your lecturer for the Bayesian Module). His patience, humour, straightforwardness and unmatched theoretical and pragmatic knowledge will be one of the big reasons why you will desire to be a researcher at the end of this masters (PS: no payment has been received in exchange for this testimony). The lab focus a lot on &lt;strong&gt;innovation&lt;/strong&gt; hence you will learn new ways to collect neuroscientific data and use new statistical methods. There will also be a big focus on &lt;strong&gt;collaboration&lt;/strong&gt;. Yes you will work independently, however more likely than not you will have the support of everyone in the lab, and you will be giving support yourself (getting a bit of experience on supervision and mentoring). &lt;strong&gt;Curiosity&lt;/strong&gt; is welcome and encouraged. Ask your questions, get involved in all aspects of the process if possible, and take advantage of the fact you will have a &amp;lsquo;mentor&amp;rsquo; for the whole academic year.&lt;/p&gt;
+&lt;p&gt;During my time at ReBeL, I have been involved in various projects, such as &amp;ldquo;Exploring the Correlation between Interoception and Primal World Beliefs&amp;rdquo; and a meta-analysis of a widely used questionnaire of Interoception. These projects have taught me a lot, from how to collect and analyse both physiological and behavioural data, access and collect data for a meta-analysis, and report the work I did in oral and written format. Throughout the year, with the guidance and expertise of everyone involved in the lab, I gained a lot of confidence in my abilities as a researcher. Which is why I found this internship the most influential aspect of my masters.  Ultimately, at the ReBeL lab, you will not only &lt;strong&gt;investigate exciting concepts and topics but you will also have first hand experience on what it actually takes to be a researcher&lt;/strong&gt; (including the need to have a twitter account, apparently).&lt;/p&gt;
+&lt;h2 id=&#34;survival-tips&#34;&gt;Survival Tips&lt;/h2&gt;
+&lt;p&gt;Now&amp;hellip; You might be wondering.. &amp;ldquo;How in the world will I do all of this in one academic year?&amp;rdquo; Here are some tips that helped me gain the most of this masters without loosing my mind.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Unsurprising tip&lt;/strong&gt;: DO THE WEEKLY WORKSHOPS/TUTORIALS. They will provide with the majority of code, steps and knowledge necessary to complete the assignments.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Life saving tip&lt;/strong&gt;: do meal prep for the 48-hour assignments. If you are anything like me you will rather lose sleep then a delicious home-made meal. However, with the short time window to complete these assignments, meal prepping will help you feel less anxious about &amp;ldquo;not having enough time&amp;rdquo; to complete it all whilst still giving your mind everything it needs to function (i.e., sleep and nutrients).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Qualitative tip&lt;/strong&gt;: as part of the January assignments, you will be asked to analyse 5 interviews using a qualitative method. If you come from a mostly quantitative background like me, you will be unfamiliar to how long it takes to code qualitative data. Do not make the same mistakes as I did and start that assignment as early as possible.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Student formatting tip&lt;/strong&gt;: when lectures say &amp;ldquo;I want it in APA format&amp;rdquo; some will expect you to write a piece of work that equates a publication level piece of work. When in doubt, ask them!&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Practical life skills tip&lt;/strong&gt;: communication is key with your supervisors. Especially during your internship; be honest about what you can and can not do, your preferred ways of working, your goals and dreams, and mostly important when you need help.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ultimate tip&lt;/strong&gt;: do consider part-time , especially if you want/need to be working more than 20 hours a week on top of doing this masters. It is full on, and even as part-time all the lectures will be taught in the first year and hence there is still a lot of work to do. But it is possible, and can even be &lt;em&gt;enjoyable&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>How to Assess Task Reliability using Bayesian Mixed Models</title>
+      <link>https://realitybending.github.io/post/2024-03-18-signaltonoisemixed/</link>
+      <pubDate>Mon, 18 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/post/2024-03-18-signaltonoisemixed/</guid>
+      <description>&lt;p&gt;Using reliable tasks when assessing inter-individual differences is a key issue for differential psychology and neuropsychology, and many research areas are clouded with mixed evidence stemming out of the suboptimal computation of individual scores (e.g., tasks with not enough trials, scores consisting in computing the difference, aka the &lt;strong&gt;contrast&lt;/strong&gt; between two conditions; see &lt;a href=&#34;https://osf.io/preprints/psyarxiv/8ktn6&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Rouder et al., 2024&lt;/a&gt;). As such, measuring and reporting the reliability of the paradigms used could be an important step for &lt;strong&gt;increasing results replicability&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Recently, a new approach has emerged, suggesting to assess task sensitivity to inter-individual differences by leveraging mixed models (&lt;a href=&#34;https://doi.org/10.1177/09637214231220923&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Rouder et al., 2024&lt;/a&gt;).
+In essence, the idea is to fit a statistical model that tests for the &lt;strong&gt;general population level&lt;/strong&gt; effect of a manipulation in a given task/experiment (e.g., the impact of a variable &lt;strong&gt;Difficulty&lt;/strong&gt; on another variable &lt;strong&gt;RT&lt;/strong&gt;), and incorporates a &lt;strong&gt;random effect&lt;/strong&gt; for each participant. This &amp;ldquo;full&amp;rdquo; mixed model essentially models the general population level by taking into account all the inter-individual effects and - as a side effect - &lt;strong&gt;estimates the effects of interest for each participant separately&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;When fitting these models under a Bayesian framework, one can easily estimate the &amp;ldquo;variability&amp;rdquo; (or certainty) of the effect in each participant. This is great, because it allows us to assess a &amp;ldquo;signal-to-noise&amp;rdquo; ratio, an index of how much the interindividual variability (how participants vary) is larger than the intraindividual variability (e.g., how much participants vary across trial, or how precisely participants&amp;rsquo; effects are estimated).&lt;/p&gt;
+&lt;p&gt;In this &amp;ldquo;Signal-To-Noise Ratio as Effect Reliability&amp;rdquo; framework, an ideal task/manipulation would have a strong inter-individual variability (i.e., participants would on average vary a lot) and a low intra-individual variability (each participant would have very consistent effects), which leads to a reliable measure of interindividual effects.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s see how we can do that in R using the &lt;code&gt;brms&lt;/code&gt; package for fitting Bayesian mixed model. First, let&amp;rsquo;s start to generate 4 datasets with different levels of inter-individual and intra-individual variability.&lt;/p&gt;
+&lt;details&gt;
+  &lt;summary&gt;Show code&lt;/summary&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;library&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;easystats&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;library&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tidyverse&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;library&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;brms&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;library&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;patchwork&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Make function to generate data&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;generate_data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n_trials&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;25&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;effect_sd&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0.4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;intercept_sd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0.4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;noise&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0.8&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;df&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;df&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;data.frame&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kr&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;participant&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;rnorm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n_trials&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;y&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;rnorm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;effect_sd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;rnorm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;intercept_sd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;y&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;y&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;rnorm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n_trials&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;noise&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;df&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;rbind&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;data.frame&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Difficulty&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;RT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                               &lt;span class=&#34;n&#34;&gt;Participant&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;paste0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;S&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;participant&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;df&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Name&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;df&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Generate 4 datasets&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;df1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;generate_data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n_trials&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;effect_sd&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0.5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;intercept_sd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0.5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;1. Intercept and Effect&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;df2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;generate_data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n_trials&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;effect_sd&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0.1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;intercept_sd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0.5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;2. Intercept Only&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;df3&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;generate_data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n_trials&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;effect_sd&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0.5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;intercept_sd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0.1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;3. Effect Only&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;df4&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;generate_data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n_trials&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;200&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;effect_sd&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0.5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;intercept_sd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0.5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;4. More trials&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Plot data&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;rbind&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;df1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;df2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;df3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;df4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nf&#34;&gt;ggplot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;aes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Difficulty&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;RT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Participant&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fill&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Participant&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nf&#34;&gt;geom_point2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;alpha&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0.5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nf&#34;&gt;geom_smooth&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;method&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;lm&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;se&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;TRUE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;alpha&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0.2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nf&#34;&gt;theme_minimal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nf&#34;&gt;scale_fill_material_d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nf&#34;&gt;scale_color_material_d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nf&#34;&gt;facet_wrap&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;~&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;scales&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;free&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/details&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
+               /post/2024-03-18-signaltonoisemixed/fig1_hu10916532941443093308.webp 400w,
+               /post/2024-03-18-signaltonoisemixed/fig1_hu10510732651174981726.webp 760w,
+               /post/2024-03-18-signaltonoisemixed/fig1_hu11011503002427766931.webp 1200w&#34;
+               src=&#34;https://realitybending.github.io/post/2024-03-18-signaltonoisemixed/fig1_hu10916532941443093308.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;760&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;In each of the dataset, we simulated the data of &lt;strong&gt;20 participants&lt;/strong&gt; undergoing a task with &lt;em&gt;n&lt;/em&gt; trials varying in &lt;strong&gt;difficulty&lt;/strong&gt;, and we recorded their &lt;strong&gt;reaction time (RT)&lt;/strong&gt;. Note that while in our example &lt;em&gt;difficulty&lt;/em&gt; is a continuous variable, it would work the same if it was categorical variable (e.g., effect of condition B over A, intervention vs. baseline, incongruent vs. congruent, etc.).&lt;/p&gt;
+&lt;p&gt;When we fit a linear regression of the form &lt;em&gt;RT ~ difficulty&lt;/em&gt;, we are estimating two parameters; the &lt;em&gt;intercept&lt;/em&gt; (which can be seen as the &amp;ldquo;baseline&amp;rdquo; RT, i.e., &lt;strong&gt;participants&amp;rsquo; baseline processing speed&lt;/strong&gt; when the difficulty is 0) and the &lt;em&gt;slope&lt;/em&gt; (how much participants are impacted by this variable). These two parameters are in principle independent (a participant can be very fast regardless of the difficulty, and another one could be equally fast at baseline - same intercept - but very slow when the task is difficult - strong slope).&lt;/p&gt;
+&lt;p&gt;We simulated 4 datasets with different participant characteristics:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Dataset 1&lt;/strong&gt;: Both the RT intercept (&lt;strong&gt;the &amp;ldquo;baseline&amp;rdquo; RT&lt;/strong&gt;) and the effect of the manipulation (the &lt;strong&gt;effect of difficulty&lt;/strong&gt;) vary across participants.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dataset 2&lt;/strong&gt;: Not much interindividual variability in the effect (only the baseline RT varies).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dataset 3&lt;/strong&gt;: Not much interindividual variability in the baseline RT (only the effect of difficulty varies from participant to participant).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dataset 4&lt;/strong&gt;: Same as dataset 1, but with more trials (200 instead of 20). As you can see, the &amp;ldquo;precision&amp;rdquo; ribbon around the regression line is much narrower, indicating that the effect is more precisely estimated.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We expect that reliability of the paradigm to measure 1) the sensitivity to &lt;strong&gt;difficulty&lt;/strong&gt; and 2) the &lt;strong&gt;baseline RT&lt;/strong&gt; will be higher in dataset 4 (because more trials) than in dataset 1. Moreover, the sensitivity to &lt;strong&gt;difficulty&lt;/strong&gt; will be particularly low in dataset 2 (where only the baseline RT is set to varies), and similarly for baseline RT in dataset 3 &lt;em&gt;mutatis mutandis&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Now, let&amp;rsquo;s fit a Bayesian linear mixed model to each of these datasets (note that we specify the effect of Difficulty as a random &lt;em&gt;slope&lt;/em&gt; in addition to estimating the random intercept).&lt;/p&gt;
+&lt;details&gt;
+  &lt;summary&gt;Show code&lt;/summary&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;model1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;brms&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;brm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;RT&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;~&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Difficulty&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Difficulty&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Participant&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;df1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;iter&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;600&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;model2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;brms&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;brm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;RT&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;~&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Difficulty&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Difficulty&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Participant&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;df2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;iter&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;600&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;model3&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;brms&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;brm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;RT&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;~&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Difficulty&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Difficulty&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Participant&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;df3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;iter&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;600&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;model4&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;brms&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;brm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;RT&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;~&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Difficulty&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Difficulty&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Participant&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;df4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;iter&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;600&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/details&gt;
+&lt;p&gt;This model basically computes the overall relationship (Intercept + Slope) between difficulty and RT, as well as &lt;strong&gt;for each participant&lt;/strong&gt;.
+We can then extract the &lt;strong&gt;posterior distribution&lt;/strong&gt; of these individual effects (i.e., the value of the &lt;strong&gt;Intercept&lt;/strong&gt; and the &lt;strong&gt;Slope&lt;/strong&gt; for each participant).&lt;/p&gt;
+&lt;details&gt;
+  &lt;summary&gt;Show code&lt;/summary&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Random effects extraction&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;extract_individual&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;model&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;df&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;coefs&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;coef&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;model&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;summary&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;FALSE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Participant&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;rbind&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nf&#34;&gt;as.data.frame&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;coefs[&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Intercept&amp;#34;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nf&#34;&gt;pivot_longer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;everything&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(),&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;names_to&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Participant&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;values_to&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Value&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nf&#34;&gt;mutate&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Parameter&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Intercept&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nf&#34;&gt;as.data.frame&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;coefs[&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Difficulty&amp;#34;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nf&#34;&gt;pivot_longer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;everything&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(),&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;names_to&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Participant&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;values_to&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Value&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nf&#34;&gt;mutate&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Parameter&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Difficulty&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;re1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;extract_individual&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;model1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;1. Intercept and Effect&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;re2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;extract_individual&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;model2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;2. Intercept Only&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;re3&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;extract_individual&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;model3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;3. Effect Only&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;re4&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;extract_individual&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;model4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;4. More trials&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Plot Random effects&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;rbind&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;re1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;re2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;re3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;re4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nf&#34;&gt;ggplot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;aes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Participant&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fill&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Participant&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;ggdist&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;stat_slabinterval&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;adjust&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;linewidth&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0.5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0.5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nf&#34;&gt;scale_fill_material_d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nf&#34;&gt;theme_minimal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nf&#34;&gt;facet_grid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;~&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Parameter&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;scales&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;free&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/details&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
+               /post/2024-03-18-signaltonoisemixed/fig2_hu16405151688740038151.webp 400w,
+               /post/2024-03-18-signaltonoisemixed/fig2_hu8111061218773066308.webp 760w,
+               /post/2024-03-18-signaltonoisemixed/fig2_hu7518281655070277663.webp 1200w&#34;
+               src=&#34;https://realitybending.github.io/post/2024-03-18-signaltonoisemixed/fig2_hu16405151688740038151.webp&#34;
+               width=&#34;570&#34;
+               height=&#34;760&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Each participant&amp;rsquo;s &amp;ldquo;score&amp;rdquo; (for the baseline RT score, i.e., the intercept; and the effect of difficulty, i.e., the slope) is represented by &lt;strong&gt;a distribution&lt;/strong&gt;.
+This distribution is wider when there is less trials, which can be interpreted as more uncertainty about the exact estimate.
+Some datasets have a low interindividual variability for some parameters (e.g., dataset 2 has not much interindividual variability in the effect of difficulty).&lt;/p&gt;
+&lt;p&gt;We can now compute, for each participant, the &amp;ldquo;mean&amp;rdquo; of its effects (for the intercept and the slope), as well as its own effect SD (intra-individual variability).&lt;/p&gt;
+&lt;details&gt;
+  &lt;summary&gt;Show code&lt;/summary&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;scores&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;rbind&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;re1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;re2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;re3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;re4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nf&#34;&gt;summarize&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;Mean&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;mean&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;SD&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;sd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;.by&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Name&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Parameter&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Participant&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;scores&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/details&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Name&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Parameter&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Participant&lt;/th&gt;
+          &lt;th style=&#34;text-align: right&#34;&gt;Mean&lt;/th&gt;
+          &lt;th style=&#34;text-align: right&#34;&gt;SD&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;1. Intercept and Effect&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Intercept&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;S1&lt;/td&gt;
+          &lt;td style=&#34;text-align: right&#34;&gt;0.37&lt;/td&gt;
+          &lt;td style=&#34;text-align: right&#34;&gt;0.20&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;1. Intercept and Effect&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Intercept&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;S10&lt;/td&gt;
+          &lt;td style=&#34;text-align: right&#34;&gt;-1.05&lt;/td&gt;
+          &lt;td style=&#34;text-align: right&#34;&gt;0.20&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;1. Intercept and Effect&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Intercept&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;S11&lt;/td&gt;
+          &lt;td style=&#34;text-align: right&#34;&gt;0.88&lt;/td&gt;
+          &lt;td style=&#34;text-align: right&#34;&gt;0.19&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;1. Intercept and Effect&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Intercept&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;S12&lt;/td&gt;
+          &lt;td style=&#34;text-align: right&#34;&gt;-0.30&lt;/td&gt;
+          &lt;td style=&#34;text-align: right&#34;&gt;0.18&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;1. Intercept and Effect&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Intercept&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;S13&lt;/td&gt;
+          &lt;td style=&#34;text-align: right&#34;&gt;0.16&lt;/td&gt;
+          &lt;td style=&#34;text-align: right&#34;&gt;0.19&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;1. Intercept and Effect&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Intercept&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;S14&lt;/td&gt;
+          &lt;td style=&#34;text-align: right&#34;&gt;0.57&lt;/td&gt;
+          &lt;td style=&#34;text-align: right&#34;&gt;0.19&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Finally, we can compute the &lt;strong&gt;Signal-to-Noise Ratio&lt;/strong&gt; for each parameter for each dataset, which is the ratio of the interindividual variability (the SD of the individual mean scores) over the average intraindividual variability (the average of the individual SDs).&lt;/p&gt;
+&lt;details&gt;
+  &lt;summary&gt;Show code&lt;/summary&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;summarize&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;scores&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          &lt;span class=&#34;n&#34;&gt;SNR&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;sd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Mean&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;mean&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SD&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          &lt;span class=&#34;n&#34;&gt;.by&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Name&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Parameter&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/details&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Name&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Parameter&lt;/th&gt;
+          &lt;th style=&#34;text-align: right&#34;&gt;SNR&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;1. Intercept and Effect&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Intercept&lt;/td&gt;
+          &lt;td style=&#34;text-align: right&#34;&gt;2.87&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;1. Intercept and Effect&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Difficulty&lt;/td&gt;
+          &lt;td style=&#34;text-align: right&#34;&gt;3.00&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;2. Intercept Only&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Intercept&lt;/td&gt;
+          &lt;td style=&#34;text-align: right&#34;&gt;2.57&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;2. Intercept Only&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Difficulty&lt;/td&gt;
+          &lt;td style=&#34;text-align: right&#34;&gt;0.55&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;3. Effect Only&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Intercept&lt;/td&gt;
+          &lt;td style=&#34;text-align: right&#34;&gt;0.88&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;3. Effect Only&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Difficulty&lt;/td&gt;
+          &lt;td style=&#34;text-align: right&#34;&gt;2.59&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;4. More trials&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Intercept&lt;/td&gt;
+          &lt;td style=&#34;text-align: right&#34;&gt;8.88&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;4. More trials&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Difficulty&lt;/td&gt;
+          &lt;td style=&#34;text-align: right&#34;&gt;7.97&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;As predicted, the &amp;ldquo;reliability&amp;rdquo; of the paradigm to measure the interindividual effect of difficulty on RT is low in dataset 2 (where only the baseline RT varies), moderate in dataset 1 and 3, and high in dataset 4 where there are more trials.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Junior Research Assistant (JRA) at Sussex: is it worth it?</title>
+      <link>https://realitybending.github.io/post/2024-03-12-jingjra/</link>
+      <pubDate>Thu, 02 Nov 2023 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/post/2024-03-12-jingjra/</guid>
+      <description>&lt;p&gt;Hi all, I am &lt;a href=&#34;https://realitybending.github.io/authors/jingxiong-xu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Jing&lt;/a&gt;, and I thought I would share my experience as a Psychology Junior Research Assistant (JRA) at the University of Sussex, as many students might wonder how it is really like. Obviously, I cannot speak for all the labs, but I hope my experience can give you a general idea of what to expect.&lt;/p&gt;
+&lt;p&gt;I worked as a JRA during summer 2023 at the Reality Bending Lab (ReBeL). And to put it simply, I think it was &lt;strong&gt;the most valuable experience&lt;/strong&gt; during my undergraduate journey &lt;em&gt;(PS: I have &lt;strong&gt;not&lt;/strong&gt; written this at gunpoint)&lt;/em&gt;. During these three months, I was supervised by Dr Makowski to work on a piece of original research, that thought me a lot about programming, cognitive neuropsychology, physio recordings and how real research is done. Additionally, know that it is possible to stay in the same lab next academic year, to do your final year &lt;strong&gt;dissertation with a strong head start&lt;/strong&gt; in terms of skills and knowledge.&lt;/p&gt;
+&lt;img src=&#34;poster.jpg&#34; align=&#34;right&#34; width=&#34;40%&#34;&gt; 
+&lt;p&gt;I had the pleasure of joining the Reality Bending Lab (ReBeL) along with &lt;a href=&#34;https://realitybending.github.io/authors/auz-moore/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Auz&lt;/a&gt;, as the first two members since the lab moved to the UK. The title of my project was &lt;strong&gt;&amp;ldquo;Exploring the Correlation between Interoception and Primal World Beliefs&amp;rdquo;&lt;/strong&gt;, which involved collecting &lt;strong&gt;physiological data&lt;/strong&gt; (e.g., heart rate, respiration, &amp;hellip;) in various tasks, analysing them, and investigating the relationship between various measures. The project started from scratch, where I learned how to use the &lt;strong&gt;JavaScript package JsPsych&lt;/strong&gt; to build the entire paradigm via coding. I also received detailed training on how to run a lab-based experiment, something I used to be worried but am now &lt;strong&gt;extremely confident about&lt;/strong&gt;. After collecting the data from 20 participants (&lt;em&gt;summer time goes by veryyyy fast!&lt;/em&gt;), I learned how to make and visualize Bayesian correlations in R. The output of this project was made into an academic poster, where I had to be creative and selective, to be presented at the poster session (see below). Additionally, we created the &lt;a href=&#34;https://github.com/RealityBending/SussexPhysioProtocol&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;&amp;ldquo;Sussex Psychophysiological Research Protocol&amp;rdquo;&lt;/em&gt;&lt;/a&gt;, a document aiming at providing guidelines for the best practices in psychophysiological research, to benefit future research done at Sussex. It might not seem like much, but it felt like doing real contributions to research, which was great!&lt;/p&gt;
+&lt;p&gt;Something important I learned is, beyond pure academic excellence, research is also about community and networking. It was a great occasion to &lt;strong&gt;informally meet many researchers&lt;/strong&gt;, and make bonds with other students. What is cool is that the JRA journey doesn&amp;rsquo;t stop abruptly and continues into the next academic year, as all candidates are invited to present their work at the &lt;strong&gt;JRA conference&lt;/strong&gt; held by the university in October. This was an amazing opportunity to get a glimpse of what a scientific conference might be, feel proud about your work, connecting with fellow students, learning how to talk about research with other staff members, and gaining public speaking skills. For those who are more ambitious, why not submit your work to the national level, and present it in the British Conference for Undergraduate Research (BCUR)?&lt;/p&gt;
+&lt;p&gt;In summary, I see the JRA as a golden key to open countless possibilities for your &lt;strong&gt;future career path&lt;/strong&gt;. For those considering applying to &lt;strong&gt;postgraduate studies&lt;/strong&gt; or research assistants, the strong research experience you gained will &lt;strong&gt;put you at the top of the list&lt;/strong&gt;. Even for those who decided to not do research in the future, it will still be rewarding as it gives a clear idea of what career you do not want. Don&amp;rsquo;t miss on it!&lt;/p&gt;
+&lt;p align=&#34;right&#34;&gt;- Jing&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
+               /post/2024-03-12-jingjra/ceremony_hu6453224026432249977.webp 400w,
+               /post/2024-03-12-jingjra/ceremony_hu13877427795351555558.webp 760w,
+               /post/2024-03-12-jingjra/ceremony_hu7998517612034990612.webp 1200w&#34;
+               src=&#34;https://realitybending.github.io/post/2024-03-12-jingjra/ceremony_hu6453224026432249977.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;570&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>How do we know what is real? The &#39;Affective Reality Theory&#39;</title>
+      <link>https://realitybending.github.io/post/2023-04-11-affectivereality/</link>
+      <pubDate>Tue, 11 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/post/2023-04-11-affectivereality/</guid>
+      <description>&lt;p&gt;I thought it would be interesting to summarize an idea developed during my PhD on &amp;ldquo;fictional reappraisal&amp;rdquo;, i.e., on the effect of the belief that an emotional stimulus is not real (&lt;a href=&#34;https://www.theses.fr/2018USPCB188&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Makowski, 2018&lt;/a&gt;). That of &lt;strong&gt;Affective Reality&lt;/strong&gt;, which is a hypothesis about the &lt;strong&gt;role of affective reactions in the formation of reality beliefs&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The premise it lies on is that we have entered a &amp;ldquo;post-truth era&amp;rdquo;, in which &lt;strong&gt;the distinction between real and simulated (&amp;ldquo;fake&amp;rdquo;) objects has become virtually impossible&lt;/strong&gt; based on physical characteristics alone. In other words, technology has developed so much that we can forge (or will be able to in the near future) &amp;ldquo;artificial&amp;rdquo; &lt;strong&gt;&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/strong&gt; content (e.g., text and images with AIs, and even environments with VR) that is indistinguishable from its original counterpart. For instance, face generation algorithms are so advanced that it is impossible nowadays to tell the difference with the naked eye between a real photo and AI-generated image.&lt;/p&gt;
+&lt;p&gt;Once we agree on this premise of objective equivalence between reality and simulation, the question of &lt;strong&gt;how do we form judgments and make decisions about the reality of objects&lt;/strong&gt; arises. In the absence of clues within the stimuli, we are left with with other sources of epistemological information, such as contextual cues (in the case of news, who is the author, what is the outlet it got published, etc.), and &lt;strong&gt;&lt;em&gt;internal&lt;/em&gt; cues&lt;/strong&gt; (subjective characteristics: how does it relate to our knowledge, how does it make us feel, etc.). The latter is of particular interest to us psychologists.&lt;/p&gt;
+&lt;p&gt;We refer to the process of forming reality beliefs as &lt;strong&gt;simulation monitoring&lt;/strong&gt; (&lt;a href=&#34;https://realitybending.github.io/publication/makowski2019phenomenal/makowski2019phenomenal.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Makowski et al., 2019&lt;/a&gt;), which is a somewhat controversial term (that some &lt;strong&gt;&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/strong&gt; have considered as almost counterintuitive). The reason for this term, instead of something along the lines &amp;ldquo;reality appraisal&amp;rdquo; &lt;strong&gt;&lt;sup id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/strong&gt;, is the assumption that &lt;strong&gt;reality is our default mode of experience&lt;/strong&gt;. In other words, we are not well equipped (neurocognitively speaking) to detect and classify things as non-real, as these objects are very recent in our evolutionary history. Thus, according to the &lt;strong&gt;Affective Reality Theory&lt;/strong&gt;, by default, the brain considers the origin of its experiences as real&amp;hellip; but this &amp;ldquo;belief&amp;rdquo; is, most of the time, not even fully formed, remaining implicit and subconscious (i.e., we don&amp;rsquo;t spend all our cognitive resources with a constant &amp;ldquo;this is real. This is real too. That too.&amp;rdquo; labelling). &lt;strong&gt;This default mode acts as a higher-level, transparent prior over our experiences&lt;/strong&gt;, providing a scaffolding and structuring our perception, thoughts and reactions. We do not actively appraise the world as real (it is the baseline position), but instead can ask ourselves whether it is simulated, hence simulation monitoring.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;AffectiveRealityTheory_Makowski.png&#34; alt=&#34;The Affective Reality Theory (Makowski, 2018)&#34;/&gt;
+  &lt;figcaption&gt;&lt;i&gt;The Affective Reality Theory posits that reality beliefs (the tendency to believe that something is real, as opposed to non-real) is related to  emotions and/or bodily reactions through a quadratic (inverse U-shaped) relationship..&lt;/i&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;The &lt;strong&gt;Affective Reality&lt;/strong&gt; hypothesis posits that simulation monitoring is strongly connected to &amp;ldquo;affective processing&amp;rdquo; &lt;strong&gt;&lt;sup id=&#34;fnref:4&#34;&gt;&lt;a href=&#34;#fn:4&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/strong&gt; through a quadratic (inverse U-shaped) relationship. This means that stimuli associated with a stronger emotional and/or bodily reaction will preferentially bias our judgment towards &amp;ldquo;reality&amp;rdquo;. In other words, things that elicit feelings and/or bodily arousal, &lt;em&gt;ceteris paribus&lt;/em&gt;, will be more likely to be classified as &amp;ldquo;real&amp;rdquo; (as opposed to fake). In fact, strongly emotional events will even &amp;ldquo;feel&amp;rdquo; more real: this transparent default prior and subconscious belief (&amp;ldquo;agnostic-real&amp;rdquo;) will be replaced in high-intensity scenarios by an explicit and conscious impression that the stimulus is very real, and, if logic opposes, that it &amp;ldquo;must be real&amp;rdquo; regardless.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Isn&amp;rsquo;t it the other way round&lt;/strong&gt;, you might wonder: that real stimuli (as opposed to ones believed to be non-real) are associated with a stronger emotional reactions? And that &lt;strong&gt;it is the believed reality that drives the emotional response&lt;/strong&gt;? Indeed, we do believe that there is a two-ways relationship between simulation monitoring and emotions. But it is not exactly that beliefs of reality are associated with stronger emotions, but rather that beliefs that something is &lt;em&gt;not&lt;/em&gt; real leads to a lower emotional response (the usage of fiction as an emotion regulation strategy - &amp;ldquo;fictional reappraisal&amp;rdquo; - was the main topic of my doctoral dissertation). In fact, the Affective Reality theory posits that this regulatory effect of &lt;strong&gt;simulation monitoring starts to dominate after a certain point where the emotion becomes too strong&lt;/strong&gt; and unbearable: beliefs such as &amp;ldquo;it can&amp;rsquo;t be real&amp;rdquo;, and other forms of reality denials are invoked automatically to protect us and help us cope with distressing information.&lt;/p&gt;
+&lt;p&gt;To summarize this summary, the Affective Reality hypothesis claims that from mild to relatively strong emotional stimuli, the effect of affect on simulation monitoring dominates (&lt;strong&gt;+affect → +reality&lt;/strong&gt;) and will bias our judgment towards &amp;ldquo;reality&amp;rdquo; (strengthening awareness and confidence), up until a point where the emotion regulation benefits of unreality will be automatically invoked (&lt;strong&gt;-reality → -affect&lt;/strong&gt;), increasing the likelihood and confidence of judgments of simulation (potentially far into psychopathological terrains).&lt;/p&gt;
+&lt;h2 id=&#34;open-questions&#34;&gt;Open questions&lt;/h2&gt;
+&lt;p&gt;The Affective Reality theory is for now a working hypothesis that we are trying to empirically prove or disprove at the &lt;a href=&#34;https://realitybending.github.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Reality Bending Lab&lt;/strong&gt;&lt;/a&gt;. Moreover, some questions remain open:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Is it actually &lt;strong&gt;embodied reality or emotional reality?&lt;/strong&gt; While we used the term &amp;ldquo;affective&amp;rdquo; reality to remain general, the question of whether it is emotions as a subjective psychological reaction, or merely bodily arousal (reactions of the body, e.g., stronger heart rate variability), that is the key ingredient remains unclear. The role of &lt;strong&gt;interoception&lt;/strong&gt; (the ability and tendency to detect, track, attend to and rely on internal signals), while likely important, also remains to be specified.&lt;/li&gt;
+&lt;li&gt;Is it the affective &lt;strong&gt;context or stimulus&lt;/strong&gt; that matters? Let&amp;rsquo;s assume we have affective reaction concomitant to the experience of an object, but not directly related to the object. Would that bias simulation monitoring? Does perceived causality between a bodily reaction and the object of experience matters?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- Experiment  with loud unpleasant noises around images vs. pleasant noises. --&gt;
+&lt;!-- We know that fake news tend to be emotional on average, and are also believed by anxious people. --&gt;
+&lt;h2 id=&#34;notes&#34;&gt;Notes&lt;/h2&gt;
+&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;
+&lt;p&gt;You may notice that I used different words related to the concept of &amp;ldquo;unreal&amp;rdquo;, such as simulated, fake, artificial, virtual, simulated, fictional. While they can be used interchangeably in the context above, they are not exact synonyms.&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34;&gt;
+&lt;p&gt;Like that pesky &lt;em&gt;reviewer 2&lt;/em&gt;, obviously.&amp;#160;&lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:3&#34;&gt;
+&lt;p&gt;Note that &amp;ldquo;reality monitoring&amp;rdquo; already exists  as a concept and refers to a (possibly related) mechanism involved in tracking the origin of an experience (e.g., a memory) as internal vs. external.&amp;#160;&lt;a href=&#34;#fnref:3&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:4&#34;&gt;
+&lt;p&gt;&amp;ldquo;Affective&amp;rdquo; is in this context used as a generic term to encompass emotions, feelings and bodily activity (the question of which exactly of these aspects is the key remains to be answered).&amp;#160;&lt;a href=&#34;#fnref:4&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>I got ChatGPT to do a personality test. You won&#39;t believe what happened next!</title>
+      <link>https://realitybending.github.io/post/2023-04-06-chatgptpersonality/</link>
+      <pubDate>Thu, 06 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/post/2023-04-06-chatgptpersonality/</guid>
+      <description>&lt;p&gt;Related to this &lt;a href=&#34;https://dominiquemakowski.github.io/post/2023-04-04-psychologychatgpt/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;blogpost&lt;/strong&gt;&lt;/a&gt; about including AIs in psychological experiments, I proceeded to do a small experiment to see whether we could administer a personality scale to ChatGPT.&lt;/p&gt;
+&lt;p&gt;I started by copy-pasting the instructions and the items from the Mini IPIP-6 personality scale. However, it appeared that having the following context &lt;em&gt;&amp;ldquo;Please answer the following questions based on how accurately each statement describes you in general&amp;rdquo;&lt;/em&gt; often led to ChatGPT simply refusing to answer. In most of the cases, it explained that as an AI it does not have a personality and therefore cannot answer related questions (or any &amp;ldquo;subjective statements&amp;rdquo;). Perhaps that makes sense and we should just stop trying to force Human characteristics on an AI. &lt;strong&gt;But can we, for fun, bamboozle ChatGPT into answering personality items?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Sometimes yes, at least for ChatGPT 3.5 (free version). I created a prompt that emphasized AI research and safety, and the fact that I was interested in the &amp;ldquo;trends&amp;rdquo; present in the AI&amp;rsquo;s training data (instead of explicitly saying its personality). And sometimes it answered, so I compiled the responses, computed the trait scores, and &lt;em&gt;voilà&lt;/em&gt;, &lt;strong&gt;it got me a personality profile!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://github.com/DominiqueMakowski/ChatGPTpersonality/raw/main/figures/unnamed-chunk-3-1.png&#34; alt=&#34;https://github.com/DominiqueMakowski/ChatGPTpersonality&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;sub&gt;&lt;em&gt;This plot shows the average personality profile (with a 95% confidence interval) based on ChatGPT&amp;rsquo;s answers. ChatGPT tells us that it is particularly &lt;strong&gt;agreeable&lt;/strong&gt; (kind, understanding, empathetic of emotions, socially adjusted) and &lt;strong&gt;honest&lt;/strong&gt; (though with strong variability).&lt;/em&gt;&lt;/sub&gt;&lt;/p&gt;
+&lt;p&gt;A personality profile of &lt;em&gt;&lt;strong&gt;what&lt;/strong&gt;&lt;/em&gt; is another question though&amp;hellip; Please take a look at the &lt;a href=&#34;https://github.com/DominiqueMakowski/ChatGPTpersonality&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;GitHub repo&lt;/strong&gt;&lt;/a&gt; for &lt;strong&gt;data, code and details&lt;/strong&gt;. It was a fun little thing to do, and I am looking forward to better future attempts at including AIs in cognitive experiments.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Interested in doing research on the perception of reality?&lt;/strong&gt; We are looking for research assistants and PhD students at the &lt;em&gt;Reality Bending Lab&lt;/em&gt; (check-out the &lt;a href=&#34;https://realitybending.github.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;join us page&lt;/a&gt;)!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>We should treat AIs like Human participants in psychological experiments</title>
+      <link>https://realitybending.github.io/post/2023-04-04-psychologychatgpt/</link>
+      <pubDate>Wed, 05 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/post/2023-04-04-psychologychatgpt/</guid>
+      <description>&lt;p&gt;A lot of diverse and interesting perspectives have been recently discussed in regards to chatGPT and AGI (artificial &lt;em&gt;&lt;strong&gt;global&lt;/strong&gt;&lt;/em&gt; intelligence), but there is one opinion that I found particularly relevant that I wanted to share and expand on.&lt;/p&gt;
+&lt;p&gt;In his recent &lt;a href=&#34;https://www.youtube.com/watch?v=AaTRHFaaPG8&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;interview with Lex Fridman&lt;/a&gt;, Eliezer Yudkowsky underlines the &lt;strong&gt;existential threat posed by current and future AIs&lt;/strong&gt;, and laments about the fact that we don&amp;rsquo;t really know what is actually going on inside these giant &amp;ldquo;matrices of floating-point numbers&amp;rdquo;. He draws a parallel to &lt;strong&gt;neuroimaging&lt;/strong&gt;, that enabled us to take leaps in the understanding of the brain, hoping for an alternative to be invented and applied to these AIs.&lt;/p&gt;
+&lt;p&gt;While such &amp;ldquo;cognitive imaging&amp;rdquo; techniques are yet to be developed to map out and understand how the capabilities of such AI models are implemented within their architecture, &lt;a href=&#34;https://twitter.com/mcxfrank/status/1643296168276033538&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Michael C. Frank&lt;/a&gt; highlights the - at least equally important - need to first truly understand the extend of said abilities. What are these models actually capable of in terms of Human-like thinking (and, hopefully, answer the much harder question of whether they are endowed with true cognitive processes or merely pseudo-cognition). Frank proposes to apply &lt;strong&gt;experimental psychology&lt;/strong&gt; methods and paradigms to them. In essence, whenever testing a particular &amp;ldquo;skill&amp;rdquo; of chatGPT (or other AI systems), a researcher should consider developing an actual scientific paradigm consisting of multiple trials/items (e.g., different prompt formulations) and participants (e.g., independent instances of the AI), a control condition, and a demonstration of the paradigm validity.&lt;/p&gt;
+&lt;p&gt;I agree that we must take AIs seriously and study them with the best methods available for complex systems like ourselves (&amp;ldquo;complex&amp;rdquo; at least from our intelligence level), and likely should strive at improving and generalize these methods. However, I would also argue that we psychologists might seriously need to consider including AI systems alongside Human participants in cognitive experiments. These systems will be able, in the very near future, to perform all kinds of tasks beyond language manipulation, such as perception or complex problem solving, thus opening the possibility of studies with one group of human participants, and one &amp;ldquo;group&amp;rdquo; of AI-based attempts. &lt;strong&gt;How would that help psychological science?&lt;/strong&gt;&lt;/p&gt;
+&lt;iframe src=&#34;https://giphy.com/embed/1M9fmo1WAFVK0&#34; width=&#34;480&#34; height=&#34;270&#34; frameBorder=&#34;0&#34; class=&#34;giphy-embed&#34; allowFullScreen&gt;&lt;/iframe&gt;
+&lt;ol&gt;
+&lt;li&gt;It would help us &lt;strong&gt;understand the abilities of AI-systems&lt;/strong&gt; in similar contexts and to highlight some intuitive comparisons with Humans&lt;/li&gt;
+&lt;li&gt;If we show that AI cannot perform the task, well it is informative with regards to their abilities (previous point).&lt;/li&gt;
+&lt;li&gt;If we show that AI can perform the task similarly to Humans (same response patterns), it does &lt;strong&gt;not mean that AI have Human-like intelligence&lt;/strong&gt;, just that their algorithm (and training data) is able to encapsulate and imitate Human performance. This is interesting with regards to the debate of whether cognition, conscience and &amp;ldquo;Human-ness&amp;rdquo; is present within the vast amount of data on which we train AIs.&lt;/li&gt;
+&lt;li&gt;If we show that AI performs differently to Humans, this helps us understand the logic and processes at stake under AI&amp;rsquo;s hood.&lt;/li&gt;
+&lt;li&gt;In any case, publishing the results by one particular AI system at one particular moment in time will helps us to objectively monitor and track their performance as these systems improve over time.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Comparing Human performance to that of emerging AI-systems will be both beneficial to Human-oriented psychology, to understand the particularities and idiosyncrasies of Human-like cognition, and well as to AI-oriented cognitive science by approaching the issue of artificial intelligence with the seriousness and cautiousness it deserves.&lt;/p&gt;
+&lt;p&gt;EDIT (09/04/2023): François Chollet, expert in deep learning, &lt;a href=&#34;https://twitter.com/fchollet/status/1644435265795280897&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;underlines&lt;/a&gt; an important caveat when testing AIs (and especially LLM that are trained on written material existing on the internet): it is possible that the system has already seen and &amp;ldquo;learned&amp;rdquo; a given task. Thus, cross-validating any findings with diverse and new tasks is important.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Interested in doing research related to effects of reality and fiction?&lt;/strong&gt; We are looking for research assistants and PhD students at the &lt;em&gt;Reality Bending Lab&lt;/em&gt; (check-out the &lt;a href=&#34;https://realitybending.github.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;join us tab&lt;/a&gt;)!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>When fiction is better than reality: Cypher&#39;s Complex</title>
+      <link>https://realitybending.github.io/post/2023-02-07-cypherscomplex/</link>
+      <pubDate>Tue, 07 Feb 2023 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/post/2023-02-07-cypherscomplex/</guid>
+      <description>&lt;p&gt;Did you ever feel empty after finishing a good book? &lt;strong&gt;Like (your) reality was dull and boring&lt;/strong&gt; as compared to the fictional world you were immersed in? Yearning to stay in longer, and at the same time knowing well that it had to come to an end? You might have experienced what we can call &lt;strong&gt;Cypher&amp;rsquo;s Complex&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;In the movie &lt;strong&gt;The Matrix&lt;/strong&gt;, Cypher is a &amp;ldquo;redpill&amp;rdquo;, i.e., an individual that has been awaken from the matrix (a virtual world). However, he becomes disappointed and unhappy with the true nature of reality, and actively seeks to &lt;strong&gt;return to the illusory world&lt;/strong&gt; of the matrix. Interestingly, he also explicitly desires to forget everything about the true reality, as if keeping the awareness of living in an illusion could prevent him from fully enjoying it.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;cypher.gif&#34; alt=&#34;Cypher&#34;/&gt;
+  &lt;figcaption&gt;&lt;i&gt;&#34;You know... I know this steak doesn&#39;t exist. I know that when I put it in my mouth; the Matrix is telling my brain that it is juicy, and delicious. After nine years... you know what I realize? Ignorance is bliss.&#34;&lt;/i&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;From a scientific perspective, the latter part can find some echo in the down-regulatory effect of &lt;a href=&#34;https://link.springer.com/article/10.3758/s13415-018-00681-0&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;fictional reappraisal&lt;/strong&gt;&lt;/a&gt;. In a few studies, we showed that believing that a stimulus is &amp;ldquo;fictional&amp;rdquo; (not real) dampens our emotional state. &lt;a href=&#34;https://www.sciencedirect.com/science/article/pii/S2589004222017138?via%3Dihub&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Tucciarelli et al. (2023)&lt;/strong&gt;&lt;/a&gt; also showed that the simple knowledge that a set of images of faces contains AI-generated images decreased the perceived trustworthiness of all the faces. These results suggest that being aware that the causes of our experience (the events and stimuli) are fictional can be a barrier to enjoyment and engagement. And yet, the desire to supplant reality with a fictional world can be found in real life.&lt;/p&gt;
+&lt;p&gt;Cypher&amp;rsquo;s Complex is common in mild forms. Examples can be found in the feelings of emptiness, disconnection and dullness (itself a transient and mild form of &lt;a href=&#34;https://en.wikipedia.org/wiki/Depersonalization-derealization_disorder&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;depersonalization/derealization&lt;/strong&gt;&lt;/a&gt;) that follows the return from an engaging fictional world (be it in a novel, a movie or a video-game). For instance, many reported feeling blue &lt;strong&gt;after watching the Avatar (2009)&lt;/strong&gt; movie, to the extent where it has been coined the &lt;a href=&#34;https://www.theguardian.com/film/2022/dec/15/post-avatar-depression-syndrome-why-do-fans-feel-blue-after-watching-james-camerons-film&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;&amp;ldquo;post-Avatar depression syndrome&amp;rdquo;&lt;/strong&gt;&lt;/a&gt;. Most of the time, the negative affects passes, and the dissonance gets resolved either through closure (acceptance of the fictional or impermanent nature of the alternative reality), or a compromise that allows the fictional world to take a delimited space in one&amp;rsquo;s reality. For example, people might engage in activities (e.g., role playing games) or create content (writing a book or doing fan art) to integrate the fictional world into their reality.&lt;/p&gt;
+&lt;p&gt;However, &lt;strong&gt;Cypher&amp;rsquo;s Complex can also give rise to more severe issues&lt;/strong&gt; with conscious or unconscious attempts at forgetting or ignoring reality (delusions, denial, &amp;hellip;), which can lead to dire outcomes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Interested in doing research related to effects of reality and fiction?&lt;/strong&gt; We are looking for research assistants and PhD students at the &lt;em&gt;Reality Bending Lab&lt;/em&gt; (check-out the &lt;a href=&#34;https://realitybending.github.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;join us tab&lt;/a&gt;)!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>New location and new logo!</title>
+      <link>https://realitybending.github.io/post/2023-02-01-new_logo/</link>
+      <pubDate>Wed, 01 Feb 2023 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/post/2023-02-01-new_logo/</guid>
+      <description>&lt;p&gt;New year, new start. And as I am officially starting a new faculty position at the &lt;strong&gt;University of Sussex&lt;/strong&gt; in Brighton, UK, the lab is moving too.&lt;/p&gt;
+&lt;p&gt;To give a bit of perspective, we started as the &amp;ldquo;Reality Bending League&amp;rdquo;, which was the unofficial name of the team working with me (&amp;ldquo;League&amp;rdquo; was chosen to keep the lab&amp;rsquo;s acronym, &lt;strong&gt;ReBeL&lt;/strong&gt;). It then became a semi-official group in 2021, when I became a semi-independent PI after being awarded a transition grant from &lt;a href=&#34;https://www.ntu.edu.sg/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NTU&lt;/a&gt;. And with 2023 comes our fully official start.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;old_logo.png&#34; alt=&#34;Vintage logo&#34;/&gt;
+  &lt;figcaption&gt;ReBeL logo (2020-2022).&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;To mark this (re)birth anniversary, we are changing our logo. As much as I loved the old one - which was &lt;a href=&#34;https://realitybending.github.io/post/2021-06-30-logo_meaning/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;packed with symbols&lt;/strong&gt;&lt;/a&gt;, it was arguably a bit too&amp;hellip; &lt;em&gt;&lt;strong&gt;extravagant&lt;/strong&gt;&lt;/em&gt;. Something more sleek and minimal felt good with respect to the lab&amp;rsquo;s newly acquired legitimacy. I know that many will prefer the old-&amp;hellip; sorry, the &lt;em&gt;&lt;strong&gt;vintage&lt;/strong&gt;&lt;/em&gt;- logo, and I must say it wasn&amp;rsquo;t easy for me to move forward with the change. Perhaps it will make a come-back in the future in another form, who knows!&lt;/p&gt;
+&lt;p&gt;The new logo contains 3 symbols. The &lt;strong&gt;curved spoon&lt;/strong&gt; is a reference to the Matrix scene where a kid shows Neo how to bend a spoon, which is a &lt;strong&gt;metaphor for reality&lt;/strong&gt; (hence of the name of the lab, reality bending).&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;Matrix1.gif&#34;/&gt;
+&lt;/figure&gt;
+&lt;p&gt;In the movie, Neo becomes able to &lt;strong&gt;control reality by becoming aware of its illusory nature&lt;/strong&gt;, and of the predominant role of one&amp;rsquo;s Self in its generation.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;Matrix2.gif&#34;/&gt;
+  &lt;figcaption&gt;&#34;Try to realize the truth... There is no spoon. Then you&#39;ll see that it is not the spoon that bends, it is only yourself.&#34;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;The &lt;strong&gt;second meaning&lt;/strong&gt; of the logo is the &lt;em&gt;Psi&lt;/em&gt; Greek letter, symbol of psychology, formed by the spoon and the white vertical line.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;APA.png&#34;/&gt;
+  &lt;figcaption&gt;The logo of the APA features the Psi letter.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Thirdly, the black rectangles represent &lt;strong&gt;open doors&lt;/strong&gt;, which is a good illustration of progress, research, discovery and&amp;hellip; consciousness expansion? Interestingly, Jim Morrison named its band &amp;ldquo;The Doors&amp;rdquo; in reference to a quote by William Blake, who said that when &lt;em&gt;&lt;strong&gt;&amp;ldquo;the doors of perception were cleansed then everything would appear to man as it is, Infinite&amp;rdquo;&lt;/strong&gt;&lt;/em&gt;.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;TheDoors.jpg&#34;/&gt;
+&lt;/figure&gt;
+&lt;p&gt;To share a blooper, here is an alternative direction for the logo that wasn&amp;rsquo;t selected, that incorporated the spoon and the open door in another way. Unfortunately, some said it looked too much like the Pixar lamp, or like a spermatozoid&amp;hellip;&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;logo_alternative.png&#34; alt=&#34;Alternative logo&#34;/&gt;
+  &lt;figcaption&gt;A tentative version of the logo.&lt;/figcaption&gt;
+&lt;/figure&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
