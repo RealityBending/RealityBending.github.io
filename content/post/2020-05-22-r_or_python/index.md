@@ -133,7 +133,7 @@ You heard it right! To start with R you don't need to know stats or maths like a
 
 - **You are interested in joining the academic community**
 
-Because most of its users are academics, R has a fantastic community online, for instance on [**Twitter \#rstats**](https://twitter.com/hashtag/rstats). It's also super inclusive (e.g., the [R-Ladies](https://rladies.org/)).
+Because most of its users are academics, R has a fantastic community online, for instance on [**Twitter \#rstats**](https://x.com/hashtag/rstats). It's also super inclusive (e.g., the [R-Ladies](https://rladies.org/)).
 
 ### Other considerations
 
@@ -157,6 +157,6 @@ It might be easier if you have mentors that can understand what you are doing an
 
 ---
 
-*Thanks for reading!* 🐦 *Don't forget to join me on Twitter* ([@Dom_Makowski](https://twitter.com/Dom_Makowski)) *and leave a comment below* 👇
+*Thanks for reading!* 🐦 *Don't forget to join me on X* ([@Dom_Makowski](https://x.com/Dom_Makowski)) *and leave a comment below* 👇
 
 

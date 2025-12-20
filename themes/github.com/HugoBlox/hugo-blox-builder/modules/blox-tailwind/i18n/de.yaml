@@ -26,6 +26,22 @@
 - id: related
   translation: Ähnliches
 
+# Callouts
+- id: callout_note
+  translation: Hinweis
+
+- id: callout_tip
+  translation: Tipp
+
+- id: callout_important
+  translation: Wichtig
+
+- id: callout_warning
+  translation: Warnung
+
+- id: callout_caution
+  translation: Vorsicht
+
 - id: backlinks
   translation: Backlinks
 
@@ -225,14 +241,14 @@
 
 # Content types for default archive page titles and search results
 
-- id: posts
+- id: blog
   translation: Blog
 
 - id: publications
   translation: Publikationen
 
-- id: talks
-  translation: Vorträge
+- id: events
+  translation: Veranstaltungen
 
 - id: projects
   translation: Projekte
@@ -283,6 +299,9 @@
 
 - id: published_with
   translation: Veröffentlicht mit {hugoblox} - dem kostenlosen, {repo_link}Open Source{/repo_link} Website-Builder, der Kreative fördert.
+
+- id: poweredby_button
+  translation: 'Erstelle deine →'
 
 # Feedback widget
 

@@ -27,6 +27,6 @@ tags:
 
 ## The 'Learning Bayesian Statistics' Podcast
 
-I had the chance of being invited to talk about R, Python, Reality Bending and much more! It was my first experience of that kind, so thanks a ton to the host of the podcast [Alex Andorra](https://twitter.com/alex_andorra). Listen to it here:
+I had the chance of being invited to talk about R, Python, Reality Bending and much more! It was my first experience of that kind, so thanks a ton to the host of the podcast [Alex Andorra](https://x.com/alex_andorra). Listen to it here:
 
 - https://www.learnbayesstats.com/episode/55-neuropsychology-illusions-bending-reality-dominique-makowski

@@ -25,7 +25,7 @@ image:
 # - name: Follow
 #   url: https://twitter.com
 #   icon_pack: fab
-#   icon: twitter
+#   icon: x-twitter
 
 url_code: ""
 url_pdf: ""

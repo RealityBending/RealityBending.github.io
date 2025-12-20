@@ -62,6 +62,6 @@ Naturally, states in which our sense of reality is distorted (as compared to the
 
 ---
 
-*Thanks for reading! Don't forget to join me on Twitter* [@Dom_Makowski](https://twitter.com/Dom_Makowski) :hugs:
+*Thanks for reading! Don't forget to join me on X* [@Dom_Makowski](https://x.com/Dom_Makowski) :hugs:
 
 
