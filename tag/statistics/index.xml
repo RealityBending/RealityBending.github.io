@@ -7,7 +7,7 @@
     <description>Statistics</description>
     <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Mon, 18 Mar 2024 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://realitybending.github.io/media/icon_hu11326173534259092558.png</url>
+      <url>https://realitybending.github.io/media/icon_hu_82f4b62152eab490.png</url>
       <title>Statistics</title>
       <link>https://realitybending.github.io/tag/statistics/</link>
     </image>
@@ -79,10 +79,10 @@ In essence, the idea is to fit a statistical model that tests for the &lt;strong
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
-               /post/2024-03-18-signaltonoisemixed/fig1_hu10916532941443093308.webp 400w,
-               /post/2024-03-18-signaltonoisemixed/fig1_hu10510732651174981726.webp 760w,
-               /post/2024-03-18-signaltonoisemixed/fig1_hu11011503002427766931.webp 1200w&#34;
-               src=&#34;https://realitybending.github.io/post/2024-03-18-signaltonoisemixed/fig1_hu10916532941443093308.webp&#34;
+               /post/2024-03-18-signaltonoisemixed/fig1_hu_8c4e561a613a9b8e.webp 400w,
+               /post/2024-03-18-signaltonoisemixed/fig1_hu_43c54a6c4684fff.webp 760w,
+               /post/2024-03-18-signaltonoisemixed/fig1_hu_733432bfea2875c2.webp 1200w&#34;
+               src=&#34;https://realitybending.github.io/post/2024-03-18-signaltonoisemixed/fig1_hu_8c4e561a613a9b8e.webp&#34;
                width=&#34;760&#34;
                height=&#34;760&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -157,10 +157,10 @@ We can then extract the &lt;strong&gt;posterior distribution&lt;/strong&gt; of t
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
-               /post/2024-03-18-signaltonoisemixed/fig2_hu16405151688740038151.webp 400w,
-               /post/2024-03-18-signaltonoisemixed/fig2_hu8111061218773066308.webp 760w,
-               /post/2024-03-18-signaltonoisemixed/fig2_hu7518281655070277663.webp 1200w&#34;
-               src=&#34;https://realitybending.github.io/post/2024-03-18-signaltonoisemixed/fig2_hu16405151688740038151.webp&#34;
+               /post/2024-03-18-signaltonoisemixed/fig2_hu_78e660234b2c4fd1.webp 400w,
+               /post/2024-03-18-signaltonoisemixed/fig2_hu_fb7aeb0fd86ae2f8.webp 760w,
+               /post/2024-03-18-signaltonoisemixed/fig2_hu_1735dde7047b1b34.webp 1200w&#34;
+               src=&#34;https://realitybending.github.io/post/2024-03-18-signaltonoisemixed/fig2_hu_78e660234b2c4fd1.webp&#34;
                width=&#34;570&#34;
                height=&#34;760&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -319,7 +319,7 @@ Some datasets have a low interindividual variability for some parameters (e.g., 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;results&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;get_results&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;figure&#34;&gt;
 &lt;img src=&#34;individual.png&#34; alt=&#34;*Example of a dataset containing 20 participants (shown with different colors). As can be seen, we introduced modulations in the inter- and intra- individual variability.*&#34; width=&#34;1575&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;Figure 1: *Example of a dataset containing 20 participants (shown with different colors). As can be seen, we introduced modulations in the inter- and intra- individual variability.*&lt;/p&gt;
+&lt;p class=&#34;caption&#34;&gt;&lt;span id=&#34;fig:unnamed-chunk-3&#34;&gt;&lt;/span&gt;Figure 1: *Example of a dataset containing 20 participants (shown with different colors). As can be seen, we introduced modulations in the inter- and intra- individual variability.*&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;We will then compare the scores obtained by each method to the &amp;ldquo;true&amp;rdquo; score of each participant by substracting them from one another. As such, for each method, we obtain the absolute &amp;ldquo;distance&amp;rdquo; from the true score.&lt;/p&gt;
 &lt;h4 id=&#34;fit-model&#34;&gt;Fit model&lt;/h4&gt;
@@ -331,19 +331,19 @@ Some datasets have a low interindividual variability for some parameters (e.g., 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nf&#34;&gt;mutate&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Level1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;stringr&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;str_remove&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Level1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Diff_&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;         &lt;span class=&#34;n&#34;&gt;Level2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;stringr&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;str_remove&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Level2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Diff_&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&amp;gt;%&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nf&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Level1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Level2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Difference&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;CI_low&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;CI_high&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## Level1                 |                 Level2 | Difference |            CI |      p
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## Level1                 | Level2                 | Difference |            CI |      p
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## -------------------------------------------------------------------------------------
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## IndividualModel_Priors |        PopulationModel |  -1.85e-03 | [-0.01, 0.01] | &amp;gt; .999
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## IndividualModel_Freq   |        PopulationModel |   1.70e-03 | [-0.01, 0.01] | &amp;gt; .999
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## IndividualModel_Priors | PopulationModel        |  -1.85e-03 | [-0.01, 0.01] | &amp;gt; .999
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## IndividualModel_Freq   | PopulationModel        |   1.70e-03 | [-0.01, 0.01] | &amp;gt; .999
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## IndividualModel_Freq   | IndividualModel_Priors |   3.55e-03 | [-0.01, 0.01] | &amp;gt; .999
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;visualize-the-results&#34;&gt;Visualize the results&lt;/h4&gt;
 &lt;div class=&#34;figure&#34;&gt;
 &lt;img src=&#34;featured.png&#34; alt=&#34;*Average accuracy of the different methods (the closest to 0 the better).*&#34; width=&#34;2250&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;Figure 2: *Average accuracy of the different methods (the closest to 0 the better).*&lt;/p&gt;
+&lt;p class=&#34;caption&#34;&gt;&lt;span id=&#34;fig:unnamed-chunk-6&#34;&gt;&lt;/span&gt;Figure 2: *Average accuracy of the different methods (the closest to 0 the better).*&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;figure&#34;&gt;
 &lt;img src=&#34;n_participants.png&#34; alt=&#34;*Accuracy depending on the number of total participants in the dataset.*&#34; width=&#34;2250&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;Figure 3: *Accuracy depending on the number of total participants in the dataset.*&lt;/p&gt;
+&lt;p class=&#34;caption&#34;&gt;&lt;span id=&#34;fig:unnamed-chunk-7&#34;&gt;&lt;/span&gt;Figure 3: *Accuracy depending on the number of total participants in the dataset.*&lt;/p&gt;
 &lt;/div&gt;
 &lt;h3 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h3&gt;
 &lt;p&gt;Though not significantly different, it seems that &lt;strong&gt;raw basic estimates&lt;/strong&gt; (that rely only on the individual data) &lt;strong&gt;perform consistently worse than the population model or individual models informed by priors&lt;/strong&gt;, especially for small datasets (between 10 and 100 participants) - though again, the difference is tiny in our simulated dataset. In the absence of the whole population dataset, it seems that using individual Bayesian model with informative priors (derived from the population model) is a safe alternative.&lt;/p&gt;
@@ -557,7 +557,7 @@ Some datasets have a low interindividual variability for some parameters (e.g., 
 &lt;p&gt;&lt;sub&gt;- Makowski, D. (2020, September 14). How to extract individual scores from repeated measures. Retrieved from &lt;a href=&#34;https://dominiquemakowski.github.io/post/individual_scores/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://dominiquemakowski.github.io/post/individual_scores/&lt;/a&gt;&lt;/sub&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;&lt;em&gt;Thanks for reading! Do not hesitate to share this post, and leave a comment below&lt;/em&gt; &amp;#x1f917;&lt;/p&gt;
-&lt;p&gt;🐦 &lt;em&gt;And don&amp;rsquo;t forget to join me on Twitter&lt;/em&gt; &lt;a href=&#34;https://twitter.com/Dom_Makowski&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;@Dom_Makowski&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;🐦 &lt;em&gt;And don&amp;rsquo;t forget to join me on X&lt;/em&gt; &lt;a href=&#34;https://x.com/Dom_Makowski&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;@Dom_Makowski&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -573,7 +573,7 @@ Some datasets have a low interindividual variability for some parameters (e.g., 
 &lt;p&gt;It is a must-read for all psychologist. Do check-it out!!&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;&lt;em&gt;Thanks for reading! Do not hesitate to tweet and share this post, and leave a comment below&lt;/em&gt; &amp;#x1f917;&lt;/p&gt;
-&lt;p&gt;🐦 &lt;em&gt;And don&amp;rsquo;t forget to join me on Twitter&lt;/em&gt; &lt;a href=&#34;https://twitter.com/Dom_Makowski&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;@Dom_Makowski&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;🐦 &lt;em&gt;And don&amp;rsquo;t forget to join me on X&lt;/em&gt; &lt;a href=&#34;https://x.com/Dom_Makowski&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;@Dom_Makowski&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     

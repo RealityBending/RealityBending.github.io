@@ -214,7 +214,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/wowchemy.396be318e59fab6ca138aa1b1dfc7c16.css" />
+  <link rel="stylesheet" href="/css/wowchemy.3ff435a51cdd8004dde58fc9a0e580a7.css" />
 
   
   
@@ -331,8 +331,8 @@
 
 
 
-<link rel="icon" type="image/png" href="/media/icon_hu9828512474117802568.png" />
-<link rel="apple-touch-icon" type="image/png" href="/media/icon_hu18439377166325615751.png" />
+<link rel="icon" type="image/png" href="/media/icon_hu_2dd72e013364ed1a.png" />
+<link rel="apple-touch-icon" type="image/png" href="/media/icon_hu_61d9f0a061d5ccd5.png" />
 
 <meta name="theme-color" content="#9C27B0" />
 
@@ -422,7 +422,7 @@
     "name": "Reality Bending Lab",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://realitybending.github.io/media/icon_hu10584776241471743047.png"
+      "url": "https://realitybending.github.io/media/icon_hu_d1f1c7efb43b1959.png"
     }
   },
   "description": "We compare different methods (individual models, Bayesian models with informative priors, random effects from mixed models) to extract individual scores from repeated measures tasks."
@@ -908,6 +908,7 @@
   <div>
     
 
+
   <span >
       <a href="/authors/dominique-makowski/">Dominique Makowski</a></span>
   </div>
@@ -939,7 +940,6 @@
   
 
   
-  
   <span class="middot-divider"></span>
   <span class="article-categories">
     <i class="fas fa-folder mr-1"></i><a href="/category/r/">R</a>, <a href="/category/statistics/">Statistics</a></span>
@@ -958,7 +958,7 @@
 
 <div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 432px;">
   <div style="position: relative">
-    <img src="/post/2020-09-14-individual_scores/featured_hu1050490670615301546.webp" width="720" height="432" alt="" class="featured-image">
+    <img src="/post/2020-09-14-individual_scores/featured_hu_778493c99b569b3e.webp" width="720" height="432" alt="" class="featured-image">
     <span class="article-header-caption">Absolute difference between true individual scores and the scores estimated via different methods.</span>
   </div>
 </div>
@@ -985,7 +985,7 @@
 </span></span><span class="line"><span class="cl"><span class="n">results</span> <span class="o">&lt;-</span> <span class="nf">get_results</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </span></span></code></pre></div><div class="figure">
 <img src="individual.png" alt="*Example of a dataset containing 20 participants (shown with different colors). As can be seen, we introduced modulations in the inter- and intra- individual variability.*" width="1575" />
-<p class="caption">Figure 1: *Example of a dataset containing 20 participants (shown with different colors). As can be seen, we introduced modulations in the inter- and intra- individual variability.*</p>
+<p class="caption"><span id="fig:unnamed-chunk-3"></span>Figure 1: *Example of a dataset containing 20 participants (shown with different colors). As can be seen, we introduced modulations in the inter- and intra- individual variability.*</p>
 </div>
 <p>We will then compare the scores obtained by each method to the &ldquo;true&rdquo; score of each participant by substracting them from one another. As such, for each method, we obtain the absolute &ldquo;distance&rdquo; from the true score.</p>
 <h4 id="fit-model">Fit model</h4>
@@ -997,19 +997,19 @@
 </span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">Level1</span> <span class="o">=</span> <span class="n">stringr</span><span class="o">::</span><span class="nf">str_remove</span><span class="p">(</span><span class="n">Level1</span><span class="p">,</span> <span class="s">&#34;Diff_&#34;</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">         <span class="n">Level2</span> <span class="o">=</span> <span class="n">stringr</span><span class="o">::</span><span class="nf">str_remove</span><span class="p">(</span><span class="n">Level2</span><span class="p">,</span> <span class="s">&#34;Diff_&#34;</span><span class="p">))</span> <span class="o">%&gt;%</span> 
 </span></span><span class="line"><span class="cl">  <span class="nf">select</span><span class="p">(</span><span class="n">Level1</span><span class="p">,</span> <span class="n">Level2</span><span class="p">,</span> <span class="n">Difference</span><span class="p">,</span> <span class="n">CI_low</span><span class="p">,</span> <span class="n">CI_high</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## Level1                 |                 Level2 | Difference |            CI |      p
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## Level1                 | Level2                 | Difference |            CI |      p
 </span></span><span class="line"><span class="cl">## -------------------------------------------------------------------------------------
-</span></span><span class="line"><span class="cl">## IndividualModel_Priors |        PopulationModel |  -1.85e-03 | [-0.01, 0.01] | &gt; .999
-</span></span><span class="line"><span class="cl">## IndividualModel_Freq   |        PopulationModel |   1.70e-03 | [-0.01, 0.01] | &gt; .999
+</span></span><span class="line"><span class="cl">## IndividualModel_Priors | PopulationModel        |  -1.85e-03 | [-0.01, 0.01] | &gt; .999
+</span></span><span class="line"><span class="cl">## IndividualModel_Freq   | PopulationModel        |   1.70e-03 | [-0.01, 0.01] | &gt; .999
 </span></span><span class="line"><span class="cl">## IndividualModel_Freq   | IndividualModel_Priors |   3.55e-03 | [-0.01, 0.01] | &gt; .999
 </span></span></code></pre></div><h4 id="visualize-the-results">Visualize the results</h4>
 <div class="figure">
 <img src="featured.png" alt="*Average accuracy of the different methods (the closest to 0 the better).*" width="2250" />
-<p class="caption">Figure 2: *Average accuracy of the different methods (the closest to 0 the better).*</p>
+<p class="caption"><span id="fig:unnamed-chunk-6"></span>Figure 2: *Average accuracy of the different methods (the closest to 0 the better).*</p>
 </div>
 <div class="figure">
 <img src="n_participants.png" alt="*Accuracy depending on the number of total participants in the dataset.*" width="2250" />
-<p class="caption">Figure 3: *Accuracy depending on the number of total participants in the dataset.*</p>
+<p class="caption"><span id="fig:unnamed-chunk-7"></span>Figure 3: *Accuracy depending on the number of total participants in the dataset.*</p>
 </div>
 <h3 id="conclusion">Conclusion</h3>
 <p>Though not significantly different, it seems that <strong>raw basic estimates</strong> (that rely only on the individual data) <strong>perform consistently worse than the population model or individual models informed by priors</strong>, especially for small datasets (between 10 and 100 participants) - though again, the difference is tiny in our simulated dataset. In the absence of the whole population dataset, it seems that using individual Bayesian model with informative priors (derived from the population model) is a safe alternative.</p>
@@ -1223,12 +1223,11 @@
 <p><sub>- Makowski, D. (2020, September 14). How to extract individual scores from repeated measures. Retrieved from <a href="https://dominiquemakowski.github.io/post/individual_scores/" target="_blank" rel="noopener">https://dominiquemakowski.github.io/post/individual_scores/</a></sub></p>
 <hr>
 <p><em>Thanks for reading! Do not hesitate to share this post, and leave a comment below</em> &#x1f917;</p>
-<p>🐦 <em>And don&rsquo;t forget to join me on Twitter</em> <a href="https://twitter.com/Dom_Makowski" target="_blank" rel="noopener">@Dom_Makowski</a></p>
+<p>🐦 <em>And don&rsquo;t forget to join me on X</em> <a href="https://x.com/Dom_Makowski" target="_blank" rel="noopener">@Dom_Makowski</a></p>
 
     </div>
 
     
-
 
 
 
@@ -1264,7 +1263,7 @@
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Frealitybending.github.io%2Fpost%2F2020-09-14-individual_scores%2F&amp;text=How&#43;to&#43;extract&#43;individual&#43;scores&#43;from&#43;repeated&#43;measures" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+        <a href="https://x.com/intent/tweet?url=https%3A%2F%2Frealitybending.github.io%2Fpost%2F2020-09-14-individual_scores%2F&amp;text=How&#43;to&#43;extract&#43;individual&#43;scores&#43;from&#43;repeated&#43;measures" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -1383,7 +1382,7 @@
   <div class="media author-card content-widget-hr">
     
       
-      <a href="/authors/dominique-makowski/"><img class="avatar mr-3 avatar-circle" src="/authors/dominique-makowski/avatar_hu5828840574540048779.png" alt="Dominique Makowski"></a>
+      <a href="/authors/dominique-makowski/"><img class="avatar mr-3 avatar-circle" src="/authors/dominique-makowski/avatar_hu_102a1c7975761d3f.png" alt="Dominique Makowski"></a>
     
 
     <div class="media-body">
@@ -1421,8 +1420,8 @@
       
     
     <li>
-      <a href="https://twitter.com/Dom_Makowski" target="_blank" rel="noopener">
-        <i class="fab fa-twitter"></i>
+      <a href="https://x.com/Dom_Makowski" target="_blank" rel="noopener">
+        <i class="fab fa-x-twitter"></i>
       </a>
     </li>
   
@@ -1571,7 +1570,7 @@
   
 
 
-<script src="/js/vendor-bundle.min.03ad7a035a0f0041929b2f0d65030b4d.js"></script>
+<script src="/js/vendor-bundle.min.42e34bbc1f9961306d4a9cf482572ccf.js"></script>
 
 
 
@@ -1652,7 +1651,7 @@
 <script id="page-data" type="application/json">{"use_headroom":true}</script>
 
 
-  <script src="/js/wowchemy-headroom.db4755770454eb63685f8de785c0a172.js" type="module"></script>
+  <script src="/js/wowchemy-headroom.b95a7e109243f29d04930ae8cb49a756.js" type="module"></script>
 
 
 
@@ -1666,7 +1665,7 @@
   
 
 
-<script src="/en/js/wowchemy.min.7f5ebaff62ae468cff8bb3dd1337bb9b.js"></script>
+<script src="/en/js/wowchemy.min.69fc52a6dc16aaf1a452cfbb36466dac.js"></script>
 
 
 
