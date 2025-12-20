@@ -28,7 +28,7 @@ jobs:
               run: Rscript -e 'blogdown::install_hugo(version="0.139.4")'  # Latest is currently broken
 
             - name: Build site with blogdown
-              run: Rscript -e 'if (!blogdown::build_site()) stop("Build failed")'
+              run: Rscript -e 'tryCatch(blogdown::build_site(), error = function(e) { message(e); quit(status = 1) })'
 
             - name: Deploy 🚀
               uses: peaceiris/actions-gh-pages@v3
