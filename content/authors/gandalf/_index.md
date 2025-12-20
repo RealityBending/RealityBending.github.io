@@ -2,7 +2,6 @@
 authors:
 - Gandalf
 bio: Servant of the Secret Fire. Wielder of the Flame of Anor. Disturber of the peace.
-education: ""
 email: ""
 interests:
 - The Hobbits

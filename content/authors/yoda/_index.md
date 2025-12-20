@@ -2,7 +2,6 @@
 authors:
 - Yoda
 bio: "You must unlearn what you have learned."
-education: ""
 email: ""
 interests:
 - Doing, not trying
