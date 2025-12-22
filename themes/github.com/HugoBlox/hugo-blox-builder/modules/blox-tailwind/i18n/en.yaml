@@ -26,6 +26,55 @@
 - id: related
   translation: Related
 
+# Callouts - All Obsidian-compatible types
+- id: callout_note
+  translation: Note
+
+- id: callout_abstract
+  translation: Abstract
+
+- id: callout_summary
+  translation: Summary
+
+- id: callout_info
+  translation: Info
+
+- id: callout_todo
+  translation: Todo
+
+- id: callout_tip
+  translation: Tip
+
+- id: callout_success
+  translation: Success
+
+- id: callout_question
+  translation: Question
+
+- id: callout_warning
+  translation: Warning
+
+- id: callout_failure
+  translation: Failure
+
+- id: callout_danger
+  translation: Danger
+
+- id: callout_bug
+  translation: Bug
+
+- id: callout_example
+  translation: Example
+
+- id: callout_quote
+  translation: Quote
+
+- id: callout_important
+  translation: Important
+
+- id: callout_caution
+  translation: Caution
+
 - id: backlinks
   translation: Backlinks
 
@@ -90,6 +139,46 @@
 - id: btn_source
   translation: Source Document
 
+# New link types
+- id: btn_doi
+  translation: DOI
+- id: btn_site
+  translation: Site
+- id: btn_canonical
+  translation: Canonical
+- id: btn_crosspost
+  translation: Crosspost
+- id: btn_discussion
+  translation: Discussion
+- id: btn_event
+  translation: Event
+- id: btn_calendar
+  translation: Calendar
+- id: btn_registration
+  translation: Registration
+- id: btn_demo
+  translation: Demo
+- id: btn_model
+  translation: Model
+- id: btn_hal
+  translation: HAL
+- id: btn_dblp
+  translation: DBLP
+- id: btn_isbn
+  translation: ISBN
+- id: btn_osf
+  translation: OSF
+- id: btn_zenodo
+  translation: Zenodo
+- id: btn_kaggle
+  translation: Kaggle
+- id: btn_openalex
+  translation: OpenAlex
+- id: btn_semanticscholar
+  translation: Semantic Scholar
+- id: btn_pwc
+  translation: Papers With Code
+
 - id: btn_copy
   translation: Copy
 
@@ -106,6 +195,9 @@
 
 - id: education
   translation: Education
+
+- id: about_me
+  translation: Professional Summary
 
 - id: user_profile_latest
   translation: Latest
@@ -225,13 +317,13 @@
 
 # Content types for default archive page titles and search results
 
-- id: posts
-  translation: Posts
+- id: blog
+  translation: Blog
 
 - id: publications
   translation: Publications
 
-- id: talks
+- id: events
   translation: Events
 
 - id: projects
@@ -242,6 +334,48 @@
 
 - id: authors
   translation: Authors
+
+- id: qa
+  translation: Q&A
+
+- id: questions
+  translation: Questions
+
+- id: faq
+  translation: FAQ
+
+- id: faqs
+  translation: FAQs
+
+- id: docs
+  translation: Documentation
+
+- id: question
+  translation: Question
+
+- id: answer
+  translation: Answer
+
+- id: accepted_answer
+  translation: Accepted Answer
+
+- id: other_answers
+  translation: Other Answers
+
+- id: related_questions
+  translation: Related Questions
+
+- id: browse_by_category
+  translation: Browse by Category
+
+- id: search_questions
+  translation: Search questions...
+
+- id: no_questions_yet
+  translation: No questions yet. Check back soon!
+
+- id: questions_count
+  translation: questions
 
 # Search
 
@@ -282,7 +416,10 @@
 # Published with
 
 - id: published_with
-  translation: Published with {hugoblox} — the free, {repo_link}open source{/repo_link} website builder that empowers creators.
+  translation: Made with {hugoblox}.
+
+- id: poweredby_button
+  translation: 'Build yours →'
 
 # Feedback widget
 
@@ -297,3 +434,35 @@
 
 - id: feedback_widget_answer_negative
   translation: 😡 No
+
+# AI Features
+
+- id: ai_insight
+  translation: AI Insight
+
+# Content Metadata
+- id: content_type
+  translation: Content Type
+- id: difficulty
+  translation: Difficulty
+- id: prerequisites
+  translation: Prerequisites
+
+# Card metadata
+- id: trending
+  translation: Trending
+
+- id: article
+  translation: article
+
+- id: articles
+  translation: articles
+
+- id: browse
+  translation: Browse
+
+- id: all
+  translation: All
+
+- id: helpful
+  translation: helpful

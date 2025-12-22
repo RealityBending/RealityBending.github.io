@@ -65,4 +65,4 @@ And **let us know what you think!** You can open an issue on the [repo](https://
 
 *Thanks for reading! Do not hesitate to tweet and share this post, and leave a comment below* :hugs:
 
-🐦 *Don't forget to join me on Twitter* [@Dom_Makowski](https://twitter.com/Dom_Makowski)
+🐦 *Don't forget to join me on X* [@Dom_Makowski](https://x.com/Dom_Makowski)

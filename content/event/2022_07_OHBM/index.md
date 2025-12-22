@@ -17,10 +17,10 @@ featured: false
 #   caption: 'Image credit: [**Unsplash**](https://unsplash.com/photos/bzdhc5b3Bxs)'
 #   focal_point: Right
 # links:
-# - icon: twitter
+# - icon: x-twitter
 #   icon_pack: fab
 #   name: Follow
-#   url: https://twitter.com/georgecushen
+#   url: https://x.com/georgecushen
 location: Glasgow, UK
 # projects:
 # - example

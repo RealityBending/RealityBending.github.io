@@ -1,5 +1,5 @@
 // Hugo Blox Builder Light / Dark theme toggle
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", () => {
   addThemeToggleListener();
 });
 
@@ -13,15 +13,19 @@ function addThemeToggleListener() {
     (!("wc-color-theme" in localStorage) &&
       ((window.matchMedia("(prefers-color-scheme: dark)").matches && defaultTheme === "system") || defaultTheme === "dark"))
   ) {
-    themeToggleButtons.forEach((el) => el.dataset.theme = "dark");
+    themeToggleButtons.forEach((el) => {
+      el.dataset.theme = "dark";
+    });
   } else {
-    themeToggleButtons.forEach((el) => el.dataset.theme = "light");
+    themeToggleButtons.forEach((el) => {
+      el.dataset.theme = "light";
+    });
   }
 
   // Add click event handler to the light/dark buttons
   themeToggleButtons.forEach((el) => {
-    el.addEventListener("click", function () {
-      console.debug('Theme toggled');
+    el.addEventListener("click", () => {
+      console.debug("Theme toggled");
       if (localStorage.getItem("wc-color-theme")) {
         if (localStorage.getItem("wc-color-theme") === "light") {
           window.hbb.setDarkTheme();
@@ -42,7 +46,11 @@ function addThemeToggleListener() {
       el.dataset.theme = document.documentElement.classList.contains("dark") ? "dark" : "light";
 
       // Dispatch `hbThemeChange` event to support themeable user plugins.
-      const themeChangeEvent = new CustomEvent('hbThemeChange', {detail: {isDarkTheme: () => document.documentElement.classList.contains("dark")}});
+      const themeChangeEvent = new CustomEvent("hbThemeChange", {
+        detail: {
+          isDarkTheme: () => document.documentElement.classList.contains("dark"),
+        },
+      });
       document.dispatchEvent(themeChangeEvent);
     });
   });
@@ -51,9 +59,10 @@ function addThemeToggleListener() {
   window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (event) => {
     if (defaultTheme === "system" && !("wc-color-theme" in localStorage)) {
       event.matches ? window.hbb.setDarkTheme() : window.hbb.setLightTheme();
-      themeToggleButtons.forEach((el) =>
-        el.dataset.theme = document.documentElement.classList.contains("dark") ? "dark" : "light"
-      );
+      themeToggleButtons.forEach((el) => {
+        const isDark = document.documentElement.classList.contains("dark");
+        el.dataset.theme = isDark ? "dark" : "light";
+      });
     }
   });
 }

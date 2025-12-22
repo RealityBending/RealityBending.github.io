@@ -30,9 +30,9 @@ social:
 - icon: envelope
   icon_pack: fas
   link: mailto:ziliangngoi@gmail.com
-- icon: twitter
+- icon: x-twitter
   icon_pack: fab
-  link: https://twitter.com/MaxNgoi
+  link: https://x.com/MaxNgoi
 - icon: researchgate
   icon_pack: ai
   link: https://www.researchgate.net/profile/Zi-Liang-Ngoi

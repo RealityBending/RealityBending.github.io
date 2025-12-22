@@ -26,6 +26,22 @@
 - id: related
   translation: 相关
 
+# Callouts
+- id: callout_note
+  translation: 注意
+
+- id: callout_tip
+  translation: 提示
+
+- id: callout_important
+  translation: 重要
+
+- id: callout_warning
+  translation: 警告
+
+- id: callout_caution
+  translation: 小心
+
 - id: minute_read
   translation: 分钟阅读时长
 
@@ -114,7 +130,7 @@
 
 # Experience widget
 
-- id: work_experience
+- id: experience
   translation: 工作经历
 
 - id: present
@@ -211,14 +227,14 @@
 
 # Content types for default archive page titles and search results
 
-- id: posts
-  translation: 文章
+- id: blog
+  translation: 博客
 
 - id: publications
   translation: 出版物
 
-- id: talks
-  translation: 演讲
+- id: events
+  translation: 活动
 
 - id: projects
   translation: 项目
@@ -269,3 +285,6 @@
 
 - id: published_with
   translation: 由{hugoblox}支持发布——免费{repo_link}开源{/repo_link}网站，为创作者赋能。
+
+- id: poweredby_button
+  translation: '构建您的 →'

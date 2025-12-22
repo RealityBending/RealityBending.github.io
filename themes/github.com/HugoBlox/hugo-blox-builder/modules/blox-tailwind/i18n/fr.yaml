@@ -26,6 +26,55 @@
 - id: related
   translation: Sur le même sujet
 
+# Callouts - All Obsidian-compatible types
+- id: callout_note
+  translation: Note
+
+- id: callout_abstract
+  translation: Résumé
+
+- id: callout_summary
+  translation: Résumé
+
+- id: callout_info
+  translation: Info
+
+- id: callout_todo
+  translation: À faire
+
+- id: callout_tip
+  translation: Conseil
+
+- id: callout_success
+  translation: Succès
+
+- id: callout_question
+  translation: Question
+
+- id: callout_warning
+  translation: Attention
+
+- id: callout_failure
+  translation: Échec
+
+- id: callout_danger
+  translation: Danger
+
+- id: callout_bug
+  translation: Bug
+
+- id: callout_example
+  translation: Exemple
+
+- id: callout_quote
+  translation: Citation
+
+- id: callout_important
+  translation: Important
+
+- id: callout_caution
+  translation: Prudence
+
 - id: minute_read
   translation: min. de lecture
 
@@ -208,14 +257,14 @@
 
 # Content types for default archive page titles and search results
 
-- id: posts
-  translation: Posts
+- id: blog
+  translation: Blog
 
 - id: publications
   translation: Publications
 
-- id: talks
-  translation: Présentations
+- id: events
+  translation: Événements
 
 - id: projects
   translation: Projets
@@ -266,3 +315,6 @@
 
 - id: published_with
   translation: Publié avec {hugoblox} — le générateur {repo_link}libre{/repo_link} de site web gratuit permettant aux créateurs de s'épanouir.
+
+- id: poweredby_button
+  translation: 'Créer le vôtre →'

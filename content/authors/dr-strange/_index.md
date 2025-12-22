@@ -2,7 +2,6 @@
 authors:
 - dr-strange
 bio: "Faith is my sword. Truth my shield. Knowledge my armor."
-education: ""
 email: ""
 interests:
 - Bargaining

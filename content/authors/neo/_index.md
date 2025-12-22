@@ -2,7 +2,6 @@
 authors:
 - Neo
 bio: "The One."
-education: ""
 email: ""
 interests:
 - Red pills

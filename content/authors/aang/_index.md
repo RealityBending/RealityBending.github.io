@@ -2,7 +2,6 @@
 authors:
 - Aang
 bio: "Co-founder of the United Republic of Nations and Fully Realized Avatar."
-education: ""
 email: ""
 interests:
 - Appa

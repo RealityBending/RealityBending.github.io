@@ -13,7 +13,7 @@ social:
 - icon: envelope
   icon_pack: fas
   link: mailto:mb2021@sussex.ac.uk
-- icon: twitter
+- icon: x-twitter
   icon_pack: fab
   link: https://x.com/maisiebenn90255
 - icon: researchgate
