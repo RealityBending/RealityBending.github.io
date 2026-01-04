@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- This site was created with Hugo Blox. https://hugoblox.com -->
-<!-- Last Published: December 20, 2025 --><html lang="en-us" >
+<!-- Last Published: January 4, 2026 --><html lang="en-us" >
 
 
 <head>
@@ -978,54 +978,64 @@
 <p><strong>Create an OSF Project</strong>: Start by creating a new project in <a href="https://osf.io/" target="_blank" rel="noopener">OSF</a>. This will be the container for your data and any related files. You can set up an account if you don&rsquo;t have one already, quite easily!</p>
 <ul>
 <li>Go to the OSF homepage and log in or create an account. You can easily sign up through institutional access.</li>
-<li>Click on &ldquo;Create a New Project&rdquo; and fill in the necessary details such as project title, description, and visibility settings. <em><strong>DO NOT SET IT AS PUBLIC</strong></em> as the data being saved will not be anonymized and may contain sensitive information.</li>
+<li>Click on &ldquo;Create New Project&rdquo; and fill in the necessary details such as project title, description, and visibility settings. Choose &ldquo;Germany - Frankfurt&rdquo; as the server location; this is important for data privacy and compliance with regulations such as GDPR.<em><strong>DO NOT SET YOUR PROJECT AS PUBLIC</strong></em> as the data being saved will not be anonymized and may contain sensitive information.</li>
 </ul>
 </li>
 <li>
 <p><strong>Create OSF Token</strong>: You will need to create a token to grant DataPipe the necessary permissions to access your OSF project.</p>
 <ul>
-<li>Go to your OSF account settings and navigate to the &ldquo;personal access tokens&rdquo; section.</li>
-<li>Click on &ldquo;Create a new token&rdquo; and give it a name (e.g., &ldquo;DataPipe Token&rdquo;).</li>
+<li>Go to your OSF &ldquo;Settings&rdquo; tab and navigate to the &ldquo;Personal Access Tokens&rdquo; section.</li>
+<li>Click on &ldquo;Create Token&rdquo; and give it a name (e.g., &ldquo;DataPipe Token&rdquo;).</li>
 <li>Set the permissions for the token, ensuring it has access to read and write data in your project.</li>
 <li>Copy the generated token; you will need it later.</li>
 </ul>
 </li>
 <li>
-<p><strong>Link OSF to DataPipe</strong>: In DataPipe, you will need to link your OSF project using the token you created.</p>
+<p><strong>Link OSF to DataPipe</strong>: In <a href="https://pipe.jspsych.org/" target="_blank" rel="noopener">DataPipe</a>, you will need to link your OSF project using the token you created.</p>
 <ul>
-<li>Open DataPipe, click Account on the top right corner and select settings.</li>
-<li>Click on the &lsquo;Set OSF Token&rsquo; button and paste the token you copied earlier.</li>
+<li>Open DataPipe, click &ldquo;Account&rdquo; in the top-right corner and select &ldquo;Settings&rdquo;.</li>
+<li>Click on the &ldquo;Set OSF Token&rdquo; button and paste the token you copied earlier from OSF.</li>
 </ul>
 </li>
 <li>
 <p><strong>Create new experiment on DataPipe</strong>: Now that your OSF project is linked, you can create a new experiment in DataPipe.</p>
 <ul>
-<li>Click on &ldquo;Create New Experiment&rdquo; in DataPipe.</li>
+<li>In the &ldquo;My Experiments&rdquo; DataPipe tab, click on the &ldquo;Create New Experiment&rdquo; button.</li>
 <li>Give the experiment a name - I recommend using the same name as your OSF project for consistency.</li>
 <li>Add the OSF project ID to the experiment settings. You can find the project ID in the URL of your OSF project (it is the alphanumeric string after osf.io/)</li>
-<li>Create a new OSF Data component called &lsquo;data&rsquo;. This will create a folder - named data - in your OSF project where all the data collected will be saved.</li>
-<li>Choose Germany - Frankfurt as the server location for your DataPipe experiment. This is important for data privacy and compliance with regulations such as GDPR.</li>
+<li>Create a New OSF Data Component called &ldquo;data&rdquo;. This will create a folder - named &ldquo;data&rdquo; - in your OSF project where all the data collected will be saved.</li>
+<li>Again, choose &ldquo;Germany - Frankfurt&rdquo; as the server location for your DataPipe experiment.</li>
 </ul>
 </li>
 <li>
-<p><strong>Configure Data Collection</strong>: Once the experiment is set up on DataPipe enable data collection on the Status section. You can optionally enable base64 data collection if you wish to encode any video, audio or image files as strings. &lsquo;Condition assignment&rsquo; can also be enabled- this makes DataPipe loop through the conditions when it requests the data. When deciding whether these features are suitable, it&rsquo;s best to consider how you will preprocess the data. It&rsquo;s advised that you only enable the minimum needed as a security measure.</p>
+<p><strong>Configure Data Collection</strong>: Once the experiment is set up on DataPipe, enable data collection on the &ldquo;Status&rdquo; section. You can optionally enable base64 data collection if you wish to encode any video, audio, or image files as strings. &ldquo;Condition assignment&rdquo; can also be enabled - this makes DataPipe loop through the conditions when it requests the data. When deciding whether these features are suitable, it&rsquo;s best to consider how you will preprocess the data. It&rsquo;s advised that you only enable the minimum needed as a security measure.</p>
 </li>
 <li>
-<p><strong>Save the data from the experiment hosted on GitHub</strong>: If you are using a GitHub repository to host your experiment, you can save the data collected by writing the below code to the experiment HTML file. This bit of code should be called at the end of your experiment to ensure that all data is saved to the OSF project</p>
+<p><strong>Save the data from the experiment hosted on GitHub</strong>: If you are using a GitHub repository to host your experiment, you can save the data collected by writing the following code within the experiment HTML file. Here is what that code might look like&hellip;</p>
 <ul>
-<li>Here is what the code should look like in your experiment HTML file:</li>
+<li>Ensure you load the jsPsych DataPipe plugin, along with the rest of your plugins, within the head of the HTML script:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl">        <span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&#34;https://unpkg.com/@jspsych-contrib/plugin-pipe&#34;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
+</span></span></code></pre></div><ul>
+<li>After initializing your jsPsych timeline, to generate a random participant ID for your study, you can code the following:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// Initialize timeline
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">var</span> <span class="nx">timeline</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">participant_ID</span> <span class="o">=</span> <span class="nx">jsPsych</span><span class="p">.</span><span class="nx">randomization</span><span class="p">.</span><span class="nx">randomID</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</span></span></code></pre></div><ul>
+<li>This next bit of code should be called at the end of your experiment (albeit before running the timeline) to ensure that all data is saved to the OSF project, using the unique participant ID generated from the step above:</li>
 </ul>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// Save data via DataPipe
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">timeline</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
 </span></span><span class="line"><span class="cl">        <span class="nx">type</span><span class="o">:</span> <span class="nx">jsPsychPipe</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">        <span class="nx">action</span><span class="o">:</span> <span class="s2">&#34;save&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">        <span class="nx">experiment_id</span><span class="o">:</span> <span class="s2">&#34;xxxxxxxxxx&#34;</span><span class="p">,</span> <span class="c1">// This in generated in the DataPipe interface
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">filename</span><span class="o">:</span> <span class="sb">`</span><span class="si">${</span><span class="nx">participantID</span><span class="si">}</span><span class="sb">.csv`</span><span class="p">,</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">filename</span><span class="o">:</span> <span class="sb">`</span><span class="si">${</span><span class="nx">participant_ID</span><span class="si">}</span><span class="sb">.csv`</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">        <span class="nx">data_string</span><span class="o">:</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">jsPsych</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">get</span><span class="p">().</span><span class="nx">csv</span><span class="p">(),</span>
 </span></span><span class="line"><span class="cl">    <span class="p">})</span>
 </span></span></code></pre></div><ul>
 <li>
-<p>On the experiment created on DataPipe, there is an &lsquo;Experiment ID&rsquo; field. This is the ID you need to add to the <code>experiment_id</code> field in the code above.</p>
+<p>On the experiment created in DataPipe, there is an &lsquo;Experiment ID&rsquo; field. This is the ID you need to add to the <code>experiment_id</code> field in the code above.</p>
 </li>
 <li>
 <p>The <code>filename</code> field can be customized to include the participant ID or any other identifier you prefer.</p>
@@ -1313,7 +1323,7 @@
 
   
   <p class="powered-by copyright-license-text">
-    © 2025 Dominique Makowski
+    © 2026 Dominique Makowski
   </p>
   
 
