@@ -34,33 +34,47 @@ DataPipe is a tool that allows you to collect and save data in OSF (Open Science
 1.  **Create an OSF Project**: Start by creating a new project in [OSF](https://osf.io/). This will be the container for your data and any related files. You can set up an account if you don't have one already, quite easily!
 
     -   Go to the OSF homepage and log in or create an account. You can easily sign up through institutional access.
-    -   Click on "Create a New Project" and fill in the necessary details such as project title, description, and visibility settings. ***DO NOT SET IT AS PUBLIC*** as the data being saved will not be anonymized and may contain sensitive information.
+    -   Click on "Create New Project" and fill in the necessary details such as project title, description, and visibility settings. Choose "Germany - Frankfurt" as the server location; this is important for data privacy and compliance with regulations such as GDPR.***DO NOT SET YOUR PROJECT AS PUBLIC*** as the data being saved will not be anonymized and may contain sensitive information.
 
 2.  **Create OSF Token**: You will need to create a token to grant DataPipe the necessary permissions to access your OSF project.
 
-    -   Go to your OSF account settings and navigate to the "personal access tokens" section.
-    -   Click on "Create a new token" and give it a name (e.g., "DataPipe Token").
+    -   Go to your OSF "Settings" tab and navigate to the "Personal Access Tokens" section.
+    -   Click on "Create Token" and give it a name (e.g., "DataPipe Token").
     -   Set the permissions for the token, ensuring it has access to read and write data in your project.
     -   Copy the generated token; you will need it later.
 
-3.  **Link OSF to DataPipe**: In DataPipe, you will need to link your OSF project using the token you created.
+3.  **Link OSF to DataPipe**: In [DataPipe](https://pipe.jspsych.org/), you will need to link your OSF project using the token you created.
 
-    -   Open DataPipe, click Account on the top right corner and select settings.
-    -   Click on the 'Set OSF Token' button and paste the token you copied earlier.
+    -   Open DataPipe, click "Account" in the top-right corner and select "Settings".
+    -   Click on the "Set OSF Token" button and paste the token you copied earlier from OSF.
 
 4.  **Create new experiment on DataPipe**: Now that your OSF project is linked, you can create a new experiment in DataPipe.
 
-    -   Click on "Create New Experiment" in DataPipe.
+    -   In the "My Experiments" DataPipe tab, click on the "Create New Experiment" button.
     -   Give the experiment a name - I recommend using the same name as your OSF project for consistency.
     -   Add the OSF project ID to the experiment settings. You can find the project ID in the URL of your OSF project (it is the alphanumeric string after osf.io/)
-    -   Create a new OSF Data component called 'data'. This will create a folder - named data - in your OSF project where all the data collected will be saved.
-    -   Choose Germany - Frankfurt as the server location for your DataPipe experiment. This is important for data privacy and compliance with regulations such as GDPR.
+    -   Create a New OSF Data Component called "data". This will create a folder - named "data" - in your OSF project where all the data collected will be saved.
+    -   Again, choose "Germany - Frankfurt" as the server location for your DataPipe experiment.
 
-5.  **Configure Data Collection**: Once the experiment is set up on DataPipe enable data collection on the Status section. You can optionally enable base64 data collection if you wish to encode any video, audio or image files as strings. 'Condition assignment' can also be enabled- this makes DataPipe loop through the conditions when it requests the data. When deciding whether these features are suitable, it's best to consider how you will preprocess the data. It's advised that you only enable the minimum needed as a security measure.
+5.  **Configure Data Collection**: Once the experiment is set up on DataPipe, enable data collection on the "Status" section. You can optionally enable base64 data collection if you wish to encode any video, audio, or image files as strings. "Condition assignment" can also be enabled - this makes DataPipe loop through the conditions when it requests the data. When deciding whether these features are suitable, it's best to consider how you will preprocess the data. It's advised that you only enable the minimum needed as a security measure.
 
-6.  **Save the data from the experiment hosted on GitHub**: If you are using a GitHub repository to host your experiment, you can save the data collected by writing the below code to the experiment HTML file. This bit of code should be called at the end of your experiment to ensure that all data is saved to the OSF project
+6.  **Save the data from the experiment hosted on GitHub**: If you are using a GitHub repository to host your experiment, you can save the data collected by writing the following code within the experiment HTML file. Here is what that code might look like...
 
-    -   Here is what the code should look like in your experiment HTML file:
+    -   Ensure you load the jsPsych DataPipe plugin, along with the rest of your plugins, within the head of the HTML script:
+
+    ``` javascript
+            <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe"></script>
+    ```
+
+    -   After initializing your jsPsych timeline, to generate a random participant ID for your study, you can code the following:
+
+    ``` javascript
+    // Initialize timeline
+        var timeline = []
+        participant_ID = jsPsych.randomization.randomID(10)
+    ```
+
+    -   This next bit of code should be called at the end of your experiment (albeit before running the timeline) to ensure that all data is saved to the OSF project, using the unique participant ID generated from the step above:
 
     ``` javascript
     // Save data via DataPipe
@@ -68,12 +82,12 @@ DataPipe is a tool that allows you to collect and save data in OSF (Open Science
             type: jsPsychPipe,
             action: "save",
             experiment_id: "xxxxxxxxxx", // This in generated in the DataPipe interface
-            filename: `${participantID}.csv`,
+            filename: `${participant_ID}.csv`,
             data_string: () => jsPsych.data.get().csv(),
         })
     ```
 
-    -   On the experiment created on DataPipe, there is an 'Experiment ID' field. This is the ID you need to add to the `experiment_id` field in the code above.
+    -   On the experiment created in DataPipe, there is an 'Experiment ID' field. This is the ID you need to add to the `experiment_id` field in the code above.
 
     -   The `filename` field can be customized to include the participant ID or any other identifier you prefer.
 
