@@ -2,12 +2,12 @@
 title: Róisín Sharma
 authors:
 - roisin-sharma
-bio: Placement student and research assistant at the University of Sussex
+bio: Placement Student and Research Assistant at the Reality Bending Lab
 role: Placement Student<sub><sup><br>University of Sussex</sup></sub>
 social:
 - icon: github
   icon_pack: fab
-  link: https://github.com/sh-roisin 
+  link: https://github.com/RoisinSharma
 - icon: envelope
   icon_pack: fas
   link: mailto:rs843@sussex.ac.uk
@@ -15,14 +15,15 @@ social:
   icon_pack: fab
   link: https://www.researchgate.net/profile/Roisin-Sharma
 interests:
-- Statistics
-- Consciousness 
+- Statistical Analysis
+- Cognitive Science
+- Learning languages
 - Chess (strictly informally!)
 education:
-    courses:
-    - course: BSc Psychology
-      institution: University of Sussex
-      year: 2023 - 2027
+  courses:
+  - course: BSc Psychology
+    institution: University of Sussex
+    year: 2023 - 2027
 user_groups:
 - Research assistants
 superuser: false
