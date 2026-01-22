@@ -27,7 +27,7 @@ Lets start with some basics!
 
 ## What does this mean and when is this useful?
 
-Lab streaming layer (LSL) is a system used to receive, synchronise and stream signals from multiple inputs during experiments. LSL is designed to help researchers easily compare their data across multiple technologies, as time synchrony is integral for making valid comparisons.
+Lab streaming layer (LSL) is a system used to receive, synchronise and stream signals from multiple inputs during experiments. LSL is designed to help researchers easily compare their data across multiple technologies, as time synchrony is integral for making meaningful analyses.
 
 When collecting data on stimulus response during experiments, it's important that the stimulus onset is recorded precisely, especially if this is mapped onto physiological responses as this has implications on how we interpret our data. One good example of a use case is that you have a Muse headband or any other device that can scream via LSL, and you want to precisely mark events in it.
 
@@ -41,15 +41,109 @@ This blog will help you understand the set-up for event triggers. For an example
 
 ## How to set up event triggers
 
-#### Requirements:
+### Requirements
 
 -   **Your experiment is in-person:** In order to use these event triggers, you will need to run your experiment on a local host server, which will need to be manually set up for each trial. Therefore, this setup is intended for in-person experiments that are led by a researcher to set up the participant's screen.
 
--   **The researcher and the participant(s) each have a computer:** The participant's computer will send the markers to the researcher's computer, which will be used to record the events (and all other signals using LSL) during the trial.
+-   **You have two computers, one for the participant, and for recording:** The participant's computer will display the experiment andsend the markers to the researcher's computer, which will be used to capture the LSL streams record the events.
 
-#### The LSL bridge script:
+### The LSL bridge script
 
-The LSL bridge will send the markers to LSL- it 'listens' for messages from the browser that the participant is doing the experiment from, and converts them into 'markers' for your recording software (such as LabRecorder) will receive.
+The LSL bridge Python script is the one responsible for actually sending the markers to LSL- it 'listens' for messages from the browser that the participant is doing the experiment from, and converts them into 'markers' for your recording software (such as LabRecorder) will receive.
+
+<details>
+
+<summary>See an example of a full script</summary>
+
+```python
+from http.server import BaseHTTPRequestHandler, HTTPServer
+from urllib.parse import urlparse, parse_qs
+from mne_lsl.lsl import StreamInfo, StreamOutlet, local_clock
+import threading
+
+# ---------------------------------------------------------------------
+# CONFIG
+# ---------------------------------------------------------------------
+LSL_STREAM_NAME = "jsPsychMarkers"
+LSL_STREAM_TYPE = "Markers"
+LSL_SOURCE_ID = "jspsych-lsl-bridge"
+SERVER_HOST = "0.0.0.0"
+SERVER_PORT = 5000
+# ---------------------------------------------------------------------
+
+# Create an LSL outlet for event markers
+info = StreamInfo(
+    name=LSL_STREAM_NAME,
+    stype=LSL_STREAM_TYPE,
+    n_channels=1,
+    sfreq=0,
+    dtype="string",
+    source_id=LSL_SOURCE_ID,
+)
+
+desc = info.desc
+desc.append_child_value("manufacturer", "jsPsych")
+channels = desc.append_child("channels")
+ch = channels.append_child("channel")
+ch.append_child_value("label", "JsPsychMarker")
+ch.append_child_value("unit", "string")
+ch.append_child_value("type", "Marker")
+
+outlet = StreamOutlet(info)
+
+# ---------------------------------------------------------------------
+# HTTP Request Handler
+# ---------------------------------------------------------------------
+class MarkerHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        parsed = urlparse(self.path)
+        params = parse_qs(parsed.query)
+        path = parsed.path
+
+        if path == "/sync":
+            # Return current LSL clock to JS
+            ts = local_clock()
+            self.send_response(200)
+            self.end_headers()
+            self.wfile.write(str(ts).encode())
+
+        elif path == "/marker":
+            value = params.get("value", ["1"])[0]
+            ts_js = params.get("ts", [None])[0]
+
+            if ts_js is not None:
+                ts = float(ts_js)
+            else:
+                ts = local_clock()
+
+            outlet.push_sample([value], ts)
+            print(f"→ Marker {value} @ {ts:.6f}")
+
+            self.send_response(200)
+            self.end_headers()
+            self.wfile.write(b"OK")
+
+        else:
+            self.send_response(404)
+            self.end_headers()
+
+# ---------------------------------------------------------------------
+def run_server():
+    server_address = (SERVER_HOST, SERVER_PORT)
+    httpd = HTTPServer(server_address, MarkerHandler)
+    print(f"\n[LSL Bridge] Serving on http://{SERVER_HOST}:{SERVER_PORT}")
+    print(f"[LSL Bridge] Stream '{LSL_STREAM_NAME}' ready for LabRecorder.\n")
+    httpd.serve_forever()
+
+# ---------------------------------------------------------------------
+if __name__ == "__main__":
+    server_thread = threading.Thread(target=run_server)
+    server_thread.start()
+```
+</details>
+
+### Configuration of the Python Script
+
 
 1.  Configuration
 
@@ -88,9 +182,9 @@ The LSL bridge will send the markers to LSL- it 'listens' for messages from the 
     -   `run_server()`: Starts the HTTP server and prints a confirmation message that it is ready for LabRecorder.
     -   `threading.Thread(...)`: Runs the server in a separate thread so it doesn't block the main Python process.
 
-#### Synchronise your event triggers in the html script:
+### Configuration of the JsPsych HTML script
 
-This is 'promise-based', meaning it is coded to wait until it receives a signal from the participant's computer. This javascript code is designed to track the exact time it is on the participant's computer and send markers precisely aligned to that time.
+The code sending triggers from the browser to the LSL bridge script is written in javascript. It is 'promise-based', meaning it is coded to wait until it receives a signal from the participant's computer. This javascript code is designed to track the exact time it is on the participant's computer and send markers precisely aligned to that time.
 
 1.  Synchronisation
 
@@ -115,5 +209,13 @@ This is 'promise-based', meaning it is coded to wait until it receives a signal 
     -   Code the mathematical logic to account for the offset in time for the recording computer to receive the marker, so the generated timestamp aligns with the recording computer's timestamp: `var ts = lslBaseTime + performance.now() / 1000`.
 
     -   Send the marker name and this calculated timestamp to the python bridge: `fetch(url)`.
+
+
+### Usage
+
+1. Open the terminal...
+2. Run the expe...
+
+
 
 You are now ready to record event triggers during your experiment. For a guide on how to set this up, you can refer to the README.md file of: <https://github.com/OliverACollins/muse-athena-test>.

@@ -57,6 +57,10 @@ Undergraduates residing in the UK can apply for a paid 6 weeks (30hr per week) i
 
 More information [**here**](https://southcoastbiosciencesdtp.ac.uk/undergraduate-summer-studentship-programme/).
 
+## International Junior Research Associate (IJRA)
+
+- See here: https://www.sussex.ac.uk/suro/current/ijra
+
 
 ## Other Bursaries 
 
