@@ -35,7 +35,7 @@ Event triggers are coded into JsPsych online experiments to accurately mark even
 
 This tutorial will explain how to set this up for an experiment situated on GitHub, although you can adapt this for your hosting platform.
 
-This blog will help you understand the set-up for event triggers. For an example of this in action, refer to <https://github.com/OliverACollins/muse-athena-test/tree/main/blackwhite>. This experiment recorded markers on a screen turning from white to black- you may want to follow along with lsl_bridge.py and blackwhite_jspsych.html [^1] for the full implementation.
+This blog will help you understand the set-up for event triggers. For an example of this in action, refer to <https://github.com/OliverACollins/muse-athena-test/tree/main/blackwhite>. This experiment recorded markers on a screen turning from white to black- you may want to follow along with lsl_bridge.py and blackwhite_jspsych.html[^1] for the full implementation.
 
 [^1]: Special shoutout to our placement student Oliver Collins for preparing these scripts!
 
@@ -45,17 +45,19 @@ This blog will help you understand the set-up for event triggers. For an example
 
 -   **Your experiment is in-person:** In order to use these event triggers, you will need to run your experiment on a local host server, which will need to be manually set up for each trial. Therefore, this setup is intended for in-person experiments that are led by a researcher to set up the participant's screen.
 
--   **You have two computers, one for the participant, and for recording:** The participant's computer will display the experiment andsend the markers to the researcher's computer, which will be used to capture the LSL streams record the events.
+-   **You have two machines, one for the participant, and one for the researcher:** The participant's machine will display the experiment and send the markers to the researcher's machine, which will record the LSL stream events.
+
+-   **All machines must be on the same network connection:** To send the markers from the participant's machine to the researcher's recording machine, we must run the experiment on a web server which directs the markers to the recording machine via its ipv4 address.
 
 ### The LSL bridge script
 
-The LSL bridge Python script is the one responsible for actually sending the markers to LSL- it 'listens' for messages from the browser that the participant is doing the experiment from, and converts them into 'markers' for your recording software (such as LabRecorder) will receive.
+The LSL bridge Python script is responsible for actually sending the markers to LSL- it 'listens' for messages from the browser that the participant is doing the experiment from, and converts them into 'markers' for your recording software (such as LabRecorder) to receive.
 
 <details>
 
 <summary>See an example of a full script</summary>
 
-```python
+``` python
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import urlparse, parse_qs
 from mne_lsl.lsl import StreamInfo, StreamOutlet, local_clock
@@ -140,12 +142,12 @@ if __name__ == "__main__":
     server_thread = threading.Thread(target=run_server)
     server_thread.start()
 ```
+
 </details>
 
 ### Configuration of the Python Script
 
-
-1.  Configuration
+1.  Set-up
 
     -   **Imports**: Load in standard python libraries for creating a web server (`http.server`, `urllib`) and the `mne_lsl` library to handle the data streaming.
 
@@ -153,7 +155,7 @@ if __name__ == "__main__":
 
     -   Add `SERVER_HOST = "0.0.0.0"` into the script to tell the server to listen to all available network interfaces, allowing the participant's computer to communicate with the researcher's.
 
-    -   Specify the port for the html script to go to e.g. `SERVER_PORT = 5000`. You will add this port into the html script that holds the online experiment to, in order to send the experiment to this python script.
+    -   Specify the port for the html script to go to e.g. `SERVER_PORT = 5000`. You will add this port into the html script that holds the online experiment, in order to send the experiment to this python script.
 
 2.  Create the LSL outlet for event triggers
 
@@ -184,7 +186,172 @@ if __name__ == "__main__":
 
 ### Configuration of the JsPsych HTML script
 
-The code sending triggers from the browser to the LSL bridge script is written in javascript. It is 'promise-based', meaning it is coded to wait until it receives a signal from the participant's computer. This javascript code is designed to track the exact time it is on the participant's computer and send markers precisely aligned to that time.
+<details>
+
+<summary>See an example of a full script</summary>
+
+```{=html}
+<!DOCTYPE html\>
+
+<html>
+
+<head>
+
+<title>Black/White Muse Synchronisation Test</title>
+
+<script src="https://unpkg.com/jspsych\@7.3.4"\>\</script\>
+
+<script src="https://unpkg.com/\@jspsych/plugin-html-keyboard-response\@1.1.3"\>\</script\>
+
+<script src="https://unpkg.com/\@jspsych/plugin-image-keyboard-response\@1.1.3"\>\</script\>
+
+<script src="https://unpkg.com/\@jspsych/plugin-preload\@1.1.3"\>\</script\>
+
+<script src="https://unpkg.com/\@jspsych/plugin-fullscreen\@2.1.0"\>\</script\>
+
+<link href="https://unpkg.com/jspsych@7.3.4/css/jspsych.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+</body>
+
+<script>
+// -----------------------
+// LSL bridge (promise-based)
+// -----------------------
+var lslBaseTime = null
+
+function syncLSL() {
+    return new Promise(async function (resolve, reject) {
+        try {
+            let offsets = []
+            for (let i = 0; i < 3; i++) {
+                var startPerf = performance.now()
+                let resp = await fetch("http://139.184.128.202:5000/sync", { cache: "no-store" })
+                let text = await resp.text()
+                var lslTime = parseFloat(text)
+                var endPerf = performance.now()
+                var perfMid = (startPerf + endPerf) / 2
+                offsets.push(lslTime - perfMid / 1000)
+                await new Promise((r) => setTimeout(r, 100)) // Short delay between syncs
+            }
+            lslBaseTime = offsets.reduce((a, b) => a + b, 0) / offsets.length
+            console.log("LSL sync done (averaged):", lslBaseTime)
+            resolve(lslBaseTime)
+        } catch (e) {
+            console.error("LSL sync exception:", e)
+            reject(e)
+        }
+    })
+}
+
+function sendMarker(value = "1") {
+    // If not synced, still send marker (server will timestamp with local_clock())
+    if (lslBaseTime === null) {
+        console.warn("LSL not synced yet - sending without JS timestamp")
+        fetch("http://139.184.128.202:5000/marker?value=" + encodeURIComponent(value))
+            .then(function () {
+                console.log("sent marker (no-ts)", value)
+            })
+            .catch(function (err) {
+                console.error("Marker send error:", err)
+            })
+        return
+    }
+
+    var ts = lslBaseTime + performance.now() / 1000
+    var url = "http://139.184.128.202:5000/marker?value=" + encodeURIComponent(value) + "&ts=" + encodeURIComponent(ts)
+    fetch(url)
+        .then(function () {
+            console.log("sent marker", value, "ts", ts)
+        })
+        .catch(function (err) {
+            console.error("Marker send error:", err)
+        })
+}
+
+/* --------------------------
+   Experiment Definition
+--------------------------- */
+
+function startExperiment() {
+
+    var jsPsych = initJsPsych({
+        override_safe_mode: true
+    });
+
+    var timeline = [];
+
+    /* preload */
+    timeline.push({
+        type: jsPsychPreload,
+        images: ["white.png", "black.png"]
+    });
+
+    /* stimuli */
+    var test_stimuli = [
+        { stimulus: "white.png", duration: 750, marker: 0 },
+        { stimulus: "black.png", duration: 500, marker: 1 }
+    ];
+
+    /* trial */
+    var test = {
+        type: jsPsychImageKeyboardResponse,
+        stimulus: jsPsych.timelineVariable("stimulus"),
+        trial_duration: jsPsych.timelineVariable("duration"),
+        choices: "NO_KEYS",
+
+        data: {
+            marker: jsPsych.timelineVariable("marker")
+        },
+
+        on_start: function(trial) {
+            requestAnimationFrame(() => {
+                sendMarker(trial.data.marker);
+            });
+        }
+    };
+
+
+  var loop_node = {
+      timeline: [{
+          timeline: [test],
+          timeline_variables: test_stimuli,
+          randomize_order: false
+      }],
+      loop_function: function() {
+          return jsPsych.getTotalTime() < 2100000;
+      }
+  };
+
+  timeline.push(loop_node);
+
+
+    jsPsych.run(timeline);
+}
+
+// -----------------------
+// Run: first sync then start experiment
+// -----------------------
+syncLSL()
+    .then(function () {
+        startExperiment()
+    })
+    .catch(function (err) {
+        console.warn("Proceeding without LSL sync (sync failed):", err)
+        startExperiment()
+    })
+
+</script>
+
+</html>
+```
+
+</details>
+
+The code sending triggers from the browser to the LSL bridge script is written in javascript. It is 'promise-based', meaning it is coded to wait until it receives a signal from the participant's computer. This code is designed to track the exact time it is on the participant's computer and send markers precisely aligned to that time.
 
 1.  Synchronisation
 
@@ -198,7 +365,7 @@ The code sending triggers from the browser to the LSL bridge script is written i
 
     -   You can assume the server received the message exactly halfway between start and end (`perfMid`).
 
-    -   Calculates the difference between the browser's clock and the LSL clock: `offsets.push(lslTime - perfMid / 1000)`.
+    -   Calculate the difference between the browser's clock and the LSL clock: `offsets.push(lslTime - perfMid / 1000)`.
 
     -   Finally, average these offsets into `lslBaseTime`. Now the browser knows how to convert its own time to LSL time.
 
@@ -210,12 +377,18 @@ The code sending triggers from the browser to the LSL bridge script is written i
 
     -   Send the marker name and this calculated timestamp to the python bridge: `fetch(url)`.
 
-
 ### Usage
 
-1. Open the terminal...
-2. Run the expe...
+On the researcher's machine:
 
+1.  Turn off the firewall in security settings for the researcher's machine.
+2.  Open the lsl bridge script and go onto the terminal (we use VS code). Type `ipconfig` to retrieve the ipv4 address.
+3.  In the terminal, type `pip install mne-lsl`.
+4.  Select all text in the bridge script and run it (ctrl+a, shift+enter)
 
+On the participant's machine:
 
-You are now ready to record event triggers during your experiment. For a guide on how to set this up, you can refer to the README.md file of: <https://github.com/OliverACollins/muse-athena-test>.
+1.  Open the html script. You will need to ensure the terminal working directory points towards your experiment folder- the best way to do this is to open your repository folder on VS code.
+2.  Copy the ipv4 address from the researcher's machine into the html script- there should be three instances before the `:5000` port address.
+3.  In a new terminal, run `python -m http.server 8000`
+4.  You are now ready to run the experiment. Go onto your browser and enter the link '<http://localhost:8000/index.html>', adjusting for the name of your html script. Your experiment should now run on the participant's machine. The researcher can view markers received in their python terminal.
