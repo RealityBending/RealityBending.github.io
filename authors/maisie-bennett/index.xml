@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Maisie Bennett | Reality Bending Lab</title>
+    <link>https://realitybending.github.io/authors/maisie-bennett/</link>
+      <atom:link href="https://realitybending.github.io/authors/maisie-bennett/index.xml" rel="self" type="application/rss+xml" />
+    <description>Maisie Bennett</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language>
+    <image>
+      <url>https://realitybending.github.io/authors/maisie-bennett/avatar_hu_43200a6643d71f07.png</url>
+      <title>Maisie Bennett</title>
+      <link>https://realitybending.github.io/authors/maisie-bennett/</link>
+    </image>
+    
+    <item>
+      <title>Maisie Bennett</title>
+      <link>https://realitybending.github.io/authors/maisie-bennett/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/authors/maisie-bennett/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

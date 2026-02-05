@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Deception | Reality Bending Lab</title>
+    <link>https://realitybending.github.io/tag/deception/</link>
+      <atom:link href="https://realitybending.github.io/tag/deception/index.xml" rel="self" type="application/rss+xml" />
+    <description>Deception</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Wed, 13 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://realitybending.github.io/media/icon_hu_82f4b62152eab490.png</url>
+      <title>Deception</title>
+      <link>https://realitybending.github.io/tag/deception/</link>
+    </image>
+    
+    <item>
+      <title>The Heart can Lie: A Preliminary Investigation of the Role of Interoception and Theory of Mind in Deception</title>
+      <link>https://realitybending.github.io/publication/makowski2024heart/</link>
+      <pubDate>Wed, 13 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/publication/makowski2024heart/</guid>
+      <description>&lt;div class=&#34;alert alert-tip&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;&lt;strong&gt;Audio Summary&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Listen to a podcast summary of the paper!&lt;/em&gt;&lt;/p&gt;
+&lt;audio controls &gt;
+  &lt;source src=&#34;https://realitybending.github.io/publication/makowski2024heart/makowski2024heart.mp3&#34; type=&#34;audio/mpeg&#34;&gt;
+&lt;/audio&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The Structure of Deception: Validation of the Lying Profile Questionnaire</title>
+      <link>https://realitybending.github.io/publication/makowski2021structure/</link>
+      <pubDate>Thu, 22 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/publication/makowski2021structure/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Yoda | Reality Bending Lab</title>
+    <link>https://realitybending.github.io/authors/yoda/</link>
+      <atom:link href="https://realitybending.github.io/authors/yoda/index.xml" rel="self" type="application/rss+xml" />
+    <description>Yoda</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language>
+    <image>
+      <url>https://realitybending.github.io/authors/yoda/avatar_hu_ee70ba5d702daee1.jpg</url>
+      <title>Yoda</title>
+      <link>https://realitybending.github.io/authors/yoda/</link>
+    </image>
+    
+    <item>
+      <title>Yoda</title>
+      <link>https://realitybending.github.io/authors/yoda/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://realitybending.github.io/authors/yoda/</guid>
+      <description>&lt;p&gt;&lt;em&gt;&amp;ldquo;You must unlearn what you have learned.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
