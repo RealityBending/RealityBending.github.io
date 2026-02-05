@@ -57,7 +57,7 @@ The LSL bridge Python script is responsible for actually sending the markers to 
 
 <summary>See an example of a full script</summary>
 
-``` python
+```python
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import urlparse, parse_qs
 from mne_lsl.lsl import StreamInfo, StreamOutlet, local_clock
@@ -190,7 +190,7 @@ if __name__ == "__main__":
 
 <summary>See an example of a full script</summary>
 
-```{=html}
+```html
 <!DOCTYPE html\>
 
 <html>
