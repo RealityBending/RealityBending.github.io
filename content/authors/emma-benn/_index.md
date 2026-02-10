@@ -30,5 +30,5 @@ education:
       year: 2022 - 2025
 superuser: false
 user_groups:
-- Research Assistants
+- Final Year Students
 ---
