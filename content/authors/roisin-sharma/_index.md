@@ -25,7 +25,7 @@ education:
     institution: University of Sussex
     year: 2023 - 2027
 user_groups:
-- Research assistants
+- Research Assistants
 superuser: false
 ---
 
