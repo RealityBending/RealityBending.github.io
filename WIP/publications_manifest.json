@@ -1,0 +1,40 @@
+{
+  "publications": [
+    {
+      "doi": "10.5334/joc.469",
+      "title": "A Distributional Response Time Analysis of the Perceptual Disfluency Effect",
+      "year": 2025,
+      "journal": "Journal of Cognition",
+      "type": "Journal Article",
+      "pdf": null,
+      "folder": "2025_ADistributionalResponseTime"
+    },
+    {
+      "doi": "10.1371/journal.pone.0321818",
+      "title": "Interventions for combating COVID-19 misinformation: a systematic realist review",
+      "year": 2025,
+      "journal": "PLoS ONE",
+      "type": "Journal Article",
+      "pdf": null,
+      "folder": "2025_InterventionsForCombatingCovid19"
+    },
+    {
+      "doi": "10.1525/collabra.143431",
+      "title": "Measuring Depression and Anxiety With 4 Items? Adaptation of the PHQ-4 to Increase Its Sensitivity to Subclinical Variability",
+      "year": 2025,
+      "journal": "Collabra: Psychology",
+      "type": "Journal Article",
+      "pdf": null,
+      "folder": "2025_MeasuringDepressionAndAnxiety"
+    },
+    {
+      "doi": "10.21105/joss.07969",
+      "title": "modelbased: An R package to make the most out of your statistical models through marginal means, marginal effects, and model predictions",
+      "year": 2025,
+      "journal": "Journal of Open Source Software",
+      "type": "Journal Article",
+      "pdf": null,
+      "folder": "2025_ModelbasedAnRPackage"
+    }
+  ]
+}

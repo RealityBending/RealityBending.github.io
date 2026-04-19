@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Reality Bending Lab</title>
+        <link rel="stylesheet" href="style.css" />
+        <!-- Preload heavy assets during the landing screen -->
+        <link rel="preload" href="img/brain.glb" as="fetch" crossorigin />
+        <link rel="preload" href="img/lab_logo_black.png" as="image" />
+        <!-- model-viewer web component -->
+        <script type="importmap">
+            {
+                "imports": {
+                    "three": "https://cdn.jsdelivr.net/npm/three@0.167.1/build/three.module.js",
+                    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.167.1/examples/jsm/"
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <!-- ════════════════════════════════════
+       DOOR SCREEN (landing)
+  ════════════════════════════════════ -->
+        <div id="door-screen" role="button" tabindex="0" aria-label="Open main page">
+            <div id="door-bg"></div>
+            <div id="door-container">
+                <div class="door door-left"></div>
+                <div class="door door-right"></div>
+            </div>
+            <canvas id="rain-left" class="rain-canvas rain-canvas--left"></canvas>
+            <canvas id="rain-right" class="rain-canvas rain-canvas--right"></canvas>
+            <span class="click-hint">Click to Open</span>
+        </div>
+
+        <!-- ════════════════════════════════════
+       MAIN PAGE
+  ════════════════════════════════════ -->
+        <div id="main-page">
+            <nav>
+                <div class="nav-left">
+                    <img src="img/sussex_logo.svg" alt="University of Sussex logo" class="nav-logo nav-logo--sussex" />
+                    <img src="img/lab_logo_black.png" alt="Reality Bending Lab logo" class="nav-logo" />
+                    <span class="nav-brand">Reality Bending Lab</span>
+                </div>
+                <ul>
+                    <li><a href="#sec-research">Research</a></li>
+                    <li><a href="#sec-people">People</a></li>
+                    <li><a href="#sec-blog">Blog</a></li>
+                    <li><a href="#sec-publications">Publications</a></li>
+                    <li><a href="#sec-tour">Tour</a></li>
+                    <li><a href="#sec-contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="hero">
+                <h1>Reality Bending Lab</h1>
+                <p>
+                    We study consciousness, perception, and the nature of subjective experience &mdash; probing where reality bends and the
+                    mind makes it whole.
+                </p>
+                <div class="brain-atlas">
+                    <div class="section section--research section--left" id="sec-research">
+                        <h2>Research</h2>
+                        <p>
+                            Our work spans altered states of consciousness, body ownership illusions, and predictive approaches to
+                            perception and the self.
+                        </p>
+                    </div>
+                    <div class="section section--people section--top-right" id="sec-people">
+                        <h2>People</h2>
+                        <p>
+                            An interdisciplinary group of researchers at the intersection of cognitive neuroscience, psychology, and
+                            philosophy of mind.
+                        </p>
+                    </div>
+                    <div class="brain-atlas__center">
+                        <div id="brain-viewer">
+                            <div id="brain-tooltip"></div>
+                        </div>
+                    </div>
+                    <div class="section section--blog section--top-left" id="sec-blog">
+                        <h2>Blog</h2>
+                        <p>
+                            Notes from the lab on ongoing experiments, conference reflections, reading trails, and the conceptual questions
+                            shaping our work.
+                        </p>
+                    </div>
+                    <div class="section section--publications section--right" id="sec-publications">
+                        <h2>Publications</h2>
+                        <p>
+                            Recent work covers hypnosis, sensory deprivation, psychophysics of body perception, and neural correlates of
+                            conscious experience.
+                        </p>
+                    </div>
+                    <div class="section section--tour section--bottom-left" id="sec-tour">
+                        <h2>Tour</h2>
+                        <p>
+                            A guided tour through our methods, spaces, and research tools, from immersive setups to the experiments that
+                            test the edges of perception.
+                        </p>
+                    </div>
+                    <div class="section section--contact section--bottom-right" id="sec-contact">
+                        <h2>Contact & Services</h2>
+                        <p>School of Psychology · University of Sussex · Brighton, UK. Collaborations and inquiries are welcome.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ════════════════════════════════════
+       PEOPLE SECTION
+  ════════════════════════════════════ -->
+            <section class="people-full" id="sec-people-full">
+                <h2>People</h2>
+                <div id="people-grid">
+                    <!-- populated by people.js from people_manifest.json -->
+                </div>
+            </section>
+
+            <!-- ════════════════════════════════════
+       PUBLICATIONS SECTION
+  ════════════════════════════════════ -->
+            <section class="publications-full" id="sec-publications-full">
+                <h2>Publications</h2>
+                <div id="publications-list">
+                    <!-- populated by publications.js from publications_manifest.json -->
+                </div>
+            </section>
+
+            <!-- ════════════════════════════════════
+       CONTACT SECTION
+  ════════════════════════════════════ -->
+            <section class="contact-full" id="sec-contact-full">
+                <div class="contact-full__inner">
+                    <div class="contact-full__info">
+                        <h2>Get in Touch</h2>
+                        <p>
+                            School of Psychology<br />
+                            University of Sussex<br />
+                            Falmer, Brighton BN1 9QH, UK
+                        </p>
+                        <p class="contact-full__links">
+                            <a href="mailto:realitybending@sussex.ac.uk">realitybending@sussex.ac.uk</a>
+                        </p>
+                    </div>
+                    <div class="contact-full__map">
+                        <iframe
+                            title="University of Sussex location"
+                            src="https://www.openstreetmap.org/export/embed.html?bbox=-0.0930%2C50.8590%2C-0.0750%2C50.8700&amp;layer=mapnik&amp;marker=50.8642%2C-0.0839"
+                            width="100%"
+                            height="100%"
+                            loading="lazy"
+                            referrerpolicy="no-referrer"
+                        ></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <footer>© 2026 Reality Bending Lab · University of Sussex</footer>
+
+            <!-- Floating action buttons -->
+            <div class="fab-group">
+                <a href="#sec-contact-full" class="fab">Contact</a>
+                <a href="mailto:realitybending@sussex.ac.uk" class="fab fab--primary">Join the Lab</a>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+        <script src="rain.js"></script>
+        <script src="people.js"></script>
+        <script src="publications.js"></script>
+        <!-- Altmetric & Dimensions badge scripts -->
+        <script src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js" async></script>
+        <script src="https://badge.dimensions.ai/badge.js" async></script>
+        <script type="module" src="brain.js"></script>
+    </body>
+</html>

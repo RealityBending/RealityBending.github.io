@@ -1,0 +1,8 @@
+{
+    "name": "Riley Evans",
+    "category": "Research Assistant",
+    "email": "r.evans@sussex.ac.uk",
+    "details": "EEG data acquisition and preprocessing pipelines.",
+    "keywords": ["EEG", "data acquisition", "preprocessing", "signal processing"],
+    "hook": "Did you know that Riley Evans wrote a preprocessing pipeline that cleans EEG data in real time?"
+}

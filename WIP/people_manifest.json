@@ -1,0 +1,244 @@
+{
+  "roles": [
+    "PI",
+    "Postdoc",
+    "PhD Student",
+    "Research Assistant"
+  ],
+  "members": [
+    {
+      "folder": "dominique-makowski",
+      "name": "Dominique Makowski",
+      "category": "PI",
+      "email": "D.Makowski@sussex.ac.uk",
+      "details": "Consciousness, perception, and the nature of subjective experience.",
+      "website": "https://dominiquemakowski.github.io/",
+      "keywords": [
+        "consciousness",
+        "perception",
+        "subjective experience",
+        "reality"
+      ],
+      "hook": "Did you know that Dominique Makowski created the easystats ecosystem for R?",
+      "avatar": "people/dominique-makowski/avatar.png"
+    },
+    {
+      "folder": "jane-doe",
+      "name": "Jane Doe",
+      "category": "Postdoc",
+      "email": "j.doe@sussex.ac.uk",
+      "details": "Predictive coding and body ownership illusions.",
+      "website": "",
+      "keywords": [
+        "predictive coding",
+        "body ownership",
+        "illusions",
+        "embodiment"
+      ],
+      "hook": "Did you know that Jane Doe once experienced a full-body illusion during her own experiment?",
+      "avatar": "people/jane-doe/avatar.png"
+    },
+    {
+      "folder": "alex-smith",
+      "name": "Alex Smith",
+      "category": "PhD Student",
+      "email": "a.smith@sussex.ac.uk",
+      "details": "Neural correlates of altered states of consciousness.",
+      "website": "",
+      "keywords": [
+        "neural correlates",
+        "altered states",
+        "consciousness",
+        "fMRI"
+      ],
+      "hook": "Did you know that Alex Smith has logged over 500 hours inside an fMRI scanner?",
+      "avatar": "people/alex-smith/avatar.png"
+    },
+    {
+      "folder": "morgan-chen",
+      "name": "Morgan Chen",
+      "category": "PhD Student",
+      "email": "m.chen@sussex.ac.uk",
+      "details": "Bayesian models of perceptual inference and multisensory integration.",
+      "website": "",
+      "keywords": [
+        "Bayesian models",
+        "perceptual inference",
+        "multisensory",
+        "integration"
+      ],
+      "hook": "Did you know that Morgan Chen built a Bayesian model that predicts visual illusions?",
+      "avatar": "people/morgan-chen/avatar.png"
+    },
+    {
+      "folder": "jordan-park",
+      "name": "Jordan Park",
+      "category": "Research Assistant",
+      "email": "j.park@sussex.ac.uk",
+      "details": "Stimulus design and psychophysics tooling.",
+      "website": "",
+      "keywords": [
+        "stimulus design",
+        "psychophysics",
+        "tooling",
+        "paradigms"
+      ],
+      "hook": "Did you know that Jordan Park designed stimuli used in over 30 published studies?",
+      "avatar": "people/jordan-park/avatar.png"
+    },
+    {
+      "folder": "riley-evans",
+      "name": "Riley Evans",
+      "category": "Research Assistant",
+      "email": "r.evans@sussex.ac.uk",
+      "details": "EEG data acquisition and preprocessing pipelines.",
+      "website": "",
+      "keywords": [
+        "EEG",
+        "data acquisition",
+        "preprocessing",
+        "signal processing"
+      ],
+      "hook": "Did you know that Riley Evans wrote a preprocessing pipeline that cleans EEG data in real time?",
+      "avatar": "people/riley-evans/avatar.png"
+    },
+    {
+      "folder": "sam-lee",
+      "name": "Sam Lee",
+      "category": "Research Assistant",
+      "email": "s.lee@sussex.ac.uk",
+      "details": "Data collection and experimental paradigm development.",
+      "website": "",
+      "keywords": [
+        "data collection",
+        "experimental design",
+        "paradigm development",
+        "methodology"
+      ],
+      "hook": "Did you know that Sam Lee has run experiments with over 2,000 participants?",
+      "avatar": "people/sam-lee/avatar.png"
+    }
+  ],
+  "by_role": {
+    "PI": [
+      {
+        "folder": "dominique-makowski",
+        "name": "Dominique Makowski",
+        "category": "PI",
+        "email": "D.Makowski@sussex.ac.uk",
+        "details": "Consciousness, perception, and the nature of subjective experience.",
+        "website": "https://dominiquemakowski.github.io/",
+        "keywords": [
+          "consciousness",
+          "perception",
+          "subjective experience",
+          "reality"
+        ],
+        "hook": "Did you know that Dominique Makowski created the easystats ecosystem for R?",
+        "avatar": "people/dominique-makowski/avatar.png"
+      }
+    ],
+    "Postdoc": [
+      {
+        "folder": "jane-doe",
+        "name": "Jane Doe",
+        "category": "Postdoc",
+        "email": "j.doe@sussex.ac.uk",
+        "details": "Predictive coding and body ownership illusions.",
+        "website": "",
+        "keywords": [
+          "predictive coding",
+          "body ownership",
+          "illusions",
+          "embodiment"
+        ],
+        "hook": "Did you know that Jane Doe once experienced a full-body illusion during her own experiment?",
+        "avatar": "people/jane-doe/avatar.png"
+      }
+    ],
+    "PhD Student": [
+      {
+        "folder": "alex-smith",
+        "name": "Alex Smith",
+        "category": "PhD Student",
+        "email": "a.smith@sussex.ac.uk",
+        "details": "Neural correlates of altered states of consciousness.",
+        "website": "",
+        "keywords": [
+          "neural correlates",
+          "altered states",
+          "consciousness",
+          "fMRI"
+        ],
+        "hook": "Did you know that Alex Smith has logged over 500 hours inside an fMRI scanner?",
+        "avatar": "people/alex-smith/avatar.png"
+      },
+      {
+        "folder": "morgan-chen",
+        "name": "Morgan Chen",
+        "category": "PhD Student",
+        "email": "m.chen@sussex.ac.uk",
+        "details": "Bayesian models of perceptual inference and multisensory integration.",
+        "website": "",
+        "keywords": [
+          "Bayesian models",
+          "perceptual inference",
+          "multisensory",
+          "integration"
+        ],
+        "hook": "Did you know that Morgan Chen built a Bayesian model that predicts visual illusions?",
+        "avatar": "people/morgan-chen/avatar.png"
+      }
+    ],
+    "Research Assistant": [
+      {
+        "folder": "jordan-park",
+        "name": "Jordan Park",
+        "category": "Research Assistant",
+        "email": "j.park@sussex.ac.uk",
+        "details": "Stimulus design and psychophysics tooling.",
+        "website": "",
+        "keywords": [
+          "stimulus design",
+          "psychophysics",
+          "tooling",
+          "paradigms"
+        ],
+        "hook": "Did you know that Jordan Park designed stimuli used in over 30 published studies?",
+        "avatar": "people/jordan-park/avatar.png"
+      },
+      {
+        "folder": "riley-evans",
+        "name": "Riley Evans",
+        "category": "Research Assistant",
+        "email": "r.evans@sussex.ac.uk",
+        "details": "EEG data acquisition and preprocessing pipelines.",
+        "website": "",
+        "keywords": [
+          "EEG",
+          "data acquisition",
+          "preprocessing",
+          "signal processing"
+        ],
+        "hook": "Did you know that Riley Evans wrote a preprocessing pipeline that cleans EEG data in real time?",
+        "avatar": "people/riley-evans/avatar.png"
+      },
+      {
+        "folder": "sam-lee",
+        "name": "Sam Lee",
+        "category": "Research Assistant",
+        "email": "s.lee@sussex.ac.uk",
+        "details": "Data collection and experimental paradigm development.",
+        "website": "",
+        "keywords": [
+          "data collection",
+          "experimental design",
+          "paradigm development",
+          "methodology"
+        ],
+        "hook": "Did you know that Sam Lee has run experiments with over 2,000 participants?",
+        "avatar": "people/sam-lee/avatar.png"
+      }
+    ]
+  }
+}
