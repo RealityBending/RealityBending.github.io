@@ -23,22 +23,6 @@
       "avatar": "people/dominique-makowski/avatar.png"
     },
     {
-      "folder": "jane-doe",
-      "name": "Jane Doe",
-      "category": "Postdoc",
-      "email": "j.doe@sussex.ac.uk",
-      "details": "Predictive coding and body ownership illusions.",
-      "website": "",
-      "keywords": [
-        "predictive coding",
-        "body ownership",
-        "illusions",
-        "embodiment"
-      ],
-      "hook": "Did you know that Jane Doe once experienced a full-body illusion during her own experiment?",
-      "avatar": "people/jane-doe/avatar.png"
-    },
-    {
       "folder": "alex-smith",
       "name": "Alex Smith",
       "category": "PhD Student",
@@ -136,24 +120,6 @@
         ],
         "hook": "Did you know that Dominique Makowski created the easystats ecosystem for R?",
         "avatar": "people/dominique-makowski/avatar.png"
-      }
-    ],
-    "Postdoc": [
-      {
-        "folder": "jane-doe",
-        "name": "Jane Doe",
-        "category": "Postdoc",
-        "email": "j.doe@sussex.ac.uk",
-        "details": "Predictive coding and body ownership illusions.",
-        "website": "",
-        "keywords": [
-          "predictive coding",
-          "body ownership",
-          "illusions",
-          "embodiment"
-        ],
-        "hook": "Did you know that Jane Doe once experienced a full-body illusion during her own experiment?",
-        "avatar": "people/jane-doe/avatar.png"
       }
     ],
     "PhD Student": [

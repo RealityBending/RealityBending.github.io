@@ -152,24 +152,6 @@
             container.innerHTML = ""
             container.classList.add("mlp-network")
 
-            /* ── SVG overlay for connections ── */
-            const svg = document.createElementNS(NS, "svg")
-            svg.classList.add("mlp-connections")
-            svg.setAttribute("aria-hidden", "true")
-
-            const defs = document.createElementNS(NS, "defs")
-
-            /* glow filter for active paths */
-            const filter = document.createElementNS(NS, "filter")
-            filter.id = "conn-glow"
-            filter.innerHTML =
-                '<feGaussianBlur stdDeviation="3" result="blur"/>' +
-                '<feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>'
-            defs.appendChild(filter)
-
-            svg.appendChild(defs)
-            container.appendChild(svg)
-
             /* ── Build layers ── */
             const layers = []
 
@@ -394,84 +376,6 @@
                 layers.push({ el: layer, nodes, category })
             })
 
-            /* ──────────────── SVG connection drawing ──────────────── */
-            let pathEls = [] // { path, from, to }
-
-            function drawConnections() {
-                /* remove old elements */
-                pathEls.forEach((p) => {
-                    p.path.remove()
-                })
-                pathEls = []
-
-                const cRect = container.getBoundingClientRect()
-                const sl = container.scrollLeft
-                const st = container.scrollTop
-                const w = container.scrollWidth
-                const h = container.scrollHeight
-                svg.setAttribute("viewBox", "0 0 " + w + " " + h)
-                svg.style.width = w + "px"
-                svg.style.height = h + "px"
-
-                /* reusable fragment to batch DOM appends */
-                const frag = document.createDocumentFragment()
-                let idx = 0
-
-                for (let i = 0; i < layers.length - 1; i++) {
-                    const fromNodes = layers[i].nodes
-                    const toNodes = layers[i + 1].nodes
-
-                    fromNodes.forEach((fn) => {
-                        const fromRing = fn.querySelector(".mlp-node__ring") || fn
-                        const fr = fromRing.getBoundingClientRect()
-                        const fx = fr.left + fr.width * 0.5 - cRect.left + sl
-                        const fy = fr.bottom - cRect.top + st
-
-                        toNodes.forEach((tn) => {
-                            const toRing = tn.querySelector(".mlp-node__ring") || tn
-                            const tr = toRing.getBoundingClientRect()
-                            const tx = tr.left + tr.width * 0.5 - cRect.left + sl
-                            const ty = tr.top - cRect.top + st
-
-                            const midY = (fy + ty) * 0.5
-                            const d = "M" + fx + " " + fy + "C" + fx + " " + midY + " " + tx + " " + midY + " " + tx + " " + ty
-
-                            const path = document.createElementNS(NS, "path")
-                            path.setAttribute("d", d)
-                            path.classList.add("mlp-connection")
-                            path.dataset.from = fn.dataset.member
-                            path.dataset.to = tn.dataset.member
-
-                            const pid = "c" + idx++
-                            path.id = pid
-
-                            frag.appendChild(path)
-
-                            pathEls.push({ path, from: fn.dataset.member, to: tn.dataset.member })
-                        })
-                    })
-                }
-
-                svg.appendChild(frag)
-
-                /* set stroke-dasharray/offset after paths are in the DOM */
-                pathEls.forEach((p) => {
-                    const len = p.path.getTotalLength()
-                    p.path.setAttribute("stroke-dasharray", len)
-                    p.path.setAttribute("stroke-dashoffset", len)
-                })
-            }
-
-            /* initial draw (two rAFs to guarantee layout) */
-            requestAnimationFrame(() => requestAnimationFrame(drawConnections))
-
-            /* redraw on resize — debounced */
-            let rsTimer
-            window.addEventListener("resize", () => {
-                clearTimeout(rsTimer)
-                rsTimer = setTimeout(drawConnections, 250)
-            })
-
             /* ──────────────── Intersection Observer — reveal ──────────────── */
             const section = document.getElementById("sec-people-full")
             if (section) {
@@ -492,38 +396,8 @@
             /* ──────────────── Hover interactions ──────────────── */
             layers.forEach((layer) => {
                 layer.nodes.forEach((node) => {
-                    node.addEventListener("mouseenter", () => {
-                        node.classList.add("is-active")
-                        const id = node.dataset.member
-
-                        const connected = new Set()
-                        connected.add(id)
-                        pathEls.forEach((p) => {
-                            if (p.from === id || p.to === id) {
-                                p.path.classList.add("is-active")
-                                connected.add(p.from)
-                                connected.add(p.to)
-                            } else {
-                                p.path.classList.add("is-dimmed")
-                            }
-                        })
-
-                        layers.forEach((l) =>
-                            l.nodes.forEach((n) => {
-                                if (connected.has(n.dataset.member)) {
-                                    n.classList.add("is-connected")
-                                } else {
-                                    n.classList.add("is-dimmed")
-                                }
-                            }),
-                        )
-                    })
-
-                    node.addEventListener("mouseleave", () => {
-                        node.classList.remove("is-active")
-                        pathEls.forEach((p) => p.path.classList.remove("is-active", "is-dimmed"))
-                        layers.forEach((l) => l.nodes.forEach((n) => n.classList.remove("is-dimmed", "is-connected")))
-                    })
+                    node.addEventListener("mouseenter", () => node.classList.add("is-active"))
+                    node.addEventListener("mouseleave", () => node.classList.remove("is-active"))
                 })
             })
         })

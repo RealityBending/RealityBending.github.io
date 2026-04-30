@@ -4,6 +4,16 @@
   "year": 2025,
   "journal": "Journal of Cognition",
   "type": "Journal Article",
-  "pdf": null,
-  "folder": "2025_ADistributionalResponseTime"
+  "authors": "Geller, J., Gomez, P., Buchanan, E., & Makowski, D.",
+  "is_preprint": false,
+  "pdf": "publications/2025_ADistributionalResponseTime/geller2025.pdf",
+  "folder": "2025_ADistributionalResponseTime",
+  "featured": "publications/2025_ADistributionalResponseTime/featured.png",
+  "github": "https://github.com/jgeller112/Disfluency_Ms",
+  "keywords": [
+    "Cognitive Models",
+    "R",
+    "Methods"
+  ],
+  "citations": 0
 }

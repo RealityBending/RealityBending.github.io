@@ -4,6 +4,14 @@
   "year": 2025,
   "journal": "PLoS ONE",
   "type": "Journal Article",
+  "authors": "Dickinson, R., Makowski, D., van Marwijk, H., & Ford, E.",
+  "is_preprint": false,
   "pdf": null,
-  "folder": "2025_InterventionsForCombatingCovid19"
+  "folder": "2025_InterventionsForCombatingCovid19",
+  "featured": "publications/2025_InterventionsForCombatingCovid19/featured.png",
+  "keywords": [
+    "Fake news",
+    "Misinformation"
+  ],
+  "citations": 3
 }

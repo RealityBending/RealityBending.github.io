@@ -258,15 +258,43 @@ nav ul {
 nav a {
     text-decoration: none;
     color: #888;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Raleway", "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
     font-size: 0.72rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
+    font-weight: 400;
     transition: color 0.2s;
 }
 
-nav a:hover {
-    color: #111;
+nav a[href="#sec-research"]:hover,
+nav a[href="#sec-research"].active {
+    color: var(--section-research);
+    font-weight: 700;
+}
+nav a[href="#sec-people"]:hover,
+nav a[href="#sec-people"].active {
+    color: var(--section-people);
+    font-weight: 700;
+}
+nav a[href="#sec-blog"]:hover,
+nav a[href="#sec-blog"].active {
+    color: var(--section-blog);
+    font-weight: 700;
+}
+nav a[href="#sec-publications"]:hover,
+nav a[href="#sec-publications"].active {
+    color: var(--section-publications);
+    font-weight: 700;
+}
+nav a[href="#sec-tour"]:hover,
+nav a[href="#sec-tour"].active {
+    color: var(--section-tour);
+    font-weight: 700;
+}
+nav a[href="#sec-contact"]:hover,
+nav a[href="#sec-contact"].active {
+    color: var(--section-contact);
+    font-weight: 700;
 }
 
 /* ── Hero ── */
@@ -427,15 +455,12 @@ nav a:hover {
     min-height: 0;
     scroll-margin-top: 6rem;
     text-align: left;
-    background: rgba(245, 244, 239, 0.55);
+    background: transparent;
     border: none;
-    border-left: 2.5px solid var(--section-color);
     box-shadow: none;
     backdrop-filter: none;
-    opacity: 0.55;
-    transition:
-        opacity 0.18s ease,
-        background 0.18s ease;
+    opacity: 1;
+    transition: background 0.18s ease;
 }
 
 .section::before {
@@ -444,16 +469,16 @@ nav a:hover {
 
 .section.is-highlighted {
     opacity: 1;
-    background: rgba(245, 244, 239, 0.92);
+    background: var(--section-color);
 }
 
 .section.is-highlighted h2 {
-    color: var(--section-color);
-    border-bottom-color: color-mix(in srgb, var(--section-color) 55%, rgba(17, 17, 17, 0.28));
+    color: #f5f4ef;
+    border-bottom-color: rgba(245, 244, 239, 0.68);
 }
 
 .section.is-highlighted p {
-    color: rgba(17, 17, 17, 0.92);
+    color: rgba(245, 244, 239, 0.92);
 }
 
 .section h2 {
@@ -466,13 +491,17 @@ nav a:hover {
     margin-bottom: 0.8rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--section-color);
+    transition:
+        color 0.18s ease,
+        border-bottom-color 0.18s ease;
 }
 
 .section p {
     font-size: 0.92rem;
     line-height: 1.75;
-    color: rgba(17, 17, 17, 0.72);
+    color: var(--section-color);
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    transition: color 0.18s ease;
 }
 
 .section--research {
@@ -530,14 +559,15 @@ nav a:hover {
 
 .people-full h2 {
     position: relative;
-    text-align: center;
+    text-align: left;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: #111;
-    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    color: rgba(17, 17, 17, 0.18);
+    margin: 0 auto 1rem;
+    width: min(960px, calc(100% - 4rem));
 }
 
 /* ── MLP container ── */
@@ -549,41 +579,6 @@ nav a:hover {
     flex-direction: column;
     gap: 0;
     padding-left: 0;
-}
-
-/* SVG connections overlay */
-.mlp-connections {
-    position: absolute;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    z-index: 0;
-    overflow: visible;
-}
-
-.mlp-connection {
-    fill: none;
-    stroke: rgba(85, 153, 255, 0.16);
-    stroke-width: 1.2;
-    will-change: stroke-dashoffset;
-    transition:
-        stroke 0.35s ease,
-        stroke-width 0.35s ease,
-        stroke-dashoffset 1.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.mlp-network.is-visible .mlp-connection {
-    stroke-dashoffset: 0 !important;
-}
-
-.mlp-connection.is-active {
-    stroke: rgba(85, 153, 255, 0.5);
-    stroke-width: 2.2;
-    filter: url(#conn-glow);
-}
-
-.mlp-connection.is-dimmed {
-    stroke: rgba(85, 153, 255, 0.04);
 }
 
 /* ── Layers ── */
@@ -692,14 +687,6 @@ nav a:hover {
 .mlp-node.is-active {
     transform: scale(1.05);
     z-index: 10;
-}
-
-.mlp-node.is-dimmed {
-    opacity: 0.18;
-}
-
-.mlp-node.is-connected {
-    opacity: 1;
 }
 
 .mlp-node__ring {
@@ -1056,15 +1043,21 @@ nav a:hover {
     position: relative;
 }
 
+.pub-header {
+    position: relative;
+    max-width: 960px;
+    margin: 0 auto 1.5rem;
+}
+
 .publications-full h2 {
-    text-align: center;
+    display: block;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: #111;
-    margin-bottom: 2.5rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    color: rgba(17, 17, 17, 0.18);
+    margin: 0;
 }
 
 #publications-list {
@@ -1089,6 +1082,34 @@ nav a:hover {
 .pub-card:hover {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
     border-color: rgba(85, 100, 160, 0.7);
+}
+
+/* Preprint variant — light green tint + green left border */
+.pub-card--preprint {
+    background: rgba(80, 200, 100, 0.09);
+    border-left-color: rgba(60, 170, 80, 0.45);
+}
+
+.pub-card--preprint:hover {
+    border-left-color: rgba(60, 170, 80, 0.8);
+}
+
+/* "Preprint" label — top-right corner */
+.pub-card__preprint-badge {
+    position: absolute;
+    top: 0.55rem;
+    right: 0.75rem;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2em 0.65em;
+    border-radius: 1em;
+    background: rgba(60, 170, 80, 0.15);
+    color: rgba(40, 130, 60, 0.9);
+    border: 1px solid rgba(60, 170, 80, 0.35);
+    pointer-events: none;
 }
 
 .pub-card__year {
@@ -1128,41 +1149,182 @@ nav a:hover {
     margin-bottom: 0.6em;
 }
 
-.pub-card__actions {
-    display: flex;
-    gap: 0.6rem;
-    margin-top: 0.5rem;
+/* PDF round badge — Acrobat-style */
+.pub-card__pdf-badge {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #e8192c;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    text-decoration: none;
+    transition:
+        background 0.15s ease,
+        transform 0.15s ease;
 }
 
-.pub-card__action {
+.pub-card__pdf-badge:hover {
+    background: #c8001f;
+    transform: scale(1.07);
+}
+
+.pub-card__authors-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.55em;
+    margin: 0.15em 0 0.35em;
+}
+
+.pub-card__authors {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 0.62rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
+    font-size: 0.78rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+.pub-card__cite-btn {
+    flex-shrink: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    text-decoration: none;
-    padding: 0.3em 0.8em;
+    padding: 0.18em 0.6em;
     border-radius: 1em;
     border: 1px solid rgba(85, 100, 160, 0.3);
-    color: rgba(85, 100, 160, 0.9);
+    background: transparent;
+    color: rgba(85, 100, 160, 0.65);
+    cursor: pointer;
     transition:
         background 0.15s ease,
         color 0.15s ease;
 }
 
-.pub-card__action:hover {
+.pub-card__cite-btn:hover {
     background: rgba(85, 100, 160, 0.1);
     color: rgba(85, 100, 160, 1);
 }
 
-.pub-card__action--pdf {
-    border-color: rgba(200, 60, 60, 0.3);
-    color: rgba(200, 60, 60, 0.85);
+/* ── Cite modal ── */
+.pub-cite-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.pub-card__action--pdf:hover {
-    background: rgba(200, 60, 60, 0.08);
-    color: rgba(200, 60, 60, 1);
+.pub-cite-modal[hidden] {
+    display: none;
+}
+
+.pub-cite-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.pub-cite-dialog {
+    position: relative;
+    background: #fff;
+    border-radius: 0.6em;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.18);
+    width: min(560px, 92vw);
+    padding: 1.4rem 1.6rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.pub-cite-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pub-cite-tabs {
+    display: flex;
+    gap: 0.3rem;
+}
+
+.pub-cite-tab {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 0.28em 0.85em;
+    border-radius: 1em;
+    border: 1px solid rgba(85, 100, 160, 0.25);
+    background: transparent;
+    color: rgba(85, 100, 160, 0.55);
+    cursor: pointer;
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+}
+
+.pub-cite-tab--active {
+    background: rgba(85, 100, 160, 0.13);
+    color: rgba(85, 100, 160, 1);
+    border-color: rgba(85, 100, 160, 0.4);
+}
+
+.pub-cite-close {
+    font-size: 1.3rem;
+    line-height: 1;
+    padding: 0.1em 0.35em;
+    border: none;
+    background: none;
+    color: #999;
+    cursor: pointer;
+    transition: color 0.15s ease;
+    margin-left: auto;
+}
+
+.pub-cite-close:hover {
+    color: #333;
+}
+
+.pub-cite-content {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: #333;
+    background: #f7f6f2;
+    border-radius: 0.35em;
+    padding: 0.9em 1em;
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin: 0;
+    max-height: 240px;
+    overflow-y: auto;
+}
+
+.pub-cite-copy {
+    align-self: flex-end;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 0.38em 1.1em;
+    border-radius: 0.3em;
+    border: 1px solid rgba(85, 100, 160, 0.3);
+    background: transparent;
+    color: rgba(85, 100, 160, 0.8);
+    cursor: pointer;
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+}
+
+.pub-cite-copy:hover {
+    background: rgba(85, 100, 160, 0.1);
+    color: rgba(85, 100, 160, 1);
 }
 
 .pub-card__badges {
@@ -1172,10 +1334,502 @@ nav a:hover {
     margin-top: 0.75rem;
 }
 
+/* Force consistent badge sizing and scale their inner SVG/IMG to fit */
+.pub-card__badges .altmetric-embed,
+.pub-card__badges .__dimensions_badge_embed__,
+.pub-card__github-badge,
+.pub-card__pdf-badge {
+    width: 56px;
+    height: 56px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.pub-card__badges .altmetric-embed img,
+.pub-card__badges .altmetric-embed svg,
+.pub-card__badges .__dimensions_badge_embed__ img,
+.pub-card__badges .__dimensions_badge_embed__ svg {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.pub-card__github-badge {
+    border-radius: 50%;
+    background: #673ab7;
+    color: #fff;
+    transition:
+        background 0.15s ease,
+        transform 0.15s ease;
+}
+
+.pub-card__github-badge:hover {
+    background: #ff5722;
+    transform: scale(1.07);
+}
+
+.pub-card__github-badge svg {
+    width: 50px;
+    height: 50px;
+    fill: #fff;
+}
+
+/* Featured image layout */
+.pub-card--has-image {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+/* Ensure hidden attribute always wins, even over display:flex above.
+   Without this, pub-card--has-image cards stay visible during pagination. */
+.pub-card[hidden] {
+    display: none !important;
+}
+
+.pub-card__body {
+    flex: 1;
+    min-width: 0;
+}
+
+.pub-card__featured-wrap {
+    flex-shrink: 0;
+    align-self: center;
+    display: block;
+}
+
+.pub-card__featured {
+    width: 160px;
+    border-radius: 0.4em;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.15s ease;
+}
+
+a.pub-card__featured-wrap:hover .pub-card__featured {
+    opacity: 0.82;
+}
+
+/* ── Publication keyword tags (clickable buttons) ── */
+.pub-card__keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: 0.55rem;
+}
+
+.pub-card__keyword {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 0.22em 0.7em;
+    border-radius: 1em;
+    border: 1px solid rgba(85, 100, 160, 0.2);
+    background: rgba(85, 100, 160, 0.07);
+    color: rgba(85, 100, 160, 0.7);
+    cursor: pointer;
+    transition:
+        background 0.15s ease,
+        color 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.pub-card__keyword:hover {
+    background: rgba(85, 100, 160, 0.14);
+    color: rgba(85, 100, 160, 1);
+    border-color: rgba(85, 100, 160, 0.4);
+}
+
+.pub-card__keyword--active {
+    background: rgba(85, 100, 160, 0.18);
+    color: rgba(85, 100, 160, 1);
+    border-color: rgba(85, 100, 160, 0.55);
+}
+
+/* ── Citation count — inline next to journal ── */
+.pub-card__cite-inline {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.75rem;
+    color: #888;
+    white-space: nowrap;
+    cursor: default;
+}
+
+/* ── Sort bar ── */
+.pub-sort-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    max-width: 960px;
+    margin: 0 auto 1rem;
+    padding: 0 2rem;
+}
+
+.pub-sort-label {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #999;
+    margin-right: 0.2rem;
+}
+
+.pub-sort-btn {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.32em 0.9em;
+    border-radius: 0.3em;
+    border: 1px solid rgba(85, 100, 160, 0.22);
+    background: transparent;
+    color: rgba(85, 100, 160, 0.6);
+    cursor: pointer;
+    transition:
+        background 0.15s ease,
+        color 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.pub-sort-btn:hover {
+    background: rgba(85, 100, 160, 0.07);
+    color: rgba(85, 100, 160, 1);
+}
+
+.pub-sort-btn--active {
+    background: rgba(85, 100, 160, 0.12);
+    color: rgba(85, 100, 160, 1);
+    border-color: rgba(85, 100, 160, 0.4);
+}
+
+.pub-sort-arrow {
+    display: inline-block;
+    min-width: 0.8em;
+    text-align: left;
+}
+
+/* ── Pagination ── */
+.pub-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+    max-width: 960px;
+    margin: 1.5rem auto 0;
+    padding: 0 2rem;
+}
+
+.pub-pagination__btn {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    min-width: 2.2em;
+    padding: 0.35em 0.6em;
+    border-radius: 0.3em;
+    border: 1px solid rgba(85, 100, 160, 0.22);
+    background: transparent;
+    color: rgba(85, 100, 160, 0.6);
+    cursor: pointer;
+    transition:
+        background 0.15s ease,
+        color 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.pub-pagination__btn:hover {
+    background: rgba(85, 100, 160, 0.07);
+    color: rgba(85, 100, 160, 1);
+}
+
+.pub-pagination__btn--active {
+    background: rgba(85, 100, 160, 0.15);
+    color: rgba(85, 100, 160, 1);
+    border-color: rgba(85, 100, 160, 0.45);
+}
+
+.pub-pagination__arrow {
+    font-size: 1rem;
+    min-width: 2.2em;
+    line-height: 1;
+}
+
+.pub-pagination__arrow:disabled {
+    opacity: 0.25;
+    cursor: default;
+    pointer-events: none;
+}
+
+/* ── Google Scholar link ── */
+.pub-scholar-link {
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: none;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35em;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    text-decoration: none;
+    color: #fff;
+    background: rgba(85, 100, 160, 0.45);
+    padding: 0.55em 0.9em;
+    border: none;
+    border-radius: 0.4em;
+    white-space: nowrap;
+    transition: background 0.15s ease;
+}
+
+.pub-scholar-link:hover {
+    background: rgba(85, 100, 160, 0.7);
+}
+
+.pub-scholar-link svg {
+    width: 2.4em;
+    height: 2.4em;
+    fill: #fff;
+    flex-shrink: 0;
+}
+
+/* ── Publication tabs ── */
+.pub-tabs-nav {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    max-width: 960px;
+    margin: 0 auto 2rem;
+    padding: 0 2rem;
+    border-bottom: 1px solid rgba(85, 100, 160, 0.15);
+}
+
+.pub-tab-btn {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.55em 1.5em;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    background: transparent;
+    color: rgba(85, 100, 160, 0.45);
+    cursor: pointer;
+    transition:
+        color 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.pub-tab-btn:hover {
+    color: rgba(85, 100, 160, 0.8);
+}
+
+.pub-tab-btn--active {
+    color: rgba(85, 100, 160, 1);
+    border-bottom-color: rgba(85, 100, 160, 0.7);
+}
+
+/* ── Gallery tab ── */
+#pub-tab-gallery > .pub-sort-bar {
+    margin-top: 0.5rem;
+}
+
+#publications-gallery {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 1rem 2rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 1.5rem;
+}
+
+.pub-gallery__item {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    border-radius: 0.5em;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(85, 100, 160, 0.1);
+    transition:
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.pub-gallery__item:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.pub-gallery__img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+}
+
+.pub-gallery__caption {
+    padding: 0.7rem 0.85rem;
+}
+
+.pub-gallery__year {
+    display: block;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #888;
+    margin-bottom: 0.25em;
+}
+
+.pub-gallery__title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.78rem;
+    color: #333;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* ── Publications search bar ── */
+.pub-search-bar {
+    position: relative; /* anchor for the dropdown */
+    max-width: 960px;
+    margin: 0 auto 1.5rem;
+    padding: 0 2rem;
+}
+
+/* Chip + input wrapper — looks like a single input field */
+.pub-search-field {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4em 1.1em;
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    border-radius: 2em;
+    background: rgba(255, 255, 255, 0.6);
+    transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.pub-search-field:focus-within {
+    border-color: rgba(85, 100, 160, 0.5);
+    box-shadow: 0 0 0 3px rgba(85, 100, 160, 0.1);
+}
+
+.pub-search-chips {
+    display: contents; /* chips flow inline with the input */
+}
+
+.pub-search-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2em;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 0.2em 0.55em 0.2em 0.7em;
+    border-radius: 1em;
+    background: rgba(85, 100, 160, 0.15);
+    color: rgba(85, 100, 160, 1);
+    white-space: nowrap;
+}
+
+.pub-search-chip__remove {
+    font-size: 0.9em;
+    line-height: 1;
+    padding: 0;
+    border: none;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.12s ease;
+}
+
+.pub-search-chip__remove:hover {
+    opacity: 1;
+}
+
+#pub-search {
+    flex: 1;
+    min-width: 10ch;
+    padding: 0.15em 0;
+    border: none;
+    background: transparent;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.85rem;
+    color: #333;
+    outline: none;
+}
+
+.pub-search-empty {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+    padding: 2.5rem 0;
+    margin: 0;
+}
+
+/* ── Keyword dropdown ── */
+.pub-search-dropdown {
+    position: absolute;
+    top: calc(100% + 0.3rem);
+    left: 2rem;
+    right: 2rem;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.11);
+    border-radius: 0.9em;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    margin: 0;
+    padding: 0.4em 0;
+    z-index: 200;
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.pub-search-dropdown__item {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.82rem;
+    padding: 0.5em 1.3em;
+    cursor: pointer;
+    color: #444;
+    transition:
+        background 0.1s ease,
+        color 0.1s ease;
+}
+
+.pub-search-dropdown__item:hover {
+    background: rgba(85, 100, 160, 0.08);
+    color: rgba(85, 100, 160, 1);
+}
+
 /* ── Contact section ── */
 .contact-full {
     padding: 4rem 2rem;
     background: #f5f4ef;
+}
+
+.contact-full__title {
+    max-width: 960px;
+    margin: 0 auto 1.5rem;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    color: rgba(17, 17, 17, 0.18);
 }
 
 .contact-full__inner {
@@ -1497,5 +2151,10 @@ footer {
 
 .brain-atlas {
     outline: calc(var(--debug-margins) * 1px) dashed rgba(0, 180, 0, 0.5);
+    outline-offset: -1px;
+}
+
+.section {
+    outline: calc(var(--debug-margins) * 1px) dashed rgba(0, 180, 0, 0.35);
     outline-offset: -1px;
 }

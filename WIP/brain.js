@@ -129,7 +129,17 @@ const REGIONS = [
         viewPolar: 2.0,
     },
 ]
+const regionsById = new Map(REGIONS.map((region) => [region.id, region]))
 const sectionElements = new Map(REGIONS.map((region) => [region.id, document.getElementById(region.id)]))
+const atlasCenter = atlas.querySelector(".brain-atlas__center")
+const ATLAS_SECTORS = [
+    { start: 0, end: 60, id: "sec-people" },
+    { start: 60, end: 120, id: "sec-publications" },
+    { start: 120, end: 180, id: "sec-contact" },
+    { start: 180, end: 240, id: "sec-tour" },
+    { start: 240, end: 300, id: "sec-research" },
+    { start: 300, end: 360, id: "sec-blog" },
+]
 
 // ── Shared highlight uniforms ──────────────────────────────────────────────
 // One object shared by every mesh material — updating .value here affects all.
@@ -303,7 +313,7 @@ function regionFromHit(hit) {
 // Keyboard focus on sections (accessibility)
 sectionElements.forEach((element, id) => {
     if (!element) return
-    const region = REGIONS.find((entry) => entry.id === id)
+    const region = regionsById.get(id)
     if (!region) return
     element.addEventListener("focusin", () => {
         highlightRegion(region)
@@ -375,6 +385,49 @@ function raycastBrain(e) {
     return hits.length ? hits[0] : null
 }
 
+function regionFromAtlasSector(e) {
+    if (window.getComputedStyle(atlasCenter).position !== "absolute") return null
+
+    const atlasRect = atlas.getBoundingClientRect()
+    const centerRect = atlasCenter.getBoundingClientRect()
+    const centerX = atlasRect.left + atlasRect.width / 2
+    const centerY = atlasRect.top + atlasRect.height / 2
+    const offsetX = e.clientX - centerX
+    const offsetY = e.clientY - centerY
+    const innerRadius = Math.min(centerRect.width, centerRect.height) / 2
+
+    if (Math.hypot(offsetX, offsetY) <= innerRadius) return null
+
+    const angle = (Math.atan2(offsetY, offsetX) * 180) / Math.PI
+    const atlasAngle = (angle + 90 + 360) % 360
+    const sector = ATLAS_SECTORS.find(({ start, end }) => atlasAngle >= start && atlasAngle < end)
+    return sector ? (regionsById.get(sector.id) ?? null) : null
+}
+
+function clickedRegionFromEvent(e) {
+    const sectionEl = e.target.closest(".section")
+    if (sectionEl) return regionsById.get(sectionEl.id) ?? null
+
+    if (container.contains(e.target)) {
+        const hit = raycastBrain(e)
+        if (hit) return regionFromHit(hit)
+    }
+
+    return regionFromAtlasSector(e)
+}
+
+function navigateToRegion(region) {
+    if (!region) return
+
+    tooltip.classList.remove("visible")
+    if (region.isEasterEgg) {
+        window.location.href = "easteregg.html"
+        return
+    }
+
+    document.getElementById(region.id)?.scrollIntoView({ behavior: "smooth", block: "start" })
+}
+
 atlas.addEventListener("pointermove", (e) => {
     // Skip expensive raycasting when not visible
     if (!heroVisible) return
@@ -382,7 +435,7 @@ atlas.addEventListener("pointermove", (e) => {
     // 1) Pointer is over a section box → highlight that section
     const sectionEl = e.target.closest(".section")
     if (sectionEl) {
-        const region = REGIONS.find((r) => r.id === sectionEl.id)
+        const region = regionsById.get(sectionEl.id)
         if (region) {
             highlightRegion(region)
             lockCamera(region)
@@ -391,7 +444,16 @@ atlas.addEventListener("pointermove", (e) => {
         }
     }
 
-    // 2) Pointer is over the brain canvas → raycast + 3D region detection
+    // 2) Pointer is over the coloured atlas background → highlight that sector
+    const atlasRegion = regionFromAtlasSector(e)
+    if (atlasRegion) {
+        highlightRegion(atlasRegion)
+        lockCamera(atlasRegion)
+        tooltip.classList.remove("visible")
+        return
+    }
+
+    // 3) Pointer is over the brain canvas → raycast + 3D region detection
     if (container.contains(e.target)) {
         unlockCamera()
         const hit = raycastBrain(e)
@@ -414,7 +476,7 @@ atlas.addEventListener("pointermove", (e) => {
         return
     }
 
-    // 3) Pointer is on the atlas background → clear
+    // 4) Pointer is on the atlas background → clear
     clearHighlight()
     unlockCamera()
     tooltip.classList.remove("visible")
@@ -427,28 +489,20 @@ atlas.addEventListener("pointerleave", () => {
     renderer.domElement.style.cursor = "grab"
 })
 
-// Click on brain region to scroll to its section
-renderer.domElement.addEventListener("pointerdown", (e) => {
+// Click on atlas region to scroll to its section
+atlas.addEventListener("pointerdown", (e) => {
+    if (e.button !== 0) return
     pointerDownPos = { x: e.clientX, y: e.clientY }
 })
 
-renderer.domElement.addEventListener("pointerup", (e) => {
+atlas.addEventListener("pointerup", (e) => {
+    if (e.button !== 0) return
+
     const dx = Math.abs(e.clientX - pointerDownPos.x)
     const dy = Math.abs(e.clientY - pointerDownPos.y)
     if (dx > 5 || dy > 5) return
 
-    const hit = raycastBrain(e)
-    if (hit) {
-        const region = regionFromHit(hit)
-        if (region) {
-            tooltip.classList.remove("visible")
-            if (region.isEasterEgg) {
-                window.location.href = "easteregg.html"
-            } else {
-                document.getElementById(region.id)?.scrollIntoView({ behavior: "smooth", block: "start" })
-            }
-        }
-    }
+    navigateToRegion(clickedRegionFromEvent(e))
 })
 
 // ── Visibility gate ────────────────────────────────────────────────────────

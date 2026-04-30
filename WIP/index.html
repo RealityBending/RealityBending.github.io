@@ -5,6 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Reality Bending Lab</title>
         <link rel="stylesheet" href="style.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet" />
         <!-- Preload heavy assets during the landing screen -->
         <link rel="preload" href="img/brain.glb" as="fetch" crossorigin />
         <link rel="preload" href="img/lab_logo_black.png" as="image" />
@@ -121,9 +124,60 @@
        PUBLICATIONS SECTION
   ════════════════════════════════════ -->
             <section class="publications-full" id="sec-publications-full">
-                <h2>Publications</h2>
-                <div id="publications-list">
-                    <!-- populated by publications.js from publications_manifest.json -->
+                <div class="pub-header">
+                    <h2>Publications</h2>
+                    <a
+                        href="https://scholar.google.com/citations?user=bg0BZ-QAAAAJ"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="pub-scholar-link"
+                        aria-label="View on Google Scholar"
+                    >
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5h3.18v6.82h17.64V9.5H24L12 0z" />
+                        </svg>
+                        View on Google Scholar
+                    </a>
+                </div>
+                <div class="pub-tabs-nav" role="tablist">
+                    <button
+                        type="button"
+                        class="pub-tab-btn pub-tab-btn--active"
+                        data-tab="list"
+                        role="tab"
+                        aria-selected="true"
+                        aria-controls="pub-tab-list"
+                    >
+                        List
+                    </button>
+                    <button
+                        type="button"
+                        class="pub-tab-btn"
+                        data-tab="gallery"
+                        role="tab"
+                        aria-selected="false"
+                        aria-controls="pub-tab-gallery"
+                    >
+                        Gallery
+                    </button>
+                </div>
+                <div class="pub-tab-panel" id="pub-tab-list" role="tabpanel">
+                    <div class="pub-search-bar">
+                        <input
+                            type="search"
+                            id="pub-search"
+                            placeholder="Filter by title, keyword, author…"
+                            aria-label="Filter publications"
+                        />
+                    </div>
+                    <div id="publications-list">
+                        <!-- populated by publications.js from publications_manifest.json -->
+                    </div>
+                </div>
+                <div class="pub-tab-panel" id="pub-tab-gallery" role="tabpanel" hidden>
+                    <div id="publications-gallery">
+                        <!-- populated by publications.js -->
+                    </div>
                 </div>
             </section>
 
@@ -131,6 +185,7 @@
        CONTACT SECTION
   ════════════════════════════════════ -->
             <section class="contact-full" id="sec-contact-full">
+                <h2 class="contact-full__title">Contact</h2>
                 <div class="contact-full__inner">
                     <div class="contact-full__info">
                         <h2>Get in Touch</h2>

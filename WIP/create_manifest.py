@@ -42,9 +42,17 @@ OUTPUT = ROOT / "people_manifest.json"
 # ── Publications ──
 ORCID_ID = "0000-0001-5375-9967"
 ORCID_API = f"https://pub.orcid.org/v3.0/{ORCID_ID}/works"
-MAX_PUBLICATIONS = 4  # limit for development
+MAX_PUBLICATIONS = 20  # limit for testing & development
 PUBLICATIONS_DIR = ROOT / "publications"
 PUB_OUTPUT = ROOT / "publications_manifest.json"
+
+# Preprint DOIs to suppress even when automatic title-matching fails
+# (e.g. preprint and published version have different titles).
+# Use the base DOI without version suffix — any _vN variant will be matched.
+OMIT_DOIS: set[str] = {
+    "10.31234/osf.io/sae23",  # preprint of: A Distributional Response Time Analysis of the Perceptual Disfluency Effect
+    "10.31234/osf.io/873th",  # Testing the Relationship between Phenomenological Control related to Illusion Sensitivity
+}
 
 errors_found = 0
 
@@ -223,6 +231,29 @@ def _extract_journal(work_summary: dict) -> str:
     return ""
 
 
+def _format_authors_apa(authors: list[dict]) -> str:
+    """Format a CrossRef author list into APA-style string (Last, F. I., & Last, F. I.)."""
+    parts = []
+    for a in authors:
+        family = a.get("family", "").strip()
+        given = a.get("given", "").strip()
+        if not family:
+            name = a.get("name", "").strip()
+            if name:
+                parts.append(name)
+            continue
+        if given:
+            initials = " ".join(f"{g[0]}." for g in given.split() if g)
+            parts.append(f"{family}, {initials}")
+        else:
+            parts.append(family)
+    if not parts:
+        return ""
+    if len(parts) == 1:
+        return parts[0]
+    return ", ".join(parts[:-1]) + ", & " + parts[-1]
+
+
 def fetch_orcid_works(limit: int = MAX_PUBLICATIONS) -> list[dict]:
     """Fetch the most recent works from ORCID, return simplified dicts."""
     print(f"\nFetching publications from ORCID ({ORCID_ID}) ...")
@@ -262,9 +293,22 @@ def fetch_orcid_works(limit: int = MAX_PUBLICATIONS) -> list[dict]:
             }
         )
 
-    # Filter out preprints (ORCID type)
+    # PsyArXiv / OSF DOI prefix — preprints here are kept and displayed as preprints
+    PSYARXIV_DOI_PREFIX = "10.31234/"  # OSF / PsyArXiv
+
+    # Filter out preprints (ORCID type), keeping PsyArXiv preprints
     PREPRINT_TYPES = {"preprint", "working-paper"}
-    works = [w for w in works if w["_raw_type"] not in PREPRINT_TYPES]
+    filtered_works = []
+    for w in works:
+        doi = w.get("doi", "") or ""
+        if w["_raw_type"] in PREPRINT_TYPES:
+            if doi.startswith(PSYARXIV_DOI_PREFIX):
+                w["is_preprint"] = True
+                filtered_works.append(w)
+            # else: silently drop other preprint types
+        else:
+            filtered_works.append(w)
+    works = filtered_works
 
     # Cross-validate with CrossRef to catch preprints misclassified by ORCID
     # (e.g. Research Square DOIs reported as "journal-article")
@@ -276,7 +320,13 @@ def fetch_orcid_works(limit: int = MAX_PUBLICATIONS) -> list[dict]:
     validated: list[dict] = []
     for w in works:
         doi = w.get("doi", "") or ""
-        # Fast-reject known preprint DOI registrants
+        # Normalise OSF/PsyArXiv version suffixes (_v1, _v2 …) before any comparison
+        doi_base = re.sub(r"_v\d+$", "", doi)
+        # Manual suppress list — takes priority over everything else
+        if doi_base in OMIT_DOIS:
+            print(f"  ⊘ suppressed (OMIT_DOIS): {w['title'][:60]}")
+            continue
+        # Fast-reject known preprint DOI registrants (but keep PsyArXiv)
         if any(doi.startswith(pfx) for pfx in PREPRINT_DOI_PREFIXES):
             print(f"  ⊘ skipped (preprint DOI prefix): {w['title'][:60]}")
             continue
@@ -295,24 +345,65 @@ def fetch_orcid_works(limit: int = MAX_PUBLICATIONS) -> list[dict]:
                 )
                 with urllib.request.urlopen(req, timeout=15) as resp:
                     cr = json.loads(resp.read().decode())
-                cr_type = cr.get("message", {}).get("type", "")
+                cr_msg = cr.get("message", {})
+                cr_type = cr_msg.get("type", "")
                 if cr_type in ("posted-content",):  # CrossRef type for preprints
-                    print(f"  ⊘ skipped (CrossRef type={cr_type}): {w['title'][:60]}")
-                    continue
+                    if doi.startswith(PSYARXIV_DOI_PREFIX):
+                        # PsyArXiv preprint — keep it, mark as preprint
+                        w["is_preprint"] = True
+                        print(f"  ℹ PsyArXiv preprint kept: {w['title']} (DOI: {doi})")
+                    else:
+                        print(
+                            f"  ⊘ skipped (CrossRef type={cr_type}): {w['title'][:60]}"
+                        )
+                        continue
+                cr_authors = cr_msg.get("author", [])
+                if cr_authors:
+                    w["authors"] = _format_authors_apa(cr_authors)
+                # Citation count from CrossRef
+                w["citations"] = cr_msg.get("is-referenced-by-count")
             except (urllib.error.URLError, urllib.error.HTTPError, Exception):
                 pass  # if CrossRef is unreachable, trust ORCID
+        # If ORCID already flagged it as a preprint type, check if it's PsyArXiv
+        if w.get("_raw_type") in ("preprint", "working-paper") and not w.get(
+            "is_preprint"
+        ):
+            if doi.startswith(PSYARXIV_DOI_PREFIX):
+                w["is_preprint"] = True
+            # (non-psyarxiv preprints were already filtered before this loop)
+        # Semantic Scholar fallback when CrossRef returned nothing
+        if doi and w.get("citations") is None:
+            try:
+                s2_url = f"https://api.semanticscholar.org/graph/v1/paper/DOI:{urllib.parse.quote(doi, safe='/')}?fields=citationCount"
+                s2_req = urllib.request.Request(
+                    s2_url, headers={"Accept": "application/json"}
+                )
+                with urllib.request.urlopen(s2_req, timeout=10) as s2_resp:
+                    s2 = json.loads(s2_resp.read().decode())
+                w["citations"] = s2.get("citationCount")
+            except (urllib.error.URLError, urllib.error.HTTPError, Exception):
+                pass
         validated.append(w)
     works = validated
 
     # Sort by year descending, then title
     works.sort(key=lambda w: (-(w["year"] or 0), w["title"].lower()))
 
-    # Deduplicate by normalised title (keeps the first = most recent/preferred)
+    # Deduplicate by normalised title: published version always beats a preprint
+    # with the same title, regardless of year order.
+    published_title_norms: set[str] = set()
+    for w in works:
+        if not w.get("is_preprint"):
+            published_title_norms.add(re.sub(r"\s+", " ", w["title"].lower().strip()))
+
     seen_titles: set[str] = set()
     unique: list[dict] = []
     for w in works:
         norm = re.sub(r"\s+", " ", w["title"].lower().strip())
         if norm in seen_titles:
+            continue
+        if w.get("is_preprint") and norm in published_title_norms:
+            print(f"  ⊘ removed preprint (published version exists): {w['title'][:60]}")
             continue
         seen_titles.add(norm)
         unique.append(w)
@@ -352,12 +443,14 @@ def load_publications(works: list[dict]) -> list[dict]:
             "year": w["year"],
             "journal": w["journal"],
             "type": w["type"],
+            "authors": w.get("authors", ""),
+            "is_preprint": w.get("is_preprint", False),
         }
         # Remove internal-only keys
         merged.pop("_raw_type", None)
         merged.update(existing)  # local overrides win
 
-        # Check for a local PDF
+        # Check for a local PDF (auto-detect; explicit null in info.json is treated as "not set")
         pdf = None
         for ext in ("pdf",):
             candidates = list(pub_dir.glob(f"*.{ext}"))
@@ -365,6 +458,24 @@ def load_publications(works: list[dict]) -> list[dict]:
                 pdf = candidates[0].relative_to(ROOT).as_posix()
                 break
         merged["pdf"] = merged.get("pdf") or pdf
+
+        # Ensure keywords list is always present
+        merged.setdefault("keywords", [])
+        # Citations: use freshly fetched value; fall back to cached if API was unreachable
+        fresh_citations = w.get("citations")
+        merged["citations"] = (
+            fresh_citations if fresh_citations is not None else merged.get("citations")
+        )
+
+        # Check for featured image
+        featured = None
+        for ext in ("png", "jpg", "jpeg", "webp"):
+            candidate = pub_dir / f"featured.{ext}"
+            if candidate.exists():
+                featured = candidate.relative_to(ROOT).as_posix()
+                break
+        merged["featured"] = merged.get("featured") or featured
+
         merged["folder"] = pub_dir.name
 
         # Write back (so the file always exists for manual editing)

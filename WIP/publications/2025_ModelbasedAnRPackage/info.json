@@ -4,6 +4,11 @@
   "year": 2025,
   "journal": "Journal of Open Source Software",
   "type": "Journal Article",
+  "authors": "Makowski, D., Ben-Shachar, M. S., Wiernik, B. M., Patil, I., Thériault, R., & Lüdecke, D.",
+  "is_preprint": false,
   "pdf": null,
-  "folder": "2025_ModelbasedAnRPackage"
+  "folder": "2025_ModelbasedAnRPackage",
+  "featured": null,
+  "keywords": [],
+  "citations": 16
 }
