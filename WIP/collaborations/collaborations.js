@@ -415,6 +415,8 @@
                       name: String(entry?.name || "").trim(),
                       image: String(entry?.image || "").trim(),
                       affiliation: String(entry?.affiliation || fallbackAffiliation || "").trim(),
+                      interests: Array.isArray(entry?.interests) ? entry.interests : [],
+                      education: Array.isArray(entry?.education) ? entry.education : [],
                   }))
                   .filter((entry) => entry.name && entry.image)
             : []
@@ -457,6 +459,27 @@
             } else {
                 card.setAttribute("aria-label", entry.name)
             }
+
+            // Open minimal profile panel on click/Enter (shared with people.js)
+            const openMinimal = () => {
+                if (window._labProfile?.openMinimal) {
+                    window._labProfile.openMinimal({
+                        name: entry.name,
+                        avatar: entry.image,
+                        details: stripAffiliationMarkup(entry.affiliation || ""),
+                        interests: entry.interests || [],
+                        education: entry.education || [],
+                    })
+                }
+            }
+            card.addEventListener("click", openMinimal)
+            card.addEventListener("keydown", (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault()
+                    openMinimal()
+                }
+            })
+            card.style.cursor = "pointer"
 
             const photoWrap = document.createElement("div")
             photoWrap.className = "collaboration-person__photo-wrap"

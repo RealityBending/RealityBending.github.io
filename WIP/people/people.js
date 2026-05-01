@@ -142,18 +142,29 @@
             .filter(Boolean)
     }
 
-    function getSocialIconType(label, url) {
-        const haystack = (label + " " + url).toLowerCase()
-        if (haystack.includes("scholar")) return "academic"
-        if (haystack.includes("github")) return "code"
-        if (haystack.includes("researchgate")) return "research"
-        if (haystack.includes("x.com") || haystack.includes("twitter") || haystack === "x") return "message"
-        if (haystack.includes("linkedin")) return "network"
-        if (haystack.includes("website") || haystack.includes("http")) return "globe"
-        return "link"
-    }
+    var SI_CDN = "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/"
+    var SI_SLUGS = [
+        ["scholar", "googlescholar"],
+        ["github", "github"],
+        ["researchgate", "researchgate"],
+        ["x.com", "x"],
+        ["twitter", "x"],
+        ["linkedin", "linkedin"],
+        ["orcid", "orcid"],
+    ]
 
-    function createSocialIcon(type) {
+    function createSocialIcon(label, url) {
+        const haystack = (label + " " + url).toLowerCase()
+        for (var si = 0; si < SI_SLUGS.length; si++) {
+            if (haystack.includes(SI_SLUGS[si][0])) {
+                const span = document.createElement("span")
+                span.className = "si-icon"
+                span.style.setProperty("--si", "url(" + SI_CDN + SI_SLUGS[si][1] + ".svg)")
+                span.setAttribute("aria-hidden", "true")
+                return span
+            }
+        }
+        // Fallback: custom SVG for website / generic link
         const svg = document.createElementNS(NS, "svg")
         svg.setAttribute("viewBox", "0 0 24 24")
         svg.setAttribute("fill", "none")
@@ -162,13 +173,11 @@
         svg.setAttribute("stroke-linecap", "round")
         svg.setAttribute("stroke-linejoin", "round")
         svg.setAttribute("aria-hidden", "true")
-
         function appendPath(d) {
             const path = document.createElementNS(NS, "path")
             path.setAttribute("d", d)
             svg.appendChild(path)
         }
-
         function appendCircle(cx, cy, r) {
             const circle = document.createElementNS(NS, "circle")
             circle.setAttribute("cx", cx)
@@ -176,52 +185,16 @@
             circle.setAttribute("r", r)
             svg.appendChild(circle)
         }
-
-        switch (type) {
-            case "academic":
-                appendPath("M3 9l9-4 9 4-9 4-9-4z")
-                appendPath("M7 11.5v3.2c0 .8 2.2 2.3 5 2.3s5-1.5 5-2.3v-3.2")
-                appendPath("M19 10v4.5")
-                appendPath("M19 14.5l1.4 2")
-                break
-            case "code":
-                appendPath("M9 7l-5 5 5 5")
-                appendPath("M15 7l5 5-5 5")
-                appendPath("M13 4l-2 16")
-                break
-            case "research":
-                appendCircle("7", "12", "2.25")
-                appendCircle("17", "7", "2.25")
-                appendCircle("17", "17", "2.25")
-                appendPath("M9.1 11 14.8 8.1")
-                appendPath("M9.1 13l5.7 2.9")
-                break
-            case "message":
-                appendPath("M5 6.5h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H10l-5 4v-4H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2z")
-                appendPath("M8.5 10.5l7 4")
-                appendPath("M15.5 10.5l-7 4")
-                break
-            case "network":
-                appendCircle("6", "6", "2")
-                appendCircle("18", "6", "2")
-                appendCircle("12", "18", "2")
-                appendPath("M7.5 7.5l3 7")
-                appendPath("M16.5 7.5l-3 7")
-                appendPath("M8 6h8")
-                break
-            case "globe":
-                appendCircle("12", "12", "9")
-                appendPath("M3 12h18")
-                appendPath("M12 3a14.5 14.5 0 0 1 0 18")
-                appendPath("M12 3a14.5 14.5 0 0 0 0 18")
-                break
-            default:
-                appendPath("M10 14l8-8")
-                appendPath("M14 6h4v4")
-                appendPath("M20 13v4a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4")
-                break
+        if (haystack.includes("website") || haystack.includes("http")) {
+            appendCircle("12", "12", "9")
+            appendPath("M3 12h18")
+            appendPath("M12 3a14.5 14.5 0 0 1 0 18")
+            appendPath("M12 3a14.5 14.5 0 0 0 0 18")
+        } else {
+            appendPath("M10 14l8-8")
+            appendPath("M14 6h4v4")
+            appendPath("M20 13v4a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4")
         }
-
         return svg
     }
 
@@ -234,6 +207,223 @@
             return degree + " completed at " + institution + " in " + entry.year + "."
         }
         return degree + " completed at " + institution + "."
+    }
+
+    /* ── shared profile-panel section builders ── */
+
+    function buildInterestsSection(interests) {
+        const section = document.createElement("section")
+        section.className = "profile-panel__section"
+        const heading = document.createElement("h2")
+        heading.className = "profile-panel__section-title"
+        heading.textContent = "Interests"
+        section.appendChild(heading)
+        const list = document.createElement("ul")
+        list.className = "profile-panel__interest-list"
+        interests.forEach((interest) => {
+            const item = document.createElement("li")
+            item.textContent = interest
+            list.appendChild(item)
+        })
+        section.appendChild(list)
+        return section
+    }
+
+    function buildEducationSection(education) {
+        const section = document.createElement("section")
+        section.className = "profile-panel__section"
+        const heading = document.createElement("h2")
+        heading.className = "profile-panel__section-title"
+        heading.textContent = "Education"
+        section.appendChild(heading)
+
+        const timeline = document.createElement("div")
+        timeline.className = "profile-panel__education-timeline"
+        const rail = document.createElement("div")
+        rail.className = "profile-panel__education-rail"
+        if (education.length === 1) rail.classList.add("has-one-stop")
+
+        const detail = document.createElement("div")
+        detail.className = "profile-panel__education-detail"
+        const detailYear = document.createElement("div")
+        detailYear.className = "profile-panel__education-detail-year"
+        detail.appendChild(detailYear)
+        const detailDegree = document.createElement("div")
+        detailDegree.className = "profile-panel__education-detail-degree"
+        detail.appendChild(detailDegree)
+        const detailInstitution = document.createElement("div")
+        detailInstitution.className = "profile-panel__education-detail-meta"
+        detail.appendChild(detailInstitution)
+        const detailText = document.createElement("p")
+        detailText.className = "profile-panel__education-detail-text"
+        detail.appendChild(detailText)
+
+        const stops = []
+        function clearActive() {
+            stops.forEach((s) => {
+                s.classList.remove("is-active")
+                s.setAttribute("aria-pressed", "false")
+            })
+            detail.classList.remove("is-visible")
+            detail.setAttribute("aria-hidden", "true")
+            detailYear.textContent = ""
+            detailDegree.textContent = ""
+            detailInstitution.textContent = ""
+            detailText.textContent = ""
+        }
+        function setActive(index) {
+            stops.forEach((s, i) => {
+                s.classList.toggle("is-active", i === index)
+                s.setAttribute("aria-pressed", i === index ? "true" : "false")
+            })
+            const entry = education[index]
+            if (!entry) return
+            detail.classList.add("is-visible")
+            detail.setAttribute("aria-hidden", "false")
+            detailYear.textContent = entry.year || "Timeline"
+            detailDegree.textContent = entry.degree || entry.institution || entry.year || "Education"
+            detailInstitution.textContent = entry.institution || ""
+            detailText.textContent = getEducationDescription(entry)
+        }
+
+        education.forEach((entry, index) => {
+            const stop = document.createElement("button")
+            stop.type = "button"
+            stop.className = "profile-panel__education-stop"
+            stop.setAttribute("aria-pressed", "false")
+            const stopYear = document.createElement("span")
+            stopYear.className = "profile-panel__education-stop-year"
+            stopYear.textContent = entry.year || "–"
+            stop.appendChild(stopYear)
+            const stopBody = document.createElement("span")
+            stopBody.className = "profile-panel__education-stop-body"
+            const stopTitle = document.createElement("span")
+            stopTitle.className = "profile-panel__education-stop-title"
+            stopTitle.textContent = entry.degree || entry.institution || entry.year || "Education"
+            stopBody.appendChild(stopTitle)
+            const stopMeta = document.createElement("span")
+            stopMeta.className = "profile-panel__education-stop-meta"
+            stopMeta.textContent = entry.institution || getEducationDescription(entry)
+            stopBody.appendChild(stopMeta)
+            stop.appendChild(stopBody)
+            stop.addEventListener("focus", () => setActive(index))
+            stop.addEventListener("click", () => {
+                if (stop.classList.contains("is-active")) {
+                    clearActive()
+                } else {
+                    setActive(index)
+                }
+            })
+            rail.appendChild(stop)
+            stops.push(stop)
+        })
+
+        timeline.addEventListener("focusout", () => {
+            requestAnimationFrame(() => {
+                if (!timeline.contains(document.activeElement)) clearActive()
+            })
+        })
+        clearActive()
+        timeline.appendChild(rail)
+        timeline.appendChild(detail)
+        section.appendChild(timeline)
+        return section
+    }
+
+    /* ── lazy memories manifest (fetched once, cached) ── */
+    let _memoriesPromise = null
+    function getMemoriesManifest() {
+        if (!_memoriesPromise) {
+            _memoriesPromise = fetch("memories/memories_manifest.json", { cache: "no-store" })
+                .then((r) => (r.ok ? r.json() : { memories: [] }))
+                .then((data) => (Array.isArray(data.memories) ? data.memories : []))
+                .catch(() => [])
+        }
+        return _memoriesPromise
+    }
+
+    function openMemoryLightbox(mem) {
+        const existing = document.querySelector(".memory-lightbox")
+        if (existing) existing.remove()
+        const lb = document.createElement("div")
+        lb.className = "memory-lightbox"
+        lb.setAttribute("role", "dialog")
+        lb.setAttribute("aria-modal", "true")
+        lb.setAttribute("aria-label", mem.caption || mem.title || "Memory")
+        const img = document.createElement("img")
+        img.src = mem.file
+        img.alt = mem.caption || mem.title || ""
+        img.className = "memory-lightbox__img"
+        lb.appendChild(img)
+        if (mem.caption) {
+            const cap = document.createElement("p")
+            cap.className = "memory-lightbox__caption"
+            cap.textContent = mem.caption
+            lb.appendChild(cap)
+        }
+        function onKey(e) {
+            if (e.key === "Escape") {
+                lb.remove()
+                document.removeEventListener("keydown", onKey)
+            }
+        }
+        lb.addEventListener("click", () => {
+            lb.remove()
+            document.removeEventListener("keydown", onKey)
+        })
+        document.addEventListener("keydown", onKey)
+        document.body.appendChild(lb)
+        lb.focus()
+    }
+
+    function buildMemoriesSection(folder) {
+        const section = document.createElement("section")
+        section.className = "profile-panel__memories"
+        const heading = document.createElement("h2")
+        heading.className = "profile-panel__section-title"
+        heading.textContent = "Memories"
+        section.appendChild(heading)
+        const grid = document.createElement("div")
+        grid.className = "profile-panel__memories-grid"
+        section.appendChild(grid)
+        getMemoriesManifest().then((memories) => {
+            const matching = memories.filter((mem) => Array.isArray(mem.people) && mem.people.includes(folder))
+            if (!matching.length) {
+                section.remove()
+                return
+            }
+            matching.forEach((mem) => {
+                const thumb = document.createElement("button")
+                thumb.type = "button"
+                thumb.className = "profile-panel__memory-thumb"
+                thumb.setAttribute("aria-label", mem.caption || mem.title || "View memory")
+                const img = document.createElement("img")
+                img.src = mem.file
+                img.alt = mem.caption || mem.title || ""
+                img.loading = "lazy"
+                thumb.appendChild(img)
+                if (mem.caption) {
+                    const cap = document.createElement("span")
+                    cap.className = "profile-panel__memory-thumb-caption"
+                    cap.textContent = mem.caption
+                    thumb.appendChild(cap)
+                }
+                thumb.addEventListener("click", () => openMemoryLightbox(mem))
+                grid.appendChild(thumb)
+            })
+            if (matching.length > 4) {
+                const toggle = document.createElement("button")
+                toggle.type = "button"
+                toggle.className = "profile-panel__memories-toggle"
+                toggle.textContent = "Show more"
+                toggle.addEventListener("click", () => {
+                    const expanded = grid.classList.toggle("is-expanded")
+                    toggle.textContent = expanded ? "Show fewer" : "Show more"
+                })
+                section.appendChild(toggle)
+            }
+        })
+        return section
     }
 
     /* ── helper: build 3-slot curved keyword ring ── */
@@ -318,7 +508,7 @@
         return svgEl
     }
 
-    fetch("people/people_manifest.json")
+    fetch("people/people_manifest.json", { cache: "no-store" })
         .then((r) => r.json())
         .then((manifest) => {
             const container = document.getElementById("people-grid")
@@ -374,6 +564,53 @@
             document.addEventListener("keydown", (e) => {
                 if (e.key === "Escape") closePanel()
             })
+
+            function openMinimalProfile(m) {
+                panelBody.innerHTML = ""
+                const oldDiscover = panel.querySelector(".profile-panel__discover")
+                if (oldDiscover) oldDiscover.remove()
+
+                const details = (m.details || m.description || "").trim()
+                const interests = normalizeTextList(m.interests)
+                const education = normalizeEducationEntries(m.education)
+
+                const header = document.createElement("div")
+                header.className = "profile-panel__minimal-header"
+
+                const img = document.createElement("img")
+                img.src = m.avatar || m.image || DEFAULT_AVATAR
+                img.alt = m.name
+                img.className = "profile-panel__avatar profile-panel__avatar--minimal"
+                header.appendChild(img)
+
+                const nameEl = document.createElement("h1")
+                nameEl.className = "profile-panel__name"
+                nameEl.textContent = m.name
+                header.appendChild(nameEl)
+
+                if (details) {
+                    const detailEl = document.createElement("p")
+                    detailEl.className = "profile-panel__minimal-desc"
+                    detailEl.textContent = details
+                    header.appendChild(detailEl)
+                }
+
+                panelBody.appendChild(header)
+
+                if (interests.length || education.length) {
+                    const sections = document.createElement("div")
+                    sections.className = "profile-panel__sections"
+                    if (interests.length) sections.appendChild(buildInterestsSection(interests))
+                    if (education.length) sections.appendChild(buildEducationSection(education))
+                    panelBody.appendChild(sections)
+                }
+
+                panel.classList.add("is-open")
+                backdrop.classList.add("is-visible")
+            }
+
+            // Expose for use by collaborations.js
+            window._labProfile = { openMinimal: openMinimalProfile }
 
             function openProfile(m) {
                 panelBody.innerHTML = ""
@@ -456,7 +693,7 @@
                             link.rel = "noopener noreferrer"
                             link.setAttribute("aria-label", social.label)
                             link.title = social.label
-                            link.appendChild(createSocialIcon(getSocialIconType(social.label, social.url)))
+                            link.appendChild(createSocialIcon(social.label, social.url))
                             socialWrap.appendChild(link)
                         })
                         contact.appendChild(socialWrap)
@@ -481,176 +718,21 @@
                 hero.appendChild(main)
                 panelBody.appendChild(hero)
 
-                let funFactBox = null
-                if (m.hook) {
-                    funFactBox = document.createElement("aside")
-                    funFactBox.className = "profile-panel__fun-fact"
-
-                    const label = document.createElement("div")
-                    label.className = "profile-panel__fun-fact-label"
-                    label.textContent = "Fun fact"
-                    funFactBox.appendChild(label)
-
-                    const text = document.createElement("p")
-                    text.className = "profile-panel__fun-fact-text"
-                    text.textContent = m.hook
-                    funFactBox.appendChild(text)
-                }
-
                 if (interests.length || education.length) {
                     const sections = document.createElement("div")
                     sections.className = "profile-panel__sections"
 
-                    if (interests.length) {
-                        const section = document.createElement("section")
-                        section.className = "profile-panel__section"
-
-                        const title = document.createElement("h2")
-                        title.className = "profile-panel__section-title"
-                        title.textContent = "Interests"
-                        section.appendChild(title)
-
-                        const list = document.createElement("ul")
-                        list.className = "profile-panel__interest-list"
-                        interests.forEach((interest) => {
-                            const item = document.createElement("li")
-                            item.textContent = interest
-                            list.appendChild(item)
-                        })
-                        section.appendChild(list)
-                        sections.appendChild(section)
-                    }
-
-                    if (education.length) {
-                        const section = document.createElement("section")
-                        section.className = "profile-panel__section"
-
-                        const title = document.createElement("h2")
-                        title.className = "profile-panel__section-title"
-                        title.textContent = "Education"
-                        section.appendChild(title)
-
-                        const timeline = document.createElement("div")
-                        timeline.className = "profile-panel__education-timeline"
-
-                        const rail = document.createElement("div")
-                        rail.className = "profile-panel__education-rail"
-
-                        const detail = document.createElement("div")
-                        detail.className = "profile-panel__education-detail"
-
-                        const detailYear = document.createElement("div")
-                        detailYear.className = "profile-panel__education-detail-year"
-                        detail.appendChild(detailYear)
-
-                        const detailDegree = document.createElement("div")
-                        detailDegree.className = "profile-panel__education-detail-degree"
-                        detail.appendChild(detailDegree)
-
-                        const detailInstitution = document.createElement("div")
-                        detailInstitution.className = "profile-panel__education-detail-meta"
-                        detail.appendChild(detailInstitution)
-
-                        const detailText = document.createElement("p")
-                        detailText.className = "profile-panel__education-detail-text"
-                        detail.appendChild(detailText)
-
-                        const stops = []
-                        function clearActiveEducation() {
-                            stops.forEach((stop) => {
-                                stop.classList.remove("is-active")
-                                stop.setAttribute("aria-pressed", "false")
-                            })
-                            detail.classList.remove("is-visible")
-                            detail.setAttribute("aria-hidden", "true")
-                            detailYear.textContent = ""
-                            detailDegree.textContent = ""
-                            detailInstitution.textContent = ""
-                            detailText.textContent = ""
-                        }
-
-                        function setActiveEducation(index) {
-                            stops.forEach((stop, stopIndex) => {
-                                stop.classList.toggle("is-active", stopIndex === index)
-                                stop.setAttribute("aria-pressed", stopIndex === index ? "true" : "false")
-                            })
-
-                            const entry = education[index]
-                            if (!entry) return
-
-                            detail.classList.add("is-visible")
-                            detail.setAttribute("aria-hidden", "false")
-                            detailYear.textContent = entry.year || "Timeline"
-                            detailDegree.textContent = entry.degree || entry.institution || entry.year || "Education"
-                            detailInstitution.textContent = entry.institution || ""
-                            detailText.textContent = getEducationDescription(entry)
-                        }
-
-                        education.forEach((entry, index) => {
-                            const stop = document.createElement("button")
-                            stop.type = "button"
-                            stop.className = "profile-panel__education-stop"
-                            stop.setAttribute("aria-pressed", "false")
-
-                            const stopYear = document.createElement("span")
-                            stopYear.className = "profile-panel__education-stop-year"
-                            stopYear.textContent = entry.year || "Now"
-                            stop.appendChild(stopYear)
-
-                            const stopBody = document.createElement("span")
-                            stopBody.className = "profile-panel__education-stop-body"
-
-                            const stopTitle = document.createElement("span")
-                            stopTitle.className = "profile-panel__education-stop-title"
-                            stopTitle.textContent = entry.degree || entry.institution || entry.year || "Education"
-                            stopBody.appendChild(stopTitle)
-
-                            const stopMeta = document.createElement("span")
-                            stopMeta.className = "profile-panel__education-stop-meta"
-                            stopMeta.textContent = entry.institution || getEducationDescription(entry)
-                            stopBody.appendChild(stopMeta)
-
-                            stop.appendChild(stopBody)
-
-                            stop.addEventListener("mouseenter", () => setActiveEducation(index))
-                            stop.addEventListener("focus", () => setActiveEducation(index))
-                            stop.addEventListener("click", () => setActiveEducation(index))
-
-                            rail.appendChild(stop)
-                            stops.push(stop)
-                        })
-
-                        rail.addEventListener("mouseleave", () => {
-                            if (!timeline.contains(document.activeElement)) {
-                                clearActiveEducation()
-                            }
-                        })
-
-                        timeline.addEventListener("focusout", () => {
-                            requestAnimationFrame(() => {
-                                if (!timeline.contains(document.activeElement)) {
-                                    clearActiveEducation()
-                                }
-                            })
-                        })
-
-                        clearActiveEducation()
-
-                        timeline.appendChild(rail)
-                        timeline.appendChild(detail)
-                        section.appendChild(timeline)
-                        sections.appendChild(section)
-                    }
+                    if (interests.length) sections.appendChild(buildInterestsSection(interests))
+                    if (education.length) sections.appendChild(buildEducationSection(education))
 
                     panelBody.appendChild(sections)
                 }
 
-                if (funFactBox) {
-                    panelBody.appendChild(funFactBox)
-                }
+                /* ── Memories ── */
+                panelBody.appendChild(buildMemoriesSection(m.folder))
 
-                /* ── Discover: floating button at bottom right ── */
-                const others = manifest.members.filter((o) => o.folder !== m.folder)
+                /* ── Discover: scrolls with content at bottom of panel ── */
+                const others = manifest.members.filter((o) => o.folder !== m.folder && o.category !== "Alumni")
                 if (others.length) {
                     const other = others[Math.floor(Math.random() * others.length)]
                     const btn = document.createElement("button")
@@ -675,8 +757,7 @@
                         openProfile(other)
                     })
 
-                    // Append to panel (outside body) so it floats fixed
-                    panel.appendChild(btn)
+                    panelBody.appendChild(btn)
                 }
 
                 panel.classList.add("is-open")
@@ -684,6 +765,7 @@
             }
 
             manifest.roles.forEach((category, li) => {
+                if (category === "Alumni") return
                 const members = manifest.by_role[category]
                 if (!members || !members.length) return
 
@@ -753,6 +835,79 @@
                 container.appendChild(layer)
                 layers.push({ el: layer, nodes, category })
             })
+
+            /* ──────────────── Alumni band ──────────────── */
+            const alumni = manifest.by_role["Alumni"] || []
+            if (alumni.length) {
+                const band = document.createElement("div")
+                band.className = "alumni-band"
+
+                const trigger = document.createElement("button")
+                trigger.type = "button"
+                trigger.className = "alumni-band__trigger"
+                trigger.setAttribute("aria-expanded", "false")
+                trigger.setAttribute("aria-controls", "alumni-band-grid")
+
+                const triggerLabel = document.createElement("span")
+                triggerLabel.className = "alumni-band__label"
+                triggerLabel.textContent = "Alumni"
+                trigger.appendChild(triggerLabel)
+
+                const triggerCount = document.createElement("span")
+                triggerCount.className = "alumni-band__count"
+                triggerCount.textContent = "" + alumni.length
+                trigger.appendChild(triggerCount)
+
+                const triggerChevron = document.createElement("span")
+                triggerChevron.className = "alumni-band__chevron"
+                triggerChevron.setAttribute("aria-hidden", "true")
+                trigger.appendChild(triggerChevron)
+
+                const grid = document.createElement("div")
+                grid.id = "alumni-band-grid"
+                grid.className = "alumni-band__grid"
+                grid.hidden = true
+
+                alumni.forEach((m) => {
+                    const card = document.createElement("button")
+                    card.type = "button"
+                    card.className = "alumni-card"
+                    card.setAttribute("aria-label", "View profile of " + m.name)
+
+                    const img = document.createElement("img")
+                    img.className = "alumni-card__avatar"
+                    img.src = m.avatar || DEFAULT_AVATAR
+                    img.alt = m.name
+                    img.loading = "lazy"
+                    card.appendChild(img)
+
+                    const nameEl = document.createElement("span")
+                    nameEl.className = "alumni-card__name"
+                    nameEl.textContent = m.name
+                    card.appendChild(nameEl)
+
+                    if (m.details) {
+                        const detailEl = document.createElement("span")
+                        detailEl.className = "alumni-card__details"
+                        detailEl.textContent = m.details
+                        card.appendChild(detailEl)
+                    }
+
+                    card.addEventListener("click", () => openMinimalProfile(m))
+                    grid.appendChild(card)
+                })
+
+                trigger.addEventListener("click", () => {
+                    const open = trigger.getAttribute("aria-expanded") === "true"
+                    trigger.setAttribute("aria-expanded", !open)
+                    grid.hidden = open
+                    trigger.classList.toggle("is-open", !open)
+                })
+
+                band.appendChild(trigger)
+                band.appendChild(grid)
+                container.appendChild(band)
+            }
 
             /* ──────────────── Intersection Observer — reveal ──────────────── */
             const section = document.getElementById("sec-people-full")

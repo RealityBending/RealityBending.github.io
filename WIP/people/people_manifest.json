@@ -3,7 +3,8 @@
     "PI",
     "Postdoc",
     "PhD Student",
-    "Research Assistant"
+    "Research Assistant",
+    "Alumni"
   ],
   "members": [
     {
@@ -72,119 +73,503 @@
       "avatar": "people/dominique-makowski/avatar.png"
     },
     {
-      "folder": "alex-smith",
-      "name": "Alex Smith",
+      "folder": "ana-neves",
+      "name": "Ana Neves",
       "category": "PhD Student",
-      "email": "a.smith@sussex.ac.uk",
-      "details": "Neural correlates of altered states of consciousness.",
+      "email": "",
+      "details": "PhD Candidate in Interoception and the Sense of Reality",
       "website": "",
-      "title": "",
-      "affiliation": "",
-      "location": "",
-      "summary": "",
-      "socials": [],
-      "interests": [],
-      "education": [],
+      "title": "Interoception and the Sense of Reality",
+      "affiliation": "University of Sussex",
+      "location": "Brighton, UK",
+      "summary": "The ultimate, hidden truth of the world is that it is something that we make, and could just as easily make differently.",
+      "socials": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/AnafNeves"
+        },
+        {
+          "label": "ResearchGate",
+          "url": "https://www.researchgate.net/profile/Ana-Neves-79"
+        }
+      ],
+      "interests": [
+        "Consciousness",
+        "Cognitive Sciences",
+        "Philosophy of Mind"
+      ],
+      "education": [
+        {
+          "degree": "PhD in Psychology",
+          "institution": "University of Sussex",
+          "year": "2024–",
+          "details": ""
+        },
+        {
+          "degree": "MRes in Psychological Methods",
+          "institution": "University of Sussex",
+          "year": "2023–2024",
+          "details": ""
+        },
+        {
+          "degree": "BSc in Psychology with Cognitive Sciences",
+          "institution": "University of Sussex",
+          "year": "2018–2022",
+          "details": ""
+        }
+      ],
       "keywords": [
-        "neural correlates",
-        "altered states",
         "consciousness",
-        "fMRI"
+        "interoception",
+        "reality"
       ],
-      "hook": "Did you know that Alex Smith has logged over 500 hours inside an fMRI scanner?",
-      "avatar": "people/alex-smith/avatar.png"
+      "hook": "",
+      "avatar": "people/ana-neves/avatar.jpg"
     },
     {
-      "folder": "morgan-chen",
-      "name": "Morgan Chen",
+      "folder": "catriona-osborn-moar",
+      "name": "Catriona Osborn Moar",
       "category": "PhD Student",
-      "email": "m.chen@sussex.ac.uk",
-      "details": "Bayesian models of perceptual inference and multisensory integration.",
+      "email": "C.Osborn-Moar@sussex.ac.uk",
+      "details": "",
       "website": "",
       "title": "",
-      "affiliation": "",
+      "affiliation": "University of Sussex",
       "location": "",
       "summary": "",
       "socials": [],
-      "interests": [],
-      "education": [],
-      "keywords": [
-        "Bayesian models",
-        "perceptual inference",
-        "multisensory",
-        "integration"
+      "interests": [
+        "Ongoing brain activity and thought",
+        "Active Inference",
+        "Complex systems and criticality",
+        "Altered states of consciousness"
       ],
-      "hook": "Did you know that Morgan Chen built a Bayesian model that predicts visual illusions?",
-      "avatar": "people/morgan-chen/avatar.png"
+      "education": [
+        {
+          "degree": "Sussex Neuroscience 4-Year PhD Programme",
+          "institution": "University of Sussex",
+          "year": "2023–",
+          "details": ""
+        },
+        {
+          "degree": "MRes in Neuroscience",
+          "institution": "University of Sussex",
+          "year": "2022–2023",
+          "details": ""
+        },
+        {
+          "degree": "BSc (Hons) in Neuroscience",
+          "institution": "Queen Mary University of London",
+          "year": "2021",
+          "details": ""
+        }
+      ],
+      "keywords": [],
+      "hook": "",
+      "avatar": "people/catriona-osborn-moar/avatar.jpg"
     },
     {
-      "folder": "jordan-park",
-      "name": "Jordan Park",
+      "folder": "oliver-collins",
+      "name": "Oliver Collins",
       "category": "Research Assistant",
-      "email": "j.park@sussex.ac.uk",
-      "details": "Stimulus design and psychophysics tooling.",
+      "email": "",
+      "details": "Placement Student",
       "website": "",
       "title": "",
-      "affiliation": "",
+      "affiliation": "University of Sussex",
       "location": "",
       "summary": "",
-      "socials": [],
-      "interests": [],
-      "education": [],
-      "keywords": [
-        "stimulus design",
-        "psychophysics",
-        "tooling",
-        "paradigms"
+      "socials": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/OliverACollins"
+        },
+        {
+          "label": "X",
+          "url": "https://x.com/OliverACollins"
+        },
+        {
+          "label": "ResearchGate",
+          "url": "https://www.researchgate.net/profile/Oliver-Collins-6"
+        }
       ],
-      "hook": "Did you know that Jordan Park designed stimuli used in over 30 published studies?",
-      "avatar": "people/jordan-park/avatar.png"
+      "interests": [
+        "Cognitive Psychology",
+        "Statistics",
+        "Playing guitar",
+        "Go-karting"
+      ],
+      "education": [
+        {
+          "degree": "BSc Psychology with Clinical Approaches",
+          "institution": "University of Sussex",
+          "year": "",
+          "details": ""
+        }
+      ],
+      "keywords": [],
+      "hook": "",
+      "avatar": "people/oliver-collins/avatar.png"
     },
     {
-      "folder": "riley-evans",
-      "name": "Riley Evans",
+      "folder": "roisin-sharma",
+      "name": "Róisín Sharma",
       "category": "Research Assistant",
-      "email": "r.evans@sussex.ac.uk",
-      "details": "EEG data acquisition and preprocessing pipelines.",
+      "email": "",
+      "details": "Research Assistant",
       "website": "",
       "title": "",
-      "affiliation": "",
+      "affiliation": "University of Sussex",
       "location": "",
       "summary": "",
-      "socials": [],
-      "interests": [],
-      "education": [],
-      "keywords": [
-        "EEG",
-        "data acquisition",
-        "preprocessing",
-        "signal processing"
+      "socials": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/RoisinSharma"
+        },
+        {
+          "label": "ResearchGate",
+          "url": "https://www.researchgate.net/profile/Roisin-Sharma"
+        }
       ],
-      "hook": "Did you know that Riley Evans wrote a preprocessing pipeline that cleans EEG data in real time?",
-      "avatar": "people/riley-evans/avatar.png"
+      "interests": [
+        "Statistical Analysis",
+        "Cognitive Science",
+        "Learning languages",
+        "Chess"
+      ],
+      "education": [
+        {
+          "degree": "BSc Psychology",
+          "institution": "University of Sussex",
+          "year": "2023–2027",
+          "details": ""
+        }
+      ],
+      "keywords": [],
+      "hook": "",
+      "avatar": "people/roisin-sharma/avatar.jpg"
     },
     {
-      "folder": "sam-lee",
-      "name": "Sam Lee",
-      "category": "Research Assistant",
-      "email": "s.lee@sussex.ac.uk",
-      "details": "Data collection and experimental paradigm development.",
+      "folder": "anshu-te",
+      "name": "An-Shu Te",
+      "category": "Alumni",
+      "email": "anshu.te@ntu.edu.sg",
+      "details": "Research Assistant (2021–23)",
       "website": "",
       "title": "",
-      "affiliation": "",
+      "affiliation": "Nanyang Technological University",
+      "location": "",
+      "summary": "",
+      "socials": [
+        {
+          "label": "X",
+          "url": "https://x.com/anshu_te97"
+        }
+      ],
+      "interests": [
+        "Clinical Psychology",
+        "Psychology of Trauma",
+        "Mindfulness-Based Approaches to Eating Disorders"
+      ],
+      "education": [
+        {
+          "degree": "B.A. (Hons), Psychology",
+          "institution": "National University of Singapore",
+          "year": "2016–2020",
+          "details": ""
+        }
+      ],
+      "keywords": [],
+      "hook": "",
+      "avatar": "people/anshu-te/avatar.png"
+    },
+    {
+      "folder": "emma-benn",
+      "name": "Emma Benn",
+      "category": "Alumni",
+      "email": "",
+      "details": "Placement (2024–25)",
+      "website": "",
+      "title": "",
+      "affiliation": "University of Sussex",
+      "location": "",
+      "summary": "",
+      "socials": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/EmmaLBenn"
+        },
+        {
+          "label": "X",
+          "url": "https://x.com/EmmaLBenn"
+        },
+        {
+          "label": "ResearchGate",
+          "url": "https://www.researchgate.net/profile/Emma-Benn-2"
+        }
+      ],
+      "interests": [
+        "Statistics and R",
+        "Reading",
+        "Dogs"
+      ],
+      "education": [
+        {
+          "degree": "BSc Psychology",
+          "institution": "University of Sussex",
+          "year": "2022–2025",
+          "details": ""
+        }
+      ],
+      "keywords": [],
+      "hook": "",
+      "avatar": "people/emma-benn/avatar.jpg"
+    },
+    {
+      "folder": "maisie-bennett",
+      "name": "Maisie Bennett",
+      "category": "Alumni",
+      "email": "",
+      "details": "Placement (2024–25)",
+      "website": "",
+      "title": "",
+      "affiliation": "University of Sussex",
+      "location": "",
+      "summary": "",
+      "socials": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/Maisiebennett"
+        },
+        {
+          "label": "X",
+          "url": "https://x.com/maisiebenn90255"
+        },
+        {
+          "label": "ResearchGate",
+          "url": "https://www.researchgate.net/profile/Maisie-Bennett-2"
+        }
+      ],
+      "interests": [
+        "Cognitive Psychology",
+        "Statistics",
+        "Reading"
+      ],
+      "education": [
+        {
+          "degree": "BSc Psychology",
+          "institution": "University of Sussex",
+          "year": "2022–2025",
+          "details": ""
+        }
+      ],
+      "keywords": [],
+      "hook": "",
+      "avatar": "people/maisie-bennett/avatar.png"
+    },
+    {
+      "folder": "rob-dickinson",
+      "name": "Rob Dickinson",
+      "category": "Alumni",
+      "email": "rd321@sussex.ac.uk",
+      "details": "PhD Student (2022–25)",
+      "website": "",
+      "title": "",
+      "affiliation": "University of Sussex",
       "location": "",
       "summary": "",
       "socials": [],
-      "interests": [],
-      "education": [],
-      "keywords": [
-        "data collection",
-        "experimental design",
-        "paradigm development",
-        "methodology"
+      "interests": [
+        "Contemporary Politics",
+        "Psychology of Misinformation",
+        "Psychology of Radicalisation"
       ],
-      "hook": "Did you know that Sam Lee has run experiments with over 2,000 participants?",
-      "avatar": "people/sam-lee/avatar.png"
+      "education": [
+        {
+          "degree": "BA, Public Policy",
+          "institution": "University of Michigan",
+          "year": "",
+          "details": ""
+        },
+        {
+          "degree": "MA, Development Studies",
+          "institution": "University of Sussex",
+          "year": "",
+          "details": ""
+        }
+      ],
+      "keywords": [],
+      "hook": "",
+      "avatar": "people/rob-dickinson/avatar.png"
+    },
+    {
+      "folder": "stephanie-kirk",
+      "name": "Stephanie Kirk",
+      "category": "Alumni",
+      "email": "stephanie.morgank@gmail.com",
+      "details": "Research Assistant (2022–24)",
+      "website": "",
+      "title": "",
+      "affiliation": "Nanyang Technological University",
+      "location": "",
+      "summary": "",
+      "socials": [],
+      "interests": [
+        "Environmental Psychology",
+        "Neuroaesthetics",
+        "Psychology of Trauma and Post-Traumatic Growth"
+      ],
+      "education": [
+        {
+          "degree": "BA, Psychology",
+          "institution": "University of British Columbia",
+          "year": "",
+          "details": ""
+        },
+        {
+          "degree": "MA, Museum Studies and Curatorial Practices",
+          "institution": "Nanyang Technological University",
+          "year": "",
+          "details": ""
+        }
+      ],
+      "keywords": [],
+      "hook": "",
+      "avatar": "people/stephanie-kirk/avatar.png"
+    },
+    {
+      "folder": "tam-pham",
+      "name": "Tam Pham",
+      "category": "Alumni",
+      "email": "",
+      "details": "Research Assistant (2019–22)",
+      "website": "",
+      "title": "",
+      "affiliation": "Nanyang Technological University",
+      "location": "",
+      "summary": "",
+      "socials": [
+        {
+          "label": "X",
+          "url": "https://x.com/tampham94"
+        }
+      ],
+      "interests": [
+        "Suicide and Self-Injurious Behaviour",
+        "Interoception",
+        "Affective Disorders"
+      ],
+      "education": [
+        {
+          "degree": "BA in Psychology",
+          "institution": "Nanyang Technological University",
+          "year": "2018",
+          "details": ""
+        }
+      ],
+      "keywords": [],
+      "hook": "",
+      "avatar": "people/tam-pham/avatar.jpg"
+    },
+    {
+      "folder": "wilson-lim",
+      "name": "Wilson Lim",
+      "category": "Alumni",
+      "email": "wilson.lim@ntu.edu.sg",
+      "details": "Research Associate (2022–24)",
+      "website": "",
+      "title": "",
+      "affiliation": "Nanyang Technological University",
+      "location": "",
+      "summary": "",
+      "socials": [],
+      "interests": [
+        "Cognitive Neuroscience",
+        "Neuropsychology",
+        "Affective Disorders",
+        "Brain-body Interactions"
+      ],
+      "education": [
+        {
+          "degree": "MRes in Cognitive Neuroscience",
+          "institution": "University College London",
+          "year": "2020–2021",
+          "details": ""
+        },
+        {
+          "degree": "BSc (Hons) in Psychology",
+          "institution": "University College London",
+          "year": "2017–2020",
+          "details": ""
+        }
+      ],
+      "keywords": [],
+      "hook": "",
+      "avatar": "people/wilson-lim/avatar.png"
+    },
+    {
+      "folder": "zen-juen",
+      "name": "Zen J. Lau",
+      "category": "Alumni",
+      "email": "",
+      "details": "Research Assistant (2020–22)",
+      "website": "",
+      "title": "",
+      "affiliation": "Nanyang Technological University",
+      "location": "",
+      "summary": "",
+      "socials": [
+        {
+          "label": "X",
+          "url": "https://x.com/ZenJuen"
+        }
+      ],
+      "interests": [
+        "Memory and false memories",
+        "Decision-making and inhibitory control",
+        "Forensic psychology"
+      ],
+      "education": [
+        {
+          "degree": "M.A. (Hons) Psychology",
+          "institution": "University of Edinburgh",
+          "year": "2019",
+          "details": ""
+        }
+      ],
+      "keywords": [],
+      "hook": "",
+      "avatar": "people/zen-juen/avatar.jpg"
+    },
+    {
+      "folder": "ziliang-ngoi",
+      "name": "Zi Liang Ngoi",
+      "category": "Alumni",
+      "email": "ziliangngoi@gmail.com",
+      "details": "Research Assistant (2022–23)",
+      "website": "",
+      "title": "",
+      "affiliation": "Nanyang Technological University",
+      "location": "",
+      "summary": "",
+      "socials": [],
+      "interests": [
+        "Clinical Psychology",
+        "Emotion Regulation",
+        "Children's Emotional Development"
+      ],
+      "education": [
+        {
+          "degree": "B.Soc.Sc. (Honours), Psychology",
+          "institution": "National University of Singapore",
+          "year": "",
+          "details": ""
+        }
+      ],
+      "keywords": [],
+      "hook": "",
+      "avatar": "people/ziliang-ngoi/avatar.png"
     }
   ],
   "by_role": {
@@ -257,121 +642,507 @@
     ],
     "PhD Student": [
       {
-        "folder": "alex-smith",
-        "name": "Alex Smith",
+        "folder": "ana-neves",
+        "name": "Ana Neves",
         "category": "PhD Student",
-        "email": "a.smith@sussex.ac.uk",
-        "details": "Neural correlates of altered states of consciousness.",
+        "email": "",
+        "details": "PhD Candidate in Interoception and the Sense of Reality",
         "website": "",
-        "title": "",
-        "affiliation": "",
-        "location": "",
-        "summary": "",
-        "socials": [],
-        "interests": [],
-        "education": [],
-        "keywords": [
-          "neural correlates",
-          "altered states",
-          "consciousness",
-          "fMRI"
+        "title": "Interoception and the Sense of Reality",
+        "affiliation": "University of Sussex",
+        "location": "Brighton, UK",
+        "summary": "The ultimate, hidden truth of the world is that it is something that we make, and could just as easily make differently.",
+        "socials": [
+          {
+            "label": "GitHub",
+            "url": "https://github.com/AnafNeves"
+          },
+          {
+            "label": "ResearchGate",
+            "url": "https://www.researchgate.net/profile/Ana-Neves-79"
+          }
         ],
-        "hook": "Did you know that Alex Smith has logged over 500 hours inside an fMRI scanner?",
-        "avatar": "people/alex-smith/avatar.png"
+        "interests": [
+          "Consciousness",
+          "Cognitive Sciences",
+          "Philosophy of Mind"
+        ],
+        "education": [
+          {
+            "degree": "PhD in Psychology",
+            "institution": "University of Sussex",
+            "year": "2024–",
+            "details": ""
+          },
+          {
+            "degree": "MRes in Psychological Methods",
+            "institution": "University of Sussex",
+            "year": "2023–2024",
+            "details": ""
+          },
+          {
+            "degree": "BSc in Psychology with Cognitive Sciences",
+            "institution": "University of Sussex",
+            "year": "2018–2022",
+            "details": ""
+          }
+        ],
+        "keywords": [
+          "consciousness",
+          "interoception",
+          "reality"
+        ],
+        "hook": "",
+        "avatar": "people/ana-neves/avatar.jpg"
       },
       {
-        "folder": "morgan-chen",
-        "name": "Morgan Chen",
+        "folder": "catriona-osborn-moar",
+        "name": "Catriona Osborn Moar",
         "category": "PhD Student",
-        "email": "m.chen@sussex.ac.uk",
-        "details": "Bayesian models of perceptual inference and multisensory integration.",
+        "email": "C.Osborn-Moar@sussex.ac.uk",
+        "details": "",
         "website": "",
         "title": "",
-        "affiliation": "",
+        "affiliation": "University of Sussex",
         "location": "",
         "summary": "",
         "socials": [],
-        "interests": [],
-        "education": [],
-        "keywords": [
-          "Bayesian models",
-          "perceptual inference",
-          "multisensory",
-          "integration"
+        "interests": [
+          "Ongoing brain activity and thought",
+          "Active Inference",
+          "Complex systems and criticality",
+          "Altered states of consciousness"
         ],
-        "hook": "Did you know that Morgan Chen built a Bayesian model that predicts visual illusions?",
-        "avatar": "people/morgan-chen/avatar.png"
+        "education": [
+          {
+            "degree": "Sussex Neuroscience 4-Year PhD Programme",
+            "institution": "University of Sussex",
+            "year": "2023–",
+            "details": ""
+          },
+          {
+            "degree": "MRes in Neuroscience",
+            "institution": "University of Sussex",
+            "year": "2022–2023",
+            "details": ""
+          },
+          {
+            "degree": "BSc (Hons) in Neuroscience",
+            "institution": "Queen Mary University of London",
+            "year": "2021",
+            "details": ""
+          }
+        ],
+        "keywords": [],
+        "hook": "",
+        "avatar": "people/catriona-osborn-moar/avatar.jpg"
       }
     ],
     "Research Assistant": [
       {
-        "folder": "jordan-park",
-        "name": "Jordan Park",
+        "folder": "oliver-collins",
+        "name": "Oliver Collins",
         "category": "Research Assistant",
-        "email": "j.park@sussex.ac.uk",
-        "details": "Stimulus design and psychophysics tooling.",
+        "email": "",
+        "details": "Placement Student",
         "website": "",
         "title": "",
-        "affiliation": "",
+        "affiliation": "University of Sussex",
         "location": "",
         "summary": "",
-        "socials": [],
-        "interests": [],
-        "education": [],
-        "keywords": [
-          "stimulus design",
-          "psychophysics",
-          "tooling",
-          "paradigms"
+        "socials": [
+          {
+            "label": "GitHub",
+            "url": "https://github.com/OliverACollins"
+          },
+          {
+            "label": "X",
+            "url": "https://x.com/OliverACollins"
+          },
+          {
+            "label": "ResearchGate",
+            "url": "https://www.researchgate.net/profile/Oliver-Collins-6"
+          }
         ],
-        "hook": "Did you know that Jordan Park designed stimuli used in over 30 published studies?",
-        "avatar": "people/jordan-park/avatar.png"
+        "interests": [
+          "Cognitive Psychology",
+          "Statistics",
+          "Playing guitar",
+          "Go-karting"
+        ],
+        "education": [
+          {
+            "degree": "BSc Psychology with Clinical Approaches",
+            "institution": "University of Sussex",
+            "year": "",
+            "details": ""
+          }
+        ],
+        "keywords": [],
+        "hook": "",
+        "avatar": "people/oliver-collins/avatar.png"
       },
       {
-        "folder": "riley-evans",
-        "name": "Riley Evans",
+        "folder": "roisin-sharma",
+        "name": "Róisín Sharma",
         "category": "Research Assistant",
-        "email": "r.evans@sussex.ac.uk",
-        "details": "EEG data acquisition and preprocessing pipelines.",
+        "email": "",
+        "details": "Research Assistant",
         "website": "",
         "title": "",
-        "affiliation": "",
+        "affiliation": "University of Sussex",
         "location": "",
         "summary": "",
-        "socials": [],
-        "interests": [],
-        "education": [],
-        "keywords": [
-          "EEG",
-          "data acquisition",
-          "preprocessing",
-          "signal processing"
+        "socials": [
+          {
+            "label": "GitHub",
+            "url": "https://github.com/RoisinSharma"
+          },
+          {
+            "label": "ResearchGate",
+            "url": "https://www.researchgate.net/profile/Roisin-Sharma"
+          }
         ],
-        "hook": "Did you know that Riley Evans wrote a preprocessing pipeline that cleans EEG data in real time?",
-        "avatar": "people/riley-evans/avatar.png"
+        "interests": [
+          "Statistical Analysis",
+          "Cognitive Science",
+          "Learning languages",
+          "Chess"
+        ],
+        "education": [
+          {
+            "degree": "BSc Psychology",
+            "institution": "University of Sussex",
+            "year": "2023–2027",
+            "details": ""
+          }
+        ],
+        "keywords": [],
+        "hook": "",
+        "avatar": "people/roisin-sharma/avatar.jpg"
+      }
+    ],
+    "Alumni": [
+      {
+        "folder": "anshu-te",
+        "name": "An-Shu Te",
+        "category": "Alumni",
+        "email": "anshu.te@ntu.edu.sg",
+        "details": "Research Assistant (2021–23)",
+        "website": "",
+        "title": "",
+        "affiliation": "Nanyang Technological University",
+        "location": "",
+        "summary": "",
+        "socials": [
+          {
+            "label": "X",
+            "url": "https://x.com/anshu_te97"
+          }
+        ],
+        "interests": [
+          "Clinical Psychology",
+          "Psychology of Trauma",
+          "Mindfulness-Based Approaches to Eating Disorders"
+        ],
+        "education": [
+          {
+            "degree": "B.A. (Hons), Psychology",
+            "institution": "National University of Singapore",
+            "year": "2016–2020",
+            "details": ""
+          }
+        ],
+        "keywords": [],
+        "hook": "",
+        "avatar": "people/anshu-te/avatar.png"
       },
       {
-        "folder": "sam-lee",
-        "name": "Sam Lee",
-        "category": "Research Assistant",
-        "email": "s.lee@sussex.ac.uk",
-        "details": "Data collection and experimental paradigm development.",
+        "folder": "emma-benn",
+        "name": "Emma Benn",
+        "category": "Alumni",
+        "email": "",
+        "details": "Placement (2024–25)",
         "website": "",
         "title": "",
-        "affiliation": "",
+        "affiliation": "University of Sussex",
+        "location": "",
+        "summary": "",
+        "socials": [
+          {
+            "label": "GitHub",
+            "url": "https://github.com/EmmaLBenn"
+          },
+          {
+            "label": "X",
+            "url": "https://x.com/EmmaLBenn"
+          },
+          {
+            "label": "ResearchGate",
+            "url": "https://www.researchgate.net/profile/Emma-Benn-2"
+          }
+        ],
+        "interests": [
+          "Statistics and R",
+          "Reading",
+          "Dogs"
+        ],
+        "education": [
+          {
+            "degree": "BSc Psychology",
+            "institution": "University of Sussex",
+            "year": "2022–2025",
+            "details": ""
+          }
+        ],
+        "keywords": [],
+        "hook": "",
+        "avatar": "people/emma-benn/avatar.jpg"
+      },
+      {
+        "folder": "maisie-bennett",
+        "name": "Maisie Bennett",
+        "category": "Alumni",
+        "email": "",
+        "details": "Placement (2024–25)",
+        "website": "",
+        "title": "",
+        "affiliation": "University of Sussex",
+        "location": "",
+        "summary": "",
+        "socials": [
+          {
+            "label": "GitHub",
+            "url": "https://github.com/Maisiebennett"
+          },
+          {
+            "label": "X",
+            "url": "https://x.com/maisiebenn90255"
+          },
+          {
+            "label": "ResearchGate",
+            "url": "https://www.researchgate.net/profile/Maisie-Bennett-2"
+          }
+        ],
+        "interests": [
+          "Cognitive Psychology",
+          "Statistics",
+          "Reading"
+        ],
+        "education": [
+          {
+            "degree": "BSc Psychology",
+            "institution": "University of Sussex",
+            "year": "2022–2025",
+            "details": ""
+          }
+        ],
+        "keywords": [],
+        "hook": "",
+        "avatar": "people/maisie-bennett/avatar.png"
+      },
+      {
+        "folder": "rob-dickinson",
+        "name": "Rob Dickinson",
+        "category": "Alumni",
+        "email": "rd321@sussex.ac.uk",
+        "details": "PhD Student (2022–25)",
+        "website": "",
+        "title": "",
+        "affiliation": "University of Sussex",
         "location": "",
         "summary": "",
         "socials": [],
-        "interests": [],
-        "education": [],
-        "keywords": [
-          "data collection",
-          "experimental design",
-          "paradigm development",
-          "methodology"
+        "interests": [
+          "Contemporary Politics",
+          "Psychology of Misinformation",
+          "Psychology of Radicalisation"
         ],
-        "hook": "Did you know that Sam Lee has run experiments with over 2,000 participants?",
-        "avatar": "people/sam-lee/avatar.png"
+        "education": [
+          {
+            "degree": "BA, Public Policy",
+            "institution": "University of Michigan",
+            "year": "",
+            "details": ""
+          },
+          {
+            "degree": "MA, Development Studies",
+            "institution": "University of Sussex",
+            "year": "",
+            "details": ""
+          }
+        ],
+        "keywords": [],
+        "hook": "",
+        "avatar": "people/rob-dickinson/avatar.png"
+      },
+      {
+        "folder": "stephanie-kirk",
+        "name": "Stephanie Kirk",
+        "category": "Alumni",
+        "email": "stephanie.morgank@gmail.com",
+        "details": "Research Assistant (2022–24)",
+        "website": "",
+        "title": "",
+        "affiliation": "Nanyang Technological University",
+        "location": "",
+        "summary": "",
+        "socials": [],
+        "interests": [
+          "Environmental Psychology",
+          "Neuroaesthetics",
+          "Psychology of Trauma and Post-Traumatic Growth"
+        ],
+        "education": [
+          {
+            "degree": "BA, Psychology",
+            "institution": "University of British Columbia",
+            "year": "",
+            "details": ""
+          },
+          {
+            "degree": "MA, Museum Studies and Curatorial Practices",
+            "institution": "Nanyang Technological University",
+            "year": "",
+            "details": ""
+          }
+        ],
+        "keywords": [],
+        "hook": "",
+        "avatar": "people/stephanie-kirk/avatar.png"
+      },
+      {
+        "folder": "tam-pham",
+        "name": "Tam Pham",
+        "category": "Alumni",
+        "email": "",
+        "details": "Research Assistant (2019–22)",
+        "website": "",
+        "title": "",
+        "affiliation": "Nanyang Technological University",
+        "location": "",
+        "summary": "",
+        "socials": [
+          {
+            "label": "X",
+            "url": "https://x.com/tampham94"
+          }
+        ],
+        "interests": [
+          "Suicide and Self-Injurious Behaviour",
+          "Interoception",
+          "Affective Disorders"
+        ],
+        "education": [
+          {
+            "degree": "BA in Psychology",
+            "institution": "Nanyang Technological University",
+            "year": "2018",
+            "details": ""
+          }
+        ],
+        "keywords": [],
+        "hook": "",
+        "avatar": "people/tam-pham/avatar.jpg"
+      },
+      {
+        "folder": "wilson-lim",
+        "name": "Wilson Lim",
+        "category": "Alumni",
+        "email": "wilson.lim@ntu.edu.sg",
+        "details": "Research Associate (2022–24)",
+        "website": "",
+        "title": "",
+        "affiliation": "Nanyang Technological University",
+        "location": "",
+        "summary": "",
+        "socials": [],
+        "interests": [
+          "Cognitive Neuroscience",
+          "Neuropsychology",
+          "Affective Disorders",
+          "Brain-body Interactions"
+        ],
+        "education": [
+          {
+            "degree": "MRes in Cognitive Neuroscience",
+            "institution": "University College London",
+            "year": "2020–2021",
+            "details": ""
+          },
+          {
+            "degree": "BSc (Hons) in Psychology",
+            "institution": "University College London",
+            "year": "2017–2020",
+            "details": ""
+          }
+        ],
+        "keywords": [],
+        "hook": "",
+        "avatar": "people/wilson-lim/avatar.png"
+      },
+      {
+        "folder": "zen-juen",
+        "name": "Zen J. Lau",
+        "category": "Alumni",
+        "email": "",
+        "details": "Research Assistant (2020–22)",
+        "website": "",
+        "title": "",
+        "affiliation": "Nanyang Technological University",
+        "location": "",
+        "summary": "",
+        "socials": [
+          {
+            "label": "X",
+            "url": "https://x.com/ZenJuen"
+          }
+        ],
+        "interests": [
+          "Memory and false memories",
+          "Decision-making and inhibitory control",
+          "Forensic psychology"
+        ],
+        "education": [
+          {
+            "degree": "M.A. (Hons) Psychology",
+            "institution": "University of Edinburgh",
+            "year": "2019",
+            "details": ""
+          }
+        ],
+        "keywords": [],
+        "hook": "",
+        "avatar": "people/zen-juen/avatar.jpg"
+      },
+      {
+        "folder": "ziliang-ngoi",
+        "name": "Zi Liang Ngoi",
+        "category": "Alumni",
+        "email": "ziliangngoi@gmail.com",
+        "details": "Research Assistant (2022–23)",
+        "website": "",
+        "title": "",
+        "affiliation": "Nanyang Technological University",
+        "location": "",
+        "summary": "",
+        "socials": [],
+        "interests": [
+          "Clinical Psychology",
+          "Emotion Regulation",
+          "Children's Emotional Development"
+        ],
+        "education": [
+          {
+            "degree": "B.Soc.Sc. (Honours), Psychology",
+            "institution": "National University of Singapore",
+            "year": "",
+            "details": ""
+          }
+        ],
+        "keywords": [],
+        "hook": "",
+        "avatar": "people/ziliang-ngoi/avatar.png"
       }
     ]
   }

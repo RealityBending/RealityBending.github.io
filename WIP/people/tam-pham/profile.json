@@ -1,0 +1,15 @@
+{
+    "name": "Tam Pham",
+    "category": "Alumni",
+    "details": "Research Assistant (2019–22)",
+    "affiliation": "Nanyang Technological University",
+    "interests": ["Suicide and Self-Injurious Behaviour", "Interoception", "Affective Disorders"],
+    "education": [
+        {
+            "degree": "BA in Psychology",
+            "institution": "Nanyang Technological University",
+            "year": "2018"
+        }
+    ],
+    "socials": [{ "label": "X", "url": "https://x.com/tampham94" }]
+}

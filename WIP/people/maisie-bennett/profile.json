@@ -1,0 +1,19 @@
+{
+    "name": "Maisie Bennett",
+    "category": "Alumni",
+    "details": "Placement (2024–25)",
+    "affiliation": "University of Sussex",
+    "interests": ["Cognitive Psychology", "Statistics", "Reading"],
+    "education": [
+        {
+            "degree": "BSc Psychology",
+            "institution": "University of Sussex",
+            "year": "2022–2025"
+        }
+    ],
+    "socials": [
+        { "label": "GitHub", "url": "https://github.com/Maisiebennett" },
+        { "label": "X", "url": "https://x.com/maisiebenn90255" },
+        { "label": "ResearchGate", "url": "https://www.researchgate.net/profile/Maisie-Bennett-2" }
+    ]
+}

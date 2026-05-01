@@ -1,0 +1,21 @@
+{
+    "name": "Wilson Lim",
+    "category": "Alumni",
+    "details": "Research Associate (2022–24)",
+    "email": "wilson.lim@ntu.edu.sg",
+    "affiliation": "Nanyang Technological University",
+    "interests": ["Cognitive Neuroscience", "Neuropsychology", "Affective Disorders", "Brain-body Interactions"],
+    "education": [
+        {
+            "degree": "MRes in Cognitive Neuroscience",
+            "institution": "University College London",
+            "year": "2020–2021"
+        },
+        {
+            "degree": "BSc (Hons) in Psychology",
+            "institution": "University College London",
+            "year": "2017–2020"
+        }
+    ],
+    "socials": []
+}

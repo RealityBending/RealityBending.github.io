@@ -1,0 +1,30 @@
+{
+    "name": "Catriona Osborn Moar",
+    "category": "PhD Student",
+    "email": "C.Osborn-Moar@sussex.ac.uk",
+    "affiliation": "University of Sussex",
+    "interests": [
+        "Ongoing brain activity and thought",
+        "Active Inference",
+        "Complex systems and criticality",
+        "Altered states of consciousness"
+    ],
+    "education": [
+        {
+            "degree": "Sussex Neuroscience 4-Year PhD Programme",
+            "institution": "University of Sussex",
+            "year": "2023–"
+        },
+        {
+            "degree": "MRes in Neuroscience",
+            "institution": "University of Sussex",
+            "year": "2022–2023"
+        },
+        {
+            "degree": "BSc (Hons) in Neuroscience",
+            "institution": "Queen Mary University of London",
+            "year": "2021"
+        }
+    ],
+    "socials": []
+}

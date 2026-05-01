@@ -1,0 +1,19 @@
+{
+    "name": "Emma Benn",
+    "category": "Alumni",
+    "details": "Placement (2024–25)",
+    "affiliation": "University of Sussex",
+    "interests": ["Statistics and R", "Reading", "Dogs"],
+    "education": [
+        {
+            "degree": "BSc Psychology",
+            "institution": "University of Sussex",
+            "year": "2022–2025"
+        }
+    ],
+    "socials": [
+        { "label": "GitHub", "url": "https://github.com/EmmaLBenn" },
+        { "label": "X", "url": "https://x.com/EmmaLBenn" },
+        { "label": "ResearchGate", "url": "https://www.researchgate.net/profile/Emma-Benn-2" }
+    ]
+}

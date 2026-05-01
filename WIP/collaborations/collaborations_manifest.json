@@ -25,27 +25,132 @@
         {
             "name": "Aang",
             "image": "collaborations/img/aang.png",
-            "affiliation": "Fully Realized Avatar"
+            "affiliation": "Fully Realized Avatar",
+            "interests": ["Appa", "Katara", "Mommo"],
+            "education": [
+                {
+                    "degree": "Airbending",
+                    "institution": "Southern Air Temple",
+                    "year": "99 BG",
+                    "details": "Full curriculum under Monk Gyatso. Graduated top of class. Only student."
+                },
+                {
+                    "degree": "Waterbending",
+                    "institution": "Northern Water Tribe",
+                    "year": "100 AG",
+                    "details": "Under Master Pakku, after some initial disagreements about gender norms."
+                },
+                {
+                    "degree": "Earthbending",
+                    "institution": "Ba Sing Se (where there is now war btw)",
+                    "year": "100 AG",
+                    "details": "Trained by Toph Beifong — The World's Greatest Earthbender (self-assessed)."
+                },
+                {
+                    "degree": "Firebending",
+                    "institution": "Sun Warriors",
+                    "year": "100 AG",
+                    "details": "Original source. Much better than learning from Zuko."
+                }
+            ]
         },
         {
             "name": "Dr Strange",
             "image": "collaborations/img/drstrange.jpg",
-            "affiliation": "Sorcerer Supreme"
+            "affiliation": "Sorcerer Supreme",
+            "interests": ["Bargaining", "Capes"],
+            "education": [
+                {
+                    "degree": "MD",
+                    "institution": "Columbia University",
+                    "year": "2004",
+                    "details": "Graduated with honours. Specialised in neurosurgery. Extremely smug about it."
+                },
+                {
+                    "degree": "PhD in Neuroscience",
+                    "institution": "Columbia University",
+                    "year": "2006",
+                    "details": "Thesis: 'Fourteen million, six hundred and five possible futures for my academic career.'"
+                },
+                {
+                    "degree": "Mystic Arts",
+                    "institution": "Kamar-Taj, Kathmandu",
+                    "year": "2016",
+                    "details": "Admitted reluctantly after pestering the Ancient One. Best student eventually."
+                }
+            ]
         },
         {
             "name": "Gandalf",
             "image": "collaborations/img/gandalf.jpg",
-            "affiliation": "Wizard"
+            "affiliation": "Wizard",
+            "interests": ["The Hobbits", "Smoking pipe-weed"],
+            "education": [
+                {
+                    "degree": "Servant of the Secret Fire",
+                    "institution": "Valinor, Hall of Manwë",
+                    "year": "~1000 YT",
+                    "details": "The flame of Anor. Passed, but barely. Sauron also applied."
+                },
+                {
+                    "degree": "Wielder of Narya",
+                    "institution": "The Order of the Istari",
+                    "year": "~1000 TA",
+                    "details": "Ring of Fire. Bestowed by Círdan at the Grey Havens. No written exam."
+                },
+                {
+                    "degree": "Disturber of the Peace (Advanced)",
+                    "institution": "The Shire",
+                    "year": "Ongoing",
+                    "details": "Specialisation: fireworks, unexpected journeys, and knocking on Baggins doors."
+                }
+            ]
         },
         {
             "name": "Mr Anderson",
             "image": "collaborations/img/neo.jpg",
-            "affiliation": "The One"
+            "affiliation": "The One",
+            "interests": ["Red pills", "White rabbits", "Spoons", "Trinity"],
+            "education": [
+                {
+                    "degree": "BSc Computer Science",
+                    "institution": "Smithsonian Institution",
+                    "year": "1994",
+                    "details": "Compiled flawlessly. No runtime errors. Or were there?"
+                },
+                {
+                    "degree": "Rage Against the Machines",
+                    "institution": "The Matrix",
+                    "year": "1999",
+                    "details": "Self-directed. Curriculum included bullet-dodging, phone-booth kung fu, and coat selection."
+                },
+                {
+                    "degree": "Being The One",
+                    "institution": "Zion Institute of Applied Prophecy",
+                    "year": "2199",
+                    "details": "Pass/fail grading. Died once but appealed successfully."
+                }
+            ]
         },
         {
             "name": "Yoda",
             "image": "collaborations/img/yoda.jpg",
-            "affiliation": "Jedi Master"
+            "affiliation": "Jedi Master",
+            "interests": ["Doing, not trying", "The Wookie"],
+            "education": [
+                {
+                    "degree": "The Force",
+                    "institution": "Coruscant Jedi Temple",
+                    "year": "896 BBY",
+                    "details": "Only Padawan ever asked to grade the instructors."
+                },
+                {
+                    "degree": "Patience (Advanced)",
+                    "institution": "Dagobah Swamp",
+                    "year": "19 BBY",
+                    "details": "Self-directed curriculum. No students. No Wi-Fi. Maximum clarity."
+                }
+            ]
         }
     ]
 }

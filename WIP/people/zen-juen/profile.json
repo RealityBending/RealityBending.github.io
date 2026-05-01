@@ -1,0 +1,15 @@
+{
+    "name": "Zen J. Lau",
+    "category": "Alumni",
+    "details": "Research Assistant (2020–22)",
+    "affiliation": "Nanyang Technological University",
+    "interests": ["Memory and false memories", "Decision-making and inhibitory control", "Forensic psychology"],
+    "education": [
+        {
+            "degree": "M.A. (Hons) Psychology",
+            "institution": "University of Edinburgh",
+            "year": "2019"
+        }
+    ],
+    "socials": [{ "label": "X", "url": "https://x.com/ZenJuen" }]
+}

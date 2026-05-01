@@ -1,0 +1,44 @@
+{
+    "name": "Ana Neves",
+    "category": "PhD Student",
+    "title": "Interoception and the Sense of Reality",
+    "affiliation": "University of Sussex",
+    "location": "Brighton, UK",
+    "email": "",
+    "details": "PhD Candidate in Interoception and the Sense of Reality",
+    "summary": "The ultimate, hidden truth of the world is that it is something that we make, and could just as easily make differently.",
+    "website": "",
+    "socials": [
+        {
+            "label": "GitHub",
+            "url": "https://github.com/AnafNeves"
+        },
+        {
+            "label": "ResearchGate",
+            "url": "https://www.researchgate.net/profile/Ana-Neves-79"
+        }
+    ],
+    "interests": ["Consciousness", "Cognitive Sciences", "Philosophy of Mind"],
+    "education": [
+        {
+            "degree": "PhD in Psychology",
+            "institution": "University of Sussex",
+            "year": "2024–",
+            "details": ""
+        },
+        {
+            "degree": "MRes in Psychological Methods",
+            "institution": "University of Sussex",
+            "year": "2023–2024",
+            "details": ""
+        },
+        {
+            "degree": "BSc in Psychology with Cognitive Sciences",
+            "institution": "University of Sussex",
+            "year": "2018–2022",
+            "details": ""
+        }
+    ],
+    "keywords": ["consciousness", "interoception", "reality"],
+    "hook": ""
+}

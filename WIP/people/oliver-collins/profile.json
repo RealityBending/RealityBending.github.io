@@ -1,0 +1,19 @@
+{
+    "name": "Oliver Collins",
+    "category": "Research Assistant",
+    "details": "Placement Student",
+    "affiliation": "University of Sussex",
+    "interests": ["Cognitive Psychology", "Statistics", "Playing guitar", "Go-karting"],
+    "education": [
+        {
+            "degree": "BSc Psychology with Clinical Approaches",
+            "institution": "University of Sussex",
+            "year": ""
+        }
+    ],
+    "socials": [
+        { "label": "GitHub", "url": "https://github.com/OliverACollins" },
+        { "label": "X", "url": "https://x.com/OliverACollins" },
+        { "label": "ResearchGate", "url": "https://www.researchgate.net/profile/Oliver-Collins-6" }
+    ]
+}

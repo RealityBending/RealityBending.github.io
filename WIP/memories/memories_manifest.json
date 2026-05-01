@@ -4,21 +4,19 @@
       "file": "memories/img/2025_ASSC_Crete.jpeg",
       "filename": "2025_ASSC_Crete.jpeg",
       "title": "ASSC Crete",
-      "caption": "",
-      "description": "",
-      "location": "",
+      "caption": "ASSC in Crete",
       "year": 2025,
       "month": 1,
-      "people": [],
+      "people": [
+        "ana-neves"
+      ],
       "tags": []
     },
     {
       "file": "memories/img/2025_Singapore.png",
       "filename": "2025_Singapore.png",
       "title": "Singapore",
-      "caption": "",
-      "description": "",
-      "location": "",
+      "caption": "Singapore",
       "year": 2025,
       "month": 1,
       "people": [],
@@ -28,9 +26,7 @@
       "file": "memories/img/2025_SunFest.png",
       "filename": "2025_SunFest.png",
       "title": "SunFest",
-      "caption": "",
-      "description": "",
-      "location": "",
+      "caption": "Sunfest (summer solstice celebration)",
       "year": 2025,
       "month": 1,
       "people": [],
@@ -40,45 +36,46 @@
       "file": "memories/img/2024_Basel.jpg",
       "filename": "2024_Basel.jpg",
       "title": "Basel",
-      "caption": "",
-      "description": "",
-      "location": "",
+      "caption": "Workshop on physiological signals at the University of Basel",
       "year": 2024,
       "month": 1,
-      "people": [],
+      "people": [
+        "dominique-makowski"
+      ],
       "tags": []
     },
     {
       "file": "memories/img/2024_ChristmasCrackers.gif",
       "filename": "2024_ChristmasCrackers.gif",
       "title": "ChristmasCrackers",
-      "caption": "",
-      "description": "",
-      "location": "",
+      "caption": "Pulling the Christmas crackers",
       "year": 2024,
       "month": 1,
-      "people": [],
+      "people": [
+        "ana-neves",
+        "emma-benn"
+      ],
       "tags": []
     },
     {
       "file": "memories/img/2024_ChristmasDinner.jpg",
       "filename": "2024_ChristmasDinner.jpg",
       "title": "ChristmasDinner",
-      "caption": "",
-      "description": "",
-      "location": "",
+      "caption": "Christmas Dinner",
       "year": 2024,
       "month": 1,
-      "people": [],
+      "people": [
+        "dominique-makowski",
+        "ana-neves",
+        "emma-benn"
+      ],
       "tags": []
     },
     {
       "file": "memories/img/2024_ChristmasParty.jpg",
       "filename": "2024_ChristmasParty.jpg",
       "title": "ChristmasParty",
-      "caption": "",
-      "description": "",
-      "location": "",
+      "caption": "Sussex Neuroscience Winter Party",
       "year": 2024,
       "month": 1,
       "people": [],
@@ -88,21 +85,20 @@
       "file": "memories/img/2024_IllusionCardGame.gif",
       "filename": "2024_IllusionCardGame.gif",
       "title": "IllusionCardGame",
-      "caption": "",
-      "description": "",
-      "location": "",
+      "caption": "Beta-testing the Illusion Card Game",
       "year": 2024,
       "month": 1,
-      "people": [],
+      "people": [
+        "dominique-makowski",
+        "ana-neves"
+      ],
       "tags": []
     },
     {
       "file": "memories/img/2024_LightFest.png",
       "filename": "2024_LightFest.png",
       "title": "LightFest",
-      "caption": "",
-      "description": "",
-      "location": "",
+      "caption": "Sunfest (summer solstice celebration)",
       "year": 2024,
       "month": 1,
       "people": [],
@@ -112,21 +108,20 @@
       "file": "memories/img/2024_Rome.jpg",
       "filename": "2024_Rome.jpg",
       "title": "Rome",
-      "caption": "",
-      "description": "",
-      "location": "",
+      "caption": "Rome, Italian Association for Cognitive Sciences Conference",
       "year": 2024,
       "month": 1,
-      "people": [],
+      "people": [
+        "ana-neves",
+        "dominique-makowski"
+      ],
       "tags": []
     },
     {
       "file": "memories/img/2024_SCCSLaunch.jpg",
       "filename": "2024_SCCSLaunch.jpg",
       "title": "SCCSLaunch",
-      "caption": "",
-      "description": "",
-      "location": "",
+      "caption": "Sussex Centre for Consciousness Studies launch",
       "year": 2024,
       "month": 1,
       "people": [],
@@ -136,9 +131,7 @@
       "file": "memories/img/2024_TheoBirthday.jpg",
       "filename": "2024_TheoBirthday.jpg",
       "title": "TheoBirthday",
-      "caption": "",
-      "description": "",
-      "location": "",
+      "caption": "Theodoros Karapanagiotidis' birthday party",
       "year": 2024,
       "month": 1,
       "people": [],
@@ -148,57 +141,56 @@
       "file": "memories/img/2023_dom_ohbm.jpg",
       "filename": "2023_dom_ohbm.jpg",
       "title": "Dom Ohbm",
-      "caption": "",
-      "description": "",
-      "location": "",
+      "caption": "OHBM Montréal: Dom exposing 'NeuropsyXart'",
       "year": 2023,
       "month": 1,
-      "people": [],
+      "people": [
+        "dominique-makowski"
+      ],
       "tags": []
     },
     {
       "file": "memories/img/2023_dommarco_escop.jpg",
       "filename": "2023_dommarco_escop.jpg",
       "title": "Dommarco Escop",
-      "caption": "",
-      "description": "",
-      "location": "",
+      "caption": "ESCOP Porto: Men in Black",
       "year": 2023,
       "month": 1,
-      "people": [],
+      "people": [
+        "dominique-makowski"
+      ],
       "tags": []
     },
     {
       "file": "memories/img/2023_domstefano_ohbm.jpg",
       "filename": "2023_domstefano_ohbm.jpg",
       "title": "Domstefano Ohbm",
-      "caption": "",
-      "description": "",
-      "location": "",
+      "caption": "OHBM Montréal: Panel with Dom and the PhysioPy team",
       "year": 2023,
       "month": 1,
-      "people": [],
+      "people": [
+        "dominique-makowski"
+      ],
       "tags": []
     },
     {
       "file": "memories/img/2023_domstephanie_ohbm.jpg",
       "filename": "2023_domstephanie_ohbm.jpg",
       "title": "Domstephanie Ohbm",
-      "caption": "",
-      "description": "",
-      "location": "",
+      "caption": "OHBM Montréal: Party",
       "year": 2023,
       "month": 1,
-      "people": [],
+      "people": [
+        "stephanie-kirk",
+        "dominique-makowski"
+      ],
       "tags": []
     },
     {
       "file": "memories/img/2023_LightFest.gif",
       "filename": "2023_LightFest.gif",
       "title": "LightFest",
-      "caption": "",
-      "description": "",
-      "location": "",
+      "caption": "Sunfest (summer solstice celebration)",
       "year": 2023,
       "month": 1,
       "people": [],
@@ -208,96 +200,104 @@
       "file": "memories/img/2022_doman_ohbm.jpg",
       "filename": "2022_doman_ohbm.jpg",
       "title": "Doman Ohbm",
-      "caption": "",
-      "description": "",
-      "location": "",
+      "caption": "OHBM, Glasgow",
       "year": 2022,
       "month": 1,
-      "people": [],
+      "people": [
+        "anshu-te",
+        "dominique-makowski"
+      ],
       "tags": []
     },
     {
       "file": "memories/img/2022_stephaniemax_eeg.jpg",
       "filename": "2022_stephaniemax_eeg.jpg",
       "title": "Stephaniemax Eeg",
-      "caption": "",
-      "description": "",
-      "location": "",
+      "caption": "EEG test",
       "year": 2022,
       "month": 1,
-      "people": [],
+      "people": [
+        "stephanie-kirk"
+      ],
       "tags": []
     },
     {
       "file": "memories/img/2022_wakepark.jpg",
       "filename": "2022_wakepark.jpg",
       "title": "Wakepark",
-      "caption": "",
-      "description": "",
-      "location": "",
+      "caption": "Singapore, Outdoor work sesh",
       "year": 2022,
       "month": 1,
-      "people": [],
+      "people": [
+        "anshu-te",
+        "stephanie-kirk",
+        "dominique-makowski"
+      ],
       "tags": []
     },
     {
       "file": "memories/img/2021_tamzen_physio.jpg",
       "filename": "2021_tamzen_physio.jpg",
       "title": "Tamzen Physio",
-      "caption": "",
-      "description": "",
-      "location": "",
+      "caption": "Resting-state synchronized physio recording",
       "year": 2021,
       "month": 1,
-      "people": [],
+      "people": [
+        "zen-juen",
+        "tam-pham"
+      ],
       "tags": []
     },
     {
       "file": "memories/img/2021_tamzenan.jpg",
       "filename": "2021_tamzenan.jpg",
       "title": "Tamzenan",
-      "caption": "",
-      "description": "",
-      "location": "",
+      "caption": "Hard at work",
       "year": 2021,
       "month": 1,
-      "people": [],
+      "people": [
+        "anshu-te",
+        "zen-juen",
+        "tam-pham"
+      ],
       "tags": []
     },
     {
       "file": "memories/img/2021_Thermal1.jpg",
       "filename": "2021_Thermal1.jpg",
       "title": "Thermal1",
-      "caption": "",
-      "description": "",
-      "location": "",
+      "caption": "Thermal camera fun",
       "year": 2021,
       "month": 1,
-      "people": [],
+      "people": [
+        "tam-pham",
+        "zen-juen"
+      ],
       "tags": []
     },
     {
       "file": "memories/img/2021_Thermal2.jpg",
       "filename": "2021_Thermal2.jpg",
       "title": "Thermal2",
-      "caption": "",
-      "description": "",
-      "location": "",
+      "caption": "Thermal camera fun",
       "year": 2021,
       "month": 1,
-      "people": [],
+      "people": [
+        "zen-juen"
+      ],
       "tags": []
     },
     {
       "file": "memories/img/2019_TMS_Tam.jpg",
       "filename": "2019_TMS_Tam.jpg",
       "title": "TMS Tam",
-      "caption": "",
-      "description": "",
-      "location": "",
+      "caption": "Dom testing TMS on Tam",
       "year": 2019,
       "month": 1,
-      "people": [],
+      "people": [
+        "dominique-makowski",
+        "tam-pham"
+      ],
       "tags": []
     }
   ]
