@@ -1,9 +1,17 @@
-"""Generate people_manifest.json and publications_manifest.json.
+"""Generate people/people_manifest.json, memories/memories_manifest.json,
+and publications/publications_manifest.json.
 
 People:
   Each subfolder of people/ should contain:
-    - profile.json   (required) with keys: name, category, email, details, website (optional)
+        - profile.json   (required) with keys: name, category
+            optional keys: email, details, website, title, affiliation, location,
+            summary, socials, interests, education, keywords, hook
     - avatar.*       (optional) first image file matching avatar.png/.jpg/.jpeg/.webp
+
+Memories:
+    Scans memories/img/ for image files named like {Year}_{name}.jpg.
+    Creates or updates memories/memories_manifest.json while preserving manual
+    metadata for existing entries and adding defaults for new images.
 
 Publications:
   Fetches the most recent works from ORCID for the PI.
@@ -13,7 +21,8 @@ Publications:
 Run:
     python create_manifest.py
 
-Output: people_manifest.json and publications_manifest.json in the same directory.
+Output: people/people_manifest.json, memories/memories_manifest.json,
+and publications/publications_manifest.json.
 """
 
 import json
@@ -26,7 +35,20 @@ from pathlib import Path
 
 ROLE_ORDER = ["PI", "Postdoc", "PhD Student", "Research Assistant"]
 REQUIRED_FIELDS = ["name", "category"]
-OPTIONAL_FIELDS = ["email", "details", "website", "keywords", "hook"]
+OPTIONAL_FIELDS = [
+    "email",
+    "details",
+    "website",
+    "keywords",
+    "hook",
+    "title",
+    "affiliation",
+    "location",
+    "summary",
+    "socials",
+    "interests",
+    "education",
+]
 EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 
 # Resolve ROOT from the script's own location.  If __file__ is not available
@@ -37,14 +59,20 @@ except NameError:
     ROOT = Path.cwd()
 
 PEOPLE_DIR = ROOT / "people"
-OUTPUT = ROOT / "people_manifest.json"
+OUTPUT = PEOPLE_DIR / "people_manifest.json"
+
+# -- Memories --
+MEMORIES_DIR = ROOT / "memories"
+MEMORIES_IMAGE_DIR = MEMORIES_DIR / "img"
+MEMORIES_OUTPUT = MEMORIES_DIR / "memories_manifest.json"
+MEMORY_IMAGE_EXTENSIONS = ("png", "jpg", "jpeg", "webp", "gif")
 
 # ── Publications ──
 ORCID_ID = "0000-0001-5375-9967"
 ORCID_API = f"https://pub.orcid.org/v3.0/{ORCID_ID}/works"
 MAX_PUBLICATIONS = 20  # limit for testing & development
 PUBLICATIONS_DIR = ROOT / "publications"
-PUB_OUTPUT = ROOT / "publications_manifest.json"
+PUB_OUTPUT = PUBLICATIONS_DIR / "publications_manifest.json"
 
 # Preprint DOIs to suppress even when automatic title-matching fails
 # (e.g. preprint and published version have different titles).
@@ -63,6 +91,10 @@ def warn(folder: str, msg: str) -> None:
     print(f"  ✗ {folder}: {msg}")
 
 
+def note(scope: str, msg: str) -> None:
+    print(f"  ! {scope}: {msg}")
+
+
 def find_avatar(person_dir: Path) -> str | None:
     """Return the relative path (from site root) to the avatar image, or None."""
     for ext in ("png", "jpg", "jpeg", "webp"):
@@ -70,6 +102,82 @@ def find_avatar(person_dir: Path) -> str | None:
         if candidate.exists():
             return candidate.relative_to(ROOT).as_posix()
     return None
+
+
+def clean_string(value) -> str:
+    if value is None:
+        return ""
+    return str(value).strip()
+
+
+def clean_string_list(value) -> list[str]:
+    if isinstance(value, list):
+        return [clean_string(item) for item in value if clean_string(item)]
+    item = clean_string(value)
+    return [item] if item else []
+
+
+def clean_long_string(value) -> str:
+    if isinstance(value, list):
+        parts = [clean_string(item) for item in value if clean_string(item)]
+        return "\n\n".join(parts)
+    return clean_string(value)
+
+
+def clean_int(value, default: int) -> int:
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return default
+
+
+def clean_socials(value) -> list[dict[str, str]]:
+    if not isinstance(value, list):
+        return []
+
+    socials = []
+    for item in value:
+        if not isinstance(item, dict):
+            continue
+        label = clean_string(
+            item.get("label") or item.get("name") or item.get("platform")
+        )
+        url = clean_string(item.get("url") or item.get("link"))
+        if not label or not url:
+            continue
+        socials.append({"label": label, "url": url})
+    return socials
+
+
+def clean_education(value) -> list[dict[str, str]]:
+    if not isinstance(value, list):
+        return []
+
+    education = []
+    for item in value:
+        if not isinstance(item, dict):
+            continue
+        degree = clean_string(
+            item.get("degree") or item.get("course") or item.get("title")
+        )
+        institution = clean_string(
+            item.get("institution") or item.get("school") or item.get("organization")
+        )
+        year = clean_string(item.get("year"))
+        details = clean_string(
+            item.get("details") or item.get("description") or item.get("notes")
+        )
+        if not degree and not institution and not year:
+            continue
+        education.append(
+            {
+                "degree": degree,
+                "institution": institution,
+                "year": year,
+                "details": details,
+            }
+        )
+    return education
 
 
 def validate_profile(folder: str, data: dict) -> bool:
@@ -147,13 +255,20 @@ def load_people() -> list[dict]:
 
         person = {
             "folder": entry.name,
-            "name": data["name"].strip(),
-            "category": data["category"].strip(),
-            "email": data.get("email", "").strip(),
-            "details": data.get("details", "").strip(),
-            "website": data.get("website", "").strip(),
-            "keywords": data.get("keywords", []),
-            "hook": data.get("hook", "").strip(),
+            "name": clean_string(data["name"]),
+            "category": clean_string(data["category"]),
+            "email": clean_string(data.get("email", "")),
+            "details": clean_string(data.get("details", "")),
+            "website": clean_string(data.get("website", "")),
+            "title": clean_string(data.get("title", "")),
+            "affiliation": clean_string(data.get("affiliation", "")),
+            "location": clean_string(data.get("location", "")),
+            "summary": clean_long_string(data.get("summary", "")),
+            "socials": clean_socials(data.get("socials", [])),
+            "interests": clean_string_list(data.get("interests", [])),
+            "education": clean_education(data.get("education", [])),
+            "keywords": clean_string_list(data.get("keywords", [])),
+            "hook": clean_string(data.get("hook", "")),
             "avatar": avatar,
         }
         people.append(person)
@@ -168,6 +283,151 @@ def load_people() -> list[dict]:
 
     people.sort(key=sort_key)
     return people
+
+
+# ═══════════════════════════════════════════════════════════
+#  Memories — local image manifest
+# ═══════════════════════════════════════════════════════════
+
+
+def humanize_memory_name(value: str) -> str:
+    text = re.sub(r"[_-]+", " ", clean_string(value))
+    if not text:
+        return ""
+
+    words = []
+    for word in text.split():
+        if word.isupper() or any(char.isdigit() for char in word):
+            words.append(word)
+        else:
+            words.append(word[:1].upper() + word[1:])
+    return " ".join(words)
+
+
+def parse_memory_filename(image_name: str) -> dict[str, int | str]:
+    stem = Path(image_name).stem
+    match = re.match(r"^(?P<year>\d{4})[_-](?P<name>.+)$", stem)
+    if not match:
+        note(
+            "memories",
+            f"image '{image_name}' does not match '{{Year}}_{{name}}' — using fallback metadata",
+        )
+        return {"year": 0, "month": 1, "title": humanize_memory_name(stem)}
+
+    return {
+        "year": int(match.group("year")),
+        "month": 1,
+        "title": humanize_memory_name(match.group("name")),
+    }
+
+
+def normalize_memory_entry(entry: dict, image_path: Path) -> dict:
+    defaults = parse_memory_filename(image_path.name)
+    relative_path = image_path.relative_to(ROOT).as_posix()
+
+    normalized = dict(entry)
+    normalized["file"] = relative_path
+    normalized["filename"] = image_path.name
+    normalized["title"] = clean_string(normalized.get("title")) or defaults["title"]
+    normalized["caption"] = clean_string(normalized.get("caption"))
+    normalized["description"] = clean_long_string(normalized.get("description", ""))
+    normalized["location"] = clean_string(normalized.get("location"))
+    normalized["year"] = clean_int(normalized.get("year"), int(defaults["year"]))
+    normalized["month"] = clean_int(normalized.get("month"), int(defaults["month"]))
+    normalized["people"] = clean_string_list(normalized.get("people", []))
+    normalized["tags"] = clean_string_list(normalized.get("tags", []))
+    return normalized
+
+
+def load_existing_memories_manifest() -> list[dict]:
+    if not MEMORIES_OUTPUT.exists():
+        return []
+
+    try:
+        with open(MEMORIES_OUTPUT, encoding="utf-8") as f:
+            data = json.load(f)
+    except json.JSONDecodeError as e:
+        note(
+            "memories",
+            f"invalid JSON in {MEMORIES_OUTPUT.name} — rebuilding manifest ({e})",
+        )
+        return []
+
+    entries = data.get("memories", []) if isinstance(data, dict) else []
+    if not isinstance(entries, list):
+        note(
+            "memories",
+            f"{MEMORIES_OUTPUT.name} has invalid format — expected a 'memories' list; rebuilding manifest",
+        )
+        return []
+
+    normalized_entries = []
+    for item in entries:
+        if not isinstance(item, dict):
+            note("memories", "ignoring non-object manifest entry")
+            continue
+        normalized_entries.append(dict(item))
+    return normalized_entries
+
+
+def load_memories() -> list[dict]:
+    MEMORIES_DIR.mkdir(exist_ok=True)
+    MEMORIES_IMAGE_DIR.mkdir(exist_ok=True)
+
+    image_paths = sorted(
+        path
+        for path in MEMORIES_IMAGE_DIR.iterdir()
+        if path.is_file() and path.suffix.lower().lstrip(".") in MEMORY_IMAGE_EXTENSIONS
+    )
+    if not image_paths:
+        note(
+            "memories",
+            f"no images found in {MEMORIES_IMAGE_DIR.relative_to(ROOT).as_posix()}",
+        )
+
+    existing_entries = load_existing_memories_manifest()
+    existing_by_file = {}
+    existing_by_filename = {}
+    for entry in existing_entries:
+        file_key = clean_string(entry.get("file"))
+        filename_key = clean_string(entry.get("filename"))
+        if file_key:
+            existing_by_file[file_key] = entry
+        if filename_key:
+            existing_by_filename[filename_key] = entry
+
+    current_files = {image.relative_to(ROOT).as_posix() for image in image_paths}
+    current_names = {image.name for image in image_paths}
+    for entry in existing_entries:
+        file_key = clean_string(entry.get("file"))
+        filename_key = clean_string(entry.get("filename"))
+        if file_key and file_key not in current_files:
+            note(
+                "memories",
+                f"removing stale manifest entry for missing image '{file_key}'",
+            )
+        elif not file_key and filename_key and filename_key not in current_names:
+            note(
+                "memories",
+                f"removing stale manifest entry for missing image '{filename_key}'",
+            )
+
+    memories = []
+    for image_path in image_paths:
+        relative_path = image_path.relative_to(ROOT).as_posix()
+        existing = existing_by_file.get(relative_path) or existing_by_filename.get(
+            image_path.name
+        )
+        memories.append(normalize_memory_entry(existing or {}, image_path))
+
+    memories.sort(
+        key=lambda item: (
+            -clean_int(item.get("year"), 0),
+            -clean_int(item.get("month"), 0),
+            item.get("filename", "").lower(),
+        )
+    )
+    return memories
 
 
 # ═══════════════════════════════════════════════════════════
@@ -507,9 +767,17 @@ def main():
         if names:
             print(f"  {role}: {', '.join(names)}")
 
-    if errors_found:
-        print(f"\n⚠ {errors_found} warning(s) — review above")
-        sys.exit(1)
+    memories = load_memories()
+    memories_manifest = {"memories": memories}
+    with open(MEMORIES_OUTPUT, "w", encoding="utf-8") as f:
+        json.dump(memories_manifest, f, indent=2, ensure_ascii=False)
+
+    print(f"\n✓ Wrote {MEMORIES_OUTPUT.name} — {len(memories)} image(s)")
+    for memory in memories[:5]:
+        year = memory.get("year") or "n.d."
+        print(f"  {year} — {memory.get('title') or memory.get('filename')}")
+    if len(memories) > 5:
+        print(f"  ... and {len(memories) - 5} more")
 
     # ── Publications ──
     works = fetch_orcid_works()
@@ -523,6 +791,10 @@ def main():
     for pub in publications:
         yr = pub.get("year") or "n.d."
         print(f"  {yr} — {pub['title'][:70]}")
+
+    if errors_found:
+        print(f"\n⚠ {errors_found} warning(s) — review above")
+        sys.exit(1)
 
 
 if __name__ == "__main__":

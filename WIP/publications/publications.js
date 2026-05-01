@@ -1,10 +1,10 @@
 ﻿/* publications.js
- * Renders the Publications section from publications_manifest.json.
+ * Renders the Publications section from publications/publications_manifest.json.
  */
 ;(function () {
     const PAGE_SIZE = 5
 
-    fetch("publications_manifest.json")
+    fetch("publications/publications_manifest.json")
         .then((r) => r.json())
         .then((manifest) => {
             const container = document.getElementById("publications-list")

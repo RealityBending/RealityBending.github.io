@@ -16,10 +16,13 @@ import { OutputPass } from "three/addons/postprocessing/OutputPass.js"
 const container = document.getElementById("brain-viewer")
 const atlas = document.querySelector(".brain-atlas")
 const MAX_PIXEL_RATIO = 2
+const INTERACTION_PIXEL_RATIO = 1.15
+let isUserInteracting = false
+let currentPixelRatio = Math.min(window.devicePixelRatio, MAX_PIXEL_RATIO)
 
 // ── Renderer ───────────────────────────────────────────────────────────────
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, MAX_PIXEL_RATIO))
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" })
+renderer.setPixelRatio(currentPixelRatio)
 renderer.setSize(container.clientWidth, container.clientHeight)
 renderer.outputColorSpace = THREE.SRGBColorSpace
 container.appendChild(renderer.domElement)
@@ -57,6 +60,16 @@ outlinePass.visibleEdgeColor.set("#2a2a2a")
 outlinePass.hiddenEdgeColor.set("#111111")
 composer.addPass(outlinePass)
 composer.addPass(new OutputPass())
+
+function syncRendererResolution() {
+    const nextPixelRatio = Math.min(window.devicePixelRatio, isUserInteracting ? INTERACTION_PIXEL_RATIO : MAX_PIXEL_RATIO)
+    if (currentPixelRatio === nextPixelRatio) return
+
+    currentPixelRatio = nextPixelRatio
+    renderer.setPixelRatio(currentPixelRatio)
+    composer.setPixelRatio(currentPixelRatio)
+    composer.setSize(container.clientWidth, container.clientHeight)
+}
 
 // ── Brain regions ──────────────────────────────────────────────────────────
 // Axes in normalised [0,1] box space after centring:
@@ -367,6 +380,32 @@ const raycaster = new THREE.Raycaster()
 const pointer = new THREE.Vector2()
 let pointerDownPos = { x: 0, y: 0 }
 
+function setUserInteraction(active) {
+    if (isUserInteracting === active) return
+
+    isUserInteracting = active
+    if (active) {
+        unlockCamera()
+        clearHighlight()
+        tooltip.classList.remove("visible")
+        renderer.domElement.style.cursor = "grabbing"
+    }
+
+    syncRendererResolution()
+
+    if (!active) {
+        renderer.domElement.style.cursor = "grab"
+    }
+}
+
+controls.addEventListener("start", () => {
+    setUserInteraction(true)
+})
+
+controls.addEventListener("end", () => {
+    setUserInteraction(false)
+})
+
 function getNDC(e) {
     const rect = renderer.domElement.getBoundingClientRect()
     return {
@@ -431,6 +470,11 @@ function navigateToRegion(region) {
 atlas.addEventListener("pointermove", (e) => {
     // Skip expensive raycasting when not visible
     if (!heroVisible) return
+
+    if (isUserInteracting) {
+        tooltip.classList.remove("visible")
+        return
+    }
 
     // 1) Pointer is over a section box → highlight that section
     const sectionEl = e.target.closest(".section")
@@ -527,9 +571,9 @@ window.addEventListener("resize", () => {
         const h = container.clientHeight
         camera.aspect = w / h
         camera.updateProjectionMatrix()
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, MAX_PIXEL_RATIO))
         renderer.setSize(w, h)
         composer.setSize(w, h)
+        syncRendererResolution()
     }, 200)
 })
 

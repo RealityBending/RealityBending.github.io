@@ -115,8 +115,83 @@
   ════════════════════════════════════ -->
             <section class="people-full" id="sec-people-full">
                 <h2>People</h2>
-                <div id="people-grid">
-                    <!-- populated by people.js from people_manifest.json -->
+                <div class="people-tabs-nav" role="tablist" aria-label="People views">
+                    <button
+                        type="button"
+                        class="people-tab-btn people-tab-btn--active"
+                        data-tab="lab"
+                        role="tab"
+                        aria-selected="true"
+                        aria-controls="people-tab-lab"
+                    >
+                        The Lab
+                    </button>
+                    <button
+                        type="button"
+                        class="people-tab-btn"
+                        data-tab="collaborations"
+                        role="tab"
+                        aria-selected="false"
+                        aria-controls="people-tab-collaborations"
+                    >
+                        Collaborations
+                    </button>
+                    <button
+                        type="button"
+                        class="people-tab-btn"
+                        data-tab="memories"
+                        role="tab"
+                        aria-selected="false"
+                        aria-controls="people-tab-memories"
+                    >
+                        Memories
+                    </button>
+                </div>
+                <div class="people-tab-panel" id="people-tab-lab" role="tabpanel">
+                    <div id="people-grid">
+                        <!-- populated by people/people.js from people/people_manifest.json -->
+                    </div>
+                </div>
+                <div class="people-tab-panel" id="people-tab-collaborations" role="tabpanel" hidden>
+                    <div class="people-collaborations">
+                        <div class="people-collaborations__section people-collaborations__section--network">
+                            <div class="people-collaborations__section-header">
+                                <h3>Collaboration Network</h3>
+                                <p>
+                                    The Reality Bending Lab is a highly collaborative environment, with many friends and colleagues from all
+                                    over the world involved in various projects.
+                                </p>
+                            </div>
+                            <div class="people-collaborations__layout">
+                                <div class="people-collaborations__canvas">
+                                    <div
+                                        id="collaboration-network"
+                                        class="collaboration-network"
+                                        aria-label="Full collaboration network graph"
+                                    ></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="people-collaborations__section" id="close-collaborators-section" hidden>
+                            <div class="people-collaborations__section-header">
+                                <h3>Close Collaborators</h3>
+                                <p>Our academic family. Friends and colleagues with shared passions and interests.</p>
+                            </div>
+                            <div id="close-collaborators" class="collaboration-people-list" aria-label="Close Collaborators"></div>
+                        </div>
+                        <div class="people-collaborations__section" id="consultants-section" hidden>
+                            <div class="people-collaborations__section-header">
+                                <h3>Consultants</h3>
+                                <p>We get help from the very best.</p>
+                            </div>
+                            <div id="consultants" class="collaboration-people-list" aria-label="Consultants"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="people-tab-panel" id="people-tab-memories" role="tabpanel" hidden>
+                    <div class="memories-gallery" id="memories-gallery">
+                        <!-- populated by memories/memories.js from memories/memories_manifest.json -->
+                    </div>
                 </div>
             </section>
 
@@ -171,12 +246,12 @@
                         />
                     </div>
                     <div id="publications-list">
-                        <!-- populated by publications.js from publications_manifest.json -->
+                        <!-- populated by publications/publications.js from publications/publications_manifest.json -->
                     </div>
                 </div>
                 <div class="pub-tab-panel" id="pub-tab-gallery" role="tabpanel" hidden>
                     <div id="publications-gallery">
-                        <!-- populated by publications.js -->
+                        <!-- populated by publications/publications.js -->
                     </div>
                 </div>
             </section>
@@ -222,8 +297,10 @@
 
         <script src="script.js"></script>
         <script src="rain.js"></script>
-        <script src="people.js"></script>
-        <script src="publications.js"></script>
+        <script src="people/people.js"></script>
+        <script src="collaborations/collaborations.js"></script>
+        <script src="memories/memories.js"></script>
+        <script src="publications/publications.js"></script>
         <!-- Altmetric & Dimensions badge scripts -->
         <script src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js" async></script>
         <script src="https://badge.dimensions.ai/badge.js" async></script>

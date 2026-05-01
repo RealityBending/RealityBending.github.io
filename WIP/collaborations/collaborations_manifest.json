@@ -1,0 +1,51 @@
+{
+    "close_collaborators": [
+        {
+            "name": "Marco Sperduti",
+            "image": "collaborations/img/marco_sperduti.jpg",
+            "affiliation": "University of Rome Tor Vergata<br>Italy"
+        },
+        {
+            "name": "Theodoros Karapanagiotidis",
+            "image": "collaborations/img/theodoros_karapanagiotidis.jpg",
+            "affiliation": "University of Sussex<br>UK"
+        },
+        {
+            "name": "Annabel Chen",
+            "image": "collaborations/img/annabel_chen.png",
+            "affiliation": "Nanyang Technological University<br>Singapore"
+        },
+        {
+            "name": "Giulia Poerio",
+            "image": "collaborations/img/giulia_poerio.jpg",
+            "affiliation": "University of Sussex<br>UK"
+        }
+    ],
+    "consultants": [
+        {
+            "name": "Aang",
+            "image": "collaborations/img/aang.png",
+            "affiliation": "Fully Realized Avatar"
+        },
+        {
+            "name": "Dr Strange",
+            "image": "collaborations/img/drstrange.jpg",
+            "affiliation": "Sorcerer Supreme"
+        },
+        {
+            "name": "Gandalf",
+            "image": "collaborations/img/gandalf.jpg",
+            "affiliation": "Wizard"
+        },
+        {
+            "name": "Mr Anderson",
+            "image": "collaborations/img/neo.jpg",
+            "affiliation": "The One"
+        },
+        {
+            "name": "Yoda",
+            "image": "collaborations/img/yoda.jpg",
+            "affiliation": "Jedi Master"
+        }
+    ]
+}

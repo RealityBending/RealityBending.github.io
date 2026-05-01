@@ -13,11 +13,60 @@
       "email": "D.Makowski@sussex.ac.uk",
       "details": "Consciousness, perception, and the nature of subjective experience.",
       "website": "https://dominiquemakowski.github.io/",
+      "title": "Lecturer in Psychology",
+      "affiliation": "University of Sussex",
+      "location": "Brighton, UK",
+      "summary": "<p>Trained as a clinical neuropsychologist and CBT psychotherapist, Dominique Makowski is a lecturer at the University of Sussex studying how people construct, bend, and experience reality.</p><p>His work spans altered states of consciousness, illusion, deception, fake news, meditation, and immersive experience, with an emphasis on making advanced psychological methods more accessible through <strong>open-source tools</strong>.</p>",
+      "socials": [
+        {
+          "label": "Google Scholar",
+          "url": "https://scholar.google.fr/citations?user=bg0BZ-QAAAAJ&hl=en"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/DominiqueMakowski"
+        },
+        {
+          "label": "X",
+          "url": "https://x.com/Dom_Makowski"
+        },
+        {
+          "label": "ResearchGate",
+          "url": "https://www.researchgate.net/profile/Dominique_Makowski"
+        }
+      ],
+      "interests": [
+        "Sense of reality",
+        "Emotion regulation",
+        "Cognitive control",
+        "Clinical neuropsychology",
+        "Neuroaesthetics"
+      ],
+      "education": [
+        {
+          "degree": "PhD in Psychology",
+          "institution": "Universite de Paris",
+          "year": "2018",
+          "details": "Focused on the neuroscience of reality perception and the mechanisms through which subjective experience can be bent, stabilized, or disrupted."
+        },
+        {
+          "degree": "MSc in Clinical Neuropsychology",
+          "institution": "Universite de Paris",
+          "year": "2014",
+          "details": "Combined clinical assessment, rehabilitation, and therapeutic training with a strong grounding in affective and cognitive neuroscience."
+        },
+        {
+          "degree": "BSc in Psychology",
+          "institution": "Universite de Paris",
+          "year": "2012",
+          "details": "Built the experimental, statistical, and theoretical foundations that later shaped his work on consciousness, perception, and methodology."
+        }
+      ],
       "keywords": [
+        "reality",
         "consciousness",
-        "perception",
-        "subjective experience",
-        "reality"
+        "illusion",
+        "open science"
       ],
       "hook": "Did you know that Dominique Makowski created the easystats ecosystem for R?",
       "avatar": "people/dominique-makowski/avatar.png"
@@ -29,6 +78,13 @@
       "email": "a.smith@sussex.ac.uk",
       "details": "Neural correlates of altered states of consciousness.",
       "website": "",
+      "title": "",
+      "affiliation": "",
+      "location": "",
+      "summary": "",
+      "socials": [],
+      "interests": [],
+      "education": [],
       "keywords": [
         "neural correlates",
         "altered states",
@@ -45,6 +101,13 @@
       "email": "m.chen@sussex.ac.uk",
       "details": "Bayesian models of perceptual inference and multisensory integration.",
       "website": "",
+      "title": "",
+      "affiliation": "",
+      "location": "",
+      "summary": "",
+      "socials": [],
+      "interests": [],
+      "education": [],
       "keywords": [
         "Bayesian models",
         "perceptual inference",
@@ -61,6 +124,13 @@
       "email": "j.park@sussex.ac.uk",
       "details": "Stimulus design and psychophysics tooling.",
       "website": "",
+      "title": "",
+      "affiliation": "",
+      "location": "",
+      "summary": "",
+      "socials": [],
+      "interests": [],
+      "education": [],
       "keywords": [
         "stimulus design",
         "psychophysics",
@@ -77,6 +147,13 @@
       "email": "r.evans@sussex.ac.uk",
       "details": "EEG data acquisition and preprocessing pipelines.",
       "website": "",
+      "title": "",
+      "affiliation": "",
+      "location": "",
+      "summary": "",
+      "socials": [],
+      "interests": [],
+      "education": [],
       "keywords": [
         "EEG",
         "data acquisition",
@@ -93,6 +170,13 @@
       "email": "s.lee@sussex.ac.uk",
       "details": "Data collection and experimental paradigm development.",
       "website": "",
+      "title": "",
+      "affiliation": "",
+      "location": "",
+      "summary": "",
+      "socials": [],
+      "interests": [],
+      "education": [],
       "keywords": [
         "data collection",
         "experimental design",
@@ -112,11 +196,60 @@
         "email": "D.Makowski@sussex.ac.uk",
         "details": "Consciousness, perception, and the nature of subjective experience.",
         "website": "https://dominiquemakowski.github.io/",
+        "title": "Lecturer in Psychology",
+        "affiliation": "University of Sussex",
+        "location": "Brighton, UK",
+        "summary": "<p>Trained as a clinical neuropsychologist and CBT psychotherapist, Dominique Makowski is a lecturer at the University of Sussex studying how people construct, bend, and experience reality.</p><p>His work spans altered states of consciousness, illusion, deception, fake news, meditation, and immersive experience, with an emphasis on making advanced psychological methods more accessible through <strong>open-source tools</strong>.</p>",
+        "socials": [
+          {
+            "label": "Google Scholar",
+            "url": "https://scholar.google.fr/citations?user=bg0BZ-QAAAAJ&hl=en"
+          },
+          {
+            "label": "GitHub",
+            "url": "https://github.com/DominiqueMakowski"
+          },
+          {
+            "label": "X",
+            "url": "https://x.com/Dom_Makowski"
+          },
+          {
+            "label": "ResearchGate",
+            "url": "https://www.researchgate.net/profile/Dominique_Makowski"
+          }
+        ],
+        "interests": [
+          "Sense of reality",
+          "Emotion regulation",
+          "Cognitive control",
+          "Clinical neuropsychology",
+          "Neuroaesthetics"
+        ],
+        "education": [
+          {
+            "degree": "PhD in Psychology",
+            "institution": "Universite de Paris",
+            "year": "2018",
+            "details": "Focused on the neuroscience of reality perception and the mechanisms through which subjective experience can be bent, stabilized, or disrupted."
+          },
+          {
+            "degree": "MSc in Clinical Neuropsychology",
+            "institution": "Universite de Paris",
+            "year": "2014",
+            "details": "Combined clinical assessment, rehabilitation, and therapeutic training with a strong grounding in affective and cognitive neuroscience."
+          },
+          {
+            "degree": "BSc in Psychology",
+            "institution": "Universite de Paris",
+            "year": "2012",
+            "details": "Built the experimental, statistical, and theoretical foundations that later shaped his work on consciousness, perception, and methodology."
+          }
+        ],
         "keywords": [
+          "reality",
           "consciousness",
-          "perception",
-          "subjective experience",
-          "reality"
+          "illusion",
+          "open science"
         ],
         "hook": "Did you know that Dominique Makowski created the easystats ecosystem for R?",
         "avatar": "people/dominique-makowski/avatar.png"
@@ -130,6 +263,13 @@
         "email": "a.smith@sussex.ac.uk",
         "details": "Neural correlates of altered states of consciousness.",
         "website": "",
+        "title": "",
+        "affiliation": "",
+        "location": "",
+        "summary": "",
+        "socials": [],
+        "interests": [],
+        "education": [],
         "keywords": [
           "neural correlates",
           "altered states",
@@ -146,6 +286,13 @@
         "email": "m.chen@sussex.ac.uk",
         "details": "Bayesian models of perceptual inference and multisensory integration.",
         "website": "",
+        "title": "",
+        "affiliation": "",
+        "location": "",
+        "summary": "",
+        "socials": [],
+        "interests": [],
+        "education": [],
         "keywords": [
           "Bayesian models",
           "perceptual inference",
@@ -164,6 +311,13 @@
         "email": "j.park@sussex.ac.uk",
         "details": "Stimulus design and psychophysics tooling.",
         "website": "",
+        "title": "",
+        "affiliation": "",
+        "location": "",
+        "summary": "",
+        "socials": [],
+        "interests": [],
+        "education": [],
         "keywords": [
           "stimulus design",
           "psychophysics",
@@ -180,6 +334,13 @@
         "email": "r.evans@sussex.ac.uk",
         "details": "EEG data acquisition and preprocessing pipelines.",
         "website": "",
+        "title": "",
+        "affiliation": "",
+        "location": "",
+        "summary": "",
+        "socials": [],
+        "interests": [],
+        "education": [],
         "keywords": [
           "EEG",
           "data acquisition",
@@ -196,6 +357,13 @@
         "email": "s.lee@sussex.ac.uk",
         "details": "Data collection and experimental paradigm development.",
         "website": "",
+        "title": "",
+        "affiliation": "",
+        "location": "",
+        "summary": "",
+        "socials": [],
+        "interests": [],
+        "education": [],
         "keywords": [
           "data collection",
           "experimental design",
