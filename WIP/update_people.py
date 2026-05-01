@@ -134,6 +134,7 @@ def clean_education(value) -> list[dict[str, str]]:
         details = clean_string(
             item.get("details") or item.get("description") or item.get("notes")
         )
+        logo = clean_string(item.get("logo") or item.get("image") or item.get("icon"))
         if not degree and not institution and not year:
             continue
         education.append(
@@ -142,6 +143,7 @@ def clean_education(value) -> list[dict[str, str]]:
                 "institution": institution,
                 "year": year,
                 "details": details,
+                "logo": logo,
             }
         )
     return education

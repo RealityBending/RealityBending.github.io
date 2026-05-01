@@ -1,3 +1,7 @@
+import { openImageLightbox } from "../shared/media-lightbox.js"
+import { buildMemoryMeta, getMemoriesManifest } from "../shared/memories-data.js"
+import { registerProfileActions } from "../shared/profile-api.js"
+
 /* people.js
  * Renders the People section as a Multi-Layered Perceptron (MLP) diagram.
  * Fetches people/people_manifest.json, builds one layer per role (PI → Postdoc →
@@ -136,8 +140,9 @@
                 const institution = (item.institution || item.school || item.organization || "").trim()
                 const year = item.year == null ? "" : String(item.year).trim()
                 const details = (item.details || item.description || item.notes || "").trim()
+                const logo = (item.logo || item.image || item.icon || "").trim()
                 if (!degree && !institution && !year) return null
-                return { degree, institution, year, details }
+                return { degree, institution, year, details, logo }
             })
             .filter(Boolean)
     }
@@ -209,6 +214,18 @@
         return degree + " completed at " + institution + "."
     }
 
+    function createEducationLogo(src, className) {
+        const safeSrc = (src || "").trim()
+        if (!safeSrc) return null
+
+        const logo = document.createElement("img")
+        logo.src = safeSrc
+        logo.alt = ""
+        logo.className = className
+        logo.decoding = "async"
+        return logo
+    }
+
     /* ── shared profile-panel section builders ── */
 
     function buildInterestsSection(interests) {
@@ -243,50 +260,32 @@
         rail.className = "profile-panel__education-rail"
         if (education.length === 1) rail.classList.add("has-one-stop")
 
-        const detail = document.createElement("div")
-        detail.className = "profile-panel__education-detail"
-        const detailYear = document.createElement("div")
-        detailYear.className = "profile-panel__education-detail-year"
-        detail.appendChild(detailYear)
-        const detailDegree = document.createElement("div")
-        detailDegree.className = "profile-panel__education-detail-degree"
-        detail.appendChild(detailDegree)
-        const detailInstitution = document.createElement("div")
-        detailInstitution.className = "profile-panel__education-detail-meta"
-        detail.appendChild(detailInstitution)
-        const detailText = document.createElement("p")
-        detailText.className = "profile-panel__education-detail-text"
-        detail.appendChild(detailText)
-
-        const stops = []
+        const items = []
         function clearActive() {
-            stops.forEach((s) => {
-                s.classList.remove("is-active")
-                s.setAttribute("aria-pressed", "false")
+            items.forEach(({ stop, detail }) => {
+                stop.classList.remove("is-active")
+                stop.setAttribute("aria-pressed", "false")
+                if (detail) {
+                    detail.classList.remove("is-visible")
+                    detail.setAttribute("aria-hidden", "true")
+                }
             })
-            detail.classList.remove("is-visible")
-            detail.setAttribute("aria-hidden", "true")
-            detailYear.textContent = ""
-            detailDegree.textContent = ""
-            detailInstitution.textContent = ""
-            detailText.textContent = ""
         }
         function setActive(index) {
-            stops.forEach((s, i) => {
-                s.classList.toggle("is-active", i === index)
-                s.setAttribute("aria-pressed", i === index ? "true" : "false")
+            items.forEach(({ stop, detail }, i) => {
+                const isActive = i === index
+                stop.classList.toggle("is-active", isActive)
+                stop.setAttribute("aria-pressed", isActive ? "true" : "false")
+                if (detail) {
+                    detail.classList.toggle("is-visible", isActive)
+                    detail.setAttribute("aria-hidden", isActive ? "false" : "true")
+                }
             })
-            const entry = education[index]
-            if (!entry) return
-            detail.classList.add("is-visible")
-            detail.setAttribute("aria-hidden", "false")
-            detailYear.textContent = entry.year || "Timeline"
-            detailDegree.textContent = entry.degree || entry.institution || entry.year || "Education"
-            detailInstitution.textContent = entry.institution || ""
-            detailText.textContent = getEducationDescription(entry)
         }
 
         education.forEach((entry, index) => {
+            const item = document.createElement("div")
+            item.className = "profile-panel__education-item"
             const stop = document.createElement("button")
             stop.type = "button"
             stop.className = "profile-panel__education-stop"
@@ -297,25 +296,46 @@
             stop.appendChild(stopYear)
             const stopBody = document.createElement("span")
             stopBody.className = "profile-panel__education-stop-body"
+            const stopLogo = createEducationLogo(entry.logo, "profile-panel__education-stop-logo")
+            if (stopLogo) {
+                stopBody.classList.add("has-logo")
+                stopBody.appendChild(stopLogo)
+            }
+            const stopCopy = document.createElement("span")
+            stopCopy.className = "profile-panel__education-stop-copy"
             const stopTitle = document.createElement("span")
             stopTitle.className = "profile-panel__education-stop-title"
             stopTitle.textContent = entry.degree || entry.institution || entry.year || "Education"
-            stopBody.appendChild(stopTitle)
+            stopCopy.appendChild(stopTitle)
             const stopMeta = document.createElement("span")
             stopMeta.className = "profile-panel__education-stop-meta"
             stopMeta.textContent = entry.institution || getEducationDescription(entry)
-            stopBody.appendChild(stopMeta)
+            stopCopy.appendChild(stopMeta)
+            stopBody.appendChild(stopCopy)
             stop.appendChild(stopBody)
-            stop.addEventListener("focus", () => setActive(index))
+            const detailText = (entry.details || "").trim()
+            let detail = null
+            if (detailText) {
+                detail = document.createElement("div")
+                detail.className = "profile-panel__education-detail"
+                detail.setAttribute("aria-hidden", "true")
+                const detailBody = document.createElement("p")
+                detailBody.className = "profile-panel__education-detail-text"
+                detailBody.textContent = detailText
+                detail.appendChild(detailBody)
+            }
             stop.addEventListener("click", () => {
+                if (!detail) return
                 if (stop.classList.contains("is-active")) {
                     clearActive()
                 } else {
                     setActive(index)
                 }
             })
-            rail.appendChild(stop)
-            stops.push(stop)
+            item.appendChild(stop)
+            if (detail) item.appendChild(detail)
+            rail.appendChild(item)
+            items.push({ stop, detail })
         })
 
         timeline.addEventListener("focusout", () => {
@@ -325,55 +345,8 @@
         })
         clearActive()
         timeline.appendChild(rail)
-        timeline.appendChild(detail)
         section.appendChild(timeline)
         return section
-    }
-
-    /* ── lazy memories manifest (fetched once, cached) ── */
-    let _memoriesPromise = null
-    function getMemoriesManifest() {
-        if (!_memoriesPromise) {
-            _memoriesPromise = fetch("memories/memories_manifest.json", { cache: "no-store" })
-                .then((r) => (r.ok ? r.json() : { memories: [] }))
-                .then((data) => (Array.isArray(data.memories) ? data.memories : []))
-                .catch(() => [])
-        }
-        return _memoriesPromise
-    }
-
-    function openMemoryLightbox(mem) {
-        const existing = document.querySelector(".memory-lightbox")
-        if (existing) existing.remove()
-        const lb = document.createElement("div")
-        lb.className = "memory-lightbox"
-        lb.setAttribute("role", "dialog")
-        lb.setAttribute("aria-modal", "true")
-        lb.setAttribute("aria-label", mem.caption || mem.title || "Memory")
-        const img = document.createElement("img")
-        img.src = mem.file
-        img.alt = mem.caption || mem.title || ""
-        img.className = "memory-lightbox__img"
-        lb.appendChild(img)
-        if (mem.caption) {
-            const cap = document.createElement("p")
-            cap.className = "memory-lightbox__caption"
-            cap.textContent = mem.caption
-            lb.appendChild(cap)
-        }
-        function onKey(e) {
-            if (e.key === "Escape") {
-                lb.remove()
-                document.removeEventListener("keydown", onKey)
-            }
-        }
-        lb.addEventListener("click", () => {
-            lb.remove()
-            document.removeEventListener("keydown", onKey)
-        })
-        document.addEventListener("keydown", onKey)
-        document.body.appendChild(lb)
-        lb.focus()
     }
 
     function buildMemoriesSection(folder) {
@@ -408,7 +381,16 @@
                     cap.textContent = mem.caption
                     thumb.appendChild(cap)
                 }
-                thumb.addEventListener("click", () => openMemoryLightbox(mem))
+                thumb.addEventListener("click", () =>
+                    openImageLightbox({
+                        src: mem.file,
+                        alt: mem.caption || mem.title || "",
+                        label: mem.caption || mem.title || "Memory",
+                        title: mem.title || "",
+                        caption: mem.caption || "",
+                        meta: buildMemoryMeta(mem),
+                    }),
+                )
                 grid.appendChild(thumb)
             })
             if (matching.length > 4) {
@@ -508,7 +490,7 @@
         return svgEl
     }
 
-    fetch("people/people_manifest.json", { cache: "no-store" })
+    fetch("people/people_manifest.json")
         .then((r) => r.json())
         .then((manifest) => {
             const container = document.getElementById("people-grid")
@@ -608,9 +590,6 @@
                 panel.classList.add("is-open")
                 backdrop.classList.add("is-visible")
             }
-
-            // Expose for use by collaborations.js
-            window._labProfile = { openMinimal: openMinimalProfile }
 
             function openProfile(m) {
                 panelBody.innerHTML = ""
@@ -764,6 +743,11 @@
                 backdrop.classList.add("is-visible")
             }
 
+            registerProfileActions({
+                open: openProfile,
+                openMinimal: openMinimalProfile,
+            })
+
             manifest.roles.forEach((category, li) => {
                 if (category === "Alumni") return
                 const members = manifest.by_role[category]
@@ -774,7 +758,6 @@
                 layer.style.setProperty("--layer-index", li)
                 layer.style.setProperty("--member-count", members.length)
                 layer.style.setProperty("--layer-color", CATEGORY_COLORS[category] || "transparent")
-                layer.classList.add("mlp-layer--count-" + Math.min(members.length, 4))
 
                 /* label — category name only, rendered vertically via CSS */
                 const label = document.createElement("div")

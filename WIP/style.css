@@ -266,34 +266,9 @@ nav a {
     transition: color 0.2s;
 }
 
-nav a[href="#sec-research"]:hover,
-nav a[href="#sec-research"].active {
-    color: var(--section-research);
-    font-weight: 700;
-}
-nav a[href="#sec-people"]:hover,
-nav a[href="#sec-people"].active {
-    color: var(--section-people);
-    font-weight: 700;
-}
-nav a[href="#sec-blog"]:hover,
-nav a[href="#sec-blog"].active {
-    color: var(--section-blog);
-    font-weight: 700;
-}
-nav a[href="#sec-publications"]:hover,
-nav a[href="#sec-publications"].active {
-    color: var(--section-publications);
-    font-weight: 700;
-}
-nav a[href="#sec-tour"]:hover,
-nav a[href="#sec-tour"].active {
-    color: var(--section-tour);
-    font-weight: 700;
-}
-nav a[href="#sec-contact"]:hover,
-nav a[href="#sec-contact"].active {
-    color: var(--section-contact);
+nav a.nav-link:hover,
+nav a.nav-link.active {
+    color: var(--section-color, #111);
     font-weight: 700;
 }
 
@@ -320,15 +295,7 @@ nav a[href="#sec-contact"].active {
     box-shadow: 0 24px 60px rgba(17, 17, 17, 0.08);
     background:
         radial-gradient(circle at center, #f5f4ef 0 24%, rgba(245, 244, 239, 0.98) 24.2% 29%, transparent 29.2%),
-        conic-gradient(
-            from -60deg,
-            rgba(51, 204, 204, 0.88) 0deg 60deg,
-            rgba(85, 153, 255, 0.9) 60deg 120deg,
-            rgba(170, 85, 255, 0.88) 120deg 180deg,
-            rgba(255, 85, 85, 0.88) 180deg 240deg,
-            rgba(255, 153, 51, 0.88) 240deg 300deg,
-            rgba(85, 204, 119, 0.9) 300deg 360deg
-        );
+        var(--atlas-sector-gradient, transparent);
 }
 
 .brain-atlas::before {
@@ -347,36 +314,13 @@ nav a[href="#sec-contact"].active {
     z-index: 0;
     pointer-events: none;
     opacity: 0;
+    background: var(--atlas-active-gradient, transparent);
     transition: opacity 0.18s ease;
     will-change: opacity;
 }
 
 .brain-atlas[data-active-region]::after {
     opacity: 1;
-}
-
-.brain-atlas[data-active-region="sec-research"]::after {
-    background: conic-gradient(from -60deg, transparent 0deg 300deg, rgba(85, 204, 119, 0.9) 300deg 360deg);
-}
-
-.brain-atlas[data-active-region="sec-blog"]::after {
-    background: conic-gradient(from -60deg, rgba(51, 204, 204, 0.9) 0deg 60deg, transparent 60deg 360deg);
-}
-
-.brain-atlas[data-active-region="sec-people"]::after {
-    background: conic-gradient(from -60deg, transparent 0deg 60deg, rgba(85, 153, 255, 0.9) 60deg 120deg, transparent 120deg 360deg);
-}
-
-.brain-atlas[data-active-region="sec-publications"]::after {
-    background: conic-gradient(from -60deg, transparent 0deg 120deg, rgba(170, 85, 255, 0.88) 120deg 180deg, transparent 180deg 360deg);
-}
-
-.brain-atlas[data-active-region="sec-contact"]::after {
-    background: conic-gradient(from -60deg, transparent 0deg 180deg, rgba(255, 85, 85, 0.88) 180deg 240deg, transparent 240deg 360deg);
-}
-
-.brain-atlas[data-active-region="sec-tour"]::after {
-    background: conic-gradient(from -60deg, transparent 0deg 240deg, rgba(255, 153, 51, 0.88) 240deg 300deg, transparent 300deg 360deg);
 }
 
 .brain-atlas__center {
@@ -500,7 +444,6 @@ nav a[href="#sec-contact"].active {
 }
 
 .section--research {
-    --section-color: var(--section-research);
     top: 50%;
     left: 0.5%;
     width: 19%;
@@ -508,21 +451,18 @@ nav a[href="#sec-contact"].active {
 }
 
 .section--blog {
-    --section-color: var(--section-blog);
     top: 2%;
     left: 2%;
     width: 29%;
 }
 
 .section--people {
-    --section-color: var(--section-people);
     top: 2%;
     right: 2%;
     width: 29%;
 }
 
 .section--publications {
-    --section-color: var(--section-publications);
     top: 50%;
     right: 0.5%;
     width: 19%;
@@ -530,14 +470,12 @@ nav a[href="#sec-contact"].active {
 }
 
 .section--tour {
-    --section-color: var(--section-tour);
     bottom: 2%;
     left: 2%;
     width: 29%;
 }
 
 .section--contact {
-    --section-color: var(--section-contact);
     bottom: 2%;
     right: 2%;
     width: 29%;
@@ -700,7 +638,7 @@ nav a[href="#sec-contact"].active {
 
 /* ── Lightbox ────────────────────────────────────────────────── */
 
-.memories-lightbox {
+.media-lightbox {
     display: none;
     position: fixed;
     inset: 0;
@@ -709,18 +647,18 @@ nav a[href="#sec-contact"].active {
     justify-content: center;
 }
 
-.memories-lightbox.is-open {
+.media-lightbox.is-open {
     display: flex;
 }
 
-.memories-lightbox__backdrop {
+.media-lightbox__backdrop {
     position: absolute;
     inset: 0;
     background: rgba(8, 8, 16, 0.82);
     backdrop-filter: blur(6px);
 }
 
-.memories-lightbox__frame {
+.media-lightbox__frame {
     position: relative;
     z-index: 1;
     display: flex;
@@ -731,7 +669,7 @@ nav a[href="#sec-contact"].active {
     gap: 0.75rem;
 }
 
-.memories-lightbox__close {
+.media-lightbox__close {
     position: absolute;
     top: -2.4rem;
     right: 0;
@@ -745,11 +683,11 @@ nav a[href="#sec-contact"].active {
     transition: color 0.15s;
 }
 
-.memories-lightbox__close:hover {
+.media-lightbox__close:hover {
     color: #fff;
 }
 
-.memories-lightbox__img {
+.media-lightbox__img {
     max-width: 100%;
     max-height: 75dvh;
     object-fit: contain;
@@ -758,20 +696,20 @@ nav a[href="#sec-contact"].active {
     box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
 }
 
-.memories-lightbox__info {
+.media-lightbox__info {
     text-align: center;
     color: rgba(255, 255, 255, 0.88);
     padding: 0 0.5rem;
 }
 
-.memories-lightbox__title {
+.media-lightbox__title {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.95rem;
     font-weight: 600;
     margin: 0 0 0.2rem;
 }
 
-.memories-lightbox__caption {
+.media-lightbox__caption {
     font-family: Georgia, "Times New Roman", serif;
     font-size: 0.88rem;
     line-height: 1.6;
@@ -779,7 +717,7 @@ nav a[href="#sec-contact"].active {
     margin: 0 0 0.15rem;
 }
 
-.memories-lightbox__meta {
+.media-lightbox__meta {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.72rem;
     letter-spacing: 0.05em;
@@ -787,9 +725,9 @@ nav a[href="#sec-contact"].active {
     margin: 0;
 }
 
-.memories-lightbox__title:empty,
-.memories-lightbox__caption:empty,
-.memories-lightbox__meta:empty {
+.media-lightbox__title:empty,
+.media-lightbox__caption:empty,
+.media-lightbox__meta:empty {
     display: none;
 }
 
@@ -1247,24 +1185,13 @@ nav a[href="#sec-contact"].active {
 
 .mlp-layer__nodes {
     display: flex;
+    flex-wrap: wrap;
     align-items: flex-start;
+    justify-content: center;
     flex: 1;
     width: 100%;
     padding: 0 clamp(0.75rem, 3vw, 2.5rem);
-    gap: 2rem;
-}
-
-.mlp-layer--count-1 .mlp-layer__nodes {
-    justify-content: center;
-}
-
-.mlp-layer--count-2 .mlp-layer__nodes {
-    justify-content: space-around;
-}
-
-.mlp-layer--count-3 .mlp-layer__nodes,
-.mlp-layer--count-4 .mlp-layer__nodes {
-    justify-content: space-between;
+    gap: 2rem clamp(1.2rem, 5vw, 4rem);
 }
 
 /* ── Nodes ── */
@@ -1893,12 +1820,20 @@ nav a[href="#sec-contact"].active {
     gap: 0.85rem;
 }
 
+.profile-panel__education-item {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: 0.9rem;
+    row-gap: 0.65rem;
+    align-items: start;
+}
+
 .profile-panel__education-rail::before {
     display: none;
 }
 
 /* Connecting line drawn on each stop except the last — never dangles below */
-.profile-panel__education-stop:not(:last-child)::after {
+.profile-panel__education-item:not(:last-child) .profile-panel__education-stop::after {
     content: "";
     position: absolute;
     left: 2.35rem;
@@ -1919,6 +1854,7 @@ nav a[href="#sec-contact"].active {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
     gap: 0.9rem;
+    grid-column: 1 / -1;
     align-items: start;
     padding: 0;
     border: none;
@@ -1964,6 +1900,12 @@ nav a[href="#sec-contact"].active {
         background 0.2s ease;
 }
 
+.profile-panel__education-stop-body.has-logo {
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: 0.85rem;
+    align-items: center;
+}
+
 .profile-panel__education-stop-body::before {
     content: "";
     position: absolute;
@@ -1975,6 +1917,22 @@ nav a[href="#sec-contact"].active {
     background: #fff;
     border: 3px solid rgba(85, 153, 255, 0.38);
     box-shadow: 0 0 0 6px rgba(85, 153, 255, 0.08);
+}
+
+.profile-panel__education-stop-logo {
+    width: 3rem;
+    height: 3rem;
+    object-fit: contain;
+    padding: 0.4rem;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(17, 17, 17, 0.08);
+}
+
+.profile-panel__education-stop-copy {
+    display: grid;
+    gap: 0.25rem;
+    min-width: 0;
 }
 
 .profile-panel__education-stop-title {
@@ -2011,7 +1969,7 @@ nav a[href="#sec-contact"].active {
 
 .profile-panel__education-detail {
     display: none;
-    gap: 0.55rem;
+    grid-column: 2;
     padding: 1.1rem 1.2rem;
     border-radius: 20px;
     background: linear-gradient(180deg, rgba(244, 248, 255, 0.95), rgba(255, 255, 255, 0.88));
@@ -2023,29 +1981,8 @@ nav a[href="#sec-contact"].active {
     display: grid;
 }
 
-.profile-panel__education-detail-year {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #6280ae;
-}
-
-.profile-panel__education-detail-degree {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.08rem;
-    color: #1f1b17;
-}
-
-.profile-panel__education-detail-meta {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 0.82rem;
-    letter-spacing: 0.04em;
-    color: #4d6487;
-}
-
 .profile-panel__education-detail-text {
+    margin: 0;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.9rem;
     line-height: 1.7;
@@ -2151,37 +2088,6 @@ nav a[href="#sec-contact"].active {
 
 .profile-panel__memory-thumb:hover .profile-panel__memory-thumb-caption {
     opacity: 1;
-}
-
-/* ── Memory lightbox ── */
-.memory-lightbox {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    background: rgba(0, 0, 0, 0.86);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    cursor: zoom-out;
-}
-
-.memory-lightbox__img {
-    max-width: 90vw;
-    max-height: 80vh;
-    object-fit: contain;
-    border-radius: 8px;
-    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
-}
-
-.memory-lightbox__caption {
-    margin-top: 1rem;
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 0.92rem;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    text-align: center;
-    max-width: 40rem;
 }
 
 /* ── Discover random person button ── */
@@ -2589,7 +2495,7 @@ nav a[href="#sec-contact"].active {
     margin-top: 0.75rem;
 }
 
-/* Force consistent badge sizing and scale their inner SVG/IMG to fit */
+/* Force consistent badge sizing and scale their inner content to fit */
 .pub-card__badges .altmetric-embed,
 .pub-card__badges .__dimensions_badge_embed__,
 .pub-card__github-badge,
@@ -2604,10 +2510,13 @@ nav a[href="#sec-contact"].active {
 
 .pub-card__badges .altmetric-embed img,
 .pub-card__badges .altmetric-embed svg,
+.pub-card__badges .altmetric-embed iframe,
 .pub-card__badges .__dimensions_badge_embed__ img,
-.pub-card__badges .__dimensions_badge_embed__ svg {
+.pub-card__badges .__dimensions_badge_embed__ svg,
+.pub-card__badges .__dimensions_badge_embed__ iframe {
     width: 100% !important;
     height: 100% !important;
+    display: block;
 }
 
 .pub-card__github-badge {

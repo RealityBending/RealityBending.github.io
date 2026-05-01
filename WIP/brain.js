@@ -12,6 +12,7 @@ import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js"
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js"
 import { OutlinePass } from "three/addons/postprocessing/OutlinePass.js"
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js"
+import { ATLAS_HIT_SECTORS, SECTION_BY_ID, SITE_SECTIONS, buildAtlasHighlightGradient } from "./site-sections.js"
 
 const container = document.getElementById("brain-viewer")
 const atlas = document.querySelector(".brain-atlas")
@@ -76,83 +77,32 @@ function syncRendererResolution() {
 //   nx = left(0) → right(1),  ny = bottom(0) → top(1),  nz = back(0) → front(1)
 // Adjust thresholds to match your model's anatomy.
 // nx = left(0)→right(1), ny = bottom(0)→top(1), nz = back(0)→front(1)
-const REGIONS = [
-    {
-        id: "sec-people",
-        label: "People →",
-        color: new THREE.Color(0x5599ff), // blue – bilateral prefrontal
-        index: 0,
-        test: (nx, ny, nz) => nz < 0.38 && ny > 0.38,
-        viewAzimuth: Math.PI, // frontal view
-        viewPolar: 1.25,
-    },
-    {
-        id: "sec-publications",
-        label: "Publications →",
-        color: new THREE.Color(0xaa55ff), // purple – right parietal
-        index: 1,
-        test: (nx, ny, nz) => nx > 0.52 && ny > 0.58 && nz >= 0.3 && nz <= 0.62,
-        viewAzimuth: Math.PI / 2, // right lateral, slightly above
-        viewPolar: 1.0,
-    },
-    {
-        id: "sec-contact",
-        label: "Contact →",
-        color: new THREE.Color(0xff5555), // red – right temporal
-        index: 2,
-        test: (nx, ny, nz) => nx > 0.52 && ny >= 0.18 && ny < 0.58 && nz > 0.35 && nz < 0.7,
-        viewAzimuth: Math.PI / 2, // right lateral view
-        viewPolar: Math.PI / 2,
-    },
-    {
-        id: "sec-tour",
-        label: "Tour →",
-        color: new THREE.Color(0xff9933), // orange – bilateral occipital
-        index: 3,
-        test: (nx, ny, nz) => nz > 0.62 && ny > 0.35,
-        viewAzimuth: 0, // posterior view
-        viewPolar: 1.25,
-    },
-    {
-        id: "sec-research",
-        label: "Research →",
-        color: new THREE.Color(0x55cc77), // green – left parietal
-        index: 4,
-        test: (nx, ny, nz) => nx < 0.48 && ny > 0.58 && nz >= 0.3 && nz <= 0.62,
-        viewAzimuth: -Math.PI / 2, // left lateral, slightly above
-        viewPolar: 1.0,
-    },
-    {
-        id: "sec-blog",
-        label: "Blog →",
-        color: new THREE.Color(0x33cccc), // teal – left temporal
-        index: 5,
-        test: (nx, ny, nz) => nx < 0.48 && ny >= 0.18 && ny < 0.58 && nz > 0.35 && nz < 0.7,
-        viewAzimuth: -Math.PI / 2, // left lateral view
-        viewPolar: Math.PI / 2,
-    },
+const REGIONS = SITE_SECTIONS.map((section) => ({
+    id: section.id,
+    label: section.brainLabel,
+    color: new THREE.Color(section.colorHex),
+    highlightIndex: section.brainRegionIndex,
+    test: section.regionTest,
+    viewAzimuth: section.viewAzimuth,
+    viewPolar: section.viewPolar,
+    scrollTargetId: section.scrollTargetId,
+})).concat([
     {
         id: "easter-egg",
         label: "🧠 ???",
-        color: new THREE.Color(0xffcc00), // gold – brain stem
-        index: 6,
+        color: new THREE.Color(0xffcc00),
+        highlightIndex: 6,
         test: (nx, ny, nz) => ny < 0.18,
         isEasterEgg: true,
-        viewAzimuth: Math.PI, // frontal, from below
+        viewAzimuth: Math.PI,
         viewPolar: 2.0,
+        scrollTargetId: "easteregg.html",
     },
-]
+])
 const regionsById = new Map(REGIONS.map((region) => [region.id, region]))
 const sectionElements = new Map(REGIONS.map((region) => [region.id, document.getElementById(region.id)]))
 const atlasCenter = atlas.querySelector(".brain-atlas__center")
-const ATLAS_SECTORS = [
-    { start: 0, end: 60, id: "sec-people" },
-    { start: 60, end: 120, id: "sec-publications" },
-    { start: 120, end: 180, id: "sec-contact" },
-    { start: 180, end: 240, id: "sec-tour" },
-    { start: 240, end: 300, id: "sec-research" },
-    { start: 300, end: 360, id: "sec-blog" },
-]
+const ATLAS_SECTORS = ATLAS_HIT_SECTORS
 
 // ── Shared highlight uniforms ──────────────────────────────────────────────
 // One object shared by every mesh material — updating .value here affects all.
@@ -256,6 +206,10 @@ let brainBox = new THREE.Box3()
 let brainSize = new THREE.Vector3()
 let brainMin = new THREE.Vector3()
 let activeRegionId = null
+const GLB_MAGIC = 0x46546c67
+const GLB_VERSION = 2
+const GLB_JSON_CHUNK_TYPE = 0x4e4f534a
+const GLB_JSON_PADDING_BYTE = 0x20
 
 function setActiveRegion(region) {
     const nextRegionId = region?.id ?? null
@@ -266,8 +220,10 @@ function setActiveRegion(region) {
     if (atlas) {
         if (nextRegionId) {
             atlas.dataset.activeRegion = nextRegionId
+            atlas.style.setProperty("--atlas-active-gradient", buildAtlasHighlightGradient(nextRegionId))
         } else {
             delete atlas.dataset.activeRegion
+            atlas.style.setProperty("--atlas-active-gradient", "transparent")
         }
     }
 
@@ -277,7 +233,7 @@ function setActiveRegion(region) {
 }
 
 function highlightRegion(region) {
-    H.uActiveRegion.value = region.index
+    H.uActiveRegion.value = region.highlightIndex
     H.uHighlightColor.value.copy(region.color)
     strengthTarget = 1.0
     setActiveRegion(region)
@@ -339,7 +295,117 @@ sectionElements.forEach((element, id) => {
 })
 
 const loader = new GLTFLoader()
-loader.load("img/brain.glb", (gltf) => {
+
+function sanitizeBrainGlb(arrayBuffer) {
+    const view = new DataView(arrayBuffer)
+    if (view.byteLength < 20) return arrayBuffer
+    if (view.getUint32(0, true) !== GLB_MAGIC || view.getUint32(4, true) !== GLB_VERSION) return arrayBuffer
+
+    const chunks = []
+    let offset = 12
+
+    while (offset + 8 <= view.byteLength) {
+        const chunkLength = view.getUint32(offset, true)
+        offset += 4
+
+        const chunkType = view.getUint32(offset, true)
+        offset += 4
+
+        chunks.push({
+            type: chunkType,
+            data: arrayBuffer.slice(offset, offset + chunkLength),
+        })
+        offset += chunkLength
+    }
+
+    const jsonChunk = chunks.find((chunk) => chunk.type === GLB_JSON_CHUNK_TYPE)
+    if (!jsonChunk) return arrayBuffer
+
+    const decoder = new TextDecoder()
+    const encoder = new TextEncoder()
+    const gltf = JSON.parse(
+        decoder
+            .decode(jsonChunk.data)
+            .replace(/\u0000+$/g, "")
+            .trimEnd(),
+    )
+    let didChange = false
+
+    ;["extensionsUsed", "extensionsRequired"].forEach((key) => {
+        if (!Array.isArray(gltf[key])) return
+
+        const filtered = gltf[key].filter((name) => name !== "KHR_materials_pbrSpecularGlossiness")
+        if (filtered.length === gltf[key].length) return
+
+        didChange = true
+        if (filtered.length) {
+            gltf[key] = filtered
+        } else {
+            delete gltf[key]
+        }
+    })
+
+    if (Array.isArray(gltf.materials)) {
+        gltf.materials = gltf.materials.map((material) => {
+            if (!material?.extensions?.KHR_materials_pbrSpecularGlossiness) {
+                return material
+            }
+
+            didChange = true
+
+            const nextMaterial = { ...material }
+            const nextExtensions = { ...nextMaterial.extensions }
+            delete nextExtensions.KHR_materials_pbrSpecularGlossiness
+
+            if (Object.keys(nextExtensions).length) {
+                nextMaterial.extensions = nextExtensions
+            } else {
+                delete nextMaterial.extensions
+            }
+
+            if (!nextMaterial.pbrMetallicRoughness) {
+                nextMaterial.pbrMetallicRoughness = {}
+            }
+
+            return nextMaterial
+        })
+    }
+
+    if (!didChange) return arrayBuffer
+
+    const jsonBytes = encoder.encode(JSON.stringify(gltf))
+    const paddedJsonLength = Math.ceil(jsonBytes.length / 4) * 4
+    const totalLength =
+        12 + chunks.reduce((sum, chunk) => sum + 8 + (chunk.type === GLB_JSON_CHUNK_TYPE ? paddedJsonLength : chunk.data.byteLength), 0)
+    const output = new Uint8Array(totalLength)
+    const outputView = new DataView(output.buffer)
+
+    outputView.setUint32(0, GLB_MAGIC, true)
+    outputView.setUint32(4, GLB_VERSION, true)
+    outputView.setUint32(8, totalLength, true)
+
+    offset = 12
+    chunks.forEach((chunk) => {
+        const source = chunk.type === GLB_JSON_CHUNK_TYPE ? jsonBytes : new Uint8Array(chunk.data)
+        const chunkLength = chunk.type === GLB_JSON_CHUNK_TYPE ? paddedJsonLength : source.byteLength
+
+        outputView.setUint32(offset, chunkLength, true)
+        offset += 4
+        outputView.setUint32(offset, chunk.type, true)
+        offset += 4
+        output.set(source, offset)
+
+        if (chunk.type === GLB_JSON_CHUNK_TYPE) {
+            output.fill(GLB_JSON_PADDING_BYTE, offset + source.byteLength, offset + chunkLength)
+        }
+
+        offset += chunkLength
+    })
+
+    return output.buffer
+}
+
+function handleBrainLoad(gltf) {
     const model = gltf.scene
 
     brainBox.setFromObject(model)
@@ -370,7 +436,31 @@ loader.load("img/brain.glb", (gltf) => {
     })
     outlinePass.selectedObjects = brainMeshes
     scene.add(model)
-})
+}
+
+function loadBrainModel() {
+    fetch("img/brain.glb")
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("Could not load brain model.")
+            }
+
+            return response.arrayBuffer()
+        })
+        .then((arrayBuffer) => sanitizeBrainGlb(arrayBuffer))
+        .then(
+            (arrayBuffer) =>
+                new Promise((resolve, reject) => {
+                    loader.parse(arrayBuffer, document.baseURI, resolve, reject)
+                }),
+        )
+        .then(handleBrainLoad)
+        .catch((error) => {
+            console.error("brain.js: failed to load sanitized brain model", error)
+        })
+}
+
+loadBrainModel()
 
 // ── Mouse interaction ──────────────────────────────────────────────────────
 // Single pointermove on the atlas container resolves all highlight logic,
@@ -464,7 +554,7 @@ function navigateToRegion(region) {
         return
     }
 
-    document.getElementById(region.id)?.scrollIntoView({ behavior: "smooth", block: "start" })
+    document.getElementById(region.scrollTargetId || region.id)?.scrollIntoView({ behavior: "smooth", block: "start" })
 }
 
 atlas.addEventListener("pointermove", (e) => {
@@ -557,6 +647,11 @@ let heroVisible = true
 const heroObserver = new IntersectionObserver(
     (entries) => {
         heroVisible = entries[0].isIntersecting
+        if (heroVisible && !document.hidden) {
+            startAnimationLoop()
+        } else {
+            stopAnimationLoop()
+        }
     },
     { threshold: 0 },
 )
@@ -578,10 +673,24 @@ window.addEventListener("resize", () => {
 })
 
 // ── Render loop ────────────────────────────────────────────────────────────
-function animate() {
-    requestAnimationFrame(animate)
+let animationFrameId = 0
 
-    // Skip rendering when the hero is off-screen or tab is hidden
+function stopAnimationLoop() {
+    if (!animationFrameId) return
+
+    cancelAnimationFrame(animationFrameId)
+    animationFrameId = 0
+}
+
+function startAnimationLoop() {
+    if (animationFrameId || !heroVisible || document.hidden) return
+
+    animationFrameId = requestAnimationFrame(animate)
+}
+
+function animate() {
+    animationFrameId = 0
+
     if (!heroVisible || document.hidden) return
 
     if (lockedView) {
@@ -601,5 +710,16 @@ function animate() {
     // Smooth highlight fade-in / fade-out
     H.uHighlightStrength.value += (strengthTarget - H.uHighlightStrength.value) * 0.1
     composer.render()
+    startAnimationLoop()
 }
-animate()
+
+document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+        stopAnimationLoop()
+        return
+    }
+
+    startAnimationLoop()
+})
+
+startAnimationLoop()

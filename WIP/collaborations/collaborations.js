@@ -1,5 +1,7 @@
+import { openMinimalProfile } from "../shared/profile-api.js"
 ;(function () {
     const GRAPH_PATH = "collaborations/data_graph.json"
+    const LAYOUT_PATH = "collaborations/data_layout.json"
     const COLLABORATORS_MANIFEST_PATH = "collaborations/collaborations_manifest.json"
     const ROOT_NAME = "Dominique Makowski"
     const NS = "http://www.w3.org/2000/svg"
@@ -275,6 +277,32 @@
         })
     }
 
+    function applyPrecomputedLayout(nodes, layoutByName) {
+        if (!layoutByName || typeof layoutByName !== "object") {
+            return false
+        }
+
+        let appliedCount = 0
+
+        nodes.forEach((node) => {
+            const position = layoutByName[node.name]
+            const x = Number(position?.x)
+            const y = Number(position?.y)
+
+            if (!Number.isFinite(x) || !Number.isFinite(y)) {
+                return
+            }
+
+            node.x = x
+            node.y = y
+            node.vx = 0
+            node.vy = 0
+            appliedCount += 1
+        })
+
+        return appliedCount === nodes.length
+    }
+
     function styleNodesAndEdges(nodes, edges, root, directIds) {
         const minCloseness = Math.min(...nodes.map((node) => node.closeness), 0)
         const maxCloseness = Math.max(...nodes.map((node) => node.closeness), 0.001)
@@ -333,7 +361,7 @@
         })
     }
 
-    function buildNetwork(graph) {
+    function buildNetwork(graph, layoutByName) {
         const rawNodes = Array.isArray(graph.nodes) ? graph.nodes : []
         const nodes = rawNodes.map((node, index) => ({
             id: index + 1,
@@ -384,10 +412,14 @@
         })
 
         const groupAnchors = createGroupAnchors(groups, root.group, groupStats)
-        initialisePositions(nodes, root, groupAnchors, directIds)
-        styleNodesAndEdges(nodes, edges, root, directIds)
-        runLayout(nodes, edges, root, groupAnchors, directIds, nodeById)
-        normaliseLayout(nodes)
+
+        if (!applyPrecomputedLayout(nodes, layoutByName)) {
+            initialisePositions(nodes, root, groupAnchors, directIds)
+            styleNodesAndEdges(nodes, edges, root, directIds)
+            runLayout(nodes, edges, root, groupAnchors, directIds, nodeById)
+            normaliseLayout(nodes)
+        }
+
         styleNodesAndEdges(nodes, edges, root, directIds)
 
         return {
@@ -462,15 +494,13 @@
 
             // Open minimal profile panel on click/Enter (shared with people.js)
             const openMinimal = () => {
-                if (window._labProfile?.openMinimal) {
-                    window._labProfile.openMinimal({
-                        name: entry.name,
-                        avatar: entry.image,
-                        details: stripAffiliationMarkup(entry.affiliation || ""),
-                        interests: entry.interests || [],
-                        education: entry.education || [],
-                    })
-                }
+                openMinimalProfile({
+                    name: entry.name,
+                    avatar: entry.image,
+                    details: stripAffiliationMarkup(entry.affiliation || ""),
+                    interests: entry.interests || [],
+                    education: entry.education || [],
+                })
             }
             card.addEventListener("click", openMinimal)
             card.addEventListener("keydown", (e) => {
@@ -840,7 +870,7 @@
     }
 
     if (closeCollaboratorsContainer || consultantsContainer) {
-        fetch(COLLABORATORS_MANIFEST_PATH, { cache: "no-store" })
+        fetch(COLLABORATORS_MANIFEST_PATH)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("Could not load close collaborators.")
@@ -863,16 +893,26 @@
 
     if (!networkContainer) return
 
-    fetch(GRAPH_PATH, { cache: "no-store" })
-        .then((response) => {
+    Promise.all([
+        fetch(GRAPH_PATH).then((response) => {
             if (!response.ok) {
                 throw new Error("Could not load collaboration graph data.")
             }
 
             return response.json()
-        })
-        .then((graph) => {
-            const network = buildNetwork(graph)
+        }),
+        fetch(LAYOUT_PATH)
+            .then((response) => {
+                if (!response.ok) {
+                    return null
+                }
+
+                return response.json()
+            })
+            .catch(() => null),
+    ])
+        .then(([graph, layoutByName]) => {
+            const network = buildNetwork(graph, layoutByName)
             if (!network) {
                 renderEmptyState("No collaboration graph could be built from the current data.")
                 return

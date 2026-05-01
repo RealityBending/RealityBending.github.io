@@ -3,6 +3,81 @@
  */
 ;(function () {
     const PAGE_SIZE = 5
+    const SEARCH_INPUT_DEBOUNCE_MS = 120
+    const ALTMETRIC_SCRIPT_SRC = "https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"
+    const DIMENSIONS_SCRIPT_SRC = "https://badge.dimensions.ai/badge.js"
+    let metricBadgeScriptsPromise = null
+
+    function loadScriptOnce(src) {
+        const existing = Array.from(document.scripts).find((script) => script.src === src)
+        if (existing) {
+            if (existing.dataset.ready === "true") {
+                return Promise.resolve(existing)
+            }
+
+            return new Promise((resolve, reject) => {
+                existing.addEventListener(
+                    "load",
+                    () => {
+                        existing.dataset.ready = "true"
+                        resolve(existing)
+                    },
+                    { once: true },
+                )
+                existing.addEventListener("error", () => reject(new Error("Could not load " + src)), { once: true })
+            })
+        }
+
+        return new Promise((resolve, reject) => {
+            const script = document.createElement("script")
+            script.src = src
+            script.async = true
+            script.addEventListener(
+                "load",
+                () => {
+                    script.dataset.ready = "true"
+                    resolve(script)
+                },
+                { once: true },
+            )
+            script.addEventListener("error", () => reject(new Error("Could not load " + src)), { once: true })
+            document.body.appendChild(script)
+        })
+    }
+
+    function refreshOfficialMetricBadges() {
+        if (typeof window._altmetric_embed_init === "function") {
+            window._altmetric_embed_init()
+        }
+
+        if (window.__dimensions_embed?.addBadges) {
+            window.__dimensions_embed.addBadges()
+        }
+    }
+
+    function ensureOfficialMetricBadgeScripts() {
+        if (!document.querySelector(".altmetric-embed, .__dimensions_badge_embed__")) {
+            return Promise.resolve()
+        }
+
+        if (!metricBadgeScriptsPromise) {
+            metricBadgeScriptsPromise = Promise.all([loadScriptOnce(ALTMETRIC_SCRIPT_SRC), loadScriptOnce(DIMENSIONS_SCRIPT_SRC)]).then(
+                () => {
+                    refreshOfficialMetricBadges()
+                },
+            )
+        }
+
+        return metricBadgeScriptsPromise.then(() => {
+            refreshOfficialMetricBadges()
+        })
+    }
+
+    function scheduleOfficialMetricBadges() {
+        ensureOfficialMetricBadgeScripts().catch((error) => {
+            console.warn("publications.js: official badge scripts failed to load", error)
+        })
+    }
 
     fetch("publications/publications_manifest.json")
         .then((r) => r.json())
@@ -399,11 +474,6 @@
                 }
             }
 
-            /* Trigger badge scripts */
-            if (typeof _altmetric_embed_init === "function") _altmetric_embed_init()
-            if (typeof __dimensions_embed !== "undefined" && typeof __dimensions_embed.addBadges === "function")
-                __dimensions_embed.addBadges()
-
             // â”€â”€ Pagination element (after list) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             const paginationEl = document.createElement("div")
             paginationEl.className = "pub-pagination"
@@ -424,6 +494,9 @@
             const sortDirs = { date: 1, citations: 1 } // 1 = desc (default), -1 = asc
             let activeTerms = []
             const searchInput = document.getElementById("pub-search")
+            let searchInputTimer = 0
+            let chipsSignature = ""
+            let dropdownSignature = ""
 
             // â”€â”€ Core render â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             function getFilteredSorted() {
@@ -523,6 +596,7 @@
 
             // Initial render
             renderView()
+            scheduleOfficialMetricBadges()
 
             // -- Tab switching --
             function activateTab(tab) {
@@ -606,9 +680,17 @@
             dropdown.setAttribute("role", "listbox")
             searchBar.appendChild(dropdown)
 
-            function renderDropdown() {
+            function renderDropdown(force = false) {
                 const q = searchInput.value.trim().toLowerCase()
                 const available = allKeywords.filter((kw) => !activeTerms.includes(kw) && (!q || kw.includes(q)))
+                const nextSignature = [q, ...activeTerms, "--", ...available].join("|")
+
+                if (!force && nextSignature === dropdownSignature) {
+                    dropdown.hidden = available.length === 0
+                    return
+                }
+
+                dropdownSignature = nextSignature
                 dropdown.innerHTML = ""
                 if (!available.length) {
                     dropdown.hidden = true
@@ -629,7 +711,15 @@
                 dropdown.hidden = false
             }
 
-            function renderChips() {
+            function renderChips(force = false) {
+                const nextSignature = activeTerms.join("|")
+
+                if (!force && nextSignature === chipsSignature) {
+                    chipsContainer.hidden = activeTerms.length === 0
+                    return
+                }
+
+                chipsSignature = nextSignature
                 chipsContainer.innerHTML = ""
                 activeTerms.forEach((term, i) => {
                     const chip = document.createElement("span")
@@ -642,8 +732,8 @@
                     remove.textContent = "\u00d7"
                     remove.addEventListener("click", () => {
                         activeTerms.splice(i, 1)
-                        renderChips()
-                        renderDropdown()
+                        renderChips(true)
+                        renderDropdown(true)
                         currentPage = 0
                         renderView()
                         searchInput.focus()
@@ -658,22 +748,26 @@
                 const t = term.trim().toLowerCase()
                 if (t && !activeTerms.includes(t)) {
                     activeTerms.push(t)
-                    renderChips()
+                    renderChips(true)
                     searchInput.value = ""
-                    renderDropdown()
+                    renderDropdown(true)
                     currentPage = 0
                     renderView()
                     searchInput.focus()
                 }
             }
 
-            searchInput.addEventListener("focus", renderDropdown)
+            searchInput.addEventListener("focus", () => renderDropdown(true))
             searchInput.addEventListener("input", () => {
-                currentPage = 0
-                renderView()
-                renderDropdown()
+                window.clearTimeout(searchInputTimer)
+                searchInputTimer = window.setTimeout(() => {
+                    currentPage = 0
+                    renderView()
+                    renderDropdown()
+                }, SEARCH_INPUT_DEBOUNCE_MS)
             })
             searchInput.addEventListener("blur", () => {
+                window.clearTimeout(searchInputTimer)
                 setTimeout(() => {
                     dropdown.hidden = true
                 }, 160)
@@ -683,13 +777,14 @@
                     dropdown.hidden = true
                     searchInput.blur()
                 } else if (e.key === "Enter") {
+                    window.clearTimeout(searchInputTimer)
                     e.preventDefault()
                     const val = searchInput.value.trim()
                     if (val) addTerm(val)
                 } else if (e.key === "Backspace" && searchInput.value === "" && activeTerms.length > 0) {
                     activeTerms.pop()
-                    renderChips()
-                    renderDropdown()
+                    renderChips(true)
+                    renderDropdown(true)
                     currentPage = 0
                     renderView()
                 }

@@ -5,13 +5,14 @@
     "affiliation": "University of Sussex",
     "location": "Brighton, UK",
     "email": "D.Makowski@sussex.ac.uk",
+    "keywords": ["reality", "emotions", "illusion"],
+    "hook": "Did you know that Dominique Makowski created the easystats ecosystem for R?",
     "details": "Consciousness, perception, and the nature of subjective experience.",
     "summary": "<p>Trained as a clinical neuropsychologist and CBT psychotherapist, Dominique Makowski is a lecturer at the University of Sussex studying how people construct, bend, and experience reality.</p><p>His work spans altered states of consciousness, illusion, deception, fake news, meditation, and immersive experience, with an emphasis on making advanced psychological methods more accessible through <strong>open-source tools</strong>.</p>",
-    "website": "https://dominiquemakowski.github.io/",
     "socials": [
         {
             "label": "Google Scholar",
-            "url": "https://scholar.google.fr/citations?user=bg0BZ-QAAAAJ&hl=en"
+            "url": "https://scholar.google.com/citations?user=bg0BZ-QAAAAJ&hl"
         },
         {
             "label": "GitHub",
@@ -32,21 +33,22 @@
             "degree": "PhD in Psychology",
             "institution": "Universite de Paris",
             "year": "2018",
-            "details": "Focused on the neuroscience of reality perception and the mechanisms through which subjective experience can be bent, stabilized, or disrupted."
+            "details": "Focused on the neuroscience of reality perception and the mechanisms through which subjective experience can be bent, stabilized, or disrupted.",
+            "logo": "people/dominique-makowski/assets/org-uniparis.svg"
         },
         {
             "degree": "MSc in Clinical Neuropsychology",
             "institution": "Universite de Paris",
             "year": "2014",
-            "details": "Combined clinical assessment, rehabilitation, and therapeutic training with a strong grounding in affective and cognitive neuroscience."
+            "details": "Combined clinical assessment, rehabilitation, and therapeutic training with a strong grounding in affective and cognitive neuroscience.",
+            "logo": "people/dominique-makowski/assets/org-uniparis.svg"
         },
         {
             "degree": "BSc in Psychology",
             "institution": "Universite de Paris",
             "year": "2012",
-            "details": "Built the experimental, statistical, and theoretical foundations that later shaped his work on consciousness, perception, and methodology."
+            "details": "Built the experimental, statistical, and theoretical foundations that later shaped his work on consciousness, perception, and methodology.",
+            "logo": "people/dominique-makowski/assets/org-uniparis.svg"
         }
-    ],
-    "keywords": ["reality", "consciousness", "illusion", "open science"],
-    "hook": "Did you know that Dominique Makowski created the easystats ecosystem for R?"
+    ]
 }

@@ -1,3 +1,5 @@
+import { ACTIVE_NAV_SECTIONS, applySectionTheme } from "./site-sections.js"
+
 /* script.js
  * Entry-point for the landing page interaction.
  * Handles the door-screen open animation: listens for click / keyboard
@@ -6,6 +8,8 @@
  */
 const doorScreen = document.getElementById("door-screen")
 const mainPage = document.getElementById("main-page")
+
+applySectionTheme()
 
 let hasOpened = false
 
@@ -33,33 +37,30 @@ if (doorScreen && mainPage) {
 }
 
 // ── Active nav section highlighting ──
-const sectionNavMap = [
-    { id: "sec-people-full", href: "#sec-people" },
-    { id: "sec-publications-full", href: "#sec-publications" },
-    { id: "sec-contact-full", href: "#sec-contact" },
-]
+const sectionNavMap = ACTIVE_NAV_SECTIONS
 
 function updateActiveNav() {
     const mid = window.innerHeight / 2
-    let activeHref = null
+    let activeSectionId = null
 
-    for (const { id, href } of sectionNavMap) {
-        const el = document.getElementById(id)
+    for (const { sectionId, pageSectionId } of sectionNavMap) {
+        const el = document.getElementById(pageSectionId)
         if (!el) continue
         const r = el.getBoundingClientRect()
         if (r.top <= mid && r.bottom >= mid) {
-            activeHref = href
+            activeSectionId = sectionId
             break
         }
     }
 
     document.querySelectorAll("nav a").forEach((a) => a.classList.remove("active"))
-    if (activeHref) {
-        const link = document.querySelector(`nav a[href="${activeHref}"]`)
+    if (activeSectionId) {
+        const link = document.querySelector(`nav a[data-section-id="${activeSectionId}"]`)
         if (link) link.classList.add("active")
     }
 }
 
 if (mainPage) {
     mainPage.addEventListener("scroll", updateActiveNav, { passive: true })
+    updateActiveNav()
 }

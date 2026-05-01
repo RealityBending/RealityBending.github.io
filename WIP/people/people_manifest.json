@@ -13,7 +13,7 @@
       "category": "PI",
       "email": "D.Makowski@sussex.ac.uk",
       "details": "Consciousness, perception, and the nature of subjective experience.",
-      "website": "https://dominiquemakowski.github.io/",
+      "website": "",
       "title": "Lecturer in Psychology",
       "affiliation": "University of Sussex",
       "location": "Brighton, UK",
@@ -21,7 +21,7 @@
       "socials": [
         {
           "label": "Google Scholar",
-          "url": "https://scholar.google.fr/citations?user=bg0BZ-QAAAAJ&hl=en"
+          "url": "https://scholar.google.com/citations?user=bg0BZ-QAAAAJ&hl"
         },
         {
           "label": "GitHub",
@@ -48,26 +48,28 @@
           "degree": "PhD in Psychology",
           "institution": "Universite de Paris",
           "year": "2018",
-          "details": "Focused on the neuroscience of reality perception and the mechanisms through which subjective experience can be bent, stabilized, or disrupted."
+          "details": "Focused on the neuroscience of reality perception and the mechanisms through which subjective experience can be bent, stabilized, or disrupted.",
+          "logo": "people/dominique-makowski/assets/org-uniparis.svg"
         },
         {
           "degree": "MSc in Clinical Neuropsychology",
           "institution": "Universite de Paris",
           "year": "2014",
-          "details": "Combined clinical assessment, rehabilitation, and therapeutic training with a strong grounding in affective and cognitive neuroscience."
+          "details": "Combined clinical assessment, rehabilitation, and therapeutic training with a strong grounding in affective and cognitive neuroscience.",
+          "logo": "people/dominique-makowski/assets/org-uniparis.svg"
         },
         {
           "degree": "BSc in Psychology",
           "institution": "Universite de Paris",
           "year": "2012",
-          "details": "Built the experimental, statistical, and theoretical foundations that later shaped his work on consciousness, perception, and methodology."
+          "details": "Built the experimental, statistical, and theoretical foundations that later shaped his work on consciousness, perception, and methodology.",
+          "logo": "people/dominique-makowski/assets/org-uniparis.svg"
         }
       ],
       "keywords": [
         "reality",
-        "consciousness",
-        "illusion",
-        "open science"
+        "emotions",
+        "illusion"
       ],
       "hook": "Did you know that Dominique Makowski created the easystats ecosystem for R?",
       "avatar": "people/dominique-makowski/avatar.png"
@@ -103,19 +105,22 @@
           "degree": "PhD in Psychology",
           "institution": "University of Sussex",
           "year": "2024–",
-          "details": ""
+          "details": "",
+          "logo": ""
         },
         {
           "degree": "MRes in Psychological Methods",
           "institution": "University of Sussex",
           "year": "2023–2024",
-          "details": ""
+          "details": "",
+          "logo": ""
         },
         {
           "degree": "BSc in Psychology with Cognitive Sciences",
           "institution": "University of Sussex",
           "year": "2018–2022",
-          "details": ""
+          "details": "",
+          "logo": ""
         }
       ],
       "keywords": [
@@ -149,19 +154,22 @@
           "degree": "Sussex Neuroscience 4-Year PhD Programme",
           "institution": "University of Sussex",
           "year": "2023–",
-          "details": ""
+          "details": "",
+          "logo": ""
         },
         {
           "degree": "MRes in Neuroscience",
           "institution": "University of Sussex",
           "year": "2022–2023",
-          "details": ""
+          "details": "",
+          "logo": ""
         },
         {
           "degree": "BSc (Hons) in Neuroscience",
           "institution": "Queen Mary University of London",
           "year": "2021",
-          "details": ""
+          "details": "",
+          "logo": ""
         }
       ],
       "keywords": [],
@@ -204,7 +212,8 @@
           "degree": "BSc Psychology with Clinical Approaches",
           "institution": "University of Sussex",
           "year": "",
-          "details": ""
+          "details": "",
+          "logo": ""
         }
       ],
       "keywords": [],
@@ -243,7 +252,8 @@
           "degree": "BSc Psychology",
           "institution": "University of Sussex",
           "year": "2023–2027",
-          "details": ""
+          "details": "",
+          "logo": ""
         }
       ],
       "keywords": [],
@@ -277,7 +287,8 @@
           "degree": "B.A. (Hons), Psychology",
           "institution": "National University of Singapore",
           "year": "2016–2020",
-          "details": ""
+          "details": "",
+          "logo": ""
         }
       ],
       "keywords": [],
@@ -319,7 +330,8 @@
           "degree": "BSc Psychology",
           "institution": "University of Sussex",
           "year": "2022–2025",
-          "details": ""
+          "details": "",
+          "logo": ""
         }
       ],
       "keywords": [],
@@ -361,7 +373,8 @@
           "degree": "BSc Psychology",
           "institution": "University of Sussex",
           "year": "2022–2025",
-          "details": ""
+          "details": "",
+          "logo": ""
         }
       ],
       "keywords": [],
@@ -390,13 +403,15 @@
           "degree": "BA, Public Policy",
           "institution": "University of Michigan",
           "year": "",
-          "details": ""
+          "details": "",
+          "logo": ""
         },
         {
           "degree": "MA, Development Studies",
           "institution": "University of Sussex",
           "year": "",
-          "details": ""
+          "details": "",
+          "logo": ""
         }
       ],
       "keywords": [],
@@ -425,13 +440,15 @@
           "degree": "BA, Psychology",
           "institution": "University of British Columbia",
           "year": "",
-          "details": ""
+          "details": "",
+          "logo": ""
         },
         {
           "degree": "MA, Museum Studies and Curatorial Practices",
           "institution": "Nanyang Technological University",
           "year": "",
-          "details": ""
+          "details": "",
+          "logo": ""
         }
       ],
       "keywords": [],
@@ -465,7 +482,8 @@
           "degree": "BA in Psychology",
           "institution": "Nanyang Technological University",
           "year": "2018",
-          "details": ""
+          "details": "",
+          "logo": ""
         }
       ],
       "keywords": [],
@@ -495,13 +513,15 @@
           "degree": "MRes in Cognitive Neuroscience",
           "institution": "University College London",
           "year": "2020–2021",
-          "details": ""
+          "details": "",
+          "logo": ""
         },
         {
           "degree": "BSc (Hons) in Psychology",
           "institution": "University College London",
           "year": "2017–2020",
-          "details": ""
+          "details": "",
+          "logo": ""
         }
       ],
       "keywords": [],
@@ -535,7 +555,8 @@
           "degree": "M.A. (Hons) Psychology",
           "institution": "University of Edinburgh",
           "year": "2019",
-          "details": ""
+          "details": "",
+          "logo": ""
         }
       ],
       "keywords": [],
@@ -564,7 +585,8 @@
           "degree": "B.Soc.Sc. (Honours), Psychology",
           "institution": "National University of Singapore",
           "year": "",
-          "details": ""
+          "details": "",
+          "logo": ""
         }
       ],
       "keywords": [],
@@ -580,7 +602,7 @@
         "category": "PI",
         "email": "D.Makowski@sussex.ac.uk",
         "details": "Consciousness, perception, and the nature of subjective experience.",
-        "website": "https://dominiquemakowski.github.io/",
+        "website": "",
         "title": "Lecturer in Psychology",
         "affiliation": "University of Sussex",
         "location": "Brighton, UK",
@@ -588,7 +610,7 @@
         "socials": [
           {
             "label": "Google Scholar",
-            "url": "https://scholar.google.fr/citations?user=bg0BZ-QAAAAJ&hl=en"
+            "url": "https://scholar.google.com/citations?user=bg0BZ-QAAAAJ&hl"
           },
           {
             "label": "GitHub",
@@ -615,26 +637,28 @@
             "degree": "PhD in Psychology",
             "institution": "Universite de Paris",
             "year": "2018",
-            "details": "Focused on the neuroscience of reality perception and the mechanisms through which subjective experience can be bent, stabilized, or disrupted."
+            "details": "Focused on the neuroscience of reality perception and the mechanisms through which subjective experience can be bent, stabilized, or disrupted.",
+            "logo": "people/dominique-makowski/assets/org-uniparis.svg"
           },
           {
             "degree": "MSc in Clinical Neuropsychology",
             "institution": "Universite de Paris",
             "year": "2014",
-            "details": "Combined clinical assessment, rehabilitation, and therapeutic training with a strong grounding in affective and cognitive neuroscience."
+            "details": "Combined clinical assessment, rehabilitation, and therapeutic training with a strong grounding in affective and cognitive neuroscience.",
+            "logo": "people/dominique-makowski/assets/org-uniparis.svg"
           },
           {
             "degree": "BSc in Psychology",
             "institution": "Universite de Paris",
             "year": "2012",
-            "details": "Built the experimental, statistical, and theoretical foundations that later shaped his work on consciousness, perception, and methodology."
+            "details": "Built the experimental, statistical, and theoretical foundations that later shaped his work on consciousness, perception, and methodology.",
+            "logo": "people/dominique-makowski/assets/org-uniparis.svg"
           }
         ],
         "keywords": [
           "reality",
-          "consciousness",
-          "illusion",
-          "open science"
+          "emotions",
+          "illusion"
         ],
         "hook": "Did you know that Dominique Makowski created the easystats ecosystem for R?",
         "avatar": "people/dominique-makowski/avatar.png"
@@ -672,19 +696,22 @@
             "degree": "PhD in Psychology",
             "institution": "University of Sussex",
             "year": "2024–",
-            "details": ""
+            "details": "",
+            "logo": ""
           },
           {
             "degree": "MRes in Psychological Methods",
             "institution": "University of Sussex",
             "year": "2023–2024",
-            "details": ""
+            "details": "",
+            "logo": ""
           },
           {
             "degree": "BSc in Psychology with Cognitive Sciences",
             "institution": "University of Sussex",
             "year": "2018–2022",
-            "details": ""
+            "details": "",
+            "logo": ""
           }
         ],
         "keywords": [
@@ -718,19 +745,22 @@
             "degree": "Sussex Neuroscience 4-Year PhD Programme",
             "institution": "University of Sussex",
             "year": "2023–",
-            "details": ""
+            "details": "",
+            "logo": ""
           },
           {
             "degree": "MRes in Neuroscience",
             "institution": "University of Sussex",
             "year": "2022–2023",
-            "details": ""
+            "details": "",
+            "logo": ""
           },
           {
             "degree": "BSc (Hons) in Neuroscience",
             "institution": "Queen Mary University of London",
             "year": "2021",
-            "details": ""
+            "details": "",
+            "logo": ""
           }
         ],
         "keywords": [],
@@ -775,7 +805,8 @@
             "degree": "BSc Psychology with Clinical Approaches",
             "institution": "University of Sussex",
             "year": "",
-            "details": ""
+            "details": "",
+            "logo": ""
           }
         ],
         "keywords": [],
@@ -814,7 +845,8 @@
             "degree": "BSc Psychology",
             "institution": "University of Sussex",
             "year": "2023–2027",
-            "details": ""
+            "details": "",
+            "logo": ""
           }
         ],
         "keywords": [],
@@ -850,7 +882,8 @@
             "degree": "B.A. (Hons), Psychology",
             "institution": "National University of Singapore",
             "year": "2016–2020",
-            "details": ""
+            "details": "",
+            "logo": ""
           }
         ],
         "keywords": [],
@@ -892,7 +925,8 @@
             "degree": "BSc Psychology",
             "institution": "University of Sussex",
             "year": "2022–2025",
-            "details": ""
+            "details": "",
+            "logo": ""
           }
         ],
         "keywords": [],
@@ -934,7 +968,8 @@
             "degree": "BSc Psychology",
             "institution": "University of Sussex",
             "year": "2022–2025",
-            "details": ""
+            "details": "",
+            "logo": ""
           }
         ],
         "keywords": [],
@@ -963,13 +998,15 @@
             "degree": "BA, Public Policy",
             "institution": "University of Michigan",
             "year": "",
-            "details": ""
+            "details": "",
+            "logo": ""
           },
           {
             "degree": "MA, Development Studies",
             "institution": "University of Sussex",
             "year": "",
-            "details": ""
+            "details": "",
+            "logo": ""
           }
         ],
         "keywords": [],
@@ -998,13 +1035,15 @@
             "degree": "BA, Psychology",
             "institution": "University of British Columbia",
             "year": "",
-            "details": ""
+            "details": "",
+            "logo": ""
           },
           {
             "degree": "MA, Museum Studies and Curatorial Practices",
             "institution": "Nanyang Technological University",
             "year": "",
-            "details": ""
+            "details": "",
+            "logo": ""
           }
         ],
         "keywords": [],
@@ -1038,7 +1077,8 @@
             "degree": "BA in Psychology",
             "institution": "Nanyang Technological University",
             "year": "2018",
-            "details": ""
+            "details": "",
+            "logo": ""
           }
         ],
         "keywords": [],
@@ -1068,13 +1108,15 @@
             "degree": "MRes in Cognitive Neuroscience",
             "institution": "University College London",
             "year": "2020–2021",
-            "details": ""
+            "details": "",
+            "logo": ""
           },
           {
             "degree": "BSc (Hons) in Psychology",
             "institution": "University College London",
             "year": "2017–2020",
-            "details": ""
+            "details": "",
+            "logo": ""
           }
         ],
         "keywords": [],
@@ -1108,7 +1150,8 @@
             "degree": "M.A. (Hons) Psychology",
             "institution": "University of Edinburgh",
             "year": "2019",
-            "details": ""
+            "details": "",
+            "logo": ""
           }
         ],
         "keywords": [],
@@ -1137,7 +1180,8 @@
             "degree": "B.Soc.Sc. (Honours), Psychology",
             "institution": "National University of Singapore",
             "year": "",
-            "details": ""
+            "details": "",
+            "logo": ""
           }
         ],
         "keywords": [],
