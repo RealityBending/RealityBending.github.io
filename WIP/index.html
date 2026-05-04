@@ -47,12 +47,12 @@
                     <span class="nav-brand">Reality Bending Lab</span>
                 </div>
                 <ul>
-                    <li><a href="#sec-research">Research</a></li>
+                    <li><a href="#sec-research-full">Research</a></li>
                     <li><a href="#sec-people">People</a></li>
                     <li><a href="#sec-blog">Blog</a></li>
                     <li><a href="#sec-publications">Publications</a></li>
                     <li><a href="#sec-tour">Tour</a></li>
-                    <li><a href="#sec-contact">Contact</a></li>
+                    <li><a href="#sec-contact">Information</a></li>
                 </ul>
             </nav>
 
@@ -104,11 +104,18 @@
                         </p>
                     </div>
                     <div class="section section--contact section--bottom-right" id="sec-contact">
-                        <h2>Contact & Services</h2>
-                        <p>School of Psychology · University of Sussex · Brighton, UK. Collaborations and inquiries are welcome.</p>
+                        <h2>Information</h2>
+                        <p>Contact, joining opportunities, and services from the Reality Bending Lab.</p>
                     </div>
                 </div>
             </div>
+
+            <!-- ════════════════════════════════════
+          RESEARCH SECTION
+      ════════════════════════════════════ -->
+            <section class="research-full" id="sec-research-full">
+                <div id="research-root"></div>
+            </section>
 
             <!-- ════════════════════════════════════
        PEOPLE SECTION
@@ -260,18 +267,44 @@
        CONTACT SECTION
   ════════════════════════════════════ -->
             <section class="contact-full" id="sec-contact-full">
-                <h2 class="contact-full__title">Contact</h2>
+                <h2 class="contact-full__title">Information</h2>
                 <div class="contact-full__inner">
-                    <div class="contact-full__info">
-                        <h2>Get in Touch</h2>
-                        <p>
-                            School of Psychology<br />
-                            University of Sussex<br />
-                            Falmer, Brighton BN1 9QH, UK
-                        </p>
-                        <p class="contact-full__links">
-                            <a href="mailto:realitybending@sussex.ac.uk">realitybending@sussex.ac.uk</a>
-                        </p>
+                    <div class="contact-full__stack">
+                        <section class="contact-full__section" id="contact-contact">
+                            <h2>Contact</h2>
+                            <p>
+                                School of Psychology<br />
+                                University of Sussex<br />
+                                Falmer, Brighton BN1 9QH, UK
+                            </p>
+                            <p class="contact-full__links">
+                                <a href="mailto:realitybending@sussex.ac.uk">realitybending@sussex.ac.uk</a>
+                            </p>
+                        </section>
+
+                        <section class="contact-full__section" id="contact-join">
+                            <h2>Join</h2>
+                            <p>
+                                We welcome inquiries from prospective students, visitors, and collaborators who want to work on
+                                consciousness, reality perception, affective cognition, and open scientific methods.
+                            </p>
+                            <p class="contact-full__links">
+                                <a href="mailto:realitybending@sussex.ac.uk?subject=Joining%20the%20Reality%20Bending%20Lab"
+                                    >Ask about joining the lab</a
+                                >
+                            </p>
+                        </section>
+
+                        <section class="contact-full__section" id="contact-services">
+                            <h2>Services</h2>
+                            <p>
+                                The lab is available for talks, workshops, consulting, collaborative project design, and methodological
+                                support across statistics, programming, experimental design, and neurophysiological techniques.
+                            </p>
+                            <p class="contact-full__links">
+                                <a href="mailto:realitybending@sussex.ac.uk?subject=Services%20inquiry">Hire us</a>
+                            </p>
+                        </section>
                     </div>
                     <div class="contact-full__map">
                         <iframe
@@ -290,7 +323,7 @@
 
             <!-- Floating action buttons -->
             <div class="fab-group">
-                <a href="#sec-contact-full" class="fab">Contact</a>
+                <a href="#contact-services" class="fab">Hire us</a>
                 <a href="mailto:realitybending@sussex.ac.uk" class="fab fab--primary">Join the Lab</a>
             </div>
         </div>
@@ -298,6 +331,7 @@
         <script type="module" src="script.js"></script>
         <script src="rain.js"></script>
         <script type="module" src="people/people.js"></script>
+        <script type="module" src="research/research.js"></script>
         <script type="module" src="collaborations/collaborations.js"></script>
         <script type="module" src="memories/memories.js"></script>
         <script type="module" src="publications/publications.js"></script>

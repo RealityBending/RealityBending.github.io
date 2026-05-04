@@ -1,9 +1,9 @@
 export const SITE_SECTIONS = Object.freeze([
     {
         id: "sec-research",
-        navHref: "#sec-research",
-        scrollTargetId: "sec-research",
-        pageSectionId: null,
+        navHref: "#sec-research-full",
+        scrollTargetId: "sec-research-full",
+        pageSectionId: "sec-research-full",
         brainRegionIndex: 4,
         colorVar: "--section-research",
         colorHex: "#55cc77",
@@ -90,7 +90,7 @@ export const SITE_SECTIONS = Object.freeze([
         atlasColor: "rgba(255, 85, 85, 0.88)",
         atlasDisplayRange: [180, 240],
         atlasHitRange: [120, 180],
-        brainLabel: "Contact →",
+        brainLabel: "Information →",
         viewAzimuth: Math.PI / 2,
         viewPolar: Math.PI / 2,
         regionTest: (nx, ny, nz) => nx > 0.52 && ny >= 0.18 && ny < 0.58 && nz > 0.35 && nz < 0.7,

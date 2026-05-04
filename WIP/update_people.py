@@ -4,7 +4,7 @@ People:
     Each subfolder of people/ should contain:
         - profile.json   (required) with keys: name, category
             optional keys: email, details, website, title, affiliation, location,
-            summary, socials, interests, education, keywords, hook
+            summary, socials, interests, achievements, experience, keywords, hook
         - avatar.*       (optional) first image file matching avatar.png/.jpg/.jpeg/.webp
 
 Memories:
@@ -35,6 +35,8 @@ OPTIONAL_FIELDS = [
     "summary",
     "socials",
     "interests",
+    "achievements",
+    "experience",
     "education",
 ]
 EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
@@ -217,7 +219,10 @@ def load_people() -> list[dict]:
             "summary": clean_long_string(data.get("summary", "")),
             "socials": clean_socials(data.get("socials", [])),
             "interests": clean_string_list(data.get("interests", [])),
-            "education": clean_education(data.get("education", [])),
+            "achievements": clean_string_list(data.get("achievements", [])),
+            "experience": clean_education(
+                data.get("experience", data.get("education", []))
+            ),
             "keywords": clean_string_list(data.get("keywords", [])),
             "hook": clean_string(data.get("hook", "")),
             "avatar": avatar,

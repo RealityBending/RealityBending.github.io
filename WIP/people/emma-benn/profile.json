@@ -1,10 +1,10 @@
 {
     "name": "Emma Benn",
     "category": "Alumni",
-    "details": "Placement (2024–25)",
+    "details": "Placement Student (2024–25)",
     "affiliation": "University of Sussex",
     "interests": ["Statistics and R", "Reading", "Dogs"],
-    "education": [
+    "experience": [
         {
             "degree": "BSc Psychology",
             "institution": "University of Sussex",

@@ -90,14 +90,18 @@ import { registerProfileActions } from "../shared/profile-api.js"
         return "<p>" + safeText + "</p>"
     }
 
-    function normalizeSummaryHtml(summary, fallback) {
-        if (typeof summary === "string" && summary.trim()) {
-            const trimmed = summary.trim()
+    function hasHtmlMarkup(value) {
+        return /<[a-z!/][^>]*>/i.test(value)
+    }
+
+    function normalizeRichHtml(content, fallback) {
+        if (typeof content === "string" && content.trim()) {
+            const trimmed = content.trim()
             return /<[a-z!/][^>]*>/i.test(trimmed) ? trimmed : paragraphizePlainText(trimmed)
         }
 
-        if (Array.isArray(summary)) {
-            const items = summary.map((item) => (item == null ? "" : String(item).trim())).filter(Boolean)
+        if (Array.isArray(content)) {
+            const items = content.map((item) => (item == null ? "" : String(item).trim())).filter(Boolean)
             if (items.length) {
                 return items.map(paragraphizePlainText).join("")
             }
@@ -105,6 +109,12 @@ import { registerProfileActions } from "../shared/profile-api.js"
 
         const safeFallback = (fallback || "").trim()
         return safeFallback ? paragraphizePlainText(safeFallback) : ""
+    }
+
+    function normalizePlainPreview(value) {
+        const safeValue = (value || "").trim()
+        if (!safeValue) return ""
+        return hasHtmlMarkup(safeValue) ? "" : safeValue
     }
 
     function normalizeSocials(member) {
@@ -130,7 +140,7 @@ import { registerProfileActions } from "../shared/profile-api.js"
         return links
     }
 
-    function normalizeEducationEntries(value) {
+    function normalizeExperienceEntries(value) {
         if (!Array.isArray(value)) return []
 
         return value
@@ -246,106 +256,248 @@ import { registerProfileActions } from "../shared/profile-api.js"
         return section
     }
 
-    function buildEducationSection(education) {
+    function splitAchievementText(value) {
+        const text = (value || "").trim()
+        if (!text) return { title: "", detail: "" }
+
+        const separatorIndex = text.indexOf(":")
+        if (separatorIndex === -1) {
+            return { title: text, detail: "" }
+        }
+
+        return {
+            title: text.slice(0, separatorIndex).trim(),
+            detail: text.slice(separatorIndex + 1).trim(),
+        }
+    }
+
+    function buildAchievementsSection(achievements) {
+        const section = document.createElement("section")
+        section.className = "profile-panel__section profile-panel__achievement-box"
+
+        const heading = document.createElement("h2")
+        heading.className = "profile-panel__section-title"
+        heading.textContent = achievements.length === 1 ? "Achievement" : "Achievements"
+        section.appendChild(heading)
+
+        const list = document.createElement("div")
+        list.className = "profile-panel__achievement-list"
+        const items = []
+
+        function clearActive() {
+            items.forEach(({ toggle, detail }) => {
+                toggle.classList.remove("is-active")
+                toggle.setAttribute("aria-expanded", "false")
+                detail.classList.remove("is-visible")
+                detail.setAttribute("aria-hidden", "true")
+            })
+        }
+
+        function setActive(index) {
+            items.forEach(({ toggle, detail }, itemIndex) => {
+                const isActive = itemIndex === index
+                toggle.classList.toggle("is-active", isActive)
+                toggle.setAttribute("aria-expanded", isActive ? "true" : "false")
+                detail.classList.toggle("is-visible", isActive)
+                detail.setAttribute("aria-hidden", isActive ? "false" : "true")
+            })
+        }
+
+        achievements.forEach((achievement) => {
+            const item = document.createElement("div")
+            item.className = "profile-panel__achievement-item"
+
+            const { title, detail } = splitAchievementText(achievement)
+            const isExpandable = !!detail
+            const toggle = document.createElement(isExpandable ? "button" : "div")
+            toggle.className = "profile-panel__achievement-toggle"
+            if (isExpandable) {
+                toggle.type = "button"
+                toggle.setAttribute("aria-expanded", "false")
+            } else {
+                toggle.classList.add("is-static")
+            }
+
+            const marker = document.createElement("span")
+            marker.className = "profile-panel__achievement-marker"
+            marker.setAttribute("aria-hidden", "true")
+            marker.textContent = "★"
+            toggle.appendChild(marker)
+
+            const copy = document.createElement("span")
+            copy.className = "profile-panel__achievement-copy"
+
+            const titleEl = document.createElement("span")
+            titleEl.className = "profile-panel__achievement-title"
+            titleEl.textContent = title || achievement
+            copy.appendChild(titleEl)
+            toggle.appendChild(copy)
+            item.appendChild(toggle)
+
+            if (isExpandable) {
+                const detailWrap = document.createElement("div")
+                detailWrap.className = "profile-panel__achievement-detail"
+                detailWrap.setAttribute("aria-hidden", "true")
+
+                const detailEl = document.createElement("p")
+                detailEl.className = "profile-panel__achievement-detail-text"
+                detailEl.textContent = detail
+                detailWrap.appendChild(detailEl)
+
+                toggle.addEventListener("click", () => {
+                    if (toggle.classList.contains("is-active")) {
+                        clearActive()
+                    } else {
+                        setActive(items.findIndex((itemEntry) => itemEntry.toggle === toggle))
+                    }
+                })
+
+                item.appendChild(detailWrap)
+                items.push({ toggle, detail: detailWrap })
+            }
+
+            list.appendChild(item)
+        })
+
+        section.appendChild(list)
+        return section
+    }
+
+    function buildProfileSections({ interests, experience, achievements }) {
+        const leftColumnItems = []
+        const rightColumnItems = []
+
+        if (interests.length) leftColumnItems.push(buildInterestsSection(interests))
+        if (achievements.length) leftColumnItems.push(buildAchievementsSection(achievements))
+        if (experience.length) rightColumnItems.push(buildExperienceSection(experience))
+
+        if (!leftColumnItems.length && !rightColumnItems.length) return null
+
+        const sections = document.createElement("div")
+        sections.className = "profile-panel__sections"
+        ;[leftColumnItems, rightColumnItems].forEach((items) => {
+            if (!items.length) return
+            const column = document.createElement("div")
+            column.className = "profile-panel__sections-column"
+            items.forEach((item) => column.appendChild(item))
+            sections.appendChild(column)
+        })
+
+        return sections
+    }
+
+    function buildExperienceSection(experience) {
         const section = document.createElement("section")
         section.className = "profile-panel__section"
         const heading = document.createElement("h2")
         heading.className = "profile-panel__section-title"
-        heading.textContent = "Education"
+        heading.textContent = "Experience"
         section.appendChild(heading)
 
-        const timeline = document.createElement("div")
-        timeline.className = "profile-panel__education-timeline"
-        const rail = document.createElement("div")
-        rail.className = "profile-panel__education-rail"
-        if (education.length === 1) rail.classList.add("has-one-stop")
+        const list = document.createElement("div")
+        list.className = "profile-panel__education-list"
+        if (experience.length === 1) list.classList.add("has-one-entry")
 
         const items = []
+
         function clearActive() {
-            items.forEach(({ stop, detail }) => {
-                stop.classList.remove("is-active")
-                stop.setAttribute("aria-pressed", "false")
-                if (detail) {
-                    detail.classList.remove("is-visible")
-                    detail.setAttribute("aria-hidden", "true")
-                }
-            })
-        }
-        function setActive(index) {
-            items.forEach(({ stop, detail }, i) => {
-                const isActive = i === index
-                stop.classList.toggle("is-active", isActive)
-                stop.setAttribute("aria-pressed", isActive ? "true" : "false")
-                if (detail) {
-                    detail.classList.toggle("is-visible", isActive)
-                    detail.setAttribute("aria-hidden", isActive ? "false" : "true")
-                }
+            items.forEach(({ toggle, detail }) => {
+                toggle.classList.remove("is-active")
+                toggle.setAttribute("aria-expanded", "false")
+                detail.classList.remove("is-visible")
+                detail.setAttribute("aria-hidden", "true")
             })
         }
 
-        education.forEach((entry, index) => {
+        function setActive(index) {
+            items.forEach(({ toggle, detail }, itemIndex) => {
+                const isActive = itemIndex === index
+                toggle.classList.toggle("is-active", isActive)
+                toggle.setAttribute("aria-expanded", isActive ? "true" : "false")
+                detail.classList.toggle("is-visible", isActive)
+                detail.setAttribute("aria-hidden", isActive ? "false" : "true")
+            })
+        }
+
+        experience.forEach((entry) => {
             const item = document.createElement("div")
             item.className = "profile-panel__education-item"
-            const stop = document.createElement("button")
-            stop.type = "button"
-            stop.className = "profile-panel__education-stop"
-            stop.setAttribute("aria-pressed", "false")
-            const stopYear = document.createElement("span")
-            stopYear.className = "profile-panel__education-stop-year"
-            stopYear.textContent = entry.year || "–"
-            stop.appendChild(stopYear)
-            const stopBody = document.createElement("span")
-            stopBody.className = "profile-panel__education-stop-body"
-            const stopLogo = createEducationLogo(entry.logo, "profile-panel__education-stop-logo")
-            if (stopLogo) {
-                stopBody.classList.add("has-logo")
-                stopBody.appendChild(stopLogo)
-            }
-            const stopCopy = document.createElement("span")
-            stopCopy.className = "profile-panel__education-stop-copy"
-            const stopTitle = document.createElement("span")
-            stopTitle.className = "profile-panel__education-stop-title"
-            stopTitle.textContent = entry.degree || entry.institution || entry.year || "Education"
-            stopCopy.appendChild(stopTitle)
-            const stopMeta = document.createElement("span")
-            stopMeta.className = "profile-panel__education-stop-meta"
-            stopMeta.textContent = entry.institution || getEducationDescription(entry)
-            stopCopy.appendChild(stopMeta)
-            stopBody.appendChild(stopCopy)
-            stop.appendChild(stopBody)
+
             const detailText = (entry.details || "").trim()
-            let detail = null
-            if (detailText) {
-                detail = document.createElement("div")
+            const isExpandable = !!detailText
+            const toggle = document.createElement(isExpandable ? "button" : "div")
+            toggle.className = "profile-panel__education-toggle"
+            if (isExpandable) {
+                toggle.type = "button"
+                toggle.setAttribute("aria-expanded", "false")
+            } else {
+                toggle.classList.add("is-static")
+            }
+
+            const year = document.createElement("span")
+            year.className = "profile-panel__education-year"
+            year.textContent = entry.year || "–"
+            toggle.appendChild(year)
+
+            const marker = document.createElement("span")
+            marker.className = "profile-panel__education-marker"
+            marker.setAttribute("aria-hidden", "true")
+            toggle.appendChild(marker)
+
+            const card = document.createElement("span")
+            card.className = "profile-panel__education-card"
+
+            const copy = document.createElement("span")
+            copy.className = "profile-panel__education-copy"
+
+            const title = document.createElement("span")
+            title.className = "profile-panel__education-title"
+            title.textContent = entry.degree || entry.institution || entry.year || "Experience"
+            copy.appendChild(title)
+
+            const metaParts = [entry.institution].filter(Boolean)
+            if (metaParts.length) {
+                const meta = document.createElement("span")
+                meta.className = "profile-panel__education-meta"
+                meta.textContent = metaParts.join(" • ")
+                copy.appendChild(meta)
+            }
+
+            card.appendChild(copy)
+
+            const logo = createEducationLogo(entry.logo, "profile-panel__education-logo")
+            if (logo) card.appendChild(logo)
+
+            toggle.appendChild(card)
+
+            item.appendChild(toggle)
+
+            if (isExpandable) {
+                const detail = document.createElement("div")
                 detail.className = "profile-panel__education-detail"
                 detail.setAttribute("aria-hidden", "true")
+
                 const detailBody = document.createElement("p")
                 detailBody.className = "profile-panel__education-detail-text"
                 detailBody.textContent = detailText
                 detail.appendChild(detailBody)
+
+                toggle.addEventListener("click", () => {
+                    if (toggle.classList.contains("is-active")) {
+                        clearActive()
+                    } else {
+                        setActive(items.findIndex((itemEntry) => itemEntry.toggle === toggle))
+                    }
+                })
+
+                item.appendChild(detail)
+                items.push({ toggle, detail })
             }
-            stop.addEventListener("click", () => {
-                if (!detail) return
-                if (stop.classList.contains("is-active")) {
-                    clearActive()
-                } else {
-                    setActive(index)
-                }
-            })
-            item.appendChild(stop)
-            if (detail) item.appendChild(detail)
-            rail.appendChild(item)
-            items.push({ stop, detail })
+
+            list.appendChild(item)
         })
 
-        timeline.addEventListener("focusout", () => {
-            requestAnimationFrame(() => {
-                if (!timeline.contains(document.activeElement)) clearActive()
-            })
-        })
-        clearActive()
-        timeline.appendChild(rail)
-        section.appendChild(timeline)
+        section.appendChild(list)
         return section
     }
 
@@ -535,9 +687,25 @@ import { registerProfileActions } from "../shared/profile-api.js"
 
             const panelBody = panel.querySelector(".profile-panel__body")
             const panelClose = panel.querySelector(".profile-panel__close")
+            const DEFAULT_PANEL_ACCENT = "rgba(85, 100, 160, 0.82)"
+
+            function removeDiscoverButton() {
+                const oldDiscover = document.querySelector(".profile-panel__discover")
+                if (oldDiscover) oldDiscover.remove()
+                panel.classList.remove("profile-panel--has-discover")
+            }
+
+            function setPanelTheme(member, isMinimal) {
+                const accent = CATEGORY_COLORS[member?.category] || DEFAULT_PANEL_ACCENT
+                panel.style.setProperty("--profile-accent", accent)
+                backdrop.style.setProperty("--profile-accent", accent)
+                panel.classList.toggle("profile-panel--minimal", !!isMinimal)
+            }
 
             function closePanel() {
+                removeDiscoverButton()
                 panel.classList.remove("is-open")
+                panel.classList.remove("profile-panel--minimal")
                 backdrop.classList.remove("is-visible")
             }
 
@@ -549,12 +717,13 @@ import { registerProfileActions } from "../shared/profile-api.js"
 
             function openMinimalProfile(m) {
                 panelBody.innerHTML = ""
-                const oldDiscover = panel.querySelector(".profile-panel__discover")
-                if (oldDiscover) oldDiscover.remove()
+                removeDiscoverButton()
+                setPanelTheme(m, true)
 
-                const details = (m.details || m.description || "").trim()
+                const details = normalizePlainPreview(m.details)
+                const achievements = normalizeTextList(m.achievements)
                 const interests = normalizeTextList(m.interests)
-                const education = normalizeEducationEntries(m.education)
+                const experience = normalizeExperienceEntries(m.experience || m.education)
 
                 const header = document.createElement("div")
                 header.className = "profile-panel__minimal-header"
@@ -579,11 +748,8 @@ import { registerProfileActions } from "../shared/profile-api.js"
 
                 panelBody.appendChild(header)
 
-                if (interests.length || education.length) {
-                    const sections = document.createElement("div")
-                    sections.className = "profile-panel__sections"
-                    if (interests.length) sections.appendChild(buildInterestsSection(interests))
-                    if (education.length) sections.appendChild(buildEducationSection(education))
+                const sections = buildProfileSections({ interests, experience, achievements })
+                if (sections) {
                     panelBody.appendChild(sections)
                 }
 
@@ -595,13 +761,14 @@ import { registerProfileActions } from "../shared/profile-api.js"
                 panelBody.innerHTML = ""
 
                 // Remove any previous floating discover button
-                const oldDiscover = panel.querySelector(".profile-panel__discover")
-                if (oldDiscover) oldDiscover.remove()
+                removeDiscoverButton()
+                setPanelTheme(m, false)
 
-                const fallbackDetails = (m.details || m.description || "").trim()
-                const summaryHtml = normalizeSummaryHtml(m.summary, fallbackDetails)
+                const summaryHtml = normalizeRichHtml(m.summary)
+                const detailsHtml = normalizeRichHtml(m.details)
+                const achievements = normalizeTextList(m.achievements)
                 const interests = normalizeTextList(m.interests)
-                const education = normalizeEducationEntries(m.education)
+                const experience = normalizeExperienceEntries(m.experience || m.education)
                 const socials = normalizeSocials(m)
                 const categoryLabel = CATEGORY_LABELS[m.category] || m.category
                 const titleText = (m.title || "").trim() || categoryLabel
@@ -697,20 +864,28 @@ import { registerProfileActions } from "../shared/profile-api.js"
                 hero.appendChild(main)
                 panelBody.appendChild(hero)
 
-                if (interests.length || education.length) {
-                    const sections = document.createElement("div")
-                    sections.className = "profile-panel__sections"
-
-                    if (interests.length) sections.appendChild(buildInterestsSection(interests))
-                    if (education.length) sections.appendChild(buildEducationSection(education))
-
+                const sections = buildProfileSections({ interests, experience, achievements })
+                if (sections) {
                     panelBody.appendChild(sections)
+                }
+
+                if (detailsHtml) {
+                    const details = document.createElement("div")
+                    details.className = "profile-panel__details-content"
+                    // Details content is trusted author-provided HTML from local profile data.
+                    details.innerHTML = detailsHtml
+                    details.querySelectorAll("a").forEach((link) => {
+                        if (link.querySelector("img")) {
+                            link.classList.add("profile-panel__details-media-link")
+                        }
+                    })
+                    panelBody.appendChild(details)
                 }
 
                 /* ── Memories ── */
                 panelBody.appendChild(buildMemoriesSection(m.folder))
 
-                /* ── Discover: scrolls with content at bottom of panel ── */
+                /* ── Discover: floating shortcut to another profile ── */
                 const others = manifest.members.filter((o) => o.folder !== m.folder && o.category !== "Alumni")
                 if (others.length) {
                     const other = others[Math.floor(Math.random() * others.length)]
@@ -718,6 +893,8 @@ import { registerProfileActions } from "../shared/profile-api.js"
                     btn.className = "profile-panel__discover"
                     btn.type = "button"
                     btn.style.setProperty("--discover-color", CATEGORY_COLORS[other.category] || "rgba(85,153,255,0.94)")
+                    btn.setAttribute("aria-label", "Visit " + other.name + "'s profile")
+                    btn.title = other.hook || "Meet " + other.name + "!"
 
                     const otherImg = document.createElement("img")
                     otherImg.src = other.avatar || DEFAULT_AVATAR
@@ -736,7 +913,8 @@ import { registerProfileActions } from "../shared/profile-api.js"
                         openProfile(other)
                     })
 
-                    panelBody.appendChild(btn)
+                    panel.classList.add("profile-panel--has-discover")
+                    document.body.appendChild(btn)
                 }
 
                 panel.classList.add("is-open")
@@ -869,10 +1047,11 @@ import { registerProfileActions } from "../shared/profile-api.js"
                     nameEl.textContent = m.name
                     card.appendChild(nameEl)
 
-                    if (m.details) {
+                    const detailPreview = normalizePlainPreview(m.details)
+                    if (detailPreview) {
                         const detailEl = document.createElement("span")
                         detailEl.className = "alumni-card__details"
-                        detailEl.textContent = m.details
+                        detailEl.textContent = detailPreview
                         card.appendChild(detailEl)
                     }
 

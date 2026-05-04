@@ -7,7 +7,7 @@
     "email": "D.Makowski@sussex.ac.uk",
     "keywords": ["reality", "emotions", "illusion"],
     "hook": "Did you know that Dominique Makowski created the easystats ecosystem for R?",
-    "details": "Consciousness, perception, and the nature of subjective experience.",
+
     "summary": "<p>Trained as a clinical neuropsychologist and CBT psychotherapist, Dominique Makowski is a lecturer at the University of Sussex studying how people construct, bend, and experience reality.</p><p>His work spans altered states of consciousness, illusion, deception, fake news, meditation, and immersive experience, with an emphasis on making advanced psychological methods more accessible through <strong>open-source tools</strong>.</p>",
     "socials": [
         {
@@ -28,13 +28,54 @@
         }
     ],
     "interests": ["Sense of reality", "Emotion regulation", "Cognitive control", "Clinical neuropsychology", "Neuroaesthetics"],
-    "education": [
+    "achievements": [
+        "School of Psychology Award Winner 2024: Outstanding Student Supervision",
+        "SIPS Commendation (2024): for \"NeuroKit\"",
+        "University of Sussex Research Culture Awards Winner 2024: for engagement in Open Science",
+        "SIPS Mission Award (2023): for \"easystats\"",
+        "SIPS Commendation (2021): for \"BayestestR\"",
+        "Best Article Award (Psychonomic Society, 2020): for my main PhD paper"
+    ],
+    "experience": [
+        {
+            "degree": "Assistant Professor",
+            "institution": "School of Psychology, University of Sussex",
+            "year": "2023-Present",
+            "details": "- Full teaching service on courses such as Bayesian Statistics and Psychophysiology.\n- Head of the Reality Bending Lab (ReBeL), where we study reality perception (e.g., neuroscience of deception, fake news, altered states of consciousness), the role of the body and emotions in cognition (e.g., emotion regulation and interoception), and methodology (statistics, programming, open source software, and neurophysiological techniques).",
+            "logo": "people/dominique-makowski/assets/org-sussex.svg"
+        },
+        {
+            "degree": "Presidential Research Fellow",
+            "institution": "Clinical Brain Lab, Nanyang Technological University (NTU)",
+            "year": "2021-2022",
+            "details": "- Awarded the NTU Presidential Postdoctoral Fellowship, a competitive two-year grant designed as a transition between postdoc and faculty roles.\n- Pursued an independent research track on the neurocognitive and affective processes underlying belief in fake versus real stimuli, such as fake news and fiction.\n- Managed a team of 3 research assistants and multiple undergraduate students, alongside approximately $200k in research funding.\n- Led the research and administrative pipeline, including IRBs, budgeting, experiment creation, data collection, analysis, and manuscript writing.",
+            "logo": "people/dominique-makowski/assets/org-ntu.svg"
+        },
+        {
+            "degree": "Research Fellow",
+            "institution": "Clinical Brain Lab, Nanyang Technological University (NTU)",
+            "year": "2019-2020",
+            "details": "- First postdoctoral position, working on a Ministry of Defence-funded project on the neurocognitive correlates of deception.\n- Responsible for study design and completion, data analysis, publications, and co-supervision of one PhD student, two research assistants, and several graduate and undergraduate students.\n- Worked within the Clinical Brain Lab led by Professor Annabel Chen.",
+            "logo": "people/dominique-makowski/assets/org-ntu.svg"
+        },
+        {
+            "degree": "Certified Hypnotherapist (CH)",
+            "institution": "National Guild of Hypnotists, Singapore",
+            "year": "2019-2020",
+            "logo": "people/dominique-makowski/assets/org-ngh.svg"
+        },
         {
             "degree": "PhD in Psychology",
             "institution": "Universite de Paris",
             "year": "2018",
             "details": "Focused on the neuroscience of reality perception and the mechanisms through which subjective experience can be bent, stabilized, or disrupted.",
             "logo": "people/dominique-makowski/assets/org-uniparis.svg"
+        },
+        {
+            "degree": "Cognitive Behavioural Therapist (CBT)",
+            "institution": "Association Francaise de Therapie Comportementale et Cognitive, France",
+            "year": "2014-2017",
+            "logo": "people/dominique-makowski/assets/org-aftcc.svg"
         },
         {
             "degree": "MSc in Clinical Neuropsychology",
@@ -50,5 +91,6 @@
             "details": "Built the experimental, statistical, and theoretical foundations that later shaped his work on consciousness, perception, and methodology.",
             "logo": "people/dominique-makowski/assets/org-uniparis.svg"
         }
-    ]
+    ],
+    "details": "<a href=\"https://dominiquemakowski.github.io/CV/\" target=\"_blank\" rel=\"noopener noreferrer\"> <img src=\"https://raw.githubusercontent.com/DominiqueMakowski/CV/main/img/wordcloud.png\" alt=\"CV Wordcloud\"></a>"
 }
