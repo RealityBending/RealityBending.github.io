@@ -60,7 +60,81 @@ function updateActiveNav() {
     }
 }
 
+function initContactTabs() {
+    const buttons = Array.from(document.querySelectorAll(".contact-tab-btn"))
+    const panels = Array.from(document.querySelectorAll(".contact-tab-panel"))
+    if (!buttons.length || !panels.length) return
+
+    function activateContactTab(tab) {
+        buttons.forEach((button) => {
+            const isActive = button.dataset.tab === tab
+            button.classList.toggle("contact-tab-btn--active", isActive)
+            button.setAttribute("aria-selected", isActive ? "true" : "false")
+        })
+
+        panels.forEach((panel) => {
+            panel.hidden = panel.id !== "contact-" + tab
+        })
+    }
+
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            activateContactTab(button.dataset.tab || "contact")
+        })
+    })
+
+    document.querySelectorAll("[data-contact-tab-target]").forEach((link) => {
+        link.addEventListener("click", () => {
+            activateContactTab(link.getAttribute("data-contact-tab-target") || "contact")
+        })
+    })
+
+    const hashToTab = {
+        "#contact-contact": "contact",
+        "#contact-join": "join",
+        "#contact-services": "services",
+    }
+
+    function activateFromHash() {
+        const tab = hashToTab[window.location.hash]
+        if (tab) {
+            activateContactTab(tab)
+        }
+    }
+
+    window.addEventListener("hashchange", activateFromHash)
+    activateContactTab(hashToTab[window.location.hash] || "contact")
+}
+
+function initContactBanners() {
+    const banners = Array.from(document.querySelectorAll(".contact-banner"))
+    if (!banners.length || !mainPage) return
+
+    function updateContactBanners() {
+        const scrollRange = Math.max(0, mainPage.scrollHeight - mainPage.clientHeight)
+        const scrollProgress = scrollRange > 0 ? mainPage.scrollTop / scrollRange : 0
+
+        banners.forEach((banner) => {
+            const rect = banner.getBoundingClientRect()
+            if (!rect.height) return
+
+            const travel = Math.max(96, rect.height * 0.82)
+            const offset = -travel * scrollProgress
+
+            banner.style.setProperty("--contact-banner-travel", travel.toFixed(2) + "px")
+            banner.style.setProperty("--contact-banner-offset", offset.toFixed(2) + "px")
+        })
+    }
+
+    mainPage.addEventListener("scroll", updateContactBanners, { passive: true })
+    window.addEventListener("resize", updateContactBanners)
+    updateContactBanners()
+}
+
 if (mainPage) {
     mainPage.addEventListener("scroll", updateActiveNav, { passive: true })
     updateActiveNav()
 }
+
+initContactTabs()
+initContactBanners()

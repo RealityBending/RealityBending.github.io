@@ -268,53 +268,279 @@
   ════════════════════════════════════ -->
             <section class="contact-full" id="sec-contact-full">
                 <h2 class="contact-full__title">Information</h2>
-                <div class="contact-full__inner">
-                    <div class="contact-full__stack">
-                        <section class="contact-full__section" id="contact-contact">
-                            <h2>Contact</h2>
-                            <p>
-                                School of Psychology<br />
-                                University of Sussex<br />
-                                Falmer, Brighton BN1 9QH, UK
-                            </p>
-                            <p class="contact-full__links">
-                                <a href="mailto:realitybending@sussex.ac.uk">realitybending@sussex.ac.uk</a>
-                            </p>
-                        </section>
+                <div class="contact-tabs-nav" role="tablist" aria-label="Information views">
+                    <button
+                        type="button"
+                        class="contact-tab-btn contact-tab-btn--active"
+                        id="contact-tab-btn-contact"
+                        data-tab="contact"
+                        role="tab"
+                        aria-selected="true"
+                        aria-controls="contact-contact"
+                    >
+                        Contact
+                    </button>
+                    <button
+                        type="button"
+                        class="contact-tab-btn"
+                        id="contact-tab-btn-join"
+                        data-tab="join"
+                        role="tab"
+                        aria-selected="false"
+                        aria-controls="contact-join"
+                    >
+                        Join
+                    </button>
+                    <button
+                        type="button"
+                        class="contact-tab-btn"
+                        id="contact-tab-btn-services"
+                        data-tab="services"
+                        role="tab"
+                        aria-selected="false"
+                        aria-controls="contact-services"
+                    >
+                        Services
+                    </button>
+                </div>
 
-                        <section class="contact-full__section" id="contact-join">
-                            <h2>Join</h2>
-                            <p>
+                <div
+                    class="contact-tab-panel contact-tab-panel--with-banner contact-tab-panel--contact"
+                    id="contact-contact"
+                    role="tabpanel"
+                    aria-labelledby="contact-tab-btn-contact"
+                >
+                    <div
+                        class="contact-banner"
+                        role="img"
+                        aria-label="University of Sussex collage showing Brighton, campus, and Brighton Pier"
+                    ></div>
+                    <div class="contact-full__inner">
+                        <div class="contact-panel__content">
+                            <p class="contact-full__lede">
+                                The Reality Bending Lab is based in the School of Psychology, at the
+                                <a class="contact-inline-link" href="https://www.sussex.ac.uk/" target="_blank" rel="noreferrer noopener"
+                                    >University of Sussex</a
+                                >
+                                in Brighton, UK.
+                            </p>
+                            <div class="contact-address-card">
+                                <div class="contact-detail">
+                                    <span class="contact-detail__icon" aria-hidden="true">
+                                        <svg
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="1.8"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        >
+                                            <path d="M3.75 6.75h16.5v10.5H3.75z"></path>
+                                            <path d="M4.5 7.5 12 13.5l7.5-6"></path>
+                                        </svg>
+                                    </span>
+                                    <a class="contact-inline-link" href="mailto:D.Makowski@sussex.ac.uk">D.Makowski@sussex.ac.uk</a>
+                                </div>
+                                <div class="contact-detail">
+                                    <span class="contact-detail__icon" aria-hidden="true">
+                                        <svg
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="1.8"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        >
+                                            <path d="M12 21s6-5.33 6-11a6 6 0 1 0-12 0c0 5.67 6 11 6 11Z"></path>
+                                            <circle cx="12" cy="10" r="2.35"></circle>
+                                        </svg>
+                                    </span>
+                                    <p>Pevensey 1 - room 2B7, School of Psychology, University of Sussex, BN1 9QH</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-full__map">
+                            <iframe
+                                title="University of Sussex location on Google Maps"
+                                src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=University%20of%20Sussex%2C%20Falmer%2C%20Brighton%20BN1%209QH%2C%20UK&amp;t=&amp;z=6&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                                width="100%"
+                                height="100%"
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"
+                            ></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="contact-tab-panel contact-tab-panel--with-banner"
+                    id="contact-join"
+                    role="tabpanel"
+                    aria-labelledby="contact-tab-btn-join"
+                    hidden
+                >
+                    <div
+                        class="contact-banner"
+                        role="img"
+                        aria-label="University of Sussex collage showing Brighton, campus, and Brighton Pier"
+                    ></div>
+                    <div class="contact-join-layout">
+                        <div class="contact-panel__content">
+                            <p class="contact-full__eyebrow">Work with us</p>
+                            <h3 class="contact-full__panel-title">Join the lab</h3>
+                            <p class="contact-full__lede">
                                 We welcome inquiries from prospective students, visitors, and collaborators who want to work on
                                 consciousness, reality perception, affective cognition, and open scientific methods.
                             </p>
-                            <p class="contact-full__links">
-                                <a href="mailto:realitybending@sussex.ac.uk?subject=Joining%20the%20Reality%20Bending%20Lab"
+                            <p>
+                                If you are reaching out about a PhD, visit, or collaboration, send a short note about your background, the
+                                questions you want to explore, and the kind of collaboration you have in mind.
+                            </p>
+                            <div class="contact-full__actions">
+                                <a
+                                    class="contact-cta contact-cta--primary"
+                                    href="mailto:realitybending@sussex.ac.uk?subject=Joining%20the%20Reality%20Bending%20Lab"
                                     >Ask about joining the lab</a
                                 >
-                            </p>
-                        </section>
-
-                        <section class="contact-full__section" id="contact-services">
-                            <h2>Services</h2>
-                            <p>
-                                The lab is available for talks, workshops, consulting, collaborative project design, and methodological
-                                support across statistics, programming, experimental design, and neurophysiological techniques.
-                            </p>
-                            <p class="contact-full__links">
-                                <a href="mailto:realitybending@sussex.ac.uk?subject=Services%20inquiry">Hire us</a>
-                            </p>
-                        </section>
+                            </div>
+                        </div>
+                        <aside class="contact-side-card" aria-label="What to include in your first message">
+                            <p class="contact-side-card__kicker">A useful first message</p>
+                            <ul class="contact-bullet-list">
+                                <li>Your background and current stage</li>
+                                <li>The topics or methods you want to explore</li>
+                                <li>Any timing, funding, or visit context we should know about</li>
+                            </ul>
+                        </aside>
                     </div>
-                    <div class="contact-full__map">
-                        <iframe
-                            title="University of Sussex location"
-                            src="https://www.openstreetmap.org/export/embed.html?bbox=-0.0930%2C50.8590%2C-0.0750%2C50.8700&amp;layer=mapnik&amp;marker=50.8642%2C-0.0839"
-                            width="100%"
-                            height="100%"
-                            loading="lazy"
-                            referrerpolicy="no-referrer"
-                        ></iframe>
+                </div>
+
+                <div class="contact-tab-panel" id="contact-services" role="tabpanel" aria-labelledby="contact-tab-btn-services" hidden>
+                    <div class="contact-services">
+                        <div class="contact-services__hero">
+                            <p class="contact-services__intro">
+                                We support labs, departments and companies with skills development, research support and custom technical
+                                development.
+                            </p>
+                            <div class="contact-services__hero-action">
+                                <a
+                                    class="contact-cta contact-cta--primary"
+                                    href="mailto:realitybending@sussex.ac.uk?subject=Requesting%20more%20information%20about%20Reality%20Bending%20Lab%20services"
+                                    >Request more information</a
+                                >
+                            </div>
+                        </div>
+
+                        <div class="contact-services__grid">
+                            <details class="service-card service-card--interactive">
+                                <summary class="service-card__summary">
+                                    <span class="service-card__media" aria-hidden="true">
+                                        <img src="information/img/workshop.jpg" alt="" loading="lazy" />
+                                    </span>
+                                    <span class="service-card__summary-copy">
+                                        <h4>Upskilling</h4>
+                                        <p class="service-card__teaser">
+                                            Hands-on workshops and training for staff, students, and research teams.
+                                        </p>
+                                    </span>
+                                </summary>
+                                <div class="service-card__body">
+                                    <p>We design practical workshops for academic teams that need fast, research-grade upskilling.</p>
+                                    <ul class="service-card__list">
+                                        <li>Bayesian statistics</li>
+                                        <li>Programming for Psychologists (Python)</li>
+                                        <li>Physiological techniques</li>
+                                    </ul>
+                                    <p class="service-card__examples-heading">Past projects</p>
+                                    <ul class="service-card__timeline">
+                                        <li class="service-card__timeline-item">
+                                            <span class="service-card__timeline-year">2024 &mdash; University of Basel</span>
+                                            <span class="service-card__timeline-desc"
+                                                >Workshop for PhD students on
+                                                <em>"Using psychophysiological methods for psychology and neuroscience research"</em>.</span
+                                            >
+                                        </li>
+                                        <li class="service-card__timeline-item">
+                                            <span class="service-card__timeline-year">2022 &mdash; University of Zurich</span>
+                                            <span class="service-card__timeline-desc"
+                                                >Workshop for PhD students on <em>"Programming and Data Science with Python"</em>.</span
+                                            >
+                                        </li>
+                                    </ul>
+                                </div>
+                            </details>
+
+                            <details class="service-card service-card--interactive">
+                                <summary class="service-card__summary">
+                                    <span class="service-card__media" aria-hidden="true">
+                                        <img src="information/img/consultation.png" alt="" loading="lazy" />
+                                    </span>
+                                    <span class="service-card__summary-copy">
+                                        <h4>Scientific expertise</h4>
+                                        <p class="service-card__teaser">
+                                            Analysis, modelling, and interpretation support for demanding research projects.
+                                        </p>
+                                    </span>
+                                </summary>
+                                <div class="service-card__body">
+                                    <p>We can step into demanding projects and help structure, model, and interpret difficult datasets.</p>
+                                    <ul class="service-card__list">
+                                        <li>Complex datasets</li>
+                                        <li>Advanced statistical models</li>
+                                        <li>Physiological signal analysis</li>
+                                    </ul>
+                                    <p class="service-card__examples-heading">Past projects</p>
+                                    <ul class="service-card__timeline">
+                                        <li class="service-card__timeline-item">
+                                            <span class="service-card__timeline-year">2026 &mdash; Fragrance industry</span>
+                                            <span class="service-card__timeline-desc"
+                                                >Contract research on smells and emotions for a fragrance company.</span
+                                            >
+                                        </li>
+                                    </ul>
+                                </div>
+                            </details>
+
+                            <details class="service-card service-card--interactive">
+                                <summary class="service-card__summary">
+                                    <span class="service-card__media" aria-hidden="true">
+                                        <img src="information/img/development.jpg" alt="" loading="lazy" />
+                                    </span>
+                                    <span class="service-card__summary-copy">
+                                        <h4>Development</h4>
+                                        <p class="service-card__teaser">
+                                            Custom software, websites, and modern experimental tooling for research teams.
+                                        </p>
+                                    </span>
+                                </summary>
+                                <div class="service-card__body">
+                                    <p>
+                                        We build polished research-facing software, from packages and websites to modern experimental
+                                        interfaces.
+                                    </p>
+                                    <ul class="service-card__list">
+                                        <li>Research software and packages</li>
+                                        <li>Websites and digital interfaces</li>
+                                        <li>User-friendly modern experiments</li>
+                                    </ul>
+                                    <p class="service-card__examples-heading">Past projects</p>
+                                    <ul class="service-card__timeline">
+                                        <li class="service-card__timeline-item">
+                                            <span class="service-card__timeline-year">2026 &mdash; Advanced Consciousness Lab</span>
+                                            <span class="service-card__timeline-desc"
+                                                >Custom software development for the Advanced Consciousness Lab.</span
+                                            >
+                                        </li>
+                                        <li class="service-card__timeline-item">
+                                            <span class="service-card__timeline-year">2024 &mdash; This website</span>
+                                            <span class="service-card__timeline-desc"
+                                                >Design and development of the Reality Bending Lab website.</span
+                                            >
+                                        </li>
+                                    </ul>
+                                </div>
+                            </details>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -323,7 +549,7 @@
 
             <!-- Floating action buttons -->
             <div class="fab-group">
-                <a href="#contact-services" class="fab">Hire us</a>
+                <a href="#sec-contact-full" class="fab" data-contact-tab-target="services">Hire us</a>
                 <a href="mailto:realitybending@sussex.ac.uk" class="fab fab--primary">Join the Lab</a>
             </div>
         </div>
