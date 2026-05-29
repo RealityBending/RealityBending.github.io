@@ -18,9 +18,8 @@ tags:
 - Psychology
 ---
 
-{{< video src="https://www.youtube.com/watch?v=jg1WUOxY6Cg" >}}
 
-The clip above has become an internet meme used to mock out-of-touch executives (or PhD supervisors) who make consequential decisions without understanding or grasping the actual work involved. Rick Rubin, one of the most celebrated music producers in history, admits that he can barely play an instrument, cannot operate a soundboard, and knows nothing about music technically. The interviewer, visibly disbelieving, keeps pushing. What exactly is he being paid for?
+The clip above ([**Youtube Link**](https://www.youtube.com/watch?v=jg1WUOxY6Cg)) has become an internet meme used to mock out-of-touch executives (or PhD supervisors) who make consequential decisions without understanding or grasping the actual work involved. Rick Rubin, one of the most celebrated music producers in history, admits that he can barely play an instrument, cannot operate a soundboard, and knows nothing about music technically. The interviewer, visibly disbelieving, keeps pushing. What exactly is he being paid for?
 
 > *"The confidence that I have in my taste," Rubin answers, "and my ability to express what I feel."*
 
