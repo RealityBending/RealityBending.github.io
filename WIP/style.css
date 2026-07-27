@@ -23,9 +23,9 @@ body {
     --main-overlay-fade-delay: 300ms;
     --main-overlay-fade-duration: 1000ms;
     --section-research: #33cccc;
-    --section-people: #5599ff;
+    --section-people: #aa55ff;
     --section-blog: #55cc77;
-    --section-publications: #aa55ff;
+    --section-publications: #5599ff;
     --section-tour: #ff9933;
     --section-contact: #ff5555;
     --content-max-width: 1200px;
@@ -214,7 +214,11 @@ body {
 }
 
 /* ── Navigation ── */
+/* --nav-reveal is written by updateNavVisibility() in script.js: it runs 0 → 1
+   across the tail of the hero, so the bar slides and fades in with the scroll
+   rather than snapping in at a threshold. */
 nav {
+    --nav-reveal: 0;
     position: fixed;
     top: 0;
     left: 0;
@@ -226,14 +230,11 @@ nav {
     background: #f5f4ef;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     z-index: 5;
-    transition:
-        transform 0.4s ease,
-        opacity 0.4s ease;
+    transform: translateY(calc((var(--nav-reveal) - 1) * 100%));
+    opacity: var(--nav-reveal);
 }
 
 nav.nav--hidden {
-    transform: translateY(-100%);
-    opacity: 0;
     pointer-events: none;
 }
 
@@ -298,6 +299,27 @@ nav a.nav-link.active {
     padding: 0 max(var(--content-inline-gutter), calc((100% - var(--content-max-width)) / 2));
     background: #111;
     overflow: hidden;
+}
+
+/* Soft glow that trails the pointer across the dark half — the coordinates are
+   written by initHeroGlow() in script.js and fall back to a static position. */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(
+        30rem circle at var(--hero-pointer-x, 24%) var(--hero-pointer-y, 42%),
+        rgba(245, 244, 239, 0.09),
+        rgba(245, 244, 239, 0) 68%
+    );
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.hero:hover::before {
+    opacity: 1;
 }
 
 .hero__intro {
@@ -391,7 +413,6 @@ nav a.nav-link.active {
     transform: translate(-50%, -50%);
     background: #f5f4ef;
     border-radius: 50%;
-    box-shadow: 0 24px 70px rgba(17, 17, 17, 0.35);
     z-index: 0;
     pointer-events: none;
 }
@@ -483,12 +504,76 @@ nav a.nav-link.active {
     cursor: pointer;
     text-align: center;
     pointer-events: auto;
-    box-shadow: 0 6px 16px rgba(17, 17, 17, 0.3);
+    /* Flat: no drop shadow. Depth comes from the hairline rings below, which
+       read against both halves of the divide the buttons sit on. */
+    box-shadow: inset 0 0 0 1px rgba(245, 244, 239, 0.22);
     scroll-margin-top: 6rem;
     transition:
-        transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
-        box-shadow 0.2s ease,
-        filter 0.2s ease;
+        transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.25s ease;
+}
+
+/* Two concentric outlines in the section colour: ::before is the standing ring
+   that reacts to hover, ::after is a ripple that keeps emanating at rest so the
+   buttons read as interactive before you touch them. */
+.menu-button::before,
+.menu-button::after {
+    content: "";
+    position: absolute;
+    inset: -0.34rem;
+    border: 1px solid var(--btn-color);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.menu-button::before {
+    opacity: 0.45;
+    transition:
+        opacity 0.28s ease,
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.menu-button::after {
+    opacity: 0;
+    animation: menu-button-ripple 3.6s ease-out infinite;
+}
+
+/* Roughly half the cycle is spent idle, so six buttons breathing at once stays
+   a hint rather than a light show. */
+@keyframes menu-button-ripple {
+    0% {
+        transform: scale(1);
+        opacity: 0;
+    }
+    12% {
+        opacity: 0.4;
+    }
+    55%,
+    100% {
+        transform: scale(1.45);
+        opacity: 0;
+    }
+}
+
+/* Offset each ring so the six pulse in sequence around the arc. */
+.menu-button:nth-child(2)::after {
+    animation-delay: -0.6s;
+}
+
+.menu-button:nth-child(3)::after {
+    animation-delay: -1.2s;
+}
+
+.menu-button:nth-child(4)::after {
+    animation-delay: -1.8s;
+}
+
+.menu-button:nth-child(5)::after {
+    animation-delay: -2.4s;
+}
+
+.menu-button:nth-child(6)::after {
+    animation-delay: -3s;
 }
 
 .menu-button__label {
@@ -505,10 +590,27 @@ nav a.nav-link.active {
 .menu-button:hover,
 .menu-button:focus-visible,
 .menu-button.is-highlighted {
-    transform: translate(-50%, -50%) scale(1.12);
-    box-shadow: 0 12px 26px rgba(17, 17, 17, 0.4);
-    filter: brightness(1.08);
+    transform: translate(-50%, -50%) scale(1.09);
+    box-shadow: inset 0 0 0 1px rgba(245, 244, 239, 0.5);
     outline: none;
+}
+
+.menu-button:hover::before,
+.menu-button:focus-visible::before,
+.menu-button.is-highlighted::before {
+    opacity: 0.95;
+    transform: scale(1.16);
+}
+
+/* Tighten the ripple on hover so the resting hint turns into a response. */
+.menu-button:hover::after,
+.menu-button:focus-visible::after,
+.menu-button.is-highlighted::after {
+    animation-duration: 1.4s;
+}
+
+.menu-button:active {
+    transform: translate(-50%, -50%) scale(0.97);
 }
 
 /* Positions traced along the left edge of the disc (top → bottom) */
@@ -540,6 +642,91 @@ nav a.nav-link.active {
 .menu-button:nth-child(6) {
     top: 117.8%;
     left: -2.9%;
+}
+
+/* ── Hero entrance (plays once the door screen hands over) ──
+   `backwards` fill only, so after the animation the elements fall back to
+   their normal styles and the hover transforms keep working. */
+@keyframes hero-rise {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes menu-button-in {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.4);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+#main-page.visible .hero__intro > * {
+    animation: hero-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+#main-page.visible .hero__intro > *:nth-child(1) {
+    animation-delay: 0.35s;
+}
+
+#main-page.visible .hero__intro > *:nth-child(2) {
+    animation-delay: 0.47s;
+}
+
+#main-page.visible .hero__intro > *:nth-child(3) {
+    animation-delay: 0.59s;
+}
+
+#main-page.visible .hero__intro > *:nth-child(4) {
+    animation-delay: 0.71s;
+}
+
+#main-page.visible .menu-button {
+    animation: menu-button-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+}
+
+#main-page.visible .menu-button:nth-child(1) {
+    animation-delay: 0.6s;
+}
+
+#main-page.visible .menu-button:nth-child(2) {
+    animation-delay: 0.68s;
+}
+
+#main-page.visible .menu-button:nth-child(3) {
+    animation-delay: 0.76s;
+}
+
+#main-page.visible .menu-button:nth-child(4) {
+    animation-delay: 0.84s;
+}
+
+#main-page.visible .menu-button:nth-child(5) {
+    animation-delay: 0.92s;
+}
+
+#main-page.visible .menu-button:nth-child(6) {
+    animation-delay: 1s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #main-page.visible .hero__intro > *,
+    #main-page.visible .menu-button,
+    .menu-button::after {
+        animation: none;
+    }
+
+    .hero::before {
+        display: none;
+    }
 }
 
 .section--research {
@@ -4356,10 +4543,20 @@ footer {
         transform: none;
     }
 
+    /* The stacked layout drops the centring translate, so the arc entrance
+       keyframe no longer applies. */
+    #main-page.visible .menu-button {
+        animation: none;
+    }
+
     .menu-button:hover,
     .menu-button:focus-visible,
     .menu-button.is-highlighted {
         transform: translateY(-2px) scale(1.04);
+    }
+
+    .menu-button:active {
+        transform: translateY(0) scale(0.97);
     }
 
     .contact-full__inner {
@@ -4462,6 +4659,9 @@ footer {
         border-right: 1px solid rgba(0, 0, 0, 0.1);
         overflow-y: auto;
         z-index: 10;
+        /* A full-height sidebar reads better sliding in from its own edge than
+           dropping from the top. */
+        transform: translateX(calc((var(--nav-reveal) - 1) * 100%));
     }
 
     .nav-left {
@@ -4482,9 +4682,20 @@ footer {
         gap: 1rem;
     }
 
-    #main-page {
+    /* The sidebar inset lives on the sections rather than on #main-page: the
+       scroll container clips overflow, so anything indented there can never
+       bleed back out to the left edge. */
+    #main-page > *:not(nav):not(.fab-group):not(.hero) {
         margin-left: 14rem;
         width: calc(100% - 14rem);
+    }
+
+    /* The hero keeps the full width so its dark half runs under the sidebar to
+       the screen edge; the sidebar width is folded into its padding instead so
+       the intro column still lines up with every other section. */
+    .hero {
+        padding-left: calc(14rem + max(var(--content-inline-gutter), (100% - 14rem - var(--content-max-width)) / 2));
+        padding-right: max(var(--content-inline-gutter), calc((100% - 14rem - var(--content-max-width)) / 2));
     }
 }
 

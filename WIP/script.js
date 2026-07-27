@@ -71,10 +71,19 @@ function updateActiveNav() {
 const navBar = document.querySelector("nav")
 const heroSection = document.querySelector(".hero")
 
+// Maps the tail of the hero's exit onto a 0 → 1 reveal the stylesheet reads as
+// --nav-reveal, so the bar eases in with the scroll instead of snapping.
+const NAV_REVEAL_END = 90
+
 function updateNavVisibility() {
     if (!navBar || !heroSection) return
+
     const heroBottom = heroSection.getBoundingClientRect().bottom
-    navBar.classList.toggle("nav--hidden", heroBottom > 100)
+    const revealStart = Math.max(NAV_REVEAL_END + 120, window.innerHeight * 0.45)
+    const reveal = Math.min(1, Math.max(0, (revealStart - heroBottom) / (revealStart - NAV_REVEAL_END)))
+
+    navBar.style.setProperty("--nav-reveal", reveal.toFixed(3))
+    navBar.classList.toggle("nav--hidden", reveal <= 0.02)
 }
 
 function initContactTabs() {
@@ -148,12 +157,31 @@ function initContactBanners() {
     updateContactBanners()
 }
 
+// ── Hero: soft glow that trails the pointer across the dark half ──
+function initHeroGlow() {
+    const hero = document.querySelector(".hero")
+    if (!hero || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
+
+    hero.addEventListener(
+        "pointermove",
+        (event) => {
+            const rect = hero.getBoundingClientRect()
+            if (!rect.width || !rect.height) return
+            hero.style.setProperty("--hero-pointer-x", (((event.clientX - rect.left) / rect.width) * 100).toFixed(2) + "%")
+            hero.style.setProperty("--hero-pointer-y", (((event.clientY - rect.top) / rect.height) * 100).toFixed(2) + "%")
+        },
+        { passive: true },
+    )
+}
+
 if (mainPage) {
     mainPage.addEventListener("scroll", updateActiveNav, { passive: true })
     mainPage.addEventListener("scroll", updateNavVisibility, { passive: true })
+    window.addEventListener("resize", updateNavVisibility)
     updateActiveNav()
     updateNavVisibility()
 }
 
 initContactTabs()
 initContactBanners()
+initHeroGlow()
