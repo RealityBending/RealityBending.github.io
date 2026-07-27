@@ -22,9 +22,9 @@ body {
     --intro-screen-fade-duration: 600ms;
     --main-overlay-fade-delay: 300ms;
     --main-overlay-fade-duration: 1000ms;
-    --section-research: #55cc77;
+    --section-research: #33cccc;
     --section-people: #5599ff;
-    --section-blog: #33cccc;
+    --section-blog: #55cc77;
     --section-publications: #aa55ff;
     --section-tour: #ff9933;
     --section-contact: #ff5555;
@@ -215,8 +215,10 @@ body {
 
 /* ── Navigation ── */
 nav {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -224,6 +226,15 @@ nav {
     background: #f5f4ef;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     z-index: 5;
+    transition:
+        transform 0.4s ease,
+        opacity 0.4s ease;
+}
+
+nav.nav--hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
 }
 
 .nav-left {
@@ -277,69 +288,135 @@ nav a.nav-link.active {
 
 /* ── Hero ── */
 .hero {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    align-items: stretch;
+    min-height: min(800px, 100vh);
+    /* Content is centred on the same 1200px container as the other sections,
+       while the dark background still bleeds full-width to the screen edges. */
+    padding: 0 max(var(--content-inline-gutter), calc((100% - var(--content-max-width)) / 2));
+    background: #111;
+    overflow: hidden;
+}
+
+.hero__intro {
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    gap: 2.1rem;
+    padding: clamp(3rem, 5vw, 5.5rem) 0;
+    color: #f5f4ef;
+    text-align: left;
+}
+
+.hero__banner {
+    width: min(500px, 100%);
+    height: auto;
+    margin: 0 0 0.75rem;
+}
+
+.hero__title {
+    margin: 0;
+    font-weight: 400;
+    font-size: clamp(1.8rem, 2.8vw, 2.7rem);
+    letter-spacing: 0.01em;
+    line-height: 1.25;
+    color: #f5f4ef;
+}
+
+.hero__summary {
+    margin: 0;
+    max-width: 34rem;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.98rem;
+    line-height: 1.8;
+    color: rgba(245, 244, 239, 0.78);
+}
+
+.hero__summary a {
+    color: #f5f4ef;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(245, 244, 239, 0.4);
+    transition: border-color 0.2s ease;
+}
+
+.hero__summary a:hover {
+    border-bottom-color: rgba(245, 244, 239, 0.9);
+}
+
+.hero__quote {
+    margin: 0.35rem 0 0;
+    max-width: 32rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: rgba(245, 244, 239, 0.42);
+}
+
+.hero__brain {
+    position: relative;
+    z-index: 2;
+    display: flex;
     align-items: center;
     justify-content: center;
-    min-height: calc(100vh - 6rem);
-    text-align: center;
-    padding: 3rem 2rem 4rem;
-    gap: 1.25rem;
+    padding: clamp(1rem, 3vw, 2.5rem);
 }
 
 .brain-atlas {
     position: relative;
     isolation: isolate;
-    width: min(920px, 92vw);
+    width: min(480px, 100%);
     aspect-ratio: 1;
-    margin-top: 0.75rem;
-    border-radius: 28px;
-    overflow: hidden;
-    box-shadow: 0 24px 60px rgba(17, 17, 17, 0.08);
-    background:
-        radial-gradient(circle at center, #f5f4ef 0 24%, rgba(245, 244, 239, 0.98) 24.2% 29%, transparent 29.2%),
-        var(--atlas-sector-gradient, transparent);
+    /* Nudge the brain, disc and buttons right so the enlarged disc and the
+       buttons on its rim stay clear of the left column text. */
+    transform: translateX(30%);
 }
 
+/* Light disc that hugs the brain: a true circle whose radius (86% of the
+   atlas) is large enough for its top and bottom to reach past the edges of
+   the hero, so the left curve is a full rounded arc that wraps the brain and
+   blends smoothly into the top/bottom edges. The colored buttons sit on this
+   same radius, so their centres always land on the divide line. */
 .brain-atlas::before {
     content: "";
     position: absolute;
-    inset: 0;
+    top: 50%;
+    left: 50%;
+    width: 172%;
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    background: #f5f4ef;
+    border-radius: 50%;
+    box-shadow: 0 24px 70px rgba(17, 17, 17, 0.35);
     z-index: 0;
     pointer-events: none;
-    background: rgba(255, 255, 255, 0.48);
 }
 
+/* Fill the right side of the disc with white, out to the section edge */
 .brain-atlas::after {
     content: "";
     position: absolute;
-    inset: 0;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 220%;
+    transform: translateY(-50%);
+    background: #f5f4ef;
     z-index: 0;
     pointer-events: none;
-    opacity: 0;
-    background: var(--atlas-active-gradient, transparent);
-    transition: opacity 0.18s ease;
-    will-change: opacity;
-}
-
-.brain-atlas[data-active-region]::after {
-    opacity: 1;
 }
 
 .brain-atlas__center {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 58%;
-    aspect-ratio: 1;
-    transform: translate(-50%, -50%);
+    inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 2;
-    border-radius: 50%;
-    background: #f5f4ef;
-    box-shadow: 0 18px 40px rgba(17, 17, 17, 0.08);
+    z-index: 1;
 }
 
 #brain-viewer {
@@ -379,109 +456,114 @@ nav a.nav-link.active {
     opacity: 0.88;
 }
 
-.hero h1 {
-    font-weight: 400;
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    letter-spacing: 0.04em;
-    line-height: 1.2;
-    color: #111;
-}
-
-.hero p {
-    max-width: 520px;
-    line-height: 1.9;
-    color: #777;
-    font-size: 1rem;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-.section {
+/* ── Hero menu buttons (equal round buttons on the disc edge) ── */
+.menu-buttons {
     position: absolute;
-    z-index: 1;
-    isolation: isolate;
-    padding: 0.7rem 0.8rem;
-    min-height: 0;
-    scroll-margin-top: 6rem;
-    text-align: left;
-    background: transparent;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.menu-button {
+    --btn-color: var(--section-color, #111);
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4.7rem;
+    height: 4.7rem;
+    padding: 0.3rem;
     border: none;
-    box-shadow: none;
-    backdrop-filter: none;
-    opacity: 1;
-}
-
-.section::before {
-    display: none;
-}
-
-.section.is-highlighted h2 {
+    border-radius: 50%;
+    background: var(--btn-color);
     color: #f5f4ef;
-    border-bottom-color: rgba(245, 244, 239, 0.68);
-}
-
-.section.is-highlighted p {
-    color: rgba(245, 244, 239, 0.92);
-}
-
-.section h2 {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--section-color);
-    margin-bottom: 0.8rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--section-color);
+    cursor: pointer;
+    text-align: center;
+    pointer-events: auto;
+    box-shadow: 0 6px 16px rgba(17, 17, 17, 0.3);
+    scroll-margin-top: 6rem;
     transition:
-        color 0.18s ease,
-        border-bottom-color 0.18s ease;
+        transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
 }
 
-.section p {
-    font-size: 0.92rem;
-    line-height: 1.75;
-    color: var(--section-color);
+.menu-button__label {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    transition: color 0.18s ease;
+    font-size: 0.5rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.25;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+    pointer-events: none;
+}
+
+.menu-button:hover,
+.menu-button:focus-visible,
+.menu-button.is-highlighted {
+    transform: translate(-50%, -50%) scale(1.12);
+    box-shadow: 0 12px 26px rgba(17, 17, 17, 0.4);
+    filter: brightness(1.08);
+    outline: none;
+}
+
+/* Positions traced along the left edge of the disc (top → bottom) */
+.menu-button:nth-child(1) {
+    top: -17.8%;
+    left: -2.9%;
+}
+
+.menu-button:nth-child(2) {
+    top: 7%;
+    left: -24.5%;
+}
+
+.menu-button:nth-child(3) {
+    top: 35%;
+    left: -34.7%;
+}
+
+.menu-button:nth-child(4) {
+    top: 65%;
+    left: -34.7%;
+}
+
+.menu-button:nth-child(5) {
+    top: 93%;
+    left: -24.5%;
+}
+
+.menu-button:nth-child(6) {
+    top: 117.8%;
+    left: -2.9%;
 }
 
 .section--research {
-    top: 50%;
-    left: 0.5%;
-    width: 19%;
-    transform: translateY(-50%);
+    --section-color: var(--section-research);
 }
 
 .section--blog {
-    top: 2%;
-    left: 2%;
-    width: 29%;
+    --section-color: var(--section-blog);
 }
 
 .section--people {
-    top: 2%;
-    right: 2%;
-    width: 29%;
+    --section-color: var(--section-people);
 }
 
 .section--publications {
-    top: 50%;
-    right: 0.5%;
-    width: 19%;
-    transform: translateY(-50%);
+    --section-color: var(--section-publications);
 }
 
 .section--tour {
-    bottom: 2%;
-    left: 2%;
-    width: 29%;
+    --section-color: var(--section-tour);
 }
 
 .section--contact {
-    bottom: 2%;
-    right: 2%;
-    width: 29%;
+    --section-color: var(--section-contact);
 }
 
 /* ── Research section ── */
@@ -4206,39 +4288,47 @@ footer {
 
     .hero {
         min-height: auto;
-        padding: 2.5rem var(--content-inline-gutter) 3rem;
+        grid-template-columns: 1fr;
+        padding-inline: 0;
+        background: #111;
+    }
+
+    .brain-atlas::before,
+    .brain-atlas::after {
+        display: none;
+    }
+
+    .hero__intro {
+        padding: 2.5rem var(--content-inline-gutter) 2.75rem;
+        text-align: center;
+        align-items: center;
+    }
+
+    .hero__summary,
+    .hero__quote {
+        max-width: none;
+    }
+
+    .hero__brain {
+        padding: 2rem var(--content-inline-gutter) 1rem;
+        background: #f5f4ef;
+        border-radius: 28px 28px 0 0;
     }
 
     .brain-atlas {
         width: min(var(--content-max-width), 100%);
         aspect-ratio: auto;
-        background: none;
-        border-radius: 0;
-        overflow: visible;
-        box-shadow: none;
+        transform: none;
         display: flex;
         flex-direction: column;
-        gap: 1rem;
-    }
-
-    .brain-atlas::after {
-        display: none;
-    }
-
-    .brain-atlas::before {
-        display: none;
+        gap: 1.25rem;
     }
 
     .brain-atlas__center {
         position: relative;
-        top: auto;
-        left: auto;
+        inset: auto;
         width: 100%;
-        aspect-ratio: auto;
-        transform: none;
         order: -1;
-        background: none;
-        box-shadow: none;
     }
 
     #brain-viewer {
@@ -4247,35 +4337,29 @@ footer {
         margin: 0 auto;
     }
 
-    .section {
+    .menu-buttons {
+        position: relative;
+        inset: auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.6rem;
+        padding: 0 var(--content-inline-gutter) 2.5rem;
+        background: #f5f4ef;
+    }
+
+    .menu-buttons .menu-button {
         position: relative;
         top: auto;
-        right: auto;
-        bottom: auto;
         left: auto;
-        width: auto;
         transform: none;
-        min-height: auto;
-        padding: 1.25rem;
-        background: rgba(255, 255, 255, 0.32);
-        border-radius: 20px;
-        box-shadow: 0 18px 40px rgba(17, 17, 17, 0.08);
     }
 
-    .section::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        display: block;
-        background: var(--section-color);
-        opacity: 0.22;
-        z-index: -1;
-        border-radius: 20px;
-        transition: opacity 0.18s ease;
-    }
-
-    .section.is-highlighted::before {
-        opacity: 0.82;
+    .menu-button:hover,
+    .menu-button:focus-visible,
+    .menu-button.is-highlighted {
+        transform: translateY(-2px) scale(1.04);
     }
 
     .contact-full__inner {
@@ -4428,7 +4512,7 @@ footer {
     outline-offset: -1px;
 }
 
-.section {
+.menu-button {
     outline: calc(var(--debug-margins) * 1px) dashed rgba(0, 180, 0, 0.35);
     outline-offset: -1px;
 }

@@ -12,10 +12,11 @@ import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js"
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js"
 import { OutlinePass } from "three/addons/postprocessing/OutlinePass.js"
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js"
-import { ATLAS_HIT_SECTORS, SECTION_BY_ID, SITE_SECTIONS, buildAtlasHighlightGradient } from "./site-sections.js"
+import { SITE_SECTIONS } from "./site-sections.js"
 
 const container = document.getElementById("brain-viewer")
 const atlas = document.querySelector(".brain-atlas")
+const interactionRoot = document.querySelector(".hero") || atlas
 const MAX_PIXEL_RATIO = 2
 const INTERACTION_PIXEL_RATIO = 1.15
 let isUserInteracting = false
@@ -101,8 +102,6 @@ const REGIONS = SITE_SECTIONS.map((section) => ({
 ])
 const regionsById = new Map(REGIONS.map((region) => [region.id, region]))
 const sectionElements = new Map(REGIONS.map((region) => [region.id, document.getElementById(region.id)]))
-const atlasCenter = atlas.querySelector(".brain-atlas__center")
-const ATLAS_SECTORS = ATLAS_HIT_SECTORS
 
 // ── Shared highlight uniforms ──────────────────────────────────────────────
 // One object shared by every mesh material — updating .value here affects all.
@@ -220,10 +219,8 @@ function setActiveRegion(region) {
     if (atlas) {
         if (nextRegionId) {
             atlas.dataset.activeRegion = nextRegionId
-            atlas.style.setProperty("--atlas-active-gradient", buildAtlasHighlightGradient(nextRegionId))
         } else {
             delete atlas.dataset.activeRegion
-            atlas.style.setProperty("--atlas-active-gradient", "transparent")
         }
     }
 
@@ -514,27 +511,8 @@ function raycastBrain(e) {
     return hits.length ? hits[0] : null
 }
 
-function regionFromAtlasSector(e) {
-    if (window.getComputedStyle(atlasCenter).position !== "absolute") return null
-
-    const atlasRect = atlas.getBoundingClientRect()
-    const centerRect = atlasCenter.getBoundingClientRect()
-    const centerX = atlasRect.left + atlasRect.width / 2
-    const centerY = atlasRect.top + atlasRect.height / 2
-    const offsetX = e.clientX - centerX
-    const offsetY = e.clientY - centerY
-    const innerRadius = Math.min(centerRect.width, centerRect.height) / 2
-
-    if (Math.hypot(offsetX, offsetY) <= innerRadius) return null
-
-    const angle = (Math.atan2(offsetY, offsetX) * 180) / Math.PI
-    const atlasAngle = (angle + 90 + 360) % 360
-    const sector = ATLAS_SECTORS.find(({ start, end }) => atlasAngle >= start && atlasAngle < end)
-    return sector ? (regionsById.get(sector.id) ?? null) : null
-}
-
 function clickedRegionFromEvent(e) {
-    const sectionEl = e.target.closest(".section")
+    const sectionEl = e.target.closest(".menu-button")
     if (sectionEl) return regionsById.get(sectionEl.id) ?? null
 
     if (container.contains(e.target)) {
@@ -542,7 +520,7 @@ function clickedRegionFromEvent(e) {
         if (hit) return regionFromHit(hit)
     }
 
-    return regionFromAtlasSector(e)
+    return null
 }
 
 function navigateToRegion(region) {
@@ -557,7 +535,7 @@ function navigateToRegion(region) {
     document.getElementById(region.scrollTargetId || region.id)?.scrollIntoView({ behavior: "smooth", block: "start" })
 }
 
-atlas.addEventListener("pointermove", (e) => {
+interactionRoot.addEventListener("pointermove", (e) => {
     // Skip expensive raycasting when not visible
     if (!heroVisible) return
 
@@ -566,8 +544,8 @@ atlas.addEventListener("pointermove", (e) => {
         return
     }
 
-    // 1) Pointer is over a section box → highlight that section
-    const sectionEl = e.target.closest(".section")
+    // 1) Pointer is over a menu button → highlight that section
+    const sectionEl = e.target.closest(".menu-button")
     if (sectionEl) {
         const region = regionsById.get(sectionEl.id)
         if (region) {
@@ -578,16 +556,7 @@ atlas.addEventListener("pointermove", (e) => {
         }
     }
 
-    // 2) Pointer is over the coloured atlas background → highlight that sector
-    const atlasRegion = regionFromAtlasSector(e)
-    if (atlasRegion) {
-        highlightRegion(atlasRegion)
-        lockCamera(atlasRegion)
-        tooltip.classList.remove("visible")
-        return
-    }
-
-    // 3) Pointer is over the brain canvas → raycast + 3D region detection
+    // 2) Pointer is over the brain canvas → raycast + 3D region detection
     if (container.contains(e.target)) {
         unlockCamera()
         const hit = raycastBrain(e)
@@ -616,7 +585,7 @@ atlas.addEventListener("pointermove", (e) => {
     tooltip.classList.remove("visible")
 })
 
-atlas.addEventListener("pointerleave", () => {
+interactionRoot.addEventListener("pointerleave", () => {
     clearHighlight()
     unlockCamera()
     tooltip.classList.remove("visible")
@@ -624,12 +593,12 @@ atlas.addEventListener("pointerleave", () => {
 })
 
 // Click on atlas region to scroll to its section
-atlas.addEventListener("pointerdown", (e) => {
+interactionRoot.addEventListener("pointerdown", (e) => {
     if (e.button !== 0) return
     pointerDownPos = { x: e.clientX, y: e.clientY }
 })
 
-atlas.addEventListener("pointerup", (e) => {
+interactionRoot.addEventListener("pointerup", (e) => {
     if (e.button !== 0) return
 
     const dx = Math.abs(e.clientX - pointerDownPos.x)

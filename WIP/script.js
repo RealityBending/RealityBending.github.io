@@ -9,8 +9,6 @@ import { ACTIVE_NAV_SECTIONS, applySectionTheme } from "./site-sections.js"
 const doorScreen = document.getElementById("door-screen")
 const mainPage = document.getElementById("main-page")
 
-applySectionTheme()
-
 let hasOpened = false
 
 function openDoors() {
@@ -24,6 +22,7 @@ function openDoors() {
 
 if (doorScreen && mainPage) {
     doorScreen.addEventListener("click", openDoors)
+    doorScreen.addEventListener("pointerdown", openDoors)
     doorScreen.addEventListener("keydown", (event) => {
         if (event.key !== "Enter" && event.key !== " ") return
         event.preventDefault()
@@ -34,6 +33,14 @@ if (doorScreen && mainPage) {
         if (event.target !== doorScreen || event.propertyName !== "opacity") return
         doorScreen.hidden = true
     })
+}
+
+// Theming runs after the door listeners are wired so a failure here can never
+// leave the landing screen unclickable.
+try {
+    applySectionTheme()
+} catch (error) {
+    console.error("applySectionTheme failed", error)
 }
 
 // ── Active nav section highlighting ──
@@ -58,6 +65,16 @@ function updateActiveNav() {
         const link = document.querySelector(`nav a[data-section-id="${activeSectionId}"]`)
         if (link) link.classList.add("active")
     }
+}
+
+// ── Nav visibility: hidden over the hero, revealed once scrolled past it ──
+const navBar = document.querySelector("nav")
+const heroSection = document.querySelector(".hero")
+
+function updateNavVisibility() {
+    if (!navBar || !heroSection) return
+    const heroBottom = heroSection.getBoundingClientRect().bottom
+    navBar.classList.toggle("nav--hidden", heroBottom > 100)
 }
 
 function initContactTabs() {
@@ -133,7 +150,9 @@ function initContactBanners() {
 
 if (mainPage) {
     mainPage.addEventListener("scroll", updateActiveNav, { passive: true })
+    mainPage.addEventListener("scroll", updateNavVisibility, { passive: true })
     updateActiveNav()
+    updateNavVisibility()
 }
 
 initContactTabs()
