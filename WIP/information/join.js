@@ -494,7 +494,8 @@ function createBackdropController() {
     consoleCard.appendChild(element("h3", "join-console__prompt", JOIN_CONTENT.prompt))
 
     // The rail. --join-count and --join-active drive the connecting line's
-    // fill entirely in CSS, so the only thing JS writes per click is an index.
+    // geometry and fill entirely in CSS, so the only thing JS writes per click
+    // is an index.
     const ladder = element("div", "join-ladder")
     ladder.setAttribute("role", "tablist")
     ladder.setAttribute("aria-label", "Career stages")
@@ -517,7 +518,9 @@ function createBackdropController() {
         button.setAttribute("aria-selected", index === 0 ? "true" : "false")
         button.setAttribute("aria-controls", STAGE_PANEL_PREFIX + stage.id)
 
-        button.appendChild(element("span", "join-step__node", stage.step))
+        // The button is the tile and the level's name is what it says — the
+        // step number is implicit in the rail's left-to-right order, so it is
+        // not printed.
         button.appendChild(element("span", "join-step__label", stage.label))
         applyAccent(button, stage.accent)
 
@@ -564,7 +567,11 @@ function createBackdropController() {
         }
     }
 
-    document.querySelectorAll(".contact-tab-btn").forEach((tab) => {
+    /* The tab buttons, plus anything that opens a tab from elsewhere on the
+       page — the nav's Join link and the hero's Join button both carry
+       data-contact-tab-target, and arriving that way has to raise the level's
+       photograph just as clicking the tab does. */
+    document.querySelectorAll(".contact-tab-btn, [data-contact-tab-target]").forEach((tab) => {
         tab.addEventListener("click", syncBackdrop)
     })
 

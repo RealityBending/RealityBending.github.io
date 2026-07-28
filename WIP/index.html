@@ -49,10 +49,14 @@
                 <ul>
                     <li><a href="#sec-people-full">People</a></li>
                     <li><a href="#sec-research-full">Research</a></li>
-                    <li><a href="#sec-blog">Blog</a></li>
+                    <li><a href="#sec-news">News</a></li>
                     <li><a href="#sec-publications-full">Publications</a></li>
-                    <li><a href="#sec-tour">Tour</a></li>
-                    <li><a href="#sec-contact-full">Information</a></li>
+                    <!-- Join is a tab of Information, not a section: the href
+                         scrolls there and data-contact-tab-target opens the tab.
+                         data-section keeps applySectionTheme from confusing the
+                         two links that share this href. -->
+                    <li><a href="#sec-contact-full" data-section="sec-join" data-contact-tab-target="join">Join</a></li>
+                    <li><a href="#sec-contact-full" data-section="sec-contact">Information</a></li>
                 </ul>
             </nav>
 
@@ -91,11 +95,16 @@
                             <button type="button" class="menu-button section--research" id="sec-research">
                                 <span class="menu-button__label">Research</span>
                             </button>
-                            <button type="button" class="menu-button section--blog" id="sec-blog">
-                                <span class="menu-button__label">Blog</span>
+                            <button type="button" class="menu-button section--news" id="sec-news">
+                                <span class="menu-button__label">News</span>
                             </button>
-                            <button type="button" class="menu-button section--tour" id="sec-tour">
-                                <span class="menu-button__label">Tour</span>
+                            <button
+                                type="button"
+                                class="menu-button section--join"
+                                id="sec-join"
+                                data-contact-tab-target="join"
+                            >
+                                <span class="menu-button__label">Join</span>
                             </button>
                             <button type="button" class="menu-button section--contact" id="sec-contact">
                                 <span class="menu-button__label">Information</span>
@@ -544,7 +553,7 @@
             <!-- Floating action buttons -->
             <div class="fab-group">
                 <a href="#sec-contact-full" class="fab" data-contact-tab-target="services">Hire us</a>
-                <a href="mailto:realitybending@sussex.ac.uk" class="fab fab--primary">Join the Lab</a>
+                <a href="#sec-contact-full" class="fab fab--primary" data-contact-tab-target="join">Join the Lab</a>
             </div>
         </div>
 

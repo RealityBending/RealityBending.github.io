@@ -33,17 +33,19 @@ export const SITE_SECTIONS = Object.freeze([
         regionTest: (nx, ny, nz) => nz < 0.38 && ny > 0.38,
     },
     {
-        id: "sec-blog",
-        navHref: "#sec-blog",
-        scrollTargetId: "sec-blog",
+        id: "sec-news",
+        // Nothing to point at yet: there is no news section, so the href is the
+        // hero button's own id and the click goes nowhere in particular.
+        navHref: "#sec-news",
+        scrollTargetId: "sec-news",
         pageSectionId: null,
         brainRegionIndex: 5,
-        colorVar: "--section-blog",
+        colorVar: "--section-news",
         colorHex: "#55cc77",
         atlasColor: "rgba(85, 204, 119, 0.88)",
         atlasDisplayRange: [0, 60],
         atlasHitRange: [300, 360],
-        brainLabel: "Blog →",
+        brainLabel: "News →",
         viewAzimuth: -Math.PI / 2,
         viewPolar: Math.PI / 2,
         regionTest: (nx, ny, nz) => nx < 0.48 && ny >= 0.18 && ny < 0.58 && nz > 0.35 && nz < 0.7,
@@ -66,17 +68,25 @@ export const SITE_SECTIONS = Object.freeze([
         regionTest: (nx, ny, nz) => nx > 0.52 && ny > 0.58 && nz >= 0.3 && nz <= 0.62,
     },
     {
-        id: "sec-tour",
-        navHref: "#sec-tour",
-        scrollTargetId: "sec-tour",
+        id: "sec-join",
+        // Join has no section of its own — it is a tab of Information. Both
+        // routes therefore land on that section and open the tab from the
+        // `data-contact-tab-target="join"` the nav link and hero button carry;
+        // see initContactTabs in script.js.
+        //
+        // pageSectionId stays null even though the section exists: it is what
+        // ACTIVE_NAV_SECTIONS is built from, and two entries claiming
+        // sec-contact-full would fight over which nav link is highlighted.
+        navHref: "#sec-contact-full",
+        scrollTargetId: "sec-contact-full",
         pageSectionId: null,
         brainRegionIndex: 3,
-        colorVar: "--section-tour",
+        colorVar: "--section-join",
         colorHex: "#ff9933",
         atlasColor: "rgba(255, 153, 51, 0.88)",
         atlasDisplayRange: [240, 300],
         atlasHitRange: [180, 240],
-        brainLabel: "Tour →",
+        brainLabel: "Join →",
         viewAzimuth: 0,
         viewPolar: 1.25,
         regionTest: (nx, ny, nz) => nz > 0.62 && ny > 0.35,
@@ -135,7 +145,14 @@ export function buildAtlasHighlightGradient(sectionId) {
 
 export function applySectionTheme(doc = document) {
     SITE_SECTIONS.forEach((section) => {
-        const navLink = doc.querySelector(`nav a[href="${section.navHref}"]`)
+        // Two entries can share a navHref — Join points at the Information
+        // section and opens its Join tab — so a link may name its section
+        // outright with data-section. The href stays the selector for the rest,
+        // and the :not() keeps the section that owns the href from also
+        // claiming a link that has already spoken for itself.
+        const navLink =
+            doc.querySelector(`nav a[data-section="${section.id}"]`) ||
+            doc.querySelector(`nav a[href="${section.navHref}"]:not([data-section])`)
         if (navLink) {
             navLink.classList.add("nav-link")
             navLink.dataset.sectionId = section.id
