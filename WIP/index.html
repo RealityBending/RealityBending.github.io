@@ -290,6 +290,11 @@
                     aria-label="University of Sussex collage showing Brighton, campus, and Brighton Pier"
                 >
                     <span class="contact-full__backdrop-img"></span>
+                    <!-- Crossfade partner. Holds the outgoing photograph while the
+                         Join tab swaps levels, then fades out over it. Both layers
+                         read --contact-parallax off the parent, so they move
+                         together and the fade never shears. -->
+                    <span class="contact-full__backdrop-img contact-full__backdrop-img--out" aria-hidden="true"></span>
                 </div>
                 <h2 class="contact-full__title">Information</h2>
                 <div class="contact-tabs-nav" role="tablist" aria-label="Information views">
@@ -399,35 +404,9 @@
                     aria-labelledby="contact-tab-btn-join"
                     hidden
                 >
-                    <div class="contact-join-layout">
-                        <div class="contact-panel__content">
-                            <p class="contact-full__eyebrow">Work with us</p>
-                            <h3 class="contact-full__panel-title">Join the lab</h3>
-                            <p class="contact-full__lede">
-                                We welcome inquiries from prospective students, visitors, and collaborators who want to work on
-                                consciousness, reality perception, affective cognition, and open scientific methods.
-                            </p>
-                            <p>
-                                If you are reaching out about a PhD, visit, or collaboration, send a short note about your background, the
-                                questions you want to explore, and the kind of collaboration you have in mind.
-                            </p>
-                            <div class="contact-full__actions">
-                                <a
-                                    class="contact-cta contact-cta--primary"
-                                    href="mailto:realitybending@sussex.ac.uk?subject=Joining%20the%20Reality%20Bending%20Lab"
-                                    >Ask about joining the lab</a
-                                >
-                            </div>
-                        </div>
-                        <aside class="contact-side-card" aria-label="What to include in your first message">
-                            <p class="contact-side-card__kicker">A useful first message</p>
-                            <ul class="contact-bullet-list">
-                                <li>Your background and current stage</li>
-                                <li>The topics or methods you want to explore</li>
-                                <li>Any timing, funding, or visit context we should know about</li>
-                            </ul>
-                        </aside>
-                    </div>
+                    <!-- Rendered by information/join.js from information/join-content.js.
+                         Copy and links live in the content module, not here. -->
+                    <div id="join-root"></div>
                 </div>
 
                 <div class="contact-tab-panel" id="contact-services" role="tabpanel" aria-labelledby="contact-tab-btn-services" hidden>
@@ -597,6 +576,7 @@
         <script type="module" src="collaborations/collaborations.js"></script>
         <script type="module" src="memories/memories.js"></script>
         <script type="module" src="publications/publications.js"></script>
+        <script type="module" src="information/join.js"></script>
         <script type="module" src="brain.js"></script>
     </body>
 </html>

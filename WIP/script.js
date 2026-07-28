@@ -92,7 +92,15 @@ function initContactTabs() {
     const panels = Array.from(document.querySelectorAll(".contact-tab-panel"))
     if (!buttons.length || !panels.length) return
 
+    // The backdrop is a sibling of the panels, so it cannot select on which one
+    // is showing — and it has to, because the tabs differ enormously in height
+    // and the banner is sized against the section. See the [data-active-tab]
+    // rules in style.css.
+    const section = document.querySelector(".contact-full")
+
     function activateContactTab(tab) {
+        if (section) section.dataset.activeTab = tab
+
         buttons.forEach((button) => {
             const isActive = button.dataset.tab === tab
             button.classList.toggle("contact-tab-btn--active", isActive)
@@ -129,7 +137,7 @@ function initContactTabs() {
 
     window.addEventListener("hashchange", activateFromHash)
     activateContactTab(hashToTab[window.location.hash] || "contact")
-    initMarginTabNav(document.querySelector(".contact-full"), ".contact-tab-btn")
+    initMarginTabNav(section, ".contact-tab-btn")
 }
 
 /* ── Section backdrop parallax ──

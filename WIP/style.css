@@ -1046,7 +1046,6 @@ nav a.nav-link.active {
     }
 }
 
-
 .people-full h2 {
     position: relative;
     text-align: left;
@@ -1724,11 +1723,7 @@ nav a.nav-link.active {
     height: 5.5rem;
     border-radius: 999px;
     background-color: rgba(196, 209, 255, 0.16);
-    background-image: repeating-linear-gradient(
-        to bottom,
-        rgba(196, 209, 255, 0.45) 0 1px,
-        transparent 1px calc(100% / 6)
-    );
+    background-image: repeating-linear-gradient(to bottom, rgba(196, 209, 255, 0.45) 0 1px, transparent 1px calc(100% / 6));
 }
 
 .collaboration-network__zoom-fill {
@@ -4275,7 +4270,6 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
 }
 
 .contact-panel__content,
-.contact-side-card,
 .service-card {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.84));
     border: 1px solid rgba(17, 17, 17, 0.06);
@@ -4302,8 +4296,8 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
     /* Enough of the banner comes through to read as glass over the photograph;
        the blur below is what keeps the text legible at this alpha. */
     background: rgba(252, 251, 248, 0.78);
-    backdrop-filter: blur(16px) saturate(1.08);
-    -webkit-backdrop-filter: blur(16px) saturate(1.08);
+    backdrop-filter: blur(6px) saturate(1.08);
+    -webkit-backdrop-filter: blur(6px) saturate(1.08);
     border: 1px solid rgba(255, 255, 255, 0.75);
     border-radius: 26px;
     box-shadow: 0 26px 60px rgba(17, 17, 17, 0.16);
@@ -4322,10 +4316,7 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
     box-shadow: none;
 }
 
-.contact-full__eyebrow,
-.contact-side-card__kicker,
-.service-card__eyebrow,
-.contact-services__proof-label {
+.contact-full__eyebrow {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.72rem;
     font-weight: 700;
@@ -4333,24 +4324,12 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
     text-transform: uppercase;
 }
 
-.contact-full__eyebrow,
-.contact-side-card__kicker,
-.service-card__eyebrow {
+.contact-full__eyebrow {
     color: rgba(140, 52, 52, 0.8);
-}
-
-.contact-full__panel-title {
-    margin: 0.55rem 0 0.9rem;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(1.8rem, 3vw, 2.8rem);
-    font-weight: 700;
-    line-height: 1.08;
-    color: #1a1a1a;
 }
 
 .contact-full__lede,
 .contact-panel__content p,
-.contact-side-card p,
 .service-card p,
 .service-card summary p {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -4366,7 +4345,6 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
 }
 
 .contact-panel__content p:last-child,
-.contact-side-card p:last-child,
 .service-card p:last-child {
     margin-bottom: 0;
 }
@@ -4471,14 +4449,6 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
     color: #7e2f2f;
 }
 
-.contact-full__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.85rem;
-    margin-top: auto;
-    padding-top: 1.6rem;
-}
-
 .contact-cta {
     display: inline-flex;
     align-items: center;
@@ -4538,10 +4508,9 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
     display: block;
 }
 
-.contact-join-layout,
+.join,
 .contact-services,
-.contact-services__hero,
-.contact-services__proof {
+.contact-services__hero {
     max-width: var(--content-max-width);
     margin: 0 auto;
 }
@@ -4579,11 +4548,48 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
     top: -14%;
     bottom: -14%;
     display: block;
-    background: url("img/sussex-bg.jpg") center / cover no-repeat;
+    /* The Join tab swaps a per-level photograph in through this property; the
+       fallback is the section's own and stays the single place it is named. */
+    background: var(--contact-backdrop-image, url("img/sussex-bg.jpg")) center / cover no-repeat;
     transform: translate3d(0, var(--contact-parallax, 0px), 0);
     will-change: transform;
     /* Full strength and full colour, top to bottom — no fade over it. */
     opacity: 1;
+}
+
+/* Crossfade partner: the outgoing photograph, stacked over the incoming one and
+   dissolved away. It sits inside the same parent, so --contact-parallax reaches
+   it too and the two layers move as one while the fade runs. */
+.contact-full__backdrop-img--out {
+    background-image: var(--contact-backdrop-image-out, none);
+    opacity: 0;
+    transition: opacity 0.45s ease;
+    pointer-events: none;
+}
+
+/* The frame in which the outgoing image is parked at full strength. Removing
+   the class is what starts the dissolve. */
+.contact-full__backdrop--swapping .contact-full__backdrop-img--out {
+    opacity: 1;
+    transition: none;
+}
+
+/* ── The banner on a long tab ──
+   Contact and Services run 600–750px, which is roughly the photograph's own
+   height: `cover` shows it at 1:1 and the banner can safely be the full
+   section. Join runs to ~3700px on the PhD level, and stretched over that,
+   `cover` scales a 1920×960 image five-fold to show a 14% slice of it — an
+   unreadable smear.
+
+   So on that tab the banner stops at a height the image can actually fill and
+   hands the rest of the section back to its own cream. The mask is what keeps
+   the cut from reading as a hard line: it is a bottom edge on a photograph,
+   not the top-to-bottom fade *over* the image that was deliberately removed
+   from .contact-full__backdrop-img. */
+.contact-full[data-active-tab="join"] .contact-full__backdrop {
+    max-height: 56rem;
+    -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 9rem), transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 calc(100% - 9rem), transparent 100%);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -4592,24 +4598,749 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
     }
 }
 
-.contact-join-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1.45fr) minmax(18rem, 0.85fr);
-    gap: 1.5rem;
-    align-items: start;
-}
-
-.contact-side-card {
-    padding: 1.6rem;
-}
-
-.contact-bullet-list,
 .service-card__list {
     margin: 1rem 0 0;
     padding-left: 1.15rem;
     color: #333;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     line-height: 1.8;
+}
+
+/* ─────────────────────────────────────
+   JOIN TAB — the level explorer
+   Markup is built by information/join.js; copy lives in join-content.js.
+
+   Everything here sits over the same photographic backdrop the Contact tab
+   floats on, so it uses the same glass recipe: a frosted sheet at ~0.8 alpha
+   with a blur behind it, which is what keeps the text legible over the image.
+   Three sheets stack — the console (intro + rail), the active stage, the
+   outro — with the smaller pieces inside them on a lighter, unblurred wash so
+   the blur is only ever paid for once per sheet.
+
+   Colour is per level, not per section: join.js writes --join-accent / --deep
+   / --ink onto .join from the level's own palette, and onto each rail button
+   from *its* level's, so the rail reads as three coloured steps while the
+   panel below follows only the active one. The triplets below are the
+   fallback the stylesheet paints with before that runs.
+
+   Custom properties do not transition, but the declarations that read them do,
+   so a level change eases its colours across rather than snapping.
+───────────────────────────────────── */
+.join {
+    --join-accent: 255, 85, 85;
+    --join-deep: 162, 44, 44;
+    --join-ink: 126, 47, 47;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.join-block__title,
+.join-stage__eyebrow,
+.join-outro__kicker,
+.join-route__meta,
+.join-note__title,
+.join-route__highlights li,
+.join-filter,
+.join-note,
+.join-step-item,
+.join-step-item::before,
+.join-faq__question::after,
+.join-ladder::before,
+.join-link {
+    transition:
+        color 0.35s ease,
+        background-color 0.35s ease,
+        border-color 0.35s ease;
+}
+
+/* Shared with the Services tab, so the level tint has to be reapplied here
+   rather than changing .contact-cta itself. */
+.join-outro__actions .contact-cta {
+    border-color: rgba(var(--join-ink), 0.18);
+    color: rgb(var(--join-ink));
+}
+
+.join-outro__actions .contact-cta:hover {
+    border-color: rgba(var(--join-ink), 0.32);
+    box-shadow: 0 12px 28px rgba(var(--join-ink), 0.12);
+}
+
+.join-outro__actions .contact-cta--primary {
+    background: linear-gradient(135deg, rgba(var(--join-accent), 0.92), rgba(var(--join-deep), 0.95));
+    border-color: transparent;
+    color: #fff7f5;
+}
+
+.join-console,
+.join-stage,
+.join-outro {
+    background: rgba(252, 251, 248, 0.82);
+    backdrop-filter: blur(6px) saturate(1.08);
+    -webkit-backdrop-filter: blur(6px) saturate(1.08);
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 26px;
+    box-shadow: 0 26px 60px rgba(17, 17, 17, 0.16);
+}
+
+.join-console {
+    padding: 1.9rem 2.2rem 1.7rem;
+}
+
+.join-console__prompt {
+    text-align: center;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.35rem, 2.2vw, 1.9rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: #1a1a1a;
+}
+
+/* ── The rail ──
+   Nodes are laid out as equal columns, so a node's centre sits at
+   (i + 0.5) / count of the row's width — which is all the connecting line and
+   its progress fill need to place themselves, entirely in CSS. JS writes
+   --join-active and nothing else. */
+.join-ladder {
+    position: relative;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    /* Zero, not for looks — .join-step's own padding does the spacing. A gap
+       would shift every node centre off (i + 0.5) / count, which is the only
+       thing the connecting line below has to go on. */
+    gap: 0;
+    margin-top: 1.5rem;
+}
+
+.join-ladder::before,
+.join-ladder::after {
+    content: "";
+    position: absolute;
+    /* Level with the middle of the 2.3rem nodes. */
+    top: calc(1.15rem - 1px);
+    height: 2px;
+    border-radius: 2px;
+}
+
+.join-ladder::before {
+    left: calc(50% / var(--join-count));
+    right: calc(50% / var(--join-count));
+    background: rgba(var(--join-ink), 0.16);
+}
+
+.join-ladder::after {
+    left: calc(50% / var(--join-count));
+    width: calc(100% / var(--join-count) * var(--join-active, 0));
+    background: linear-gradient(90deg, rgba(var(--join-accent), 0.55), rgba(var(--join-deep), 0.85));
+    transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .join-ladder::after {
+        transition: none;
+    }
+}
+
+.join-step {
+    /* Above the rail's ::after, which would otherwise paint over the nodes. */
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 0.35rem 0.25rem;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    text-align: center;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.join-step__node {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.3rem;
+    height: 2.3rem;
+    border-radius: 999px;
+    background: #fbfaf7;
+    border: 2px solid rgba(var(--join-ink), 0.22);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: rgba(var(--join-ink), 0.55);
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.25s ease;
+}
+
+.join-step__label {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #5d5854;
+    transition: color 0.2s ease;
+}
+
+.join-step:hover .join-step__node,
+.join-step:focus-visible .join-step__node {
+    border-color: rgba(var(--join-ink), 0.45);
+    color: rgb(var(--join-ink));
+}
+
+.join-step--done .join-step__node {
+    border-color: rgba(var(--join-deep), 0.5);
+    color: rgb(var(--join-ink));
+}
+
+/* No transform here, deliberately. `scale()` promotes the node to its own
+   compositing layer, and inside .join-console's backdrop-filter Chrome then
+   re-samples the blurred backdrop over the layer's *rectangular* border box —
+   which paints a visible square patch around the round node. The halo below is
+   a spread shadow, so it follows the border radius and promotes nothing. */
+.join-step--active .join-step__node {
+    background: linear-gradient(135deg, rgba(var(--join-accent), 0.95), rgba(var(--join-deep), 0.98));
+    border-color: transparent;
+    color: #fff7f5;
+    box-shadow:
+        0 0 0 5px rgba(var(--join-accent), 0.16),
+        0 8px 20px rgba(var(--join-ink), 0.28);
+}
+
+/* The button is a tall column, so the default ring lands as a wide rectangle
+   around the node and its label. Put it on the node instead, where it can be
+   round. */
+.join-step:focus {
+    outline: none;
+}
+
+.join-step:focus-visible .join-step__node {
+    outline: 2px solid rgba(var(--join-ink), 0.9);
+    outline-offset: 3px;
+}
+
+.join-step--active .join-step__label {
+    color: rgb(var(--join-ink));
+}
+
+/* ── Stage panel ── */
+.join-stage {
+    padding: 2.1rem 2.2rem 2.3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* swapTabPanels hides the inactive stages with the `hidden` attribute, and the
+   `display: flex` above outranks the UA rule that would act on it — without
+   this every stage paints at once. */
+.join-stage[hidden] {
+    display: none;
+}
+
+.join-stage__eyebrow {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(var(--join-ink), 0.8);
+}
+
+.join-stage__heading {
+    margin: 0.5rem 0 0.75rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.5rem, 2.2vw, 2.1rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: #1a1a1a;
+}
+
+.join-stage__lede {
+    max-width: 48rem;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #4a4642;
+}
+
+.join-stage__lede > * + * {
+    margin-top: 0.7rem;
+}
+
+/* Lists written as "- item" in the content module. Custom markers so the
+   bullet takes the level's colour. */
+.join-rich-list {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.join-rich-list li {
+    position: relative;
+    padding-left: 1.15rem;
+}
+
+.join-rich-list li::before {
+    content: "";
+    position: absolute;
+    left: 0.1rem;
+    /* Centred on the first line's cap height rather than the whole item, so a
+       bullet that wraps to two lines keeps its marker beside the first. */
+    top: calc(0.875rem - 0.185rem);
+    width: 0.37rem;
+    height: 0.37rem;
+    border-radius: 999px;
+    background: rgba(var(--join-accent), 0.85);
+}
+
+/* An author who wrote their own marker — "✅ …" — keeps it. The dot above is
+   only the default for a plain "- " list. */
+.join-rich-list li[data-marker] {
+    padding-left: 1.75rem;
+}
+
+.join-rich-list li[data-marker]::before {
+    content: attr(data-marker);
+    top: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    border-radius: 0;
+    background: none;
+    font-size: 0.92em;
+    line-height: inherit;
+}
+
+/* ── Blocks ── */
+.join-block__title {
+    margin-bottom: 0.55rem;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgb(var(--join-ink));
+}
+
+.join-block__note {
+    max-width: 44rem;
+    margin-bottom: 1rem;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: #6b6663;
+}
+
+.join-block__title + .join-routes,
+.join-block__title + .join-steps,
+.join-block__title + .join-faq,
+.join-block__title + .join-filters__bar {
+    margin-top: 0.9rem;
+}
+
+.join-link {
+    color: rgb(var(--join-ink));
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(var(--join-ink), 0.28);
+}
+
+.join-link:hover {
+    border-bottom-color: rgba(var(--join-ink), 0.8);
+}
+
+/* ── Routes ── */
+.join-routes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    gap: 0.9rem;
+    align-items: start;
+}
+
+.join-route {
+    /* Anchors .join-route__stars, and the filter takes rows out with [hidden]. */
+    position: relative;
+    padding: 1.2rem 1.3rem 1.3rem;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(17, 17, 17, 0.07);
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease;
+}
+
+.join-route[hidden] {
+    display: none;
+}
+
+.join-route:hover {
+    transform: translateY(-2px);
+    border-color: rgba(var(--join-ink), 0.18);
+    box-shadow: 0 16px 34px rgba(17, 17, 17, 0.08);
+}
+
+/* Clears the stars so a long meta line does not run under them. */
+.join-route--featured .join-route__meta,
+.join-route--featured .join-route__name {
+    padding-right: 3.4rem;
+}
+
+/* ── Featured cards ──
+   Lifted out of the grid's uniformity by weight rather than size: keeping the
+   footprint identical means the grid stays on its rhythm however many are
+   flagged, and the accent does the pointing. */
+.join-route--featured {
+    background: linear-gradient(180deg, rgba(var(--join-accent), 0.1), rgba(255, 255, 255, 0.66) 60%);
+    border-color: rgba(var(--join-accent), 0.42);
+    box-shadow: 0 12px 30px rgba(var(--join-ink), 0.08);
+}
+
+.join-route--featured:hover {
+    border-color: rgba(var(--join-ink), 0.35);
+    box-shadow: 0 18px 38px rgba(var(--join-ink), 0.14);
+}
+
+/* Three stars in the corner rather than a labelled pill: it marks the card
+   without taking a line of its own or competing with the name. Absolute, so it
+   costs the card no height and every card in the row stays aligned. */
+.join-route__stars {
+    position: absolute;
+    top: 0.95rem;
+    right: 1.1rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    line-height: 1;
+    color: rgba(var(--join-accent), 0.95);
+}
+
+.join-route__meta {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(var(--join-ink), 0.75);
+}
+
+.join-route__name {
+    margin: 0.45rem 0 0.5rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.12rem;
+    line-height: 1.25;
+    color: #181818;
+}
+
+.join-route__blurb {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: #5b5652;
+}
+
+.join-route__highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin: 0.85rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.join-route__highlights li {
+    padding: 0.22rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(var(--join-accent), 0.09);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: rgb(var(--join-ink));
+}
+
+.join-route__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+    margin-top: 0.95rem;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.8rem;
+}
+
+.join-route__links .join-link::after {
+    content: " ↗";
+    font-size: 0.75em;
+    opacity: 0.6;
+}
+
+.join-route__links .join-link[href^="#"]::after,
+.join-route__links .join-link[href^="mailto:"]::after {
+    content: " →";
+}
+
+/* ── Eligibility filter ──
+   Above the card grid on any level whose items carry tags. */
+.join-filters__bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.6rem 1rem;
+    margin-bottom: 0.9rem;
+}
+
+.join-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.join-filter {
+    padding: 0.32rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid rgba(var(--join-ink), 0.2);
+    background: rgba(255, 255, 255, 0.6);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: rgba(var(--join-ink), 0.8);
+    cursor: pointer;
+    transition:
+        background-color 0.16s ease,
+        border-color 0.16s ease,
+        color 0.16s ease;
+}
+
+.join-filter:hover {
+    border-color: rgba(var(--join-ink), 0.42);
+    color: rgb(var(--join-ink));
+}
+
+.join-filter--active {
+    background: linear-gradient(135deg, rgba(var(--join-accent), 0.92), rgba(var(--join-deep), 0.95));
+    border-color: transparent;
+    color: #fff7f5;
+}
+
+.join-filters__count {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(60, 57, 54, 0.45);
+}
+
+/* ── Numbered steps ── */
+.join-steps {
+    counter-reset: join-step;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: 0.9rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.join-step-item {
+    counter-increment: join-step;
+    position: relative;
+    padding: 1.15rem 1.25rem 1.25rem;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(17, 17, 17, 0.06);
+    border-top: 2px solid rgba(var(--join-ink), 0.3);
+}
+
+.join-step-item::before {
+    content: counter(join-step);
+    display: block;
+    margin-bottom: 0.5rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1;
+    color: rgba(var(--join-ink), 0.28);
+}
+
+.join-step-item__title {
+    margin-bottom: 0.45rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.05rem;
+    line-height: 1.25;
+    color: #181818;
+}
+
+.join-step-item__text {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.86rem;
+    line-height: 1.7;
+    color: #5b5652;
+}
+
+/* ── FAQ / advice accordions ── */
+.join-faq {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.join-faq__item {
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(17, 17, 17, 0.06);
+    overflow: hidden;
+}
+
+.join-faq__item[open] {
+    background: rgba(255, 255, 255, 0.72);
+    border-color: rgba(var(--join-ink), 0.16);
+}
+
+.join-faq__question {
+    position: relative;
+    display: block;
+    padding: 0.95rem 3.2rem 0.95rem 1.2rem;
+    cursor: pointer;
+    list-style: none;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1rem;
+    line-height: 1.35;
+    color: #262320;
+}
+
+.join-faq__question::-webkit-details-marker {
+    display: none;
+}
+
+.join-faq__question::after {
+    content: "+";
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    width: 1.7rem;
+    height: 1.7rem;
+    margin-top: -0.85rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: rgba(var(--join-accent), 0.1);
+    color: rgb(var(--join-ink));
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.2rem;
+    line-height: 1;
+    transition: background-color 0.18s ease;
+}
+
+.join-faq__item[open] .join-faq__question::after {
+    content: "−";
+    background: rgba(var(--join-accent), 0.18);
+}
+
+.join-faq__answer {
+    padding: 0 1.2rem 1.2rem;
+}
+
+.join-faq__answer p {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: #5b5652;
+}
+
+.join-faq__answer p + p {
+    margin-top: 0.7rem;
+}
+
+/* ── Callout ── */
+.join-note {
+    padding: 1.05rem 1.3rem 1.15rem;
+    border-radius: 16px;
+    border: 1px solid rgba(var(--join-ink), 0.14);
+    border-left: 3px solid rgba(var(--join-accent), 0.55);
+    background: rgba(var(--join-accent), 0.07);
+}
+
+.join-note--warn {
+    border-left-color: rgba(220, 140, 40, 0.7);
+    background: rgba(255, 250, 238, 0.65);
+}
+
+.join-note__title {
+    margin-bottom: 0.35rem;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgb(var(--join-ink));
+}
+
+.join-note__text {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: #5b5652;
+}
+
+.join-note__text > * + * {
+    margin-top: 0.7rem;
+}
+
+/* Emphasis written as **strong** in the content module. Weight alone reads as
+   an accident at this size, so it takes the level's ink as well. */
+.join-note__text strong,
+.join-stage__lede strong,
+.join-route__blurb strong {
+    font-weight: 600;
+    color: rgb(var(--join-ink));
+}
+
+/* ── Outro ── */
+.join-outro {
+    padding: 1.8rem 2.2rem 1.9rem;
+}
+
+.join-outro__kicker {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(var(--join-ink), 0.8);
+}
+
+.join-outro__title {
+    margin: 0.45rem 0 0.6rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.25rem, 1.8vw, 1.7rem);
+    line-height: 1.2;
+    color: #1a1a1a;
+}
+
+.join-outro__text {
+    max-width: 44rem;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.93rem;
+    line-height: 1.75;
+    color: #4a4642;
+}
+
+.join-outro__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 1.2rem;
 }
 
 .contact-services__hero {
@@ -4706,8 +5437,8 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
     align-items: center;
     justify-content: center;
     border-radius: 999px;
-    background: rgba(255, 85, 85, 0.1);
-    color: #8c3434;
+    background: rgba(var(--join-accent), 0.1);
+    color: rgb(var(--join-ink));
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 1.4rem;
     line-height: 1;
@@ -4718,7 +5449,7 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
 
 .service-card[open] .service-card__summary::after {
     content: "−";
-    background: rgba(255, 85, 85, 0.16);
+    background: rgba(var(--join-accent), 0.16);
 }
 
 .service-card__teaser {
@@ -4742,7 +5473,7 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
     font-size: 0.72rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #7e2f2f;
+    color: rgb(var(--join-ink));
 }
 
 .service-card__timeline {
@@ -4752,7 +5483,7 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
     padding-left: 0;
     list-style: none;
     margin: 0;
-    border-left: 2px solid rgba(140, 52, 52, 0.18);
+    border-left: 2px solid rgba(var(--join-ink), 0.18);
     padding-left: 0.9rem;
 }
 
@@ -4768,7 +5499,7 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #8c3434;
+    color: rgb(var(--join-ink));
 }
 
 .service-card__timeline-desc {
@@ -4977,9 +5708,37 @@ footer {
         display: none;
     }
 
-    .contact-join-layout,
     .contact-services__hero {
         grid-template-columns: 1fr;
+    }
+
+    /* Three levels still fit across a phone, so the rail keeps its single row
+       and its connecting line — only the type comes down to make room. Wrapping
+       to a second row is what would break the line, since it places itself from
+       the column count alone. */
+    .join-step {
+        padding-inline: 0.15rem;
+    }
+
+    .join-step__label {
+        font-size: 0.72rem;
+        line-height: 1.2;
+    }
+
+    .join-console,
+    .join-stage,
+    .join-outro {
+        padding-left: 1.4rem;
+        padding-right: 1.4rem;
+    }
+
+    .join-stage {
+        padding-top: 1.7rem;
+        gap: 1.6rem;
+    }
+
+    .join-filters__bar {
+        justify-content: flex-start;
     }
 
     .contact-services__hero-action {
