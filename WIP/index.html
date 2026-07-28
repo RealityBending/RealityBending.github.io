@@ -47,12 +47,12 @@
                     <span class="nav-brand">Reality Bending Lab</span>
                 </div>
                 <ul>
-                    <li><a href="#sec-people">People</a></li>
+                    <li><a href="#sec-people-full">People</a></li>
                     <li><a href="#sec-research-full">Research</a></li>
                     <li><a href="#sec-blog">Blog</a></li>
-                    <li><a href="#sec-publications">Publications</a></li>
+                    <li><a href="#sec-publications-full">Publications</a></li>
                     <li><a href="#sec-tour">Tour</a></li>
-                    <li><a href="#sec-contact">Information</a></li>
+                    <li><a href="#sec-contact-full">Information</a></li>
                 </ul>
             </nav>
 
@@ -109,6 +109,26 @@
        PEOPLE SECTION
   ════════════════════════════════════ -->
             <section class="people-full" id="sec-people-full">
+                <!-- Dimmed backdrop loop. preload="none" holds the download
+                     until the section scrolls into view; initPeopleVideo in
+                     script.js starts it from there. No autoplay attribute —
+                     it would defeat preload="none" and fetch immediately.
+                     muted + playsinline are what make script-driven play
+                     permitted. Sources are built by encode_intro_bg.sh. -->
+                <div class="people-full__video" aria-hidden="true">
+                    <video
+                        class="people-full__video-el"
+                        poster="img/intro-bg.jpg"
+                        preload="none"
+                        muted
+                        loop
+                        playsinline
+                        disablepictureinpicture
+                    >
+                        <source src="img/intro-bg.webm" type="video/webm; codecs=vp9" />
+                        <source src="img/intro-bg.mp4" type="video/mp4" />
+                    </video>
+                </div>
                 <h2>People</h2>
                 <div class="people-tabs-nav" role="tablist" aria-label="People views">
                     <button
@@ -262,6 +282,15 @@
        CONTACT SECTION
   ════════════════════════════════════ -->
             <section class="contact-full" id="sec-contact-full">
+                <!-- Parallaxed backdrop for the whole section, all three tabs.
+                     Replaces the per-panel .contact-banner this used to be. -->
+                <div
+                    class="contact-full__backdrop"
+                    role="img"
+                    aria-label="University of Sussex collage showing Brighton, campus, and Brighton Pier"
+                >
+                    <span class="contact-full__backdrop-img"></span>
+                </div>
                 <h2 class="contact-full__title">Information</h2>
                 <div class="contact-tabs-nav" role="tablist" aria-label="Information views">
                     <button
@@ -300,18 +329,14 @@
                 </div>
 
                 <div
-                    class="contact-tab-panel contact-tab-panel--with-banner contact-tab-panel--contact"
+                    class="contact-tab-panel contact-tab-panel--contact"
                     id="contact-contact"
                     role="tabpanel"
                     aria-labelledby="contact-tab-btn-contact"
                 >
-                    <div
-                        class="contact-banner"
-                        role="img"
-                        aria-label="University of Sussex collage showing Brighton, campus, and Brighton Pier"
-                    ></div>
                     <div class="contact-full__inner">
                         <div class="contact-panel__content">
+                            <p class="contact-full__eyebrow">Where to find us</p>
                             <p class="contact-full__lede">
                                 The Reality Bending Lab is based in the School of Psychology, at the
                                 <a class="contact-inline-link" href="https://www.sussex.ac.uk/" target="_blank" rel="noreferrer noopener"
@@ -368,17 +393,12 @@
                 </div>
 
                 <div
-                    class="contact-tab-panel contact-tab-panel--with-banner"
+                    class="contact-tab-panel"
                     id="contact-join"
                     role="tabpanel"
                     aria-labelledby="contact-tab-btn-join"
                     hidden
                 >
-                    <div
-                        class="contact-banner"
-                        role="img"
-                        aria-label="University of Sussex collage showing Brighton, campus, and Brighton Pier"
-                    ></div>
                     <div class="contact-join-layout">
                         <div class="contact-panel__content">
                             <p class="contact-full__eyebrow">Work with us</p>

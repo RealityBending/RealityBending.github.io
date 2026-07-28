@@ -9,6 +9,8 @@ import { openMinimalProfile } from "../shared/profile-api.js"
     const LAYOUT_PADDING = 120
     const LANDING_LABEL_IMPORTANCE = 0.48
     const MAX_ZOOM = 7
+    const INITIAL_ZOOM = 1.45
+    const ZOOM_BUTTON_STEP = 1.35
     const GROUP_COLORS = [
         "#ff2f70",
         "#ff5a36",
@@ -558,6 +560,19 @@ import { openMinimalProfile } from "../shared/profile-api.js"
         const aspectRatio = baseViewBox.height / baseViewBox.width
         let dragState = null
 
+        function zoomToCentre(nextWidth) {
+            const centreX = camera.x + camera.width / 2
+            const centreY = camera.y + camera.height / 2
+
+            camera.width = clamp(nextWidth, baseViewBox.width / MAX_ZOOM, baseViewBox.width)
+            camera.height = camera.width * aspectRatio
+            camera.x = centreX - camera.width / 2
+            camera.y = centreY - camera.height / 2
+
+            clampCamera()
+            applyViewBox()
+        }
+
         function applyViewBox() {
             svg.setAttribute("viewBox", [camera.x, camera.y, camera.width, camera.height].map((value) => value.toFixed(2)).join(" "))
             if (onViewChange) {
@@ -645,7 +660,68 @@ import { openMinimalProfile } from "../shared/profile-api.js"
 
         svg.addEventListener("pointerup", endDrag)
         svg.addEventListener("pointercancel", endDrag)
-        applyViewBox()
+
+        // Open part-way in rather than at the full extent: the graph reads as a
+        // view onto something larger, which is most of what tells a reader it
+        // can be moved, and it brings a second tier of labels in.
+        zoomToCentre(baseViewBox.width / INITIAL_ZOOM)
+
+        return { zoomBy: (factor) => zoomToCentre(camera.width * factor) }
+    }
+
+    /* Overlay that says the graph can be moved: a scale showing where the
+       current zoom sits between 1x and MAX_ZOOM, buttons either side of it, and
+       a hint that retires itself once the reader has worked it out. */
+    function buildNetworkControls() {
+        const root = document.createElement("div")
+        root.className = "collaboration-network__controls"
+
+        const hint = document.createElement("p")
+        hint.className = "collaboration-network__hint"
+        hint.textContent = "Scroll to zoom · drag to pan"
+
+        const zoom = document.createElement("div")
+        zoom.className = "collaboration-network__zoom"
+
+        const makeButton = (glyph, label) => {
+            const button = document.createElement("button")
+            button.type = "button"
+            button.className = "collaboration-network__zoom-btn"
+            button.textContent = glyph
+            button.setAttribute("aria-label", label)
+            return button
+        }
+
+        const zoomOut = makeButton("−", "Zoom out")
+        const zoomIn = makeButton("+", "Zoom in")
+
+        const scale = document.createElement("div")
+        scale.className = "collaboration-network__zoom-scale"
+        const fill = document.createElement("span")
+        fill.className = "collaboration-network__zoom-fill"
+        scale.appendChild(fill)
+
+        const readout = document.createElement("span")
+        readout.className = "collaboration-network__zoom-level"
+
+        // Top to bottom: in, scale, out, readout — the usual map-control order.
+        zoom.append(zoomIn, scale, zoomOut, readout)
+        root.append(hint, zoom)
+
+        return {
+            root,
+            setZoom(level) {
+                const progress = clamp((level - 1) / (MAX_ZOOM - 1), 0, 1)
+                fill.style.height = (progress * 100).toFixed(1) + "%"
+                readout.textContent = level.toFixed(1) + "×"
+                zoomOut.disabled = level <= 1.001
+                zoomIn.disabled = level >= MAX_ZOOM - 0.001
+            },
+            bind(controls) {
+                zoomOut.addEventListener("click", () => controls.zoomBy(ZOOM_BUTTON_STEP))
+                zoomIn.addEventListener("click", () => controls.zoomBy(1 / ZOOM_BUTTON_STEP))
+            },
+        }
     }
 
     function renderNetwork(network) {
@@ -857,16 +933,26 @@ import { openMinimalProfile } from "../shared/profile-api.js"
         })
 
         networkContainer.appendChild(svg)
+
+        const overlay = buildNetworkControls()
+        networkContainer.appendChild(overlay.root)
+
+        const markInteracted = () => networkContainer.classList.add("has-interacted")
+        networkContainer.addEventListener("wheel", markInteracted, { passive: true, once: true })
+        networkContainer.addEventListener("pointerdown", markInteracted, { once: true })
+
         syncInteractionState()
-        enablePanZoom(
+        const controls = enablePanZoom(
             svg,
             () => {
                 setHoveredNode(null)
             },
             (zoomLevel) => {
                 updateLabelVisibility(zoomLevel)
+                overlay.setZoom(zoomLevel)
             },
         )
+        overlay.bind(controls)
     }
 
     if (closeCollaboratorsContainer || consultantsContainer) {

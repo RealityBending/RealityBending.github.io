@@ -1,6 +1,7 @@
 ﻿/* publications.js
  * Renders the Publications section from publications/publications_manifest.json.
  */
+import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
 ;(function () {
     const PAGE_SIZE = 5
     const SEARCH_INPUT_DEBOUNCE_MS = 120
@@ -604,9 +605,7 @@
                     b.classList.toggle("pub-tab-btn--active", b.dataset.tab === tab)
                     b.setAttribute("aria-selected", b.dataset.tab === tab ? "true" : "false")
                 })
-                document.querySelectorAll(".pub-tab-panel").forEach((panel) => {
-                    panel.hidden = panel.id !== "pub-tab-" + tab
-                })
+                swapTabPanels(document.querySelectorAll(".pub-tab-panel"), "pub-tab-" + tab)
             }
 
             document.querySelectorAll(".pub-tab-btn").forEach((btn) => {
@@ -619,6 +618,8 @@
                     history.pushState({ section: "publications", tab }, "", url.toString())
                 })
             })
+
+            initMarginTabNav(document.querySelector(".publications-full"), ".pub-tab-btn")
 
             // Restore tab from URL on load
             ;(() => {

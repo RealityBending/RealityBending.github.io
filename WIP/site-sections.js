@@ -17,7 +17,8 @@ export const SITE_SECTIONS = Object.freeze([
     },
     {
         id: "sec-people",
-        navHref: "#sec-people",
+        // The section, not the hero button that shares the id — see sec-contact.
+        navHref: "#sec-people-full",
         scrollTargetId: "sec-people-full",
         pageSectionId: "sec-people-full",
         brainRegionIndex: 0,
@@ -49,7 +50,8 @@ export const SITE_SECTIONS = Object.freeze([
     },
     {
         id: "sec-publications",
-        navHref: "#sec-publications",
+        // The section, not the hero button that shares the id — see sec-contact.
+        navHref: "#sec-publications-full",
         scrollTargetId: "sec-publications-full",
         pageSectionId: "sec-publications-full",
         brainRegionIndex: 1,
@@ -81,7 +83,9 @@ export const SITE_SECTIONS = Object.freeze([
     },
     {
         id: "sec-contact",
-        navHref: "#sec-contact",
+        // The section, not the hero button that shares the "sec-contact" id —
+        // the nav link is an anchor, so it goes wherever this points.
+        navHref: "#sec-contact-full",
         scrollTargetId: "sec-contact-full",
         pageSectionId: "sec-contact-full",
         brainRegionIndex: 2,

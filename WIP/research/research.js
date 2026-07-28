@@ -1,4 +1,5 @@
 import { RESEARCH_CONTENT } from "./research-content.js"
+import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
 ;(function () {
     const root = document.getElementById("research-root")
     if (!root) return
@@ -132,9 +133,7 @@ import { RESEARCH_CONTENT } from "./research-content.js"
             button.classList.toggle("research-tab-btn--active", isActive)
             button.setAttribute("aria-selected", isActive ? "true" : "false")
         })
-        panels.forEach((panel) => {
-            panel.hidden = panel.id !== "research-tab-" + tabId
-        })
+        swapTabPanels(panels, "research-tab-" + tabId)
     }
 
     tabs.forEach((tab, index) => {
@@ -159,4 +158,6 @@ import { RESEARCH_CONTENT } from "./research-content.js"
     shell.appendChild(nav)
     shell.appendChild(panelHost)
     root.replaceChildren(shell)
+
+    initMarginTabNav(document.querySelector(".research-full"), ".research-tab-btn")
 })()

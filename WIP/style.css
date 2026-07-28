@@ -13,13 +13,19 @@ body {
 }
 
 :root {
-    --intro-bg-fade-duration: 500ms;
+    --intro-bg-lighten-duration: 300ms;
     --intro-door-open-delay: 500ms;
     --intro-door-swing-duration: 500ms;
-    --intro-door-zoom-delay: 250ms;
-    --intro-door-zoom-duration: 1100ms;
-    --intro-screen-fade-delay: 2000ms;
-    --intro-screen-fade-duration: 600ms;
+    /* Zoom starts mid-swing and lands with everything else at 1200ms. */
+    --intro-door-zoom-delay: 150ms;
+    --intro-door-zoom-duration: 550ms;
+    /* The whole landing screen — grey, doors and all — dissolves in one go:
+       the grey holds until 900ms, then 300ms of fade takes the screen out at
+       1200ms. Nothing is animating past that point, and the screen covers the
+       viewport until it goes, so ending here is what makes the hero clickable
+       as soon as it is on show. */
+    --intro-screen-fade-delay: 900ms;
+    --intro-screen-fade-duration: 300ms;
     --main-overlay-fade-delay: 300ms;
     --main-overlay-fade-duration: 1000ms;
     --section-research: #33cccc;
@@ -51,16 +57,38 @@ body {
         visibility 0s linear calc(var(--intro-screen-fade-delay) + var(--intro-screen-fade-duration));
 }
 
-/* gradient overlay — faded out separately before doors swing */
+/* Landing backdrop, in two layers. The base is the near-white the black logo is
+   read against once the doors are clicked; the ::after on top of it is the near
+   black the white logo starts on. Clicking fades the dark layer out — a lighter
+   *overlay* could never lighten what is under it, and gradients do not
+   interpolate reliably, so the crossfade is done with opacity. The base needs
+   no fade of its own — #door-screen takes the whole landing screen out at
+   900 → 1200ms, grey and doors together, and two stacked fades over the same
+   window would only make the grey vanish faster than the doors.
+
+   The click reads as the backdrop and the logo swapping tones rather than as a
+   light coming on. The light layer is flat at 0.92 — enough of the hero comes
+   through to keep it grey rather than glaring, and the horizontal ramp the dark
+   layer has is not worth carrying at that alpha. The dark layer's alphas are
+   set against the light base under it, not against the page, which is why they
+   are higher than they look like they need to be: composited they come out at
+   the same tone the single dark layer had before it was split in two. */
 #door-bg {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to right, rgba(17, 17, 17, 0.75), rgba(17, 17, 17, 0.95) 50%, rgba(17, 17, 17, 0.75));
-    transition: opacity var(--intro-bg-fade-duration) ease;
+    background: rgba(230, 230, 227, 0.92);
     pointer-events: none;
 }
 
-#door-screen.opening #door-bg {
+#door-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(17, 17, 17, 0.75), rgba(17, 17, 17, 0.95) 50%, rgba(17, 17, 17, 0.75));
+    transition: opacity var(--intro-bg-lighten-duration) ease;
+}
+
+#door-screen.opening #door-bg::after {
     opacity: 0;
 }
 
@@ -131,7 +159,9 @@ body {
     max-width: 220px;
     pointer-events: none;
     opacity: 1;
-    transition: opacity 0.4s ease var(--intro-door-open-delay);
+    /* Goes with the lightening, not after it — white rain on the lighter grey
+       reads as washed out rather than as a fade. */
+    transition: opacity var(--intro-bg-lighten-duration) ease;
 }
 
 .rain-canvas--left {
@@ -159,10 +189,14 @@ body {
     white-space: nowrap;
     pointer-events: none;
     animation: pulse 2.2s ease-in-out infinite;
-    transition: opacity 0.3s ease var(--intro-door-open-delay);
+    /* Same reasoning as the rain: white text, gone before the grey lightens. */
+    transition: opacity var(--intro-bg-lighten-duration) ease;
 }
 
 #door-screen.opening .click-hint {
+    /* The pulse animates opacity, and an animation outranks a transition — so
+       it has to be cancelled here or the hint never actually fades. */
+    animation: none;
     opacity: 0;
 }
 
@@ -958,7 +992,60 @@ nav a.nav-link.active {
     position: relative;
     overflow-x: clip;
     overflow-y: visible;
+    /* Makes this a stacking context so the backdrop's z-index: -1 is scoped
+       here — it paints above this section's own background but below all the
+       content, without any child needing a z-index of its own. */
+    isolation: isolate;
 }
+
+/* ── Backdrop video ──
+   Sized to the full section width at its own 16:9 ratio, so the whole frame is
+   always visible — nothing is cropped. It ends up shorter than the section,
+   and that leftover height is exactly the room the parallax moves within
+   (--people-video-parallax, written by initPeopleVideo in script.js). */
+/* Gated to the team roster tab — script.js sets .people-full--video-on from
+   the lab panel's hidden state, and the other two tabs stay plain. */
+.people-full__video {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.people-full--video-on .people-full__video {
+    opacity: 1;
+}
+
+.people-full__video-el {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    /* Declared rather than inherited from the file so the box has its final
+       height before any metadata loads — no reflow, and the parallax can
+       measure the slack straight away. */
+    aspect-ratio: 16 / 9;
+    height: auto;
+    transform: translate3d(0, calc(-50% + var(--people-video-parallax, 0px)), 0);
+    will-change: transform;
+    /* Dimmed: texture behind the page rather than footage on it. */
+    opacity: 0.24;
+    filter: grayscale(0.28) contrast(0.95);
+    /* Feathers the top and bottom edges of the band into the page colour so
+       the letterboxing never reads as a hard horizontal seam. */
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 20%, #000 80%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 20%, #000 80%, transparent 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .people-full__video-el {
+        transform: translate3d(0, -50%, 0);
+    }
+}
+
 
 .people-full h2 {
     position: relative;
@@ -980,7 +1067,7 @@ nav a.nav-link.active {
     max-width: var(--content-max-width);
     margin: 0 auto 2rem;
     padding: 0 var(--content-inline-gutter);
-    border-bottom: 1px solid rgba(85, 100, 160, 0.15);
+    border-bottom: 1px solid color-mix(in srgb, var(--section-people) 22%, transparent);
 }
 
 .people-tab-btn {
@@ -994,7 +1081,7 @@ nav a.nav-link.active {
     border-bottom: 2px solid transparent;
     margin-bottom: -1px;
     background: transparent;
-    color: rgba(85, 100, 160, 0.45);
+    color: color-mix(in srgb, var(--section-people) 48%, transparent);
     cursor: pointer;
     transition:
         color 0.15s ease,
@@ -1002,16 +1089,139 @@ nav a.nav-link.active {
 }
 
 .people-tab-btn:hover {
-    color: rgba(85, 100, 160, 0.8);
+    color: color-mix(in srgb, var(--section-people) 78%, transparent);
 }
 
 .people-tab-btn--active {
-    color: rgba(85, 100, 160, 1);
-    border-bottom-color: rgba(85, 100, 160, 0.7);
+    color: var(--section-people);
+    border-bottom-color: var(--section-people);
 }
 
 .people-tab-panel {
     width: 100%;
+}
+
+/* ── Shared tab panel transition (driven by shared/tab-slide.js) ── */
+@keyframes tab-panel-leave {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-60%);
+        opacity: 0;
+    }
+}
+
+@keyframes tab-panel-leave-back {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(60%);
+        opacity: 0;
+    }
+}
+
+@keyframes tab-panel-enter {
+    from {
+        opacity: 0.25;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* forwards so the panel stays gone for the frame between the animation ending
+   and the script setting `hidden`. */
+.tab-panel--leaving {
+    animation: tab-panel-leave 0.32s cubic-bezier(0.4, 0, 1, 1) forwards;
+    will-change: transform, opacity;
+}
+
+.tab-panel--leaving-back {
+    animation: tab-panel-leave-back 0.32s cubic-bezier(0.4, 0, 1, 1) forwards;
+    will-change: transform, opacity;
+}
+
+.tab-panel--entering {
+    animation: tab-panel-enter 0.3s ease-out;
+}
+
+/* ── Margin tab navigation (see shared/tab-slide.js) ── */
+.tab-margin-host {
+    position: relative;
+}
+
+/* The strip between the section edge and its centred content column. */
+.tab-margin-nav {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+    width: calc((100% - var(--content-inline-size)) / 2);
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    appearance: none;
+}
+
+.tab-margin-nav--prev {
+    left: 0;
+}
+
+.tab-margin-nav--next {
+    right: 0;
+}
+
+/* Sticky so the affordance stays in view down a long section. Visible at rest
+   — it is the only sign the margins are clickable — and grows on hover. */
+.tab-margin-nav__chevron {
+    position: sticky;
+    top: 50vh;
+    display: block;
+    width: 0.95rem;
+    height: 0.95rem;
+    margin: 0 auto;
+    border-right: 2px solid rgba(17, 17, 17, 0.55);
+    border-bottom: 2px solid rgba(17, 17, 17, 0.55);
+    opacity: 0.32;
+    transition:
+        opacity 0.2s ease,
+        translate 0.2s ease,
+        scale 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tab-margin-nav--prev .tab-margin-nav__chevron {
+    rotate: 135deg;
+}
+
+.tab-margin-nav--next .tab-margin-nav__chevron {
+    rotate: -45deg;
+}
+
+.tab-margin-nav:hover .tab-margin-nav__chevron,
+.tab-margin-nav:focus-visible .tab-margin-nav__chevron {
+    opacity: 0.8;
+    scale: 1.45;
+}
+
+.tab-margin-nav--prev:hover .tab-margin-nav__chevron {
+    translate: -0.25rem 0;
+}
+
+.tab-margin-nav--next:hover .tab-margin-nav__chevron {
+    translate: 0.25rem 0;
+}
+
+/* Below this the margin is just the page gutter — too narrow to aim at, and
+   it would swallow taps meant for the content. */
+@media (max-width: 1300px) {
+    .tab-margin-nav {
+        display: none;
+    }
 }
 
 /* ── Memories gallery ─────────────────────────────────────────── */
@@ -1430,6 +1640,124 @@ nav a.nav-link.active {
     display: block;
 }
 
+/* ── Network zoom legend + hint ── */
+.collaboration-network__controls {
+    position: absolute;
+    inset: 1.1rem;
+    z-index: 2;
+    /* Only the zoom pill takes clicks; the rest stays draggable. */
+    pointer-events: none;
+}
+
+.collaboration-network__hint {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(214, 224, 255, 0.5);
+    transition: opacity 0.45s ease;
+}
+
+/* Retires itself once the reader has taken the point. */
+.collaboration-network.has-interacted .collaboration-network__hint {
+    opacity: 0;
+}
+
+.collaboration-network__zoom {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 0.45rem 0.45rem;
+    border-radius: 999px;
+    background: rgba(10, 14, 30, 0.72);
+    border: 1px solid rgba(133, 154, 255, 0.18);
+    backdrop-filter: blur(6px);
+    pointer-events: auto;
+    cursor: default;
+}
+
+.collaboration-network__zoom-btn {
+    display: grid;
+    place-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
+    border: 1px solid rgba(133, 154, 255, 0.22);
+    border-radius: 50%;
+    background: transparent;
+    color: rgba(226, 232, 255, 0.85);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        opacity 0.18s ease;
+}
+
+.collaboration-network__zoom-btn:hover:not(:disabled) {
+    background: rgba(133, 154, 255, 0.18);
+    border-color: rgba(133, 154, 255, 0.5);
+}
+
+.collaboration-network__zoom-btn:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+/* Vertical track; ticks mark each whole step between 1x and MAX_ZOOM
+   (7 → 6 intervals). Reads bottom-up, so zoomed-in is a taller bar. */
+.collaboration-network__zoom-scale {
+    position: relative;
+    width: 3px;
+    height: 5.5rem;
+    border-radius: 999px;
+    background-color: rgba(196, 209, 255, 0.16);
+    background-image: repeating-linear-gradient(
+        to bottom,
+        rgba(196, 209, 255, 0.45) 0 1px,
+        transparent 1px calc(100% / 6)
+    );
+}
+
+.collaboration-network__zoom-fill {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 0;
+    border-radius: 999px;
+    background: rgba(226, 232, 255, 0.9);
+    transition: height 0.18s ease;
+}
+
+.collaboration-network__zoom-level {
+    text-align: center;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: rgba(226, 232, 255, 0.75);
+    font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 640px) {
+    .collaboration-network__hint {
+        display: none;
+    }
+}
+
 .collaboration-network__edge {
     stroke: rgba(196, 209, 255, 0.18);
     stroke-width: 1.05;
@@ -1590,7 +1918,9 @@ nav a.nav-link.active {
 
 /* ── Layers ── */
 .mlp-layer {
-    --layer-color: transparent;
+    /* Ink for the vertical role label and the member names. */
+    --layer-ink: rgba(17, 17, 17, 0.42);
+    --layer-ink-strong: #111;
     position: relative;
     z-index: 1;
     display: flex;
@@ -1606,24 +1936,6 @@ nav a.nav-link.active {
         opacity 0.6s ease,
         transform 0.6s ease;
     transition-delay: calc(var(--layer-index, 0) * 0.15s + 0.15s);
-}
-
-/* Band background — extends to viewport edges via ::before */
-.mlp-layer::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: calc(-50vw + 50%);
-    right: calc(-50vw + 50%);
-    background: linear-gradient(
-        to right,
-        color-mix(in srgb, var(--layer-color) 48%, transparent),
-        color-mix(in srgb, var(--layer-color) 15%, transparent) 40%,
-        transparent 80%
-    );
-    z-index: -1;
-    pointer-events: none;
 }
 
 .mlp-network.is-visible .mlp-layer {
@@ -1648,7 +1960,7 @@ nav a.nav-link.active {
     font-weight: 600;
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: var(--layer-color, #888);
+    color: var(--layer-ink);
     text-shadow: none;
     white-space: nowrap;
 }
@@ -1666,14 +1978,16 @@ nav a.nav-link.active {
 
 /* ── Nodes ── */
 .mlp-node {
-    --mlp-avatar-size: 110px;
-    --mlp-keyword-size: 190px;
+    /* The keyword ring's SVG geometry is authored against a 190/110 ratio to
+       the avatar, so the two sizes move together. */
+    --mlp-avatar-size: 156px;
+    --mlp-keyword-size: 270px;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.6rem;
-    width: clamp(9rem, 14vw, 12rem);
+    gap: 0.75rem;
+    width: clamp(11rem, 17vw, 14rem);
     transition:
         transform 0.3s ease,
         opacity 0.35s ease;
@@ -1703,10 +2017,10 @@ nav a.nav-link.active {
 .mlp-node:hover .mlp-node__ring,
 .mlp-node.is-active .mlp-node__ring {
     padding: 4px;
-    background: var(--node-color, rgba(85, 153, 255, 0.7));
+    background: var(--node-color, rgba(170, 85, 255, 0.7));
     box-shadow:
-        0 0 20px color-mix(in srgb, var(--node-color, rgba(85, 153, 255, 0.7)) 50%, transparent),
-        0 0 40px color-mix(in srgb, var(--node-color, rgba(85, 153, 255, 0.7)) 15%, transparent);
+        0 0 20px color-mix(in srgb, var(--node-color, rgba(170, 85, 255, 0.7)) 50%, transparent),
+        0 0 40px color-mix(in srgb, var(--node-color, rgba(170, 85, 255, 0.7)) 15%, transparent);
 }
 
 .mlp-node__avatar {
@@ -1728,7 +2042,7 @@ nav a.nav-link.active {
     height: var(--mlp-avatar-size);
     translate: -50% 0;
     border-radius: 50%;
-    border: 1px solid color-mix(in srgb, var(--node-color, rgba(85, 153, 255, 0.94)) 25%, transparent);
+    border: 1px solid color-mix(in srgb, var(--node-color, rgba(170, 85, 255, 0.94)) 25%, transparent);
     animation: mlp-node-pulse 5s ease-out infinite;
     pointer-events: none;
     will-change: transform, opacity;
@@ -1747,19 +2061,19 @@ nav a.nav-link.active {
 
 .mlp-node__name {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 0.78rem;
+    font-size: 0.84rem;
     font-weight: 600;
     letter-spacing: 0.06em;
-    color: rgba(17, 17, 17, 0.6);
+    color: var(--layer-ink);
     text-align: center;
-    max-width: 12rem;
+    max-width: 13rem;
     white-space: normal;
     transition: color 0.3s ease;
 }
 
 .mlp-node:hover .mlp-node__name,
 .mlp-node.is-active .mlp-node__name {
-    color: #111;
+    color: var(--layer-ink-strong);
 }
 
 /* ── Keyword ring (3 curved slots, shown on hover) ── */
@@ -1787,7 +2101,7 @@ nav a.nav-link.active {
 }
 
 .mlp-keyword-disc {
-    fill: var(--node-color, rgba(85, 153, 255, 0.94));
+    fill: var(--node-color, rgba(170, 85, 255, 0.94));
     filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.15));
 }
 
@@ -1821,15 +2135,10 @@ nav a.nav-link.active {
     position: absolute;
     top: 0;
     bottom: 0;
-    left: calc(-50vw + 50%);
-    right: calc(-50vw + 50%);
-    background: linear-gradient(
-        to right,
-        rgba(85, 100, 160, 0.14),
-        rgba(85, 100, 160, 0.055) 42%,
-        rgba(85, 100, 160, 0.02) 78%,
-        transparent
-    );
+    left: -100vw;
+    right: -100vw;
+    /* Closes the ladder with the section colour rather than another grey. */
+    background: color-mix(in srgb, var(--section-people) 16%, transparent);
     z-index: -1;
     pointer-events: none;
 }
@@ -1845,17 +2154,17 @@ nav a.nav-link.active {
     gap: 0.7em;
     width: 100%;
     padding: 0.85em clamp(0.75rem, 3vw, 2.5rem);
-    background: rgba(255, 255, 255, 0.16);
+    background: transparent;
     border: none;
-    border-top: 1px solid rgba(85, 100, 160, 0.12);
-    border-bottom: 1px solid rgba(85, 100, 160, 0.12);
+    border-top: 1px solid color-mix(in srgb, var(--section-people) 25%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--section-people) 25%, transparent);
     cursor: pointer;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: rgba(85, 100, 160, 0.5);
+    color: color-mix(in srgb, var(--section-people) 70%, transparent);
     transition:
         background 0.18s ease,
         color 0.18s ease;
@@ -1863,8 +2172,8 @@ nav a.nav-link.active {
 
 .alumni-band__trigger:hover,
 .alumni-band__trigger.is-open {
-    background: rgba(255, 255, 255, 0.34);
-    color: rgba(85, 100, 160, 0.85);
+    background: color-mix(in srgb, var(--section-people) 8%, transparent);
+    color: var(--section-people);
 }
 
 .alumni-band__count {
@@ -1875,7 +2184,7 @@ nav a.nav-link.active {
     height: 1.5em;
     padding: 0 0.35em;
     border-radius: 999px;
-    background: rgba(85, 100, 160, 0.12);
+    background: color-mix(in srgb, var(--section-people) 18%, transparent);
     font-size: 0.9em;
     font-weight: 600;
     letter-spacing: 0;
@@ -1902,7 +2211,6 @@ nav a.nav-link.active {
     justify-items: center;
     gap: 1.4rem clamp(0.9rem, 2vw, 1.2rem);
     padding: 1.75rem clamp(0.75rem, 3vw, 2.5rem) 2rem;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
 }
 
 .alumni-card {
@@ -1932,11 +2240,13 @@ nav a.nav-link.active {
     height: 96px;
     border-radius: 50%;
     object-fit: cover;
-    background: linear-gradient(160deg, rgba(107, 124, 199, 0.18), rgba(229, 236, 255, 0.7));
+    background: rgba(17, 17, 17, 0.06);
     border: 0;
     display: block;
-    filter: grayscale(22%);
-    box-shadow: 0 10px 22px rgba(63, 54, 42, 0.1);
+    /* Fully desaturated at rest; the colour returns on hover, which is the
+       only place it appears in this band. */
+    filter: grayscale(100%);
+    box-shadow: 0 10px 22px rgba(17, 17, 17, 0.08);
     transition:
         filter 0.16s ease,
         transform 0.16s ease,
@@ -1947,7 +2257,7 @@ nav a.nav-link.active {
 .alumni-card:focus-visible .alumni-card__avatar {
     filter: grayscale(0%);
     transform: scale(1.03);
-    box-shadow: 0 16px 28px rgba(63, 54, 42, 0.16);
+    box-shadow: 0 16px 28px rgba(17, 17, 17, 0.14);
 }
 
 .alumni-card__name {
@@ -1988,7 +2298,7 @@ nav a.nav-link.active {
 
 /* ── Profile sliding panel ── */
 .profile-panel {
-    --profile-accent: rgba(85, 153, 255, 0.94);
+    --profile-accent: rgba(170, 85, 255, 0.94);
     position: fixed;
     top: 0;
     right: 0;
@@ -2537,7 +2847,7 @@ nav a.nav-link.active {
     text-transform: uppercase;
     padding: 0.3rem 0.8rem;
     border-radius: 999px;
-    background: rgba(85, 153, 255, 0.1);
+    background: rgba(17, 17, 17, 0.05);
     color: #555;
 }
 
@@ -2615,7 +2925,7 @@ nav a.nav-link.active {
     top: 0.95rem;
     bottom: 0.95rem;
     width: 1px;
-    background: linear-gradient(180deg, rgba(85, 153, 255, 0.55), rgba(85, 153, 255, 0.12));
+    background: linear-gradient(180deg, rgba(17, 17, 17, 0.22), rgba(17, 17, 17, 0.06));
 }
 
 .profile-panel__education-list.has-one-entry::before {
@@ -2884,14 +3194,14 @@ nav a.nav-link.active {
     height: 3.3rem;
     margin: 0;
     padding: 0 0.92rem;
-    border: 1px solid color-mix(in srgb, var(--discover-color, rgba(85, 153, 255, 0.94)) 24%, rgba(255, 255, 255, 0.35));
+    border: 1px solid color-mix(in srgb, var(--discover-color, rgba(170, 85, 255, 0.94)) 24%, rgba(255, 255, 255, 0.35));
     border-radius: 24px;
     background:
         radial-gradient(circle at 18% 20%, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0) 26%),
         linear-gradient(
             160deg,
-            color-mix(in srgb, var(--discover-color, rgba(85, 153, 255, 0.94)) 76%, white),
-            color-mix(in srgb, var(--discover-color, rgba(85, 153, 255, 0.94)) 90%, #172030)
+            color-mix(in srgb, var(--discover-color, rgba(170, 85, 255, 0.94)) 76%, white),
+            color-mix(in srgb, var(--discover-color, rgba(170, 85, 255, 0.94)) 90%, #172030)
         );
     color: #fff;
     cursor: pointer;
@@ -3887,6 +4197,11 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
 .contact-full {
     padding: 4rem var(--content-inline-gutter);
     background: #f5f4ef;
+    position: relative;
+    overflow-x: clip;
+    /* Stacking context so the backdrop's z-index: -1 lands above this
+       section's own background rather than behind it. */
+    isolation: isolate;
 }
 
 .contact-full__title {
@@ -3937,13 +4252,17 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
     border-bottom-color: rgba(255, 85, 85, 0.72);
 }
 
+/* Bands of banner above and below the content, equal on all three tabs, so the
+   panel sits centred in the image rather than hanging off the tab line. They
+   are not equal numbers: the section's own 4rem bottom padding falls below the
+   panel and below the panel only, so the top has to carry it to come out even.
+   The bands are also what stops the image being a thin strip — and the height
+   they add is where the parallax gets its travel. */
 .contact-tab-panel {
-    padding-top: 2rem;
+    --contact-band: clamp(4rem, 7vw, 7rem);
+    padding-top: calc(var(--contact-band) + 4rem);
+    padding-bottom: var(--contact-band);
     scroll-margin-top: 5.5rem;
-}
-
-.contact-tab-panel--with-banner {
-    padding-top: 0;
 }
 
 .contact-full__inner {
@@ -3969,8 +4288,34 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
     height: 100%;
 }
 
+/* ── Contact tab: one frosted panel, split between the details and the map ──
+   The details used to sit bare on the section background, which stopped
+   working once that background became a photograph. Giving the pair a single
+   surface — rather than two separate cards with a gap — keeps it reading as
+   one object floating over the image. */
+.contact-tab-panel--contact .contact-full__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+    gap: 0;
+    align-items: stretch;
+    /* The panel's own padding does the spacing now that it is centred. */
+    margin-top: 0;
+    /* Enough of the banner comes through to read as glass over the photograph;
+       the blur below is what keeps the text legible at this alpha. */
+    background: rgba(252, 251, 248, 0.78);
+    backdrop-filter: blur(16px) saturate(1.08);
+    -webkit-backdrop-filter: blur(16px) saturate(1.08);
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 26px;
+    box-shadow: 0 26px 60px rgba(17, 17, 17, 0.16);
+    /* Clips the map flush into the panel's corners. */
+    overflow: hidden;
+}
+
 .contact-tab-panel--contact .contact-panel__content {
-    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2.4rem;
     background: none;
     border: 0;
     border-radius: 0;
@@ -4096,8 +4441,14 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+.contact-tab-panel--contact .contact-full__eyebrow {
+    margin: 0 0 0.7rem;
+}
+
 .contact-tab-panel--contact .contact-full__lede {
     margin-bottom: 0;
+    font-size: 1.02rem;
+    color: #3c3936;
 }
 
 .contact-tab-panel--contact .contact-full__lede .contact-inline-link {
@@ -4105,12 +4456,19 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
     font-weight: 600;
 }
 
+/* Sized down previously to survive on the open background; on its own surface
+   it can go back to a comfortable reading size. */
 .contact-tab-panel--contact .contact-detail p,
 .contact-tab-panel--contact .contact-inline-link {
-    font-size: 0.84rem;
-    line-height: 1.55;
-    color: #5b5652;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: #4a4642;
     font-weight: 400;
+}
+
+.contact-tab-panel--contact .contact-inline-link {
+    font-weight: 600;
+    color: #7e2f2f;
 }
 
 .contact-full__actions {
@@ -4164,6 +4522,15 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
     box-shadow: 0 12px 36px rgba(17, 17, 17, 0.08);
 }
 
+/* Inside the split panel the map is flush to the edges — the panel supplies
+   the radius and shadow, and a hairline does the dividing. */
+.contact-tab-panel--contact .contact-full__map {
+    min-height: clamp(20rem, 30vw, 26rem);
+    border-radius: 0;
+    box-shadow: none;
+    border-left: 1px solid rgba(17, 17, 17, 0.09);
+}
+
 .contact-full__map iframe {
     width: 100%;
     height: 100%;
@@ -4179,27 +4546,50 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
     margin: 0 auto;
 }
 
-.contact-banner {
-    position: relative;
-    --contact-banner-travel: clamp(5rem, 10vw, 10rem);
-    max-width: var(--content-max-width);
-    min-height: clamp(12rem, 17vw, 15rem);
-    margin: 0 auto 1.5rem;
-    border-radius: 0;
+/* ── Section backdrop ──
+   Behind all three tabs. Unlike the People video — which is sized *shorter*
+   than its section so the whole frame stays visible — this is a background
+   image, so it runs taller than its wrapper and is cropped by it. That
+   overhang is what gives it room to move; sized to the wrapper it would have
+   almost none. --contact-parallax is written by initInformationBackdrop in
+   script.js.
+
+   Starts at the tab line rather than the section top, so the image reads as a
+   banner hanging under the tab row instead of running behind the heading.
+   --contact-backdrop-top is measured and written by initInformationBackdrop —
+   the tab row wraps to a second line on narrow viewports, so it cannot be
+   hardcoded; the value here is only what first paint uses. */
+.contact-full__backdrop {
+    --contact-backdrop-top: 10rem;
+    position: absolute;
+    inset: var(--contact-backdrop-top) 0 0;
+    z-index: -1;
     overflow: hidden;
-    background: linear-gradient(180deg, rgba(245, 244, 239, 0.2), rgba(245, 244, 239, 0.2));
-    box-shadow: 0 18px 40px rgba(17, 17, 17, 0.08);
+    pointer-events: none;
 }
 
-.contact-banner::before {
-    content: "";
+.contact-full__backdrop-img {
     position: absolute;
-    inset: 0 0 calc(var(--contact-banner-travel) * -1) 0;
-    background:
-        linear-gradient(180deg, rgba(17, 17, 17, 0.04), rgba(17, 17, 17, 0.2)),
-        url("img/sussex.png") center top / 100% auto no-repeat;
-    transform: translateY(var(--contact-banner-offset, 0px));
+    left: 0;
+    right: 0;
+    /* 14% over the banner's top and bottom — the travel headroom, and the only
+       thing that sets how far the parallax can move. More than this starts to
+       crop the collage noticeably, and it is not needed: the full headroom is
+       now spent across the scroll rather than a quarter of it. */
+    top: -14%;
+    bottom: -14%;
+    display: block;
+    background: url("img/sussex-bg.jpg") center / cover no-repeat;
+    transform: translate3d(0, var(--contact-parallax, 0px), 0);
     will-change: transform;
+    /* Full strength and full colour, top to bottom — no fade over it. */
+    opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .contact-full__backdrop-img {
+        transform: none;
+    }
 }
 
 .contact-join-layout {
@@ -4563,6 +4953,20 @@ footer {
         grid-template-columns: 1fr;
     }
 
+    /* Stacked, so the map divider moves to the top edge. */
+    .contact-tab-panel--contact .contact-full__inner {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-tab-panel--contact .contact-panel__content {
+        padding: 1.75rem;
+    }
+
+    .contact-tab-panel--contact .contact-full__map {
+        border-left: 0;
+        border-top: 1px solid rgba(17, 17, 17, 0.09);
+    }
+
     .contact-tabs-nav {
         justify-content: flex-start;
         overflow-x: auto;
@@ -4580,15 +4984,6 @@ footer {
 
     .contact-services__hero-action {
         justify-content: flex-start;
-    }
-
-    .contact-banner {
-        min-height: 9.5rem;
-        background-position: center;
-    }
-
-    .contact-banner::before {
-        transform: none;
     }
 
     .fab-group {
@@ -4618,19 +5013,11 @@ footer {
         padding: 0;
     }
 
-    .mlp-node__ring {
-        width: 82px;
-        height: 82px;
-    }
-
-    .mlp-node__pulse {
-        width: 82px;
-        height: 82px;
-    }
-
+    /* The ring and pulse already track --mlp-avatar-size, so the two vars are
+       the only thing that needs to change here. */
     .mlp-node {
-        --mlp-avatar-size: 82px;
-        --mlp-keyword-size: 142px;
+        --mlp-avatar-size: 108px;
+        --mlp-keyword-size: 187px;
         width: auto;
     }
 
@@ -4684,18 +5071,39 @@ footer {
 
     /* The sidebar inset lives on the sections rather than on #main-page: the
        scroll container clips overflow, so anything indented there can never
-       bleed back out to the left edge. */
-    #main-page > *:not(nav):not(.fab-group):not(.hero) {
+       bleed back out to the left edge. Sections that paint a full-bleed
+       background are excluded and take the sidebar as padding instead, so
+       their backgrounds still reach the screen edge — the sidebar is only
+       part-way in while the hero is still on screen, and a band that stopped
+       at 14rem showed as a cut. */
+    #main-page > *:not(nav):not(.fab-group):not(.hero):not(.people-full) {
         margin-left: 14rem;
         width: calc(100% - 14rem);
     }
 
-    /* The hero keeps the full width so its dark half runs under the sidebar to
-       the screen edge; the sidebar width is folded into its padding instead so
-       the intro column still lines up with every other section. */
+    /* Folding the sidebar width into the padding keeps the intro column lined
+       up with every other section. */
     .hero {
         padding-left: calc(14rem + max(var(--content-inline-gutter), (100% - 14rem - var(--content-max-width)) / 2));
         padding-right: max(var(--content-inline-gutter), calc((100% - 14rem - var(--content-max-width)) / 2));
+    }
+
+    /* The parallax backdrop is clipped by .people-full's own overflow-x, so
+       padding here lets it run to the screen edge. */
+    .people-full {
+        padding-left: 14rem;
+    }
+
+    /* That padding is the one place a section's content column is not centred
+       in its padding box, which is what .tab-margin-nav's width assumes — so
+       both zones need the sidebar taken out of the maths by hand, or the right
+       one reaches back over the content. */
+    .people-full > .tab-margin-nav--prev {
+        width: calc(14rem + (100% - 14rem - var(--content-max-width)) / 2);
+    }
+
+    .people-full > .tab-margin-nav--next {
+        width: calc((100% - 14rem - var(--content-max-width)) / 2);
     }
 }
 

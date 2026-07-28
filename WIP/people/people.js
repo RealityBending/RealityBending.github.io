@@ -1,6 +1,7 @@
 import { openImageLightbox } from "../shared/media-lightbox.js"
 import { buildMemoryMeta, getMemoriesManifest } from "../shared/memories-data.js"
 import { registerProfileActions } from "../shared/profile-api.js"
+import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
 
 /* people.js
  * Renders the People section as a Multi-Layered Perceptron (MLP) diagram.
@@ -20,11 +21,21 @@ import { registerProfileActions } from "../shared/profile-api.js"
         "Research Assistant": "Research Assistants",
     }
 
+    /* Accent per level — drives the node circle and the member's profile panel.
+       Values are the site section palette (see :root in style.css) so the
+       people section stays inside the same set of hues. */
     const CATEGORY_COLORS = {
-        PI: "rgba(20, 60, 140, 0.94)",
-        Postdoc: "rgba(55, 120, 220, 0.90)",
-        "PhD Student": "rgba(140, 60, 200, 0.88)",
-        "Research Assistant": "rgba(180, 40, 40, 0.88)",
+        PI: "rgba(85, 153, 255, 0.94)", // #5599ff blue
+        Postdoc: "rgba(51, 204, 204, 0.94)", // #33cccc teal
+        "PhD Student": "rgba(85, 204, 119, 0.94)", // #55cc77 green
+        "Research Assistant": "rgba(255, 85, 85, 0.94)", // #ff5555 red
+        Alumni: "rgba(170, 85, 255, 0.94)", // #aa55ff purple, matching their band
+    }
+
+    const DEFAULT_ACCENT = "rgba(170, 85, 255, 0.94)"
+
+    function accentFor(category) {
+        return CATEGORY_COLORS[category] || DEFAULT_ACCENT
     }
 
     const DEFAULT_AVATAR = "img/default_avatar.png"
@@ -655,9 +666,7 @@ import { registerProfileActions } from "../shared/profile-api.js"
                     button.setAttribute("aria-selected", isActive ? "true" : "false")
                 })
 
-                document.querySelectorAll(".people-tab-panel").forEach((panel) => {
-                    panel.hidden = panel.id !== "people-tab-" + tab
-                })
+                swapTabPanels(document.querySelectorAll(".people-tab-panel"), "people-tab-" + tab)
             }
 
             document.querySelectorAll(".people-tab-btn").forEach((button) => {
@@ -667,6 +676,7 @@ import { registerProfileActions } from "../shared/profile-api.js"
             })
 
             activatePeopleTab("lab")
+            initMarginTabNav(document.querySelector(".people-full"), ".people-tab-btn")
 
             container.innerHTML = ""
             container.classList.add("mlp-network")
@@ -687,7 +697,6 @@ import { registerProfileActions } from "../shared/profile-api.js"
 
             const panelBody = panel.querySelector(".profile-panel__body")
             const panelClose = panel.querySelector(".profile-panel__close")
-            const DEFAULT_PANEL_ACCENT = "rgba(85, 100, 160, 0.82)"
 
             function removeDiscoverButton() {
                 const oldDiscover = document.querySelector(".profile-panel__discover")
@@ -696,7 +705,7 @@ import { registerProfileActions } from "../shared/profile-api.js"
             }
 
             function setPanelTheme(member, isMinimal) {
-                const accent = CATEGORY_COLORS[member?.category] || DEFAULT_PANEL_ACCENT
+                const accent = accentFor(member?.category)
                 panel.style.setProperty("--profile-accent", accent)
                 backdrop.style.setProperty("--profile-accent", accent)
                 panel.classList.toggle("profile-panel--minimal", !!isMinimal)
@@ -892,7 +901,7 @@ import { registerProfileActions } from "../shared/profile-api.js"
                     const btn = document.createElement("button")
                     btn.className = "profile-panel__discover"
                     btn.type = "button"
-                    btn.style.setProperty("--discover-color", CATEGORY_COLORS[other.category] || "rgba(85,153,255,0.94)")
+                    btn.style.setProperty("--discover-color", accentFor(other.category))
                     btn.setAttribute("aria-label", "Visit " + other.name + "'s profile")
                     btn.title = other.hook || "Meet " + other.name + "!"
 
@@ -935,7 +944,6 @@ import { registerProfileActions } from "../shared/profile-api.js"
                 layer.className = "mlp-layer"
                 layer.style.setProperty("--layer-index", li)
                 layer.style.setProperty("--member-count", members.length)
-                layer.style.setProperty("--layer-color", CATEGORY_COLORS[category] || "transparent")
 
                 /* label — category name only, rendered vertically via CSS */
                 const label = document.createElement("div")
@@ -955,7 +963,7 @@ import { registerProfileActions } from "../shared/profile-api.js"
                     const node = document.createElement("div")
                     node.className = "mlp-node"
                     node.dataset.member = m.folder
-                    node.style.setProperty("--node-color", CATEGORY_COLORS[category] || "rgba(85,153,255,0.94)")
+                    node.style.setProperty("--node-color", accentFor(category))
 
                     /* pulse ring */
                     const pulse = document.createElement("div")
@@ -980,8 +988,7 @@ import { registerProfileActions } from "../shared/profile-api.js"
                     node.appendChild(nameEl)
 
                     /* curved keyword ring */
-                    const catColor = CATEGORY_COLORS[category]
-                    const keywordRing = buildKeywordRing(m.keywords, catColor)
+                    const keywordRing = buildKeywordRing(m.keywords, accentFor(category))
                     if (keywordRing) node.appendChild(keywordRing)
 
                     /* click → open profile panel */
