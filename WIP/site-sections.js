@@ -1,3 +1,12 @@
+/* The order of this array is *hit-test precedence*, not menu order: brain.js
+   walks it and takes the first regionTest that claims a point, and several of
+   the regions overlap at their borders. The order the menu reads in — People,
+   Research, News, Publications, Join, Information — is the source order of the
+   buttons in index.html and of the nav's own list; the two are independent.
+
+   colorHex / atlasColor mirror the --section-* tokens in style.css :root, which
+   belong to a position on the hero's arc rather than to a section. Reorder the
+   menu by moving the names between the tokens, and update both files. */
 export const SITE_SECTIONS = Object.freeze([
     {
         id: "sec-research",
@@ -6,8 +15,8 @@ export const SITE_SECTIONS = Object.freeze([
         pageSectionId: "sec-research-full",
         brainRegionIndex: 4,
         colorVar: "--section-research",
-        colorHex: "#33cccc",
-        atlasColor: "rgba(51, 204, 204, 0.9)",
+        colorHex: "#5599ff",
+        atlasColor: "rgba(85, 153, 255, 0.9)",
         atlasDisplayRange: [300, 360],
         atlasHitRange: [240, 300],
         brainLabel: "Research →",
@@ -34,15 +43,14 @@ export const SITE_SECTIONS = Object.freeze([
     },
     {
         id: "sec-news",
-        // Nothing to point at yet: there is no news section, so the href is the
-        // hero button's own id and the click goes nowhere in particular.
-        navHref: "#sec-news",
-        scrollTargetId: "sec-news",
-        pageSectionId: null,
+        // The section, not the hero button that shares the id — see sec-contact.
+        navHref: "#sec-news-full",
+        scrollTargetId: "sec-news-full",
+        pageSectionId: "sec-news-full",
         brainRegionIndex: 5,
         colorVar: "--section-news",
-        colorHex: "#55cc77",
-        atlasColor: "rgba(85, 204, 119, 0.88)",
+        colorHex: "#33cccc",
+        atlasColor: "rgba(51, 204, 204, 0.88)",
         atlasDisplayRange: [0, 60],
         atlasHitRange: [300, 360],
         brainLabel: "News →",
@@ -58,8 +66,8 @@ export const SITE_SECTIONS = Object.freeze([
         pageSectionId: "sec-publications-full",
         brainRegionIndex: 1,
         colorVar: "--section-publications",
-        colorHex: "#5599ff",
-        atlasColor: "rgba(85, 153, 255, 0.88)",
+        colorHex: "#55cc77",
+        atlasColor: "rgba(85, 204, 119, 0.88)",
         atlasDisplayRange: [120, 180],
         atlasHitRange: [60, 120],
         brainLabel: "Publications →",

@@ -320,6 +320,58 @@ function initHeroGlow() {
     )
 }
 
+/* ── "Like this website?" ──
+ * A third floating button that slides up under the other two once a visitor is
+ * far enough in to have formed an opinion of the site. It points at the
+ * Services tab, which the FAB group's own handler in initContactTabs already
+ * knows how to open — this only decides *when* the button exists.
+ *
+ * It withdraws again on the way back up, and — the part that keeps it from
+ * being a nuisance — it withdraws once the Information section is actually on
+ * screen. A button whose whole job is "go over there" has nothing to say while
+ * you are standing in front of "there", and leaving it floating over the
+ * section it advertises is exactly the behaviour that makes these obnoxious.
+ */
+function initSitePromoFab() {
+    const fab = document.getElementById("fab-site-promo")
+    const target = document.getElementById("sec-contact-full")
+    if (!fab || !mainPage) return
+
+    // Half way down: past People and Research, with the site's case made.
+    const SHOW_PAST = 0.5
+
+    /* How far the button has to pull itself out of the column to leave no trace
+       of itself in it: its own height, plus the gap that would sit above it.
+       Measured rather than written down because the second line wraps at narrow
+       widths and the height follows. Safe to read at any time — the button is
+       collapsed with a margin, so it keeps its natural height throughout. */
+    function measureCollapse() {
+        const group = fab.parentElement
+        if (!group) return
+        const gap = parseFloat(getComputedStyle(group).rowGap) || 0
+        fab.style.setProperty("--fab-promo-collapse", fab.offsetHeight + gap + "px")
+    }
+
+    function update() {
+        const scrollable = mainPage.scrollHeight - mainPage.clientHeight
+        if (scrollable <= 0) return
+
+        const scrolled = mainPage.scrollTop / scrollable >= SHOW_PAST
+        // Three quarters of a viewport of the destination is "you are here".
+        const arrived = target ? target.getBoundingClientRect().top < mainPage.clientHeight * 0.75 : false
+
+        fab.classList.toggle("is-shown", scrolled && !arrived)
+    }
+
+    mainPage.addEventListener("scroll", update, { passive: true })
+    window.addEventListener("resize", () => {
+        measureCollapse()
+        update()
+    })
+    measureCollapse()
+    update()
+}
+
 if (mainPage) {
     mainPage.addEventListener("scroll", updateActiveNav, { passive: true })
     mainPage.addEventListener("scroll", updateNavVisibility, { passive: true })
@@ -332,3 +384,4 @@ initContactTabs()
 initHeroGlow()
 initPeopleVideo()
 initInformationBackdrop()
+initSitePromoFab()

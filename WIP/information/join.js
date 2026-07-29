@@ -9,8 +9,8 @@
  *
  * Everything is built as DOM nodes rather than innerHTML — the content module
  * is plain text, and a stray "<" in a scholarship name should not be able to
- * open an element. The one exception is the inline markup parser below, which
- * only ever produces <a>, <em> and <strong>.
+ * open an element. The one exception is the inline markup parser in
+ * shared/rich-text.js, which only ever produces <a>, <em> and <strong>.
  *
  * Opportunities are one block type across all three levels (`routes`), so a
  * scheme looks the same whether it funds a summer project or a fellowship. A
@@ -19,139 +19,16 @@
 
 import { JOIN_CONTENT } from "./join-content.js"
 import { swapTabPanels } from "../shared/tab-slide.js"
+import { element, createRichText } from "../shared/rich-text.js"
 
 const ROOT_ID = "join-root"
 const STAGE_PANEL_PREFIX = "join-stage-"
 const ALL_FILTER = "Everything"
 
-/* ── Inline markup ──
- * `[label](href)`, `*emphasis*`, `**strong**` and `***both***`, and nothing
- * else. Enough to keep a link inside a sentence without handing the content
- * file the power to inject markup.
- *
- * The asterisk runs are alternatives rather than one nestable rule, longest
- * first — `**bold**` matched by the single-asterisk rule would otherwise take
- * the *second* star as its opener and leave stray ones on either side.
- */
-const INLINE_PATTERN = /\[([^\]]+)\]\(([^)\s]+)\)|\*\*\*([^*]+)\*\*\*|\*\*([^*]+)\*\*|\*([^*]+)\*/g
-
-function appendRichText(parent, text) {
-    if (!text) return parent
-
-    let cursor = 0
-    let match
-
-    INLINE_PATTERN.lastIndex = 0
-    while ((match = INLINE_PATTERN.exec(text)) !== null) {
-        if (match.index > cursor) {
-            parent.appendChild(document.createTextNode(text.slice(cursor, match.index)))
-        }
-
-        if (match[1]) {
-            parent.appendChild(createLink(match[1], match[2]))
-        } else if (match[3]) {
-            const strong = document.createElement("strong")
-            strong.appendChild(element("em", null, match[3]))
-            parent.appendChild(strong)
-        } else {
-            parent.appendChild(element(match[4] ? "strong" : "em", null, match[4] || match[5]))
-        }
-
-        cursor = match.index + match[0].length
-    }
-
-    if (cursor < text.length) {
-        parent.appendChild(document.createTextNode(text.slice(cursor)))
-    }
-
-    return parent
-}
-
-/* In-page anchors and mailto links must not open a new tab; everything else
-   points off-site and should. */
-function createLink(label, href) {
-    const anchor = document.createElement("a")
-    anchor.className = "join-link"
-    anchor.href = href
-    anchor.textContent = label
-
-    if (!/^(#|mailto:)/.test(href)) {
-        anchor.target = "_blank"
-        anchor.rel = "noreferrer noopener"
-    }
-
-    return anchor
-}
-
-function element(tag, className, text) {
-    const node = document.createElement(tag)
-    if (className) node.className = className
-    if (text != null) node.textContent = text
-    return node
-}
-
-function paragraph(className, text) {
-    return appendRichText(element("p", className), text)
-}
-
-/* ── Block-level markup ──
- * A blank line starts a new paragraph; a run of lines opening "- " becomes a
- * list. That is the whole grammar — enough for a lede that wants to make a few
- * points without the content module having to hand-build DOM.
- *
- * Lines are trimmed individually rather than dedented against a common prefix,
- * because these are written as template literals: the first line sits against
- * the backtick with no indentation at all, so a common prefix would always be
- * empty and dedent nothing.
- */
-function appendRichBlocks(container, text) {
-    if (!text) return container
-
-    let pending = []
-    let list = null
-
-    function flushParagraph() {
-        if (!pending.length) return
-        container.appendChild(paragraph(null, pending.join(" ")))
-        pending = []
-    }
-
-    String(text)
-        .split("\n")
-        .map((line) => line.trim())
-        .forEach((line) => {
-            if (!line) {
-                flushParagraph()
-                list = null
-                return
-            }
-
-            // A plain dash, or the author's own emoji used as the bullet — a
-            // "✅" list keeps its ticks instead of being given generic dots.
-            // The required space is what keeps this off "*emphasis*" at the
-            // start of a line.
-            // \uFE0F and \u200D are the variation selector and zero-width
-            // joiner, so a compound emoji is taken whole rather than split.
-            const bullet = /^([-–—*•]|[\p{Extended_Pictographic}\uFE0F\u200D]+)\s+(.*)$/u.exec(line)
-            if (bullet) {
-                flushParagraph()
-                if (!list) {
-                    list = element("ul", "join-rich-list")
-                    container.appendChild(list)
-                }
-                const item = appendRichText(element("li"), bullet[2])
-                if (!/^[-–—*•]$/.test(bullet[1])) item.dataset.marker = bullet[1]
-                list.appendChild(item)
-                return
-            }
-
-            list = null
-            pending.push(line)
-        })
-
-    flushParagraph()
-    return container
-}
+const { appendRichText, paragraph, appendRichBlocks, createLink } = createRichText({
+    linkClass: "join-link",
+    listClass: "join-rich-list",
+})
 
 /* ── Block renderers ── */
 
@@ -621,11 +498,4 @@ function createBackdropController() {
     } else {
         setTimeout(warm, 2000)
     }
-
-    document.querySelectorAll("[data-join-stage]").forEach((link) => {
-        link.addEventListener("click", () => {
-            const index = stages.findIndex((stage) => stage.id === link.getAttribute("data-join-stage"))
-            if (index !== -1) select(index)
-        })
-    })
 })()

@@ -139,15 +139,15 @@ export const JOIN_CONTENT = Object.freeze({
                     items: [
                         {
                             title: "Reach out to the supervisor",
-                            text: "Send your CV, your research interests and — if you have them — a couple of project ideas that connect to the lab's work. Having no ideas yet is perfectly fine: we will usually propose some directions and refine them with you. It also helps enormously to arrive having already picked out the funding schemes you want to target, so we can shape the project around what you are actually eligible for.",
+                            text: "Send your CV, your research interests and eventually a couple of project ideas that connect to the lab's work. Having no ideas yet is perfectly fine: we will usually propose some directions and refine them with you. It also helps enormously to arrive having already searched and selected potential funding schemes you want to target, so we can shape the project around what you are actually eligible for.",
                         },
                         {
                             title: "Then find the money",
-                            text: "This is the genuinely difficult part. Four profiles cover most cases: you and the supervisor build a project and apply for a scholarship together; the supervisor already holds a grant for a specific project and recruits for it; you arrive with a scholarship already secured; or you self-fund — which we do not recommend unless you are one of the lucky few with money to spare.",
+                            text: "This is the genuinely difficult part. Four profiles cover most cases: you and the supervisor build a project and apply for a scholarship together; the supervisor already holds a grant for a specific project and recruits for it; you arrive with a scholarship already secured; or you self-fund, which we do not recommend unless you are one of the lucky few with money to spare.",
                         },
                         {
-                            title: "Then apply formally",
-                            text: "With a target in mind, gather the documents and write the proposal.",
+                            title: "Then apply",
+                            text: "With a target in mind, gather the documents and write the proposal. Fingers crossed!",
                         },
                     ],
                 },
@@ -424,9 +424,7 @@ export const JOIN_CONTENT = Object.freeze({
                             name: "NTU Humanities International Postdoctoral Scholarship (HIPS)",
                             tags: ["Singapore"],
                             meta: "Singapore",
-                            links: [
-                                { label: "Scholarship", href: "https://www.ntu.edu.sg/hass/admissions/graduate-programmes/hips2025" },
-                            ],
+                            links: [{ label: "Scholarship", href: "https://www.ntu.edu.sg/hass/admissions/graduate-programmes/hips2025" }],
                         },
                     ],
                 },

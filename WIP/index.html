@@ -49,7 +49,7 @@
                 <ul>
                     <li><a href="#sec-people-full">People</a></li>
                     <li><a href="#sec-research-full">Research</a></li>
-                    <li><a href="#sec-news">News</a></li>
+                    <li><a href="#sec-news-full">News</a></li>
                     <li><a href="#sec-publications-full">Publications</a></li>
                     <!-- Join is a tab of Information, not a section: the href
                          scrolls there and data-contact-tab-target opens the tab.
@@ -68,14 +68,14 @@
                         The Reality Bending Lab, led by Dominique Makowski at the University of Sussex in Brighton, UK, conducts
                         world-leading research on reality perception, illusions, fake news, AI-beliefs, deception and its links with
                         emotions, cognitive control and the Self. Using recording signals from the body (ECG, EDA&hellip;) and the brain
-                        (EEG), we analyse data using advanced computational modelling (Bayesian statistics, chaos theory, cognitive models)
-                        and develop
+                        (EEG), we analyse data using advanced modelling (Bayesian statistics, chaos theory, computational models) and
+                        develop
                         <a href="https://github.com/RealityBending" target="_blank" rel="noopener">open-source tools</a> to improve
                         neuropsychological science.
                     </p>
                     <p class="hero__quote">
                         &ldquo;Do not try to bend the spoon &mdash; that&rsquo;s impossible. Instead, only try to realise the truth: there
-                        is no spoon &mdash; Then you'll see that it is not the spoon that bends, <b>it is only yourself</b>.&rdquo;
+                        is no spoon. Then you'll see that it is not the spoon that bends, <b>it is only yourself</b>.&rdquo;
                     </p>
                 </div>
                 <div class="hero__brain">
@@ -85,12 +85,13 @@
                                 <div id="brain-tooltip"></div>
                             </div>
                         </div>
+                        <!-- Source order is the order down the arc: the
+                             positions come from :nth-child in style.css, and so
+                             do the colours, which stay with the position rather
+                             than with the section. Same order as the nav. -->
                         <div class="menu-buttons">
                             <button type="button" class="menu-button section--people" id="sec-people">
                                 <span class="menu-button__label">People</span>
-                            </button>
-                            <button type="button" class="menu-button section--publications" id="sec-publications">
-                                <span class="menu-button__label">Publications</span>
                             </button>
                             <button type="button" class="menu-button section--research" id="sec-research">
                                 <span class="menu-button__label">Research</span>
@@ -98,12 +99,10 @@
                             <button type="button" class="menu-button section--news" id="sec-news">
                                 <span class="menu-button__label">News</span>
                             </button>
-                            <button
-                                type="button"
-                                class="menu-button section--join"
-                                id="sec-join"
-                                data-contact-tab-target="join"
-                            >
+                            <button type="button" class="menu-button section--publications" id="sec-publications">
+                                <span class="menu-button__label">Publications</span>
+                            </button>
+                            <button type="button" class="menu-button section--join" id="sec-join" data-contact-tab-target="join">
                                 <span class="menu-button__label">Join</span>
                             </button>
                             <button type="button" class="menu-button section--contact" id="sec-contact">
@@ -227,6 +226,16 @@
             </section>
 
             <!-- ════════════════════════════════════
+       NEWS SECTION
+  ════════════════════════════════════ -->
+            <section class="news-full" id="sec-news-full">
+                <div class="news-shell">
+                    <h2 class="news-full__title">News</h2>
+                    <p class="news-full__placeholder">Under construction.</p>
+                </div>
+            </section>
+
+            <!-- ════════════════════════════════════
        PUBLICATIONS SECTION
   ════════════════════════════════════ -->
             <section class="publications-full" id="sec-publications-full">
@@ -343,7 +352,7 @@
                 </div>
 
                 <div
-                    class="contact-tab-panel contact-tab-panel--contact"
+                    class="contact-tab-panel"
                     id="contact-contact"
                     role="tabpanel"
                     aria-labelledby="contact-tab-btn-contact"
@@ -406,145 +415,16 @@
                     </div>
                 </div>
 
-                <div
-                    class="contact-tab-panel"
-                    id="contact-join"
-                    role="tabpanel"
-                    aria-labelledby="contact-tab-btn-join"
-                    hidden
-                >
+                <div class="contact-tab-panel" id="contact-join" role="tabpanel" aria-labelledby="contact-tab-btn-join" hidden>
                     <!-- Rendered by information/join.js from information/join-content.js.
                          Copy and links live in the content module, not here. -->
                     <div id="join-root"></div>
                 </div>
 
                 <div class="contact-tab-panel" id="contact-services" role="tabpanel" aria-labelledby="contact-tab-btn-services" hidden>
-                    <div class="contact-services">
-                        <div class="contact-services__hero">
-                            <p class="contact-services__intro">
-                                We support labs, departments and companies with skills development, research support and custom technical
-                                development.
-                            </p>
-                            <div class="contact-services__hero-action">
-                                <a
-                                    class="contact-cta contact-cta--primary"
-                                    href="mailto:realitybending@sussex.ac.uk?subject=Requesting%20more%20information%20about%20Reality%20Bending%20Lab%20services"
-                                    >Request more information</a
-                                >
-                            </div>
-                        </div>
-
-                        <div class="contact-services__grid">
-                            <details class="service-card service-card--interactive">
-                                <summary class="service-card__summary">
-                                    <span class="service-card__media" aria-hidden="true">
-                                        <img src="information/img/workshop.jpg" alt="" loading="lazy" />
-                                    </span>
-                                    <span class="service-card__summary-copy">
-                                        <h4>Upskilling</h4>
-                                        <p class="service-card__teaser">
-                                            Hands-on workshops and training for staff, students, and research teams.
-                                        </p>
-                                    </span>
-                                </summary>
-                                <div class="service-card__body">
-                                    <p>We design practical workshops for academic teams that need fast, research-grade upskilling.</p>
-                                    <ul class="service-card__list">
-                                        <li>Bayesian statistics</li>
-                                        <li>Programming for Psychologists (Python)</li>
-                                        <li>Physiological techniques</li>
-                                    </ul>
-                                    <p class="service-card__examples-heading">Past projects</p>
-                                    <ul class="service-card__timeline">
-                                        <li class="service-card__timeline-item">
-                                            <span class="service-card__timeline-year">2024 &mdash; University of Basel</span>
-                                            <span class="service-card__timeline-desc"
-                                                >Workshop for PhD students on
-                                                <em>"Using psychophysiological methods for psychology and neuroscience research"</em>.</span
-                                            >
-                                        </li>
-                                        <li class="service-card__timeline-item">
-                                            <span class="service-card__timeline-year">2022 &mdash; University of Zurich</span>
-                                            <span class="service-card__timeline-desc"
-                                                >Workshop for PhD students on <em>"Programming and Data Science with Python"</em>.</span
-                                            >
-                                        </li>
-                                    </ul>
-                                </div>
-                            </details>
-
-                            <details class="service-card service-card--interactive">
-                                <summary class="service-card__summary">
-                                    <span class="service-card__media" aria-hidden="true">
-                                        <img src="information/img/consultation.png" alt="" loading="lazy" />
-                                    </span>
-                                    <span class="service-card__summary-copy">
-                                        <h4>Scientific expertise</h4>
-                                        <p class="service-card__teaser">
-                                            Analysis, modelling, and interpretation support for demanding research projects.
-                                        </p>
-                                    </span>
-                                </summary>
-                                <div class="service-card__body">
-                                    <p>We can step into demanding projects and help structure, model, and interpret difficult datasets.</p>
-                                    <ul class="service-card__list">
-                                        <li>Complex datasets</li>
-                                        <li>Advanced statistical models</li>
-                                        <li>Physiological signal analysis</li>
-                                    </ul>
-                                    <p class="service-card__examples-heading">Past projects</p>
-                                    <ul class="service-card__timeline">
-                                        <li class="service-card__timeline-item">
-                                            <span class="service-card__timeline-year">2026 &mdash; Fragrance industry</span>
-                                            <span class="service-card__timeline-desc"
-                                                >Contract research on smells and emotions for a fragrance company.</span
-                                            >
-                                        </li>
-                                    </ul>
-                                </div>
-                            </details>
-
-                            <details class="service-card service-card--interactive">
-                                <summary class="service-card__summary">
-                                    <span class="service-card__media" aria-hidden="true">
-                                        <img src="information/img/development.jpg" alt="" loading="lazy" />
-                                    </span>
-                                    <span class="service-card__summary-copy">
-                                        <h4>Development</h4>
-                                        <p class="service-card__teaser">
-                                            Custom software, websites, and modern experimental tooling for research teams.
-                                        </p>
-                                    </span>
-                                </summary>
-                                <div class="service-card__body">
-                                    <p>
-                                        We build polished research-facing software, from packages and websites to modern experimental
-                                        interfaces.
-                                    </p>
-                                    <ul class="service-card__list">
-                                        <li>Research software and packages</li>
-                                        <li>Websites and digital interfaces</li>
-                                        <li>User-friendly modern experiments</li>
-                                    </ul>
-                                    <p class="service-card__examples-heading">Past projects</p>
-                                    <ul class="service-card__timeline">
-                                        <li class="service-card__timeline-item">
-                                            <span class="service-card__timeline-year">2026 &mdash; Advanced Consciousness Lab</span>
-                                            <span class="service-card__timeline-desc"
-                                                >Custom software development for the Advanced Consciousness Lab.</span
-                                            >
-                                        </li>
-                                        <li class="service-card__timeline-item">
-                                            <span class="service-card__timeline-year">2024 &mdash; This website</span>
-                                            <span class="service-card__timeline-desc"
-                                                >Design and development of the Reality Bending Lab website.</span
-                                            >
-                                        </li>
-                                    </ul>
-                                </div>
-                            </details>
-                        </div>
-                    </div>
+                    <!-- Rendered by information/services.js from information/services-content.js.
+                         Copy, imagery and the past-work list live in the content module, not here. -->
+                    <div id="services-root"></div>
                 </div>
             </section>
 
@@ -554,6 +434,14 @@
             <div class="fab-group">
                 <a href="#sec-contact-full" class="fab" data-contact-tab-target="services">Hire us</a>
                 <a href="#sec-contact-full" class="fab fab--primary" data-contact-tab-target="join">Join the Lab</a>
+                <!-- Slides up under the other two half way down the page, and
+                     withdraws again on the Information section. initSitePromoFab
+                     in script.js owns the timing; the tab it opens is handled by
+                     the same data-contact-tab-target as the buttons above. -->
+                <a href="#sec-contact-full" class="fab fab--promo" id="fab-site-promo" data-contact-tab-target="services">
+                    <span class="fab__lead">Like this website?</span>
+                    <span class="fab__sub">See how to get yours</span>
+                </a>
             </div>
         </div>
 
@@ -586,6 +474,7 @@
         <script type="module" src="memories/memories.js"></script>
         <script type="module" src="publications/publications.js"></script>
         <script type="module" src="information/join.js"></script>
+        <script type="module" src="information/services.js"></script>
         <script type="module" src="brain.js"></script>
     </body>
 </html>
