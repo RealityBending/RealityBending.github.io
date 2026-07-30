@@ -1,86 +1,95 @@
+/* Two tabs only: Overview and Discoveries.
+ *
+ * Overview is not a card layout — it is the scroll-driven zoom in
+ * reality-zoom.js. Its `landmarks` are the stations that zoom passes through,
+ * in order: the eye opens onto a map of the lab's question, then each aspect of
+ * it in turn. `figure.type` names a builder in reality-zoom.js; adding a
+ * landmark here without adding its builder there renders the text alone rather
+ * than failing. */
 export const RESEARCH_CONTENT = Object.freeze({
     title: "Research",
-    intro: "A placeholder research section for the lab. Replace any of the copy below with current themes, active studies, facility notes, or milestone findings as the section evolves.",
     tabs: [
         {
             id: "overview",
             label: "Overview",
-            eyebrow: "Research Themes",
-            heading: "How the lab studies the feeling of reality",
-            lede: "The Reality Bending Lab explores how subjective reality is constructed, destabilized, and rebuilt across perception, emotion, cognition, and social life.",
-            paragraphs: [
-                "Our projects combine theory-led psychology with experimental design, computational tools, and immersive methods to understand why some experiences feel solid, convincing, and meaningful while others begin to wobble.",
-                "This section is intentionally written as editable placeholder copy. Each tab can later be updated with current grants, specific studies, new equipment, and major conceptual threads without changing the page structure.",
-            ],
-            cards: [
+            kind: "reality-zoom",
+            question: "What is Reality?",
+            hint: "Scroll to look closer",
+            /* The zoom is opt-in. Until the section is clicked it is a full
+               screen of the eye with this one line over it, and the page
+               scrolls straight past. The whole overlay is the button. */
+            gate: { label: "Click to discover our research" },
+            landmarks: [
                 {
-                    meta: "Theme 01",
-                    title: "Perception and conscious experience",
-                    text: "How visual, bodily, and multisensory signals become a stable felt world, and when that world becomes negotiable.",
+                    id: "map",
+                    eyebrow: "The question",
+                    title: "Reality is not given. It is built.",
+                    short: "The question",
+                    accent: "#8fb7ff",
+                    text: "Everything you take to be real is a construction — assembled from noisy senses, prior expectations, and a body that never stops reporting on itself. We study that construction where it is most revealing: at the points where it bends.",
+                    note: "Two aspects. One modulator.",
+                    figure: { type: "map" },
                 },
                 {
-                    meta: "Theme 02",
-                    title: "Emotion, belief, and interpretation",
-                    text: "How affective states, expectations, and narratives shape what feels real, urgent, trustworthy, or self-relevant.",
+                    id: "illusions",
+                    eyebrow: "Aspect I — Perception",
+                    title: "Illusions",
+                    accent: "#5599ff",
+                    text: "An illusion is not a failure of the visual system. It is the system working exactly as designed, showing its assumptions out loud. We use them as instruments: measure how strongly a person's perception is pulled by context, and you have measured something about how they build the world.",
+                    tags: ["Psychophysics", "Illusion sensitivity", "Eye tracking", "Computational modelling"],
+                    figure: {
+                        type: "ponzo",
+                        caption: "The two red bars are identical. Take the rails away and you can see it.",
+                        toggleOn: "Remove the context",
+                        toggleOff: "Put the context back",
+                    },
                 },
                 {
-                    meta: "Theme 03",
-                    title: "Methods for bending reality safely",
-                    text: "How to design laboratory settings that perturb experience in controlled ways, from subtle illusions to immersive experimental worlds.",
-                },
-            ],
-        },
-        {
-            id: "projects",
-            label: "Projects",
-            eyebrow: "Past + Current",
-            heading: "A working map of the lab's project portfolio",
-            lede: "Use this tab as an editable ledger of ongoing studies, finished strands of work, and ideas being incubated for future grants or collaborations.",
-            cards: [
-                {
-                    meta: "Current project",
-                    title: "The Sense of Reality",
-                    text: "A placeholder flagship project on how people judge whether an experience feels immediate, vivid, and unquestionably real.",
-                    bullets: ["Behavioral tasks", "Self-report measures", "Computational modeling"],
-                },
-                {
-                    meta: "Current project",
-                    title: "Emotion under altered perception",
-                    text: "A placeholder program probing how emotional context changes the way ambiguous, illusory, or socially uncertain situations are interpreted.",
-                    bullets: ["Psychophysics", "Affective manipulation", "Open datasets"],
-                },
-                {
-                    meta: "Past project",
-                    title: "Tools for better psychological measurement",
-                    text: "A placeholder archive for method-building work: packages, workflows, and practical resources that improve analysis and reproducibility.",
-                    bullets: ["Open-source software", "Teaching materials", "Community building"],
-                },
-            ],
-        },
-        {
-            id: "techniques",
-            label: "Techniques",
-            eyebrow: "Facilities + Methods",
-            heading: "The spaces, instruments, and workflows behind the experiments",
-            lede: "This tab can become a tour of the lab's experimental toolkit, mixing facility descriptions with the kinds of questions each method helps answer.",
-            cards: [
-                {
-                    meta: "Facility",
-                    title: "Immersive experimental setups",
-                    text: "Placeholder copy for rooms and devices used to manipulate presence, embodiment, agency, and environmental realism.",
-                    bullets: ["Virtual reality", "Interactive displays", "Embodied tasks"],
+                    id: "beliefs",
+                    eyebrow: "Aspect II — Beliefs",
+                    title: "AI-Beliefs",
+                    accent: "#a98bff",
+                    text: "The same work lands differently once you believe a machine made it. Believing something is artificial changes how true, how moving, and how valuable it feels — before anything about it is looked at again. We study that belief as a lens sitting between people and everything they now encounter online.",
+                    tags: ["Authorship beliefs", "Trust & deception", "Fake news", "Human–AI interaction"],
+                    /* Both paintings are human. The first is the one people
+                       reliably call AI, the second the one they call human —
+                       which is the demonstration: the judgement tracks the
+                       impression, not the provenance. */
+                    figure: {
+                        type: "artworks",
+                        prompt: "One of these was made by AI. Which one?",
+                        works: [
+                            {
+                                src: "research/img/art_fake.jpg",
+                                alt: "A painting that viewers reliably judge to be AI-generated",
+                                verdict: "Usually judged AI",
+                                truth: "Human",
+                            },
+                            {
+                                src: "research/img/art_real.jpg",
+                                alt: "A painting that viewers reliably judge to be human-made",
+                                verdict: "Usually judged human",
+                                truth: "Human",
+                            },
+                        ],
+                        reveal: "Neither. Both were painted by people — only the impression differed.",
+                        button: "Reveal",
+                        reset: "Again",
+                    },
                 },
                 {
-                    meta: "Technique",
-                    title: "Psychophysics and behavioral design",
-                    text: "Placeholder copy for timing-sensitive paradigms, perceptual thresholds, response modeling, and experimental control.",
-                    bullets: ["Reaction time", "Signal detection", "Adaptive procedures"],
-                },
-                {
-                    meta: "Workflow",
-                    title: "Open and reproducible analysis",
-                    text: "Placeholder copy for the lab's commitment to transparent code, reusable pipelines, and sharable resources.",
-                    bullets: ["Version control", "Preprints", "Reusable scripts"],
+                    id: "body",
+                    eyebrow: "The modulator",
+                    title: "Body & Emotions",
+                    accent: "#ff5f57",
+                    text: "Neither perception nor belief runs in a vacuum. A heartbeat, a held breath, a rising sweat response — the body's state biases what gets seen and what gets believed, and cognitive control decides how much of that bias survives. We record the body while reality bends, and model both together.",
+                    tags: ["ECG & interoception", "Electrodermal activity", "EEG", "Cognitive control"],
+                    figure: {
+                        type: "heartbrain",
+                        caption: "Every beat: the ejection sends a pressure wave, the baroreceptors fire, and the brain is told what the body has just done.",
+                        slow: "Slow it down",
+                        normal: "Normal speed",
+                    },
                 },
             ],
         },
@@ -89,22 +98,22 @@ export const RESEARCH_CONTENT = Object.freeze({
             label: "Discoveries",
             eyebrow: "Findings + Creations",
             heading: "What the lab has found and what it has built",
-            lede: "Use this tab to separate empirical findings from lab-made tools, scales, paradigms, and conceptual contributions.",
+            lede: "Empirical results on one side, the instruments and open-source tools built to get them on the other. This tab is still being filled in.",
             cards: [
                 {
                     meta: "Found",
-                    title: "What changes the feeling of reality",
-                    text: "Placeholder space for concise findings on perception, emotion, confidence, social context, or altered states.",
+                    title: "What moves the felt sense of reality",
+                    text: "Placeholder for concise findings on perception, illusion sensitivity, belief, confidence, and bodily state.",
                 },
                 {
                     meta: "Created",
-                    title: "Measures, tasks, and frameworks",
-                    text: "Placeholder space for scales, experimental paradigms, computational routines, or conceptual maps produced by the lab.",
+                    title: "Measures, tasks, and paradigms",
+                    text: "Placeholder for scales, experimental paradigms, and conceptual frameworks produced by the lab.",
                 },
                 {
                     meta: "Shared",
-                    title: "Software and public resources",
-                    text: "Placeholder space for open-source packages, teaching materials, public explainers, and practical research infrastructure.",
+                    title: "Open-source software",
+                    text: "Placeholder for the packages and public resources the lab maintains for neuropsychological science.",
                 },
             ],
         },

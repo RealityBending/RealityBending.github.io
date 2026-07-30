@@ -794,19 +794,40 @@ nav a.nav-link.active {
     --section-color: var(--section-contact);
 }
 
-/* ── Research section ── */
+/* ── Research section ──
+   Unlike the other card sections this one is full-bleed: the Overview tab is a
+   sticky, black, edge-to-edge stage (see "Reality zoom" further down), so the
+   inline gutter lives on the header and on the card tab rather than on the
+   section. overflow-x + isolation are what let the stage bleed back out to the
+   screen edge under the wide-screen sidebar. */
 .research-full {
-    padding: 5rem var(--content-inline-gutter);
+    padding: 5rem 0 0;
     background: #f5f4ef;
     position: relative;
+    overflow-x: clip;
+    overflow-y: visible;
+    isolation: isolate;
 }
 
+/* No gap. The shell's only two children are the head and the panel host, so a
+   grid gap here is a band of cream between the tab line and whatever the tab
+   shows — and for Overview that means the zoom's black starting 25px below the
+   line it should be hanging from. Information does the same thing: its panels
+   begin exactly at its own tab line, and each panel pays for its own breathing
+   room (see .research-tab-panel--cards, which keeps a small top pad). */
 .research-shell {
+    width: 100%;
+    display: grid;
+    gap: 0;
+}
+
+.research-head {
     width: 100%;
     max-width: var(--content-max-width);
     margin: 0 auto;
+    padding: 0 var(--content-inline-gutter);
     display: grid;
-    gap: 1.6rem;
+    gap: 1.2rem;
 }
 
 .research-full__title {
@@ -818,15 +839,6 @@ nav a.nav-link.active {
     text-transform: none;
     color: rgba(17, 17, 17, 0.18);
     margin: 0;
-}
-
-.research-full__intro {
-    max-width: 48rem;
-    margin: 0;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.04rem;
-    line-height: 1.8;
-    color: #5f5b54;
 }
 
 .research-tabs-nav {
@@ -868,10 +880,30 @@ nav a.nav-link.active {
     width: 100%;
 }
 
-.research-tab-panel {
+/* 2rem of top padding, which is the 1.6rem the shell used to add plus the
+   0.4rem this already had. The space was always this tab's — text under a rule
+   needs it — and it only lived on the shell, where it also pushed the zoom's
+   black away from the line it should hang from. */
+.research-tab-panel--cards {
     display: grid;
     gap: 1.5rem;
-    padding-top: 0.4rem;
+    width: 100%;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: 2rem var(--content-inline-gutter) 5rem;
+}
+
+/* The zoom takes the section's whole width; its own stage handles the rest. */
+.research-tab-panel--zoom {
+    display: block;
+    width: 100%;
+}
+
+/* swapTabPanels puts a panel away with the `hidden` attribute, and the two
+   display rules above outrank the UA rule that acts on it — without this both
+   tabs paint at once. Same trap as .join-stage and .pub-card. */
+.research-tab-panel[hidden] {
+    display: none;
 }
 
 .research-tab-header {
@@ -962,34 +994,6 @@ nav a.nav-link.active {
     font-size: 0.95rem;
     line-height: 1.72;
     color: #504b44;
-}
-
-.research-card__list {
-    list-style: none;
-    display: grid;
-    gap: 0.55rem;
-    padding: 0;
-    margin: 0;
-}
-
-.research-card__list li {
-    position: relative;
-    padding-left: 1rem;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 0.83rem;
-    line-height: 1.58;
-    color: #5a5e58;
-}
-
-.research-card__list li::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0.52rem;
-    width: 0.38rem;
-    height: 0.38rem;
-    border-radius: 999px;
-    background: rgba(85, 150, 100, 0.72);
 }
 
 /* ── People section – MLP Neural Network ── */
@@ -6296,7 +6300,7 @@ footer {
        their backgrounds still reach the screen edge — the sidebar is only
        part-way in while the hero is still on screen, and a band that stopped
        at 14rem showed as a cut. */
-    #main-page > *:not(nav):not(.fab-group):not(.hero):not(.people-full) {
+    #main-page > *:not(nav):not(.fab-group):not(.hero):not(.people-full):not(.research-full) {
         margin-left: 14rem;
         width: calc(100% - 14rem);
     }
@@ -6324,6 +6328,1506 @@ footer {
 
     .people-full > .tab-margin-nav--next {
         width: calc((100% - 14rem - var(--content-max-width)) / 2);
+    }
+
+    /* Same arrangement as .people-full: the sidebar becomes padding so the
+       section's own background still reaches x=0, and the header and card tab
+       stay lined up with every other section. */
+    /* The stage's matching bleed lives with the rest of the zoom's rules, which
+       come later in this file and would otherwise win on source order. */
+    .research-full {
+        padding-left: 14rem;
+    }
+}
+
+/* ─────────────────────────────────────
+   RESEARCH – Reality zoom (research/reality-zoom.js)
+
+   One sticky stage held inside a tall track. Everything below is driven by
+   custom properties the module writes on each scroll frame — no CSS animation
+   owns the timeline, so the whole thing is scrubbable in both directions.
+
+     --rz-scale     the zoom, turning around the painting's pupil
+     --rz-veil      0 → 1 as black takes the screen
+     --rz-rail-in   the landmark rail's presence — its own ramp, not the veil's
+     --rz-in        per-element presence (question, hint, each landmark)
+     --rz-z         a landmark's distance: < 1 approaching, > 1 passing you
+     --rz-blur      the same, in pixels of defocus
+
+   The pupil's position comes from JS too (--rz-pupil-*): it is painted into a
+   JPEG, so nothing here can find it. See the module header before touching the
+   geometry.
+───────────────────────────────────── */
+.rz {
+    --rz-veil: 0;
+    /* The rail's own presence. Not derived from --rz-veil: it is up earlier and
+       down later — see the rail's own block, and RAIL_* in reality-zoom.js. */
+    --rz-rail-in: 0;
+    --rz-ink: rgba(255, 255, 255, 0.88);
+    --rz-ink-dim: rgba(255, 255, 255, 0.62);
+    /* Read back by the module to decide whether there is a zoom to drive at
+       all. It cannot infer this from the stage's `position` — the gate moves
+       that too — so the mode is stated outright, here and in the fallback's
+       media query, and nowhere else. */
+    --rz-mode: zoom;
+    position: relative;
+    width: 100%;
+}
+
+.rz-track {
+    position: relative;
+    width: 100%;
+    /* Height is written by the module, from the vh budgets its timeline is
+       derived from — the two must not be stated separately. */
+
+    /* Shutting the gate takes ~700vh out of the page in one go. Scroll
+       anchoring would answer that by correcting the scroll position itself,
+       against an anchor it picked inside the very thing that changed — on top
+       of the correction the module already makes. Two answers to one shift is
+       a jump. */
+    overflow-anchor: none;
+}
+
+.rz-stage {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background: #06070b;
+    isolation: isolate;
+    display: grid;
+    place-items: center;
+}
+
+/* ── The eye ── */
+/* Deliberately unpromoted: no `will-change`, no `backface-visibility` hack,
+   nothing else that would hand this its own compositor layer.
+
+   A promoted layer is rasterised at its own size *times its scale*, and this
+   one is the whole stage scaled by up to `coverScale` (~9). That texture is
+   `stage width × 9` across, and it goes past the 16384px GPU limit the moment
+   the viewport is wider than ~1810px:
+
+       1280px viewport → 11954px raster   ok
+       1800px viewport → 16335px raster   ok, by 49px
+       1900px viewport → 17079px raster   over — tiles are dropped
+
+   Dropped tiles composite as nothing, so the stage's own black shows through
+   in rectangles across the eye. It only ever showed on the way *back out*,
+   because paint() hides this element while `--rz-veil` is 1 and un-hides it
+   the moment the veil starts lifting — which is at ~9× scale, the worst case,
+   and the point at which the reader is looking straight at it.
+
+   Unpromoted, the transform is painted into the sticky stage's layer and
+   clipped by its `overflow: hidden`, so the raster is bounded by the stage no
+   matter how far the eye is scaled. `will-change: transform` was never buying
+   anything here in the first place: it caches a raster at one scale, and this
+   scale is rewritten every scroll frame. */
+.rz-zoom {
+    --rz-scale: 1;
+    position: absolute;
+    inset: 0;
+    transform: scale(var(--rz-scale));
+    transform-origin: var(--rz-pupil-x, 50%) var(--rz-pupil-y, 50%);
+}
+
+/* Laid out from JS-measured pixels rather than object-fit: the cover fit has to
+   be knowable in script for the pupil to be placed on top of it. */
+.rz-eye {
+    position: absolute;
+    left: var(--rz-img-x, 0);
+    top: var(--rz-img-y, 0);
+    width: var(--rz-img-w, 100%);
+    height: var(--rz-img-h, 100%);
+    max-width: none;
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* A vector stand-in for the painted pupil. It is what actually swallows the
+   screen — scaling the JPEG alone would just magnify its grain. */
+.rz-pupil {
+    position: absolute;
+    left: var(--rz-pupil-x, 50%);
+    top: var(--rz-pupil-y, 50%);
+    width: calc(var(--rz-pupil-r, 0px) * 2);
+    height: calc(var(--rz-pupil-r, 0px) * 2);
+    margin: calc(var(--rz-pupil-r, 0px) * -1) 0 0 calc(var(--rz-pupil-r, 0px) * -1);
+    border-radius: 50%;
+    /* The painted pupil, sampled: rgb(37,37,37). Anything else shows as a disc
+       sitting on top of the canvas instead of replacing it. */
+    background: #252525;
+}
+
+.rz-veil {
+    position: absolute;
+    inset: 0;
+    background: #06070b;
+    opacity: var(--rz-veil);
+    pointer-events: none;
+}
+
+/* Faint depth once the eye is gone, so the dark is not a flat panel. */
+.rz-depth {
+    position: absolute;
+    inset: -20%;
+    pointer-events: none;
+    opacity: calc(var(--rz-veil) * 0.9);
+    background:
+        radial-gradient(38% 44% at 50% 46%, rgba(90, 130, 220, 0.16), transparent 70%),
+        radial-gradient(60% 60% at 18% 82%, rgba(160, 110, 255, 0.1), transparent 70%),
+        radial-gradient(50% 50% at 86% 22%, rgba(255, 90, 90, 0.08), transparent 70%);
+}
+
+/* ── "What is Reality?" ── */
+.rz-question {
+    --rz-in: 0;
+    --rz-drift: 0;
+    position: relative;
+    z-index: 3;
+    margin: 0;
+    padding: 0 var(--content-inline-gutter);
+    text-align: center;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.2rem, 6vw, 5rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: #fff;
+    opacity: var(--rz-in);
+    transform: scale(calc(0.94 + var(--rz-drift) * 0.12));
+    text-shadow: 0 0 60px rgba(0, 0, 0, 0.85);
+    pointer-events: none;
+}
+
+.rz-hint {
+    --rz-in: 1;
+    position: absolute;
+    z-index: 3;
+    /* Clears .rz-close, which now sits centred at the foot of the stage. */
+    bottom: 6.2rem;
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.72);
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.7);
+    opacity: var(--rz-in);
+    pointer-events: none;
+}
+
+.rz-hint::after {
+    content: "";
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin: 0.7rem auto 0;
+    border-right: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
+    rotate: 45deg;
+    animation: rz-nudge 1.8s ease-in-out infinite;
+}
+
+@keyframes rz-nudge {
+    0%,
+    100% {
+        transform: translateY(-0.15rem);
+        opacity: 0.45;
+    }
+    50% {
+        transform: translateY(0.25rem);
+        opacity: 1;
+    }
+}
+
+/* ── Landmarks ── */
+.rz-scenes {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+}
+
+.rz-scene {
+    --rz-in: 0;
+    --rz-z: 1;
+    --rz-blur: 8;
+    --rz-accent: #5599ff;
+    grid-area: 1 / 1;
+    width: min(var(--content-max-width), calc(100% - var(--content-inline-gutter) * 2));
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    opacity: var(--rz-in);
+    transform: scale(var(--rz-z));
+    filter: blur(calc(var(--rz-blur) * 1px));
+    color: var(--rz-ink);
+}
+
+/* Only the landmark actually holding the screen can be clicked — otherwise a
+   widget still fading in would catch the pointer through the dark. */
+.rz-scene--held {
+    pointer-events: auto;
+}
+
+.rz-scene:nth-child(even) .rz-scene__figure {
+    order: -1;
+}
+
+.rz-scene--text-only {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    text-align: center;
+}
+
+.rz-scene__copy {
+    display: grid;
+    gap: 1rem;
+    align-content: center;
+}
+
+.rz-scene__eyebrow {
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rz-accent);
+}
+
+.rz-scene__title {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2rem, 4.2vw, 3.4rem);
+    font-weight: 400;
+    line-height: 1.06;
+    color: #fff;
+}
+
+.rz-scene__text {
+    margin: 0;
+    max-width: 34rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(0.95rem, 1.15vw, 1.08rem);
+    line-height: 1.78;
+    color: var(--rz-ink-dim);
+}
+
+.rz-scene__note {
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.rz-scene__tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    padding: 0;
+    margin: 0.2rem 0 0;
+}
+
+.rz-scene__tags li {
+    padding: 0.32em 0.85em;
+    border: 1px solid color-mix(in srgb, var(--rz-accent) 40%, transparent);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--rz-accent) 10%, transparent);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    color: color-mix(in srgb, var(--rz-accent) 72%, #fff);
+}
+
+.rz-scene__figure {
+    display: grid;
+    justify-items: center;
+}
+
+/* ── Figures ── */
+.rz-fig {
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 26rem;
+}
+
+.rz-fig__caption,
+.rz-fig__prompt {
+    margin: 0;
+    max-width: 24rem;
+    text-align: center;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.rz-fig__button {
+    padding: 0.6em 1.5em;
+    border: 1px solid color-mix(in srgb, var(--rz-accent) 55%, transparent);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--rz-accent) 12%, transparent);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--rz-accent) 60%, #fff);
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.rz-fig__button:hover,
+.rz-fig__button:focus-visible {
+    background: color-mix(in srgb, var(--rz-accent) 26%, transparent);
+    border-color: var(--rz-accent);
+    color: #fff;
+}
+
+/* The lab's map: Reality above, its two aspects below it, the body feeding in.
+   The strokes draw themselves once the landmark is the one being held. */
+.rz-map {
+    width: 100%;
+    max-width: 24rem;
+    height: auto;
+    overflow: visible;
+}
+
+.rz-map__node rect {
+    fill: rgba(255, 255, 255, 0.05);
+    stroke: rgba(255, 255, 255, 0.24);
+    stroke-width: 1;
+}
+
+.rz-map__node text {
+    fill: rgba(255, 255, 255, 0.9);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+}
+
+.rz-map__node--reality rect {
+    fill: rgba(140, 180, 255, 0.14);
+    stroke: rgba(160, 195, 255, 0.55);
+}
+
+.rz-map__node--reality text {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 22px;
+    fill: #fff;
+}
+
+.rz-map__node--body rect {
+    stroke: rgba(255, 95, 87, 0.6);
+}
+
+.rz-map__node--control rect {
+    stroke: rgba(85, 153, 255, 0.6);
+}
+
+.rz-map__node {
+    opacity: 0;
+    transition: opacity 0.5s ease calc(var(--rz-node-index) * 0.09s);
+}
+
+.rz-map__arrow {
+    fill: none;
+    stroke-width: 1.4;
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+    transition: stroke-dashoffset 0.7s cubic-bezier(0.22, 1, 0.36, 1) calc(0.35s + var(--rz-arrow-index) * 0.1s);
+}
+
+.rz-map__arrow--body {
+    stroke: rgba(255, 95, 87, 0.75);
+    marker-end: url(#rz-arrow-body);
+}
+
+.rz-map__arrow--control {
+    stroke: rgba(85, 153, 255, 0.75);
+    marker-end: url(#rz-arrow-control);
+}
+
+.rz-scene--held .rz-map__node {
+    opacity: 1;
+}
+
+.rz-scene--held .rz-map__arrow {
+    stroke-dashoffset: 0;
+}
+
+/* Ponzo. Both bars are the same rect; only the rails differ. */
+.rz-ponzo {
+    width: 100%;
+    max-width: 19rem;
+    height: auto;
+}
+
+.rz-ponzo__rails line {
+    stroke: rgba(255, 255, 255, 0.55);
+    stroke-width: 1.2;
+    transition:
+        opacity 0.45s ease,
+        stroke 0.45s ease;
+}
+
+.rz-ponzo__rails .rz-ponzo__tie {
+    stroke: rgba(255, 255, 255, 0.16);
+}
+
+.rz-fig--ponzo[data-context="off"] .rz-ponzo__rails {
+    opacity: 0;
+}
+
+.rz-ponzo__rails {
+    transition: opacity 0.45s ease;
+}
+
+.rz-ponzo__bar {
+    fill: #ff4d4d;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--rz-bar-index) * 0.06s);
+}
+
+/* With the rails gone the bars slide together, which is the only way to see
+   with your own eyes that they were the same length all along. The bars sit at
+   y 83.5 and 201.5 in the viewBox, so ±44 leaves them 30 apart — close enough
+   to compare, far enough not to read as one thick bar. */
+.rz-fig--ponzo[data-context="off"] .rz-ponzo__bar {
+    transform: translateY(calc((0.5 - var(--rz-bar-index)) * 88px));
+}
+
+.rz-ponzo__guide line {
+    stroke: rgba(255, 255, 255, 0.35);
+    stroke-width: 1;
+    stroke-dasharray: 3 4;
+}
+
+.rz-ponzo__guide {
+    opacity: 0;
+    transition: opacity 0.4s ease 0.35s;
+}
+
+.rz-fig--ponzo[data-context="off"] .rz-ponzo__guide {
+    opacity: 1;
+}
+
+/* Artworks. Two paintings, both human — the reveal is that the two badges say
+   the same word. */
+.rz-fig--artworks {
+    max-width: 30rem;
+}
+
+.rz-artworks {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+    width: 100%;
+}
+
+.rz-artworks__card {
+    display: grid;
+    gap: 0.55rem;
+    padding: 0.5rem 0.5rem 0.65rem;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 0.9rem;
+    background: rgba(255, 255, 255, 0.04);
+    text-align: center;
+    cursor: pointer;
+    transition:
+        border-color 0.3s ease,
+        background 0.3s ease,
+        transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.rz-artworks__card:hover,
+.rz-artworks__card:focus-visible {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--rz-accent) 55%, transparent);
+}
+
+/* 4/5, which is both canvases to within a percent (737×900 and 717×900), so
+   `contain` below has almost nothing to letterbox. If a painting is ever
+   swapped for one of a different shape, this is the number to revisit — a
+   square frame works for anything but wastes a third of the card. */
+.rz-artworks__frame {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 5;
+    border-radius: 0.55rem;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.rz-artworks__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    /* contain, never cover: the reader is being asked to judge the picture, and
+       cropping it would change the thing they are judging. */
+    object-fit: contain;
+}
+
+.rz-artworks__badge {
+    position: absolute;
+    left: 50%;
+    bottom: 0.5rem;
+    translate: -50% 0;
+    padding: 0.3em 0.8em;
+    border-radius: 999px;
+    background: rgba(6, 7, 11, 0.78);
+    backdrop-filter: blur(6px);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.35s ease calc(var(--rz-card-index, 0) * 0.14s);
+}
+
+.rz-artworks__verdict {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+    opacity: 0;
+    transition: opacity 0.35s ease calc(var(--rz-card-index, 0) * 0.14s);
+}
+
+.rz-fig--artworks[data-revealed="true"] .rz-artworks__badge,
+.rz-fig--artworks[data-revealed="true"] .rz-artworks__verdict {
+    opacity: 1;
+}
+
+/* The reader's own answer, kept on screen next to the reveal. */
+.rz-artworks__card[data-picked="true"] {
+    border-color: color-mix(in srgb, var(--rz-accent) 65%, transparent);
+    background: color-mix(in srgb, var(--rz-accent) 10%, transparent);
+}
+
+.rz-fig__caption--reveal {
+    opacity: 0;
+    color: color-mix(in srgb, var(--rz-accent) 55%, #fff);
+    transition: opacity 0.35s ease 0.3s;
+}
+
+.rz-fig--artworks[data-revealed="true"] .rz-fig__caption--reveal {
+    opacity: 1;
+}
+
+/* ── Heart & brain ──
+   One cardiac cycle, drawn as a ring that fills once per beat. Every moving
+   part runs on `--rz-cycle` and on nothing else, so the ejection, the burst up
+   the nerve and the ring's systolic arc cannot drift out of step however long
+   the loop runs. The percentages below are all percentages of that one cycle:
+
+     0 %          the ring starts over, the ventricles begin to contract
+     ~12–14 %     ejection; the pressure wave reaches the baroreceptors
+     ~16–38 %     the burst travels up the nerve and arrives at the brainstem
+     35 %         end of systole — the ring crosses into its diastolic arc
+     35–100 %     diastole, filling
+
+   The ring is 2π·60 = 376.99 units around, which is where the dash numbers come
+   from: systole is the first 35% of that (131.9), diastole the remaining 245.1,
+   each pulled in a little to leave a gap where they meet.
+
+   The transform origins repeat coordinates from the markup in reality-zoom.js
+   (ring and heart centred at 160, 208; the baroreceptor node at 108, 146) —
+   CSS cannot read them off the drawing, so the two have to be changed together
+   if the geometry ever moves. */
+/* Three colours, and all three are already site tokens rather than one-offs:
+   the heart and its burst take the landmark's own accent (red), the brain the
+   Beliefs purple, the diastolic half of the cycle the Perception blue. That
+   also does the phase's work for it — the ring is red while it is ejecting and
+   blue while it is filling, so the two arcs read apart at a glance. */
+.rz-fig--heartbrain {
+    --rz-cycle: 1.05s;
+    --rz-brain: #a98bff;
+    --rz-dia: #5599ff;
+    max-width: 23rem;
+}
+
+/* Slow enough to read the order of events, which is the only thing the control
+   is for: at speed the whole sequence is over in a second. */
+.rz-fig--heartbrain[data-speed="slow"] {
+    --rz-cycle: 3.9s;
+}
+
+.rz-hb {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+/* Nothing here should be running while the landmark is still out in the dark.
+   Scoped away from static mode, where no landmark is ever `--held` because
+   paint() never runs — without that guard the stacked fallback would show a
+   diagram frozen on frame one. */
+.rz:not(.rz--static) .rz-scene:not(.rz-scene--held) .rz-hb * {
+    animation-play-state: paused;
+}
+
+/* The brain, and its answer to the burst arriving. */
+.rz-hb__brain-shape {
+    fill: color-mix(in srgb, var(--rz-brain) 12%, transparent);
+    stroke: color-mix(in srgb, var(--rz-brain) 65%, transparent);
+    stroke-width: 1.4;
+}
+
+.rz-hb__fold,
+.rz-hb__stem {
+    fill: none;
+    stroke: color-mix(in srgb, var(--rz-brain) 45%, transparent);
+    stroke-width: 1.2;
+    stroke-linecap: round;
+}
+
+.rz-hb__glow-stop {
+    stop-color: var(--rz-brain);
+}
+
+.rz-hb__glow-stop--in {
+    stop-opacity: 0.5;
+}
+
+.rz-hb__glow-stop--out {
+    stop-opacity: 0;
+}
+
+.rz-hb__glow {
+    opacity: 0.12;
+    animation: rz-hb-glow var(--rz-cycle) ease-out infinite;
+}
+
+/* Starts at 36%, not before: the burst reaches the brainstem at 40% (the dash
+   is at path position 80 of 100 by 35%), and a brain that lights while the
+   signal is still in transit reads as two unrelated things blinking. */
+@keyframes rz-hb-glow {
+    0%,
+    36% {
+        opacity: 0.12;
+    }
+    48% {
+        opacity: 1;
+    }
+    80%,
+    100% {
+        opacity: 0.12;
+    }
+}
+
+/* The afferent path, and the burst that travels it. */
+.rz-hb__nerve {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.18);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-dasharray: 3 4;
+}
+
+/* pathLength="100" on the element, so the dash maths is in percent of the path
+   and does not have to be remeasured if the curve is ever redrawn. The pattern
+   is one 12-unit dash in a 212-unit period: at offset 12 the dash sits just
+   before the start of the path and at -100 just past its end, so the two
+   extremes are both off-path and the burst sweeps the whole way between. */
+.rz-hb__burst {
+    fill: none;
+    stroke: var(--rz-accent);
+    stroke-width: 3.4;
+    stroke-linecap: round;
+    stroke-dasharray: 12 200;
+    stroke-dashoffset: 12;
+    opacity: 0;
+    filter: drop-shadow(0 0 5px color-mix(in srgb, var(--rz-accent) 80%, transparent));
+    animation: rz-hb-burst var(--rz-cycle) linear infinite;
+}
+
+@keyframes rz-hb-burst {
+    0%,
+    12% {
+        stroke-dashoffset: 12;
+        opacity: 0;
+    }
+    16% {
+        opacity: 1;
+    }
+    34% {
+        opacity: 1;
+    }
+    40% {
+        stroke-dashoffset: -100;
+        opacity: 0;
+    }
+    100% {
+        stroke-dashoffset: -100;
+        opacity: 0;
+    }
+}
+
+.rz-hb__baro {
+    fill: var(--rz-accent);
+}
+
+/* The node's own flash. A second circle scaled outwards rather than an animated
+   `r`: geometry properties are animatable but unevenly, and this is the same
+   picture with no support question attached. */
+.rz-hb__ping {
+    fill: none;
+    stroke: var(--rz-accent);
+    stroke-width: 1.4;
+    opacity: 0;
+    transform-box: view-box;
+    transform-origin: 108px 146px;
+    animation: rz-hb-ping var(--rz-cycle) ease-out infinite;
+}
+
+@keyframes rz-hb-ping {
+    0%,
+    10% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    14% {
+        opacity: 0.9;
+    }
+    36%,
+    100% {
+        transform: scale(2.6);
+        opacity: 0;
+    }
+}
+
+/* The cycle ring. Both arcs are the same circle with different dashes. */
+.rz-hb__arc {
+    fill: none;
+    stroke-width: 6;
+    stroke-linecap: butt;
+}
+
+.rz-hb__arc--sys {
+    stroke: color-mix(in srgb, var(--rz-accent) 34%, transparent);
+    stroke-dasharray: 124 253;
+    stroke-dashoffset: -4;
+    animation: rz-hb-systole var(--rz-cycle) step-end infinite;
+}
+
+.rz-hb__arc--dia {
+    stroke: color-mix(in srgb, var(--rz-dia) 40%, transparent);
+    stroke-dasharray: 241 136;
+    stroke-dashoffset: -136;
+    animation: rz-hb-diastole var(--rz-cycle) step-end infinite;
+}
+
+/* The fill: one lap of the ring per beat, restarting where systole begins.
+
+   Two animations rather than one, because they want different timing: the
+   length is scrubbed linearly and the colour changes at the phase boundary and
+   nowhere else. A per-keyframe `animation-timing-function` cannot separate them
+   — it applies to every property in the segment — so a `step-end` colour track
+   runs alongside the linear length track. */
+.rz-hb__sweep {
+    fill: none;
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-dasharray: 376.99;
+    animation:
+        rz-hb-sweep var(--rz-cycle) linear infinite,
+        rz-hb-sweep-phase var(--rz-cycle) step-end infinite;
+}
+
+@keyframes rz-hb-sweep {
+    from {
+        stroke-dashoffset: 376.99;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes rz-hb-sweep-phase {
+    0% {
+        stroke: var(--rz-accent);
+    }
+    35%,
+    100% {
+        stroke: var(--rz-dia);
+    }
+}
+
+/* The head of that fill, so the position is legible at a glance rather than
+   having to be read off the length of an arc. Translate and rotate together in
+   the keyframes: a CSS transform replaces the element's `transform` attribute
+   outright, so the placement has to come along with the rotation. */
+.rz-hb__hand circle {
+    fill: #fff;
+}
+
+.rz-hb__hand {
+    transform-box: view-box;
+    transform-origin: 0 0;
+    animation: rz-hb-hand var(--rz-cycle) linear infinite;
+}
+
+@keyframes rz-hb-hand {
+    from {
+        transform: translate(160px, 208px) rotate(0deg);
+    }
+    to {
+        transform: translate(160px, 208px) rotate(360deg);
+    }
+}
+
+/* The heart. Contracts through systole, refills through diastole. */
+.rz-hb__heart {
+    fill: var(--rz-accent);
+    filter: drop-shadow(0 0 10px color-mix(in srgb, var(--rz-accent) 55%, transparent));
+    transform-box: view-box;
+    transform-origin: 160px 208px;
+    animation: rz-hb-beat var(--rz-cycle) ease-in-out infinite;
+}
+
+@keyframes rz-hb-beat {
+    0% {
+        transform: scale(1);
+    }
+    6% {
+        transform: scale(1.05);
+    }
+    15% {
+        transform: scale(0.86);
+    }
+    33% {
+        transform: scale(0.89);
+    }
+    47% {
+        transform: scale(1.03);
+    }
+    64%,
+    100% {
+        transform: scale(1);
+    }
+}
+
+.rz-hb__tag {
+    fill: rgba(255, 255, 255, 0.55);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+}
+
+.rz-hb__tag--brain {
+    fill: color-mix(in srgb, var(--rz-brain) 70%, #fff);
+}
+
+.rz-hb__tag--baro,
+.rz-hb__tag--sys {
+    fill: color-mix(in srgb, var(--rz-accent) 60%, #fff);
+}
+
+.rz-hb__tag--dia {
+    fill: color-mix(in srgb, var(--rz-dia) 60%, #fff);
+}
+
+/* The phase labels and their arcs share one pair of animations, so the word and
+   the lit arc are the same statement rather than two that have to be kept in
+   agreement. step-end: a phase boundary is a boundary, not a fade. */
+.rz-hb__tag--sys {
+    animation: rz-hb-systole var(--rz-cycle) step-end infinite;
+}
+
+.rz-hb__tag--dia {
+    animation: rz-hb-diastole var(--rz-cycle) step-end infinite;
+}
+
+@keyframes rz-hb-systole {
+    0% {
+        opacity: 1;
+    }
+    35%,
+    100% {
+        opacity: 0.32;
+    }
+}
+
+@keyframes rz-hb-diastole {
+    0% {
+        opacity: 0.32;
+    }
+    35%,
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Held with the burst in flight. Deliberately a composite rather than a real
+   frame of the loop — the brain is lit here although at 30% of a running cycle
+   it would not be yet. With only one image to make the point with, showing the
+   whole chain at once beats showing an accurate instant of it. */
+@media (prefers-reduced-motion: reduce) {
+    .rz-hb__glow,
+    .rz-hb__burst,
+    .rz-hb__ping,
+    .rz-hb__arc,
+    .rz-hb__sweep,
+    .rz-hb__hand,
+    .rz-hb__heart,
+    .rz-hb__tag {
+        animation: none;
+    }
+
+    .rz-hb__glow {
+        opacity: 0.75;
+    }
+
+    .rz-hb__burst {
+        /* 46% of the way along, which is mid-nerve. */
+        stroke-dashoffset: -46;
+        opacity: 1;
+    }
+
+    .rz-hb__ping {
+        transform: scale(1.7);
+        opacity: 0.55;
+    }
+
+    /* 30% of the way round: 376.99 × 0.7 left undrawn, and the head at 108°. */
+    .rz-hb__sweep {
+        stroke-dashoffset: 264;
+    }
+
+    .rz-hb__hand {
+        transform: translate(160px, 208px) rotate(108deg);
+    }
+
+    .rz-hb__heart {
+        transform: scale(0.88);
+    }
+
+    .rz-hb__tag--dia {
+        opacity: 0.32;
+    }
+}
+
+/* ── The rail ──
+   Once the section is black this is its only navigation, so it stays visible
+   rather than appearing on hover.
+
+   Its presence is `--rz-rail-in`, written every scroll frame, and not the veil:
+   it comes up during the dive while there is still eye on screen, and goes down
+   late in the pull-back, after the eye is back. See RAIL_* in reality-zoom.js.
+   No transition on the opacity — the value is already a scroll position, and
+   easing it would only make it lag the scroll. */
+.rz-rail {
+    position: absolute;
+    z-index: 6;
+    right: clamp(0.9rem, 2.4vw, 2.2rem);
+    top: 50%;
+    translate: 0 -50%;
+    display: grid;
+    gap: 1.4rem;
+    justify-items: end;
+    width: max-content;
+    opacity: var(--rz-rail-in, 0);
+    /* It is now up while the painting is still behind it, and the painting is
+       a bright sky. Cheap, and it costs nothing once the veil has closed. */
+    filter: drop-shadow(0 1px 10px rgba(0, 0, 0, 0.75));
+    /* Never on the container. It is as wide as its widest label and sits over
+       the middle of the stage, so making the box itself clickable would put an
+       invisible sheet across the landmark's own controls. */
+    pointer-events: none;
+}
+
+/* `.rz--rail`, not `.rz--dark`: the rail outlives the dark at both ends now. */
+.rz--rail .rz-rail__dot,
+.rz--rail .rz-rail__exit {
+    pointer-events: auto;
+}
+
+/* One equal row per landmark, each dot centred in its own — see the note in
+   reality-zoom.js. The line and its fill are the two pseudo-elements. */
+.rz-rail__track {
+    --rz-dot: 0.62rem;
+    position: relative;
+    display: grid;
+    grid-template-rows: repeat(var(--rz-count, 4), 1fr);
+    align-items: center;
+    justify-items: end;
+    height: min(46vh, 330px);
+}
+
+.rz-rail__track::before,
+.rz-rail__track::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: calc(var(--rz-dot) / 2);
+    width: 2px;
+    translate: 50% 0;
+    border-radius: 999px;
+}
+
+.rz-rail__track::before {
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.14);
+}
+
+/* The travelled part. Height is written every scroll frame, so it reads as a
+   continuous position rather than stepping from dot to dot. */
+.rz-rail__track::after {
+    height: calc(var(--rz-fill, 0) * 100%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.22), var(--rz-accent, rgba(255, 255, 255, 0.8)));
+    box-shadow: 0 0 10px color-mix(in srgb, var(--rz-accent, #fff) 45%, transparent);
+    transition:
+        background 0.45s ease,
+        box-shadow 0.45s ease;
+}
+
+.rz-rail__dot {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.rz-rail__dot::after {
+    content: "";
+    flex: none;
+    width: var(--rz-dot, 0.62rem);
+    height: var(--rz-dot, 0.62rem);
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    /* Opaque, not transparent: the line runs behind these and a hollow dot
+       would read as a bead threaded on it rather than a stop along it. */
+    background: #06070b;
+    transition:
+        background 0.25s ease,
+        scale 0.25s ease;
+}
+
+.rz-rail__label {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.64rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    opacity: 0;
+    translate: 0.4rem 0;
+    transition:
+        opacity 0.25s ease,
+        translate 0.25s ease;
+}
+
+.rz-rail__dot:hover,
+.rz-rail__dot:focus-visible {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.rz-rail__dot:hover .rz-rail__label,
+.rz-rail__dot:focus-visible .rz-rail__label,
+.rz-rail__dot--active .rz-rail__label {
+    opacity: 1;
+    translate: 0 0;
+}
+
+.rz-rail__dot--active {
+    color: var(--rz-accent);
+}
+
+.rz-rail__dot--active::after {
+    background: var(--rz-accent);
+    scale: 1.15;
+}
+
+/* Leaves the zoom for the other tab — the tab buttons are a whole track away
+   by the time anyone reaches the last landmark. */
+.rz-rail__exit {
+    margin-top: 0.4rem;
+    padding: 0.45em 0.9em;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: rgba(255, 255, 255, 0.72);
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.rz-rail__exit:hover {
+    background: rgba(255, 255, 255, 0.16);
+    color: #fff;
+}
+
+/* The nav bar is fixed over the top of the stage. A cream band across a black
+   cinematic section reads as a mistake, so it borrows the stage's palette for
+   as long as the zoom owns the screen. */
+#main-page.main-page--dark-zoom nav {
+    background: rgba(8, 9, 13, 0.72);
+    backdrop-filter: blur(12px);
+    border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+
+#main-page.main-page--dark-zoom nav .nav-brand,
+#main-page.main-page--dark-zoom nav a:not(.active) {
+    color: rgba(255, 255, 255, 0.82);
+}
+
+#main-page.main-page--dark-zoom nav .nav-logo,
+#main-page.main-page--dark-zoom nav .nav-logo--sussex {
+    filter: invert(1) brightness(1.7);
+}
+
+nav,
+nav .nav-brand,
+nav .nav-logo,
+nav .nav-logo--sussex {
+    transition:
+        background 0.35s ease,
+        color 0.35s ease,
+        filter 0.35s ease,
+        border-color 0.35s ease;
+}
+
+/* ── The gate ──
+   The zoom costs the reader ~700vh of scrolling, so it is opt-in. Nothing here
+   resizes anything: locked, the stage is the same full screen of the eye it is
+   once open, and the module simply takes the track's travel away so the page
+   carries it past like any other section. All that is added is the overlay —
+   opening the zoom removes it and changes nothing else on screen.
+
+   The rest is hidden only because it has nothing to say at rest; the veil, the
+   question and the landmarks are all driven to zero anyway. */
+.rz:not(.rz--unlocked) .rz-scenes,
+.rz:not(.rz--unlocked) .rz-rail,
+.rz:not(.rz--unlocked) .rz-hint {
+    display: none;
+}
+
+/* The overlay *is* the button — the whole stage, so anywhere on the section
+   opens the zoom. It stays light: rather than dimming the painting to carry the
+   text, only the middle is softened, and the line itself does the work with its
+   own shadow. */
+.rz-gate {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    padding: 2rem var(--content-inline-gutter);
+    border: none;
+    text-align: center;
+    background: radial-gradient(46% 34% at 50% 50%, rgba(6, 7, 11, 0.44) 0%, rgba(6, 7, 11, 0.16) 62%, rgba(6, 7, 11, 0) 100%);
+    cursor: pointer;
+    appearance: none;
+}
+
+.rz--unlocked .rz-gate {
+    display: none;
+}
+
+.rz-gate__label {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.25rem, 2.5vw, 2.05rem);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    color: #fff;
+    text-shadow:
+        0 2px 18px rgba(0, 0, 0, 0.92),
+        0 0 55px rgba(0, 0, 0, 0.75);
+    animation: rz-breathe 3.6s ease-in-out infinite;
+    /* `scale` rather than a transform, so the hover step and any transform the
+       label might grow later cannot overwrite each other. */
+    scale: 1;
+    transition:
+        scale 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        letter-spacing 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.4s ease,
+        text-shadow 0.5s ease;
+}
+
+@keyframes rz-breathe {
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Settle it while the pointer is on the *text*, not anywhere in the button —
+   the button is the whole 100vh stage, and with the section this tall the
+   pointer is "over" it for practically the entire time it is on screen. Hover
+   has to be scoped to the label's own small box or the animation would settle
+   immediately and never pulse again. Keyboard focus has no such box to aim at,
+   so it keeps the whole button. */
+.rz-gate__label:hover,
+.rz-gate:focus-visible .rz-gate__label {
+    animation: none;
+    opacity: 1;
+    scale: 1.07;
+    letter-spacing: 0.045em;
+    text-shadow:
+        0 2px 18px rgba(0, 0, 0, 0.95),
+        0 0 70px rgba(0, 0, 0, 0.85),
+        0 0 26px rgba(255, 255, 255, 0.18);
+}
+
+/* Pressing it starts the dive; the label ducks first. */
+.rz-gate:active .rz-gate__label {
+    scale: 1.01;
+    transition-duration: 0.12s;
+}
+
+/* Shown by the module rather than by the reader arriving at it, so it comes up
+   under its own steam — after the pull-back, at the end of a shot the reader is
+   still watching. */
+.rz-gate {
+    animation: rz-gate-in 0.6s ease both;
+}
+
+@keyframes rz-gate-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .rz-gate {
+        animation: none;
+    }
+
+    .rz-gate__label {
+        animation: none;
+        opacity: 1;
+        transition: none;
+    }
+
+    .rz-gate__label:hover,
+    .rz-gate:focus-visible .rz-gate__label {
+        scale: 1;
+        letter-spacing: 0.045em;
+    }
+}
+
+/* Puts the overlay back. Centred at the foot of the stage, where the eye is
+   already looking for the next scroll, and only there once the zoom is open.
+   The hint above it is moved up to clear this. */
+.rz-close {
+    position: absolute;
+    z-index: 7;
+    bottom: 1.9rem;
+    left: 50%;
+    translate: -50% 0;
+    display: none;
+    place-items: center;
+    width: 3.3rem;
+    height: 3.3rem;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    background: rgba(8, 10, 16, 0.4);
+    backdrop-filter: blur(8px);
+    font-size: 1.1rem;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.65);
+    cursor: pointer;
+    opacity: 0.62;
+    transition:
+        opacity 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease;
+}
+
+.rz--unlocked .rz-close {
+    display: grid;
+}
+
+.rz-close:hover,
+.rz-close:focus-visible {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.5);
+    color: #fff;
+}
+
+/* At the sidebar breakpoint .research-full takes the sidebar as padding so its
+   header and card tab stay aligned with every other section. The stage is the
+   exception: it has to bleed back across that padding or the black stops 14rem
+   short of the screen edge for the whole zoom. The section's overflow-x clips
+   at its padding box — which is its border box, since there is no border — so
+   the negative margin survives. */
+@media (min-width: 1800px) {
+    .rz-stage {
+        margin-left: -14rem;
+        width: calc(100% + 14rem);
+    }
+}
+
+/* ── Static fallback ──
+   Reduced motion, and anything too narrow for a two-column stage held at 100vh.
+   The stage stops being sticky, which is also the signal the module reads to
+   stand down — it checks the computed position rather than re-testing the media
+   queries, so this block is the single place the mode is decided. */
+@media (max-width: 900px), (prefers-reduced-motion: reduce) {
+    .rz {
+        --rz-mode: stack;
+    }
+
+    .rz-track {
+        height: auto !important;
+    }
+
+    .rz-stage {
+        position: static;
+        height: auto;
+        display: block;
+        padding: 0 0 3rem;
+        /* The base hides overflow to clip the zoomed eye. There is no zoom
+           here, and leaving it on makes the stage its own scrollport — which
+           silently stops .rz-close from sticking to the foot of the screen. */
+        overflow: visible;
+    }
+
+    /* .rz-gate is placed against the stage, which is unpositioned here; without
+       this it would resolve against #main-page and cover the whole page. */
+    .rz:not(.rz--unlocked) .rz-stage {
+        position: relative;
+    }
+
+    /* No rail here, so this is the only way out other than scrolling. Sticky
+       against the foot of the viewport rather than absolute against a stage
+       that is now thousands of pixels tall, so it stays with the reader all the
+       way down the stack — same place on screen as in the zoom. */
+    .rz--unlocked .rz-close {
+        position: sticky;
+        bottom: 1.9rem;
+        left: auto;
+        translate: none;
+        margin: 0 auto 1rem;
+        opacity: 0.85;
+    }
+
+    .rz-zoom {
+        position: relative;
+        inset: auto;
+        display: block;
+        aspect-ratio: 2000 / 1345;
+        max-height: 52vh;
+        overflow: hidden;
+        transform: none;
+    }
+
+    .rz-eye {
+        position: static;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* .rz-depth is absolute against the stage; with the stage unpositioned it
+       would resolve against #main-page and wash the whole page. */
+    .rz-pupil,
+    .rz-veil,
+    .rz-depth,
+    .rz-hint {
+        display: none;
+    }
+
+    .rz-question {
+        padding: 2.6rem var(--content-inline-gutter) 0;
+        opacity: 1;
+        transform: none;
+    }
+
+    .rz-scenes {
+        position: static;
+        display: grid;
+        gap: 4rem;
+        padding: 3rem 0 0;
+        pointer-events: auto;
+        /* All three fight the same thing: stacked, this grid and its column
+           both shrink-wrap the landmarks instead of taking the stage's width,
+           which left them 495px wide inside an 805px stage. Spell out the
+           width, the column, and the stretch rather than relying on any of
+           them being inferred — .rz-scene then takes its gutter as padding
+           instead of out of a percentage of a column that is sizing to it. */
+        width: 100%;
+        justify-items: stretch;
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .rz-scene {
+        grid-area: auto;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2rem;
+        width: 100%;
+        max-width: var(--content-max-width);
+        padding: 0 var(--content-inline-gutter);
+        margin: 0 auto;
+        opacity: 1;
+        transform: none;
+        filter: none;
+        pointer-events: auto;
+    }
+
+    .rz-scene:nth-child(even) .rz-scene__figure {
+        order: 0;
+    }
+
+    .rz-map__node {
+        opacity: 1;
+    }
+
+    .rz-map__arrow {
+        stroke-dashoffset: 0;
+    }
+
+    .rz-rail {
+        display: none;
+    }
+
+    #main-page.main-page--dark-zoom nav {
+        background: #f5f4ef;
+        backdrop-filter: none;
     }
 }
 

@@ -331,13 +331,26 @@ function initHeroGlow() {
  * screen. A button whose whole job is "go over there" has nothing to say while
  * you are standing in front of "there", and leaving it floating over the
  * section it advertises is exactly the behaviour that makes these obnoxious.
+ *
+ * Both ends are section boundaries, deliberately: it lives for exactly News and
+ * Publications. Nothing here may be a fraction of the scroll height — the
+ * Research zoom's gate changes that height by ~700vh (see the note at `gate`).
  */
 function initSitePromoFab() {
     const fab = document.getElementById("fab-site-promo")
     const target = document.getElementById("sec-contact-full")
-    if (!fab || !mainPage) return
+    /* What "far enough in" is measured against. It used to be a fraction of the
+       page — half way down, on the theory that People and Research are behind
+       you by then — and that was wrong twice over. Research is the tallest
+       section on the page even with its zoom shut, so half of the scroll height
+       already landed inside it; and opening the zoom adds ~700vh to the
+       document, which drags the halfway mark right into the middle of the dive.
+       Either way the button arrived over the section it was meant to come
+       after, and its position moved depending on whether the reader had opened
+       something. A section boundary does not have that problem. */
+    const gate = document.getElementById("sec-research-full")
 
-    // Half way down: past People and Research, with the site's case made.
+    // Fallback only, for a page without that section: half way down.
     const SHOW_PAST = 0.5
 
     /* How far the button has to pull itself out of the column to leave no trace
@@ -356,7 +369,10 @@ function initSitePromoFab() {
         const scrollable = mainPage.scrollHeight - mainPage.clientHeight
         if (scrollable <= 0) return
 
-        const scrolled = mainPage.scrollTop / scrollable >= SHOW_PAST
+        // Research entirely off the top, which is the moment News fills the
+        // screen — so the button's whole life is News and Publications, whether
+        // or not the reader took the long way through the zoom.
+        const scrolled = gate ? gate.getBoundingClientRect().bottom <= 0 : mainPage.scrollTop / scrollable >= SHOW_PAST
         // Three quarters of a viewport of the destination is "you are here".
         const arrived = target ? target.getBoundingClientRect().top < mainPage.clientHeight * 0.75 : false
 

@@ -9,7 +9,9 @@
  * uncover the new one.
  */
 
-const LEAVE_DURATION = 320
+/* Exported because a caller may need to know when the outgoing panel is really
+   gone: until then it is still laid out and still reports itself as visible. */
+export const LEAVE_DURATION = 320
 const LEAVING_CLASS = "tab-panel--leaving"
 const LEAVING_BACK_CLASS = "tab-panel--leaving-back"
 const ENTERING_CLASS = "tab-panel--entering"
