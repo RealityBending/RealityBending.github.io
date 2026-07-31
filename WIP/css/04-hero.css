@@ -1,0 +1,521 @@
+/* ── 04 · HERO ──
+   The dark banner, the light disc that hugs the brain, the six menu buttons
+   on the disc's rim and the entrance animation. Ends with the .section--*
+   colour tokens, which sit here because that is where they sat in the old
+   single file.
+
+   Part of the numbered set in css/ — the sheets are one stylesheet cut into
+   pieces and index.html links them in this order. Order is the cascade: a
+   rule here loses to the same-specificity rule in any later file. */
+
+/* ── Hero ── */
+.hero {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    align-items: stretch;
+    min-height: min(800px, 100vh);
+    /* Content is centred on the same 1200px container as the other sections,
+       while the dark background still bleeds full-width to the screen edges. */
+    padding: 0 max(var(--content-inline-gutter), calc((100% - var(--content-max-width)) / 2));
+    background: #111;
+    overflow: hidden;
+}
+
+/* Soft glow that trails the pointer across the dark half — the coordinates are
+   written by initHeroGlow() in script.js and fall back to a static position. */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(
+        30rem circle at var(--hero-pointer-x, 24%) var(--hero-pointer-y, 42%),
+        rgba(245, 244, 239, 0.09),
+        rgba(245, 244, 239, 0) 68%
+    );
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.hero:hover::before {
+    opacity: 1;
+}
+
+.hero__intro {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2.1rem;
+    padding: clamp(3rem, 5vw, 5.5rem) 0;
+    color: #f5f4ef;
+    text-align: left;
+}
+
+.hero__banner {
+    width: min(500px, 100%);
+    height: auto;
+    margin: 0 0 0.75rem;
+}
+
+.hero__title {
+    margin: 0;
+    font-weight: 400;
+    font-size: clamp(1.8rem, 2.8vw, 2.7rem);
+    letter-spacing: 0.01em;
+    line-height: 1.25;
+    color: #f5f4ef;
+}
+
+.hero__summary {
+    margin: 0;
+    max-width: 34rem;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.98rem;
+    line-height: 1.8;
+    color: rgba(245, 244, 239, 0.78);
+}
+
+.hero__summary a {
+    color: #f5f4ef;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(245, 244, 239, 0.4);
+    transition: border-color 0.2s ease;
+}
+
+.hero__summary a:hover {
+    border-bottom-color: rgba(245, 244, 239, 0.9);
+}
+
+.hero__quote {
+    margin: 0.35rem 0 0;
+    max-width: 32rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: rgba(245, 244, 239, 0.42);
+}
+
+/* The whole quote is the link. It keeps the paragraph's own dim colour and
+   carries no underline at rest — the line is the hero's quietest thing and a
+   rule under five lines of italic would make it the loudest. Hovering brightens
+   the text instead, which is the only affordance it needs. */
+.hero__quote a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.hero__quote a:hover,
+.hero__quote a:focus-visible {
+    color: rgba(245, 244, 239, 0.72);
+}
+
+.hero__brain {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* The padding is a variable because the disc has to add it back: cqh below
+       measures this element's *content* box, and the disc is sized against the
+       hero's full height. */
+    --brain-pad: clamp(1rem, 3vw, 2.5rem);
+    padding: var(--brain-pad);
+    /* Size container so the disc and the buttons on its rim can be sized
+       against the hero's height (100cqh) and not only against the atlas's
+       width — see --disc-diameter. This column's own height comes from the
+       grid row, never from its contents, so size containment costs nothing
+       here; the stacked layout below 900px is the exception and turns it off. */
+    container-type: size;
+}
+
+.brain-atlas {
+    position: relative;
+    isolation: isolate;
+    width: min(480px, 100%);
+    aspect-ratio: 1;
+    /* Nudge the brain, disc and buttons right so the enlarged disc and the
+       buttons on its rim stay clear of the left column text. */
+    transform: translateX(30%);
+
+    /* The hero's own height. .hero__brain is a grid item stretched over the
+       whole row and the hero has no vertical padding, so its border box is
+       exactly the hero's height. */
+    --hero-height: calc(100cqh + var(--brain-pad) * 2);
+    /* Diameter of the light disc. 172% of the atlas is what makes it hug the
+       brain, but the top and bottom of the circle also have to clear the edges
+       of the hero — otherwise the arc stops short and the fill below shows its
+       own straight vertical edge instead (the black gets flat sides mid-curve).
+       Between roughly 900px and 1040px the columns are narrow while the hero is
+       still 800px tall, and the 172% branch is no longer enough, so the disc
+       falls back to overhanging the hero by 12px at each end — which is what
+       172% itself comes to at the widths where it does still fit. */
+    --disc-diameter: max(172%, calc(var(--hero-height) + 24px));
+    --disc-radius: calc(var(--disc-diameter) / 2);
+    /* The disc's leftmost point, as an offset from the atlas's left edge. It is
+       pinned: growing the disc opens the arc out rather than pushing it further
+       into the intro column. At the natural 172% the centre lands back on 50%,
+       which is where it has always been. */
+    --disc-left: -36%;
+}
+
+/* Light disc that hugs the brain: a true circle wide enough for its top and
+   bottom to reach past the edges of the hero, so the left curve is a full
+   rounded arc that wraps the brain and blends smoothly into the top/bottom
+   edges. The colored buttons sit on this same radius, so their centres always
+   land on the divide line. */
+.brain-atlas::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: calc(var(--disc-left) + var(--disc-radius));
+    width: var(--disc-diameter);
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    background: #f5f4ef;
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Fill the right side of the disc with white, out to the section edge. Starts
+   at the atlas centre, which is at or left of the disc's centre, so the two
+   always overlap; the height follows the disc so this can never be the shorter
+   of the pair and expose its own square corners. */
+.brain-atlas::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: max(220%, var(--disc-diameter));
+    transform: translateY(-50%);
+    background: #f5f4ef;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.brain-atlas__center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+#brain-viewer {
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+    position: relative;
+}
+
+#brain-viewer:active {
+    cursor: grabbing;
+}
+
+#brain-tooltip {
+    position: absolute;
+    padding: 0.3rem 0.75rem;
+    background: rgba(17, 17, 17, 0.82);
+    color: #f5f4ef;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    pointer-events: none;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    z-index: 5;
+}
+
+#brain-tooltip.visible {
+    opacity: 1;
+}
+
+.hero-logo {
+    width: 110px;
+    opacity: 0.88;
+}
+
+/* ── Hero menu buttons (equal round buttons on the disc edge) ── */
+.menu-buttons {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.menu-button {
+    --btn-color: var(--section-color, #111);
+    position: absolute;
+    /* On the disc's rim, at --btn-angle from its horizontal diameter (negative
+       is above). Derived from --disc-radius rather than written out, so the
+       buttons follow the arc when it has to grow to reach the hero's edges. */
+    left: calc(var(--disc-left) + var(--disc-radius) * (1 - cos(var(--btn-angle))));
+    top: calc(50% + var(--disc-radius) * sin(var(--btn-angle)));
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4.7rem;
+    height: 4.7rem;
+    padding: 0.3rem;
+    border: none;
+    border-radius: 50%;
+    background: var(--btn-color);
+    color: #f5f4ef;
+    cursor: pointer;
+    text-align: center;
+    pointer-events: auto;
+    /* Flat: no drop shadow. Depth comes from the hairline rings below, which
+       read against both halves of the divide the buttons sit on. */
+    box-shadow: inset 0 0 0 1px rgba(245, 244, 239, 0.22);
+    scroll-margin-top: 6rem;
+    transition:
+        transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.25s ease;
+}
+
+/* Two concentric outlines in the section colour: ::before is the standing ring
+   that reacts to hover, ::after is a ripple that keeps emanating at rest so the
+   buttons read as interactive before you touch them. */
+.menu-button::before,
+.menu-button::after {
+    content: "";
+    position: absolute;
+    inset: -0.34rem;
+    border: 1px solid var(--btn-color);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.menu-button::before {
+    opacity: 0.45;
+    transition:
+        opacity 0.28s ease,
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.menu-button::after {
+    opacity: 0;
+    animation: menu-button-ripple 3.6s ease-out infinite;
+}
+
+/* Roughly half the cycle is spent idle, so six buttons breathing at once stays
+   a hint rather than a light show. */
+@keyframes menu-button-ripple {
+    0% {
+        transform: scale(1);
+        opacity: 0;
+    }
+    12% {
+        opacity: 0.4;
+    }
+    55%,
+    100% {
+        transform: scale(1.45);
+        opacity: 0;
+    }
+}
+
+/* Offset each ring so the six pulse in sequence around the arc. */
+.menu-button:nth-child(2)::after {
+    animation-delay: -0.6s;
+}
+
+.menu-button:nth-child(3)::after {
+    animation-delay: -1.2s;
+}
+
+.menu-button:nth-child(4)::after {
+    animation-delay: -1.8s;
+}
+
+.menu-button:nth-child(5)::after {
+    animation-delay: -2.4s;
+}
+
+.menu-button:nth-child(6)::after {
+    animation-delay: -3s;
+}
+
+.menu-button__label {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.5rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.25;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+    pointer-events: none;
+}
+
+.menu-button:hover,
+.menu-button:focus-visible,
+.menu-button.is-highlighted {
+    transform: translate(-50%, -50%) scale(1.09);
+    box-shadow: inset 0 0 0 1px rgba(245, 244, 239, 0.5);
+    outline: none;
+}
+
+.menu-button:hover::before,
+.menu-button:focus-visible::before,
+.menu-button.is-highlighted::before {
+    opacity: 0.95;
+    transform: scale(1.16);
+}
+
+/* Tighten the ripple on hover so the resting hint turns into a response. */
+.menu-button:hover::after,
+.menu-button:focus-visible::after,
+.menu-button.is-highlighted::after {
+    animation-duration: 1.4s;
+}
+
+.menu-button:active {
+    transform: translate(-50%, -50%) scale(0.97);
+}
+
+/* Positions traced along the left edge of the disc (top → bottom) */
+.menu-button:nth-child(1) {
+    --btn-angle: -52deg;
+}
+
+.menu-button:nth-child(2) {
+    --btn-angle: -30deg;
+}
+
+.menu-button:nth-child(3) {
+    --btn-angle: -10deg;
+}
+
+.menu-button:nth-child(4) {
+    --btn-angle: 10deg;
+}
+
+.menu-button:nth-child(5) {
+    --btn-angle: 30deg;
+}
+
+.menu-button:nth-child(6) {
+    --btn-angle: 52deg;
+}
+
+/* ── Hero entrance (plays once the door screen hands over) ──
+   `backwards` fill only, so after the animation the elements fall back to
+   their normal styles and the hover transforms keep working. */
+@keyframes hero-rise {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes menu-button-in {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.4);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+#main-page.visible .hero__intro > * {
+    animation: hero-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+#main-page.visible .hero__intro > *:nth-child(1) {
+    animation-delay: 0.35s;
+}
+
+#main-page.visible .hero__intro > *:nth-child(2) {
+    animation-delay: 0.47s;
+}
+
+#main-page.visible .hero__intro > *:nth-child(3) {
+    animation-delay: 0.59s;
+}
+
+#main-page.visible .hero__intro > *:nth-child(4) {
+    animation-delay: 0.71s;
+}
+
+#main-page.visible .menu-button {
+    animation: menu-button-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+}
+
+#main-page.visible .menu-button:nth-child(1) {
+    animation-delay: 0.6s;
+}
+
+#main-page.visible .menu-button:nth-child(2) {
+    animation-delay: 0.68s;
+}
+
+#main-page.visible .menu-button:nth-child(3) {
+    animation-delay: 0.76s;
+}
+
+#main-page.visible .menu-button:nth-child(4) {
+    animation-delay: 0.84s;
+}
+
+#main-page.visible .menu-button:nth-child(5) {
+    animation-delay: 0.92s;
+}
+
+#main-page.visible .menu-button:nth-child(6) {
+    animation-delay: 1s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #main-page.visible .hero__intro > *,
+    #main-page.visible .menu-button,
+    .menu-button::after {
+        animation: none;
+    }
+
+    .hero::before {
+        display: none;
+    }
+}
+
+.section--research {
+    --section-color: var(--section-research);
+}
+
+.section--news {
+    --section-color: var(--section-news);
+}
+
+.section--people {
+    --section-color: var(--section-people);
+}
+
+.section--publications {
+    --section-color: var(--section-publications);
+}
+
+.section--join {
+    --section-color: var(--section-join);
+}
+
+.section--contact {
+    --section-color: var(--section-contact);
+}
+

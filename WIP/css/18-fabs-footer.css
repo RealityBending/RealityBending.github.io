@@ -1,0 +1,190 @@
+/* ── 18 · FABs + FOOTER ──
+   The floating action buttons, the "Like this website?" prompt, the footer.
+
+   Part of the numbered set in css/ — the sheets are one stylesheet cut into
+   pieces and index.html links them in this order. Order is the cascade: a
+   rule here loses to the same-specificity rule in any later file. */
+
+/* ── Floating action buttons ── */
+.fab-group {
+    /* One number, because .fab--research sits above the column and has to clear
+       it by exactly the same distance the column's own buttons clear each
+       other. */
+    --fab-gap: 0.6rem;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--fab-gap);
+    z-index: 100;
+}
+
+.fab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.65rem 1.4rem;
+    border-radius: 12px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+    box-shadow: 0 4px 16px rgba(17, 17, 17, 0.12);
+    background: #f5f4ef;
+    color: #111;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.fab:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(17, 17, 17, 0.16);
+}
+
+.fab--primary {
+    background: #111;
+    color: #f5f4ef;
+    border-color: #111;
+}
+
+/* ── "Like this website?" ──
+   The one FAB that arrives rather than being there from the start, so it is
+   the one that has to earn the interruption: it is the Information section's
+   own red, and it carries a second line the other two do not need.
+
+   No border. `.fab` gives every button a 1px hairline, and inheriting it as
+   `transparent` over a gradient was what put a pale mismatched rim around the
+   corners: a gradient is clipped to the border box but *originates* at the
+   padding box, so the strip under a transparent border is the gradient
+   stretched, and the two rounded corners it is drawn between have different
+   radii. One flat surface and one shadow is the whole treatment.
+
+   ── Collapsed, not just invisible ──
+   Hidden, it pulls itself out of the column with a negative bottom margin
+   rather than sitting there at opacity 0. The group is pinned by its bottom
+   edge, so a shorter group means the other two buttons sit lower — which is
+   the point: they hold their usual place until this arrives, get out of its
+   way as it slides up, and drop back when it leaves. --fab-promo-collapse is
+   the button's own height plus the group's gap, measured by script.js because
+   the second line's wrapping decides it. */
+.fab--promo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.1rem;
+    padding: 0.62rem 1.25rem 0.68rem;
+    background: linear-gradient(135deg, rgb(240, 80, 80), rgb(176, 46, 46));
+    border: 0;
+    color: #fff7f5;
+    text-align: left;
+    opacity: 0;
+    pointer-events: none;
+    margin-bottom: calc(-1 * var(--fab-promo-collapse, 3.6rem));
+    box-shadow: 0 6px 18px rgba(140, 30, 30, 0.32);
+    transition:
+        margin-bottom 0.34s ease,
+        opacity 0.34s ease,
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.fab--promo.is-shown {
+    opacity: 1;
+    pointer-events: auto;
+    margin-bottom: 0;
+}
+
+.fab--promo:hover {
+    box-shadow: 0 10px 26px rgba(140, 30, 30, 0.4);
+}
+
+/* ── "What we created" ──
+   The way through to the Creations tab, floating for as long as the Research
+   section's Overview is the thing on screen. The zoom's rail carries one too,
+   but the rail only exists once the dive has gone dark — this one is up for the
+   whole section, including the poster the reader meets first.
+
+   Purple because it has to read as a third kind of thing rather than a second
+   "Join the Lab", and because it belongs to the section it appears over rather
+   than to the page's two standing offers.
+
+   ── Above the column, not in it ──
+   .fab--promo pulls itself out of the flex column with a negative margin, and
+   this one deliberately does not copy that. The column stretches every button
+   to the width of its widest, and this label is the longest text in the group
+   — as a flex item it would have widened "Hire us" and "Join the Lab" for the
+   whole visit, including every page where it never appears. Placed
+   against the group instead (which is `fixed`, so it is already the containing
+   block) it contributes no width and no height: the other two never move, and
+   there is nothing to measure. It clears the column by the group's own gap. */
+.fab--research {
+    position: absolute;
+    right: 0;
+    bottom: 100%;
+    margin-bottom: var(--fab-gap);
+    background: linear-gradient(135deg, rgb(169, 139, 255), rgb(116, 74, 224));
+    border: 0;
+    color: #fbf8ff;
+    opacity: 0;
+    pointer-events: none;
+    /* `translate` rather than a transform: .fab's own hover owns `transform`,
+       and the two would overwrite each other. */
+    translate: 0 0.5rem;
+    box-shadow: 0 6px 18px rgba(72, 40, 145, 0.34);
+    transition:
+        translate 0.34s ease,
+        opacity 0.34s ease,
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.fab--research.is-shown {
+    opacity: 1;
+    pointer-events: auto;
+    translate: 0 0;
+}
+
+.fab--research:hover {
+    box-shadow: 0 10px 26px rgba(72, 40, 145, 0.42);
+}
+
+.fab__lead {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+/* Sentence case and unspaced, so the pitch reads as a line of speech rather
+   than a third label competing with the two above it. */
+.fab__sub {
+    font-size: 0.63rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    opacity: 0.88;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fab--promo,
+    .fab--research {
+        transition: opacity 0.32s ease;
+    }
+}
+
+/* ── Footer ── */
+footer {
+    text-align: center;
+    padding: 2rem;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    color: rgba(0, 0, 0, 0.25);
+    border-top: 1px solid rgba(0, 0, 0, 0.07);
+}
+

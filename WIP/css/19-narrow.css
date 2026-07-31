@@ -1,0 +1,222 @@
+/* ── 19 · NARROW SCREENS ──
+   One @media (max-width: 900px) block, cross-section: it is where the hero
+   stacks, the nav wraps and the tab margins fold away. It comes after every
+   section file because it has to beat them.
+
+   Part of the numbered set in css/ — the sheets are one stylesheet cut into
+   pieces and index.html links them in this order. Order is the cascade: a
+   rule here loses to the same-specificity rule in any later file. */
+
+@media (max-width: 900px) {
+    nav {
+        flex-direction: column;
+        padding: 0.6rem 1.5rem;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .nav-left {
+        gap: 0.5rem;
+    }
+
+    .nav-logo,
+    .nav-logo--sussex {
+        height: 1.6rem;
+    }
+
+    nav ul {
+        gap: 1rem 1.5rem;
+    }
+
+    .hero {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        padding-inline: 0;
+        background: #111;
+    }
+
+    .brain-atlas::before,
+    .brain-atlas::after {
+        display: none;
+    }
+
+    .hero__intro {
+        padding: 2.5rem var(--content-inline-gutter) 2.75rem;
+        text-align: center;
+        align-items: center;
+    }
+
+    .hero__summary,
+    .hero__quote {
+        max-width: none;
+    }
+
+    .hero__brain {
+        padding: 2rem var(--content-inline-gutter) 1rem;
+        background: #f5f4ef;
+        border-radius: 28px 28px 0 0;
+        /* Stacked, this row's height *is* its content, so size containment
+           would collapse it to nothing. The disc it was for is gone here. */
+        container-type: normal;
+    }
+
+    .brain-atlas {
+        width: min(var(--content-max-width), 100%);
+        aspect-ratio: auto;
+        transform: none;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    .brain-atlas__center {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        order: -1;
+    }
+
+    #brain-viewer {
+        width: min(48rem, 88vw);
+        height: min(420px, 68vw);
+        margin: 0 auto;
+    }
+
+    .menu-buttons {
+        position: relative;
+        inset: auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.6rem;
+        padding: 0 var(--content-inline-gutter) 2.5rem;
+        background: #f5f4ef;
+    }
+
+    .menu-buttons .menu-button {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+    }
+
+    /* The stacked layout drops the centring translate, so the arc entrance
+       keyframe no longer applies. */
+    #main-page.visible .menu-button {
+        animation: none;
+    }
+
+    .menu-button:hover,
+    .menu-button:focus-visible,
+    .menu-button.is-highlighted {
+        transform: translateY(-2px) scale(1.04);
+    }
+
+    .menu-button:active {
+        transform: translateY(0) scale(0.97);
+    }
+
+    .contact-full__inner {
+        grid-template-columns: 1fr;
+    }
+
+    /* Stacked, so the map divider moves to the top edge. */
+    .contact-full__inner {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-panel__content {
+        padding: 1.75rem;
+    }
+
+    .contact-full__map {
+        border-left: 0;
+        border-top: 1px solid rgba(17, 17, 17, 0.09);
+    }
+
+    .contact-tabs-nav {
+        justify-content: flex-start;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .contact-tabs-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Three levels still fit across a phone, so the rail keeps its single row
+       and its connecting line — only the tiles and their type come down to make
+       room. Wrapping to a second row is what would break the line, since it
+       places itself from the column count alone. */
+    .join-ladder {
+        --join-gap: 0.4rem;
+    }
+
+    .join-step {
+        min-height: 3rem;
+        padding: 0.55rem 0.35rem;
+        border-radius: 12px;
+    }
+
+    .join-step__label {
+        font-size: 0.7rem;
+        line-height: 1.2;
+    }
+
+    .join-console,
+    .join-stage,
+    .join-outro {
+        padding-left: 1.4rem;
+        padding-right: 1.4rem;
+    }
+
+    .join-stage {
+        padding-top: 1.7rem;
+        gap: 1.6rem;
+    }
+
+    .join-filters__bar {
+        justify-content: flex-start;
+    }
+
+    .fab-group {
+        bottom: 1rem;
+        right: 1rem;
+    }
+
+    /* MLP responsive */
+    #people-grid {
+        padding-left: 0;
+    }
+
+    .mlp-layer {
+        flex-direction: column;
+    }
+
+    .mlp-layer__label {
+        position: static;
+        transform: none;
+        margin-bottom: 0.6rem;
+        width: auto;
+    }
+
+    .mlp-layer__nodes {
+        justify-content: center;
+        gap: 2rem;
+        padding: 0;
+    }
+
+    /* The ring and pulse already track --mlp-avatar-size, so the two vars are
+       the only thing that needs to change here. */
+    .mlp-node {
+        --mlp-avatar-size: 108px;
+        --mlp-keyword-size: 187px;
+        width: auto;
+    }
+
+    .people-full {
+        padding: 3rem 0;
+    }
+}
+

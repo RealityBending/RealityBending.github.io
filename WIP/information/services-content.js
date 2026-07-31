@@ -35,7 +35,7 @@
  * its back.
  *
  * Accent triplets are accent / deep / ink. The base colours are three of the
- * site's own section tokens (style.css :root) so nothing new enters the
+ * site's own section tokens (css/01-base.css :root) so nothing new enters the
  * palette — orange, teal and blue — plus the Information red for the card that
  * closes the honeycomb. They are picked for the contrast between the three
  * strands of work, not to point at any particular section, so a section

@@ -95,7 +95,7 @@ function initContactTabs() {
     // The backdrop is a sibling of the panels, so it cannot select on which one
     // is showing — and it has to, because the tabs differ enormously in height
     // and the banner is sized against the section. See the [data-active-tab]
-    // rules in style.css.
+    // rules in css/15-contact.css.
     const section = document.querySelector(".contact-full")
 
     function activateContactTab(tab) {

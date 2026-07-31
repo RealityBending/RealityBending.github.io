@@ -1,0 +1,57 @@
+/* ── 01 · BASE ──
+   Reset, page defaults and every :root token: the intro timings, the six
+   section colours, the content column.
+
+   Part of the numbered set in css/ — the sheets are one stylesheet cut into
+   pieces and index.html links them in this order. Order is the cascade: a
+   rule here loses to the same-specificity rule in any later file. */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f5f4ef;
+    font-family: Georgia, "Times New Roman", serif;
+    overflow: hidden;
+}
+
+:root {
+    --intro-bg-lighten-duration: 300ms;
+    --intro-door-open-delay: 500ms;
+    --intro-door-swing-duration: 500ms;
+    /* Zoom starts mid-swing and lands with everything else at 1200ms. */
+    --intro-door-zoom-delay: 150ms;
+    --intro-door-zoom-duration: 550ms;
+    /* The whole landing screen — grey, doors and all — dissolves in one go:
+       the grey holds until 900ms, then 300ms of fade takes the screen out at
+       1200ms. Nothing is animating past that point, and the screen covers the
+       viewport until it goes, so ending here is what makes the hero clickable
+       as soon as it is on show. */
+    --intro-screen-fade-delay: 900ms;
+    --intro-screen-fade-duration: 300ms;
+    --main-overlay-fade-delay: 300ms;
+    --main-overlay-fade-duration: 1000ms;
+    /* The hero's menu buttons run down the left edge of the disc in this order —
+       People, Research, News, Publications, Join, Information — and the six
+       colours are the arc they trace, purple through to red. The colour belongs
+       to the position on that arc, not to the section, so reordering the menu
+       means moving the *names* between these tokens and leaving the values in
+       place. site-sections.js carries the same hexes for the brain and the
+       atlas; change one and change the other. */
+    --section-people: #aa55ff;
+    --section-research: #5599ff;
+    --section-news: #33cccc;
+    --section-publications: #55cc77;
+    --section-join: #ff9933;
+    --section-contact: #ff5555;
+    --content-max-width: 1200px;
+    --content-inline-gutter: clamp(1rem, 3vw, 2rem);
+    --content-inline-size: min(var(--content-max-width), calc(100% - (var(--content-inline-gutter) * 2)));
+    --debug-margins: 1; /* set to 0 to hide dashed margin guides */
+}
+

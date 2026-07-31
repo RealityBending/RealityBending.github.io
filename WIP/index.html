@@ -4,7 +4,35 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Reality Bending Lab</title>
-        <link rel="stylesheet" href="style.css" />
+        <!-- One stylesheet cut into numbered pieces. THE ORDER IS THE CASCADE:
+             these are loaded and applied exactly as listed, so a rule in a
+             later file beats the same-specificity rule in an earlier one.
+             Several overrides here depend on that (the narrow/wide blocks beat
+             the section files; the zoom's own 1800px rule beats 20-wide.css).
+             Add a file where it belongs in the order, never at the end for
+             convenience. -->
+        <link rel="stylesheet" href="css/01-base.css" />
+        <link rel="stylesheet" href="css/02-door.css" />
+        <link rel="stylesheet" href="css/03-shell.css" />
+        <link rel="stylesheet" href="css/04-hero.css" />
+        <link rel="stylesheet" href="css/05-research.css" />
+        <link rel="stylesheet" href="css/06-people.css" />
+        <link rel="stylesheet" href="css/07-shared.css" />
+        <link rel="stylesheet" href="css/08-memories.css" />
+        <link rel="stylesheet" href="css/09-collaborations.css" />
+        <link rel="stylesheet" href="css/10-people-mlp.css" />
+        <link rel="stylesheet" href="css/11-alumni.css" />
+        <link rel="stylesheet" href="css/12-profile-panel.css" />
+        <link rel="stylesheet" href="css/13-news.css" />
+        <link rel="stylesheet" href="css/14-publications.css" />
+        <link rel="stylesheet" href="css/15-contact.css" />
+        <link rel="stylesheet" href="css/16-join.css" />
+        <link rel="stylesheet" href="css/17-services.css" />
+        <link rel="stylesheet" href="css/18-fabs-footer.css" />
+        <link rel="stylesheet" href="css/19-narrow.css" />
+        <link rel="stylesheet" href="css/20-wide.css" />
+        <link rel="stylesheet" href="css/21-reality-zoom.css" />
+        <link rel="stylesheet" href="css/22-debug.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet" />
@@ -57,6 +85,57 @@
                          two links that share this href. -->
                     <li><a href="#sec-contact-full" data-section="sec-join" data-contact-tab-target="join">Join</a></li>
                     <li><a href="#sec-contact-full" data-section="sec-contact">Information</a></li>
+                    <!-- One list item holding all three, not three items: the
+                         bar is a row here and a 14rem column past 1800px, and
+                         as separate items the icons would become three more
+                         rows of that column. Inside one item they stay a
+                         cluster in both. The marks are inline SVG in
+                         currentColor, so the dark dress the Research zoom puts
+                         on the nav (main-page--dark-zoom) carries them with
+                         the section links and nothing has to know about them.
+                         Inline rather than the People panel's icon CDN: this
+                         bar is on screen for the whole visit. -->
+                    <li class="nav-social">
+                        <a
+                            href="https://x.com/Dom_Makowski"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Dominique Makowski on X"
+                            title="X"
+                        >
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.22-6.82-5.96 6.82H1.66l7.73-8.84L1.25 2.25h6.83l4.71 6.23 5.45-6.23Zm-1.16 17.52h1.83L7.08 4.13H5.11l11.97 15.64Z"
+                                />
+                            </svg>
+                        </a>
+                        <a
+                            href="https://www.linkedin.com/in/dominiquemakowski/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Dominique Makowski on LinkedIn"
+                            title="LinkedIn"
+                        >
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"
+                                />
+                            </svg>
+                        </a>
+                        <a
+                            href="https://github.com/DominiqueMakowski"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Dominique Makowski on GitHub"
+                            title="GitHub"
+                        >
+                            <svg viewBox="0 0 16 16" aria-hidden="true">
+                                <path
+                                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.65 7.65 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+                                />
+                            </svg>
+                        </a>
+                    </li>
                 </ul>
             </nav>
 
@@ -74,8 +153,10 @@
                         neuropsychological science.
                     </p>
                     <p class="hero__quote">
-                        &ldquo;Do not try to bend the spoon &mdash; that&rsquo;s impossible. Instead, only try to realise the truth: there
-                        is no spoon. Then you'll see that it is not the spoon that bends, <b>it is only yourself</b>.&rdquo;
+                        <a href="https://www.youtube.com/watch?v=uAXtO5dMqEI" target="_blank" rel="noopener">
+                            &ldquo;Do not try to bend the spoon &mdash; that&rsquo;s impossible. Instead, only try to realise the truth:
+                            there is no spoon. Then you'll see that it is not the spoon that bends, <b>it is only yourself</b>.&rdquo;
+                        </a>
                     </p>
                 </div>
                 <div class="hero__brain">
@@ -86,7 +167,8 @@
                             </div>
                         </div>
                         <!-- Source order is the order down the arc: the
-                             positions come from :nth-child in style.css, and so
+                             positions come from :nth-child in css/04-hero.css,
+                             and so
                              do the colours, which stay with the position rather
                              than with the section. Same order as the nav. -->
                         <div class="menu-buttons">
@@ -229,10 +311,9 @@
        NEWS SECTION
   ════════════════════════════════════ -->
             <section class="news-full" id="sec-news-full">
-                <div class="news-shell">
-                    <h2 class="news-full__title">News</h2>
-                    <p class="news-full__placeholder">Under construction.</p>
-                </div>
+                <!-- populated by news/news.js from news/news_manifest.json,
+                     which update_news.py builds from the folders in news/ -->
+                <div id="news-root"></div>
             </section>
 
             <!-- ════════════════════════════════════
@@ -241,17 +322,22 @@
             <section class="publications-full" id="sec-publications-full">
                 <div class="pub-header">
                     <h2>Publications</h2>
+                    <!-- The link is the fallback and the anchor stays whatever
+                         happens; publications.js replaces the label with the
+                         rotating metrics once the manifest has landed, because
+                         one of the three numbers is the manifest's own length.
+                         With no JS this is still a working Scholar link. -->
                     <a
                         href="https://scholar.google.com/citations?user=bg0BZ-QAAAAJ"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="pub-scholar-link"
-                        aria-label="View on Google Scholar"
+                        class="pub-scholar"
+                        aria-label="View our Google Scholar profile"
                     >
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <svg class="pub-scholar__cap" viewBox="0 0 24 24" aria-hidden="true">
                             <path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5h3.18v6.82h17.64V9.5H24L12 0z" />
                         </svg>
-                        View on Google Scholar
+                        <span class="pub-scholar__label">View on Google Scholar</span>
                     </a>
                 </div>
                 <div class="pub-tabs-nav" role="tablist">
@@ -432,6 +518,14 @@
 
             <!-- Floating action buttons -->
             <div class="fab-group">
+                <!-- Sits above the two standing offers, and is placed against
+                     the group rather than laid out in its column so it cannot
+                     widen them (see .fab--research). It is up only while the
+                     Research section's Overview is the tab on screen, and it
+                     makes the same jump the zoom's own rail exit does;
+                     research.js owns both. A button rather than an anchor:
+                     there is no fragment for "the other tab". -->
+                <button type="button" class="fab fab--research" id="fab-research-creations">What we created</button>
                 <a href="#sec-contact-full" class="fab" data-contact-tab-target="services">Hire us</a>
                 <a href="#sec-contact-full" class="fab fab--primary" data-contact-tab-target="join">Join the Lab</a>
                 <!-- Slides up under the other two half way down the page, and
@@ -470,6 +564,7 @@
         <script src="rain.js"></script>
         <script type="module" src="people/people.js"></script>
         <script type="module" src="research/research.js"></script>
+        <script type="module" src="news/news.js"></script>
         <script type="module" src="collaborations/collaborations.js"></script>
         <script type="module" src="memories/memories.js"></script>
         <script type="module" src="publications/publications.js"></script>

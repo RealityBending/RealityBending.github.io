@@ -1,0 +1,933 @@
+/* ── 13 · NEWS SECTION ──
+   An index of posts — rows, keyword filters, a pager — and a reader that
+   slides in over the page for one of them. news/news.js builds both from
+   news/news_manifest.json.
+
+   The section's accent is --section-news (#33cccc, the teal it has on the
+   hero's arc and on the brain). It is used on the rules, the chips and the
+   links but never as a field behind a photograph, which it would fight.
+
+   Part of the numbered set in css/ — the sheets are one stylesheet cut into
+   pieces and index.html links them in this order. Order is the cascade: a
+   rule here loses to the same-specificity rule in any later file. */
+
+.news-full {
+    padding: 5rem var(--content-inline-gutter);
+    background: #f5f4ef;
+    position: relative;
+    --news-accent: var(--section-news);
+    --news-accent-soft: rgba(51, 204, 204, 0.16);
+    --news-accent-deep: #1a4f4f;
+
+    /* What the shared pager (css/07-shared.css) reads. Declared here rather
+       than selected for there, so the component carries no section names. */
+    --pager-accent: var(--news-accent);
+    --pager-ink: var(--news-accent-deep);
+}
+
+.news-shell {
+    width: 100%;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    display: grid;
+    gap: 1.3rem;
+}
+
+/* The title and nothing else. It used to carry a post count opposite it and a
+   rule underneath; the count is gone, and with the tab bar drawing its own line
+   directly below, a second rule 1.3rem above it was two lines saying the same
+   thing. */
+.news-head {
+    display: block;
+}
+
+.news-full__title {
+    display: block;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    color: rgba(17, 17, 17, 0.18);
+    margin: 0;
+}
+
+
+/* ── Tabs ──
+   Featured and All posts, the same shape as the People and Research tab bars.
+   The panels slide through swapTabPanels and the empty side margins are
+   prev/next zones through initMarginTabNav, so the section behaves like every
+   other tab group on the page. */
+.news-tabs-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0;
+    border-bottom: 1px solid rgba(51, 204, 204, 0.2);
+    margin-top: -0.4rem;
+}
+
+.news-tab-btn {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.55em 1.35em;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    background: transparent;
+    color: rgba(26, 79, 79, 0.5);
+    cursor: pointer;
+    transition:
+        color 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.news-tab-btn:hover {
+    color: rgba(26, 79, 79, 0.85);
+}
+
+.news-tab-btn--active {
+    color: var(--news-accent-deep);
+    border-bottom-color: rgba(51, 204, 204, 0.75);
+}
+
+/* swapTabPanels pins the outgoing panel and slides it away, which needs the
+   host to be a positioned ancestor — it sets position: relative itself if it
+   has to, but saying so here keeps it from writing to the element. */
+.news-panels {
+    position: relative;
+    width: 100%;
+}
+
+.news-panel {
+    display: grid;
+    gap: 1.3rem;
+}
+
+/* [hidden] loses to the display rule above, which is how swapTabPanels puts a
+   panel away. Same trap as .research-tab-panel, .join-stage and .pub-card. */
+.news-panel[hidden] {
+    display: none;
+}
+
+/* ── Category filters ──
+   Multi-select chips: pressing one adds it, pressing it again takes it away,
+   and none pressed means all. So there is no "All" chip — the way back is
+   Clear, which is only up while something is selected. */
+.news-filters {
+    display: grid;
+}
+
+.news-filter {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.news-filter__btn {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4em;
+    padding: 0.35em 0.85em;
+    border: 1px solid rgba(51, 204, 204, 0.28);
+    border-radius: 999px;
+    background: transparent;
+    color: #6c675f;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition:
+        background 0.16s ease,
+        border-color 0.16s ease,
+        color 0.16s ease;
+}
+
+.news-filter__btn:hover {
+    border-color: rgba(51, 204, 204, 0.6);
+    color: #211f1c;
+}
+
+.news-filter__btn--on {
+    background: var(--news-accent-soft);
+    border-color: var(--news-accent);
+    color: var(--news-accent-deep);
+}
+
+.news-filter__count {
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: #a29c92;
+}
+
+.news-filter__btn--on .news-filter__count {
+    color: var(--news-accent-deep);
+}
+
+.news-filter__clear {
+    padding: 0.35em 0.6em;
+    border: none;
+    background: transparent;
+    color: #8a857c;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    cursor: pointer;
+}
+
+.news-filter__clear:hover {
+    color: #211f1c;
+}
+
+/* ── The rows ──
+   One row per post: thumbnail on the left, everything else on the right. A
+   grid of squares would give every post the same weight and the same crop, and
+   these run from a two-line link-out to a 1500-word essay. */
+.news-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.news-card {
+    display: grid;
+    grid-template-columns: 15rem 1fr;
+    gap: 1.4rem;
+    align-items: stretch;
+    width: 100%;
+    padding: 0;
+    text-align: left;
+    border: 1px solid rgba(51, 204, 204, 0.2);
+    border-radius: 1.1rem;
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: 0 16px 34px rgba(17, 17, 17, 0.05);
+    overflow: hidden;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease;
+}
+
+.news-card--textonly {
+    grid-template-columns: 1fr;
+}
+
+.news-card:hover,
+.news-card:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 22px 44px rgba(17, 17, 17, 0.09);
+    border-color: rgba(51, 204, 204, 0.5);
+}
+
+/* The thumbnail fills its column at whatever the row's height turns out to be,
+   so a short post and a long one still line their images up. */
+.news-card__thumb {
+    position: relative;
+    overflow: hidden;
+    background: rgba(51, 204, 204, 0.08);
+}
+
+.news-card__thumb img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.news-card:hover .news-card__thumb img {
+    transform: scale(1.04);
+}
+
+.news-card__body {
+    display: grid;
+    gap: 0.55rem;
+    align-content: start;
+    padding: 1.25rem 1.4rem 1.3rem 0;
+    min-width: 0;
+}
+
+.news-card--textonly .news-card__body {
+    padding-left: 1.4rem;
+}
+
+.news-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.75rem;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #8a857c;
+}
+
+.news-card__date {
+    color: var(--news-accent-deep);
+    font-weight: 700;
+}
+
+.news-card__title {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.28rem;
+    font-weight: 400;
+    line-height: 1.3;
+    color: #1f241e;
+}
+
+.news-card__summary {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.96rem;
+    line-height: 1.7;
+    color: #605b53;
+}
+
+.news-card__foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem 1rem;
+    margin-top: 0.25rem;
+}
+
+/* ── The pager ──
+   The counter is the reason this exists, so it holds the middle and the arrows
+   go dead at the ends rather than disappearing — controls that come and go
+   move everything under them. */
+/* ── Bylines ── */
+
+.news-byline {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+}
+
+.news-byline__avatars {
+    display: flex;
+    flex: none;
+}
+
+/* Overlapped rather than spaced: two circles side by side read as two separate
+   things, overlapped they read as one byline. */
+.news-byline__avatars--stacked .news-byline__avatar + .news-byline__avatar {
+    margin-left: -0.55rem;
+}
+
+.news-byline__avatar {
+    width: 1.65rem;
+    height: 1.65rem;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #e7e5df;
+    border: 2px solid #fbfaf7;
+}
+
+.news-byline__names {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.78rem;
+    color: #605b53;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* An author who is in the lab: a button through to their profile. Dressed as
+   text with a rule under it rather than as a control — it sits inside a
+   sentence, and a chip or a border would make the byline a row of widgets. The
+   section's own teal, so it reads as belonging to News rather than to the
+   People panel it opens. */
+.news-byline__link {
+    font: inherit;
+    color: inherit;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(51, 204, 204, 0.45);
+    transition:
+        color 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.news-byline__link:hover,
+.news-byline__link:focus-visible {
+    color: #1f6f6f;
+    border-bottom-color: #33cccc;
+}
+
+.news-byline--article .news-byline__avatar {
+    width: 2.1rem;
+    height: 2.1rem;
+}
+
+/* The names wrap here, where the index row's are clipped to one line: this
+   byline has a whole panel width, and its names are links a reader has to be
+   able to see the whole of before pressing one. */
+.news-byline--article .news-byline__names {
+    font-size: 0.9rem;
+    color: #3d3934;
+    overflow: visible;
+    white-space: normal;
+}
+
+/* ── Tags ── */
+
+.news-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.news-tag {
+    padding: 0.25em 0.7em;
+    border-radius: 999px;
+    background: var(--news-accent-soft);
+    color: var(--news-accent-deep);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+}
+
+/* ── The reader ──
+   The People section's sliding profile panel, in this section's colours: a
+   fixed panel off the right edge, over a blurred backdrop, closing on the ✕,
+   on the backdrop and on Escape.
+
+   The geometry and the timing are deliberately the profile panel's own (see
+   .profile-panel in 12-profile-panel.css) so the two read as one interaction.
+   They are copied rather than shared because that sheet is 26KB of
+   people-specific children; if a third of these ever appears, extract the
+   shell then.
+
+   It lives on <body>, not inside #main-page — which is the scroll container
+   and is `pointer-events: none` until the door opens. A panel inside it would
+   inherit both. */
+.news-reader {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(920px, 100vw);
+    height: 100vh;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, #fbfaf7 0%, #f4f1eb 100%);
+    box-shadow: -18px 0 56px rgba(7, 12, 22, 0.18);
+    border-left: 1px solid rgba(17, 17, 17, 0.06);
+    transform: translateX(100%);
+    transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    isolation: isolate;
+    --news-accent: var(--section-news);
+    --news-accent-soft: rgba(51, 204, 204, 0.16);
+    --news-accent-deep: #1a4f4f;
+}
+
+/* [hidden] loses to the display rule above — the panel is taken out of the tab
+   order between visits, and without this it would still be laid out. Same trap
+   as .research-tab-panel, .join-stage and .pub-card. */
+.news-reader[hidden] {
+    display: none;
+}
+
+.news-reader.is-open {
+    transform: translateX(0);
+}
+
+.news-reader__close {
+    position: sticky;
+    top: 1rem;
+    align-self: flex-end;
+    margin: 1rem 1.25rem 0 0;
+    display: grid;
+    place-items: center;
+    width: 2.55rem;
+    height: 2.55rem;
+    padding: 0;
+    border: 1px solid rgba(17, 17, 17, 0.08);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    color: #273141;
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2;
+    transition:
+        background 0.15s ease,
+        transform 0.15s ease;
+}
+
+.news-reader__close:hover {
+    background: rgba(255, 255, 255, 0.92);
+    color: #111;
+    transform: translateY(-1px);
+}
+
+.news-reader__body {
+    padding: 0 clamp(1.25rem, 4vw, 3rem) 4rem;
+    /* Pulls the article up alongside the sticky close button rather than
+       starting a full button's height below it. */
+    margin-top: -2.4rem;
+}
+
+.news-reader__backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 199;
+    background: rgba(7, 10, 18, 0.34);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.news-reader__backdrop.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ── "Another post" ──
+   The People section's discover button (.profile-panel__discover), squared
+   off: same corner, same z-index above the panel, same idea of offering
+   somewhere else to go without interrupting what is being read.
+
+   A square rather than that one's pill because this one carries a picture —
+   the post's own thumbnail is what makes it worth pressing, and a 3.3rem-tall
+   pill has nowhere to put one. The label and title sit over the image behind a
+   gradient, so the tile is the picture rather than a picture next to a box. */
+.news-another {
+    position: fixed;
+    right: clamp(1rem, 2.2vw, 1.7rem);
+    bottom: clamp(1rem, 2.2vw, 1.7rem);
+    z-index: 205;
+    display: grid;
+    width: 11.5rem;
+    aspect-ratio: 1;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 1.1rem;
+    background: linear-gradient(160deg, #2a7f7f, #12343f);
+    box-shadow: 0 18px 34px rgba(18, 24, 36, 0.28);
+    cursor: pointer;
+    overflow: hidden;
+    text-align: left;
+    isolation: isolate;
+    transition:
+        transform 0.16s ease,
+        box-shadow 0.16s ease;
+}
+
+.news-another[hidden] {
+    display: none;
+}
+
+.news-another:hover,
+.news-another:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 24px 40px rgba(18, 24, 36, 0.34);
+}
+
+/* Image and copy share the one grid cell — the copy paints over the picture
+   rather than below it, so the tile stays square whatever the title's length. */
+.news-another__img,
+.news-another__copy {
+    grid-area: 1 / 1;
+}
+
+.news-another__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.news-another:hover .news-another__img {
+    transform: scale(1.05);
+}
+
+.news-another__copy {
+    z-index: 1;
+    align-self: end;
+    display: grid;
+    gap: 0.2rem;
+    padding: 2.2rem 0.85rem 0.8rem;
+    background: linear-gradient(to top, rgba(9, 22, 26, 0.92) 38%, rgba(9, 22, 26, 0));
+    color: #fff;
+}
+
+.news-another__label {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(154, 233, 233, 0.95);
+}
+
+/* Three lines and then an ellipsis: the tile is square by construction, and a
+   long title would otherwise push the label out of the top of it. */
+.news-another__title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.86rem;
+    line-height: 1.35;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ── The article inside the reader ── */
+
+.news-article {
+    display: grid;
+    gap: 1.3rem;
+    justify-items: stretch;
+}
+
+.news-article__hero {
+    max-height: 22rem;
+    overflow: hidden;
+    border-radius: 1.1rem;
+    background: rgba(51, 204, 204, 0.08);
+}
+
+.news-article__hero img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-height: 22rem;
+    object-fit: cover;
+}
+
+/* A reading column, not the panel's full width: 40rem of Georgia is about 70
+   characters, which is where prose stops being work to read. The hero and the
+   figures are allowed back out to the full width by their own rules. */
+.news-article__head {
+    display: grid;
+    gap: 0.7rem;
+    width: min(100%, 40rem);
+    margin: 0 auto;
+}
+
+.news-article__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #8a857c;
+}
+
+.news-article__meta time {
+    color: var(--news-accent-deep);
+    font-weight: 700;
+}
+
+.news-article__title {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.7rem, 3.4vw, 2.2rem);
+    font-weight: 400;
+    line-height: 1.18;
+    color: #1f241e;
+}
+
+.news-article__subtitle {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-size: 1.08rem;
+    line-height: 1.6;
+    color: #605b53;
+}
+
+.news-article__foot {
+    width: min(100%, 40rem);
+    margin: 0.5rem auto 0;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(51, 204, 204, 0.26);
+}
+
+/* ── The prose ──
+   A post's `content` is hand-written HTML carrying no class names at all, so
+   everything below is dressed by element. The one exception is `.news-link`,
+   which news.js stamps on every anchor — links are the one thing that also has
+   to work outside the prose column.
+
+   `display: grid` on the container rather than margins on the children: the
+   gap then applies between whatever a post happens to use, in whatever order,
+   without every element needing a margin rule and a first-child reset. */
+.news-prose {
+    display: grid;
+    gap: 1.1rem;
+    width: min(100%, 40rem);
+    margin: 0 auto;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.02rem;
+    line-height: 1.82;
+    color: #3d3934;
+}
+
+.news-prose > * {
+    margin: 0;
+}
+
+.news-prose h2,
+.news-prose h3,
+.news-prose h4,
+.news-prose h5 {
+    /* Negative bottom margin closes the grid gap under a heading, so it sits
+       against the paragraph it introduces rather than floating between two. */
+    margin: 0.8rem 0 -0.2rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    line-height: 1.25;
+    color: #1f241e;
+}
+
+.news-prose h2 {
+    font-size: 1.62rem;
+}
+
+.news-prose h3 {
+    font-size: 1.42rem;
+}
+
+.news-prose h4 {
+    font-size: 1.16rem;
+}
+
+.news-prose h5 {
+    font-size: 1.02rem;
+    font-weight: 700;
+}
+
+.news-prose ul,
+.news-prose ol {
+    display: grid;
+    gap: 0.5rem;
+    padding-left: 1.2rem;
+}
+
+.news-prose li::marker {
+    color: var(--news-accent);
+}
+
+/* A rule down the side rather than quote marks: posts quote whole sentences,
+   and serif italic behind a teal rule reads as an aside without pretending to
+   be a pull-quote. */
+.news-prose blockquote {
+    display: grid;
+    gap: 0.6rem;
+    padding: 0.2rem 0 0.2rem 1.2rem;
+    border-left: 3px solid var(--news-accent);
+    font-style: italic;
+    color: #504b44;
+}
+
+.news-prose blockquote p {
+    margin: 0;
+}
+
+.news-prose hr {
+    border: none;
+    border-top: 1px solid rgba(51, 204, 204, 0.3);
+}
+
+.news-prose code {
+    padding: 0.1em 0.4em;
+    border-radius: 0.35em;
+    background: var(--news-accent-soft);
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 0.86em;
+}
+
+/* A code block scrolls itself rather than widening the panel: `white-space:
+   pre` on a long line pushes the whole reader sideways otherwise, and a
+   horizontal scrollbar on a fixed panel is not recoverable. The inner <code>
+   drops the inline chip styling — it is the block that is the surface here. */
+.news-prose pre {
+    overflow-x: auto;
+    max-width: 100%;
+    padding: 0.9rem 1rem;
+    border-radius: 0.7rem;
+    border: 1px solid rgba(51, 204, 204, 0.24);
+    background: #f7f6f2;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    tab-size: 4;
+}
+
+.news-prose pre code {
+    padding: 0;
+    border-radius: 0;
+    background: none;
+    font-size: inherit;
+}
+
+/* The tutorials fold their long listings away behind a <summary>. */
+.news-prose details {
+    padding: 0.7rem 1rem;
+    border-radius: 0.7rem;
+    border: 1px solid rgba(51, 204, 204, 0.28);
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.news-prose summary {
+    cursor: pointer;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--news-accent-deep);
+}
+
+.news-prose details[open] summary {
+    margin-bottom: 0.8rem;
+}
+
+.news-link {
+    color: #17706f;
+    text-decoration: underline;
+    text-decoration-color: rgba(51, 204, 204, 0.5);
+    text-underline-offset: 0.16em;
+    overflow-wrap: anywhere;
+}
+
+.news-link:hover {
+    text-decoration-color: var(--news-accent);
+}
+
+/* Figures take the full reading column and centre in it, and a post that puts
+   `style="max-width: 60%"` on an image narrows that one image without having
+   to know anything about the layout around it.
+
+   A bare <img> that a post did not wrap in a <figure> gets the same treatment,
+   so neither form has to be remembered. */
+.news-prose figure {
+    display: grid;
+    gap: 0.5rem;
+    justify-items: center;
+    width: 100%;
+}
+
+.news-prose img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.8rem;
+    justify-self: center;
+}
+
+.news-prose figcaption {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: #8a857c;
+    text-align: center;
+    max-width: 40rem;
+}
+
+.news-empty {
+    margin: 0;
+    padding: 1.5rem 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.04rem;
+    line-height: 1.8;
+    color: #5f5b54;
+}
+
+/* Rows go to a single column well before the page does: 15rem of thumbnail
+   plus a readable summary needs more room than the breakpoint in 19-narrow.css
+   grants, and a 6rem-wide crop of a photograph is not a photograph. */
+@media (max-width: 780px) {
+    .news-card {
+        grid-template-columns: 1fr;
+    }
+
+    .news-card__thumb {
+        height: 11rem;
+    }
+
+    .news-card__thumb img {
+        position: static;
+    }
+
+    .news-card__body {
+        padding: 1.15rem 1.25rem 1.25rem;
+    }
+}
+
+/* The suggestion tile sits over the reader, and the reader is the whole screen
+   below this width — a 11.5rem square in the corner then covers the prose it is
+   suggesting an alternative to. Laid flat instead: full width, a strip. */
+@media (max-width: 620px) {
+    .news-another {
+        left: clamp(1rem, 2.2vw, 1.7rem);
+        width: auto;
+        aspect-ratio: auto;
+        grid-template-columns: 3.6rem minmax(0, 1fr);
+        align-items: stretch;
+    }
+
+    .news-another__img {
+        grid-area: 1 / 1;
+        height: 100%;
+    }
+
+    .news-another__copy {
+        grid-area: 1 / 2;
+        align-self: center;
+        padding: 0.6rem 0.85rem;
+        background: none;
+    }
+
+    .news-another__title {
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .news-card,
+    .news-card__thumb img,
+    .news-reader,
+    .news-reader__backdrop,
+    .news-another,
+    .news-another__img {
+        transition: none;
+    }
+
+    .news-card:hover,
+    .news-another:hover {
+        transform: none;
+    }
+
+    .news-card:hover .news-card__thumb img,
+    .news-another:hover .news-another__img {
+        transform: none;
+    }
+}

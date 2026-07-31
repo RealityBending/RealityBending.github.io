@@ -22,7 +22,7 @@ import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
     }
 
     /* Accent per level — drives the node circle and the member's profile panel.
-       Values are the site section palette (see :root in style.css) so the
+       Values are the site section palette (see :root in css/01-base.css) so the
        people section stays inside the same set of hues. */
     const CATEGORY_COLORS = {
         PI: "rgba(85, 153, 255, 0.94)", // #5599ff blue
@@ -933,6 +933,13 @@ import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
             registerProfileActions({
                 open: openProfile,
                 openMinimal: openMinimalProfile,
+                // A news byline knows an author's folder and nothing else. The
+                // manifest is here, so the lookup is too — an unmatched folder
+                // (a guest author) simply opens nothing.
+                openByFolder: (folder) => {
+                    const member = manifest.members.find((m) => m.folder === folder)
+                    if (member) openProfile(member)
+                },
             })
 
             manifest.roles.forEach((category, li) => {

@@ -24,18 +24,10 @@
  * tab order and the accessibility tree rather than merely undrawn.
  *
  * ── Placement is computed, not measured ──
- * A honeycomb is not something `auto-fit` can produce: alternate rows have to
- * be offset by half a cell and hold one fewer of them. So the grid is given
- * `columns × 2` half-width tracks, every hexagon spans two, and this module
- * places each one explicitly by row and start column. Nothing is left to
- * auto-placement, which means nothing has to be measured afterwards either.
- *
- * ── Rows nest ──
- * Hexagons tessellate at a vertical pitch of ¾ of their height, not a full
- * one. The shortfall is applied as a negative bottom margin on every cell,
- * computed in pixels because a percentage margin resolves against the
- * container's *width* and would drift with the column count. Without it the
- * offset rows read as a scatter of diamonds rather than a honeycomb.
+ * The comb itself is shared/honeycomb.js — the Research section's tools use the
+ * same placement with a smaller hexagon. Everything this module has to hold up
+ * its end of is in that file's header; the two constants below are the only
+ * thing about the comb that is specific to this section.
  *
  * As in join.js, everything is built as DOM nodes rather than innerHTML — the
  * content module is plain text, and a stray "<" in a client name should not be
@@ -44,6 +36,7 @@
 
 import { SERVICES_CONTENT } from "./services-content.js"
 import { element, createRichText } from "../shared/rich-text.js"
+import { createHoneycomb } from "../shared/honeycomb.js"
 
 const ROOT_ID = "services-root"
 
@@ -55,14 +48,6 @@ const MIN_HEX_WIDTH = 300
 
 /* "Large hexagons" was the brief; past three across they stop being large. */
 const MAX_COLUMNS = 3
-
-/* Height ÷ width of a regular pointy-top hexagon. Also encoded as the
-   aspect-ratio in the stylesheet — change one and change the other. */
-const HEX_RATIO = 2 / Math.sqrt(3)
-
-/* In a honeycomb every neighbour is the same distance away, so a row's vertical
-   spacing is the horizontal cell pitch turned through 60°. */
-const ROW_SPACING_RATIO = Math.sqrt(3) / 2
 
 const { appendRichText } = createRichText({
     linkClass: "services-link",
@@ -276,69 +261,6 @@ function buildOutro(outro) {
     return { cell, hex, id: outro.id, domainId: null, flip: null }
 }
 
-/* ── The honeycomb ──
- * Rows alternate full, one-short, full … which is what makes the offset row's
- * hexagons sit in the notches of the row above instead of hanging off the end
- * of it. A single column has no notches to sit in, so it is left as a plain
- * stack.
- *
- * Only the cells still on show are placed. A filtered-out cell is `hidden`,
- * which takes it out of grid layout entirely, so the comb closes up rather
- * than leaving gaps where the hidden ones were.
- */
-function createHoneycomb(grid, cards) {
-    let placedColumns = 0
-
-    function columnsFor(width) {
-        if (!width) return MAX_COLUMNS
-        return Math.max(1, Math.min(MAX_COLUMNS, Math.floor(width / MIN_HEX_WIDTH)))
-    }
-
-    function place() {
-        const width = grid.clientWidth
-        const columns = columnsFor(width)
-        placedColumns = columns
-        grid.style.setProperty("--svc-columns", String(columns))
-
-        /* The seam between neighbours is the cell's own padding, so the
-           stylesheet stays the one place it is set. */
-        const seam = cards.length ? parseFloat(getComputedStyle(cards[0].cell).paddingTop) || 0 : 0
-        const cellWidth = width / columns
-        const cellHeight = (cellWidth - seam * 2) * HEX_RATIO + seam * 2
-
-        /* Two hexagons side by side in a row are `cellWidth` apart centre to
-           centre, seam included. Every other neighbour in a honeycomb sits at
-           that same distance, so the row spacing is that pitch turned 60° —
-           and the seam is carried through it automatically.
-
-           The previous formula worked from the hexagon's own height instead
-           (¾ of it, plus the seam) which tessellated the *shapes* perfectly
-           and so left no vertical seam at all: the rows touched while the
-           columns kept their 8px, which is exactly why the horizontal gaps
-           looked wider than the vertical ones. */
-        const rowSpacing = cellWidth * ROW_SPACING_RATIO
-        const pull = columns > 1 ? cellHeight - rowSpacing : 0
-        grid.style.setProperty("--svc-row-pull", pull.toFixed(2) + "px")
-
-        const visible = cards.filter(({ cell }) => !cell.hidden)
-        let index = 0
-        for (let row = 0; index < visible.length; row++) {
-            const offset = columns > 1 && row % 2 === 1
-            const perRow = offset ? columns - 1 : columns
-            visible.slice(index, index + perRow).forEach(({ cell }, column) => {
-                cell.style.gridRow = String(row + 1)
-                cell.style.gridColumnStart = String(1 + (offset ? 1 : 0) + column * 2)
-            })
-            index += perRow
-        }
-    }
-
-    return {
-        place,
-        needsReplace: () => columnsFor(grid.clientWidth) !== placedColumns,
-    }
-}
-
 /* ── The filter ──
  * One chip per domain plus an "everything". Same contract as join.js's filter
  * bar: aria-pressed on the chips carries the state.
@@ -418,7 +340,13 @@ function buildFilters(content, onSelect) {
     gallery.appendChild(grid)
     layout.appendChild(gallery)
 
-    const comb = createHoneycomb(grid, allCards)
+    const comb = createHoneycomb(grid, {
+        cells: () => allCards.map(({ cell }) => cell),
+        minWidth: MIN_HEX_WIDTH,
+        maxColumns: MAX_COLUMNS,
+        columnsVar: "--svc-columns",
+        pullVar: "--svc-row-pull",
+    })
 
     root.appendChild(layout)
 

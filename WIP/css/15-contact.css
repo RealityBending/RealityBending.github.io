@@ -1,0 +1,345 @@
+/* ── 15 · INFORMATION — CONTACT TAB ──
+   The frosted panel split between the details and the map, the section's
+   photographic backdrop and the banner the long tabs carry.
+
+   Part of the numbered set in css/ — the sheets are one stylesheet cut into
+   pieces and index.html links them in this order. Order is the cascade: a
+   rule here loses to the same-specificity rule in any later file. */
+
+/* ── Contact section ── */
+.contact-full {
+    padding: 4rem var(--content-inline-gutter);
+    background: #f5f4ef;
+    position: relative;
+    overflow-x: clip;
+    /* Stacking context so the backdrop's z-index: -1 lands above this
+       section's own background rather than behind it. */
+    isolation: isolate;
+}
+
+.contact-full__title {
+    max-width: var(--content-max-width);
+    margin: 0 auto 1.5rem;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    color: rgba(17, 17, 17, 0.18);
+}
+
+.contact-tabs-nav {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-inline-gutter);
+    border-bottom: 1px solid rgba(255, 85, 85, 0.16);
+}
+
+.contact-tab-btn {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.7rem 1.35rem;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    background: transparent;
+    color: rgba(140, 52, 52, 0.5);
+    cursor: pointer;
+    transition:
+        color 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.contact-tab-btn:hover {
+    color: rgba(140, 52, 52, 0.88);
+}
+
+.contact-tab-btn--active {
+    color: rgba(140, 52, 52, 1);
+    border-bottom-color: rgba(255, 85, 85, 0.72);
+}
+
+/* Bands of banner above and below the content, equal on all three tabs, so the
+   panel sits centred in the image rather than hanging off the tab line. They
+   are not equal numbers: the section's own 4rem bottom padding falls below the
+   panel and below the panel only, so the top has to carry it to come out even.
+   The bands are also what stops the image being a thin strip — and the height
+   they add is where the parallax gets its travel. */
+.contact-tab-panel {
+    --contact-band: clamp(4rem, 7vw, 7rem);
+    padding-top: calc(var(--contact-band) + 4rem);
+    padding-bottom: var(--contact-band);
+    scroll-margin-top: 5.5rem;
+}
+
+/* ── Contact tab: one frosted panel, split between the details and the map ──
+   The details used to sit bare on the section background, which stopped
+   working once that background became a photograph. Giving the pair a single
+   surface — rather than two separate cards with a gap — keeps it reading as
+   one object floating over the image.
+
+   Everything from here down to .contact-cta belongs to the Contact tab alone —
+   Join and Services build their own DOM from their content modules — so none of
+   it is scoped any further. It used to be: a generic set of panel rules with a
+   Contact-only layer of overrides on top, back when more than one tab used
+   them. Every one of those base rules was being overridden away in full, so the
+   pair have been folded back into one rule each. */
+.contact-full__inner {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+    align-items: stretch;
+    /* Enough of the banner comes through to read as glass over the photograph;
+       the blur below is what keeps the text legible at this alpha. */
+    background: rgba(252, 251, 248, 0.78);
+    backdrop-filter: blur(6px) saturate(1.08);
+    -webkit-backdrop-filter: blur(6px) saturate(1.08);
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 26px;
+    box-shadow: 0 26px 60px rgba(17, 17, 17, 0.16);
+    /* Clips the map flush into the panel's corners. */
+    overflow: hidden;
+}
+
+.contact-panel__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    padding: 2.4rem;
+}
+
+.contact-full__eyebrow {
+    margin: 0 0 0.7rem;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(140, 52, 52, 0.8);
+}
+
+.contact-full__lede {
+    margin-bottom: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.02rem;
+    line-height: 1.8;
+    color: #3c3936;
+}
+
+.contact-address-card {
+    margin-top: 1.15rem;
+    padding-top: 0.95rem;
+    border-top: 1px solid rgba(17, 17, 17, 0.1);
+}
+
+.contact-detail {
+    display: grid;
+    grid-template-columns: 1.1rem minmax(0, 1fr);
+    gap: 0.65rem;
+    align-items: start;
+}
+
+.contact-detail + .contact-detail {
+    margin-top: 1rem;
+}
+
+.contact-detail__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-top: 0.1rem;
+    color: #7e2f2f;
+}
+
+.contact-detail__icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Sized down previously to survive on the open background; on its own surface
+   it can go back to a comfortable reading size. */
+.contact-detail p {
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: #4a4642;
+}
+
+.contact-inline-link {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: #7e2f2f;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.contact-inline-link:hover {
+    text-decoration: underline;
+}
+
+.contact-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3rem;
+    padding: 0.85rem 1.2rem;
+    border-radius: 999px;
+    border: 1px solid rgba(140, 52, 52, 0.18);
+    background: rgba(255, 255, 255, 0.72);
+    text-decoration: none;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #7e2f2f;
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease;
+}
+
+.contact-cta:hover {
+    transform: translateY(-1px);
+    border-color: rgba(140, 52, 52, 0.32);
+    box-shadow: 0 12px 28px rgba(140, 52, 52, 0.12);
+}
+
+.contact-cta--primary {
+    background: linear-gradient(135deg, rgba(255, 85, 85, 0.92), rgba(162, 44, 44, 0.95));
+    border-color: transparent;
+    color: #fff7f5;
+}
+
+/* Flush to the panel's edges — the panel supplies the radius and the shadow,
+   and a hairline does the dividing. */
+.contact-full__map {
+    width: 100%;
+    min-height: clamp(20rem, 30vw, 26rem);
+    background: linear-gradient(180deg, rgba(235, 238, 242, 0.95), rgba(214, 220, 227, 0.95));
+    border-left: 1px solid rgba(17, 17, 17, 0.09);
+    overflow: hidden;
+}
+
+.contact-full__map iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+
+.join,
+.services {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+}
+
+/* ── Section backdrop ──
+   Behind all three tabs. Unlike the People video — which is sized *shorter*
+   than its section so the whole frame stays visible — this is a background
+   image, so it runs taller than its wrapper and is cropped by it. That
+   overhang is what gives it room to move; sized to the wrapper it would have
+   almost none. --contact-parallax is written by initInformationBackdrop in
+   script.js.
+
+   Starts at the tab line rather than the section top, so the image reads as a
+   banner hanging under the tab row instead of running behind the heading.
+   --contact-backdrop-top is measured and written by initInformationBackdrop —
+   the tab row wraps to a second line on narrow viewports, so it cannot be
+   hardcoded; the value here is only what first paint uses. */
+.contact-full__backdrop {
+    --contact-backdrop-top: 10rem;
+    position: absolute;
+    inset: var(--contact-backdrop-top) 0 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.contact-full__backdrop-img {
+    position: absolute;
+    left: 0;
+    right: 0;
+    /* 14% over the banner's top and bottom — the travel headroom, and the only
+       thing that sets how far the parallax can move. More than this starts to
+       crop the collage noticeably, and it is not needed: the full headroom is
+       now spent across the scroll rather than a quarter of it. */
+    top: -14%;
+    bottom: -14%;
+    display: block;
+    /* The Join tab swaps a per-level photograph in through this property; the
+       fallback is the section's own and stays the single place it is named. */
+    background: var(--contact-backdrop-image, url("../img/sussex-bg.jpg")) center / cover no-repeat;
+    transform: translate3d(0, var(--contact-parallax, 0px), 0);
+    will-change: transform;
+    /* Full strength and full colour, top to bottom — no fade over it. */
+    opacity: 1;
+}
+
+/* Crossfade partner: the outgoing photograph, stacked over the incoming one and
+   dissolved away. It sits inside the same parent, so --contact-parallax reaches
+   it too and the two layers move as one while the fade runs. */
+.contact-full__backdrop-img--out {
+    background-image: var(--contact-backdrop-image-out, none);
+    opacity: 0;
+    transition: opacity 0.45s ease;
+    pointer-events: none;
+}
+
+/* The frame in which the outgoing image is parked at full strength. Removing
+   the class is what starts the dissolve. */
+.contact-full__backdrop--swapping .contact-full__backdrop-img--out {
+    opacity: 1;
+    transition: none;
+}
+
+/* ── The banner on a long tab ──
+   Contact runs 600–750px, which is roughly the photograph's own height:
+   `cover` shows it at 1:1 and the banner can safely be the full section. Join
+   runs to ~3700px on the PhD level, and stretched over that, `cover` scales a
+   1920×960 image five-fold to show a 14% slice of it — an unreadable smear.
+
+   So on those tabs the banner stops at a height the image can actually fill
+   and hands the rest of the section back to its own cream. The mask is what
+   keeps the cut from reading as a hard line: it is a bottom edge on a
+   photograph, not the top-to-bottom fade *over* the image that was
+   deliberately removed from .contact-full__backdrop-img.
+
+   Services is the shorter of the two but wants the cut for a second reason:
+   the photograph is the frame around the hero and the pillars, and the case
+   gallery below reads as a list on paper. Ending the banner there is the line
+   between the pitch and the evidence. */
+.contact-full[data-active-tab="join"] .contact-full__backdrop {
+    max-height: 56rem;
+    -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 9rem), transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 calc(100% - 9rem), transparent 100%);
+}
+
+/* --svc-banner-height is measured by services.js: the banner ends where the
+   contract gallery begins, and that line moves with the hero's height. The
+   value here is the fallback for first paint. */
+.contact-full[data-active-tab="services"] .contact-full__backdrop {
+    max-height: var(--svc-banner-height, 34rem);
+    -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 11rem), transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 calc(100% - 11rem), transparent 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .contact-full__backdrop-img {
+        transform: none;
+    }
+}
+

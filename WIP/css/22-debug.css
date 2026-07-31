@@ -1,0 +1,36 @@
+/* ── 22 · DEBUG ──
+   Margin guides, toggled with --debug-margins in 01-base.css.
+
+   Part of the numbered set in css/ — the sheets are one stylesheet cut into
+   pieces and index.html links them in this order. Order is the cascade: a
+   rule here loses to the same-specificity rule in any later file. */
+
+/* ─────────────────────────────────────
+   DEBUG – margin guides (toggle with --debug-margins: 1)
+───────────────────────────────────── */
+.hero,
+.research-full,
+.people-full,
+.news-full,
+.publications-full,
+.contact-full {
+    outline: calc(var(--debug-margins) * 1px) dashed rgba(255, 0, 0, 0.35);
+    outline-offset: -1px;
+}
+
+#people-grid,
+#publications-list,
+.contact-full__inner {
+    outline: calc(var(--debug-margins) * 1px) dashed rgba(0, 0, 255, 0.35);
+    outline-offset: -1px;
+}
+
+.brain-atlas {
+    outline: calc(var(--debug-margins) * 1px) dashed rgba(0, 180, 0, 0.5);
+    outline-offset: -1px;
+}
+
+.menu-button {
+    outline: calc(var(--debug-margins) * 1px) dashed rgba(0, 180, 0, 0.35);
+    outline-offset: -1px;
+}

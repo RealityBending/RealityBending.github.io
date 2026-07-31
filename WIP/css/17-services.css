@@ -1,0 +1,585 @@
+/* ── 17 · INFORMATION — SERVICES TAB ──
+   The case gallery (information/services.js): the honeycomb and its cards.
+
+   Part of the numbered set in css/ — the sheets are one stylesheet cut into
+   pieces and index.html links them in this order. Order is the cascade: a
+   rule here loses to the same-specificity rule in any later file. */
+
+/* ─────────────────────────────────────
+   SERVICES TAB — the case gallery
+   Markup is built by information/services.js; copy lives in
+   services-content.js.
+
+   Like the Join tab this floats over the section's photograph, so the hero,
+   the pillars and the outro use the same frosted-sheet recipe as
+   .join-console — one blur per sheet, lighter unblurred washes inside it. The
+   gallery sits below the banner's mask on the section's own cream, so its
+   cards are opaque paper instead. That change of surface is the point: the
+   pitch floats over the photograph, the evidence sits on the page.
+
+   Colour is per domain, not per section: services.js writes --svc-accent /
+   --deep / --ink onto each pillar and each card from that card's own domain,
+   so the gallery reads as three colour-coded strands while the section chrome
+   around it stays the Information red. The triplets are three of the site's
+   existing section tokens — orange, teal, blue — so nothing new enters the
+   palette. The fallback below is what paints before the script runs, and is
+   what the hero and outro keep.
+
+   The expanding detail panel is a grid child spanning every column, moved to
+   sit after the last card of the clicked card's row. Its height animates as
+   grid-template-rows 0fr → 1fr — hence a grid with one overflow-hidden child,
+   rather than a max-height large enough to guess at. Closed, it is out of the
+   DOM entirely; `hidden` would fight the `display: grid` that makes the
+   animation work.
+───────────────────────────────────── */
+.services {
+    --svc-accent: 255, 85, 85;
+    --svc-deep: 162, 44, 44;
+    --svc-ink: 126, 47, 47;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+}
+
+/* ── Hero ── */
+.services-hero {
+    padding: 2.3rem 2.4rem 2rem;
+    text-align: center;
+    background: rgba(252, 251, 248, 0.82);
+    backdrop-filter: blur(6px) saturate(1.08);
+    -webkit-backdrop-filter: blur(6px) saturate(1.08);
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 26px;
+    box-shadow: 0 26px 60px rgba(17, 17, 17, 0.16);
+}
+
+.services-hero__eyebrow {
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(140, 52, 52, 0.8);
+}
+
+.services-hero__headline {
+    margin: 0.75rem auto 0;
+    max-width: 24ch;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.5rem, 2.6vw, 2.3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: #181818;
+}
+
+.services-hero__lede {
+    margin: 0.9rem auto 0;
+    max-width: 54ch;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #4a4642;
+}
+
+.services-hero__actions {
+    margin: 1.5rem 0 0;
+}
+
+/* ── Gallery header ── */
+.services-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+/* Only the filter bar lives here now — no heading, no hairline under it. The
+   board below is edge enough. */
+.services-gallery__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 0.9rem;
+}
+
+/* ── Filter chips ──
+   Each chip carries its own domain's accent, so the bar previews the colour
+   the honeycomb will be reduced to. "Everything" has none and stays in the
+   section's red, which is the fallback declared on .services. */
+.services-filters {
+    display: flex;
+    flex: 1 1 100%;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.3rem;
+}
+
+.services-filter {
+    padding: 0.42rem 0.95rem;
+    border: 1px solid rgba(var(--svc-ink), 0.22);
+    border-radius: 999px;
+    background: transparent;
+    color: rgba(var(--svc-ink), 0.85);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition:
+        background-color 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease;
+}
+
+.services-filter:hover {
+    background: rgba(var(--svc-accent), 0.12);
+    border-color: rgba(var(--svc-ink), 0.38);
+}
+
+.services-filter--active {
+    background: linear-gradient(135deg, rgba(var(--svc-accent), 0.92), rgba(var(--svc-deep), 0.95));
+    border-color: transparent;
+    color: #fff;
+}
+
+.services-filter:focus-visible {
+    outline: 2px solid rgb(var(--svc-ink));
+    outline-offset: 2px;
+}
+
+/* ── The honeycomb ──
+   The grid has twice as many tracks as there are hexagons across, and every
+   hexagon spans two of them; an offset row simply starts on track 2. That
+   half-track is the whole trick, and it is why the column count is chosen in
+   shared/honeycomb.js rather than by `auto-fit` — the layout needs the number
+   itself, not just the result of it. The Research section's tools comb is the
+   same module with a smaller hexagon; what a caller's CSS has to hold up is
+   listed in that file's header.
+
+   Column gaps are zero and the seam between neighbours is the cell's padding
+   instead, so a one-track offset is exactly half a hexagon. A gap here would
+   make it half a hexagon plus half a gap, and the rows would not interlock.
+
+   --svc-row-pull is the shortfall between a hexagon's height and the ¾ pitch
+   they tessellate at, computed in pixels by services.js: a percentage margin
+   resolves against the container's *width* and would drift as the column count
+   changed. The grid's padding-bottom gives the last row back the space its own
+   negative margin takes away. */
+/* No board behind the comb: the hexagons sit directly on the section's cream.
+   A darker panel was tried here and painted with a spread-only box-shadow —
+   which, costing no layout, reached up over the filter chips above it. */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(calc(var(--svc-columns, 3) * 2), 1fr);
+    column-gap: 0;
+    row-gap: 0;
+    padding-bottom: var(--svc-row-pull, 0px);
+}
+
+/* A hexagon's width swings from ~390px at three across to ~335px at one, and
+   the type on its face has to follow. Viewport units cannot express that — the
+   column count changes the cell width without the viewport changing much — so
+   the cell is a query container and the face is sized in cqw. */
+.services-cell {
+    container-type: inline-size;
+    position: relative;
+    grid-column-end: span 2;
+    padding: 4px;
+    margin-bottom: calc(var(--svc-row-pull, 0px) * -1);
+    /* clip-path would cut a box-shadow off with everything else outside the
+       six sides, so the lift lives out here on the unclipped parent. */
+    filter: drop-shadow(0 14px 26px rgba(17, 17, 17, 0.14));
+    transition: filter 0.18s ease;
+}
+
+.services-cell:hover {
+    filter: drop-shadow(0 20px 34px rgba(17, 17, 17, 0.22));
+}
+
+/* The ring behind an active or focused hexagon: the same six sides, a few
+   pixels larger, showing only at the edges. Drawn out here for the same reason
+   the shadow is — an outline on the button itself would be clipped away. */
+.services-cell::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background: transparent;
+    transition: background-color 0.18s ease;
+}
+
+/* The accent is written onto the cell, not the hexagon, precisely so this ring
+   can read it — custom properties inherit downward, so the faces still get it
+   from here. `:has(:focus-visible)` rather than a focus rule on the card: the
+   things that take focus are the turn buttons and the address link inside it,
+   and an outline on either would be clipped away by the face's own clip-path. */
+/* Both rings show only as a few pixels at the hexagon's edges, against the
+   section's cream — so both are dark enough to register on it. */
+.services-cell:has(.services-hex--flipped)::before {
+    background: rgb(var(--svc-deep));
+}
+
+.services-cell:has(:focus-visible)::before {
+    background: #181818;
+}
+
+/* ── The card, and the two sides of it ──
+   The clip is on each *face*, not on the card: clipping an ancestor of a
+   preserve-3d subtree flattens it, and the flip stops being a flip. Same
+   reason `overflow` is not set here — it flattens too. */
+.services-hex {
+    position: relative;
+    display: block;
+    width: 100%;
+    /* Regular pointy-top hexagon. HEX_RATIO in services.js is the reciprocal
+       of this and drives the row pitch — change one, change the other. */
+    aspect-ratio: 0.8660254;
+    perspective: 1400px;
+    transition: transform 0.22s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+/* Lifts on hover. The scale is on the hexagon rather than the cell so it grows
+   about its own centre and leaves the grid placement alone, and the cell is
+   raised out of the paint order for the moment it is bigger — cells later in
+   the DOM would otherwise be drawn over the one growing under the cursor. */
+.services-cell:hover .services-hex,
+.services-cell:focus-within .services-hex {
+    transform: scale(1.055);
+}
+
+.services-cell:hover,
+.services-cell:focus-within {
+    z-index: 2;
+}
+
+.services-hex__inner {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    transition: transform 0.55s cubic-bezier(0.4, 0.05, 0.2, 1);
+}
+
+.services-hex--flipped .services-hex__inner {
+    transform: rotateY(180deg);
+}
+
+.services-hex__face {
+    position: absolute;
+    inset: 0;
+    background: #fbfaf7;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.services-hex__face--back {
+    transform: rotateY(180deg);
+    background: rgb(var(--svc-ink));
+}
+
+/* backface-visibility stops the turned-away face being drawn, not being
+   clicked. services.js sets `inert` on it, which covers both plus the tab
+   order; this is the fallback where `inert` is not supported. */
+.services-hex--flipped .services-hex__face--front,
+.services-hex:not(.services-hex--flipped) .services-hex__face--back {
+    pointer-events: none;
+}
+
+/* Top photograph, lower band the type. The cut sits above the hexagon's widest
+   line so the text band gets the full-width part of the shape. */
+.services-hex__media {
+    position: absolute;
+    inset: 0 0 58% 0;
+    display: block;
+    overflow: hidden;
+    isolation: isolate;
+    background: rgb(var(--svc-ink));
+}
+
+/* No zoom of its own on hover — the whole hexagon scales now, and two nested
+   moves at once read as a wobble rather than a lift. */
+.services-hex__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.06);
+}
+
+/* Several hexagons share one domain photograph — there is no per-entry image
+   and inventing one would be inventing content. So the photograph is
+   desaturated and re-tinted in its domain's accent, which turns the repeat
+   into colour-coding instead of a duplicate. */
+.services-hex__tint {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(var(--svc-accent), 0.7), rgba(var(--svc-deep), 0.95));
+    mix-blend-mode: multiply;
+}
+
+/* Work we are available for, rather than work already done: the photograph is
+   held back so the cell reads as the lighter of the two. */
+.services-hex--capability .services-hex__tint {
+    background: linear-gradient(160deg, rgba(var(--svc-accent), 0.9), rgba(var(--svc-deep), 0.99));
+}
+
+.services-hex--capability .services-hex__media img {
+    opacity: 0.35;
+}
+
+/* ── A client's own mark ──
+   Fills its half of the hexagon the way a photograph does — `cover`, so the
+   image scales on whichever axis leaves no gap and is cropped on the other.
+   What it does *not* get is the duotone: a logo desaturated and tinted to the
+   domain's accent is no longer the logo, which is the whole reason for
+   carrying one. The pale ground only shows through a mark with transparency. */
+.services-hex__media--logo {
+    background: #fbfaf7;
+    border-bottom: 1px solid rgba(var(--svc-accent), 0.35);
+}
+
+.services-hex__media--logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: none;
+}
+
+
+/* Text lives between the photograph and the start of the taper. Below 75% the
+   shape closes to a point and a line set there would run out over the sloping
+   edges, so the box stops at 78% — where the shape is still 88% wide — and the
+   block is centred in it: a title that wraps then grows by half a line in each
+   direction rather than a whole one downward. */
+.services-hex__body {
+    position: absolute;
+    inset: 42% 0 22% 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.22rem;
+    padding: 0 15%;
+    text-align: center;
+    /* Last resort behind the line clamps below: clip rather than spill. */
+    overflow: hidden;
+}
+
+.services-hex--outro .services-hex__body {
+    inset: 28% 0 22% 0;
+}
+
+.services-hex__eyebrow {
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: clamp(0.58rem, 2.8cqw, 0.78rem);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgb(var(--svc-ink));
+}
+
+/* Line clamps, everywhere, and deliberately. Unlike a rectangular card a
+   hexagon cannot grow to fit its contents; a line too many pushes the block
+   into the taper and the text runs out over the edges. A capability has no
+   body text, so its title is allowed the third line the body would have used. */
+.services-hex__title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(0.95rem, 4.6cqw, 1.4rem);
+    font-weight: 700;
+    line-height: 1.22;
+    color: #181818;
+    text-wrap: balance;
+}
+
+.services-hex--capability .services-hex__title {
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+}
+
+.services-hex__text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: clamp(0.68rem, 3.1cqw, 0.86rem);
+    line-height: 1.45;
+    color: #6b6663;
+}
+
+/* Client and year, where the entry has them. Its presence is the only mark
+   separating work delivered from work offered on the face itself. */
+.services-hex__meta {
+    margin: 0.1rem 0 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: clamp(0.6rem, 2.8cqw, 0.78rem);
+    line-height: 1.35;
+    letter-spacing: 0.04em;
+    color: rgba(var(--svc-ink), 0.85);
+    /* The client is the one field with no length ceiling worth guessing at —
+       "Institute for Advanced Consciousness Studies" is longer than the shape
+       can hold on one line. */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+}
+
+/* ── Turning the card ──
+   There is no visible control on either face: the front carries role="button"
+   and a tabindex, and the whole of it is the target. The back is a region
+   whose only operable thing is its address, so a click anywhere else on it
+   turns the card back and Escape is the keyboard's way out. */
+.services-hex__face--front,
+.services-hex--contract .services-hex__face--back,
+.services-hex--capability .services-hex__face--back {
+    cursor: pointer;
+}
+
+.services-hex--outro .services-hex__face--front {
+    cursor: default;
+}
+
+/* ── The back ── */
+.services-hex__face--back .services-hex__body {
+    inset: 26% 0 24% 0;
+    gap: 0.5rem;
+}
+
+.services-hex__back-question {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(0.95rem, 4.4cqw, 1.3rem);
+    line-height: 1.25;
+    color: #fff;
+    text-wrap: balance;
+}
+
+.services-hex__back-address,
+.services-hex__back-tail {
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: clamp(0.68rem, 3.1cqw, 0.86rem);
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.82);
+}
+
+/* The face's own click handler turns the card back, and skips anchors — so
+   clicking the address writes an email rather than flipping. */
+.services-hex__face--back .services-hex__mail {
+    display: inline-block;
+    color: #fff;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+    text-decoration-color: rgba(255, 255, 255, 0.5);
+}
+
+/* The back has more vertical room than the front — no picture above it — so it
+   uses the band from just under the top taper down to just above the bottom
+   one, rather than the front's narrower slice. */
+.services-hex__face--back .services-hex__body {
+    padding: 0 17%;
+}
+
+/* ── The cell that closes the honeycomb ──
+   No photograph and no back: it is already the side every other hexagon turns
+   over to. */
+.services-hex--outro .services-hex__face {
+    background: linear-gradient(155deg, rgba(var(--svc-accent), 0.97), rgba(var(--svc-deep), 1));
+}
+
+.services-hex--outro .services-hex__eyebrow {
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.services-hex--outro .services-hex__title {
+    color: #fff;
+}
+
+.services-hex--outro .services-hex__text {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.services-hex--outro .services-hex__mail {
+    margin-top: 0.35rem;
+    color: #fff;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: clamp(0.68rem, 3.1cqw, 0.86rem);
+    font-weight: 700;
+    overflow-wrap: anywhere;
+    text-decoration-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Shared with the Contact and Join tabs, so the section tint is reapplied here
+   rather than changing .contact-cta itself. */
+.services-hero__actions .contact-cta {
+    border-color: rgba(var(--svc-ink), 0.18);
+    color: rgb(var(--svc-ink));
+}
+
+.services-hero__actions .contact-cta:hover {
+    border-color: rgba(var(--svc-ink), 0.32);
+    box-shadow: 0 12px 28px rgba(var(--svc-ink), 0.12);
+}
+
+.services-hero__actions .contact-cta--primary {
+    background: linear-gradient(135deg, rgba(var(--svc-accent), 0.92), rgba(var(--svc-deep), 0.95));
+    border-color: transparent;
+    color: #fff7f5;
+}
+
+.services-link {
+    color: rgb(var(--svc-ink));
+    text-decoration-color: rgba(var(--svc-ink), 0.35);
+}
+
+.services-rich-list {
+    margin: 0.6rem 0 0;
+    padding-left: 1.15rem;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #55504b;
+}
+
+/* An outline anywhere inside a face is clipped away with everything else
+   outside the six sides, so a focused address is marked with a fill it can
+   actually show. The cell's ring behind the hexagon does the rest. */
+.services-hex__mail:focus-visible {
+    outline: none;
+    border-radius: 3px;
+    background: #fff;
+    color: rgb(var(--svc-ink));
+    text-decoration-color: currentColor;
+}
+
+@media (max-width: 900px) {
+    .services-hero {
+        padding: 1.7rem 1.35rem 1.6rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .services-hex__inner,
+    .services-hex,
+    .services-cell {
+        transition: none;
+    }
+
+    .services-cell:hover .services-hex,
+    .services-cell:focus-within .services-hex {
+        transform: none;
+    }
+}
+

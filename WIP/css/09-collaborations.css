@@ -1,0 +1,487 @@
+/* ── 09 · COLLABORATIONS ──
+   The People > Collaborations tab: the person list and the network graph
+   with its zoom control.
+
+   Part of the numbered set in css/ — the sheets are one stylesheet cut into
+   pieces and index.html links them in this order. Order is the cascade: a
+   rule here loses to the same-specificity rule in any later file. */
+
+.people-collaborations {
+    width: var(--content-inline-size);
+    margin: 0 auto;
+    padding: 1rem 0 0;
+}
+
+.people-collaborations p {
+    max-width: 70rem;
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.08rem;
+    line-height: 1.9;
+    color: #3c3731;
+    text-align: center;
+}
+
+.people-collaborations__note {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: #6b645b;
+}
+
+.people-collaborations__section {
+    margin-bottom: 2.4rem;
+}
+
+.people-collaborations__section-header {
+    display: grid;
+    gap: 0.55rem;
+    justify-items: center;
+    margin-bottom: 1.15rem;
+    text-align: center;
+}
+
+.people-collaborations__section-header h3 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    color: #3c3731;
+}
+
+.people-collaborations__section-header p {
+    max-width: 48rem;
+    margin: 0 auto;
+    font-size: 0.98rem;
+    font-style: italic;
+    line-height: 1.75;
+    color: #655f56;
+}
+
+.collaboration-people-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.75rem 2.8rem;
+}
+
+.collaboration-person {
+    display: grid;
+    justify-items: center;
+    align-content: start;
+    width: min(190px, 100%);
+    gap: 0.85rem;
+    padding: 0.25rem 0.35rem 0.45rem;
+    text-align: center;
+    border: 0;
+    background: transparent;
+}
+
+.collaboration-person:focus-visible {
+    outline: none;
+}
+
+.collaboration-person__photo-wrap {
+    width: 118px;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 999px;
+    background: linear-gradient(160deg, rgba(107, 124, 199, 0.18), rgba(229, 236, 255, 0.7));
+    box-shadow: 0 10px 22px rgba(63, 54, 42, 0.1);
+    transition:
+        transform 0.16s ease,
+        box-shadow 0.16s ease;
+}
+
+.collaboration-person:hover .collaboration-person__photo-wrap,
+.collaboration-person:focus-visible .collaboration-person__photo-wrap {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 16px 28px rgba(63, 54, 42, 0.16);
+}
+
+.collaboration-person__photo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.collaboration-person__body {
+    display: grid;
+    justify-items: center;
+    gap: 0.35rem;
+    min-width: 0;
+}
+
+.collaboration-person__name {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.02rem;
+    font-weight: 400;
+    line-height: 1.25;
+    font-style: italic;
+    color: #5a5a5a;
+    overflow-wrap: anywhere;
+}
+
+.people-collaborations .collaboration-person__meta {
+    max-width: 13rem;
+    min-height: 2.45rem;
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.76rem;
+    line-height: 1.45;
+    letter-spacing: 0.01em;
+    text-align: center;
+    color: #7b7883;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition:
+        opacity 0.16s ease,
+        transform 0.16s ease;
+    pointer-events: none;
+}
+
+.collaboration-person:hover .collaboration-person__meta,
+.collaboration-person:focus-visible .collaboration-person__meta {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.people-collaborations__layout {
+    display: block;
+}
+
+@media (max-width: 700px) {
+    .collaboration-people-list {
+        gap: 1.35rem 1.4rem;
+    }
+
+    .collaboration-person {
+        width: min(150px, 100%);
+    }
+
+    .collaboration-person__photo-wrap {
+        width: 96px;
+    }
+
+    .collaboration-person__name {
+        font-size: 0.95rem;
+    }
+}
+
+.people-collaborations__canvas {
+    padding: 0.9rem;
+    border-radius: 30px;
+    background: linear-gradient(180deg, rgba(8, 11, 23, 0.96), rgba(5, 7, 16, 0.99));
+    border: 1px solid rgba(133, 154, 255, 0.12);
+    box-shadow:
+        0 28px 60px rgba(0, 0, 0, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.collaboration-network {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    min-height: 40rem;
+    overflow: hidden;
+    border-radius: 24px;
+    background:
+        radial-gradient(circle at 14% 20%, rgba(91, 129, 255, 0.2), transparent 28%),
+        radial-gradient(circle at 82% 16%, rgba(186, 92, 255, 0.16), transparent 24%),
+        radial-gradient(circle at 66% 72%, rgba(24, 186, 214, 0.14), transparent 24%),
+        linear-gradient(180deg, rgba(7, 11, 24, 1), rgba(3, 6, 15, 1) 56%, rgba(2, 4, 10, 1));
+    touch-action: none;
+    user-select: none;
+    cursor: grab;
+    isolation: isolate;
+}
+
+.collaboration-network.is-dragging {
+    cursor: grabbing;
+}
+
+.collaboration-network::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.collaboration-network::after {
+    opacity: 0.45;
+    background:
+        radial-gradient(circle at 50% 50%, rgba(100, 140, 255, 0.08), transparent 42%),
+        radial-gradient(circle at 24% 74%, rgba(55, 208, 255, 0.08), transparent 28%),
+        radial-gradient(circle at 78% 30%, rgba(213, 109, 255, 0.08), transparent 30%);
+}
+
+.collaboration-network__svg {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* ── Network zoom legend + hint ── */
+.collaboration-network__controls {
+    position: absolute;
+    inset: 1.1rem;
+    z-index: 2;
+    /* Only the zoom pill takes clicks; the rest stays draggable. */
+    pointer-events: none;
+}
+
+.collaboration-network__hint {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(214, 224, 255, 0.5);
+    transition: opacity 0.45s ease;
+}
+
+/* Retires itself once the reader has taken the point. */
+.collaboration-network.has-interacted .collaboration-network__hint {
+    opacity: 0;
+}
+
+.collaboration-network__zoom {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 0.45rem 0.45rem;
+    border-radius: 999px;
+    background: rgba(10, 14, 30, 0.72);
+    border: 1px solid rgba(133, 154, 255, 0.18);
+    backdrop-filter: blur(6px);
+    pointer-events: auto;
+    cursor: default;
+}
+
+.collaboration-network__zoom-btn {
+    display: grid;
+    place-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
+    border: 1px solid rgba(133, 154, 255, 0.22);
+    border-radius: 50%;
+    background: transparent;
+    color: rgba(226, 232, 255, 0.85);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        opacity 0.18s ease;
+}
+
+.collaboration-network__zoom-btn:hover:not(:disabled) {
+    background: rgba(133, 154, 255, 0.18);
+    border-color: rgba(133, 154, 255, 0.5);
+}
+
+.collaboration-network__zoom-btn:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+/* Vertical track; ticks mark each whole step between 1x and MAX_ZOOM
+   (7 → 6 intervals). Reads bottom-up, so zoomed-in is a taller bar. */
+.collaboration-network__zoom-scale {
+    position: relative;
+    width: 3px;
+    height: 5.5rem;
+    border-radius: 999px;
+    background-color: rgba(196, 209, 255, 0.16);
+    background-image: repeating-linear-gradient(to bottom, rgba(196, 209, 255, 0.45) 0 1px, transparent 1px calc(100% / 6));
+}
+
+.collaboration-network__zoom-fill {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 0;
+    border-radius: 999px;
+    background: rgba(226, 232, 255, 0.9);
+    transition: height 0.18s ease;
+}
+
+.collaboration-network__zoom-level {
+    text-align: center;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: rgba(226, 232, 255, 0.75);
+    font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 640px) {
+    .collaboration-network__hint {
+        display: none;
+    }
+}
+
+.collaboration-network__edge {
+    stroke: rgba(196, 209, 255, 0.18);
+    stroke-width: 1.05;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+    pointer-events: none;
+    transition:
+        opacity 0.16s ease,
+        stroke 0.16s ease,
+        stroke-width 0.16s ease;
+}
+
+.collaboration-network__edge--root {
+    stroke: rgba(255, 255, 255, 0.6);
+}
+
+.collaboration-network__edge--intra {
+    stroke: rgba(122, 140, 191, 0.12);
+}
+
+.collaboration-network__edge.is-selected {
+    stroke: rgba(255, 255, 255, 0.92);
+}
+
+.collaboration-network__edge.is-dimmed {
+    opacity: 0.12;
+}
+
+.collaboration-network__node {
+    pointer-events: all;
+    cursor: pointer;
+}
+
+.collaboration-network__node-core {
+    stroke: rgba(255, 255, 255, 0.9);
+    stroke-width: 1.5;
+    vector-effect: non-scaling-stroke;
+    transition:
+        transform 0.14s ease,
+        filter 0.14s ease,
+        opacity 0.14s ease;
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+.collaboration-network__node-core--root {
+    fill: #f72568;
+    stroke: rgba(255, 255, 255, 0.98);
+    stroke-width: 3;
+}
+
+.collaboration-network__node-halo {
+    fill: rgba(255, 255, 255, 0.08);
+    opacity: 0;
+    transition: opacity 0.14s ease;
+    pointer-events: none;
+}
+
+.collaboration-network__node.is-selected .collaboration-network__node-halo,
+.collaboration-network__node.is-connected .collaboration-network__node-halo {
+    opacity: 0.78;
+}
+
+.collaboration-network__node.is-selected .collaboration-network__node-core {
+    transform: scale(1.22);
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.24)) drop-shadow(0 0 26px rgba(116, 161, 255, 0.32));
+}
+
+.collaboration-network__node.is-connected .collaboration-network__node-core {
+    transform: scale(1.12);
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.14)) drop-shadow(0 0 18px rgba(116, 161, 255, 0.18));
+}
+
+.collaboration-network__node.is-dimmed .collaboration-network__node-core {
+    opacity: 0.34;
+    filter: none;
+}
+
+.collaboration-network__node.is-dimmed .collaboration-network__node-halo {
+    opacity: 0.08;
+}
+
+.collaboration-network__node.is-hovered .collaboration-network__node-halo,
+.collaboration-network__node:hover .collaboration-network__node-halo {
+    opacity: 1;
+}
+
+.collaboration-network__node.is-hovered .collaboration-network__node-core,
+.collaboration-network__node:hover .collaboration-network__node-core {
+    transform: scale(1.28);
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.22)) drop-shadow(0 0 22px rgba(116, 161, 255, 0.24));
+}
+
+.collaboration-network__label {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    fill: rgba(230, 237, 255, 0.84);
+    opacity: 0;
+    pointer-events: none;
+    paint-order: stroke fill;
+    stroke: rgba(3, 6, 15, 0.96);
+    stroke-width: 4px;
+    stroke-linejoin: round;
+    transition:
+        opacity 0.14s ease,
+        fill 0.14s ease,
+        transform 0.14s ease;
+    transform-box: fill-box;
+    transform-origin: center;
+    will-change: opacity, transform;
+}
+
+.collaboration-network__label.is-visible,
+.collaboration-network__label.is-revealed {
+    opacity: 1;
+}
+
+.collaboration-network__label--direct,
+.collaboration-network__label--prominent {
+    fill: rgba(247, 250, 255, 0.96);
+}
+
+.collaboration-network__label.is-visible.is-dimmed {
+    opacity: 0.18;
+}
+
+.collaboration-network__label.is-emphasized {
+    opacity: 1;
+    fill: rgba(255, 255, 255, 1);
+    transform: scale(1.04);
+}
+
+.collaboration-network__empty {
+    display: grid;
+    place-items: center;
+    height: 100%;
+    min-height: 28rem;
+    padding: 2rem;
+    border-radius: 24px;
+    border: 1px dashed rgba(85, 100, 160, 0.22);
+    color: #5f6574;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-align: center;
+    line-height: 1.7;
+}
+

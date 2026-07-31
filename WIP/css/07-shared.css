@@ -1,0 +1,209 @@
+/* ── 07 · SHARED COMPONENTS ──
+   The CSS counterpart of `shared/`: the things more than one section uses.
+
+   - Panel slide and the margin arrows, driven by shared/tab-slide.js. Used by
+     People, Research, Publications and Information.
+   - The pager, driven by shared/pager.js. Used by News and Publications.
+
+   It sits at 07 so every section sheet comes after it and can override —
+   which is also why a shared component must not be parked in a section's own
+   file, where the sections before it could never reach it.
+
+   Part of the numbered set in css/ — the sheets are one stylesheet cut into
+   pieces and index.html links them in this order. Order is the cascade: a
+   rule here loses to the same-specificity rule in any later file. */
+
+/* ── Shared tab panel transition (driven by shared/tab-slide.js) ── */
+@keyframes tab-panel-leave {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-60%);
+        opacity: 0;
+    }
+}
+
+@keyframes tab-panel-leave-back {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(60%);
+        opacity: 0;
+    }
+}
+
+@keyframes tab-panel-enter {
+    from {
+        opacity: 0.25;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* forwards so the panel stays gone for the frame between the animation ending
+   and the script setting `hidden`. */
+.tab-panel--leaving {
+    animation: tab-panel-leave 0.32s cubic-bezier(0.4, 0, 1, 1) forwards;
+    will-change: transform, opacity;
+}
+
+.tab-panel--leaving-back {
+    animation: tab-panel-leave-back 0.32s cubic-bezier(0.4, 0, 1, 1) forwards;
+    will-change: transform, opacity;
+}
+
+.tab-panel--entering {
+    animation: tab-panel-enter 0.3s ease-out;
+}
+
+/* ── Margin tab navigation (see shared/tab-slide.js) ── */
+.tab-margin-host {
+    position: relative;
+}
+
+/* The strip between the section edge and its centred content column. */
+.tab-margin-nav {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+    width: calc((100% - var(--content-inline-size)) / 2);
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    appearance: none;
+}
+
+.tab-margin-nav--prev {
+    left: 0;
+}
+
+.tab-margin-nav--next {
+    right: 0;
+}
+
+/* Sticky so the affordance stays in view down a long section. Visible at rest
+   — it is the only sign the margins are clickable — and grows on hover. */
+.tab-margin-nav__chevron {
+    position: sticky;
+    top: 50vh;
+    display: block;
+    width: 0.95rem;
+    height: 0.95rem;
+    margin: 0 auto;
+    border-right: 2px solid rgba(17, 17, 17, 0.55);
+    border-bottom: 2px solid rgba(17, 17, 17, 0.55);
+    opacity: 0.32;
+    transition:
+        opacity 0.2s ease,
+        translate 0.2s ease,
+        scale 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tab-margin-nav--prev .tab-margin-nav__chevron {
+    rotate: 135deg;
+}
+
+.tab-margin-nav--next .tab-margin-nav__chevron {
+    rotate: -45deg;
+}
+
+.tab-margin-nav:hover .tab-margin-nav__chevron,
+.tab-margin-nav:focus-visible .tab-margin-nav__chevron {
+    opacity: 0.8;
+    scale: 1.45;
+}
+
+.tab-margin-nav--prev:hover .tab-margin-nav__chevron {
+    translate: -0.25rem 0;
+}
+
+.tab-margin-nav--next:hover .tab-margin-nav__chevron {
+    translate: 0.25rem 0;
+}
+
+/* Below this the margin is just the page gutter — too narrow to aim at, and
+   it would swallow taps meant for the content. */
+@media (max-width: 1300px) {
+    .tab-margin-nav {
+        display: none;
+    }
+}
+
+/* ── The pager (see shared/pager.js) ──
+   Two arrows and "Page N of M", used by News and Publications. It replaced a
+   numbered strip on the Publications side: a row of page buttons grows with
+   the archive and reflows every time a filter changes the count, and "jump to
+   page 6" is not a thing anyone wants from a list they have just re-sorted.
+   This form is the same size whatever the count.
+
+   Two custom properties are the whole of its theming, so a section colours it
+   by declaring them next to its own accent tokens rather than by writing
+   selectors here. The fallbacks are a neutral grey, so an undeclared section
+   gets something legible instead of nothing. */
+.pager {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding-top: 0.4rem;
+}
+
+/* `display: flex` above outranks the UA rule for the attribute — the same trap
+   as .research-tab-panel, .join-stage and .pub-card. */
+.pager[hidden] {
+    display: none;
+}
+
+.pager__btn {
+    display: grid;
+    place-items: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    border: 1px solid color-mix(in srgb, var(--pager-accent, #8a857c) 34%, transparent);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--pager-ink, #4a4640);
+    font-size: 0.95rem;
+    line-height: 1;
+    cursor: pointer;
+    transition:
+        background 0.16s ease,
+        border-color 0.16s ease,
+        opacity 0.16s ease;
+}
+
+.pager__btn:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--pager-accent, #8a857c) 16%, transparent);
+    border-color: var(--pager-accent, #8a857c);
+}
+
+.pager__btn:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+/* A fixed width, so the row does not shuffle sideways when the count goes from
+   one digit to two. */
+.pager__position {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6c675f;
+    min-width: 8rem;
+    text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pager__btn {
+        transition: none;
+    }
+}

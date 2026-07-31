@@ -2,8 +2,25 @@
  * Renders the Publications section from publications/publications_manifest.json.
  */
 import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
+import { createPager } from "../shared/pager.js"
 ;(function () {
     const PAGE_SIZE = 5
+
+    /* ── The Scholar figures ──
+     * Hand-kept, because there is no API for them and scraping a Scholar
+     * profile from the browser is blocked at the other end. Update them when
+     * they move; nothing here will notice that they have.
+     *
+     * `publications: null` means "use the manifest's own length" — the honest
+     * fallback while nobody has written the real Scholar count down. Set it to
+     * a number once someone has.
+     */
+    const SCHOLAR = {
+        url: "https://scholar.google.com/citations?user=bg0BZ-QAAAAJ",
+        hIndex: 28,
+        citations: 20510,
+        publications: null,
+    }
     const SEARCH_INPUT_DEBOUNCE_MS = 120
     const ALTMETRIC_SCRIPT_SRC = "https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"
     const DIMENSIONS_SCRIPT_SRC = "https://badge.dimensions.ai/badge.js"
@@ -78,6 +95,129 @@ import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
         ensureOfficialMetricBadgeScripts().catch((error) => {
             console.warn("publications.js: official badge scripts failed to load", error)
         })
+    }
+
+    /* ── The Scholar button ──
+     * "View on Google Scholar" says nothing a reader could not have guessed
+     * from the icon. This cycles the lab's bibliometrics instead, and then
+     * undercuts them — the joke is the point: an h-index is a number people
+     * are trained to be impressed by and which means very little on its own,
+     * and saying so is more honest than displaying it straight.
+     *
+     * Built over the anchor that is already in index.html rather than
+     * replacing it, so the href, the target and the rel survive untouched and
+     * the no-JS fallback is the plain link.
+     *
+     * The states are **stacked in one grid cell**, not swapped in and out: the
+     * button then sizes itself to the widest and the tallest of them once, and
+     * a header that is a fixed size cannot shove the tab bar down every four
+     * seconds. Same reason the zoom's ask line reserves two lines' height.
+     */
+    /* Brisk on purpose: the whole sequence is five states, and at a leisurely
+       pace a reader glancing at the header never reaches the punchline. */
+    const SCHOLAR_ROTATE_MS = 1200
+
+    function buildScholarMetrics(listedCount) {
+        const link = document.querySelector(".pub-scholar")
+        const label = link?.querySelector(".pub-scholar__label")
+        if (!link || !label) return
+
+        const count = SCHOLAR.publications ?? listedCount
+        const states = [
+            { figure: SCHOLAR.hIndex.toLocaleString("en-GB"), caption: "h-index" },
+            { figure: SCHOLAR.citations.toLocaleString("en-GB"), caption: "citations" },
+            { figure: count.toLocaleString("en-GB"), caption: "publications" },
+            { line: "What does it mean?" },
+            { line: "Nothing, but check out our Google Scholar profile →" },
+        ]
+
+        const stack = document.createElement("span")
+        stack.className = "pub-scholar__states"
+
+        const nodes = states.map((state, index) => {
+            const node = document.createElement("span")
+            node.className = "pub-scholar__state" + (index === 0 ? " is-on" : "")
+            if (state.line) {
+                node.classList.add("pub-scholar__state--aside")
+                node.textContent = state.line
+            } else {
+                const figure = document.createElement("b")
+                figure.className = "pub-scholar__figure"
+                figure.textContent = state.figure
+                node.append(figure, document.createTextNode(" "))
+                const caption = document.createElement("span")
+                caption.className = "pub-scholar__caption"
+                caption.textContent = state.caption
+                node.appendChild(caption)
+            }
+            stack.appendChild(node)
+            return node
+        })
+
+        // Screen readers get the whole set as one label rather than whichever
+        // frame happened to be up; the stack itself is decoration on a link
+        // whose destination has not changed.
+        stack.setAttribute("aria-hidden", "true")
+        link.setAttribute(
+            "aria-label",
+            "Google Scholar profile: h-index " + SCHOLAR.hIndex + ", " + SCHOLAR.citations + " citations, " + count + " publications",
+        )
+
+        label.replaceWith(stack)
+
+        // Under reduced motion the rotation is the whole effect, so there is
+        // nothing to fall back to but the numbers standing still. The first
+        // state stays up and the punchline is dropped — a joke that never
+        // arrives is worse than no joke.
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            nodes.forEach((node, index) => node.classList.toggle("is-on", index === 0))
+            link.classList.add("pub-scholar--still")
+            return
+        }
+
+        let index = 0
+        let timer = 0
+
+        function tick() {
+            nodes[index].classList.remove("is-on")
+            index = (index + 1) % nodes.length
+            nodes[index].classList.add("is-on")
+        }
+
+        function start() {
+            if (!timer) timer = window.setInterval(tick, SCHOLAR_ROTATE_MS)
+        }
+        function stop() {
+            window.clearInterval(timer)
+            timer = 0
+        }
+
+        /* Rotating only while the section is on screen: a timer that runs for
+           the whole visit to repaint a button nobody is looking at is the kind
+           of thing that shows up on a phone's battery and never in a
+           screenshot.
+
+           It **starts first and lets the observer stop it**, rather than
+           waiting to be started. An IntersectionObserver that never fires is a
+           real case — a headless or non-compositing pane is one — and the
+           failure modes are not equal: rotating off-screen costs a timer
+           nobody sees, while waiting for a callback that does not come leaves
+           a button frozen on its first frame, which looks like the feature is
+           broken. `root` is #main-page, not the viewport: that is the scroll
+           container here, and an observer against the window sees nothing
+           move. */
+        start()
+
+        const mainPage = document.getElementById("main-page")
+        const section = document.getElementById("sec-publications-full")
+        if (section && mainPage && "IntersectionObserver" in window) {
+            new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => (entry.isIntersecting ? start() : stop()))
+                },
+                { root: mainPage },
+            ).observe(section)
+        }
     }
 
     fetch("publications/publications_manifest.json")
@@ -338,15 +478,9 @@ import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
 
                 card.appendChild(body)
 
-                /* preprint badge — top-right corner label */
-                if (pub.is_preprint) {
-                    const preprintBadge = document.createElement("span")
-                    preprintBadge.className = "pub-card__preprint-badge"
-                    preprintBadge.textContent = "Preprint"
-                    card.appendChild(preprintBadge)
-                }
-
-                /* featured image — clicking opens the article */
+                /* featured image — clicking opens the article. After the body,
+                   so source order matches the visual order: it is the card's
+                   right-hand column and fills the row's height. */
                 if (pub.featured) {
                     const wrap = pub.doi ? document.createElement("a") : document.createElement("div")
                     wrap.className = "pub-card__featured-wrap"
@@ -363,6 +497,14 @@ import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
                     img.loading = "lazy"
                     wrap.appendChild(img)
                     card.appendChild(wrap)
+                }
+
+                /* preprint badge — top-right corner label */
+                if (pub.is_preprint) {
+                    const preprintBadge = document.createElement("span")
+                    preprintBadge.className = "pub-card__preprint-badge"
+                    preprintBadge.textContent = "Preprint"
+                    card.appendChild(preprintBadge)
                 }
 
                 container.appendChild(card)
@@ -475,10 +617,19 @@ import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
                 }
             }
 
-            // â”€â”€ Pagination element (after list) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-            const paginationEl = document.createElement("div")
-            paginationEl.className = "pub-pagination"
-            container.parentNode.insertBefore(paginationEl, container.nextSibling)
+            /* ── Pagination (after the list) ──
+               The same component News uses (shared/pager.js), in this
+               section's colours: it was a numbered strip, which grows with the
+               archive and reflows on every filter. */
+            const pager = createPager({
+                onChange: (page) => {
+                    currentPage = page
+                    renderView()
+                    document.getElementById("sec-publications-full")?.scrollIntoView({ behavior: "smooth", block: "start" })
+                },
+                ariaLabel: "Publication pages",
+            })
+            container.parentNode.insertBefore(pager.el, container.nextSibling)
 
             // â”€â”€ Sort bar (between search bar and list) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             const searchBar = document.querySelector(".pub-search-bar")
@@ -548,55 +699,12 @@ import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
                     emptyMsg.hidden = true
                 }
 
-                renderPagination(totalPages)
-            }
-
-            function renderPagination(totalPages) {
-                paginationEl.innerHTML = ""
-                if (totalPages <= 1) return
-
-                function goTo(page) {
-                    currentPage = page
-                    renderView()
-                    document.getElementById("sec-publications-full")?.scrollIntoView({ behavior: "smooth", block: "start" })
-                }
-
-                // Prev arrow
-                const prev = document.createElement("button")
-                prev.type = "button"
-                prev.className = "pub-pagination__btn pub-pagination__arrow"
-                prev.setAttribute("aria-label", "Previous page")
-                prev.innerHTML = "&#8592;"
-                prev.disabled = currentPage === 0
-                prev.addEventListener("click", () => {
-                    if (currentPage > 0) goTo(currentPage - 1)
-                })
-                paginationEl.appendChild(prev)
-
-                for (let i = 0; i < totalPages; i++) {
-                    const btn = document.createElement("button")
-                    btn.type = "button"
-                    btn.className = "pub-pagination__btn" + (i === currentPage ? " pub-pagination__btn--active" : "")
-                    btn.textContent = i + 1
-                    btn.addEventListener("click", () => goTo(i))
-                    paginationEl.appendChild(btn)
-                }
-
-                // Next arrow
-                const next = document.createElement("button")
-                next.type = "button"
-                next.className = "pub-pagination__btn pub-pagination__arrow"
-                next.setAttribute("aria-label", "Next page")
-                next.innerHTML = "&#8594;"
-                next.disabled = currentPage === totalPages - 1
-                next.addEventListener("click", () => {
-                    if (currentPage < totalPages - 1) goTo(currentPage + 1)
-                })
-                paginationEl.appendChild(next)
+                pager.render(currentPage, totalPages)
             }
 
             // Initial render
             renderView()
+            buildScholarMetrics(pubs.length)
             scheduleOfficialMetricBadges()
 
             // -- Tab switching --

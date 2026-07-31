@@ -1,0 +1,178 @@
+{
+  "categories": [
+    {
+      "name": "Research",
+      "count": 2
+    },
+    {
+      "name": "Thoughts",
+      "count": 1
+    },
+    {
+      "name": "Methods",
+      "count": 1
+    },
+    {
+      "name": "Lab",
+      "count": 2
+    },
+    {
+      "name": "Media",
+      "count": 1
+    }
+  ],
+  "posts": [
+    {
+      "slug": "2026-05-29-cognitive-elegance",
+      "title": "Barely Knowing Anything: On Taste, Judgment, and Cognitive Elegance in the Age of AI",
+      "subtitle": "",
+      "date": "2026-05-29",
+      "summary": "As AI drives down the cost of generating solutions, the critical skill bercomes 'Cognitive Elegance': the internalized capacity for clear vision and confident judgments.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.png"
+        }
+      ],
+      "category": "Thoughts",
+      "featured": true,
+      "image": "news/2026-05-29-cognitive-elegance/featured.gif",
+      "file": "news/2026-05-29-cognitive-elegance/post.json",
+      "base": "news/2026-05-29-cognitive-elegance/",
+      "words": 1264,
+      "minutes": 6
+    },
+    {
+      "slug": "2026-01-09-event-triggers",
+      "title": "How to send event triggers to Lab Streaming Layer from JsPsych",
+      "subtitle": "Understand the steps involving in setting up event triggers for your JsPsych experiments, including creating the bridge to Lab Streaming Layer, ensuring synchronisation with other signals and highly accurate timestamps.",
+      "date": "2026-01-11",
+      "summary": "Understand the steps involving in setting up event triggers for your JsPsych experiments, including creating the bridge to Lab Streaming Layer, ensuring synchronisation with other signals and highly accurate timestamps.",
+      "authors": [
+        {
+          "name": "Róisín Sharma",
+          "folder": "roisin-sharma",
+          "avatar": "people/roisin-sharma/avatar.jpg"
+        }
+      ],
+      "category": "Methods",
+      "featured": false,
+      "image": "news/2026-01-09-event-triggers/featured.png",
+      "file": "news/2026-01-09-event-triggers/post.json",
+      "base": "news/2026-01-09-event-triggers/",
+      "words": 1810,
+      "minutes": 8
+    },
+    {
+      "slug": "2025-12-20-interoception-questionnaires",
+      "title": "What is the Best Interoception Questionnaire?",
+      "subtitle": "",
+      "date": "2025-12-20",
+      "summary": "There are many self-report interoception scales out there- but which one should you pick? Let's discuss the pros and cons of each.",
+      "authors": [
+        {
+          "name": "Róisín Sharma",
+          "folder": "roisin-sharma",
+          "avatar": "people/roisin-sharma/avatar.jpg"
+        },
+        {
+          "name": "Oliver Collins",
+          "folder": "oliver-collins",
+          "avatar": "people/oliver-collins/avatar.png"
+        }
+      ],
+      "category": "Research",
+      "featured": true,
+      "image": "news/2025-12-20-interoception-questionnaires/featured.jpg",
+      "file": "news/2025-12-20-interoception-questionnaires/post.json",
+      "base": "news/2025-12-20-interoception-questionnaires/",
+      "words": 1438,
+      "minutes": 7
+    },
+    {
+      "slug": "2025-07-07-ai-faces-in-the-news",
+      "title": "Attractiveness shapes beliefs about whether faces are real or AI-generated, study finds",
+      "subtitle": "",
+      "date": "2025-07-07",
+      "summary": "Our recent paper on facial attractiveness and reality beliefs is in the news.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.png"
+        }
+      ],
+      "category": "Media",
+      "featured": false,
+      "image": "news/2025-07-07-ai-faces-in-the-news/featured.webp",
+      "file": "news/2025-07-07-ai-faces-in-the-news/post.json",
+      "base": "news/2025-07-07-ai-faces-in-the-news/",
+      "words": 25,
+      "minutes": 1
+    },
+    {
+      "slug": "2023-04-06-chatgpt-personality",
+      "title": "I got ChatGPT to do a personality test. You won't believe what happened next!",
+      "subtitle": "Following my previous blog post about including AIs in psychological experiments, I proceeded to do a small experiment to see whether we could administer a personality scale to ChatGPT.",
+      "date": "2023-04-06",
+      "summary": "Following my previous blog post about including AIs in psychological experiments, I proceeded to do a small experiment to see whether we could administer a personality scale to ChatGPT.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.png"
+        }
+      ],
+      "category": "Research",
+      "featured": true,
+      "image": "news/2023-04-06-chatgpt-personality/featured.jpg",
+      "file": "news/2023-04-06-chatgpt-personality/post.json",
+      "base": "news/2023-04-06-chatgpt-personality/",
+      "words": 306,
+      "minutes": 1
+    },
+    {
+      "slug": "2023-02-01-new-logo",
+      "title": "New location and new logo!",
+      "subtitle": "The Reality Bending Lab is moving to the UK, and we're revealing the new logo to celebrate its official start!",
+      "date": "2023-02-01",
+      "summary": "The Reality Bending Lab is moving to the UK, and we're revealing the new logo to celebrate its official start!",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.png"
+        }
+      ],
+      "category": "Lab",
+      "featured": false,
+      "image": "news/2023-02-01-new-logo/featured.png",
+      "file": "news/2023-02-01-new-logo/post.json",
+      "base": "news/2023-02-01-new-logo/",
+      "words": 414,
+      "minutes": 2
+    },
+    {
+      "slug": "2020-09-28-what-is-reality-bending",
+      "title": "What is Reality Bending?",
+      "subtitle": "",
+      "date": "2020-09-28",
+      "summary": "As you know, reality bending is my primary research direction. However, it is not (yet) a well-established scientific topic, nor is it clearly defined. In fact, it is not defined…",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.png"
+        }
+      ],
+      "category": "Lab",
+      "featured": true,
+      "image": "news/2020-09-28-what-is-reality-bending/featured.jpg",
+      "file": "news/2020-09-28-what-is-reality-bending/post.json",
+      "base": "news/2020-09-28-what-is-reality-bending/",
+      "words": 599,
+      "minutes": 3
+    }
+  ]
+}

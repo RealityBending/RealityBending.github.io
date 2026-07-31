@@ -345,7 +345,11 @@ function createBackdropController() {
         preload,
         show(src, label) {
             if (!src) return
-            paint('url("' + src + '")', label)
+            // Absolute, and it has to be: the property is substituted into
+            // css/15-contact.css, so a relative url() written here would be
+            // resolved against the *stylesheet* — /css/information/img/… — and
+            // 404. Same trap the sheets' own url("../img/…") already carries.
+            paint('url("' + new URL(src, document.baseURI).href + '")', label)
         },
         reset() {
             paint(defaultImage, defaultLabel)

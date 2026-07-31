@@ -4,7 +4,8 @@
    Research, News, Publications, Join, Information — is the source order of the
    buttons in index.html and of the nav's own list; the two are independent.
 
-   colorHex / atlasColor mirror the --section-* tokens in style.css :root, which
+   colorHex / atlasColor mirror the --section-* tokens in css/01-base.css :root,
+   which
    belong to a position on the hero's arc rather than to a section. Reorder the
    menu by moving the names between the tokens, and update both files. */
 export const SITE_SECTIONS = Object.freeze([

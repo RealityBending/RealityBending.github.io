@@ -1,10 +1,13 @@
 import { RESEARCH_CONTENT } from "./research-content.js"
 import { LEAVE_DURATION, swapTabPanels } from "../shared/tab-slide.js"
 import { buildRealityZoom, initRealityZoom } from "./reality-zoom.js"
+import { buildCreations } from "./creations.js"
 
 /* The Research section is two tabs over one shell. Overview is the scroll-driven
-   zoom (reality-zoom.js); anything else falls back to the card layout the other
-   sections use.
+   zoom (reality-zoom.js), Creations the inventions/tools grid (creations.js).
+   A tab with neither `kind` renders as an empty panel: there is no generic card
+   fallback here, because there was never a tab that used it and a builder no
+   content reaches is a builder nobody notices is wrong.
 
    Note the missing initMarginTabNav: every other tab group turns its side
    margins into prev/next zones, but this one cannot. The zones span the whole
@@ -19,69 +22,6 @@ import { buildRealityZoom, initRealityZoom } from "./reality-zoom.js"
     const mainPage = document.getElementById("main-page")
     const tabs = Array.isArray(RESEARCH_CONTENT.tabs) ? RESEARCH_CONTENT.tabs.filter((tab) => tab && tab.id && tab.label) : []
     if (!tabs.length) return
-
-    function createCard(card) {
-        const article = document.createElement("article")
-        article.className = "research-card"
-
-        if (card.meta) {
-            const meta = document.createElement("div")
-            meta.className = "research-card__meta"
-            meta.textContent = card.meta
-            article.appendChild(meta)
-        }
-
-        if (card.title) {
-            const title = document.createElement("h3")
-            title.className = "research-card__title"
-            title.textContent = card.title
-            article.appendChild(title)
-        }
-
-        if (card.text) {
-            const text = document.createElement("p")
-            text.className = "research-card__text"
-            text.textContent = card.text
-            article.appendChild(text)
-        }
-
-        return article
-    }
-
-    function fillCardTab(panel, tab) {
-        const header = document.createElement("div")
-        header.className = "research-tab-header"
-
-        if (tab.eyebrow) {
-            const eyebrow = document.createElement("div")
-            eyebrow.className = "research-tab-eyebrow"
-            eyebrow.textContent = tab.eyebrow
-            header.appendChild(eyebrow)
-        }
-
-        if (tab.heading) {
-            const heading = document.createElement("h3")
-            heading.className = "research-tab-heading"
-            heading.textContent = tab.heading
-            header.appendChild(heading)
-        }
-
-        if (tab.lede) {
-            const lede = document.createElement("p")
-            lede.className = "research-tab-lede"
-            lede.textContent = tab.lede
-            header.appendChild(lede)
-        }
-
-        panel.appendChild(header)
-
-        if (Array.isArray(tab.cards) && tab.cards.length) {
-            const grid = document.createElement("div")
-            grid.className = "research-card-grid"
-            tab.cards.forEach((card) => grid.appendChild(createCard(card)))
-            panel.appendChild(grid)
-        }
-    }
 
     let zoom = null
 
@@ -98,8 +38,10 @@ import { buildRealityZoom, initRealityZoom } from "./reality-zoom.js"
             zoom = buildRealityZoom(tab)
             panel.appendChild(zoom.root)
         } else {
+            // --cards is the column width and the padding, which any non-zoom
+            // tab wants; the rows themselves are creations.js's.
             panel.classList.add("research-tab-panel--cards")
-            fillCardTab(panel, tab)
+            if (tab.kind === "creations") panel.appendChild(buildCreations(tab))
         }
 
         return panel
@@ -132,7 +74,13 @@ import { buildRealityZoom, initRealityZoom } from "./reality-zoom.js"
 
     const zoomTab = tabs.find((tab) => tab.kind === "reality-zoom")
 
+    let activeTab = tabs[0].id
+    // Assigned by initCreationsFab, which cannot exist until the panels do.
+    let syncFab = () => {}
+
     function activateTab(tabId) {
+        activeTab = tabId
+
         // Leaving Overview shuts the gate. The panel is about to be display:none
         // and its ~700vh track goes with it, which is a scroll jump for anyone
         // deep in the dive; locked it is one screen tall, so the swap costs
@@ -146,6 +94,11 @@ import { buildRealityZoom, initRealityZoom } from "./reality-zoom.js"
             button.setAttribute("aria-selected", isActive ? "true" : "false")
         })
         swapTabPanels(panels, "research-tab-" + tabId)
+        // After the swap, not before: the floating button reads the section's
+        // own rect, and the section is about to change height by the whole of
+        // one panel. Once more when the slide has settled, for the same reason
+        // the zoom refreshes twice.
+        syncFab()
 
         // The zoom measures itself against a stage that was display:none for as
         // long as its tab was hidden, so its geometry is stale the moment it
@@ -157,6 +110,7 @@ import { buildRealityZoom, initRealityZoom } from "./reality-zoom.js"
             requestAnimationFrame(() => zoom.driver.refresh())
             setTimeout(() => zoom.driver.refresh(), LEAVE_DURATION + 60)
         }
+        setTimeout(syncFab, LEAVE_DURATION + 60)
     }
 
     tabs.forEach((tab, index) => {
@@ -181,28 +135,68 @@ import { buildRealityZoom, initRealityZoom } from "./reality-zoom.js"
     shell.appendChild(panelHost)
     root.replaceChildren(shell)
 
+    /* Leaving the zoom for the other tab, and scrolling the section header back
+       into view along with it — switching tabs at the bottom of a 700vh track
+       otherwise lands the reader on a short panel they have already scrolled
+       past. activateTab shuts the gate on the way out, so coming back to
+       Overview starts from the poster rather than dropping the reader into the
+       middle of a track they had already left.
+
+       Two things call this: the rail's own exit, which only exists once the
+       dive has gone dark, and the floating button, which is up for the whole
+       section. */
+    function goToTab(tabId) {
+        activateTab(tabId)
+        const section = document.getElementById("sec-research-full")
+        if (section && mainPage) mainPage.scrollTo({ top: section.offsetTop, behavior: "smooth" })
+    }
+
+    /* The floating way through to Creations. It joins the two standing FABs
+       rather than being placed in the section, because the Overview is a
+       ~700vh sticky stage: anything anchored inside it is either fixed to one
+       frame of the dive or scrolls away from the reader on the first pull.
+
+       Shown only while Overview is both the active tab and the thing filling
+       the screen. Both halves matter — the tab, or it would offer to take a
+       reader to the panel they are already reading; the rect, because the
+       section is the tallest on the page and its own boundaries are the only
+       stable measure here (a fraction of the scroll height moves by ~700vh
+       when the gate opens — see the note on `gate` in script.js). */
+    function initCreationsFab(targetTab) {
+        const fab = document.getElementById("fab-research-creations")
+        const section = document.getElementById("sec-research-full")
+        if (!fab || !section || !mainPage || !targetTab || !zoomTab) return
+
+        fab.addEventListener("click", () => goToTab(targetTab.id))
+
+        function update() {
+            const rect = section.getBoundingClientRect()
+            const vh = window.innerHeight
+            // Covering the screen rather than merely intersecting it: the
+            // header creeping into view under the next section is not "you are
+            // in the Research section".
+            const onScreen = rect.top < vh * 0.4 && rect.bottom > vh * 0.5
+            fab.classList.toggle("is-shown", onScreen && activeTab === zoomTab.id)
+        }
+
+        mainPage.addEventListener("scroll", update, { passive: true })
+        window.addEventListener("resize", update)
+        update()
+        syncFab = update
+    }
+
     if (zoom) {
         // The rail's way out of the zoom. It points at whichever tab is not the
-        // zoom, and scrolls the section header back into view along with it —
-        // switching tabs at the bottom of a 700vh track otherwise lands the
-        // reader on a short panel they have already scrolled past.
+        // zoom.
         const other = tabs.find((tab) => tab.kind !== "reality-zoom")
         if (other) {
             zoom.exit.textContent = other.label + " →"
-            zoom.exit.addEventListener("click", () => {
-                // activateTab shuts the gate on the way out, so coming back to
-                // Overview starts from the poster rather than dropping the
-                // reader into the middle of a track they had already left.
-                activateTab(other.id)
-                const section = document.getElementById("sec-research-full")
-                if (section && mainPage) {
-                    mainPage.scrollTo({ top: section.offsetTop, behavior: "smooth" })
-                }
-            })
+            zoom.exit.addEventListener("click", () => goToTab(other.id))
         } else {
             zoom.exit.remove()
         }
 
         zoom.driver = initRealityZoom(zoom, mainPage)
+        if (other) initCreationsFab(other)
     }
 })()

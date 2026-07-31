@@ -1,0 +1,205 @@
+/* ── 08 · MEMORIES GALLERY ──
+   The People > Memories tab, plus the lightbox from shared/lightbox.js.
+
+   Part of the numbered set in css/ — the sheets are one stylesheet cut into
+   pieces and index.html links them in this order. Order is the cascade: a
+   rule here loses to the same-specificity rule in any later file. */
+
+/* ── Memories gallery ─────────────────────────────────────────── */
+
+.memories-gallery {
+    width: var(--content-inline-size);
+    margin: 0 auto;
+    padding: 1.5rem 0 3rem;
+}
+
+.memories-empty {
+    text-align: center;
+    color: rgba(85, 100, 160, 0.45);
+    font-size: 0.9rem;
+    padding: 3rem;
+}
+
+.memories-year {
+    margin-bottom: 2.5rem;
+}
+
+.memories-year__label {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(85, 100, 160, 0.55);
+    margin: 0 0 0.9rem 0.25rem;
+    border-bottom: 1px solid rgba(85, 100, 160, 0.12);
+    padding-bottom: 0.4rem;
+}
+
+.memories-year__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0.55rem;
+}
+
+.memories-card {
+    position: relative;
+    overflow: hidden;
+    border: none;
+    padding: 0;
+    background: #e8e6e0;
+    cursor: pointer;
+    border-radius: 3px;
+    aspect-ratio: 4 / 3;
+    display: block;
+    width: 100%;
+}
+
+.memories-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+}
+
+.memories-card:hover .memories-card__img,
+.memories-card:focus-visible .memories-card__img {
+    transform: scale(1.045);
+}
+
+.memories-card__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.5rem 0.65rem 0.45rem;
+    background: linear-gradient(to top, rgba(10, 10, 20, 0.72) 0%, transparent 100%);
+    color: #fff;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    opacity: 0;
+    transform: translateY(4px);
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+    pointer-events: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.memories-card:hover .memories-card__overlay,
+.memories-card:focus-visible .memories-card__overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ── Lightbox ────────────────────────────────────────────────── */
+
+.media-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    align-items: center;
+    justify-content: center;
+}
+
+.media-lightbox.is-open {
+    display: flex;
+}
+
+.media-lightbox__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 8, 16, 0.82);
+    backdrop-filter: blur(6px);
+}
+
+.media-lightbox__frame {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: min(90vw, 960px);
+    max-height: 92dvh;
+    gap: 0.75rem;
+}
+
+.media-lightbox__close {
+    position: absolute;
+    top: -2.4rem;
+    right: 0;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.2rem 0.5rem;
+    transition: color 0.15s;
+}
+
+.media-lightbox__close:hover {
+    color: #fff;
+}
+
+.media-lightbox__img {
+    max-width: 100%;
+    max-height: 75dvh;
+    object-fit: contain;
+    border-radius: 4px;
+    display: block;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+}
+
+.media-lightbox__info {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.88);
+    padding: 0 0.5rem;
+}
+
+.media-lightbox__title {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0 0 0.2rem;
+}
+
+.media-lightbox__caption {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.68);
+    margin: 0 0 0.15rem;
+}
+
+.media-lightbox__meta {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.42);
+    margin: 0;
+}
+
+.media-lightbox__title:empty,
+.media-lightbox__caption:empty,
+.media-lightbox__meta:empty {
+    display: none;
+}
+
+/* ── Responsive tweaks ───────────────────────────────────────── */
+
+@media (max-width: 600px) {
+    .memories-year__grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 0.35rem;
+    }
+}
+
+/* ── End memories gallery ─────────────────────────────────────── */
+

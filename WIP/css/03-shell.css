@@ -1,0 +1,154 @@
+/* ── 03 · PAGE SHELL ──
+   #main-page (the scroll container — not the window) and the site nav.
+
+   Part of the numbered set in css/ — the sheets are one stylesheet cut into
+   pieces and index.html links them in this order. Order is the cascade: a
+   rule here loses to the same-specificity rule in any later file. */
+
+/* ─────────────────────────────────────
+   MAIN PAGE
+───────────────────────────────────── */
+#main-page {
+    position: fixed;
+    inset: 0;
+    background: #f5f4ef;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    pointer-events: none;
+    isolation: isolate;
+}
+
+#main-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(245, 244, 239, 0.78);
+    opacity: 1;
+    pointer-events: none;
+    transition: opacity var(--main-overlay-fade-duration) ease var(--main-overlay-fade-delay);
+    z-index: 1;
+}
+
+#main-page > *:not(nav):not(.fab-group) {
+    position: relative;
+    z-index: 2;
+}
+
+#main-page.visible {
+    pointer-events: auto;
+}
+
+#main-page.visible::before {
+    opacity: 0;
+}
+
+/* ── Navigation ── */
+/* --nav-reveal is written by updateNavVisibility() in script.js: it runs 0 → 1
+   across the tail of the hero, so the bar slides and fades in with the scroll
+   rather than snapping in at a threshold. */
+nav {
+    --nav-reveal: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.45rem 4rem;
+    background: #f5f4ef;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    z-index: 5;
+    transform: translateY(calc((var(--nav-reveal) - 1) * 100%));
+    opacity: var(--nav-reveal);
+}
+
+nav.nav--hidden {
+    pointer-events: none;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.nav-logo {
+    height: 2.2rem;
+    width: auto;
+    object-fit: contain;
+}
+
+.nav-logo--sussex {
+    height: 2.2rem;
+}
+
+.nav-brand {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #111;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 2.5rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: #888;
+    font-family: "Raleway", "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 400;
+    transition: color 0.2s;
+}
+
+nav a.nav-link:hover,
+nav a.nav-link.active {
+    color: var(--section-color, #111);
+    font-weight: 700;
+}
+
+/* ── The social marks ──
+   One list item holding all three links, so the cluster survives the bar
+   becoming a column at 1800px (see 20-wide.css) without three more rows
+   appearing in it. It takes the list's own gap in front of it, which sets the
+   icons apart from the five destinations without a rule of its own — and no
+   margin, because a nudge that reads as separation in a row reads as a
+   misalignment once the list is a column.
+
+   `fill: currentColor` on the marks and nothing else: they then inherit `nav
+   a`'s colour, which is what the Research zoom's dark dress overrides — so
+   they go light with the section links and 21-reality-zoom.css never has to
+   name them. */
+.nav-social {
+    display: flex;
+    align-items: center;
+    gap: 0.95rem;
+}
+
+.nav-social a {
+    display: grid;
+    place-items: center;
+    color: #9a958d;
+}
+
+.nav-social svg {
+    width: 1.02rem;
+    height: 1.02rem;
+    fill: currentColor;
+    display: block;
+}
+
+.nav-social a:hover,
+.nav-social a:focus-visible {
+    color: #111;
+}
+

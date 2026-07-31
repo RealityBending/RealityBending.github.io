@@ -1,0 +1,182 @@
+/* ── 11 · ALUMNI BAND ──
+   The band of past members under the roster.
+
+   Part of the numbered set in css/ — the sheets are one stylesheet cut into
+   pieces and index.html links them in this order. Order is the cascade: a
+   rule here loses to the same-specificity rule in any later file. */
+
+/* ── Alumni band ─────────────────────────────────────────────── */
+
+.alumni-band {
+    position: relative;
+    z-index: 1;
+    margin-top: 0;
+    isolation: isolate;
+}
+
+.alumni-band::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -100vw;
+    right: -100vw;
+    /* Closes the ladder with the section colour rather than another grey. */
+    background: color-mix(in srgb, var(--section-people) 16%, transparent);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.alumni-band__grid[hidden] {
+    display: none;
+}
+
+.alumni-band__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7em;
+    width: 100%;
+    padding: 0.85em clamp(0.75rem, 3vw, 2.5rem);
+    background: transparent;
+    border: none;
+    border-top: 1px solid color-mix(in srgb, var(--section-people) 25%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--section-people) 25%, transparent);
+    cursor: pointer;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--section-people) 70%, transparent);
+    transition:
+        background 0.18s ease,
+        color 0.18s ease;
+}
+
+.alumni-band__trigger:hover,
+.alumni-band__trigger.is-open {
+    background: color-mix(in srgb, var(--section-people) 8%, transparent);
+    color: var(--section-people);
+}
+
+.alumni-band__count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.5em;
+    height: 1.5em;
+    padding: 0 0.35em;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--section-people) 18%, transparent);
+    font-size: 0.9em;
+    font-weight: 600;
+    letter-spacing: 0;
+}
+
+.alumni-band__chevron {
+    display: inline-block;
+    width: 0.55em;
+    height: 0.55em;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg) translateY(-2px);
+    transition: transform 0.22s ease;
+    flex-shrink: 0;
+}
+
+.alumni-band__trigger.is-open .alumni-band__chevron {
+    transform: rotate(-135deg) translateY(-2px);
+}
+
+.alumni-band__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+    justify-items: center;
+    gap: 1.4rem clamp(0.9rem, 2vw, 1.2rem);
+    padding: 1.75rem clamp(0.75rem, 3vw, 2.5rem) 2rem;
+}
+
+.alumni-card {
+    display: grid;
+    justify-items: center;
+    align-content: start;
+    gap: 0.65rem;
+    width: min(170px, 100%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem 0.35rem 0.45rem;
+    border-radius: 0;
+    transition:
+        transform 0.15s ease,
+        opacity 0.15s ease;
+}
+
+.alumni-card:hover,
+.alumni-card:focus-visible {
+    transform: translateY(-2px);
+    outline: none;
+}
+
+.alumni-card__avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: rgba(17, 17, 17, 0.06);
+    border: 0;
+    display: block;
+    /* Fully desaturated at rest; the colour returns on hover, which is the
+       only place it appears in this band. */
+    filter: grayscale(100%);
+    box-shadow: 0 10px 22px rgba(17, 17, 17, 0.08);
+    transition:
+        filter 0.16s ease,
+        transform 0.16s ease,
+        box-shadow 0.16s ease;
+}
+
+.alumni-card:hover .alumni-card__avatar,
+.alumni-card:focus-visible .alumni-card__avatar {
+    filter: grayscale(0%);
+    transform: scale(1.03);
+    box-shadow: 0 16px 28px rgba(17, 17, 17, 0.14);
+}
+
+.alumni-card__name {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.98rem;
+    font-weight: 400;
+    font-style: italic;
+    color: #5a5a5a;
+    text-align: center;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+}
+
+.alumni-card__details {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    max-width: 13rem;
+    min-height: 2.3rem;
+    margin: 0;
+    font-size: 0.72rem;
+    color: #7b7883;
+    text-align: center;
+    line-height: 1.45;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition:
+        opacity 0.16s ease,
+        transform 0.16s ease;
+    pointer-events: none;
+}
+
+.alumni-card:hover .alumni-card__details,
+.alumni-card:focus-visible .alumni-card__details {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ── End alumni band ─────────────────────────────────────────── */
+

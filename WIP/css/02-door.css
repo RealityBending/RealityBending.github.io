@@ -1,0 +1,178 @@
+/* ── 02 · DOOR SCREEN ──
+   The landing overlay — grey screen, the two doors, the rain canvases and
+   the click hint. Everything here is gone 1200ms after the doors open.
+
+   Part of the numbered set in css/ — the sheets are one stylesheet cut into
+   pieces and index.html links them in this order. Order is the cascade: a
+   rule here loses to the same-specificity rule in any later file. */
+
+/* ─────────────────────────────────────
+   DOOR SCREEN
+───────────────────────────────────── */
+#door-screen {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    cursor: pointer;
+    transition:
+        opacity var(--intro-screen-fade-duration) ease var(--intro-screen-fade-delay),
+        visibility 0s linear calc(var(--intro-screen-fade-delay) + var(--intro-screen-fade-duration));
+}
+
+/* Landing backdrop, in two layers. The base is the near-white the black logo is
+   read against once the doors are clicked; the ::after on top of it is the near
+   black the white logo starts on. Clicking fades the dark layer out — a lighter
+   *overlay* could never lighten what is under it, and gradients do not
+   interpolate reliably, so the crossfade is done with opacity. The base needs
+   no fade of its own — #door-screen takes the whole landing screen out at
+   900 → 1200ms, grey and doors together, and two stacked fades over the same
+   window would only make the grey vanish faster than the doors.
+
+   The click reads as the backdrop and the logo swapping tones rather than as a
+   light coming on. The light layer is flat at 0.92 — enough of the hero comes
+   through to keep it grey rather than glaring, and the horizontal ramp the dark
+   layer has is not worth carrying at that alpha. The dark layer's alphas are
+   set against the light base under it, not against the page, which is why they
+   are higher than they look like they need to be: composited they come out at
+   the same tone the single dark layer had before it was split in two. */
+#door-bg {
+    position: absolute;
+    inset: 0;
+    background: rgba(230, 230, 227, 0.92);
+    pointer-events: none;
+}
+
+#door-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(17, 17, 17, 0.75), rgba(17, 17, 17, 0.95) 50%, rgba(17, 17, 17, 0.75));
+    transition: opacity var(--intro-bg-lighten-duration) ease;
+}
+
+#door-screen.opening #door-bg::after {
+    opacity: 0;
+}
+
+#door-screen.opening {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* The logo container — full viewport height, square.
+   perspective here is shared by both door children so they
+   recede to the same vanishing point.                        */
+#door-container {
+    display: flex;
+    width: min(100vh, 100vw);
+    height: min(100vh, 100vw);
+    aspect-ratio: 1;
+    perspective: 1200px;
+    perspective-origin: center center;
+    transition: transform var(--intro-door-zoom-duration) cubic-bezier(0.4, 0, 0.2, 1)
+        calc(var(--intro-door-open-delay) + var(--intro-door-zoom-delay));
+}
+
+#door-screen.opening #door-container {
+    transform: scale(2.2);
+}
+
+/* Each door panel is half the container */
+.door {
+    width: 50%;
+    height: 100%;
+    transition: transform var(--intro-door-swing-duration) cubic-bezier(0.25, 0.46, 0.45, 0.94) var(--intro-door-open-delay);
+    background-image: url("../img/lab_logo_white.png");
+    background-size: 200% 100%;
+    background-repeat: no-repeat;
+}
+
+#door-screen.opening .door {
+    background-image: url("../img/lab_logo_black.png");
+}
+
+.door-left {
+    transform-origin: left center;
+    background-position: left;
+}
+
+.door-right {
+    transform-origin: right center;
+    background-position: right;
+}
+
+/* ── Open state: doors pushed away (free edges swing into the screen) ── */
+#door-screen.opening .door-left {
+    transform: rotateY(82deg);
+}
+
+#door-screen.opening .door-right {
+    transform: rotateY(-82deg);
+}
+
+/* ── Landing quotes ── */
+/* ── Rain canvases ── */
+.rain-canvas {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 17vw;
+    min-width: 140px;
+    max-width: 220px;
+    pointer-events: none;
+    opacity: 1;
+    /* Goes with the lightening, not after it — white rain on the lighter grey
+       reads as washed out rather than as a fade. */
+    transition: opacity var(--intro-bg-lighten-duration) ease;
+}
+
+.rain-canvas--left {
+    left: 2.5vw;
+}
+.rain-canvas--right {
+    right: 2.5vw;
+}
+
+#door-screen.opening .rain-canvas {
+    opacity: 0;
+}
+
+/* ── Click hint ── */
+.click-hint {
+    position: absolute;
+    bottom: 2.8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.9);
+    white-space: nowrap;
+    pointer-events: none;
+    animation: pulse 2.2s ease-in-out infinite;
+    /* Same reasoning as the rain: white text, gone before the grey lightens. */
+    transition: opacity var(--intro-bg-lighten-duration) ease;
+}
+
+#door-screen.opening .click-hint {
+    /* The pulse animates opacity, and an animation outranks a transition — so
+       it has to be cancelled here or the hint never actually fades. */
+    animation: none;
+    opacity: 0;
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+

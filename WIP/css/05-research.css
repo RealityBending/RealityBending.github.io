@@ -1,0 +1,594 @@
+/* ── 05 · RESEARCH SECTION ──
+   The section frame, its tab bar and the card grid. The Overview tab's zoom
+   is a module of its own — see 21-reality-zoom.css.
+
+   Part of the numbered set in css/ — the sheets are one stylesheet cut into
+   pieces and index.html links them in this order. Order is the cascade: a
+   rule here loses to the same-specificity rule in any later file. */
+
+/* ── Research section ──
+   Unlike the other card sections this one is full-bleed: the Overview tab is a
+   sticky, black, edge-to-edge stage (see "Reality zoom" further down), so the
+   inline gutter lives on the header and on the card tab rather than on the
+   section. overflow-x + isolation are what let the stage bleed back out to the
+   screen edge under the wide-screen sidebar. */
+.research-full {
+    padding: 5rem 0 0;
+    background: #f5f4ef;
+    position: relative;
+    overflow-x: clip;
+    overflow-y: visible;
+    isolation: isolate;
+}
+
+/* No gap. The shell's only two children are the head and the panel host, so a
+   grid gap here is a band of cream between the tab line and whatever the tab
+   shows — and for Overview that means the zoom's black starting 25px below the
+   line it should be hanging from. Information does the same thing: its panels
+   begin exactly at its own tab line, and each panel pays for its own breathing
+   room (see .research-tab-panel--cards, which keeps a small top pad). */
+.research-shell {
+    width: 100%;
+    display: grid;
+    gap: 0;
+}
+
+.research-head {
+    width: 100%;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-inline-gutter);
+    display: grid;
+    gap: 1.2rem;
+}
+
+.research-full__title {
+    display: block;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    color: rgba(17, 17, 17, 0.18);
+    margin: 0;
+}
+
+.research-tabs-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0;
+    border-bottom: 1px solid rgba(85, 150, 100, 0.16);
+}
+
+.research-tab-btn {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.55em 1.35em;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    background: transparent;
+    color: rgba(85, 150, 100, 0.5);
+    cursor: pointer;
+    transition:
+        color 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.research-tab-btn:hover {
+    color: rgba(85, 150, 100, 0.85);
+}
+
+.research-tab-btn--active {
+    color: rgba(85, 150, 100, 1);
+    border-bottom-color: rgba(85, 150, 100, 0.7);
+}
+
+.research-panels {
+    width: 100%;
+}
+
+/* 2rem of top padding, which is the 1.6rem the shell used to add plus the
+   0.4rem this already had. The space was always this tab's — text under a rule
+   needs it — and it only lived on the shell, where it also pushed the zoom's
+   black away from the line it should hang from. */
+.research-tab-panel--cards {
+    display: grid;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: 2rem var(--content-inline-gutter) 5rem;
+}
+
+/* The zoom takes the section's whole width; its own stage handles the rest. */
+.research-tab-panel--zoom {
+    display: block;
+    width: 100%;
+}
+
+/* swapTabPanels puts a panel away with the `hidden` attribute, and the two
+   display rules above outrank the UA rule that acts on it — without this both
+   tabs paint at once. Same trap as .join-stage and .pub-card. */
+.research-tab-panel[hidden] {
+    display: none;
+}
+
+/* ── Creations tab (research/creations.js) ──
+   The `rc-` block. It lives here rather than in a file of its own because it
+   is a component of this section and needs to beat nothing that comes later —
+   the zoom's separate sheet exists only because it has to outrank 20-wide.css.
+
+   Two dark plates, one per row, each with a painting behind it. Dark because
+   the tab next door is a black stage and a page of white cards on the other
+   side of the tab bar reads as a different site; and because both rows are
+   short, so the plates are bands rather than walls.
+
+   Each row carries its own `--rc-accent`, written inline from the content
+   module, and every tint below is `color-mix`ed off it — so a row's colour is
+   one hex in creations-content.js. The two hues are site tokens
+   (--section-research blue, --section-news teal); the green of the surrounding
+   tab bar deliberately does not appear inside either row, which is what keeps
+   them legible against it.
+
+   No header above the first plate: the tab bar has already named the tab, and
+   each plate names itself. */
+.rc {
+    display: grid;
+    gap: 1.6rem;
+    align-content: start;
+}
+
+/* `isolation: isolate` is what makes the negative layers below legal: the art
+   and its scrim sit above the plate's own background and beneath every child,
+   without a z-index anywhere on the content. Same arrangement as the People
+   section's video backdrop, and for the same reason — a blanket child selector
+   to lift the content instead would carry its argument's specificity into a
+   fight with something else. */
+.rc-plate {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border-radius: 1.4rem;
+    background: #0a0c11;
+    box-shadow: 0 22px 54px rgba(17, 17, 17, 0.16);
+}
+
+/* An <img>, not a background-image: the path comes from the content module and
+   is written from the site root, where a `url()` in css/ would resolve against
+   this folder — and a background cannot be lazy. */
+.rc-plate__art {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0.85;
+}
+
+/* The painting is held back rather than hidden: enough scrim that white text
+   sits on it comfortably, and no more — the first pass was dark enough that
+   neither picture could be made out at all. The diagonal keeps one band
+   lighter still; a flat wash leaves a picture nobody can tell is a picture. */
+.rc-plate::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        linear-gradient(102deg, rgba(8, 9, 13, 0.74) 0%, rgba(8, 9, 13, 0.42) 46%, rgba(8, 9, 13, 0.68) 100%),
+        radial-gradient(130% 100% at 50% 0%, rgba(8, 9, 13, 0.05), rgba(8, 9, 13, 0.45));
+}
+
+/* No accent bar along the top edge and no rule under the head. Both were drawn
+   in the row's own colour, and against a painting a coloured line reads as a
+   fault in the picture rather than as a division of the plate — the plate's own
+   edge is already the division. The accent survives where it is a property of
+   something rather than a stripe across it: a tool's kind on the face, the
+   reference at the end of an invention. */
+.rc-plate__body {
+    position: relative;
+    display: grid;
+    gap: 1.5rem;
+    align-content: start;
+    padding: 2.2rem clamp(1.25rem, 3vw, 2.6rem) 2.3rem;
+}
+
+.rc-plate__head {
+    display: grid;
+    gap: 0.4rem;
+}
+
+/* Plain bold white, and no mark in front of it: the row's colour is already on
+   the plate's top edge and under the head, so a coloured bullet as well made
+   three statements of the same thing — and a dot in front of one word reads as
+   a list item that lost its list. */
+.rc-plate__label {
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: #fff;
+    text-shadow: 0 1px 14px rgba(0, 0, 0, 0.55);
+}
+
+.rc-plate__lede {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.62);
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Inventions: one line each ──
+   Star, the idea, the reference — three columns on one baseline, ruled between
+   entries. The name and the description are one paragraph rather than two
+   columns: the names run from two words to four and a name column wide enough
+   for the longest one leaves a trench in front of every other entry. The
+   reference does get a column, so the way out of a line is always in the same
+   place.
+
+   The star is a text character rather than a drawing. This used to be nine
+   hand-authored line-art glyphs, one per item, and at bullet size a drawing is
+   a smudge that has to be squinted at — with nothing to be worked out from any
+   of them anyway. */
+.rc-list {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.rc-item {
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.rc-item:first-child {
+    border-top: 0;
+}
+
+/* The row itself is the anchor (see creations.js) — hence the padding and the
+   hover living here rather than on the item, so the tint fills the whole row
+   and not just the text in it. The negative inline margin is what lets that
+   tint reach past the text on both sides without indenting the list. */
+.rc-item__row {
+    display: grid;
+    grid-template-columns: 1.1rem minmax(0, 1fr) auto;
+    gap: 0 1.1rem;
+    align-items: baseline;
+    padding: 0.8rem 0.7rem;
+    margin: 0 -0.7rem;
+    border-radius: 0.6rem;
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.18s ease;
+}
+
+a.rc-item__row:hover {
+    background: rgba(255, 255, 255, 0.07);
+}
+
+a.rc-item__row:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.7);
+    outline-offset: -2px;
+}
+
+/* Gold, not the row's blue: the star is the lab's own mark on an idea rather
+   than another statement of the plate's colour, and against a night painting a
+   warm mark is the one that reads. */
+.rc-item__star {
+    font-size: 0.82rem;
+    line-height: 1;
+    text-align: center;
+    color: #e8b73f;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.6);
+}
+
+/* One sentence: the name, a dash, the idea. Nothing here is a block, so a long
+   idea wraps under itself and the name stays where the star put it. */
+/* The shadow, on everything over the plate: the painting is no longer scrimmed
+   down to a flat dark, so a line of text can cross a bright passage of it. */
+.rc-item__body {
+    margin: 0;
+    min-width: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.99rem;
+    line-height: 1.62;
+    color: rgba(255, 255, 255, 0.72);
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.6);
+}
+
+.rc-item__name {
+    color: #fff;
+}
+
+.rc-item__dash {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Its own column, right at the end of the line, so the references stack into a
+   rail down the right of the plate. Not a link itself — the row is (see
+   creations.js) — but it is the part that says where the row goes, so it keeps
+   a link's dress. */
+.rc-item__link {
+    white-space: nowrap;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: color-mix(in srgb, var(--rc-accent, #559664) 50%, #fff);
+    border-bottom: 1px solid color-mix(in srgb, var(--rc-accent, #559664) 52%, transparent);
+    padding-bottom: 0.15em;
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.6);
+    transition: border-color 0.18s ease;
+}
+
+.rc-item__link::after {
+    content: " ↗";
+    opacity: 0.7;
+}
+
+.rc-item__row:hover .rc-item__link,
+.rc-item__row:focus-visible .rc-item__link {
+    border-bottom-color: color-mix(in srgb, var(--rc-accent, #559664) 90%, #fff);
+}
+
+/* The third column is the first thing to go: a reference and an idea sharing a
+   line stop fitting long before the plate itself does. It drops under its own
+   entry rather than wrapping inside it. */
+@media (max-width: 720px) {
+    .rc-item__row {
+        grid-template-columns: 1.1rem minmax(0, 1fr);
+        gap: 0.45rem 1.1rem;
+    }
+
+    .rc-item__link {
+        grid-column: 2;
+        justify-self: start;
+    }
+}
+
+/* ── Tools: the comb ──
+   Placement is shared/honeycomb.js, the same module the Information section's
+   Services tab uses — so the three things it needs are the same three, and its
+   header is where they are written down: half-width tracks with no gap, the
+   cell's own padding as the seam, and the row pull as a negative bottom margin
+   that the grid gives back as padding.
+
+   The difference from Services is the size. These hexagons are ~210px where
+   those are ~390px, which is what `max-width` here is for: at the full width of
+   the plate four across would still be Services-sized, and this row is a set of
+   small things rather than a gallery. The cap and the module's 170px minimum
+   are one pair — 52rem over four columns is 208px, and dropping a column is
+   what the minimum then does as the plate narrows. */
+.rc-comb {
+    display: grid;
+    grid-template-columns: repeat(calc(var(--rc-columns, 4) * 2), 1fr);
+    column-gap: 0;
+    row-gap: 0;
+    width: 100%;
+    max-width: 52rem;
+    margin: 0 auto;
+    padding-bottom: var(--rc-row-pull, 0px);
+}
+
+/* One column is a stack, not a comb — there are no notches for an offset row to
+   sit in — and a stack of five hexagons at the full width of the plate is close
+   to two metres of scrolling for five links. Narrowing the comb is what keeps
+   them a set: the cap is under the module's own 200px minimum, so the column
+   count it computes from the same width agrees with this by construction. */
+@media (max-width: 480px) {
+    .rc-comb {
+        max-width: 17rem;
+    }
+}
+
+/* A query container, because the hexagon's width is set by the column count
+   rather than by the viewport — the type on its face cannot be sized in vw. */
+.rc-cell {
+    container-type: inline-size;
+    position: relative;
+    grid-column-end: span 2;
+    padding: 4px;
+    margin-bottom: calc(var(--rc-row-pull, 0px) * -1);
+    /* clip-path would cut a box-shadow off with everything else outside the six
+       sides, so the shadow lives out here on the unclipped parent. */
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+    transition: filter 0.18s ease;
+}
+
+.rc-cell:hover {
+    filter: drop-shadow(0 16px 30px rgba(0, 0, 0, 0.62));
+}
+
+/* Raised out of the paint order for the moment it is bigger: cells later in the
+   DOM would otherwise be drawn over the one growing under the cursor. */
+.rc-cell:hover,
+.rc-cell:focus-within {
+    z-index: 2;
+}
+
+/* The focus ring: the same six sides, a few pixels larger, showing only at the
+   edges. Drawn out here for the same reason the shadow is — an outline on the
+   anchor would be clipped away by the face's own clip-path. */
+.rc-cell::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background: transparent;
+    transition: background-color 0.18s ease;
+}
+
+.rc-cell:has(:focus-visible)::before {
+    background: var(--rc-accent, #559664);
+}
+
+/* The whole hexagon is the link: a name, a kind, one line and one destination
+   is the entire content, so a separate chip inside the face would be a second
+   target for the same place. The scale is here rather than on the cell so it
+   grows about its own centre and leaves the grid placement alone. */
+.rc-hex {
+    position: relative;
+    display: block;
+    width: 100%;
+    /* Regular pointy-top hexagon; the reciprocal of HEX_RATIO in
+       shared/honeycomb.js — change one, change the other. */
+    aspect-ratio: 0.8660254;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.22s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+.rc-cell:hover .rc-hex,
+.rc-cell:focus-within .rc-hex {
+    transform: scale(1.055);
+}
+
+/* Pale, against the plate's dark: the two logos this row carries were drawn for
+   white paper, and a dark face would have to put a plate behind each of them. */
+.rc-hex__face {
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background: #f7f5f0;
+    transition: background-color 0.2s ease;
+}
+
+.rc-cell:hover .rc-hex__face,
+.rc-cell:focus-within .rc-hex__face {
+    background: color-mix(in srgb, var(--rc-accent, #559664) 9%, #f7f5f0);
+}
+
+/* ── The fill ──
+   The top of the hexagon, cut above its widest line so the type below gets the
+   full-width part of the shape. A tool's own logo where it has one and a flat
+   colour where it does not, so that no hexagon is an empty outline with a mark
+   floating in it — and a partly-filled comb still reads as one set. The colour
+   is handed out by creations.js from the site's own section tokens. */
+/* Flex rather than a centring grid: a grid's auto row is sized by the item's
+   *intrinsic* height, so a logo taller than the band grew the row past it and
+   the percentage below then resolved against that instead of against the band —
+   which came out as two logos at visibly different weights. */
+.rc-hex__media {
+    position: absolute;
+    inset: 0 0 65% 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(
+        155deg,
+        var(--rc-fill, #559664),
+        color-mix(in srgb, var(--rc-fill, #559664) 58%, #000)
+    );
+}
+
+/* A logo keeps its own colours on a white ground and is `contain`ed rather than
+   cropped to the band: a wordmark and a square mark are both logos, and forcing
+   either into the other's shape ruins one of the two. */
+.rc-hex__media--logo {
+    background: #fff;
+    border-bottom: 1px solid rgba(17, 17, 17, 0.07);
+}
+
+/* An explicit box with `contain` rather than a pair of maximums: the box is
+   then the same for every logo whatever its shape, and `contain` is what fits
+   the mark inside it — which is the whole difference between sizing a wordmark
+   and sizing a square mark by the same rule. */
+.rc-hex__logo {
+    flex: none;
+    width: 72%;
+    height: 62%;
+    object-fit: contain;
+}
+
+.rc-hex__star {
+    font-size: clamp(1rem, 8cqw, 1.5rem);
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+/* The band below the fill. It stops at 78% of the height, where the shape is
+   still 88% wide — past that it closes to a point and a line set there would
+   run out over the sloping edges — and the block is centred in it, so a title
+   that wraps grows by half a line in each direction rather than a whole one
+   downward. A hexagon cannot grow to fit its contents, which is why the clamps
+   below are load-bearing rather than a nicety. */
+.rc-hex__body {
+    position: absolute;
+    inset: 37% 12% 22%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.22rem;
+    text-align: center;
+    overflow: hidden;
+}
+
+.rc-hex__name {
+    flex: none;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(0.88rem, 7cqw, 1.12rem);
+    line-height: 1.2;
+    color: #1f241e;
+}
+
+.rc-hex__type {
+    flex: none;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: clamp(0.54rem, 3.9cqw, 0.68rem);
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    line-height: 1.3;
+    color: color-mix(in srgb, var(--rc-accent, #559664) 68%, #1f241e);
+}
+
+/* Four lines, which is what the longest description in the row actually needs
+   at four hexagons across — at three it was cut mid-sentence with an ellipsis,
+   which is the one thing a one-line description cannot survive. */
+.rc-hex__line {
+    flex: none;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    overflow: hidden;
+    font-family: Georgia, "Times New Roman", serif;
+    /* The floor, not the `cqw`, is what governs at four across — a hexagon that
+       small would otherwise take the description below 10px. */
+    font-size: clamp(0.64rem, 4.4cqw, 0.8rem);
+    line-height: 1.45;
+    color: #5c574f;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .rc-cell,
+    .rc-hex,
+    .rc-hex__face,
+    .rc-item__link {
+        transition: none;
+    }
+
+    .rc-cell:hover .rc-hex,
+    .rc-cell:focus-within .rc-hex {
+        transform: none;
+    }
+}

@@ -1,0 +1,123 @@
+/* ── 06 · PEOPLE SECTION ──
+   The section frame, the video backdrop and the tab bar. The tabs' own
+   contents follow in 08-12.
+
+   Part of the numbered set in css/ — the sheets are one stylesheet cut into
+   pieces and index.html links them in this order. Order is the cascade: a
+   rule here loses to the same-specificity rule in any later file. */
+
+/* ── People section – MLP Neural Network ── */
+.people-full {
+    padding: 5rem 0 5rem 0;
+    background: #f5f4ef;
+    position: relative;
+    overflow-x: clip;
+    overflow-y: visible;
+    /* Makes this a stacking context so the backdrop's z-index: -1 is scoped
+       here — it paints above this section's own background but below all the
+       content, without any child needing a z-index of its own. */
+    isolation: isolate;
+}
+
+/* ── Backdrop video ──
+   Sized to the full section width at its own 16:9 ratio, so the whole frame is
+   always visible — nothing is cropped. It ends up shorter than the section,
+   and that leftover height is exactly the room the parallax moves within
+   (--people-video-parallax, written by initPeopleVideo in script.js). */
+/* Gated to the team roster tab — script.js sets .people-full--video-on from
+   the lab panel's hidden state, and the other two tabs stay plain. */
+.people-full__video {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.people-full--video-on .people-full__video {
+    opacity: 1;
+}
+
+.people-full__video-el {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    /* Declared rather than inherited from the file so the box has its final
+       height before any metadata loads — no reflow, and the parallax can
+       measure the slack straight away. */
+    aspect-ratio: 16 / 9;
+    height: auto;
+    transform: translate3d(0, calc(-50% + var(--people-video-parallax, 0px)), 0);
+    will-change: transform;
+    /* Dimmed: texture behind the page rather than footage on it. */
+    opacity: 0.24;
+    filter: grayscale(0.28) contrast(0.95);
+    /* Feathers the top and bottom edges of the band into the page colour so
+       the letterboxing never reads as a hard horizontal seam. */
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 20%, #000 80%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 20%, #000 80%, transparent 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .people-full__video-el {
+        transform: translate3d(0, -50%, 0);
+    }
+}
+
+.people-full h2 {
+    position: relative;
+    text-align: left;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    color: rgba(17, 17, 17, 0.18);
+    margin: 0 auto 1rem;
+    width: var(--content-inline-size);
+}
+
+.people-tabs-nav {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    max-width: var(--content-max-width);
+    margin: 0 auto 2rem;
+    padding: 0 var(--content-inline-gutter);
+    border-bottom: 1px solid color-mix(in srgb, var(--section-people) 22%, transparent);
+}
+
+.people-tab-btn {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.55em 1.5em;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    background: transparent;
+    color: color-mix(in srgb, var(--section-people) 48%, transparent);
+    cursor: pointer;
+    transition:
+        color 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.people-tab-btn:hover {
+    color: color-mix(in srgb, var(--section-people) 78%, transparent);
+}
+
+.people-tab-btn--active {
+    color: var(--section-people);
+    border-bottom-color: var(--section-people);
+}
+
+.people-tab-panel {
+    width: 100%;
+}
+

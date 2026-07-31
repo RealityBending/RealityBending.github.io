@@ -1,0 +1,99 @@
+/* ── 20 · WIDE SCREENS ──
+   @media (min-width: 1800px) — the nav becomes a left sidebar and the
+   sections take the inset. Full-bleed sections are excluded and pay for it
+   in padding instead.
+
+   Part of the numbered set in css/ — the sheets are one stylesheet cut into
+   pieces and index.html links them in this order. Order is the cascade: a
+   rule here loses to the same-specificity rule in any later file. */
+
+/* ─────────────────────────────────────
+   WIDE SCREEN – sidebar navigation
+───────────────────────────────────── */
+@media (min-width: 1800px) {
+    #main-page > nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 14rem;
+        height: 100vh;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        padding: 1.5rem 1.25rem;
+        gap: 1.5rem;
+        border-bottom: none;
+        border-right: 1px solid rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
+        z-index: 10;
+        /* A full-height sidebar reads better sliding in from its own edge than
+           dropping from the top. */
+        transform: translateX(calc((var(--nav-reveal) - 1) * 100%));
+    }
+
+    .nav-left {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+    }
+
+    .nav-logo,
+    .nav-logo--sussex {
+        height: auto;
+        width: 100%;
+        max-width: 10rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    /* The sidebar inset lives on the sections rather than on #main-page: the
+       scroll container clips overflow, so anything indented there can never
+       bleed back out to the left edge. Sections that paint a full-bleed
+       background are excluded and take the sidebar as padding instead, so
+       their backgrounds still reach the screen edge — the sidebar is only
+       part-way in while the hero is still on screen, and a band that stopped
+       at 14rem showed as a cut. */
+    #main-page > *:not(nav):not(.fab-group):not(.hero):not(.people-full):not(.research-full) {
+        margin-left: 14rem;
+        width: calc(100% - 14rem);
+    }
+
+    /* Folding the sidebar width into the padding keeps the intro column lined
+       up with every other section. */
+    .hero {
+        padding-left: calc(14rem + max(var(--content-inline-gutter), (100% - 14rem - var(--content-max-width)) / 2));
+        padding-right: max(var(--content-inline-gutter), calc((100% - 14rem - var(--content-max-width)) / 2));
+    }
+
+    /* The parallax backdrop is clipped by .people-full's own overflow-x, so
+       padding here lets it run to the screen edge. */
+    .people-full {
+        padding-left: 14rem;
+    }
+
+    /* That padding is the one place a section's content column is not centred
+       in its padding box, which is what .tab-margin-nav's width assumes — so
+       both zones need the sidebar taken out of the maths by hand, or the right
+       one reaches back over the content. */
+    .people-full > .tab-margin-nav--prev {
+        width: calc(14rem + (100% - 14rem - var(--content-max-width)) / 2);
+    }
+
+    .people-full > .tab-margin-nav--next {
+        width: calc((100% - 14rem - var(--content-max-width)) / 2);
+    }
+
+    /* Same arrangement as .people-full: the sidebar becomes padding so the
+       section's own background still reaches x=0, and the header and card tab
+       stay lined up with every other section. */
+    /* The stage's matching bleed lives with the rest of the zoom's rules, which
+       come later in this file and would otherwise win on source order. */
+    .research-full {
+        padding-left: 14rem;
+    }
+}
+

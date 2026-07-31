@@ -109,78 +109,155 @@ function svgMarkup(markup) {
  * it is still on its way in.
  */
 
-/* The lab's own diagram: Reality above, its two aspects below, and the body
-   feeding into both. Drawn rather than shipped as an image so the strokes can
-   be animated on arrival. */
+/* ── The map ──
+ * Reality at the hub, and around it the things the lab actually measures.
+ * Drawn rather than shipped as an image so the edges can draw themselves when
+ * the landmark arrives.
+ *
+ * Everything is computed from four numbers — the hub's radius, a satellite's,
+ * and the two radii of the ellipse they sit on — and every edge is trimmed to
+ * the circles it runs between, so moving a concept or adding a seventh needs no
+ * other coordinate touched. The one thing set by hand is where a label breaks:
+ * SVG does not wrap text, so a two-word concept is given as two lines.
+ *
+ * The tones group the concepts rather than decorating them — red is the body,
+ * blue is control, purple is the self — which is the same three colours the
+ * rest of the zoom already uses for the same three ideas.
+ */
+const MAP_NODES = [
+    { lines: ["Deep Self"], tone: "self" },
+    { lines: ["Cognitive", "Control"], tone: "control" },
+    { lines: ["Phenomenological", "Control"], tone: "control" },
+    { lines: ["Bodily States"], tone: "body" },
+    { lines: ["Interoception"], tone: "body" },
+    { lines: ["Emotions"], tone: "body" },
+]
+
 function buildMapFigure() {
+    const CX = 220
+    const CY = 160
+    const HUB_R = 46
+    const NODE_R = 22
+    const RING_X = 152
+    const RING_Y = 100
+
     const wrap = el("div", "rz-fig rz-fig--map")
-    const root = svg("svg", { viewBox: "0 0 420 330", class: "rz-map", role: "img", "aria-label": "Reality, its two aspects, and the body" })
+    const root = svg("svg", {
+        viewBox: "0 0 440 340",
+        class: "rz-map",
+        role: "img",
+        "aria-label": "Reality at the centre of a network of what the lab studies: " + MAP_NODES.map((node) => node.lines.join(" ")).join(", "),
+    })
 
     const defs = svg("defs", {})
     const glow = svg("radialGradient", { id: "rz-map-glow" })
-    glow.appendChild(svg("stop", { offset: "0", "stop-color": "#7fa8ff", "stop-opacity": "0.5" }))
-    glow.appendChild(svg("stop", { offset: "1", "stop-color": "#7fa8ff", "stop-opacity": "0" }))
+    glow.appendChild(svg("stop", { offset: "0", "stop-color": "#8fb7ff", "stop-opacity": "0.4" }))
+    glow.appendChild(svg("stop", { offset: "1", "stop-color": "#8fb7ff", "stop-opacity": "0" }))
     defs.appendChild(glow)
-
-    /* Arrowheads. marker-end is set from the stylesheet, but the marker itself
-       has to live in the document, and its fill cannot be inherited through a
-       marker — hence the colour twice. */
-    ;[
-        { id: "rz-arrow-body", fill: "rgba(255, 95, 87, 0.75)" },
-        { id: "rz-arrow-control", fill: "rgba(85, 153, 255, 0.75)" },
-    ].forEach(({ id, fill }) => {
-        const marker = svg("marker", {
-            id,
-            viewBox: "0 0 10 10",
-            refX: "8",
-            refY: "5",
-            markerWidth: "5",
-            markerHeight: "5",
-            orient: "auto-start-reverse",
-        })
-        marker.appendChild(svg("path", { d: "M 0 1 L 9 5 L 0 9 z", fill }))
-        defs.appendChild(marker)
-    })
-
     root.appendChild(defs)
 
-    root.appendChild(svg("circle", { cx: "210", cy: "62", r: "95", fill: "url(#rz-map-glow)" }))
+    root.appendChild(svg("circle", { class: "rz-map__glow", cx: CX, cy: CY, r: 152, fill: "url(#rz-map-glow)" }))
 
-    const arrows = [
-        { d: "M 118 268 L 150 172", accent: "body" },
-        { d: "M 118 268 L 270 172", accent: "body" },
-        { d: "M 302 268 L 270 172", accent: "control" },
-        { d: "M 302 268 L 150 172", accent: "control" },
-    ]
-    arrows.forEach(({ d, accent }, index) => {
-        const path = svg("path", { d, class: "rz-map__arrow rz-map__arrow--" + accent })
-        path.style.setProperty("--rz-arrow-index", String(index))
-        root.appendChild(path)
+    // From twelve o'clock, clockwise — so the order of MAP_NODES is the order
+    // they are read in.
+    const hub = { x: CX, y: CY }
+    const points = MAP_NODES.map((node, index) => {
+        const angle = (-90 + index * (360 / MAP_NODES.length)) * (Math.PI / 180)
+        return { ...node, x: CX + Math.cos(angle) * RING_X, y: CY + Math.sin(angle) * RING_Y }
     })
 
-    const nodes = [
-        { x: 210, y: 62, w: 132, h: 56, label: "Reality", cls: "reality" },
-        { x: 150, y: 158, w: 116, h: 46, label: "Perception", cls: "aspect" },
-        { x: 270, y: 158, w: 116, h: 46, label: "Beliefs", cls: "aspect" },
-        { x: 118, y: 286, w: 132, h: 44, label: "Body & Emotions", cls: "body" },
-        { x: 302, y: 286, w: 132, h: 44, label: "Cognitive Control", cls: "control" },
-    ]
-    nodes.forEach(({ x, y, w, h, label, cls }, index) => {
-        const group = svg("g", { class: "rz-map__node rz-map__node--" + cls })
-        group.style.setProperty("--rz-node-index", String(index))
-        group.appendChild(svg("rect", { x: x - w / 2, y: y - h / 2, width: w, height: h, rx: cls === "reality" ? 10 : 6 }))
-        const text = svg("text", { x, y: y + 5, "text-anchor": "middle" })
-        text.textContent = label
-        group.appendChild(text)
+    /* An edge stops at the two circles it joins rather than running under them,
+       and carries its own length, so the draw-on is a real dash rather than one
+       guessed number long enough to cover every edge. */
+    function link(a, b, ra, rb, className, order) {
+        const dx = b.x - a.x
+        const dy = b.y - a.y
+        const len = Math.hypot(dx, dy) || 1
+        const ux = dx / len
+        const uy = dy / len
+        const line = svg("line", {
+            class: className,
+            x1: (a.x + ux * ra).toFixed(1),
+            y1: (a.y + uy * ra).toFixed(1),
+            x2: (b.x - ux * rb).toFixed(1),
+            y2: (b.y - uy * rb).toFixed(1),
+        })
+        line.style.setProperty("--rz-edge-len", (len - ra - rb).toFixed(1))
+        line.style.setProperty("--rz-edge-index", String(order))
+        return line
+    }
+
+    // Ring first, then spokes, then the discs — painted in that order so each
+    // one covers the ends of the last.
+    points.forEach((point, index) => root.appendChild(link(point, points[(index + 1) % points.length], NODE_R, NODE_R, "rz-map__edge rz-map__edge--ring", index)))
+    points.forEach((point, index) => root.appendChild(link(hub, point, HUB_R, NODE_R, "rz-map__edge rz-map__edge--spoke rz-map__edge--" + point.tone, index)))
+
+    /* A label sits on the far side of its node from the hub — under the bottom
+       three, over the top three. Not decoration: the ring passes *between* the
+       nodes, so a label always hung underneath is crossed by it wherever two
+       nodes sit above one another, which at six nodes is both of the vertical
+       pairs. Pushed outwards, every label is clear of every edge, and the block
+       reads as pointing away from the centre. Lines stack towards the node, so
+       whichever line is nearest the disc is the one nearest it either way. */
+    const LINE = 13
+    points.forEach((point, index) => {
+        const group = svg("g", { class: "rz-map__node rz-map__node--" + point.tone })
+        group.style.setProperty("--rz-node-index", String(index + 1))
+        group.appendChild(svg("circle", { class: "rz-map__disc", cx: point.x.toFixed(1), cy: point.y.toFixed(1), r: NODE_R }))
+
+        const above = point.y < CY
+        point.lines.forEach((text, row) => {
+            const y = above ? point.y - NODE_R - 12 - (point.lines.length - 1 - row) * LINE : point.y + NODE_R + 16 + row * LINE
+            const label = svg("text", { class: "rz-map__label", x: point.x.toFixed(1), y: y.toFixed(1), "text-anchor": "middle" })
+            label.textContent = text
+            group.appendChild(label)
+        })
         root.appendChild(group)
     })
+
+    const hubNode = svg("g", { class: "rz-map__node rz-map__node--hub" })
+    hubNode.style.setProperty("--rz-node-index", "0")
+    hubNode.appendChild(svg("circle", { class: "rz-map__disc", cx: CX, cy: CY, r: HUB_R }))
+    const hubLabel = svg("text", { class: "rz-map__label", x: CX, y: CY + 7, "text-anchor": "middle" })
+    hubLabel.textContent = "Reality"
+    hubNode.appendChild(hubLabel)
+    root.appendChild(hubNode)
 
     wrap.appendChild(root)
     return wrap
 }
 
+/* ── Ask ──
+ * The strip under a figure: one line of text and one button, where pressing the
+ * button turns the question into its answer and itself into the way back.
+ * Illusions and AI-Beliefs both work this way and have to read as the same
+ * control, so it is one builder rather than two copies that can drift apart.
+ * `onChange` is where a figure does whatever revealing means for it.
+ */
+function buildAsk(config, onChange) {
+    const node = el("div", "rz-fig__ask")
+    const line = el("p", "rz-fig__prompt", config.question || "")
+    const button = el("button", "rz-fig__button", config.button || "Show answer")
+    button.type = "button"
+    node.appendChild(line)
+    node.appendChild(button)
+
+    let revealed = false
+
+    function set(on) {
+        revealed = on
+        line.textContent = on ? config.answer || "" : config.question || ""
+        line.classList.toggle("rz-fig__prompt--answer", on)
+        button.textContent = on ? config.reset || "Reset" : config.button || "Show answer"
+        if (onChange) onChange(on)
+    }
+
+    button.addEventListener("click", () => set(!revealed))
+    return { node, set }
+}
+
 /* Ponzo. The two bars are the same element size — the only difference between
-   them is the converging rails, which the button takes away. */
+   them is the converging rails, which the answer takes away. */
 function buildPonzoFigure(config) {
     const wrap = el("div", "rz-fig rz-fig--ponzo")
     wrap.dataset.context = "on"
@@ -222,16 +299,9 @@ function buildPonzoFigure(config) {
 
     wrap.appendChild(root)
 
-    const button = el("button", "rz-fig__button", config.toggleOn || "Remove the context")
-    button.type = "button"
-    button.addEventListener("click", () => {
-        const off = wrap.dataset.context === "off"
-        wrap.dataset.context = off ? "on" : "off"
-        button.textContent = off ? config.toggleOn : config.toggleOff
-    })
-    wrap.appendChild(button)
-
-    if (config.caption) wrap.appendChild(el("p", "rz-fig__caption", config.caption))
+    // Revealing the answer *is* taking the rails away: the bars slide together
+    // and the plumb lines come up, so the reader is shown rather than told.
+    wrap.appendChild(buildAsk(config, (on) => (wrap.dataset.context = on ? "off" : "on")).node)
     return wrap
 }
 
@@ -244,8 +314,6 @@ function buildArtworksFigure(config) {
     const wrap = el("div", "rz-fig rz-fig--artworks")
     wrap.dataset.revealed = "false"
 
-    if (config.prompt) wrap.appendChild(el("p", "rz-fig__prompt", config.prompt))
-
     const grid = el("div", "rz-artworks")
     const cards = (config.works || []).map((work, index) => {
         const card = el("button", "rz-artworks__card")
@@ -254,6 +322,11 @@ function buildArtworksFigure(config) {
         // Staggers the reveal across the pair rather than flashing both at once.
         card.style.setProperty("--rz-card-index", String(index))
 
+        /* Nothing but the frame is laid out in the card, and that is deliberate:
+           a verdict line under each painting sat there at opacity 0 the whole
+           time the question was still open, which is what put more space under
+           the pair than over it. The badge is absolutely placed inside the
+           frame, so the answer costs no height either. */
         const frame = el("span", "rz-artworks__frame")
         const image = el("img", "rz-artworks__img")
         image.src = work.src
@@ -270,31 +343,21 @@ function buildArtworksFigure(config) {
         // Both badges say the same thing, which is the point of showing two.
         frame.appendChild(el("span", "rz-artworks__badge", work.truth || "Human"))
         card.appendChild(frame)
-        card.appendChild(el("span", "rz-artworks__verdict", work.verdict || ""))
 
-        card.addEventListener("click", () => {
-            cards.forEach((other) => (other.dataset.picked = String(other === card)))
-            setRevealed(true)
-        })
+        // Picking marks the reader's answer and stops there — the button below
+        // is what tells them, the same as it does under the illusion.
+        card.addEventListener("click", () => cards.forEach((other) => (other.dataset.picked = String(other === card))))
         grid.appendChild(card)
         return card
     })
     wrap.appendChild(grid)
 
-    wrap.appendChild(el("p", "rz-fig__caption rz-fig__caption--reveal", config.reveal))
-
-    const button = el("button", "rz-fig__button", config.button || "Reveal")
-    button.type = "button"
-    button.addEventListener("click", () => setRevealed(wrap.dataset.revealed !== "true"))
-    wrap.appendChild(button)
-
-    // Declared, not assigned: the card listeners above are built before this
-    // point but only ever run after it.
-    function setRevealed(on) {
-        wrap.dataset.revealed = on ? "true" : "false"
-        button.textContent = on ? config.reset || "Again" : config.button || "Reveal"
-        if (!on) cards.forEach((card) => (card.dataset.picked = "false"))
-    }
+    wrap.appendChild(
+        buildAsk(config, (on) => {
+            wrap.dataset.revealed = on ? "true" : "false"
+            if (!on) cards.forEach((card) => (card.dataset.picked = "false"))
+        }).node,
+    )
 
     return wrap
 }
@@ -305,11 +368,9 @@ function buildArtworksFigure(config) {
    cycle — `--rz-cycle` is the only timing in it — so the ejection, the burst
    and the ring's systolic arc cannot drift apart however long it runs.
    Deliberately a loop rather than something the reader scrubs: the claim is
-   that this happens on every beat whether or not anyone is watching, and the
-   one control slows it down far enough to read the order of events. */
+   that this happens on every beat whether or not anyone is watching. */
 function buildHeartBrainFigure(config) {
     const wrap = el("div", "rz-fig rz-fig--heartbrain")
-    wrap.dataset.speed = "normal"
 
     /* Geometry, for anything that has to be changed in step:
          brain     centred (160, 52)
@@ -348,10 +409,19 @@ function buildHeartBrainFigure(config) {
             <circle class="rz-hb__ping" cx="108" cy="146" r="4.5"/>
             <circle class="rz-hb__baro" cx="108" cy="146" r="3.4"/>
 
+            <!-- Two fills, not one. The lap used to be a single stroke that
+                 changed colour at the phase boundary, which meant the whole
+                 travelled arc was red through systole and then all of it turned
+                 blue — the phase that had just been drawn was erased by the one
+                 being drawn. Each phase now fills its own arc and stops: the
+                 red keeps the first 35% for the rest of the beat while the blue
+                 grows from the boundary. The blue is rotated to start there
+                 (126° = 0.35 turn), which is the only number the two share. -->
             <g class="rz-hb__ring" transform="translate(160 208) rotate(-90)">
                 <circle class="rz-hb__arc rz-hb__arc--dia" r="60"/>
                 <circle class="rz-hb__arc rz-hb__arc--sys" r="60"/>
-                <circle class="rz-hb__sweep" r="60"/>
+                <circle class="rz-hb__sweep rz-hb__sweep--sys" r="60"/>
+                <circle class="rz-hb__sweep rz-hb__sweep--dia" r="60" transform="rotate(126)"/>
             </g>
             <g class="rz-hb__hand"><circle cx="0" cy="-60" r="3.6"/></g>
 
@@ -364,16 +434,82 @@ function buildHeartBrainFigure(config) {
         </svg>`),
     )
 
-    const button = el("button", "rz-fig__button", config.slow || "Slow it down")
+    /* The one control here is not a reveal — there is nothing hidden — but it
+       keeps the same shape as the other two landmarks' so the reader learns one
+       thing: a line, and a button under it. The test itself does not exist yet,
+       and saying so on the button is more honest than a button that quietly
+       does nothing. */
+    const ask = el("div", "rz-fig__ask")
+    ask.appendChild(el("p", "rz-fig__prompt", config.question || "How good is your interoception?"))
+
+    const button = el("button", "rz-fig__button", config.button || "Take the test (5min)")
     button.type = "button"
     button.addEventListener("click", () => {
-        const slow = wrap.dataset.speed === "slow"
-        wrap.dataset.speed = slow ? "normal" : "slow"
-        button.textContent = slow ? config.slow || "Slow it down" : config.normal || "Normal speed"
+        if (wrap.dataset.soon === "true") return
+        wrap.dataset.soon = "true"
+        button.textContent = config.soon || "In construction"
+        // aria-disabled rather than `disabled`: a disabled button drops out of
+        // the tab order and cannot be focused, so a reader who arrived at it by
+        // keyboard would be left with nothing under their focus ring.
+        button.setAttribute("aria-disabled", "true")
     })
-    wrap.appendChild(button)
+    ask.appendChild(button)
+    wrap.appendChild(ask)
 
-    if (config.caption) wrap.appendChild(el("p", "rz-fig__caption", config.caption))
+    return wrap
+}
+
+/* ── The other strands ──
+ * The last landmark is a list rather than a demonstration — four lines of work
+ * that are not the dive's own subject — so it is four small tiles instead of
+ * one thing to press. The glyphs are line art on a shared 32×32 grid, drawn in
+ * `currentColor` so a tile's own accent carries them; keep any new one to the
+ * same weight or it will read as a different set.
+ */
+const STRAND_MARKS = {
+    // Nested rings closing on a filled core: down through the layers.
+    // r 11.5 rather than filling the box: a ring always reads larger than a
+    // glyph of the same measured width, and the other three are ~22 across.
+    self: `<svg class="rz-strand__mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11.5"/><circle cx="16" cy="16" r="7.5"/><circle class="rz-strand__solid" cx="16" cy="16" r="3"/></svg>`,
+    // A gauge with its needle: the instrument, rather than what it measures.
+    assess: `<svg class="rz-strand__mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M 4 23 A 12 12 0 0 1 28 23"/><path d="M 16 23 L 23.5 14.5"/><circle class="rz-strand__solid" cx="16" cy="23" r="2"/><path d="M 6.4 15.6 L 8 16.8"/><path d="M 16 9 L 16 11"/><path d="M 25.6 15.6 L 24 16.8"/></svg>`,
+    // A spiral — five half-turns of shrinking radius, all the same sweep.
+    art: `<svg class="rz-strand__mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M 27 16 A 10.5 10.5 0 0 0 6 16 A 8 8 0 0 0 22 16 A 6 6 0 0 0 10 16 A 4 4 0 0 0 18 16 A 2.5 2.5 0 0 0 13 16"/></svg>`,
+    // The open padlock, which is the open-access mark itself.
+    open: `<svg class="rz-strand__mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="7" y="15" width="15" height="12" rx="2.5"/><path d="M 12 15 V 10.5 A 5 5 0 0 1 22 10.5"/></svg>`,
+}
+
+function buildStrandsFigure(config) {
+    const wrap = el("div", "rz-fig rz-fig--strands")
+
+    const list = el("ul", "rz-strands")
+    ;(config.items || []).forEach((item, index) => {
+        const tile = el("li", "rz-strand")
+        // Staggers them in rather than flashing all four at once.
+        tile.style.setProperty("--rz-strand-index", String(index))
+
+        const mark = STRAND_MARKS[item.mark]
+        if (mark) tile.appendChild(svgMarkup(mark))
+        if (item.name) tile.appendChild(el("h4", "rz-strand__name", item.name))
+        if (item.text) tile.appendChild(el("p", "rz-strand__text", item.text))
+
+        /* A strand is a line of work, not a demonstration, so the one thing it
+           can offer is somewhere to see it. Optional per tile — a strand with
+           nothing published yet stays three fields — and pushed to the foot by
+           the stylesheet so the links line up across a row whatever length the
+           texts are. Every href here leaves the site. */
+        if (item.link) {
+            const link = el("a", "rz-strand__link", item.linkLabel || "See example")
+            link.href = item.link
+            link.target = "_blank"
+            link.rel = "noreferrer noopener"
+            tile.appendChild(link)
+        }
+
+        list.appendChild(tile)
+    })
+
+    wrap.appendChild(list)
     return wrap
 }
 
@@ -382,6 +518,7 @@ const FIGURE_BUILDERS = {
     ponzo: buildPonzoFigure,
     artworks: buildArtworksFigure,
     heartbrain: buildHeartBrainFigure,
+    strands: buildStrandsFigure,
 }
 
 /* ── Assembly ── */
