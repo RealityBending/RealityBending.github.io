@@ -1,0 +1,20 @@
+{
+  "title": "NeuroKit2 0.1.5 'Complexity' is out 🎉",
+  "date": "2021-11-12",
+  "subtitle": "NeuroKit2 0.1.5 is out with greater support for complexity analysis of neurophysiological signals.",
+  "summary": "NeuroKit2 0.1.5 is out with greater support for complexity analysis of neurophysiological signals.",
+  "authors": [
+    "zen-juen"
+  ],
+  "category": "Lab",
+  "content": [
+    "<p>In the <a href=\"https://github.com/neuropsychology/NeuroKit/releases/tag/v0.1.5\">latest 0.1.5 release</a> of <strong><em>NeuroKit2</em></strong>, our team has fixed several bugs in existing functionalities and, in particular, overhauled the support for computing <strong>complexity measures</strong> of neurophysiological signals. We added a ton of new indices of <strong>entropy</strong> and <strong>fractal dimensions</strong>, including:</p>",
+    "<ul>\n<li>Petrosian's, Katz's and Sevcik fractal dimension</li>\n<li>Differential, Permutation, Spectral, SVD entropy</li>\n<li>Fisher information</li>\n<li>Hjorth's and Lempel-Ziv's complexity</li>\n<li>Relative Roughness</li>\n<li>Hurst and Lyapunov exponent(s)</li>\n<li>Detrended Fluctuation Analysis (as well as MFDFA)</li>\n<li>...</li>\n</ul>",
+    "<p>You can compute them all using the new <code>nk.complexity()</code> function!</p>",
+    "<pre><code class=\"language-python\">import neurokit2 as nk\n\nsignal = nk.signal_simulate(frequency=[5, 6], noise=0.5)\n\nresults, info = nk.complexity(signal, which=\"fast\")\nresults\n</code></pre>",
+    "<pre><code>  DiffEn       FI    Hjorth       KFD  PEn  ...      PFD        RR       SFD\n1.536573  0.01524  1.355543  4.720953  1.0  ... 1.017423  1.638357  1.691036\n</code></pre>",
+    "<p>To understand more about complexity science, we recommend reading our <a href=\"https://github.com/neuropsychology/NeuroKit\">preprint</a>, which introduces the theoretical (and mathematical) meanings of complexity and reviews the existing studies of complexity analysis across multiple fields of psychology.</p>",
+    "<p>Of course, the <a href=\"https://github.com/neuropsychology/NeuroKit\"><em>NeuroKit2</em> Python package</a> also includes tons of other useful features for physiological signal processing (see this <a href=\"https://github.com/neuropsychology/NeuroKit#quick-example\"><strong>quick example</strong></a>)!</p>",
+    "<p>Don't forget to watch our repo to keep a look out for more complexity functionalities coming up! 👀</p>"
+  ]
+}

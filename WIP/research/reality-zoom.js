@@ -612,12 +612,10 @@ export function buildRealityZoom(tab) {
         return dot
     })
     rail.appendChild(railTrack)
-    /* By the last landmark the tab buttons are a whole track above, so the rail
-       carries the way on to the other tab. Its label and target are filled in
-       by research.js, which owns the tabs. */
-    const exit = el("button", "rz-rail__exit")
-    exit.type = "button"
-    rail.appendChild(exit)
+    /* The rail carries the dots and nothing else. It used to end in a button
+       through to the other tab, which said exactly what `#fab-research-creations`
+       says — and that one is up for the whole section rather than only once the
+       dive has gone dark, so the rail's copy was the redundant one. */
 
     if (dots.length) stage.appendChild(rail)
 
@@ -652,7 +650,7 @@ export function buildRealityZoom(tab) {
     track.appendChild(stage)
     root.appendChild(track)
 
-    return { root, track, stage, zoom, image, question, sceneNodes, rail, railTrack, dots, exit, close, gateButton, hint, count: landmarks.length }
+    return { root, track, stage, zoom, image, question, sceneNodes, rail, railTrack, dots, close, gateButton, hint, count: landmarks.length }
 }
 
 /* ── The driver ── */
@@ -1074,8 +1072,8 @@ export function initRealityZoom(parts, mainPage) {
        must not get to measure first.
 
        It does mean a nav link pressed mid-dive leaves the zoom. That is the
-       call `.rz-rail__exit` already makes: the reader asked to be somewhere
-       else, and the section should not argue. Static mode is exempt — nothing
+       call `#fab-research-creations` already makes: the reader asked to be
+       somewhere else, and the section should not argue. Static mode is exempt — nothing
        collapses asynchronously there, so there is no stale offset to prevent
        and no reason to throw the reader out of the stack. */
     document.addEventListener(

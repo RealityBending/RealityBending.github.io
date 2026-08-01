@@ -200,11 +200,39 @@
     opacity: 0.85;
 }
 
+/* ── The two tones ──
+   A row with a painting is a dark plate; a row without one is light. Tools is
+   the light one, and the reason is that its cards are eleven pictures already:
+   a painting behind them is a twelfth, competing with the set it is supposed to
+   be holding. Inventions keeps its Copernicus, because a list of ideas is a
+   page of text and the picture is what makes it a thing to look at.
+
+   The light plate is not a plate at all: no background, no shadow, nothing but
+   the section's own cream behind the cards. A tinted box was tried first and it
+   read as a tray under the row — one more edge to explain, when the eleven
+   cards already have edges of their own and the shadows are what lift them off
+   the page. It keeps the padding, so its head and its cards line up with the
+   dark plate's above. */
+.rc-plate--light {
+    background: none;
+    box-shadow: none;
+}
+
+.rc-plate--light .rc-plate__label {
+    color: #23272e;
+    text-shadow: none;
+}
+
+.rc-plate--light .rc-plate__lede {
+    color: rgba(20, 24, 30, 0.6);
+    text-shadow: none;
+}
+
 /* The painting is held back rather than hidden: enough scrim that white text
    sits on it comfortably, and no more — the first pass was dark enough that
    neither picture could be made out at all. The diagonal keeps one band
    lighter still; a flat wash leaves a picture nobody can tell is a picture. */
-.rc-plate::after {
+.rc-plate--art::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -386,242 +414,318 @@ a.rc-item__row:focus-visible {
     }
 }
 
-/* ── Tools: the comb ──
-   Placement is shared/honeycomb.js, the same module the Information section's
-   Services tab uses — so the three things it needs are the same three, and its
-   header is where they are written down: half-width tracks with no gap, the
-   cell's own padding as the seam, and the row pull as a negative bottom margin
-   that the grid gives back as padding.
+/* ── Tools: the masonry of cards ──
+   This row was a honeycomb of small hexagons (shared/honeycomb.js, the same
+   placement the Services tab still uses). A hexagon is one size for every card
+   and clips whatever is on it to the same six sides, which turned a wordmark, a
+   square mark and a screenshot into the same shape at the same weight — and at
+   ~210px across, a screenshot into a smudge. A card takes its height from its
+   own picture instead, so the row reads as a shelf of different things.
 
-   The difference from Services is the size. These hexagons are ~210px where
-   those are ~390px, which is what `max-width` here is for: at the full width of
-   the plate four across would still be Services-sized, and this row is a set of
-   small things rather than a gallery. The cap and the module's 170px minimum
-   are one pair — 52rem over four columns is 208px, and dropping a column is
-   what the minimum then does as the plate narrows. */
-.rc-comb {
-    display: grid;
-    grid-template-columns: repeat(calc(var(--rc-columns, 4) * 2), 1fr);
-    column-gap: 0;
-    row-gap: 0;
+   Nothing places these: `columns` does the masonry, which is why creations.js
+   lost the measure-and-re-place machinery the comb needed. That is only safe
+   because **a card's height never changes** — see `.rc-card__detail` below.
+   Column balancing is a function of the cards' heights, so a card that grew on
+   hover could push a later one into another column, three columns away from the
+   pointer.
+
+   The cap and the column width are one pair: 46rem over three columns is 233px
+   a card, which is about the size the logos were drawn for. Narrowing the plate
+   drops that to two columns and then one, with no breakpoint to keep in step. */
+.rc-cards {
+    /* The accent, taken down until it can be read against the card's white —
+       #33cccc itself is a light teal meant to be seen against black. It is not
+       the name's colour: the name is grey, and this is left for the focus ring
+       and for the kind label over the hover scrim. Same two-token arrangement,
+       and the same reason for it, as --res-accent / --res-ink. */
+    --rc-card-ink: color-mix(in srgb, var(--rc-accent, #33cccc) 52%, #10222b);
+    columns: 13.5rem;
+    column-gap: 1.15rem;
     width: 100%;
-    max-width: 52rem;
+    max-width: 46rem;
     margin: 0 auto;
-    padding-bottom: var(--rc-row-pull, 0px);
+    padding: 0;
+    list-style: none;
 }
 
-/* One column is a stack, not a comb — there are no notches for an offset row to
-   sit in — and a stack of five hexagons at the full width of the plate is close
-   to two metres of scrolling for five links. Narrowing the comb is what keeps
-   them a set: the cap is under the module's own 200px minimum, so the column
-   count it computes from the same width agrees with this by construction. */
-@media (max-width: 480px) {
-    .rc-comb {
-        max-width: 17rem;
+/* A fourth column past the site's own wide breakpoint — the same 1800px the nav
+   becomes a sidebar at, because inventing a second wide threshold means keeping
+   two in step. It is a taste call rather than a fit: the plate is already at the
+   1200px content cap by ~1264px and has the room either way, so what changes is
+   that the row uses 976px of it instead of 736px. The cards stay the size they
+   were (976 over four is 230px against 736 over three at 233px), which is why
+   the column width below does not move — only the cap does. */
+@media (min-width: 1800px) {
+    .rc-cards {
+        max-width: 61rem;
     }
 }
 
-/* A query container, because the hexagon's width is set by the column count
-   rather than by the viewport — the type on its face cannot be sized in vw. */
-.rc-cell {
-    container-type: inline-size;
+/* One column at the full width of the plate is eleven full-page pictures, so
+   the cap comes down with it — below this the columns fall to one on their own
+   (13.5rem + the gap no longer fits twice) and the cards would otherwise be as
+   wide as the phone. */
+@media (max-width: 460px) {
+    .rc-cards {
+        max-width: 20rem;
+    }
+}
+
+.rc-cards__item {
+    /* A card is one picture and its name; a column break through the middle of
+       one would leave the name under a different picture. */
+    break-inside: avoid;
+    margin: 0 0 1.15rem;
+}
+
+/* White, on the plate's cream: the picture is the point of the card and every
+   logo here was drawn for white paper. It is also what the Publications cards
+   and the News rows sit on, so the two tabs of this section end on the same
+   field even though one of them is a black stage.
+
+   The shadow is a light-plate shadow — soft and short. The one this carried
+   over a dark plate was `rgba(0, 0, 0, 0.42)`, which on cream is a bruise
+   under every card. */
+.rc-card {
     position: relative;
-    grid-column-end: span 2;
-    padding: 4px;
-    margin-bottom: calc(var(--rc-row-pull, 0px) * -1);
-    /* clip-path would cut a box-shadow off with everything else outside the six
-       sides, so the shadow lives out here on the unclipped parent. */
-    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
-    transition: filter 0.18s ease;
+    display: block;
+    overflow: hidden;
+    border-radius: 0.85rem;
+    background: #fff;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 4px 14px rgba(17, 20, 26, 0.11);
+    transition:
+        transform 0.22s cubic-bezier(0.34, 1.4, 0.64, 1),
+        box-shadow 0.22s ease;
 }
 
-.rc-cell:hover {
-    filter: drop-shadow(0 16px 30px rgba(0, 0, 0, 0.62));
+a.rc-card:hover,
+a.rc-card:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 26px rgba(17, 20, 26, 0.19);
 }
 
-/* Raised out of the paint order for the moment it is bigger: cells later in the
-   DOM would otherwise be drawn over the one growing under the cursor. */
-.rc-cell:hover,
-.rc-cell:focus-within {
-    z-index: 2;
+a.rc-card:focus-visible {
+    outline: 2px solid var(--rc-card-ink);
+    outline-offset: 2px;
 }
 
-/* The focus ring: the same six sides, a few pixels larger, showing only at the
-   edges. Drawn out here for the same reason the shadow is — an outline on the
-   anchor would be clipped away by the face's own clip-path. */
-.rc-cell::before {
+/* The minimum is what keeps a wordmark from being a stripe: at 233px across,
+   Pyllusion's 560×210 is 87px tall, and a card that short has nowhere to put
+   the reveal (which rises into this box — see below). Taller pictures are left
+   at their own ratio, which is the whole point of the row; the maximum is only
+   there so a portrait screenshot cannot make one column twice the height of
+   the other two. */
+.rc-card__media {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 8.5rem;
+    max-height: 19rem;
+    overflow: hidden;
+    background: #fff;
+}
+
+/* ── The hover scrim ──
+   One dark layer over the whole picture, and the reveal's text sits on it —
+   which is why the reveal itself carries no background. Two layers would double
+   up where they overlap and draw a hard edge across the picture at exactly the
+   height the text starts.
+
+   It replaced fading the logo out against the card's white, which washed a mark
+   out rather than putting anything behind the words. At 0.78 a white logo
+   composites to ~66 of 255, so white text on it holds ~9:1 whatever the picture
+   underneath is, and the picture still shows through as a shape. */
+.rc-card__media::after {
     content: "";
     position: absolute;
     inset: 0;
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    background: transparent;
-    transition: background-color 0.18s ease;
+    background: rgba(16, 19, 24, 0.78);
+    opacity: 0;
+    transition: opacity 0.24s ease;
 }
 
-.rc-cell:has(:focus-visible)::before {
-    background: var(--rc-accent, #559664);
+a.rc-card:hover .rc-card__media::after,
+a.rc-card:focus-visible .rc-card__media::after {
+    opacity: 1;
 }
 
-/* The whole hexagon is the link: a name, a kind, one line and one destination
-   is the entire content, so a separate chip inside the face would be a second
-   target for the same place. The scale is here rather than on the cell so it
-   grows about its own centre and leaves the grid placement alone. */
-.rc-hex {
-    position: relative;
+.rc-card__logo {
+    flex: none;
     display: block;
     width: 100%;
-    /* Regular pointy-top hexagon; the reciprocal of HEX_RATIO in
-       shared/honeycomb.js — change one, change the other. */
-    aspect-ratio: 0.8660254;
-    text-decoration: none;
-    color: inherit;
-    transition: transform 0.22s cubic-bezier(0.34, 1.4, 0.64, 1);
+    height: auto;
+    max-height: 19rem;
+    /* Only binds against the maximum above, where the picture is cropped from
+       the foot rather than letterboxed — a screenshot's subject is its top. */
+    object-fit: cover;
+    object-position: center top;
 }
 
-.rc-cell:hover .rc-hex,
-.rc-cell:focus-within .rc-hex {
-    transform: scale(1.055);
-}
-
-/* Pale, against the plate's dark: the two logos this row carries were drawn for
-   white paper, and a dark face would have to put a plate behind each of them. */
-.rc-hex__face {
-    position: absolute;
-    inset: 0;
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    background: #f7f5f0;
-    transition: background-color 0.2s ease;
-}
-
-.rc-cell:hover .rc-hex__face,
-.rc-cell:focus-within .rc-hex__face {
-    background: color-mix(in srgb, var(--rc-accent, #559664) 9%, #f7f5f0);
-}
-
-/* ── The fill ──
-   The top of the hexagon, cut above its widest line so the type below gets the
-   full-width part of the shape. A tool's own logo where it has one and a flat
-   colour where it does not, so that no hexagon is an empty outline with a mark
-   floating in it — and a partly-filled comb still reads as one set. The colour
-   is handed out by creations.js from the site's own section tokens. */
-/* Flex rather than a centring grid: a grid's auto row is sized by the item's
-   *intrinsic* height, so a logo taller than the band grew the row past it and
-   the percentage below then resolved against that instead of against the band —
-   which came out as two logos at visibly different weights. */
-.rc-hex__media {
-    position: absolute;
-    inset: 0 0 65% 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background: linear-gradient(
-        155deg,
-        var(--rc-fill, #559664),
-        color-mix(in srgb, var(--rc-fill, #559664) 58%, #000)
-    );
-}
-
-/* A logo keeps its own colours on a white ground and is `contain`ed rather than
-   cropped to the band: a wordmark and a square mark are both logos, and forcing
-   either into the other's shape ruins one of the two. */
-.rc-hex__media--logo {
+/* The name bar. `position: relative` because the reveal is positioned against
+   it, and the white is its own rather than inherited from the card: the reveal
+   is a continuation of this box and has to paint the same colour over the
+   picture. */
+.rc-card__body {
+    position: relative;
+    display: block;
+    padding: 0.7rem 0.85rem 0.8rem;
     background: #fff;
-    border-bottom: 1px solid rgba(17, 17, 17, 0.07);
 }
 
-/* An explicit box with `contain` rather than a pair of maximums: the box is
-   then the same for every logo whatever its shape, and `contain` is what fits
-   the mark inside it — which is the whole difference between sizing a wordmark
-   and sizing a square mark by the same rule. */
-.rc-hex__logo {
-    flex: none;
-    width: 72%;
-    height: 62%;
-    object-fit: contain;
-}
-
-.rc-hex__star {
-    font-size: clamp(1rem, 8cqw, 1.5rem);
-    line-height: 1;
-    color: rgba(255, 255, 255, 0.92);
-}
-
-/* The band below the fill. It stops at 78% of the height, where the shape is
-   still 88% wide — past that it closes to a point and a line set there would
-   run out over the sloping edges — and the block is centred in it, so a title
-   that wraps grows by half a line in each direction rather than a whole one
-   downward. A hexagon cannot grow to fit its contents, which is why the clamps
-   below are load-bearing rather than a nicety. */
-.rc-hex__body {
-    position: absolute;
-    inset: 37% 12% 22%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.22rem;
-    text-align: center;
-    overflow: hidden;
-}
-
-/* `overflow-wrap: anywhere` because a hexagon is 210px at four across and a
-   package name is one unbroken token — "SequentialSamplingModels" has nowhere
-   the browser is allowed to break it, so without this it runs out over the
-   sloping edge and is clipped mid-word. Breaking it is the lesser of the two. */
-.rc-hex__name {
-    flex: none;
-    overflow-wrap: anywhere;
+.rc-card__name {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     line-clamp: 2;
     overflow: hidden;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(0.88rem, 7cqw, 1.12rem);
-    line-height: 1.2;
-    color: #1f241e;
+    /* A package name is one unbroken token — "SequentialSamplingModels" has
+       nowhere the browser is allowed to break it, so without this it runs out
+       of a 233px card. Breaking it badly is the lesser of the two. */
+    overflow-wrap: anywhere;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.97rem;
+    font-weight: 700;
+    line-height: 1.28;
+    /* Grey, not the accent. Eleven cards each carrying a picture of its own is
+       already a lot of colour, and a teal name on top of it made the name a
+       twelfth thing to look at rather than the label of the card it sits on. */
+    color: #33383f;
 }
 
-.rc-hex__type {
-    flex: none;
+/* ── The reveal ──
+   **It grows upward, over the picture, and that is the load-bearing part.**
+   Anchored at `bottom: 100%` of the name bar with the card's own
+   `overflow: hidden` above it, the box gets taller while the card does not —
+   so nothing else in the masonry moves when one card is hovered. A reveal that
+   pushed the name down instead would change the card's height, which is the
+   one thing `columns` balances on.
+
+   `grid-template-rows: 0fr → 1fr` rather than a height, for the reason the
+   Alumni band writes pixels and this cannot: the height is whatever the
+   description wraps to, and this panel is `display: none` until its tab is
+   opened, where a measurement comes out as zero.
+
+   **It has no background of its own.** What the text sits on is the scrim over
+   the picture (`.rc-card__media::after`), which covers the whole of it; a
+   second dark layer here would double up over the first and draw a hard edge
+   across the picture at exactly the height the text starts.
+
+   The padding is inline only, and the top space is a margin on the first child
+   instead: vertical padding on the collapsed box would still paint whatever
+   background it had above the name. A margin cannot, because the inner box
+   clips its own content and establishes a block formatting context, so nothing
+   escapes. */
+.rc-card__detail {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 100%;
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        grid-template-rows 0.3s cubic-bezier(0.22, 0.61, 0.36, 1),
+        opacity 0.22s ease;
+}
+
+/* The inner box is not decoration: a `0fr` row only collapses if its item can
+   be smaller than its content, which needs `min-height: 0` and its own clip. */
+.rc-card__detail-inner {
+    display: grid;
+    gap: 0.26rem;
+    min-height: 0;
+    overflow: hidden;
+    padding: 0 0.85rem;
+}
+
+.rc-card__detail-inner > *:first-child {
+    margin-top: 0.7rem;
+}
+
+a.rc-card:hover .rc-card__detail,
+a.rc-card:focus-visible .rc-card__detail {
+    grid-template-rows: 1fr;
+    opacity: 1;
+}
+
+/* The one place the row's accent lands on a card, and it can be the raw hue
+   lifted rather than the darkened ink because it is only ever seen over the
+   scrim. The name below stays grey, so the two do not read as one wrapped
+   line. */
+.rc-card__type {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: clamp(0.54rem, 3.9cqw, 0.68rem);
+    font-size: 0.64rem;
     font-weight: 700;
     letter-spacing: 0.13em;
     text-transform: uppercase;
     line-height: 1.3;
-    color: color-mix(in srgb, var(--rc-accent, #559664) 68%, #1f241e);
+    color: color-mix(in srgb, var(--rc-accent, #33cccc) 52%, #fff);
 }
 
-/* Four lines, which is what the longest description in the row actually needs
-   at four hexagons across — at three it was cut mid-sentence with an ellipsis,
-   which is the one thing a one-line description cannot survive. */
-.rc-hex__line {
-    flex: none;
+/* Four lines is what the longest description in the row needs at three cards
+   across. It is clamped rather than left to run because the reveal rises into
+   the picture's box, and past its height the card's own clip would cut the
+   first line off at the top edge. */
+.rc-card__line {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
     line-clamp: 4;
     overflow: hidden;
     font-family: Georgia, "Times New Roman", serif;
-    /* The floor, not the `cqw`, is what governs at four across — a hexagon that
-       small would otherwise take the description below 10px. */
-    font-size: clamp(0.64rem, 4.4cqw, 0.8rem);
+    font-size: 0.83rem;
     line-height: 1.45;
-    color: #5c574f;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* ── No pointer, no reveal ──
+   A phone has no hover to give and the first tap is the link, so where there is
+   no pointer the description is simply part of the card: the reveal comes out
+   of the corner it was hanging in and lays out under the name, which is what
+   the DOM order was written for. The card is taller — there is no masonry
+   balance to protect here, because nothing changes after layout.
+
+   **Both text colours have to come back with it.** They are written for the
+   scrim over the picture, and the scrim is a hover state: laid out in the name
+   bar they would be white on white. */
+@media (hover: none) {
+    .rc-card__detail {
+        position: static;
+        grid-template-rows: 1fr;
+        opacity: 1;
+    }
+
+    .rc-card__detail-inner {
+        padding: 0;
+    }
+
+    .rc-card__detail-inner > *:first-child {
+        margin-top: 0.45rem;
+    }
+
+    .rc-card__type {
+        color: var(--rc-card-ink);
+    }
+
+    .rc-card__line {
+        color: rgba(20, 24, 30, 0.74);
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .rc-cell,
-    .rc-hex,
-    .rc-hex__face,
+    .rc-card,
+    .rc-card__media::after,
+    .rc-card__detail,
     .rc-item__link {
         transition: none;
     }
 
-    .rc-cell:hover .rc-hex,
-    .rc-cell:focus-within .rc-hex {
+    a.rc-card:hover,
+    a.rc-card:focus-visible {
         transform: none;
     }
 }

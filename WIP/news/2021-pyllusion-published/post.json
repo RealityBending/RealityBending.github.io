@@ -1,0 +1,18 @@
+{
+  "title": "Pyllusion has been published",
+  "date": "2021-11-30",
+  "subtitle": "Pyllusion, the software for creating illusions in Python, has been published.",
+  "summary": "Pyllusion, the software for creating illusions in Python, has been published.",
+  "authors": [
+    "anshu-te"
+  ],
+  "category": "Lab",
+  "content": [
+    "<p><a href=\"https://github.com/RealityBending/Pyllusion\">Pyllusion</a> is a package for <strong>Python</strong> that implements a systematic way to manipulate and generate illusions using a set of parameters.</p>",
+    "<p>For instance, the famous <a href=\"https://en.wikipedia.org/wiki/M%C3%BCller-Lyer_illusion\">Müller-Lyer</a> illusion, which causes the observer to perceive the 2 segments as being different lengths depending on the shape of the arrows, can be generated with the following lines of code:</p>",
+    "<pre><code class=\"language-python\">mullerlyer = pyllusion.MullerLyer(illusion_strength=30)\nmullerlyer.to_image()\n</code></pre>",
+    "<p>To understand more about the parametric approach being implemented in the <em>Pyllusion</em> package, we recommend reading our <a href=\"https://dominiquemakowski.github.io/publication/makowski2021parametric/makowski2021parametric.pdf\">paper</a>, which includes a hands-on example on how to generate some classic illusions (such as the <a href=\"https://en.wikipedia.org/wiki/Delboeuf_illusion\">Delboeuf Illusion</a>), and discusses how <em>Pyllusion</em> contributes to addressing conceptual and methodological issues in illusion science.</p>",
+    "<pre><code class=\"language-python\">import pyllusion\n\ndelboeuf = pyllusion.Delboeuf(illusion_strength=3)\ndelboeuf.to_image()\n</code></pre>",
+    "<p>Don't forget to keep a look out for our <a href=\"https://github.com/RealityBending/\">repo</a> for more exciting open-source projects!</p>"
+  ]
+}

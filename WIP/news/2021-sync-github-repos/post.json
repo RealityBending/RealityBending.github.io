@@ -1,0 +1,21 @@
+{
+  "title": "How to sync two folders in two separate GitHub repositories",
+  "date": "2021-10-31",
+  "subtitle": "Say you have a repo A, in which you want to duplicate some content with repo B.",
+  "summary": "Say you have a repo A, in which you want to duplicate some content with repo B. You can do that easily using GitHub actions.",
+  "authors": [
+    "dominique-makowski"
+  ],
+  "category": "Methods",
+  "content": [
+    "<h4>The Problem</h4>",
+    "<p>I have a personal website, stored in a GitHub repo (and hosted via GitHub pages), as well as a lab website (a &quot;company&quot; website, if you will). Both are fairly similar, as they are built using Wowchemy's <a href=\"https://wowchemy.com/\">academic theme</a>. Importantly, there is a blog in the company website with posts, but I have one on my personal website too. What I would like is that <strong>every time I post something on my website, it gets automatically copied over to the company website.</strong> So that I don't have to manually maintain the content at two separate places.</p>",
+    "<h4>The Solution</h4>",
+    "<ol>\n<li>The first step is to go to the settings of your <strong>GitHub <em>account</em></strong>, to developer settings, and to <a href=\"https://github.com/settings/tokens\"><em>personal access tokens</em></a>. You have to generate a token, and tick the <strong>repo</strong> authorizations. Copy-paste the key.</li>\n<li>Go to the settings of the personal website repo (the source from which the content will be copied), to &quot;Secrets&quot;, and add a new secret called &quot;API_TOKEN_GITHUB&quot; (with the key you just copied).</li>\n<li>Create a new GitHub action workflow such as <a href=\"https://github.com/DominiqueMakowski/DominiqueMakowski.github.io/blob/master/.github/workflows/copy_content.yml\"><strong>this one</strong></a>. The things to change are the <code>source_file</code>, <code>destination_repo</code> and <code>destination_folder</code>.</li>\n</ol>",
+    "<p>🎉 Every time I push to my personal repo, the new content of one of the subfolders gets copied to another repo.</p>",
+    "<h4>Notes</h4>",
+    "<ul>\n<li>This is a one-way sync, so updates on the target repo won't affect the source repo (but might get overridden!).</li>\n<li>If you want to preserve the original commit message, set <code>commit_message: ${{ github.event.head_commit.message }}</code> <sub>(thanks <a href=\"https://github.com/DominiqueMakowski/DominiqueMakowski.github.io/issues/2\">@dobbelina</a>)</sub></li>\n</ul>",
+    "<hr>",
+    "<p><em>Thanks for reading!</em> <em>Do not hesitate to share this post, and leave a comment below</em> 👇</p>"
+  ]
+}

@@ -1128,10 +1128,22 @@ import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRou
                 triggerChevron.setAttribute("aria-hidden", "true")
                 trigger.appendChild(triggerChevron)
 
+                /* Two boxes, not one. The panel is the animated one — a
+                   clipped box whose height goes 0 ↔ the grid's — and the grid
+                   inside it carries the fade, which keeps the reveal off the
+                   cards themselves and out of the way of their hover
+                   transform. The id moves here because that is what the
+                   trigger's aria-controls names. */
+                const panel = document.createElement("div")
+                panel.id = "alumni-band-grid"
+                panel.className = "alumni-band__panel"
+                // `inert`, not `hidden`: `display: none` gives a transition no
+                // height to start from, and a clipped zero-height panel still
+                // holds a tab stop per alumnus.
+                panel.setAttribute("inert", "")
+
                 const grid = document.createElement("div")
-                grid.id = "alumni-band-grid"
                 grid.className = "alumni-band__grid"
-                grid.hidden = true
 
                 alumni.forEach((m) => {
                     const card = document.createElement("button")
@@ -1163,15 +1175,44 @@ import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRou
                     grid.appendChild(card)
                 })
 
-                trigger.addEventListener("click", () => {
-                    const open = trigger.getAttribute("aria-expanded") === "true"
-                    trigger.setAttribute("aria-expanded", !open)
-                    grid.hidden = open
-                    trigger.classList.toggle("is-open", !open)
+                /* A height transition needs two definite heights, and `auto` is
+                   not one — so the panel is measured on every press and handed
+                   `auto` back once it has arrived. Leaving it on a pixel height
+                   would freeze the band at whatever the column count was when
+                   it opened, and this grid reflows with the viewport. */
+                const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+
+                function setAlumniOpen(open) {
+                    trigger.setAttribute("aria-expanded", String(open))
+                    trigger.classList.toggle("is-open", open)
+                    panel.classList.toggle("is-open", open)
+                    if (open) panel.removeAttribute("inert")
+                    else panel.setAttribute("inert", "")
+
+                    if (reduceMotion.matches) {
+                        panel.style.height = open ? "auto" : "0px"
+                        return
+                    }
+
+                    // From wherever it is now — closing starts from the height
+                    // `auto` currently resolves to, not from nothing.
+                    panel.style.height = panel.getBoundingClientRect().height + "px"
+                    void panel.offsetHeight
+                    panel.style.height = open ? grid.getBoundingClientRect().height + "px" : "0px"
+                }
+
+                panel.addEventListener("transitionend", (event) => {
+                    if (event.target !== panel || event.propertyName !== "height") return
+                    if (panel.classList.contains("is-open")) panel.style.height = "auto"
                 })
 
+                trigger.addEventListener("click", () => {
+                    setAlumniOpen(trigger.getAttribute("aria-expanded") !== "true")
+                })
+
+                panel.appendChild(grid)
                 band.appendChild(trigger)
-                band.appendChild(grid)
+                band.appendChild(panel)
                 container.appendChild(band)
             }
 

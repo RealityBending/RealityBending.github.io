@@ -1,0 +1,15 @@
+{
+  "title": "NeuroKit2 0.2.0 is out 🎉",
+  "date": "2022-05-18",
+  "subtitle": "NeuroKit2 0.2.0 is out with a brand new website and documentation!",
+  "summary": "NeuroKit2 0.2.0 is out with a brand new website and documentation!",
+  "authors": [
+    "dominique-makowski"
+  ],
+  "category": "Lab",
+  "content": [
+    "<p>What was supposed to be a small release turned out to be a massive update. A big thanks - and a warm welcome - to <a href=\"https://github.com/anshu-97\">An Shu</a> and <a href=\"https://github.com/Max-ZiLiang\">Max</a>, the newest members of the <a href=\"#sec-people-full\">Reality Bending Team</a>, and thus maintainers of NeuroKit. They worked massively to update <em>all</em> of the examples and docstrings. New features include:</p>",
+    "<ul>\n<li>A <a href=\"https://neuropsychology.github.io/NeuroKit/\"><strong>BRAND NEW WEBSITE</strong></a> with a revamped documentation, now hopefully much more useful to navigate. Check it out and let us know what you think!</li>\n<li>An overhaul of the <a href=\"https://neuropsychology.github.io/NeuroKit/functions/complexity.html\"><strong>Complexity Indices</strong></a>: With more than 100 indices, NeuroKit is now the most comprehensive package to quantify <strong>chaos</strong>, <strong>entropy</strong> and <strong>fractal dimension</strong> of signals.</li>\n<li>Tons of other improvements and fixes ☺️</li>\n</ul>",
+    "<p>Once again, a big thanks to all the <a href=\"https://github.com/neuropsychology/NeuroKit/releases/tag/v0.2.0\">contributors</a> for their help in making NeuroKit an awesome open-source software for physiological signal processing!</p>"
+  ]
+}

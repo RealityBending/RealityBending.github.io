@@ -1221,8 +1221,7 @@
 }
 
 /* `.rz--rail`, not `.rz--dark`: the rail outlives the dark at both ends now. */
-.rz--rail .rz-rail__dot,
-.rz--rail .rz-rail__exit {
+.rz--rail .rz-rail__dot {
     pointer-events: auto;
 }
 
@@ -1328,31 +1327,9 @@
     scale: 1.15;
 }
 
-/* Leaves the zoom for the other tab — the tab buttons are a whole track away
-   by the time anyone reaches the last landmark. */
-.rz-rail__exit {
-    margin-top: 0.4rem;
-    padding: 0.45em 0.9em;
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.06);
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 0.6rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    white-space: nowrap;
-    color: rgba(255, 255, 255, 0.72);
-    cursor: pointer;
-    transition:
-        background 0.2s ease,
-        color 0.2s ease;
-}
-
-.rz-rail__exit:hover {
-    background: rgba(255, 255, 255, 0.16);
-    color: #fff;
-}
+/* The rail ended in a button through to the other tab. It has gone: the
+   standing FAB says the same thing and says it for the whole section, where
+   this one only existed once the dive had gone dark. */
 
 /* The nav bar is fixed over the top of the stage. A cream band across a black
    cinematic section reads as a mistake, so it borrows the stage's palette for

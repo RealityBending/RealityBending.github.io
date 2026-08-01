@@ -17,8 +17,8 @@ import { buildCreations } from "./creations.js"
    under the reader. So `.research-full` carries `data-active-tab` and the
    stylesheet takes the zones away on `overview` — which leaves the arrow doing
    the one job the section was missing, the way back from Creations. The way
-   *out* of Overview never needed one: it has the standing FAB and the rail's
-   own exit, both of them labelled. */
+   *out* of Overview never needed one: it has the standing FAB, which is
+   labelled and up for the whole section. */
 ;(function () {
     const root = document.getElementById("research-root")
     if (!root) return
@@ -160,9 +160,9 @@ import { buildCreations } from "./creations.js"
        Overview starts from the poster rather than dropping the reader into the
        middle of a track they had already left.
 
-       Two things call this: the rail's own exit, which only exists once the
-       dive has gone dark, and the floating button, which is up for the whole
-       section. */
+       The floating button is what calls this. The rail carried a second copy of
+       it for a while, which said the same thing from a place that only existed
+       once the dive had gone dark. */
     function goToTab(tabId) {
         activateTab(tabId)
         if (section && mainPage) mainPage.scrollTo({ top: section.offsetTop, behavior: "smooth" })
@@ -202,15 +202,8 @@ import { buildCreations } from "./creations.js"
     }
 
     if (zoom) {
-        // The rail's way out of the zoom. It points at whichever tab is not the
-        // zoom.
+        // The way out of the zoom points at whichever tab is not the zoom.
         const other = tabs.find((tab) => tab.kind !== "reality-zoom")
-        if (other) {
-            zoom.exit.textContent = other.label + " →"
-            zoom.exit.addEventListener("click", () => goToTab(other.id))
-        } else {
-            zoom.exit.remove()
-        }
 
         zoom.driver = initRealityZoom(zoom, mainPage)
         if (other) initCreationsFab(other)

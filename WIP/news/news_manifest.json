@@ -2,26 +2,72 @@
   "categories": [
     {
       "name": "Research",
-      "count": 4
+      "count": 6
     },
     {
       "name": "Thoughts",
-      "count": 6
+      "count": 8
     },
     {
       "name": "Methods",
-      "count": 6
+      "count": 11
     },
     {
       "name": "Lab",
-      "count": 5
+      "count": 9
+    },
+    {
+      "name": "Awards",
+      "count": 2
     },
     {
       "name": "Media",
-      "count": 1
+      "count": 2
     }
   ],
   "posts": [
+    {
+      "slug": "2026-oliver-collins-jra-scholarship",
+      "title": "🎉 Oliver Collins awarded a Junior Research Assistant scholarship",
+      "subtitle": "",
+      "date": "2026-07-01",
+      "summary": "Oliver Collins, 2nd year student, has been awarded the Junior Research Assistant (JRA) scholarship for a project on illusions and bodily states.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Awards",
+      "featured": false,
+      "image": "news/2026-oliver-collins-jra-scholarship/featured.jpg",
+      "file": "news/2026-oliver-collins-jra-scholarship/post.json",
+      "base": "news/2026-oliver-collins-jra-scholarship/",
+      "words": 61,
+      "minutes": 1
+    },
+    {
+      "slug": "2026-emma-benn-sage-prize",
+      "title": "🎉 Emma Benn wins the SAGE Publications Prize",
+      "subtitle": "",
+      "date": "2026-06-01",
+      "summary": "Emma Benn, 3rd year dissertation student, has won the SAGE Publications Prize for Outstanding Application of Statistical Methods.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Awards",
+      "featured": false,
+      "image": "news/2026-emma-benn-sage-prize/featured.jpg",
+      "file": "news/2026-emma-benn-sage-prize/post.json",
+      "base": "news/2026-emma-benn-sage-prize/",
+      "words": 54,
+      "minutes": 1
+    },
     {
       "slug": "2026-cognitive-elegance",
       "title": "Barely Knowing Anything: On Taste, Judgment, and Cognitive Elegance in the Age of AI",
@@ -272,12 +318,33 @@
         }
       ],
       "category": "Research",
-      "featured": true,
+      "featured": false,
       "image": "news/2023-chatgpt-personality/featured.jpg",
       "file": "news/2023-chatgpt-personality/post.json",
       "base": "news/2023-chatgpt-personality/",
       "words": 306,
       "minutes": 1
+    },
+    {
+      "slug": "2023-ai-participants",
+      "title": "We should treat AIs like Human participants in psychological experiments",
+      "subtitle": "A lot of diverse and interesting perspectives have been recently discussed in regards to chatGPT and AGI, but there is one opinion that I found particularly relevant that I wanted to expand on.",
+      "date": "2023-04-05",
+      "summary": "A lot of diverse and interesting perspectives have been recently discussed in regards to chatGPT and AGI, but there is one opinion that I found particularly relevant that I wanted to expand on.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Thoughts",
+      "featured": false,
+      "image": "news/2023-ai-participants/featured.jpg",
+      "file": "news/2023-ai-participants/post.json",
+      "base": "news/2023-ai-participants/",
+      "words": 651,
+      "minutes": 3
     },
     {
       "slug": "2023-cyphers-complex",
@@ -293,7 +360,7 @@
         }
       ],
       "category": "Thoughts",
-      "featured": false,
+      "featured": true,
       "image": "news/2023-cyphers-complex/featured.jpg",
       "file": "news/2023-cyphers-complex/post.json",
       "base": "news/2023-cyphers-complex/",
@@ -314,12 +381,117 @@
         }
       ],
       "category": "Lab",
-      "featured": false,
+      "featured": true,
       "image": "news/2023-new-logo/featured.png",
       "file": "news/2023-new-logo/post.json",
       "base": "news/2023-new-logo/",
       "words": 414,
       "minutes": 2
+    },
+    {
+      "slug": "2022-signal-complexity",
+      "title": "About signal complexity",
+      "subtitle": "We recently did a bit of groundwork to better understand how to use signal complexity in neurophysiology.",
+      "date": "2022-12-05",
+      "summary": "We recently did a bit of groundwork to better understand how to use signal complexity in neurophysiology.",
+      "authors": [
+        {
+          "name": "Stephanie Kirk",
+          "folder": "stephanie-kirk",
+          "avatar": "people/stephanie-kirk/avatar.png"
+        }
+      ],
+      "category": "Research",
+      "featured": false,
+      "image": "news/2022-signal-complexity/featured.jpg",
+      "file": "news/2022-signal-complexity/post.json",
+      "base": "news/2022-signal-complexity/",
+      "words": 180,
+      "minutes": 1
+    },
+    {
+      "slug": "2022-neurokit-020",
+      "title": "NeuroKit2 0.2.0 is out 🎉",
+      "subtitle": "NeuroKit2 0.2.0 is out with a brand new website and documentation!",
+      "date": "2022-05-18",
+      "summary": "NeuroKit2 0.2.0 is out with a brand new website and documentation!",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Lab",
+      "featured": false,
+      "image": "news/2022-neurokit-020/featured.jpg",
+      "file": "news/2022-neurokit-020/post.json",
+      "base": "news/2022-neurokit-020/",
+      "words": 142,
+      "minutes": 1
+    },
+    {
+      "slug": "2022-learn-bayesian-stats-podcast",
+      "title": "Podcast 'Learn Bayesian Stats' with Dominique Makowski",
+      "subtitle": "In the latest episode of the 'Learning Bayesian Statistics' podcast, we talk about R, Python, Reality Bending and more!",
+      "date": "2022-02-01",
+      "summary": "In the latest episode of the 'Learning Bayesian Statistics' podcast, we talk about R, Python, Reality Bending and more!",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Media",
+      "featured": false,
+      "image": "news/2022-learn-bayesian-stats-podcast/featured.jpg",
+      "file": "news/2022-learn-bayesian-stats-podcast/post.json",
+      "base": "news/2022-learn-bayesian-stats-podcast/",
+      "words": 43,
+      "minutes": 1
+    },
+    {
+      "slug": "2021-pyllusion-published",
+      "title": "Pyllusion has been published",
+      "subtitle": "Pyllusion, the software for creating illusions in Python, has been published.",
+      "date": "2021-11-30",
+      "summary": "Pyllusion, the software for creating illusions in Python, has been published.",
+      "authors": [
+        {
+          "name": "An-Shu Te",
+          "folder": "anshu-te",
+          "avatar": "people/anshu-te/avatar.jpg"
+        }
+      ],
+      "category": "Lab",
+      "featured": false,
+      "image": "news/2021-pyllusion-published/featured.jpg",
+      "file": "news/2021-pyllusion-published/post.json",
+      "base": "news/2021-pyllusion-published/",
+      "words": 132,
+      "minutes": 1
+    },
+    {
+      "slug": "2021-neurokit-015-complexity",
+      "title": "NeuroKit2 0.1.5 'Complexity' is out 🎉",
+      "subtitle": "NeuroKit2 0.1.5 is out with greater support for complexity analysis of neurophysiological signals.",
+      "date": "2021-11-12",
+      "summary": "NeuroKit2 0.1.5 is out with greater support for complexity analysis of neurophysiological signals.",
+      "authors": [
+        {
+          "name": "Zen J. Lau",
+          "folder": "zen-juen",
+          "avatar": "people/zen-juen/avatar.jpg"
+        }
+      ],
+      "category": "Lab",
+      "featured": false,
+      "image": "news/2021-neurokit-015-complexity/featured.jpg",
+      "file": "news/2021-neurokit-015-complexity/post.json",
+      "base": "news/2021-neurokit-015-complexity/",
+      "words": 192,
+      "minutes": 1
     },
     {
       "slug": "2021-sample-too-small",
@@ -343,6 +515,27 @@
       "minutes": 3
     },
     {
+      "slug": "2021-sync-github-repos",
+      "title": "How to sync two folders in two separate GitHub repositories",
+      "subtitle": "Say you have a repo A, in which you want to duplicate some content with repo B.",
+      "date": "2021-10-31",
+      "summary": "Say you have a repo A, in which you want to duplicate some content with repo B. You can do that easily using GitHub actions.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Methods",
+      "featured": false,
+      "image": "news/2021-sync-github-repos/featured.jpg",
+      "file": "news/2021-sync-github-repos/post.json",
+      "base": "news/2021-sync-github-repos/",
+      "words": 270,
+      "minutes": 1
+    },
+    {
       "slug": "2021-logo-symbolism",
       "title": "The symbolism behind the ReBeL logo",
       "subtitle": "Can you guess all the hidden symbols and elements present in our logo?",
@@ -362,6 +555,27 @@
       "base": "news/2021-logo-symbolism/",
       "words": 510,
       "minutes": 2
+    },
+    {
+      "slug": "2021-share-analysis-scripts",
+      "title": "How to share data analysis scripts with publications?",
+      "subtitle": "Including data analysis as Supplementary Materials can be a tedious task.",
+      "date": "2021-02-10",
+      "summary": "Including data analysis as Supplementary Materials can be a tedious task. How can we simplify the sharing of our work? So that it can be fully appreciated, as well as evaluated, improved, worked on, in a transparent and open way?",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Lab",
+      "featured": false,
+      "image": "news/2021-share-analysis-scripts/featured.gif",
+      "file": "news/2021-share-analysis-scripts/post.json",
+      "base": "news/2021-share-analysis-scripts/",
+      "words": 663,
+      "minutes": 3
     },
     {
       "slug": "2021-visual-agnosia",
@@ -427,6 +641,27 @@
       "minutes": 3
     },
     {
+      "slug": "2020-individual-scores",
+      "title": "How to extract individual scores from repeated measures",
+      "subtitle": "We compare different methods (individual models, Bayesian models with informative priors, random effects from mixed models) to extract individual scores from repeated measures tasks.",
+      "date": "2020-09-14",
+      "summary": "We compare different methods (individual models, Bayesian models with informative priors, random effects from mixed models) to extract individual scores from repeated measures tasks.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Research",
+      "featured": false,
+      "image": "news/2020-individual-scores/featured.jpg",
+      "file": "news/2020-individual-scores/post.json",
+      "base": "news/2020-individual-scores/",
+      "words": 1134,
+      "minutes": 5
+    },
+    {
       "slug": "2020-what-is-neuropsychology",
       "title": "What is neuropsychology?",
       "subtitle": "In which I discuss the place of neuropsychology in the galaxy of sciences, its structure and its definition.",
@@ -488,6 +723,111 @@
       "base": "news/2020-r-or-python/",
       "words": 1805,
       "minutes": 8
+    },
+    {
+      "slug": "2020-analyze-reaction-times",
+      "title": "How to correctly analyze reaction time (RT) data",
+      "subtitle": "Most researchers use the normal distribution to model reaction times, but it's wrong! Discover how to perform a good analysis of RT data.",
+      "date": "2020-05-18",
+      "summary": "Most researchers use the normal distribution to model reaction times, but it's wrong! Discover how to perform a good analysis of RT data.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Methods",
+      "featured": false,
+      "image": "news/2020-analyze-reaction-times/featured.jpg",
+      "file": "news/2020-analyze-reaction-times/post.json",
+      "base": "news/2020-analyze-reaction-times/",
+      "words": 145,
+      "minutes": 1
+    },
+    {
+      "slug": "2020-python-mandelbrot",
+      "title": "One Python code line for a Mandelbrot fractal",
+      "subtitle": "Create a Mandelbrot or Buddhabrot fractal in Python using NeuroKit.",
+      "date": "2020-05-16",
+      "summary": "Create a Mandelbrot or Buddhabrot fractal in Python using NeuroKit.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Methods",
+      "featured": false,
+      "image": "news/2020-python-mandelbrot/featured.jpg",
+      "file": "news/2020-python-mandelbrot/post.json",
+      "base": "news/2020-python-mandelbrot/",
+      "words": 165,
+      "minutes": 1
+    },
+    {
+      "slug": "2020-defence-of-95-ci",
+      "title": "In defence of the 95% CI",
+      "subtitle": "The one where I discuss arguments in favour of 95% instead of alternatives like 90 or 89%.",
+      "date": "2020-05-15",
+      "summary": "The one where I discuss arguments in favour of 95% instead of alternatives like 90 or 89%.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Thoughts",
+      "featured": false,
+      "image": "news/2020-defence-of-95-ci/featured.jpg",
+      "file": "news/2020-defence-of-95-ci/post.json",
+      "base": "news/2020-defence-of-95-ci/",
+      "words": 91,
+      "minutes": 1
+    },
+    {
+      "slug": "2020-intro-bayesian-stats-r",
+      "title": "Introduction to Bayesian statistics with R",
+      "subtitle": "A gentle introduction to Bayesian statistics with R for people not familiar with any of these.",
+      "date": "2020-05-14",
+      "summary": "A gentle introduction to Bayesian statistics with R for people not familiar with any of these.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Methods",
+      "featured": false,
+      "image": "news/2020-intro-bayesian-stats-r/featured.jpg",
+      "file": "news/2020-intro-bayesian-stats-r/post.json",
+      "base": "news/2020-intro-bayesian-stats-r/",
+      "words": 80,
+      "minutes": 1
+    },
+    {
+      "slug": "2019-simulate-ecg",
+      "title": "Generate an artificial ECG signal in Python",
+      "subtitle": "Simulate a synthetic but realistic ECG signal in Python using NeuroKit.",
+      "date": "2019-05-17",
+      "summary": "Simulate a synthetic but realistic ECG signal in Python using NeuroKit.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Methods",
+      "featured": false,
+      "image": "news/2019-simulate-ecg/featured.jpg",
+      "file": "news/2019-simulate-ecg/post.json",
+      "base": "news/2019-simulate-ecg/",
+      "words": 260,
+      "minutes": 1
     }
   ]
 }

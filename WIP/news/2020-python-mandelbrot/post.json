@@ -1,0 +1,25 @@
+{
+  "title": "One Python code line for a Mandelbrot fractal",
+  "date": "2020-05-16",
+  "subtitle": "Create a Mandelbrot or Buddhabrot fractal in Python using NeuroKit.",
+  "summary": "Create a Mandelbrot or Buddhabrot fractal in Python using NeuroKit.",
+  "authors": [
+    "dominique-makowski"
+  ],
+  "category": "Methods",
+  "content": [
+    "<h3>Mandelbrot Set</h3>",
+    "<p>I wrote a small Python function to easily generate and plot a <a href=\"https://en.wikipedia.org/wiki/Mandelbrot_set\">Mandelbrot set</a>. This function is now available through the <a href=\"https://github.com/neuropsychology/NeuroKit#quick-example\"><strong>NeuroKit2 package</strong></a>, and can be used as follows:</p>",
+    "<pre><code class=\"language-python\">import neurokit2 as nk\n\nnk.fractal_mandelbrot(show=True)\n</code></pre>",
+    "<p>The Mandelbrot set is defined in the between <code>-2</code> and <code>2</code> on the <em>x</em> (real) and <em>y</em> (imaginary) axes. Following that, the image can be cropped accordingly by changing the coordinates. Moreover, the colors can be tweaked by changing the colormap (<code>cmap</code>).</p>",
+    "<pre><code class=\"language-python\">m = nk.fractal_mandelbrot(real_range=(-2, 0.75), imaginary_range=(-1.25, 1.25))\nplt.imshow(m.T, cmap=\"viridis\")\nplt.axis(\"off\")\nplt.show()\n</code></pre>",
+    "<h3>Buddhabrot Set</h3>",
+    "<p>It is also possible to generate a <a href=\"https://en.wikipedia.org/wiki/Buddhabrot\"><strong>Buddhabrot</strong></a>:</p>",
+    "<pre><code class=\"language-python\">b = nk.fractal_mandelbrot(size=1500,\n                          real_range=(-2, 0.75), imaginary_range=(-1.25, 1.25),\n                          buddha=True, iterations=200)\nplt.imshow(b.T, cmap=\"gray\")\nplt.axis(\"off\")\nplt.show()\n</code></pre>",
+    "<p>Although the NeuroKit Python package is primarily devoted to physiological signal processing, it also includes tons of other useful features.</p>",
+    "<p>👉 <a href=\"https://github.com/neuropsychology/NeuroKit#quick-example\"><strong>Discover more about NeuroKit here</strong></a> 👈</p>",
+    "<p>Have fun!</p>",
+    "<hr>",
+    "<p><em>Thanks for reading!</em> 🐦 <em>Don't forget to join me on X</em> (<a href=\"https://x.com/Dom_Makowski\">@Dom_Makowski</a>) <em>and leave a comment below</em> 👇</p>"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "title": "In defence of the 95% CI",
+  "date": "2020-05-15",
+  "subtitle": "The one where I discuss arguments in favour of 95% instead of alternatives like 90 or 89%.",
+  "summary": "The one where I discuss arguments in favour of 95% instead of alternatives like 90 or 89%.",
+  "authors": [
+    "dominique-makowski"
+  ],
+  "category": "Thoughts",
+  "content": [
+    "<p><strong>TLDR;</strong> <a href=\"https://github.com/easystats/bayestestR\"><strong>BayestestR</strong></a> <strong>currently uses a 89% threshold by default for Credible Intervals (CI). Should we change that? If so, by what?</strong> <a href=\"https://github.com/easystats/bayestestR/issues/250\"><em><strong>Join the discussion here.</strong></em></a></p>",
+    "<p>Magical numbers, or conventional thresholds, have bad press in statistics, and there are many of them. For instance, <strong>.05</strong> (for the <em>p</em>-value), or the <strong>95%</strong> range for the <strong>Confidence Interval</strong> (CI). Indeed, why 95 and not 94 or 90?</p>",
+    "<p>👉 <a href=\"https://easystats.github.io/blog/posts/bayestestr_95/\"><strong>Read my complete post on the easystats' blog</strong></a> 👈</p>",
+    "<hr>",
+    "<p><em>Thanks for reading!</em> <em>Do not hesitate to share this post, and leave a comment below</em> 👇</p>"
+  ]
+}

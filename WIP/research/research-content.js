@@ -142,6 +142,7 @@ export const RESEARCH_CONTENT = Object.freeze({
                                 mark: "art",
                                 name: "Neuroaesthetics",
                                 text: "Beauty, awe, and the sublime: how the brain responds to art.",
+                                link: "https://www.nature.com/articles/s41598-024-68331-9",
                             },
                             {
                                 mark: "open",

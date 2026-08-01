@@ -27,8 +27,30 @@
     pointer-events: none;
 }
 
-.alumni-band__grid[hidden] {
-    display: none;
+/* ── Opening ──
+   The panel is the box that moves: clipped, and its height written in pixels
+   by people.js on every press, then handed back to `auto` once it arrives. The
+   grid inside it does the fade, so nothing here competes with `.alumni-card`'s
+   own hover transform — a reveal written onto the cards would have to outrank
+   `:hover` and would lose to it on the way past. */
+.alumni-band__panel {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.36s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.alumni-band__grid {
+    opacity: 0;
+    /* Slides down out from under the trigger rather than appearing at rest. */
+    transform: translateY(-10px);
+    transition:
+        opacity 0.28s ease 0.05s,
+        transform 0.36s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.alumni-band__panel.is-open .alumni-band__grid {
+    opacity: 1;
+    transform: none;
 }
 
 .alumni-band__trigger {
@@ -176,6 +198,22 @@
 .alumni-card:focus-visible .alumni-card__details {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* The band still opens; it just arrives. people.js takes the same branch and
+   writes `auto` / `0` straight out, so nothing waits on a transitionend that
+   is never going to fire. */
+@media (prefers-reduced-motion: reduce) {
+    .alumni-band__panel,
+    .alumni-band__grid,
+    .alumni-band__chevron {
+        transition: none;
+    }
+
+    .alumni-band__grid {
+        opacity: 1;
+        transform: none;
+    }
 }
 
 /* ── End alumni band ─────────────────────────────────────────── */

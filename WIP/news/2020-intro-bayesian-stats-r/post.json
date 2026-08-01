@@ -1,0 +1,19 @@
+{
+  "title": "Introduction to Bayesian statistics with R",
+  "date": "2020-05-14",
+  "subtitle": "A gentle introduction to Bayesian statistics with R for people not familiar with any of these.",
+  "summary": "A gentle introduction to Bayesian statistics with R for people not familiar with any of these.",
+  "authors": [
+    "dominique-makowski"
+  ],
+  "category": "Methods",
+  "content": [
+    "<p>You are a student or a researcher interested in Bayesian statistics and R? But all the tutorials and courses that you have found are too intimidating?</p>",
+    "<p><strong>Fear no more!</strong></p>",
+    "<p>With the <a href=\"https://github.com/easystats/easystats\">easystats team</a>, we have created a very <strong>gentle</strong> and <strong>introductory</strong> course for beginners.</p>",
+    "<p>You can find the link here:</p>",
+    "<p>👉 <a href=\"https://easystats.github.io/bayestestR/articles/bayestestR.html\"><strong>Get Started with Bayesian Statistics using R</strong></a> 👈</p>",
+    "<hr>",
+    "<p><em>Thanks for reading!</em> 🐦 <em>Don't forget to join me on X</em> (<a href=\"https://x.com/Dom_Makowski\">@Dom_Makowski</a>) <em>and leave a comment below</em> 👇</p>"
+  ]
+}

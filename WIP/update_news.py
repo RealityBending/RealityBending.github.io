@@ -74,8 +74,9 @@ WORDS_PER_MINUTE = 220
 
 # The order the filter chips are laid out in, so it is a running order and not
 # an alphabet: what the lab found, what it thinks, how it is done, the lab
-# itself, and what other people said about it. A post carries exactly one.
-CATEGORIES = ["Research", "Thoughts", "Methods", "Lab", "Media"]
+# itself, recognition it received, and what other people said about it. A post
+# carries exactly one.
+CATEGORIES = ["Research", "Thoughts", "Methods", "Lab", "Awards", "Media"]
 
 # The report below prints ✓/✗ and author names, and a Windows console defaults
 # to cp1252 — without this the script does its work and then dies on the
@@ -154,7 +155,9 @@ def resolve_authors(values, people: dict) -> list[dict]:
         match = people.get(value.lower())
         # Not an error when there is no match: guests and former collaborators
         # write here too, and they have no folder under people/.
-        authors.append(dict(match) if match else {"name": value, "folder": "", "avatar": ""})
+        authors.append(
+            dict(match) if match else {"name": value, "folder": "", "avatar": ""}
+        )
     return authors
 
 
@@ -192,7 +195,11 @@ def first_sentences(html: str, limit: int = 180) -> str:
     for match in re.finditer(r"<p[^>]*>([\s\S]*?)</p>", FIGURE_RE.sub(" ", html), re.I):
         text = strip_tags(match.group(1))
         if len(text) > 60:
-            return text if len(text) <= limit else text[: limit - 1].rsplit(" ", 1)[0] + "…"
+            return (
+                text
+                if len(text) <= limit
+                else text[: limit - 1].rsplit(" ", 1)[0] + "…"
+            )
     return ""
 
 
@@ -215,7 +222,10 @@ def check_category(value, folder: str) -> str:
         warn(folder, f"no 'category' — must be one of: {', '.join(CATEGORIES)}")
         return ""
     if category not in CATEGORIES:
-        warn(folder, f"unknown category {category!r} — must be one of: {', '.join(CATEGORIES)}")
+        warn(
+            folder,
+            f"unknown category {category!r} — must be one of: {', '.join(CATEGORIES)}",
+        )
     return category
 
 
@@ -308,11 +318,15 @@ def main():
     for post in posts:
         if post["category"]:
             counts[post["category"]] = counts.get(post["category"], 0) + 1
-    categories = [{"name": name, "count": counts[name]} for name in CATEGORIES if name in counts]
+    categories = [
+        {"name": name, "count": counts[name]} for name in CATEGORIES if name in counts
+    ]
 
     featured = sum(1 for post in posts if post["featured"])
     if posts and not featured:
-        print("  ! featured: no post is marked \"featured\": true — the Featured tab will be empty")
+        print(
+            '  ! featured: no post is marked "featured": true — the Featured tab will be empty'
+        )
 
     manifest = {"categories": categories, "posts": posts}
     with io.open(OUTPUT, "w", encoding="utf-8", newline="\n") as f:
@@ -326,7 +340,9 @@ def main():
     for post in posts:
         authors = ", ".join(author["name"] for author in post["authors"]) or "—"
         star = "★" if post["featured"] else " "
-        print(f"  {star} {post['date']} — {post['title'][:46]} ({authors}, {post['minutes']} min)")
+        print(
+            f"  {star} {post['date']} — {post['title'][:46]} ({authors}, {post['minutes']} min)"
+        )
 
     if warnings_found:
         print(f"\n⚠ {warnings_found} warning(s) — review above")

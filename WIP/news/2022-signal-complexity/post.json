@@ -1,0 +1,17 @@
+{
+  "title": "About signal complexity",
+  "date": "2022-12-05",
+  "subtitle": "We recently did a bit of groundwork to better understand how to use signal complexity in neurophysiology.",
+  "summary": "We recently did a bit of groundwork to better understand how to use signal complexity in neurophysiology.",
+  "authors": [
+    "stephanie-kirk"
+  ],
+  "category": "Research",
+  "content": [
+    "<p>The signals recorded from the brain or the body are rich in information, and there are many ways to analyze them. For instance, for EEG, one can focus on <strong>Event Related Potentials</strong> (ERP), time-frequency analyses, <a href=\"https://neuropsychology.github.io/NeuroKit/examples/eeg_microstates/eeg_microstates.html\"><strong>microstates</strong></a>, etc.</p>",
+    "<p>An alternative framework, used to characterize the general characteristics of the signal, relies on the extraction of indices of <strong>&quot;complexity&quot;</strong> (a general term for constructs such as entropy, chaos, fractal dimension, predictability). However, that field is quite <em>complex</em> (no pun intended), drawing heavily on mathematical concepts that psychologists or neuroscientists might not be familiar with.</p>",
+    "<p>In order to better understand the world of complexity indices as applied to neurophysiology, we have done some groundwork to help us make better decisions in our future usage of this type of analysis.</p>",
+    "<ul>\n<li>A <a href=\"https://onlinelibrary.wiley.com/doi/10.1111/ejn.15800\"><strong>gentle introduction</strong></a> to complexity indices applied to neuroscience.</li>\n<li>An <a href=\"https://www.mdpi.com/1099-4300/24/8/1036\"><strong>indices selection guide</strong></a> in which we compare how different indices relate to one another.</li>\n</ul>",
+    "<p>Additionally, we also provide an easy way to compute them in Python in our <strong>NeuroKit</strong> package (see <a href=\"https://neuropsychology.github.io/NeuroKit/functions/complexity.html\"><strong>here</strong></a> for the list of functions and <a href=\"https://neuropsychology.github.io/NeuroKit/examples/eeg_complexity/eeg_complexity.html\"><strong>here</strong></a> for an EEG application).</p>"
+  ]
+}

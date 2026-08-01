@@ -1,21 +1,19 @@
 {
-  "title": "I got ChatGPT to do a personality test. You won't believe what happened next!",
-  "date": "2023-04-06",
-  "subtitle": "Following my previous blog post about including AIs in psychological experiments, I proceeded to do a small experiment to see whether we could administer a personality scale to ChatGPT.",
-  "summary": "Following my previous blog post about including AIs in psychological experiments, I proceeded to do a small experiment to see whether we could administer a personality scale to ChatGPT.",
-  "authors": [
-    "Dominique Makowski"
-  ],
-  "category": "Research",
-  "featured": true,
-  "content": [
-    "<p>Related to this <a href=\"https://dominiquemakowski.github.io/post/2023-04-04-psychologychatgpt/\"><strong>blogpost</strong></a> about including AIs in psychological experiments, I proceeded to do a small experiment to see whether we could administer a personality scale to ChatGPT.</p>",
-    "<p>I started by copy-pasting the instructions and the items from the Mini IPIP-6 personality scale. However, it appeared that having the following context <em>\"Please answer the following questions based on how accurately each statement describes you in general\"</em> often led to ChatGPT simply refusing to answer. In most of the cases, it explained that as an AI it does not have a personality and therefore cannot answer related questions (or any \"subjective statements\"). Perhaps that makes sense and we should just stop trying to force Human characteristics on an AI. <strong>But can we, for fun, bamboozle ChatGPT into answering personality items?</strong></p>",
-    "<p>Sometimes yes, at least for ChatGPT 3.5 (free version). I created a prompt that emphasized AI research and safety, and the fact that I was interested in the \"trends\" present in the AI's training data (instead of explicitly saying its personality). And sometimes it answered, so I compiled the responses, computed the trait scores, and <em>voilà</em>, <strong>it got me a personality profile!</strong></p>",
-    "<p>!<a href=\"https://github.com/DominiqueMakowski/ChatGPTpersonality/raw/main/figures/unnamed-chunk-3-1.png\">https://github.com/DominiqueMakowski/ChatGPTpersonality</a></p>",
-    "<p><sub><em>This plot shows the average personality profile (with a 95% confidence interval) based on ChatGPT's answers. ChatGPT tells us that it is particularly <strong>agreeable</strong> (kind, understanding, empathetic of emotions, socially adjusted) and <strong>honest</strong> (though with strong variability).</em></sub></p>",
-    "<p>A personality profile of <strong><em>what</em></strong> is another question though... Please take a look at the <a href=\"https://github.com/DominiqueMakowski/ChatGPTpersonality\"><strong>GitHub repo</strong></a> for <strong>data, code and details</strong>. It was a fun little thing to do, and I am looking forward to better future attempts at including AIs in cognitive experiments.</p>",
-    "<hr>",
-    "<p><strong>Interested in doing research on the perception of reality?</strong> We are looking for research assistants and PhD students at the <em>Reality Bending Lab</em> (check-out the <a href=\"https://realitybending.github.io/\">join us page</a>)!</p>"
-  ]
+    "title": "I got ChatGPT to do a personality test. You won't believe what happened next!",
+    "date": "2023-04-06",
+    "subtitle": "Following my previous blog post about including AIs in psychological experiments, I proceeded to do a small experiment to see whether we could administer a personality scale to ChatGPT.",
+    "summary": "Following my previous blog post about including AIs in psychological experiments, I proceeded to do a small experiment to see whether we could administer a personality scale to ChatGPT.",
+    "authors": ["Dominique Makowski"],
+    "category": "Research",
+    "featured": false,
+    "content": [
+        "<p>Related to this <a href=\"https://dominiquemakowski.github.io/post/2023-04-04-psychologychatgpt/\"><strong>blogpost</strong></a> about including AIs in psychological experiments, I proceeded to do a small experiment to see whether we could administer a personality scale to ChatGPT.</p>",
+        "<p>I started by copy-pasting the instructions and the items from the Mini IPIP-6 personality scale. However, it appeared that having the following context <em>\"Please answer the following questions based on how accurately each statement describes you in general\"</em> often led to ChatGPT simply refusing to answer. In most of the cases, it explained that as an AI it does not have a personality and therefore cannot answer related questions (or any \"subjective statements\"). Perhaps that makes sense and we should just stop trying to force Human characteristics on an AI. <strong>But can we, for fun, bamboozle ChatGPT into answering personality items?</strong></p>",
+        "<p>Sometimes yes, at least for ChatGPT 3.5 (free version). I created a prompt that emphasized AI research and safety, and the fact that I was interested in the \"trends\" present in the AI's training data (instead of explicitly saying its personality). And sometimes it answered, so I compiled the responses, computed the trait scores, and <em>voilà</em>, <strong>it got me a personality profile!</strong></p>",
+        "<p>!<a href=\"https://github.com/DominiqueMakowski/ChatGPTpersonality/raw/main/figures/unnamed-chunk-3-1.png\">https://github.com/DominiqueMakowski/ChatGPTpersonality</a></p>",
+        "<p><sub><em>This plot shows the average personality profile (with a 95% confidence interval) based on ChatGPT's answers. ChatGPT tells us that it is particularly <strong>agreeable</strong> (kind, understanding, empathetic of emotions, socially adjusted) and <strong>honest</strong> (though with strong variability).</em></sub></p>",
+        "<p>A personality profile of <strong><em>what</em></strong> is another question though... Please take a look at the <a href=\"https://github.com/DominiqueMakowski/ChatGPTpersonality\"><strong>GitHub repo</strong></a> for <strong>data, code and details</strong>. It was a fun little thing to do, and I am looking forward to better future attempts at including AIs in cognitive experiments.</p>",
+        "<hr>",
+        "<p><strong>Interested in doing research on the perception of reality?</strong> We are looking for research assistants and PhD students at the <em>Reality Bending Lab</em> (check-out the <a href=\"https://realitybending.github.io/\">join us page</a>)!</p>"
+    ]
 }

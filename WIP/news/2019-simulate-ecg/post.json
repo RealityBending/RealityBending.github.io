@@ -1,0 +1,28 @@
+{
+  "title": "Generate an artificial ECG signal in Python",
+  "date": "2019-05-17",
+  "subtitle": "Simulate a synthetic but realistic ECG signal in Python using NeuroKit.",
+  "summary": "Simulate a synthetic but realistic ECG signal in Python using NeuroKit.",
+  "authors": [
+    "dominique-makowski"
+  ],
+  "category": "Methods",
+  "content": [
+    "<h3>Create a natural ECG signal</h3>",
+    "<p>Generating artificial physiological signals can be very useful to build, test your analysis pipeline or develop and validate a new algorithm.</p>",
+    "<p>Generating a synthetic, yet realistic, ECG signal in Python can be easily achieved with the <code>ecg_simulate()</code> function available in the <a href=\"https://github.com/neuropsychology/NeuroKit#quick-example\"><strong>NeuroKit2</strong></a> package.</p>",
+    "<p>In the example below, we will generate <strong>8</strong> seconds of ECG, sampled at <strong>200 Hz</strong> (i.e., 200 points per second) - hence the length of the signal will be <code>8 * 200 = 1600</code> data points. We can also specify the average heart rate, although note that there will be some natural variability (which is a good thing, because it makes it realistic).</p>",
+    "<pre><code class=\"language-python\">import neurokit2 as nk  # Load the package\n\nsimulated_ecg = nk.ecg_simulate(duration=8, sampling_rate=200, heart_rate=80)\n\nnk.signal_plot(simulated_ecg, sampling_rate=200)  # Visualize the signal\n</code></pre>",
+    "<figure><img src=\"output_1_0.jpg\" alt=\"\"></figure>",
+    "<p>The simulation is based on the <strong>ECGSYN</strong> algorithm (McSharry et al., 2003).</p>",
+    "<p>However, for fast and stable results (as the realistic algorithm naturally generates some variability), one can approximate the QRS complex by a <strong>Daubechies</strong> wavelet. An ECG based on this method can also be obtained in <strong>NeuroKit</strong> by changing the <code>method</code> as follows:</p>",
+    "<pre><code class=\"language-python\">simulated_ecg = nk.ecg_simulate(duration=8, sampling_rate=200, method=\"daubechies\")\n\nnk.signal_plot(simulated_ecg, sampling_rate=200)\n</code></pre>",
+    "<figure><img src=\"output_2_0.jpg\" alt=\"\"></figure>",
+    "<p>While faster and stable, the generated ECG is far from being realistic.</p>",
+    "<p>👉 <a href=\"https://github.com/neuropsychology/NeuroKit#quick-example\"><strong>Discover more about NeuroKit here</strong></a> 👈</p>",
+    "<h3>References</h3>",
+    "<p>McSharry, P. E., Clifford, G. D., Tarassenko, L., &amp; Smith, L. A. (2003). A dynamical model for generating synthetic electrocardiogram signals. <em>IEEE Transactions on Biomedical Engineering</em>, 50(3), 289-294.</p>",
+    "<hr>",
+    "<p><em>Thanks for reading!</em> 🐦 <em>Don't forget to join me on X</em> (<a href=\"https://x.com/Dom_Makowski\">@Dom_Makowski</a>) <em>and leave a comment below</em> 👇</p>"
+  ]
+}
