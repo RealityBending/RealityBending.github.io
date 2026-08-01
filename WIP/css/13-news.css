@@ -809,6 +809,42 @@
     margin-bottom: 0.8rem;
 }
 
+/* A results table. Same treatment as <pre> and for the same reason: the reader
+   is a fixed panel, so a wide table has to scroll inside its own box rather
+   than push the panel sideways — and a horizontal scrollbar on a fixed panel
+   is not recoverable. The wrapper is the element itself (`display: block`),
+   because a post carries no class names and there is nothing here to wrap it
+   in; the price is that the columns size to their content rather than to the
+   panel, which is what a table of numbers wants anyway.
+   `text-align` comes in on the cells from the Markdown the post was written
+   in, so nothing here sets it. */
+.news-prose table {
+    display: block;
+    overflow-x: auto;
+    max-width: 100%;
+    border-collapse: collapse;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 0.78rem;
+    line-height: 1.5;
+}
+
+.news-prose th,
+.news-prose td {
+    padding: 0.4rem 0.75rem;
+    border-bottom: 1px solid rgba(51, 204, 204, 0.22);
+    white-space: nowrap;
+}
+
+.news-prose th {
+    border-bottom-width: 2px;
+    font-weight: 600;
+    color: var(--news-accent-deep);
+}
+
+.news-prose tbody tr:last-child td {
+    border-bottom: none;
+}
+
 .news-link {
     color: #17706f;
     text-decoration: underline;

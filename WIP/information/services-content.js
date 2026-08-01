@@ -61,7 +61,7 @@ export const SERVICES_CONTENT = Object.freeze({
         {
             id: "expertise",
             label: "Scientific expertise",
-            image: "information/img/consultation.png",
+            image: "information/img/consultation.jpg",
             accent: { accent: "51, 204, 204", deep: "30, 120, 120", ink: "26, 92, 92" },
         },
         {

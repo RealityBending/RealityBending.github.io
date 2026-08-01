@@ -1,6 +1,8 @@
 import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
 import { openProfileByFolder } from "../shared/profile-api.js"
 import { createPager } from "../shared/pager.js"
+import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRoute } from "../shared/deep-link.js"
+import { element as el } from "../shared/dom.js"
 
 /* news.js
  * The News section: two tabs over an index of posts — Featured, a short
@@ -36,12 +38,6 @@ import { createPager } from "../shared/pager.js"
     // which suggests across the whole archive, not just the tab in view.
     let allPosts = []
 
-    function el(tag, className, text) {
-        const node = document.createElement(tag)
-        if (className) node.className = className
-        if (text != null) node.textContent = text
-        return node
-    }
 
     function scrollToSection() {
         const section = document.getElementById("sec-news-full")
@@ -256,8 +252,13 @@ import { createPager } from "../shared/pager.js"
         another.title = anotherPost.title
     }
 
-    function closeReader() {
+    function closeReader(write) {
         if (!reader.classList.contains("is-open")) return
+        // Back to the index's own route, so the URL never names a post nobody
+        // is reading — except when the close is itself part of applying a
+        // route, where the caller is about to say what the URL should be.
+        reader.dataset.post = ""
+        if (write !== false) writeRoute("news-" + activeTab)
         reader.classList.remove("is-open")
         backdrop.classList.remove("is-visible")
         another.hidden = true
@@ -270,8 +271,10 @@ import { createPager } from "../shared/pager.js"
         lastTrigger = null
     }
 
-    readerClose.addEventListener("click", closeReader)
-    backdrop.addEventListener("click", closeReader)
+    // Wrapped rather than passed straight in: closeReader's first argument is a
+    // flag, and a listener would hand it the event object.
+    readerClose.addEventListener("click", () => closeReader())
+    backdrop.addEventListener("click", () => closeReader())
     document.addEventListener("keydown", (event) => {
         if (event.key === "Escape") closeReader()
     })
@@ -323,6 +326,12 @@ import { createPager } from "../shared/pager.js"
         // rather than waiting a frame, which leaves the open at the mercy of
         // whether rAF is running at all.
         void reader.offsetWidth
+        // The shareable part. The slug is the post's folder name, which is
+        // already the id the manifest and every image path join on. Kept on the
+        // element too, so a route naming the post already open is recognised
+        // and left alone rather than re-entered under the reader.
+        reader.dataset.post = post.slug || ""
+        if (post.slug) writeRoute("post-" + post.slug)
         reader.classList.add("is-open")
         backdrop.classList.add("is-visible")
         readerClose.focus({ preventScroll: true })
@@ -512,20 +521,52 @@ import { createPager } from "../shared/pager.js"
            group on this page uses — swapTabPanels for the slide, and the empty
            side margins as prev/next zones. */
         tabs.forEach((tab) => {
-            tab.button.addEventListener("click", () => {
-                tabs.forEach((other) => {
-                    const isActive = other.id === tab.id
-                    other.button.classList.toggle("news-tab-btn--active", isActive)
-                    other.button.setAttribute("aria-selected", isActive ? "true" : "false")
-                })
-                swapTabPanels(
-                    tabs.map((other) => other.panel),
-                    "news-panel-" + tab.id
-                )
-            })
+            tab.button.addEventListener("click", () => activateTab(tab.id))
         })
 
-        initMarginTabNav(shell, ".news-tab-btn")
+        /* ── The URL ──
+           `#post-<slug>` opens a post in the reader, `#news-<tab>` picks a tab.
+           Here rather than at startup: the manifest is what turns a slug into a
+           post, and this runs inside its `.then`. Idempotent — the reader can
+           paste the same link twice, and a route naming the post already open
+           must not re-fetch and re-enter it. */
+        function applyRoute(route) {
+            const slug = matchRoute(route, "post")
+            if (slug) {
+                const post = allPosts.find((entry) => entry.slug === slug)
+                if (!post) return false
+                revealSection("sec-news-full")
+                if (reader.dataset.post !== slug || !reader.classList.contains("is-open")) openPost(post, null)
+                return true
+            }
+
+            /* Anything that is not a post is a route to somewhere else on the
+               page, and the reader covers all of it — so it goes, whether or
+               not the destination is this section. Silent when nothing was
+               open, which is the usual case. */
+            closeReader(false)
+
+            const tab = matchRoute(route, "news")
+            if (tab === null || !tabs.some((entry) => entry.id === tab)) return false
+            revealSection("sec-news-full")
+            activateTab(tab, false)
+            return true
+        }
+
+        onRoute(applyRoute)
+        /* Only re-land if this section actually owned the route. `landOnLoad`
+           fires unconditionally once armed, so arming it in every section meant
+           four of them scrolling to themselves at `load` and the last one
+           winning — which is how a member link ended up 3,090px into News. */
+        if (applyRoute(INITIAL_ROUTE)) landOnLoad("sec-news-full")
+
+        /* The section, not the shell. The zones are as wide as the strip
+           between their host and the centred content column
+           (`(100% - --content-inline-size) / 2`), and the shell *is* that
+           column — so hosted there they came out 32px wide against the other
+           sections' 113px, which is a target nobody could find and the reason
+           this section looked like it had no arrows at all. */
+        initMarginTabNav(document.getElementById("sec-news-full"), ".news-tab-btn")
     }
 
     /* ── Assembly ── */
@@ -571,6 +612,26 @@ import { createPager } from "../shared/pager.js"
     // things and the tab order is a presentation decision, so reordering the
     // list above must not silently swap what goes in them.
     const panelFor = (id) => tabs.find((tab) => tab.id === id).panel
+
+    /* Which tab the URL goes back to when the reader is closed — a post is read
+       over whichever index the visitor was on. */
+    let activeTab = tabs[0].id
+
+    /* `write` is false when the switch came out of the URL in the first place;
+       writing then would be this section claiming a hash it was only reading. */
+    function activateTab(id, write) {
+        activeTab = id
+        tabs.forEach((other) => {
+            const isActive = other.id === id
+            other.button.classList.toggle("news-tab-btn--active", isActive)
+            other.button.setAttribute("aria-selected", isActive ? "true" : "false")
+        })
+        swapTabPanels(
+            tabs.map((other) => other.panel),
+            "news-panel-" + id
+        )
+        if (write !== false) writeRoute("news-" + id)
+    }
 
     const featuredList = el("div", "news-list")
     panelFor("featured").appendChild(featuredList)

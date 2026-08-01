@@ -13,6 +13,10 @@
    section. overflow-x + isolation are what let the stage bleed back out to the
    screen edge under the wide-screen sidebar. */
 .research-full {
+    /* The section's blue, and the darker ink it needs to be legible as text on
+       cream — see the note over .research-tabs-nav. */
+    --res-accent: var(--section-research, #5599ff);
+    --res-ink: #2f5fa8;
     padding: 5rem 0 0;
     background: #f5f4ef;
     position: relative;
@@ -53,12 +57,24 @@
     margin: 0;
 }
 
+/* ── The section's own colour ──
+   Blue, which is what Research has on the hero's arc, on the brain and in the
+   nav (--section-research in css/01-base.css). The tab bar was a slate green
+   that appeared nowhere else, so the one part of the section a reader meets
+   first was the one part that did not match it.
+
+   Two tokens, not one, and for the same reason Publications and News have two:
+   #5599ff is a light blue meant to be seen against black, and as tab-label text
+   on cream it is barely there. --res-ink is that hue taken down until it can be
+   read; --res-accent stays the true section colour for rules and edges. Every
+   value below is mixed off one of the two. The tokens are declared on
+   .research-full at the top of this file. */
 .research-tabs-nav {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 0;
-    border-bottom: 1px solid rgba(85, 150, 100, 0.16);
+    border-bottom: 1px solid color-mix(in srgb, var(--res-accent) 26%, transparent);
 }
 
 .research-tab-btn {
@@ -72,7 +88,7 @@
     border-bottom: 2px solid transparent;
     margin-bottom: -1px;
     background: transparent;
-    color: rgba(85, 150, 100, 0.5);
+    color: color-mix(in srgb, var(--res-ink) 55%, transparent);
     cursor: pointer;
     transition:
         color 0.15s ease,
@@ -80,12 +96,12 @@
 }
 
 .research-tab-btn:hover {
-    color: rgba(85, 150, 100, 0.85);
+    color: color-mix(in srgb, var(--res-ink) 85%, transparent);
 }
 
 .research-tab-btn--active {
-    color: rgba(85, 150, 100, 1);
-    border-bottom-color: rgba(85, 150, 100, 0.7);
+    color: var(--res-ink);
+    border-bottom-color: var(--res-accent);
 }
 
 .research-panels {
@@ -115,6 +131,18 @@
    display rules above outrank the UA rule that acts on it — without this both
    tabs paint at once. Same trap as .join-stage and .pub-card. */
 .research-tab-panel[hidden] {
+    display: none;
+}
+
+/* ── The margin arrows, and the one tab that must not have them ──
+   Every other tab group turns its side margins into prev/next zones. Here the
+   zones would span the whole section, and with Overview showing that is a
+   ~800vh sticky stage — invisible click targets down the full height of the
+   dive, where a stray click swaps the tab out from under the reader. research.js
+   writes `data-active-tab`, so the zones exist only over Creations: the way
+   back is the direction the section was missing, and the way *out* of Overview
+   already has the standing FAB and the rail's own labelled exit. */
+.research-full[data-active-tab="overview"] > .tab-margin-nav {
     display: none;
 }
 
@@ -537,8 +565,13 @@ a.rc-item__row:focus-visible {
     overflow: hidden;
 }
 
+/* `overflow-wrap: anywhere` because a hexagon is 210px at four across and a
+   package name is one unbroken token — "SequentialSamplingModels" has nowhere
+   the browser is allowed to break it, so without this it runs out over the
+   sloping edge and is clipped mid-word. Breaking it is the lesser of the two. */
 .rc-hex__name {
     flex: none;
+    overflow-wrap: anywhere;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;

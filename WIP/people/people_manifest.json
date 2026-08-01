@@ -115,7 +115,7 @@
         "illusion"
       ],
       "hook": "Did you know that Dominique Makowski created the easystats ecosystem for R?",
-      "avatar": "people/dominique-makowski/avatar.png"
+      "avatar": "people/dominique-makowski/avatar.jpg"
     },
     {
       "folder": "ana-neves",
@@ -264,7 +264,7 @@
       ],
       "keywords": [],
       "hook": "",
-      "avatar": "people/oliver-collins/avatar.png"
+      "avatar": "people/oliver-collins/avatar.jpg"
     },
     {
       "folder": "roisin-sharma",
@@ -341,7 +341,7 @@
       ],
       "keywords": [],
       "hook": "",
-      "avatar": "people/anshu-te/avatar.png"
+      "avatar": "people/anshu-te/avatar.jpg"
     },
     {
       "folder": "emma-benn",
@@ -647,7 +647,7 @@
       ],
       "keywords": [],
       "hook": "",
-      "avatar": "people/ziliang-ngoi/avatar.png"
+      "avatar": "people/ziliang-ngoi/avatar.jpg"
     }
   ],
   "by_role": {
@@ -760,7 +760,7 @@
           "illusion"
         ],
         "hook": "Did you know that Dominique Makowski created the easystats ecosystem for R?",
-        "avatar": "people/dominique-makowski/avatar.png"
+        "avatar": "people/dominique-makowski/avatar.jpg"
       }
     ],
     "PhD Student": [
@@ -913,7 +913,7 @@
         ],
         "keywords": [],
         "hook": "",
-        "avatar": "people/oliver-collins/avatar.png"
+        "avatar": "people/oliver-collins/avatar.jpg"
       },
       {
         "folder": "roisin-sharma",
@@ -992,7 +992,7 @@
         ],
         "keywords": [],
         "hook": "",
-        "avatar": "people/anshu-te/avatar.png"
+        "avatar": "people/anshu-te/avatar.jpg"
       },
       {
         "folder": "emma-benn",
@@ -1298,7 +1298,7 @@
         ],
         "keywords": [],
         "hook": "",
-        "avatar": "people/ziliang-ngoi/avatar.png"
+        "avatar": "people/ziliang-ngoi/avatar.jpg"
       }
     ]
   }

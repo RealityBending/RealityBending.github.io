@@ -3,6 +3,7 @@
  */
 import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
 import { createPager } from "../shared/pager.js"
+import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRoute } from "../shared/deep-link.js"
 ;(function () {
     const PAGE_SIZE = 5
 
@@ -707,43 +708,40 @@ import { createPager } from "../shared/pager.js"
             buildScholarMetrics(pubs.length)
             scheduleOfficialMetricBadges()
 
-            // -- Tab switching --
-            function activateTab(tab) {
+            /* -- Tab switching, and the URL --
+               `#publications-<tab>`, the same scheme every other section uses
+               (shared/deep-link.js). This was `?section=publications&tab=…`
+               pushed onto the history stack, which was the only query-string
+               state on the site and the only tab that added a history entry:
+               four presses of Gallery and List meant four presses of Back to
+               leave the page. `write` is false for a switch that came out of
+               the URL in the first place. */
+            function activateTab(tab, write) {
                 document.querySelectorAll(".pub-tab-btn").forEach((b) => {
                     b.classList.toggle("pub-tab-btn--active", b.dataset.tab === tab)
                     b.setAttribute("aria-selected", b.dataset.tab === tab ? "true" : "false")
                 })
                 swapTabPanels(document.querySelectorAll(".pub-tab-panel"), "pub-tab-" + tab)
+                if (write !== false) writeRoute("publications-" + tab)
             }
 
             document.querySelectorAll(".pub-tab-btn").forEach((btn) => {
-                btn.addEventListener("click", () => {
-                    const tab = btn.dataset.tab
-                    activateTab(tab)
-                    const url = new URL(location.href)
-                    url.searchParams.set("section", "publications")
-                    url.searchParams.set("tab", tab)
-                    history.pushState({ section: "publications", tab }, "", url.toString())
-                })
+                btn.addEventListener("click", () => activateTab(btn.dataset.tab))
             })
 
             initMarginTabNav(document.querySelector(".publications-full"), ".pub-tab-btn")
 
-            // Restore tab from URL on load
-            ;(() => {
-                const params = new URLSearchParams(location.search)
-                const tabParam = params.get("tab")
-                if (tabParam && document.getElementById("pub-tab-" + tabParam)) {
-                    activateTab(tabParam)
-                    document.getElementById("sec-publications-full")?.scrollIntoView({ behavior: "auto", block: "start" })
-                }
-            })()
+            function applyRoute(route) {
+                const tab = matchRoute(route, "publications")
+                if (tab === null || !document.getElementById("pub-tab-" + tab)) return false
+                activateTab(tab, false)
+                revealSection("sec-publications-full")
+                return true
+            }
 
-            // Handle browser back/forward
-            window.addEventListener("popstate", (e) => {
-                const tab = e.state?.tab || new URLSearchParams(location.search).get("tab") || "list"
-                if (document.getElementById("pub-tab-" + tab)) activateTab(tab)
-            })
+            onRoute(applyRoute)
+            // Armed only when this section owned the route — see news.js.
+            if (applyRoute(INITIAL_ROUTE)) landOnLoad("sec-publications-full")
 
             // â”€â”€ Sort buttons â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             sortBar.querySelectorAll(".pub-sort-btn").forEach((btn) => {

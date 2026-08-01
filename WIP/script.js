@@ -1,5 +1,6 @@
 import { ACTIVE_NAV_SECTIONS, applySectionTheme } from "./site-sections.js"
 import { initMarginTabNav, swapTabPanels } from "./shared/tab-slide.js"
+import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, readRoute, revealSection, writeRoute } from "./shared/deep-link.js"
 
 /* script.js
  * Entry-point for the landing page interaction.
@@ -10,7 +11,11 @@ import { initMarginTabNav, swapTabPanels } from "./shared/tab-slide.js"
 const doorScreen = document.getElementById("door-screen")
 const mainPage = document.getElementById("main-page")
 
-let hasOpened = false
+/* The inline bootstrap in index.html has already opened the door if the page
+   was loaded on a hash — it runs before this module and before the first paint,
+   which is the only place the skip can happen without the door flashing. Start
+   from where it left off rather than offering to open something already open. */
+let hasOpened = Boolean(doorScreen && doorScreen.hidden)
 
 function openDoors() {
     if (!doorScreen || !mainPage || hasOpened) return
@@ -98,7 +103,13 @@ function initContactTabs() {
     // rules in css/15-contact.css.
     const section = document.querySelector(".contact-full")
 
-    function activateContactTab(tab) {
+    const TABS = ["contact", "join", "services"]
+
+    /* `write` is false for the two calls that are not a reader pressing
+       something — the initial render, and applying a route that came out of the
+       URL in the first place. Writing on those would be this section claiming
+       the hash off whatever section the reader actually linked to. */
+    function activateContactTab(tab, write) {
         if (section) section.dataset.activeTab = tab
 
         buttons.forEach((button) => {
@@ -108,6 +119,7 @@ function initContactTabs() {
         })
 
         swapTabPanels(panels, "contact-" + tab)
+        if (write !== false) writeRoute("contact-" + tab)
     }
 
     buttons.forEach((button) => {
@@ -116,27 +128,34 @@ function initContactTabs() {
         })
     })
 
+    /* The FABs and the two nav entries. They are plain `#sec-contact-full`
+       anchors, so the browser does the scrolling and the hash it leaves behind
+       is the section's — which is why these do not write one of their own. */
     document.querySelectorAll("[data-contact-tab-target]").forEach((link) => {
         link.addEventListener("click", () => {
-            activateContactTab(link.getAttribute("data-contact-tab-target") || "contact")
+            activateContactTab(link.getAttribute("data-contact-tab-target") || "contact", false)
         })
     })
 
-    const hashToTab = {
-        "#contact-contact": "contact",
-        "#contact-join": "join",
-        "#contact-services": "services",
+    /* Landing is part of it: a `#contact-join` a reader was sent is a link to
+       the tab, and every other section's route handler scrolls to itself. The
+       one on the initial route is re-run on `load` for the reason
+       `landOnInitialSection` is — this section is the last one on the page, so
+       its offset is the sum of every manifest still being fetched. */
+    function applyRoute(route) {
+        const tab = matchRoute(route, "contact")
+        if (tab === null || !TABS.includes(tab)) return
+        activateContactTab(tab, false)
+        revealSection("sec-contact-full")
     }
 
-    function activateFromHash() {
-        const tab = hashToTab[window.location.hash]
-        if (tab) {
-            activateContactTab(tab)
-        }
+    onRoute(applyRoute)
+    const initialTab = matchRoute(INITIAL_ROUTE, "contact")
+    activateContactTab(TABS.includes(initialTab) ? initialTab : "contact", false)
+    if (TABS.includes(initialTab)) {
+        revealSection("sec-contact-full")
+        landOnLoad("sec-contact-full")
     }
-
-    window.addEventListener("hashchange", activateFromHash)
-    activateContactTab(hashToTab[window.location.hash] || "contact")
     initMarginTabNav(section, ".contact-tab-btn")
 }
 
@@ -394,6 +413,23 @@ if (mainPage) {
     window.addEventListener("resize", updateNavVisibility)
     updateActiveNav()
     updateNavVisibility()
+}
+
+/* Landing on a plain section anchor — `#sec-news-full`, which is what the nav's
+   own links leave in the URL and so what a reader is most likely to copy. The
+   browser does resolve these itself, but it resolves them once, against a page
+   whose sections are still empty: every manifest here is fetched, so the
+   offsets move afterwards. Doing it again on `load` is what makes a shared
+   section link land where it says. Routes that name something inside a section
+   are that section's own job, since only it knows when its content exists. */
+function landOnInitialSection() {
+    if (!INITIAL_ROUTE.startsWith("sec-")) return
+    revealSection(INITIAL_ROUTE)
+}
+
+if (INITIAL_ROUTE) {
+    landOnInitialSection()
+    window.addEventListener("load", landOnInitialSection)
 }
 
 initContactTabs()

@@ -2,6 +2,7 @@ import { openImageLightbox } from "../shared/media-lightbox.js"
 import { buildMemoryMeta, getMemoriesManifest } from "../shared/memories-data.js"
 import { registerProfileActions } from "../shared/profile-api.js"
 import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
+import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRoute } from "../shared/deep-link.js"
 
 /* people.js
  * Renders the People section as a Multi-Layered Perceptron (MLP) diagram.
@@ -38,7 +39,21 @@ import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
         return CATEGORY_COLORS[category] || DEFAULT_ACCENT
     }
 
-    const DEFAULT_AVATAR = "img/default_avatar.png"
+    /* The fallback for a member with no avatar.*, in five places. It named
+       `img/default_avatar.png`, which has never existed — so the one case this
+       constant is for produced the browser's broken-image icon, which is worse
+       than the nothing it was standing in for. Inline rather than a file: it is
+       200 bytes, it can never 404, and a placeholder that needs a network
+       request to say "no picture" is a placeholder that can fail twice. */
+    const DEFAULT_AVATAR =
+        "data:image/svg+xml;charset=utf-8," +
+        encodeURIComponent(
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">' +
+                '<rect width="96" height="96" fill="#e7e4da"/>' +
+                '<circle cx="48" cy="38" r="16" fill="#c9c4b6"/>' +
+                '<path d="M16 96a32 32 0 0 1 64 0z" fill="#c9c4b6"/>' +
+                "</svg>"
+        )
     const NS = "http://www.w3.org/2000/svg"
 
     function toCartesian(cx, cy, radius, angleDeg) {
@@ -659,7 +674,12 @@ import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
             const container = document.getElementById("people-grid")
             if (!container) return
 
-            function activatePeopleTab(tab) {
+            /* Which tab the URL goes back to when a profile is closed — the
+               panel is opened over whatever the reader was looking at. */
+            let activeTab = "lab"
+
+            function activatePeopleTab(tab, write) {
+                activeTab = tab
                 document.querySelectorAll(".people-tab-btn").forEach((button) => {
                     const isActive = button.dataset.tab === tab
                     button.classList.toggle("people-tab-btn--active", isActive)
@@ -667,6 +687,7 @@ import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
                 })
 
                 swapTabPanels(document.querySelectorAll(".people-tab-panel"), "people-tab-" + tab)
+                if (write !== false) writeRoute("people-" + tab)
             }
 
             document.querySelectorAll(".people-tab-btn").forEach((button) => {
@@ -675,7 +696,7 @@ import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
                 })
             })
 
-            activatePeopleTab("lab")
+            activatePeopleTab("lab", false)
             initMarginTabNav(document.querySelector(".people-full"), ".people-tab-btn")
 
             container.innerHTML = ""
@@ -711,15 +732,25 @@ import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
                 panel.classList.toggle("profile-panel--minimal", !!isMinimal)
             }
 
-            function closePanel() {
+            function closePanel(write) {
+                const wasOpen = panel.classList.contains("is-open")
                 removeDiscoverButton()
+                panel.dataset.member = ""
                 panel.classList.remove("is-open")
                 panel.classList.remove("profile-panel--minimal")
                 backdrop.classList.remove("is-visible")
+                /* Back to the section's own route, so the URL never names a
+                   profile nobody is looking at. Only when something was
+                   actually open — this runs on every Escape anywhere on the
+                   page — and not when the close is itself part of applying a
+                   route, where the caller is about to say what the URL is. */
+                if (wasOpen && write !== false) writeRoute("people-" + activeTab)
             }
 
-            panelClose.addEventListener("click", closePanel)
-            backdrop.addEventListener("click", closePanel)
+            // Wrapped rather than passed straight in: closePanel's first
+            // argument is a flag, and a listener would hand it the event.
+            panelClose.addEventListener("click", () => closePanel())
+            backdrop.addEventListener("click", () => closePanel())
             document.addEventListener("keydown", (e) => {
                 if (e.key === "Escape") closePanel()
             })
@@ -762,6 +793,10 @@ import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
                     panelBody.appendChild(sections)
                 }
 
+                // A collaborator is not in the manifest and has no route of its
+                // own; clearing this keeps a later member route from mistaking
+                // whoever is on screen for the member it names.
+                panel.dataset.member = ""
                 panel.classList.add("is-open")
                 backdrop.classList.add("is-visible")
             }
@@ -928,7 +963,62 @@ import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
 
                 panel.classList.add("is-open")
                 backdrop.classList.add("is-visible")
+                // The shareable part: a member's folder is already the stable
+                // id everything else here joins on, so it *is* the route —
+                // `#dominique-makowski`, with no prefix in front of it. Kept on
+                // the panel too, so a route naming whoever is already on screen
+                // can be recognised and left alone.
+                panel.dataset.member = m.folder || ""
+                if (m.folder) writeRoute(m.folder)
             }
+
+            /* ── The URL ──
+               `#<folder>` opens a profile, `#people-<tab>` picks a tab.
+               Applied here rather than at startup because none of it exists
+               until the manifest has landed — this whole block is inside its
+               `.then`. Idempotent by way of `is-open`: a reader can paste the
+               same link twice, and a route that names the profile already on
+               screen must not rebuild it under them.
+
+               **A member has no prefix**, because a person is the one thing on
+               this site whose name is enough: `#dominique-makowski` is what you
+               would guess and what you would want to send. It is safe only
+               because the match is against the *set* of folders rather than a
+               shape — `matchRoute` would have to guess where a prefix ends,
+               `members.find` cannot mistake `post-2020-r-or-python` for a
+               person. Two things it does put on a folder, though, and nothing
+               enforces either: it must not begin with another route's prefix
+               (`people-`, `post-`, `sec-`, `join-`, `services-`, `contact-`,
+               `research-`, `news-`, `publications-`), and it must not equal an
+               element's id in index.html, or the browser will scroll to that
+               element on top of whatever this does. */
+            const TABS = ["lab", "collaborations", "memories"]
+
+            function applyRoute(route) {
+                const member = route && manifest.members.find((m) => m.folder === route)
+                if (member) {
+                    revealSection("sec-people-full")
+                    const alreadyOpen = panel.classList.contains("is-open") && panel.dataset.member === route
+                    if (!alreadyOpen) openProfile(member)
+                    return true
+                }
+
+                /* Anything that is not a person is a route to somewhere else on
+                   the page, and this panel covers all of it — so it goes,
+                   whether or not the destination is this section. Silent when
+                   nothing was open, which is the usual case. */
+                closePanel(false)
+
+                const tab = matchRoute(route, "people")
+                if (tab === null || !TABS.includes(tab)) return false
+                revealSection("sec-people-full")
+                activatePeopleTab(tab, false)
+                return true
+            }
+
+            onRoute(applyRoute)
+            // Armed only when this section owned the route — see news.js.
+            if (applyRoute(INITIAL_ROUTE)) landOnLoad("sec-people-full")
 
             registerProfileActions({
                 open: openProfile,

@@ -1,5 +1,6 @@
 import { RESEARCH_CONTENT } from "./research-content.js"
-import { LEAVE_DURATION, swapTabPanels } from "../shared/tab-slide.js"
+import { initMarginTabNav, LEAVE_DURATION, swapTabPanels } from "../shared/tab-slide.js"
+import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRoute } from "../shared/deep-link.js"
 import { buildRealityZoom, initRealityZoom } from "./reality-zoom.js"
 import { buildCreations } from "./creations.js"
 
@@ -9,17 +10,21 @@ import { buildCreations } from "./creations.js"
    fallback here, because there was never a tab that used it and a builder no
    content reaches is a builder nobody notices is wrong.
 
-   Note the missing initMarginTabNav: every other tab group turns its side
-   margins into prev/next zones, but this one cannot. The zones span the whole
-   host, and Overview's host is a ~700vh sticky stage — the arrows would sit as
-   invisible click targets over the full height of the zoom, so a stray click
-   anywhere in the dark would swap the tab out from under the reader. Two
-   labelled buttons are enough for two tabs. */
+   The margin arrows are here, but **only while the zoom is not the panel on
+   show**. The zones span the whole host, and Overview's host is a ~800vh sticky
+   stage: hosted over that they are invisible click targets down the full height
+   of the dive, and a stray click anywhere in the dark swaps the tab out from
+   under the reader. So `.research-full` carries `data-active-tab` and the
+   stylesheet takes the zones away on `overview` — which leaves the arrow doing
+   the one job the section was missing, the way back from Creations. The way
+   *out* of Overview never needed one: it has the standing FAB and the rail's
+   own exit, both of them labelled. */
 ;(function () {
     const root = document.getElementById("research-root")
     if (!root) return
 
     const mainPage = document.getElementById("main-page")
+    const section = document.getElementById("sec-research-full")
     const tabs = Array.isArray(RESEARCH_CONTENT.tabs) ? RESEARCH_CONTENT.tabs.filter((tab) => tab && tab.id && tab.label) : []
     if (!tabs.length) return
 
@@ -78,8 +83,14 @@ import { buildCreations } from "./creations.js"
     // Assigned by initCreationsFab, which cannot exist until the panels do.
     let syncFab = () => {}
 
-    function activateTab(tabId) {
+    /* `write` is false for the initial render and for a switch that came out of
+       the URL — writing then would be this section claiming a hash it was only
+       reading. */
+    function activateTab(tabId, write) {
         activeTab = tabId
+        // What the stylesheet keys the margin arrows off — see the note at the
+        // top of this file.
+        if (section) section.dataset.activeTab = tabId
 
         // Leaving Overview shuts the gate. The panel is about to be display:none
         // and its ~700vh track goes with it, which is a scroll jump for anyone
@@ -94,6 +105,7 @@ import { buildCreations } from "./creations.js"
             button.setAttribute("aria-selected", isActive ? "true" : "false")
         })
         swapTabPanels(panels, "research-tab-" + tabId)
+        if (write !== false) writeRoute("research-" + tabId)
         // After the swap, not before: the floating button reads the section's
         // own rect, and the section is about to change height by the whole of
         // one panel. Once more when the slide has settled, for the same reason
@@ -135,6 +147,12 @@ import { buildCreations } from "./creations.js"
     shell.appendChild(panelHost)
     root.replaceChildren(shell)
 
+    if (section) {
+        section.dataset.activeTab = activeTab
+        initMarginTabNav(section, ".research-tab-btn")
+    }
+
+
     /* Leaving the zoom for the other tab, and scrolling the section header back
        into view along with it — switching tabs at the bottom of a 700vh track
        otherwise lands the reader on a short panel they have already scrolled
@@ -147,7 +165,6 @@ import { buildCreations } from "./creations.js"
        section. */
     function goToTab(tabId) {
         activateTab(tabId)
-        const section = document.getElementById("sec-research-full")
         if (section && mainPage) mainPage.scrollTo({ top: section.offsetTop, behavior: "smooth" })
     }
 
@@ -164,7 +181,6 @@ import { buildCreations } from "./creations.js"
        when the gate opens — see the note on `gate` in script.js). */
     function initCreationsFab(targetTab) {
         const fab = document.getElementById("fab-research-creations")
-        const section = document.getElementById("sec-research-full")
         if (!fab || !section || !mainPage || !targetTab || !zoomTab) return
 
         fab.addEventListener("click", () => goToTab(targetTab.id))
@@ -199,4 +215,23 @@ import { buildCreations } from "./creations.js"
         zoom.driver = initRealityZoom(zoom, mainPage)
         if (other) initCreationsFab(other)
     }
+
+    /* ── The URL ──
+       `#research-<tab>`. Nothing in this section is fetched, so the only thing
+       the route has to wait for is the zoom above: switching away from Overview
+       before its driver exists would leave the stage measured while it was
+       `display: none`. Landing on `#research-overview` deliberately leaves the
+       zoom locked — the gate is the section's front door, and a shared link
+       should open on it rather than halfway down an ~800vh track. */
+    function applyRoute(route) {
+        const tab = matchRoute(route, "research")
+        if (tab === null || !tabs.some((entry) => entry.id === tab)) return false
+        activateTab(tab, false)
+        revealSection("sec-research-full")
+        return true
+    }
+
+    onRoute(applyRoute)
+    // Armed only when this section owned the route — see news.js.
+    if (applyRoute(INITIAL_ROUTE)) landOnLoad("sec-research-full")
 })()

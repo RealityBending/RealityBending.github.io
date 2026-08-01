@@ -37,6 +37,7 @@
 import { SERVICES_CONTENT } from "./services-content.js"
 import { element, createRichText } from "../shared/rich-text.js"
 import { createHoneycomb } from "../shared/honeycomb.js"
+import { writeRoute } from "../shared/deep-link.js"
 
 const ROOT_ID = "services-root"
 
@@ -439,6 +440,12 @@ function buildFilters(content, onSelect) {
         // filtered out would flip something nobody can see.
         if (card.cell.hidden) applyFilter(ALL_FILTER)
         if (card.flip) card.flip(true)
+        /* That click goes through the Information tab handler, which now writes
+           its own `#contact-services` (shared/deep-link.js) — and would replace
+           the very link the reader followed. This route is the more specific of
+           the two and outranks it; a programmatic click is the one case the tab
+           handler cannot tell apart from a press. */
+        writeRoute(match[0].slice(1))
     }
 
     window.addEventListener("hashchange", openFromHash)

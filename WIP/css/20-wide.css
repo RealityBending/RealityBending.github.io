@@ -95,5 +95,17 @@
     .research-full {
         padding-left: 14rem;
     }
+
+    /* And the same correction to its margin zones, for the same reason as
+       .people-full's above: the sidebar is padding here, so the content column
+       is not centred in the padding box and the zones' own formula overshoots.
+       They only ever exist over the Creations tab (see 05-research.css). */
+    .research-full > .tab-margin-nav--prev {
+        width: calc(14rem + (100% - 14rem - var(--content-max-width)) / 2);
+    }
+
+    .research-full > .tab-margin-nav--next {
+        width: calc((100% - 14rem - var(--content-max-width)) / 2);
+    }
 }
 

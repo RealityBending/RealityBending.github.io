@@ -5,6 +5,12 @@ folder per item, edited by hand, and a script turns the tree into the single
 JSON the page fetches. Nothing else is involved — no Markdown files, no front
 matter, no static site generator.
 
+A post is one folder, named `<year>-<short-title>` — `2025-interoception-
+questionnaires`. That name is the post's slug and so its shareable link
+(`#post-2025-interoception-questionnaires`), which is why it is a year and a
+handful of words rather than a full date: the day is in post.json, where the
+page reads it from, and a URL nobody can say out loud is a URL nobody shares.
+
 Each subfolder of news/ contains:
     - post.json     (required)
     - featured.*    (optional) first image matching featured.jpg/.png/.webp/.gif
@@ -217,14 +223,19 @@ DATE_RE = re.compile(r"^(\d{4})-(\d{2})-(\d{2})")
 
 
 def parse_date(value, folder: str) -> str:
+    """post.json is the only place the day is written.
+
+    A folder is `<year>-<short-title>` — enough to sort the tree and to read at
+    a glance, and short enough that the slug it becomes is a URL somebody can
+    say out loud. It deliberately does *not* carry the day: two places holding
+    the same date is two places to get it wrong, and the one that showed on the
+    page was always post.json's. (It was `<full date>-<short title>`, and one
+    post already disagreed with itself by two days.)
+    """
     match = DATE_RE.match(clean_string(value))
     if match:
         return match.group(0)
-    # The folder name carries it too, by convention.
-    match = DATE_RE.match(folder)
-    if match:
-        return match.group(0)
-    warn(folder, "no usable date in post.json or folder name")
+    warn(folder, "no usable 'date' in post.json — needs YYYY-MM-DD")
     return ""
 
 

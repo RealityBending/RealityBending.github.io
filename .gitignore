@@ -52,3 +52,11 @@ node_modules/
 *.DS_Store
 
 docs/*
+
+# Full-size sources for the WIP site's derivatives. Every one of these is the
+# original a committed web copy was encoded from — keep them locally so a
+# derivative can be regenerated, but they are megabytes each and no page ever
+# requests them. See "The size budget" in WIP/CLAUDE.md.
+*_full.jpg
+*_full.png
+WIP/img/Intro.mp4

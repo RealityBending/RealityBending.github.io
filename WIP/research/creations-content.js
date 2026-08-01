@@ -14,10 +14,11 @@
  * Each group is a dark plate with a painting behind it, given as `image` — a
  * path from the site root, like a tool's `logo`. Both are
  * chosen for what the row is: an astronomer working out a new arrangement of
- * the world for the ideas, a bench of instruments for the tools. Any
- * replacement has to survive being darkened to a texture and cropped to a wide
- * band, so a picture whose subject is a small bright thing in one corner is the
- * wrong kind.
+ * the world for the ideas, and for the tools a room of people around an orrery
+ * — an instrument being used, which is what a tool is for. Any replacement has
+ * to survive being darkened to a texture and cropped to a wide band, so a
+ * picture whose subject is a small bright thing in one corner is the wrong
+ * kind.
  *
  * Item keys, both rows: `name`, `line` (the one-line description — this is the
  * whole of what a reader gets, so it has to stand alone), `href` and
@@ -69,7 +70,7 @@ export const CREATIONS_TAB = Object.freeze({
             label: "Tools",
             lede: "Instruments anyone can pick up and use.",
             accent: "#33cccc",
-            image: "research/img/tools.jpg",
+            image: "research/img/orrey.jpg",
             items: [
                 {
                     name: "NeuroKit2",
@@ -95,11 +96,25 @@ export const CREATIONS_TAB = Object.freeze({
                     linkLabel: "Docs",
                 },
                 {
+                    name: "SequentialSamplingModels",
+                    type: "Julia package",
+                    line: "Evidence accumulation models — drift diffusion and its relatives — to simulate and fit.",
+                    href: "https://github.com/itsdfish/SequentialSamplingModels.jl",
+                    linkLabel: "GitHub",
+                },
+                {
                     name: "Mint",
                     type: "Questionnaire",
                     line: "Seven modalities of bodily sensation, crossed with the contexts they show up in.",
                     href: "https://doi.org/10.31234/osf.io/8qrht_v1",
                     linkLabel: "Preprint",
+                },
+                {
+                    name: "The LIE Scale",
+                    type: "Questionnaire",
+                    line: "Sixteen items for the four dimensions of lying: frequency, ability, negativity, context.",
+                    href: "https://doi.org/10.1007/s12144-021-01760-1",
+                    linkLabel: "Paper",
                 },
                 {
                     name: "The Illusion Game",

@@ -33,6 +33,7 @@
  */
 
 import { createHoneycomb } from "../shared/honeycomb.js"
+import { element as el } from "../shared/dom.js"
 
 const STAR = "★"
 
@@ -55,12 +56,6 @@ const MAX_COLUMNS = 4
  * set stays spread however many logos the row happens to carry. */
 const FILL_COLOURS = ["#aa55ff", "#5599ff", "#55cc77", "#ff9933", "#ff5555"]
 
-function el(tag, className, text) {
-    const node = document.createElement(tag)
-    if (className) node.className = className
-    if (text != null) node.textContent = text
-    return node
-}
 
 function star(className) {
     const mark = el("span", className, STAR)

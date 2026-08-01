@@ -13,12 +13,11 @@
  * site free of an options argument it would otherwise have to repeat.
  */
 
-export function element(tag, className, text) {
-    const node = document.createElement(tag)
-    if (className) node.className = className
-    if (text != null) node.textContent = text
-    return node
-}
+/* Re-exported rather than defined here: four modules had their own copy of it,
+   and the ones outside this section should not have to import the dialect below
+   to get six lines of DOM sugar. See shared/dom.js. */
+export { element } from "./dom.js"
+import { element } from "./dom.js"
 
 /* ── Inline markup ──
  * `[label](href)`, `*emphasis*`, `**strong**` and `***both***`, and nothing

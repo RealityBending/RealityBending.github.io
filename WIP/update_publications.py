@@ -16,6 +16,13 @@ import urllib.error
 import urllib.parse
 from pathlib import Path
 
+# The report below prints ✓/⊘ and paper titles, and a Windows console defaults
+# to cp1252 — without this the script does its work and then dies on the summary
+# line, which reads exactly like a failure to write the manifest. Same guard as
+# update_news.py, which is where this was found the first time.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
 try:
     ROOT = Path(__file__).resolve().parent
 except NameError:

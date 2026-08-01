@@ -552,6 +552,27 @@
                     doorScreen.setAttribute("aria-hidden", "true")
                     mainPage.classList.add("visible")
                 }
+
+                /* A shared link arrives with a hash (see shared/deep-link.js),
+                   and a reader who followed one to a person or a post has
+                   already chosen to come in — the door would be a screen
+                   between them and the thing they clicked. So any hash at all
+                   skips it, with no animation.
+
+                   Here rather than in script.js, and this is the reason: this
+                   block is parsed inline, before the deferred modules run and
+                   before the browser has painted, so the door never appears at
+                   all. From a module the reader sees it flash.
+
+                   Adding `visible` is not decoration: #main-page is
+                   `pointer-events: none` until it has that class, so a door
+                   merely hidden leaves the whole page unclickable. */
+                if (window.location.hash.length > 1) {
+                    doorScreen.classList.add("opening")
+                    doorScreen.setAttribute("aria-hidden", "true")
+                    doorScreen.hidden = true
+                    mainPage.classList.add("visible")
+                }
                 doorScreen.addEventListener("click", openDoors)
                 doorScreen.addEventListener("keydown", function (event) {
                     if (event.key !== "Enter" && event.key !== " ") return

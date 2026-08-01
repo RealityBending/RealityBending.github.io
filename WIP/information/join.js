@@ -20,6 +20,7 @@
 import { JOIN_CONTENT } from "./join-content.js"
 import { swapTabPanels } from "../shared/tab-slide.js"
 import { element, createRichText } from "../shared/rich-text.js"
+import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRoute } from "../shared/deep-link.js"
 
 const ROOT_ID = "join-root"
 const STAGE_PANEL_PREFIX = "join-stage-"
@@ -413,7 +414,12 @@ function createBackdropController() {
     const backdrop = createBackdropController()
     let activeIndex = 0
 
-    function select(index) {
+    /* `write` is false for the calls that are not a reader pressing something —
+       the initial render, and applying a route that came out of the URL. Every
+       other call is a press on the rail, and each level is its own shareable
+       link: `#join-phd` is what a reader copies to send someone straight to the
+       PhD routes rather than to the tab's first level. */
+    function select(index, write) {
         const stage = stages[index]
         if (!stage) return
 
@@ -431,6 +437,7 @@ function createBackdropController() {
         ladder.style.setProperty("--join-active", String(index))
         syncBackdrop()
         swapTabPanels(panels, STAGE_PANEL_PREFIX + stage.id)
+        if (write !== false) writeRoute("join-" + stage.id)
     }
 
     /* The banner belongs to the section, not to this tab, so a level photograph
@@ -473,26 +480,42 @@ function createBackdropController() {
     if (JOIN_CONTENT.outro) layout.appendChild(renderOutro(JOIN_CONTENT.outro))
 
     root.appendChild(layout)
-    select(0)
+    select(0, false)
 
-    /* Deep links. `#join-phd` both opens the Join tab — by clicking its button,
-       so script.js's own handler does the work — and selects the stage. The
-       Information tab controller runs first (script.js is earlier in the
-       document) and will have fallen back to Contact, which this then
-       overrides. */
-    function selectFromHash() {
-        const match = /^#join-([\w-]+)$/.exec(window.location.hash)
-        if (!match) return
-        const index = stages.findIndex((stage) => stage.id === match[1])
+    /* Deep links. `#join-phd` opens the Join tab — by clicking its button, so
+       script.js's own handler does the work — selects the stage, and lands the
+       reader on the section. The Information tab controller runs first
+       (script.js is earlier in the document) and will have fallen back to
+       Contact, which this then overrides.
+
+       Every level is reachable this way, and every level writes its own route
+       when it is pressed (see `select`), so the link to share is whatever is in
+       the address bar once the level is showing. */
+    function applyRoute(route) {
+        const id = matchRoute(route, "join")
+        if (!id) return
+        const index = stages.findIndex((stage) => stage.id === id)
         if (index === -1) return
 
         const joinTab = document.getElementById("contact-tab-btn-join")
         if (joinTab && joinTab.getAttribute("aria-selected") !== "true") joinTab.click()
-        select(index)
+        select(index, false)
+        revealSection("sec-contact-full")
+        /* That click goes through the Information tab handler, which now writes
+           its own `#contact-join` (shared/deep-link.js) — and would replace the
+           very link the reader followed to get here. Putting it back is the
+           whole fix: this route is more specific than that one and outranks it.
+           A programmatic click is the one case the tab handler cannot tell
+           apart from a press. */
+        writeRoute(route)
     }
 
-    window.addEventListener("hashchange", selectFromHash)
-    selectFromHash()
+    onRoute(applyRoute)
+    applyRoute(INITIAL_ROUTE)
+
+    // Information is the last section, so its offset is the sum of every one
+    // above it — all still fetching when the route above is applied.
+    if (matchRoute(INITIAL_ROUTE, "join")) landOnLoad("sec-contact-full")
 
     // Warm the other levels' photographs once the page is idle: the crossfade
     // has nothing to dissolve into if the incoming image is still downloading.

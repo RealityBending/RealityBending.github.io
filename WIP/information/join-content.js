@@ -85,7 +85,7 @@ export const JOIN_CONTENT = Object.freeze({
                             links: [
                                 { label: "The scheme", href: "http://www.sussex.ac.uk/suro/jra" },
                                 { label: "How to apply", href: "http://www.sussex.ac.uk/suro/applying" },
-                                { label: "A past JRA's account", href: "https://realitybending.github.io/post/2024-03-12-jingjra/" },
+                                { label: "A past JRA's account", href: "#post-2023-jra-experience" },
                             ],
                         },
                         {

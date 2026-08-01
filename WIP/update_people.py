@@ -21,6 +21,13 @@ import re
 import sys
 from pathlib import Path
 
+# The report below prints ✓/✗ and member names, and a Windows console defaults
+# to cp1252 — without this the script does its work and then dies on the summary
+# line, which reads exactly like a failure to write the manifest. Same guard as
+# update_news.py, which is where this was found the first time.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
 ROLE_ORDER = ["PI", "Postdoc", "PhD Student", "Research Assistant", "Alumni"]
 REQUIRED_FIELDS = ["name", "category"]
 OPTIONAL_FIELDS = [

@@ -52,6 +52,6 @@ body {
     --content-max-width: 1200px;
     --content-inline-gutter: clamp(1rem, 3vw, 2rem);
     --content-inline-size: min(var(--content-max-width), calc(100% - (var(--content-inline-gutter) * 2)));
-    --debug-margins: 1; /* set to 0 to hide dashed margin guides */
+    --debug-margins: 0; /* set to 1 to show dashed margin guides */
 }
 

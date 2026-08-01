@@ -29,6 +29,8 @@
  *   resolves against it, and the scroll listener has to be on it.
  */
 
+import { element as el } from "../shared/dom.js"
+
 /* Measured off img/magritte_falsemirror.jpg (2000×1345) by scanning the middle
    of the canvas for the pupil's dark run: it spans x 831→1096, y 537→804. Eyed
    values were 7px out at natural size, which showed as a ring at scale 1. */
@@ -78,12 +80,6 @@ function span(value, start, end) {
 const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2)
 const easeOut = (t) => 1 - Math.pow(1 - t, 3)
 
-function el(tag, className, text) {
-    const node = document.createElement(tag)
-    if (className) node.className = className
-    if (text != null) node.textContent = text
-    return node
-}
 
 function svg(tag, attrs) {
     const node = document.createElementNS("http://www.w3.org/2000/svg", tag)
