@@ -12,7 +12,8 @@
       "keywords": [],
       "citations": 0,
       "featured": null,
-      "folder": "2026_MisophoniaAttention"
+      "folder": "2026_MisophoniaAttention",
+      "summary": ""
     },
     {
       "doi": "10.3389/fpsyg.2026.1856582",
@@ -26,7 +27,8 @@
       "keywords": [],
       "citations": 2,
       "featured": null,
-      "folder": "2026_ChoosingInformativePriors"
+      "folder": "2026_ChoosingInformativePriors",
+      "summary": ""
     },
     {
       "doi": "10.31234/osf.io/gzv78_v1",
@@ -40,7 +42,8 @@
       "keywords": [],
       "citations": 0,
       "featured": null,
-      "folder": "2026_InteroceptionAndSubstanceUse"
+      "folder": "2026_InteroceptionAndSubstanceUse",
+      "summary": ""
     },
     {
       "doi": "10.31234/osf.io/2mpqd_v5",
@@ -54,7 +57,8 @@
       "keywords": [],
       "citations": 0,
       "featured": null,
-      "folder": "2026_MegaanalysisIAS"
+      "folder": "2026_MegaanalysisIAS",
+      "summary": ""
     },
     {
       "doi": "10.31234/osf.io/9pequ_v2",
@@ -68,7 +72,8 @@
       "keywords": [],
       "citations": 0,
       "featured": null,
-      "folder": "2026_ActiveInferencePersonality"
+      "folder": "2026_ActiveInferencePersonality",
+      "summary": ""
     },
     {
       "doi": "10.5334/joc.469",
@@ -87,7 +92,8 @@
         "R",
         "Methods"
       ],
-      "citations": 0
+      "citations": 0,
+      "summary": ""
     },
     {
       "doi": "10.31234/osf.io/7xgbt_v1",
@@ -101,7 +107,8 @@
       "keywords": [],
       "citations": 1,
       "featured": null,
-      "folder": "2025_BadNews"
+      "folder": "2025_BadNews",
+      "summary": ""
     },
     {
       "doi": "10.1371/journal.pone.0321818",
@@ -118,7 +125,8 @@
         "Fake news",
         "Misinformation"
       ],
-      "citations": 4
+      "citations": 4,
+      "summary": ""
     },
     {
       "doi": "10.31234/osf.io/z68v3_v1",
@@ -132,7 +140,8 @@
       "keywords": [],
       "citations": 0,
       "featured": null,
-      "folder": "2025_Choco"
+      "folder": "2025_Choco",
+      "summary": ""
     },
     {
       "doi": "10.1525/collabra.143431",
@@ -146,7 +155,8 @@
       "folder": "2025_PHQ4",
       "featured": null,
       "keywords": [],
-      "citations": 0
+      "citations": 0,
+      "summary": ""
     },
     {
       "doi": "10.21105/joss.07969",
@@ -160,7 +170,8 @@
       "folder": "2025_Modelbased",
       "featured": null,
       "keywords": [],
-      "citations": 32
+      "citations": 32,
+      "summary": ""
     },
     {
       "doi": "10.21105/jcon.00186",
@@ -174,7 +185,8 @@
       "keywords": [],
       "citations": 0,
       "featured": null,
-      "folder": "2025_Sequentialsamplingmodels"
+      "folder": "2025_Sequentialsamplingmodels",
+      "summary": ""
     },
     {
       "doi": "10.31234/osf.io/8qrht_v1",
@@ -188,7 +200,8 @@
       "keywords": [],
       "citations": 0,
       "featured": null,
-      "folder": "2025_Mint"
+      "folder": "2025_Mint",
+      "summary": ""
     },
     {
       "doi": "10.1016/j.actpsy.2024.104670",
@@ -202,7 +215,8 @@
       "keywords": [],
       "citations": 7,
       "featured": "publications/2025_TooBeautifulToBeFake/featured.jpg",
-      "folder": "2025_TooBeautifulToBeFake"
+      "folder": "2025_TooBeautifulToBeFake",
+      "summary": ""
     },
     {
       "doi": "10.1111/psyp.70164",
@@ -216,7 +230,8 @@
       "keywords": [],
       "citations": 4,
       "featured": null,
-      "folder": "2025_WhichHeartRateVariability"
+      "folder": "2025_WhichHeartRateVariability",
+      "summary": ""
     },
     {
       "doi": "10.1016/J.JECP.2023.105810",
@@ -230,7 +245,8 @@
       "keywords": [],
       "citations": 2,
       "featured": null,
-      "folder": "2024_BeyondEmpathy"
+      "folder": "2024_BeyondEmpathy",
+      "summary": ""
     },
     {
       "doi": "10.3758/s13428-024-02356-w",
@@ -244,7 +260,8 @@
       "keywords": [],
       "citations": 39,
       "featured": null,
-      "folder": "2024_CheckYourOutliers"
+      "folder": "2024_CheckYourOutliers",
+      "summary": ""
     },
     {
       "doi": "10.3390/covid4120132",
@@ -258,7 +275,8 @@
       "keywords": [],
       "citations": 1,
       "featured": null,
-      "folder": "2024_NewsOutletsConspiracyTheory"
+      "folder": "2024_NewsOutletsConspiracyTheory",
+      "summary": ""
     },
     {
       "doi": "10.1038/s41598-024-68331-9",
@@ -272,7 +290,8 @@
       "keywords": [],
       "citations": 5,
       "featured": null,
-      "folder": "2024_SelfreferenceAndEmotionalReaction"
+      "folder": "2024_SelfreferenceAndEmotionalReaction",
+      "summary": ""
     },
     {
       "doi": "10.1037/CNS0000345",
@@ -286,7 +305,8 @@
       "keywords": [],
       "citations": 4,
       "featured": "publications/2024_TheBeautyAndTheSelf/featured.jpg",
-      "folder": "2024_TheBeautyAndTheSelf"
+      "folder": "2024_TheBeautyAndTheSelf",
+      "summary": ""
     },
     {
       "doi": "10.1007/s12144-024-06890-w",
@@ -300,7 +320,8 @@
       "keywords": [],
       "citations": 1,
       "featured": "publications/2024_TheHeartCanLie/featured.png",
-      "folder": "2024_TheHeartCanLie"
+      "folder": "2024_TheHeartCanLie",
+      "summary": ""
     },
     {
       "doi": "10.1038/S41598-023-33148-5",
@@ -314,7 +335,8 @@
       "keywords": [],
       "citations": 12,
       "featured": "publications/2023_VisualIllusionParadigm/featured.jpg",
-      "folder": "2023_VisualIllusionParadigm"
+      "folder": "2023_VisualIllusionParadigm",
+      "summary": ""
     },
     {
       "doi": "10.31234/osf.io/ezybm",
@@ -328,7 +350,8 @@
       "keywords": [],
       "citations": 2,
       "featured": null,
-      "folder": "2023_AttenuatingSubjectiveCrowding"
+      "folder": "2023_AttenuatingSubjectiveCrowding",
+      "summary": ""
     },
     {
       "doi": "10.31234/osf.io/bu6nt",
@@ -342,7 +365,8 @@
       "keywords": [],
       "citations": 4,
       "featured": null,
-      "folder": "2023_CheckYourOutliers"
+      "folder": "2023_CheckYourOutliers",
+      "summary": ""
     },
     {
       "doi": "10.34641/mg.55",
@@ -356,7 +380,8 @@
       "keywords": [],
       "citations": null,
       "featured": null,
-      "folder": "2023_DisentanglingTheSocial"
+      "folder": "2023_DisentanglingTheSocial",
+      "summary": ""
     },
     {
       "doi": "10.31234/osf.io/p342w",
@@ -370,7 +395,8 @@
       "keywords": [],
       "citations": 0,
       "featured": null,
-      "folder": "2023_TheHeartCanLie"
+      "folder": "2023_TheHeartCanLie",
+      "summary": ""
     },
     {
       "doi": "10.3390/math11081821",
@@ -384,7 +410,8 @@
       "keywords": [],
       "citations": 1,
       "featured": "publications/2023_WhereAreWeGoing/featured.jpg",
-      "folder": "2023_WhereAreWeGoing"
+      "folder": "2023_WhereAreWeGoing",
+      "summary": ""
     },
     {
       "doi": "10.1111/EJN.15800",
@@ -398,7 +425,8 @@
       "keywords": [],
       "citations": 220,
       "featured": "publications/2022_BrainEntropyFractalDimensions/featured.jpg",
-      "folder": "2022_BrainEntropyFractalDimensions"
+      "folder": "2022_BrainEntropyFractalDimensions",
+      "summary": ""
     },
     {
       "doi": "10.21105/joss.04684",
@@ -412,7 +440,8 @@
       "keywords": [],
       "citations": 49,
       "featured": "publications/2022_Datawizard/featured.jpg",
-      "folder": "2022_Datawizard"
+      "folder": "2022_Datawizard",
+      "summary": ""
     },
     {
       "doi": "10.1007/S00426-022-01660-4",
@@ -426,7 +455,8 @@
       "keywords": [],
       "citations": 0,
       "featured": null,
-      "folder": "2022_InMedioStatVirtus"
+      "folder": "2022_InMedioStatVirtus",
+      "summary": ""
     },
     {
       "doi": "10.1038/S41598-022-23992-2",
@@ -440,7 +470,8 @@
       "keywords": [],
       "citations": 8,
       "featured": "publications/2022_MovieEditingInfluencesSpectators/featured.jpg",
-      "folder": "2022_MovieEditingInfluencesSpectators"
+      "folder": "2022_MovieEditingInfluencesSpectators",
+      "summary": ""
     },
     {
       "doi": "10.31234/osf.io/9pjx5",
@@ -454,7 +485,8 @@
       "keywords": [],
       "citations": 1,
       "featured": null,
-      "folder": "2022_TheIllusionGame"
+      "folder": "2022_TheIllusionGame",
+      "summary": ""
     },
     {
       "doi": "10.3390/e24081036",
@@ -468,7 +500,8 @@
       "keywords": [],
       "citations": 5,
       "featured": "publications/2022_TheStructureOfChaos/featured.jpg",
-      "folder": "2022_TheStructureOfChaos"
+      "folder": "2022_TheStructureOfChaos",
+      "summary": ""
     },
     {
       "doi": "10.1177/03010066211057347",
@@ -482,7 +515,8 @@
       "keywords": [],
       "citations": 5,
       "featured": "publications/2021_Pyllusion/featured.png",
-      "folder": "2021_Pyllusion"
+      "folder": "2021_Pyllusion",
+      "summary": ""
     },
     {
       "doi": "10.1177/17470218211026301",
@@ -496,7 +530,8 @@
       "keywords": [],
       "citations": 32,
       "featured": null,
-      "folder": "2021_BoredDistractedAndForgetful"
+      "folder": "2021_BoredDistractedAndForgetful",
+      "summary": ""
     },
     {
       "doi": "10.3390/s21123998",
@@ -510,7 +545,8 @@
       "keywords": [],
       "citations": 375,
       "featured": "publications/2021_HeartRateVariabilityPsychology/featured.jpg",
-      "folder": "2021_HeartRateVariabilityPsychology"
+      "folder": "2021_HeartRateVariabilityPsychology",
+      "summary": ""
     },
     {
       "doi": "10.1007/s00426-020-01358-5",
@@ -524,7 +560,8 @@
       "keywords": [],
       "citations": 5,
       "featured": "publications/2021_InMedioStatVirtus/featured.jpg",
-      "folder": "2021_InMedioStatVirtus"
+      "folder": "2021_InMedioStatVirtus",
+      "summary": ""
     },
     {
       "doi": "10.3758/s13428-020-01516-y",
@@ -538,7 +575,8 @@
       "keywords": [],
       "citations": 1196,
       "featured": "publications/2021_Neurokit2/featured.jpg",
-      "folder": "2021_Neurokit2"
+      "folder": "2021_Neurokit2",
+      "summary": ""
     },
     {
       "doi": "10.21105/joss.03139",
@@ -552,7 +590,8 @@
       "keywords": [],
       "citations": 5123,
       "featured": "publications/2021_Performance/featured.jpg",
-      "folder": "2021_Performance"
+      "folder": "2021_Performance",
+      "summary": ""
     },
     {
       "doi": "10.21105/joss.03393",
@@ -566,7 +605,8 @@
       "keywords": [],
       "citations": 114,
       "featured": "publications/2021_See/featured.jpg",
-      "folder": "2021_See"
+      "folder": "2021_See",
+      "summary": ""
     },
     {
       "doi": "10.1007/s12144-021-01760-1",
@@ -580,7 +620,8 @@
       "keywords": [],
       "citations": 15,
       "featured": "publications/2021_TheStructureOfDeception/featured.jpg",
-      "folder": "2021_TheStructureOfDeception"
+      "folder": "2021_TheStructureOfDeception",
+      "summary": ""
     },
     {
       "doi": "10.1007/S41811-019-00060-8",
@@ -594,7 +635,8 @@
       "keywords": [],
       "citations": 2,
       "featured": "publications/2020_AffectiveStyleQuestionnaire/featured.jpg",
-      "folder": "2020_AffectiveStyleQuestionnaire"
+      "folder": "2020_AffectiveStyleQuestionnaire",
+      "summary": ""
     },
     {
       "doi": "10.31234/osf.io/rw39q",
@@ -608,7 +650,8 @@
       "keywords": [],
       "citations": 0,
       "featured": null,
-      "folder": "2020_BeautyIsInTheEye"
+      "folder": "2020_BeautyIsInTheEye",
+      "summary": ""
     },
     {
       "doi": "10.21105/joss.02815",
@@ -622,7 +665,8 @@
       "keywords": [],
       "citations": 1877,
       "featured": "publications/2020_Effectsize/featured.jpg",
-      "folder": "2020_Effectsize"
+      "folder": "2020_Effectsize",
+      "summary": ""
     },
     {
       "doi": "10.21105/joss.02445",
@@ -636,7 +680,8 @@
       "keywords": [],
       "citations": 449,
       "featured": "publications/2020_Parameters/featured.jpg",
-      "folder": "2020_Parameters"
+      "folder": "2020_Parameters",
+      "summary": ""
     },
     {
       "doi": "10.21105/joss.02306",
@@ -650,7 +695,8 @@
       "keywords": [],
       "citations": 403,
       "featured": "publications/2020_Correlation/featured.jpg",
-      "folder": "2020_Correlation"
+      "folder": "2020_Correlation",
+      "summary": ""
     },
     {
       "doi": "10.1111/PSYP.13490",
@@ -664,7 +710,8 @@
       "keywords": [],
       "citations": 26,
       "featured": "publications/2020_TheHeartOfCognitiveControl/featured.jpg",
-      "folder": "2020_TheHeartOfCognitiveControl"
+      "folder": "2020_TheHeartOfCognitiveControl",
+      "summary": ""
     },
     {
       "doi": "10.1016/j.concog.2020.102920",
@@ -678,7 +725,8 @@
       "keywords": [],
       "citations": 15,
       "featured": "publications/2020_MindfulnessProspectiveMemory/featured.jpg",
-      "folder": "2020_MindfulnessProspectiveMemory"
+      "folder": "2020_MindfulnessProspectiveMemory",
+      "summary": ""
     },
     {
       "doi": "10.21105/JOSS.01541",
@@ -692,7 +740,8 @@
       "keywords": [],
       "citations": 1295,
       "featured": "publications/2019_Bayestestr/featured.jpg",
-      "folder": "2019_Bayestestr"
+      "folder": "2019_Bayestestr",
+      "summary": ""
     },
     {
       "doi": "10.1016/J.CONCOG.2018.11.004",
@@ -706,7 +755,8 @@
       "keywords": [],
       "citations": 24,
       "featured": "publications/2019_DispositionalMindfulness/featured.jpg",
-      "folder": "2019_DispositionalMindfulness"
+      "folder": "2019_DispositionalMindfulness",
+      "summary": ""
     },
     {
       "doi": "10.3389/fpsyg.2019.02767",
@@ -720,7 +770,8 @@
       "keywords": [],
       "citations": 811,
       "featured": "publications/2019_IndicesOfEffectExistence/featured.jpg",
-      "folder": "2019_IndicesOfEffectExistence"
+      "folder": "2019_IndicesOfEffectExistence",
+      "summary": ""
     },
     {
       "doi": "10.21105/JOSS.01412",
@@ -734,7 +785,8 @@
       "keywords": [],
       "citations": 122,
       "featured": "publications/2019_Insight/featured.jpg",
-      "folder": "2019_Insight"
+      "folder": "2019_Insight",
+      "summary": ""
     },
     {
       "doi": "10.3758/S13415-018-00681-0",
@@ -748,7 +800,8 @@
       "keywords": [],
       "citations": 13,
       "featured": "publications/2019_FictionalReappraisal/featured.jpg",
-      "folder": "2019_FictionalReappraisal"
+      "folder": "2019_FictionalReappraisal",
+      "summary": ""
     },
     {
       "doi": "10.70675/b893631fzf9dfz4924za932z080163f62da9",
@@ -762,7 +815,8 @@
       "keywords": [],
       "citations": 0,
       "featured": null,
-      "folder": "2018_ImplicitEmotionRegulation"
+      "folder": "2018_ImplicitEmotionRegulation",
+      "summary": ""
     },
     {
       "doi": "10.21105/JOSS.00470",
@@ -776,7 +830,8 @@
       "keywords": [],
       "citations": 341,
       "featured": "publications/2018_Psycho/featured.jpg",
-      "folder": "2018_Psycho"
+      "folder": "2018_Psycho",
+      "summary": ""
     },
     {
       "doi": "10.1016/J.CONCOG.2017.06.015",
@@ -790,7 +845,8 @@
       "keywords": [],
       "citations": 106,
       "featured": "publications/2017_BeingThereAndRemembering/featured.jpg",
-      "folder": "2017_BeingThereAndRemembering"
+      "folder": "2017_BeingThereAndRemembering",
+      "summary": ""
     },
     {
       "doi": "10.3917/bupsy.549.0163",
@@ -804,7 +860,8 @@
       "keywords": [],
       "citations": 1,
       "featured": "publications/2017_CentenaireRibotPremierePartie/featured.jpg",
-      "folder": "2017_CentenaireRibotPremierePartie"
+      "folder": "2017_CentenaireRibotPremierePartie",
+      "summary": ""
     },
     {
       "doi": null,
@@ -818,7 +875,8 @@
       "keywords": [],
       "citations": null,
       "featured": "publications/2017_VirtualEmbodimentMemory/featured.jpg",
-      "folder": "2017_VirtualEmbodimentMemory"
+      "folder": "2017_VirtualEmbodimentMemory",
+      "summary": ""
     },
     {
       "doi": "10.1007/S00221-017-5081-6",
@@ -832,7 +890,8 @@
       "keywords": [],
       "citations": 5,
       "featured": "publications/2017_InteractionBetweenAttentionalSystems/featured.jpg",
-      "folder": "2017_InteractionBetweenAttentionalSystems"
+      "folder": "2017_InteractionBetweenAttentionalSystems",
+      "summary": ""
     },
     {
       "doi": "10.1684/PNV.2017.0672",
@@ -846,7 +905,8 @@
       "keywords": [],
       "citations": 13,
       "featured": "publications/2017_MeditationAndSuccessfulAging/featured.jpg",
-      "folder": "2017_MeditationAndSuccessfulAging"
+      "folder": "2017_MeditationAndSuccessfulAging",
+      "summary": ""
     },
     {
       "doi": "10.21105/JOSS.00259",
@@ -860,7 +920,8 @@
       "keywords": [],
       "citations": 17,
       "featured": "publications/2017_Neuropsydia/featured.jpg",
-      "folder": "2017_Neuropsydia"
+      "folder": "2017_Neuropsydia",
+      "summary": ""
     },
     {
       "doi": "10.1016/J.ACTPSY.2016.12.001",
@@ -874,7 +935,8 @@
       "keywords": [],
       "citations": 59,
       "featured": "publications/2017_ExecutiveFunctionsEmotionRegulation/featured.png",
-      "folder": "2017_ExecutiveFunctionsEmotionRegulation"
+      "folder": "2017_ExecutiveFunctionsEmotionRegulation",
+      "summary": ""
     },
     {
       "doi": "10.1484/J.EYHP.5.112940",
@@ -888,7 +950,8 @@
       "keywords": [],
       "citations": 10,
       "featured": "publications/2016_MentalFatigueWeberCompass/featured.jpg",
-      "folder": "2016_MentalFatigueWeberCompass"
+      "folder": "2016_MentalFatigueWeberCompass",
+      "summary": ""
     },
     {
       "doi": "10.1016/J.ACTPSY.2016.02.003",
@@ -902,7 +965,8 @@
       "keywords": [],
       "citations": 26,
       "featured": "publications/2016_TheParadoxOfFiction/featured.jpg",
-      "folder": "2016_TheParadoxOfFiction"
+      "folder": "2016_TheParadoxOfFiction",
+      "summary": ""
     },
     {
       "doi": "10.1080/13825585.2016.1159652",
@@ -916,7 +980,8 @@
       "keywords": [],
       "citations": 30,
       "featured": "publications/2016_LongTermMeditationExecutive/featured.jpg",
-      "folder": "2016_LongTermMeditationExecutive"
+      "folder": "2016_LongTermMeditationExecutive",
+      "summary": ""
     },
     {
       "doi": "10.1684/PNV.2015.0561",
@@ -930,7 +995,8 @@
       "keywords": [],
       "citations": 5,
       "featured": "publications/2015_EmotionRegulationAging/featured.jpg",
-      "folder": "2015_EmotionRegulationAging"
+      "folder": "2015_EmotionRegulationAging",
+      "summary": ""
     }
   ]
 }

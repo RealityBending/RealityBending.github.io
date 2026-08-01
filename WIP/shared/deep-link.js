@@ -1,17 +1,30 @@
 /* deep-link.js
  * The site's shareable URLs.
  *
- * This is one page, so a link into it is a hash — no server, no build step, and
- * nothing that would 404 on GitHub Pages. One hash, one thing on show:
+ * One URL, one thing on show. The routes are unchanged — they are still the
+ * opaque strings every section's `applyRoute` receives — but they are now
+ * carried by the *path* rather than by a hash:
  *
- *   #<folder>                 a member's profile panel, open over People
- *   #post-<slug>              a news post, open in the reader
- *   #people-<tab>             a section and which of its tabs
- *   #research-<tab>
- *   #news-<tab>
- *   #publications-<tab>
- *   #contact-<tab>            (Information — this one predates the module)
+ *   /people/<folder>/         a member's profile panel, open over People
+ *   /news/<slug>/             a news post, open in the reader
+ *   /people/<tab>/            a section and which of its tabs
+ *   /research/<tab>/
+ *   /news/<tab>/
+ *   /publications/<tab>/
+ *   /information/<tab>/       (the `contact-` route predates the module)
  *   #sec-<id>                 a plain section anchor; the nav's own links
+ *
+ * `shared/routes.js` is the whole of that translation and the only place that
+ * knows a route has a URL shape at all. It changed because a fragment is not an
+ * address: no crawler indexes one separately, so the entire site was a single
+ * indexable URL whatever was rendered into it (SEO-PLAN.md).
+ *
+ * Every path here is a real file, written by generate_pages.py — which is why
+ * that script and this module ship together. Writing a path nothing serves
+ * makes the next reload a 404.
+ *
+ * Legacy `#post-…` hashes still resolve, and are normalised to their path on
+ * arrival.
  *
  * ── Every write is a replace ──
  * `writeRoute` uses `history.replaceState`, which adds no history entry and —
@@ -35,7 +48,32 @@
  * Handlers must be idempotent. A reader can put the same hash in twice.
  */
 
+import { pathForRoute, routeForPath } from "./routes.js"
+
 const listeners = []
+
+/* ── Where the site is mounted ──
+ * `routes.js` deals in site paths — `/people/memories/` — which assume the site
+ * is the root of its origin. That is true of the deployed site and false of
+ * every other way it gets opened: a server started at the repo with the site
+ * under /WIP/, or a project page under /<repo>/.
+ *
+ * `<base>` in index.html already knows the answer (it is relative, so the
+ * browser resolved it against the document's own URL at parse time and then
+ * froze it — see the comment there). So these two translate between a site path
+ * and a real one, and everything in between stays mount-agnostic.
+ *
+ * Without this, pressing a tab in a /WIP/-mounted copy writes
+ * `/people/memories/` — a URL outside the site, which 404s on reload. */
+const BASE_PATH = new URL(document.baseURI).pathname
+
+function toMountedPath(sitePath) {
+    return new URL(sitePath.replace(/^\//, ""), document.baseURI).pathname
+}
+
+function toSitePath(mountedPath) {
+    return mountedPath.startsWith(BASE_PATH) ? "/" + mountedPath.slice(BASE_PATH.length) : mountedPath
+}
 
 function currentHash() {
     const raw = window.location.hash.replace(/^#/, "")
@@ -47,13 +85,48 @@ function currentHash() {
     }
 }
 
-/* The hash the page was opened on, captured at module evaluation — before any
+/* ── Where a route comes from, in order ──
+ * 1. A hash, if there is one. That is a legacy link, or a reader who edited the
+ *    URL, and it still has to work.
+ * 2. `body[data-route]`, written by generate_pages.py. This is the authority on
+ *    a generated page: it is the route the page was built for, and it does not
+ *    depend on this module and routes.js agreeing about how to read a path.
+ * 3. The path itself, for anything served at a real URL without that attribute.
+ *
+ * A route is a route whichever of the three it came from — nothing downstream
+ * can tell, which is the whole point. */
+function currentRoute() {
+    const hash = currentHash()
+    if (hash) return hash
+    const declared = document.body && document.body.dataset ? document.body.dataset.route : ""
+    if (declared) return declared
+    return routeForPath(toSitePath(window.location.pathname)) || ""
+}
+
+/* The route the page was opened on, captured at module evaluation — before any
    section has had the chance to write its own. This is what the door screen
    asks about and what each section applies once its content is there. */
-export const INITIAL_ROUTE = currentHash()
+export const INITIAL_ROUTE = currentRoute()
 
 export function readRoute() {
-    return currentHash()
+    return currentRoute()
+}
+
+/* ── A legacy hash is normalised to its path, once, on arrival ──
+ * `#post-2023-new-logo` and `/news/2023-new-logo/` are the same place, and the
+ * one worth having in the address bar is the one a crawler can hold. Done here
+ * rather than left to the section that claims the route, because `applyRoute`
+ * is called with `write: false` — reading a route deliberately does not rewrite
+ * it — so nothing else would ever tidy this up.
+ *
+ * `replaceState` like every other write here: no history entry, no
+ * `hashchange`, so this cannot re-enter anything. */
+if (INITIAL_ROUTE && currentHash()) {
+    const path = pathForRoute(INITIAL_ROUTE)
+    const mounted = path && toMountedPath(path)
+    if (mounted && mounted !== window.location.pathname) {
+        window.history.replaceState(null, "", mounted)
+    }
 }
 
 /* `prefix` matched as a whole segment: "people" matches `people-lab` and bare
@@ -71,10 +144,23 @@ export function matchRoute(route, prefix) {
 }
 
 export function writeRoute(route) {
-    if (currentHash() === route) return
-    // Dropping the hash entirely means writing the path back, or the URL keeps
-    // a bare "#" and the reader's copy of it has a dangling character.
-    const url = route ? "#" + route : window.location.pathname + window.location.search
+    if (currentRoute() === route && !currentHash()) return
+
+    /* A route with a path of its own gets it. Everything the site actually
+       writes has one — see routes.js — so the fallback below is for a route
+       shape that map does not know, where a hash is still better than nothing.
+
+       Note that the hash is always cleared: arriving on `#post-x` and then
+       pressing something else must not leave the old fragment stapled to the
+       new path, or the URL names two different things and the canonical on the
+       page disagrees with both. */
+    const path = pathForRoute(route)
+    const url = path
+        ? toMountedPath(path) + window.location.search
+        : route
+          ? window.location.pathname + window.location.search + "#" + route
+          : window.location.pathname + window.location.search
+
     window.history.replaceState(null, "", url)
     // Observers only — never the route handlers. See onRouteSettled.
     notifySettled(route)
@@ -124,7 +210,7 @@ function notifySettled(route) {
 }
 
 window.addEventListener("hashchange", () => {
-    const route = currentHash()
+    const route = currentRoute()
     listeners.forEach((handler) => {
         try {
             handler(route)

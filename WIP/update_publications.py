@@ -8,6 +8,7 @@ Run:
     python update_publications.py
 """
 
+import html
 import json
 import re
 import sys
@@ -309,10 +310,62 @@ def fetch_extra_works(known_dois: set[str]) -> list[dict]:
                 "journal": (containers[0].strip() if containers else ""),
                 "type": cr.get("type", "").replace("-", " ").title(),
                 "_raw_type": cr.get("type", ""),
+                "abstract": _clean_abstract(cr.get("abstract")),
+                "keywords": _crossref_keywords(cr),
             }
         )
         print(f"  + added from EXTRA_DOIS: {extras[-1]['title'][:60]}")
     return extras
+
+
+def _clean_abstract(raw) -> str:
+    """CrossRef's abstract, as plain text.
+
+    It arrives as JATS XML — `<jats:p>`, `<jats:sec>`, a `<jats:title>Abstract</jats:title>`
+    heading, occasionally MathML. Three things happen to it and each is
+    deliberate:
+
+    - **Every tag is stripped rather than translated.** Content on this site is
+      lab-authored and reviewed, and that is the assumption `normalizeRichHtml`
+      and the news pipeline are written on. This is the one string here fetched
+      from a third party, so it must not be able to carry markup into the page
+      at all. The value stored is plain text and must be inserted as text,
+      never as HTML.
+    - **Entities are unescaped between two tag-stripping passes.** A doubly
+      encoded `&lt;script&gt;` would otherwise survive the first pass and
+      decode into markup afterwards. The tag pattern requires a letter after
+      the `<`, so an abstract containing "p < .05 and n > 30" keeps it.
+    - **A leading "Abstract" heading is dropped.** A fair number of publishers
+      put the word inside the abstract, where it renders as a label above a
+      field that is already labelled.
+
+    Returns "" for anything missing or empty, so the caller can treat the
+    field as simply absent.
+    """
+    if not raw or not isinstance(raw, str):
+        return ""
+    tag = re.compile(r"</?[a-zA-Z][^>]*>")
+    text = tag.sub(" ", raw)
+    text = html.unescape(text)
+    text = tag.sub(" ", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    text = re.sub(r"^(abstract|summary)\b[:.\s—-]*", "", text, flags=re.I).strip()
+    return text
+
+
+def _crossref_keywords(cr_msg: dict) -> list[str]:
+    """CrossRef's `subject` list, tidied.
+
+    Sparse and being deprecated upstream, so this is a bonus rather than a
+    source to rely on — a publication with none is normal, not a fault.
+    """
+    subjects = cr_msg.get("subject") or []
+    out = []
+    for s in subjects:
+        s = clean_string(s)
+        if s and s not in out:
+            out.append(s)
+    return out
 
 
 def _crossref_year(cr_msg: dict) -> int | None:
@@ -453,6 +506,12 @@ def fetch_orcid_works(limit: int = MAX_PUBLICATIONS) -> list[dict]:
                 if cr_authors:
                     w["authors"] = _format_authors_apa(cr_authors)
                 w["citations"] = cr_msg.get("is-referenced-by-count")
+                # The abstract costs nothing: this response is already fetched
+                # and parsed for the type check, the authors and the citation
+                # count. Coverage is about 58% — the misses cluster on Springer,
+                # Taylor & Francis and JOSS — so an entry without one is normal.
+                w["abstract"] = _clean_abstract(cr_msg.get("abstract"))
+                w["keywords"] = _crossref_keywords(cr_msg)
                 # An ORCID entry can carry no publication-date at all — the
                 # misophonia paper is one. Untreated that is a `0000_` folder
                 # and an "n.d." on the card, for a paper CrossRef dates
@@ -554,6 +613,24 @@ def load_publications(works: list[dict]) -> list[dict]:
         merged.pop("_raw_type", None)
         merged.update(existing)
 
+        # ── Three fields where "existing wins" needs qualifying ──
+        # `merged.update(existing)` is what lets a hand-written value survive
+        # every future run, and that is right for all three. But it also freezes
+        # an *empty* one: a publication whose abstract CrossRef did not have on
+        # the first run would keep `""` for ever, even once the publisher
+        # deposits it. So existing wins only when it actually holds something.
+        merged["abstract"] = merged.get("abstract") or w.get("abstract", "")
+        merged["keywords"] = merged.get("keywords") or w.get("keywords", [])
+        # `summary` is lab-written and has no upstream source, so it is only
+        # ever seeded empty — but it is seeded in every info.json on purpose.
+        # Nobody fills in a field they do not know exists, and this is the
+        # highest-value text on a publication page: two or three plain
+        # sentences on what the paper found are the one thing about it that is
+        # not already on the publisher's site, on PubMed and on ResearchGate.
+        # An abstract makes the page longer; this is what makes it worth
+        # indexing. See SEO-PLAN.md.
+        merged.setdefault("summary", "")
+
         pdf = None
         for ext in ("pdf",):
             candidates = list(pub_dir.glob(f"*.{ext}"))
@@ -573,7 +650,6 @@ def load_publications(works: list[dict]) -> list[dict]:
         # path to something this glob cannot see — a PDF hosted elsewhere —
         # still survives a run that finds no local file.
         merged["pdf"] = pdf or merged.get("pdf")
-        merged.setdefault("keywords", [])
 
         fresh_citations = w.get("citations")
         merged["citations"] = (
@@ -592,7 +668,18 @@ def load_publications(works: list[dict]) -> list[dict]:
         with open(info_path, "w", encoding="utf-8") as f:
             json.dump(merged, f, indent=2, ensure_ascii=False)
 
-        publications.append(merged)
+        # ── The manifest carries metadata, never the abstract ──
+        # The same rule the news pipeline follows for post bodies, and for the
+        # same reason: every visitor downloads this file to render a list of
+        # titles, and ~38 abstracts at a median of 189 words is ~50KB that
+        # nothing in the list view shows. generate_pages.py reads info.json
+        # straight off disk, where it costs the page nothing; if the SPA ever
+        # wants to show an abstract it fetches that one publication's
+        # info.json, exactly as news.js fetches a post.json.
+        #
+        # `summary` and `keywords` do go in — both are short, and both are
+        # worth having in the list view and in search.
+        publications.append({k: v for k, v in merged.items() if k != "abstract"})
 
     # An override nothing matched. Either the publication left the list, or its
     # title changed upstream and the generated slug moved out from under the

@@ -10,5 +10,7 @@
   "keywords": [],
   "citations": 1,
   "featured": "publications/2023_WhereAreWeGoing/featured.jpg",
-  "folder": "2023_WhereAreWeGoing"
+  "folder": "2023_WhereAreWeGoing",
+  "abstract": "The field of statistical computing is rapidly developing and evolving. Shifting away from the formerly siloed landscape of mathematics, statistics, and computer science, recent advancements in statistical computing are largely characterized by a fusing of these worlds; namely, programming, software development, and applied statistics are merging in new and exciting ways. There are numerous drivers behind this advancement, including open movement (encompassing development, science, and access), the advent of data science as a field, and collaborative problem-solving, as well as practice-altering advances in subfields such as artificial intelligence, machine learning, and Bayesian estimation. In this paper, we trace this shift in how modern statistical computing is performed, and that which has recently emerged from it. This discussion points to a future of boundless potential for the field.",
+  "summary": ""
 }

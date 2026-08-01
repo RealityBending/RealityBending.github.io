@@ -10,35 +10,151 @@
 > software (NeuroKit2, Pyllusion, easystats and others), psychometric scales
 > (the LIE Scale, the Illusion Game) and Bayesian statistical methods.
 
-The site is a single-page application: the human-facing routes are hash
-fragments (`/#post-<slug>`, `/#<member-folder>`) and are not separately
-addressable. Until per-item pages exist, the machine-readable content of this
-site is the set of JSON manifests below — these are the complete, canonical
-data the page itself renders from, and they can be fetched directly.
+Every page below is a real URL whose content is in the raw HTML — no JavaScript
+is needed to read any of it.
 
 Contact: D.Makowski@sussex.ac.uk · Pevensey 1, room 2B7, School of Psychology,
 University of Sussex, Brighton BN1 9QH, United Kingdom.
 
-## Data
+## Sections
 
-- [People manifest](https://realitybending.github.io/people/people_manifest.json): 14 current and former lab members — name, role, biography, research interests, and links to ORCID, GitHub, Google Scholar and personal sites.
-- [News manifest](https://realitybending.github.io/news/news_manifest.json): metadata for 38 blog posts and lab announcements — title, date, authors, category and summary. A post's full text lives at `news/<slug>/post.json` under the `content` key.
-- [Publications manifest](https://realitybending.github.io/publications/publications_manifest.json): 66 journal articles, preprints and book chapters — title, authors, year, venue, DOI, citation count, and a path to the open-access PDF where one is hosted here.
-- [Collaborations manifest](https://realitybending.github.io/collaborations/collaborations_manifest.json): close collaborators and consultants.
+- [People](https://realitybending.github.io/people/): 14 current and former lab members.
+- [Research](https://realitybending.github.io/research/): the lab's research programme, and the tools it has built.
+- [News](https://realitybending.github.io/news/): 38 posts, essays and announcements.
+- [Publications](https://realitybending.github.io/publications/): 66 journal articles, preprints and book chapters.
+- [Join the Lab](https://realitybending.github.io/information/join/): research assistant, PhD and postdoc routes.
 
-## Software
+## People
 
-- [NeuroKit2](https://neuropsychology.github.io/NeuroKit/): Python toolbox for neurophysiological signal processing (ECG, EDA, EMG, RSP, EEG).
-- [Pyllusion](https://realitybending.github.io/Pyllusion/): parametric generation of visual illusions.
-- [easystats](https://easystats.github.io/easystats/): R ecosystem for statistical modelling, effect sizes and Bayesian reporting.
-- [NeuropsyXart](https://dominiquemakowski.github.io/NeuropsyXart/): generative art from neuropsychological data.
-- [GitHub organisation](https://github.com/RealityBending): all lab software and study repositories.
+- [Dominique Makowski](https://realitybending.github.io/people/dominique-makowski/): Did you know that Dominique Makowski created the easystats ecosystem for R?
+- [Ana Neves](https://realitybending.github.io/people/ana-neves/): The ultimate, hidden truth of the world is that it is something that we make, and could just as easily make differently.
+- [Catriona Osborn Moar](https://realitybending.github.io/people/catriona-osborn-moar/): 
+- [Oliver Collins](https://realitybending.github.io/people/oliver-collins/): 
+- [Róisín Sharma](https://realitybending.github.io/people/roisin-sharma/): 
+- [An-Shu Te](https://realitybending.github.io/people/anshu-te/): 
+- [Emma Benn](https://realitybending.github.io/people/emma-benn/): 
+- [Maisie Bennett](https://realitybending.github.io/people/maisie-bennett/): 
+- [Rob Dickinson](https://realitybending.github.io/people/rob-dickinson/): 
+- [Stephanie Kirk](https://realitybending.github.io/people/stephanie-kirk/): 
+- [Tam Pham](https://realitybending.github.io/people/tam-pham/): 
+- [Wilson Lim](https://realitybending.github.io/people/wilson-lim/): 
+- [Zen J. Lau](https://realitybending.github.io/people/zen-juen/): 
+- [Zi Liang Ngoi](https://realitybending.github.io/people/ziliang-ngoi/): 
+
+## Publications
+
+- [Attention and physiological responses to task-irrelevant sounds in misophonia](https://realitybending.github.io/publications/2026_MisophoniaAttention/): Rinaldi, L. J., Agbude, R., Andermane, N., Makowski, D., Forster, S., Simner, J., & Ward, J. (2026). Journal of Clinical and Experimental Neuropsychology
+- [Choosing informative priors in Bayesian regression models: a simulation study and tutorial using Stan and R.](https://realitybending.github.io/publications/2026_ChoosingInformativePriors/): Lüdecke, D., Makowski, A. C., Klein, J., Ben-Shachar, M. S., & Makowski, D. (2026). Frontiers in Psychology
+- [Interoception and Substance use: A systematic review and meta-analysis](https://realitybending.github.io/publications/2026_InteroceptionAndSubstanceUse/): Scharte, R. E., Greenwood, K., Romero Sanchiz, P., Neves, A., Makowski, D., & Nogueira-Arjona, R. (2026). 
+- [Mega-analysis of the Interoceptive Accuracy Scale (IAS) Structure and its Dispositional Correlates](https://realitybending.github.io/publications/2026_MegaanalysisIAS/): Neves, A., Pfaff, M., Scharte, R. E., Nogueira-Arjona, R., Poerio, G., & Makowski, D. (2026). 
+- [Towards an Active Inference Personality Framework: The Deep-Self Predictive Cascade Model](https://realitybending.github.io/publications/2026_ActiveInferencePersonality/): Makowski, D. (2026). 
+- [A Distributional Response Time Analysis of the Perceptual Disfluency Effect](https://realitybending.github.io/publications/2025_PerceptualDisfluency/): Geller, J., Gomez, P., Buchanan, E., & Makowski, D. (2025). Journal of Cognition
+- [Bad News: Testing Gamified Inoculation Against Misinformation](https://realitybending.github.io/publications/2025_BadNews/): Dickinson, R., Makowski, D., Van Marwijk, H., & Ford, E. (2025). 
+- [Interventions for combating COVID-19 misinformation: a systematic realist review](https://realitybending.github.io/publications/2025_InterventionsForCombatingCovid19/): Dickinson, R., Makowski, D., van Marwijk, H., & Ford, E. (2025). PLoS ONE
+- [Introducing the Choice-Confidence (CHOCO) Model for Bimodal Data from Subjective Ratings: Application to the Effect of Attractiveness on Reality Beliefs about AI-Generated Faces](https://realitybending.github.io/publications/2025_Choco/): Makowski, D., Neves, A., & Field, A. P. (2025). 
+- [Measuring Depression and Anxiety With 4 Items? Adaptation of the PHQ-4 to Increase Its Sensitivity to Subclinical Variability](https://realitybending.github.io/publications/2025_PHQ4/): Makowski, D., Te, A. S., Neves, A., & Chen, S. A. (2025). Collabra: Psychology
+- [modelbased: An R package to make the most out of your statistical models through marginal means, marginal effects, and model predictions](https://realitybending.github.io/publications/2025_Modelbased/): Makowski, D., Ben-Shachar, M. S., Wiernik, B. M., Patil, I., Thériault, R., & Lüdecke, D. (2025). Journal of Open Source Software
+- [SequentialSamplingModels.jl: Simulating and Evaluating Cognitive Models of Response Times in Julia](https://realitybending.github.io/publications/2025_Sequentialsamplingmodels/): Fernandez, K., Makowski, D., & Fisher, C. (2025). JuliaCon Proceedings
+- [The Mint Scale: A Fresh Validation of the Multimodal Interoception Questionnaire and Comparison to the MAIA, BPQ and IAS](https://realitybending.github.io/publications/2025_Mint/): Makowski, D., Neves, A., Benn, E. L., Bennett, M., & Poerio, G. (2025). 
+- [Too beautiful to be fake: Attractive faces are less likely to be judged as artificially generated](https://realitybending.github.io/publications/2025_TooBeautifulToBeFake/): Makowski, D., Te, A. S., Neves, A., Kirk, S., Liang, N. Z., Mavros, P., & Chen, S. A. (2025). Acta Psychologica
+- [Which Heart Rate Variability (HRV) Indices Should I Use for Psychophysiological Research? A Data-Driven Approach to Identifying Clusters of HRV Indices](https://realitybending.github.io/publications/2025_WhichHeartRateVariability/): Pham, T., Johnco, C. J., Lau, Z. J., Makowski, D., & Forbes, M. K. (2025). Psychophysiology
+- [Beyond empathy: Cognitive capabilities increase or curb altruism in middle childhood](https://realitybending.github.io/publications/2024_BeyondEmpathy/): Rose, L., Kovarski, K., Caetta, F., Makowski, D., & Chokron, S. (2024). Journal of Experimental Child Psychology
+- [Check your outliers﻿! An introduction to identifying statistical outliers in R with easystats](https://realitybending.github.io/publications/2024_CheckYourOutliers/): Thériault, R., Ben-Shachar, M. S., Patil, I., Lüdecke, D., Wiernik, B. M., & Makowski, D. (2024). Behavior Research Methods
+- [Exploring the Role of News Outlets in the Rise of a Conspiracy Theory: Hydroxychloroquine in the Early Days of COVID-19](https://realitybending.github.io/publications/2024_NewsOutletsConspiracyTheory/): Dickinson, R., Makowski, D., van Marwijk, H., & Ford, E. (2024). COVID
+- [Self-reference and emotional reaction drive aesthetic judgment](https://realitybending.github.io/publications/2024_SelfreferenceAndEmotionalReaction/): Salgues, S., Jacquot, A., Makowski, D., Tahar, C., Baekeland, J., Arcangeli, M., Dokic, J., Piolino, P., & Sperduti, M. (2024). Scientific Reports
+- [The Beauty and the Self: A Common Mnemonic Advantage Between Aesthetic Judgment and Self-Reference](https://realitybending.github.io/publications/2024_TheBeautyAndTheSelf/): Lee, H., Jacquot, A., Makowski, D., Arcangeli, M., Dokic, J., Piolino, P., & Sperduti, M. (2024). Psychology of Consciousness: Theory, Research, and Practice
+- [The heart can lie: a preliminary investigation of the role of interoception and theory of mind in deception](https://realitybending.github.io/publications/2024_TheHeartCanLie/): Makowski, D., Lau, Z. J., Pham, T., Te, A. S., Kirk, S., Liauw, C., & Chen, S. H. A. (2024). Current Psychology
+- [A novel visual illusion paradigm provides evidence for a general factor of illusion sensitivity and personality correlates](https://realitybending.github.io/publications/2023_VisualIllusionParadigm/): Makowski, D., Te, A. S., Kirk, S., Liang, N. Z., & Chen, S. H. A. (2023). Scientific Reports
+- [Attenuating subjective crowding through beauty: an online study on the interaction between environment aesthetics, typology and crowdedness](https://realitybending.github.io/publications/2023_AttenuatingSubjectiveCrowding/): Mavros, P., Ngoi, Z. L., Kirk, S., Te, A., Grübel, J., Melgar, L. A., Guizzo, A. O., & Makowski, D. (2023). 
+- [Check your outliers! An introduction to identifying statistical outliers in R with easystats](https://realitybending.github.io/publications/2023_CheckYourOutliers/): Thériault, R., Ben-Shachar, M. S., Patil, I., Lüdecke, D., Wiernik, B. M., & Makowski, D. (2023). 
+- [Disentangling the social from the aesthetic: neuropsychology for urban design](https://realitybending.github.io/publications/2023_DisentanglingTheSocial/): Mavros, P., Olszewska-Guizzo, A., & Makowski, D. (2023). Future Cities — City Futures: Emerging Urban Perspectives (TU Delft OPEN Books)
+- [The Heart can Lie: The Role of Interoception and Theory of Mind in Deception](https://realitybending.github.io/publications/2023_TheHeartCanLie/): Makowski, D., Lau, Z. J., Pham, T., Te, A., Kirk, S., & Liauw Yong Tong, C. (2023). 
+- [Where Are We Going with Statistical Computing? From Mathematical Statistics to Collaborative Data Science](https://realitybending.github.io/publications/2023_WhereAreWeGoing/): Makowski, D., & Waggoner, P. D. (2023). Mathematics
+- [Brain entropy, fractal dimensions and predictability: A review of complexity measures for EEG in healthy and neuropsychiatric populations](https://realitybending.github.io/publications/2022_BrainEntropyFractalDimensions/): Lau, Z. J., Pham, T., Chen, S. H. A., & Makowski, D. (2022). European Journal of Neuroscience
+- [datawizard: An R Package for Easy Data Preparation and Statistical Transformations](https://realitybending.github.io/publications/2022_Datawizard/): Patil, I., Makowski, D., Ben-Shachar, M. S., Wiernik, B. M., Bacher, E., & Lüdecke, D. (2022). Journal of Open Source Software
+- [In Medio Stat Virtus: intermediate levels of mind wandering improve episodic memory encoding in a virtual environment (vol 85, pg 1613, 2021)](https://realitybending.github.io/publications/2022_InMedioStatVirtus/): Blondé, P., Makowski, D., Sperduti, M., & Piolino, P. (2022). Psychological Research
+- [Movie editing influences spectators' time perception](https://realitybending.github.io/publications/2022_MovieEditingInfluencesSpectators/): Kovarski, K., Dos Reis, J., Chevais, C., Hamel, A., Makowski, D., & Sperduti, M. (2022). Scientific Reports
+- [The Illusion Game: A Novel Experimental Paradigm Provides Evidence for a General Factor of Visual Illusion Sensitivity and Personality Correlates](https://realitybending.github.io/publications/2022_TheIllusionGame/): Makowski, D., Te, A., Kirk, S., Ngoi, Z. L., & Chen, S. A. (2022). 
+- [The Structure of Chaos: An Empirical Comparison of Fractal Physiology Complexity Indices Using NeuroKit2](https://realitybending.github.io/publications/2022_TheStructureOfChaos/): Makowski, D., Te, A. S., Pham, T., Lau, Z. J., & Chen, S. H. A. (2022). Entropy
+- [A Parametric Framework to Generate Visual Illusions Using Python](https://realitybending.github.io/publications/2021_Pyllusion/): Makowski, D., Lau, Z. J., Pham, T., Paul Boyce, W., & Annabel Chen, S. (2021). Perception
+- [Bored, distracted, and forgetful: The impact of mind wandering and boredom on memory encoding](https://realitybending.github.io/publications/2021_BoredDistractedAndForgetful/): Blondé, P., Sperduti, M., Makowski, D., & Piolino, P. (2021). Quarterly Journal of Experimental Psychology
+- [Heart Rate Variability in Psychology: A Review of HRV Indices and an Analysis Tutorial](https://realitybending.github.io/publications/2021_HeartRateVariabilityPsychology/): Pham, T., Lau, Z. J., Chen, S. H. A., & Makowski, D. (2021). Sensors
+- [In Medio Stat Virtus: intermediate levels of mind wandering improve episodic memory encoding in a virtual environment](https://realitybending.github.io/publications/2021_InMedioStatVirtus/): Blondé, P., Makowski, D., Sperduti, M., & Piolino, P. (2021). Psychological Research
+- [NeuroKit2: A Python toolbox for neurophysiological signal processing](https://realitybending.github.io/publications/2021_Neurokit2/): Makowski, D., Pham, T., Lau, Z. J., Brammer, J. C., Lespinasse, F., Pham, H., Schölzel, C., & Chen, S. H. A. (2021). Behavior Research Methods
+- [performance: An R Package for Assessment, Comparison and Testing of Statistical Models](https://realitybending.github.io/publications/2021_Performance/): Lüdecke, D., Ben-Shachar, M., Patil, I., Waggoner, P., & Makowski, D. (2021). Journal of Open Source Software
+- [see: An R Package for Visualizing Statistical Models](https://realitybending.github.io/publications/2021_See/): Lüdecke, D., Patil, I., Ben-Shachar, M., Wiernik, B., Waggoner, P., & Makowski, D. (2021). Journal of Open Source Software
+- [The structure of deception: Validation of the lying profile questionnaire](https://realitybending.github.io/publications/2021_TheStructureOfDeception/): Makowski, D., Pham, T., Lau, Z. J., Raine, A., & Chen, S. H. A. (2021). Current Psychology
+- [Adaptation and Validation of a Short French Version of the Affective Style Questionnaire](https://realitybending.github.io/publications/2020_AffectiveStyleQuestionnaire/): Makowski, D., Sperduti, M., Lavallée, S., Nicolas, S., & Piolino, P. (2020). International Journal of Cognitive Therapy
+- [Beauty is in the eye of the beholder: Evidence from a common mnemonic advantage between aesthetics judgement and self-reference](https://realitybending.github.io/publications/2020_BeautyIsInTheEye/): Lee, H., Jacquot, A., Makowski, D., Arcangeli, M., Dokic, J., Piolino, P., & Sperduti, M. (2020). 
+- [effectsize: Estimation of Effect Size Indices and Standardized Parameters](https://realitybending.github.io/publications/2020_Effectsize/): Ben-Shachar, M., Lüdecke, D., & Makowski, D. (2020). Journal of Open Source Software
+- [Extracting, Computing and Exploring the Parameters of Statistical Models using R](https://realitybending.github.io/publications/2020_Parameters/): Lüdecke, D., Ben-Shachar, M., Patil, I., & Makowski, D. (2020). Journal of Open Source Software
+- [Methods and Algorithms for Correlation Analysis in R](https://realitybending.github.io/publications/2020_Correlation/): Makowski, D., Ben-Shachar, M., Patil, I., & Lüdecke, D. (2020). Journal of Open Source Software
+- [The heart of cognitive control: Cardiac phase modulates processing speed and inhibition](https://realitybending.github.io/publications/2020_TheHeartOfCognitiveControl/): Makowski, D., Sperduti, M., Blondé, P., Nicolas, S., & Piolino, P. (2020). Psychophysiology
+- [The impact of state and dispositional mindfulness on prospective memory: A virtual reality study](https://realitybending.github.io/publications/2020_MindfulnessProspectiveMemory/): Girardeau, J., Blondé, P., Makowski, D., Abram, M., Piolino, P., & Sperduti, M. (2020). Consciousness and Cognition
+- [bayestestR: Describing Effects and their Uncertainty, Existence and Significance within the Bayesian Framework](https://realitybending.github.io/publications/2019_Bayestestr/): Makowski, D., Ben-Shachar, M., & Lüdecke, D. (2019). The Journal of Open Source Software
+- [Dispositional mindfulness attenuates the emotional attentional blink](https://realitybending.github.io/publications/2019_DispositionalMindfulness/): Makowski, D., Sperduti, M., Lavallée, S., Nicolas, S., & Piolino, P. (2019). Consciousness and Cognition
+- [Indices of Effect Existence and Significance in the Bayesian Framework](https://realitybending.github.io/publications/2019_IndicesOfEffectExistence/): Makowski, D., Ben-Shachar, M. S., Chen, S. H. A., & Lüdecke, D. (2019). Frontiers in Psychology
+- [insight: A Unified Interface to Access Information from Model Objects in R](https://realitybending.github.io/publications/2019_Insight/): Lüdecke, D., Waggoner, P., & Makowski, D. (2019). The Journal of Open Source Software
+- [Phenomenal, bodily and brain correlates of fictional reappraisal as an implicit emotion regulation strategy](https://realitybending.github.io/publications/2019_FictionalReappraisal/): Makowski, D., Sperduti, M., Pelletier, J., Blondé, P., La Corte, V., Arcangeli, M., Zalla, T., Lemaire, S., Dokic, J., Nicolas, S., & Piolino, P. (2019). Cognitive, Affective, & Behavioral Neuroscience
+- [Cognitive neuropsychology of implicit emotion regulation through fictional reappraisal](https://realitybending.github.io/publications/2018_ImplicitEmotionRegulation/): Makowski, D. (2018). 
+- [The psycho Package: an Efficient and Publishing-Oriented Workflow for Psychological Science](https://realitybending.github.io/publications/2018_Psycho/): Makowski, D. (2018). The Journal of Open Source Software
+- ["Being there" and remembering it: Presence improves memory encoding](https://realitybending.github.io/publications/2017_BeingThereAndRemembering/): Makowski, D., Sperduti, M., Nicolas, S., & Piolino, P. (2017). Consciousness and Cognition
+- [Centenaire Ribot (première partie). La réception de l’œuvre de Théodule Ribot publiée chez l’éditeur Ladrange (1870-1873)](https://realitybending.github.io/publications/2017_CentenaireRibotPremierePartie/): Nicolas, S., & Makowski, D. (2017). Bulletin de psychologie
+- [How virtual embodiment affects episodic memory functioning: A proof-of-concept study](https://realitybending.github.io/publications/2017_VirtualEmbodimentMemory/): Tuena, C., Serino, S., Gaston-Bellegarde, A., Orriols, E., Makowski, D., Riva, G., & Piolino, P. (2017). Annual Review of CyberTherapy and Telemedicine
+- [Interaction between attentional systems and episodic memory encoding: the impact of conflict on binding of information](https://realitybending.github.io/publications/2017_InteractionBetweenAttentionalSystems/): Sperduti, M., Armougum, A., Makowski, D., Blondé, P., & Piolino, P. (2017). Experimental Brain Research
+- [Meditation and successful aging: can meditative practices counteract age-related cognitive decline?](https://realitybending.github.io/publications/2017_MeditationAndSuccessfulAging/): Sperduti, M., Makowski, D., Blondé, P., & Piolino, P. (2017). Geriatrie et Psychologie Neuropsychiatrie du Vieillissement
+- [Neuropsydia.py: A Python Module for Creating Experiments, Tasks and Questionnaires](https://realitybending.github.io/publications/2017_Neuropsydia/): Makowski, D., & Dutriaux, L. (2017). The Journal of Open Source Software
+- [The distinctive role of executive functions in implicit emotion regulation](https://realitybending.github.io/publications/2017_ExecutiveFunctionsEmotionRegulation/): Sperduti, M., Makowski, D., Arcangeli, M., Wantzen, P., Zalla, T., Lemaire, S., Dokic, J., Pelletier, J., & Piolino, P. (2017). Acta Psychologica
+- [Can mental fatigue be measured by weber's compass? Alfred Binet's answer on the value of aesthesiometry (tactile sensitivity) as an objective measure of mental fatigue](https://realitybending.github.io/publications/2016_MentalFatigueWeberCompass/): Nicolas, S., & Makowski, D. (2016). European Yearbook of the History of Psychology
+- [The paradox of fiction: Emotional response toward fiction and the modulatory role of self-relevance](https://realitybending.github.io/publications/2016_TheParadoxOfFiction/): Sperduti, M., Arcangeli, M., Makowski, D., Wantzen, P., Zalla, T., Lemaire, S., Dokic, J., Pelletier, J., & Piolino, P. (2016). Acta Psychologica
+- [The protective role of long-term meditation on the decline of the executive component of attention in aging: a preliminary cross-sectional study](https://realitybending.github.io/publications/2016_LongTermMeditationExecutive/): Sperduti, M., Makowski, D., & Piolino, P. (2016). Aging, Neuropsychology and Cognition
+- [Emotion regulation and the cognitive decline in aging: beyond the paradox](https://realitybending.github.io/publications/2015_EmotionRegulationAging/): Makowski, D., Sperduti, M., Blanchet, S., Nicolas, S., & Piolino, P. (2015). Geriatrie et Psychologie Neuropsychiatrie du Vieillissement
+
+## News
+
+- [🎉 Oliver Collins awarded a Junior Research Assistant scholarship](https://realitybending.github.io/news/2026-oliver-collins-jra-scholarship/): 2026-07-01. Oliver Collins, 2nd year student, has been awarded the Junior Research Assistant (JRA) scholarship for a project on illusions and bodily states.
+- [🎉 Emma Benn wins the SAGE Publications Prize](https://realitybending.github.io/news/2026-emma-benn-sage-prize/): 2026-06-01. Emma Benn, 3rd year dissertation student, has won the SAGE Publications Prize for Outstanding Application of Statistical Methods.
+- [Barely Knowing Anything: On Taste, Judgment, and Cognitive Elegance in the Age of AI](https://realitybending.github.io/news/2026-cognitive-elegance/): 2026-05-29. As AI drives down the cost of generating solutions, the critical skill bercomes 'Cognitive Elegance': the internalized capacity for clear vision and confident…
+- [How to send event triggers to Lab Streaming Layer from JsPsych](https://realitybending.github.io/news/2026-event-triggers/): 2026-01-11. Understand the steps involving in setting up event triggers for your JsPsych experiments, including creating the bridge to Lab Streaming Layer, ensuring…
+- [What is the Best Interoception Questionnaire?](https://realitybending.github.io/news/2025-interoception-questionnaires/): 2025-12-20. There are many self-report interoception scales out there- but which one should you pick? Let's discuss the pros and cons of each.
+- [From physique to intellect... and back again?](https://realitybending.github.io/news/2025-dystopian-futures/): 2025-11-03. How the AI revolution might change societal selective pressures to favour natural beauty as the next prized characteristic.
+- [The AI revolution in academia: I see a silver lining for young scientists!](https://realitybending.github.io/news/2025-ai-revolution-academia/): 2025-09-08. For many students and early-career researchers, the rise of AI is scary. What's the future of research careers in the age of AI?
+- [Attractiveness shapes beliefs about whether faces are real or AI-generated, study finds](https://realitybending.github.io/news/2025-ai-faces-in-the-news/): 2025-07-07. Our recent paper on facial attractiveness and reality beliefs is in the news.
+- [How to collect and save data with DataPipe in OSF](https://realitybending.github.io/news/2025-datapipe-osf/): 2025-07-02. Learn how to set up DataPipe to collect and save data in OSF, including creating an OSF project, linking it to DataPipe, configuring data collection, and…
+- [Sussex Psychological Methods MRes: Tips and Advice](https://realitybending.github.io/news/2024-mres-tips/): 2024-03-19. Ola! I'm Ana. The time has come to share my experience of doing a research masters in psychological methods at the University of Sussex
+- [How to Assess Task Reliability using Bayesian Mixed Models](https://realitybending.github.io/news/2024-task-reliability/): 2024-03-18. Task reliability in assessing inter-individual differences is a key issue for differential psychology and neuropsychology.
+- [Junior Research Assistant (JRA) at Sussex: is it worth it?](https://realitybending.github.io/news/2023-jra-experience/): 2023-11-02. I worked as a Psychology JRA during summer 2023 at the Reality Bending Lab. Here is how it went.
+- [How do we know what is real? The 'Affective Reality Theory](https://realitybending.github.io/news/2023-affective-reality-theory/): 2023-04-11. The Affective Reality Theory posits that affective reactions are key to the formation of reality beliefs.
+- [I got ChatGPT to do a personality test. You won't believe what happened next!](https://realitybending.github.io/news/2023-chatgpt-personality/): 2023-04-06. Following my previous blog post about including AIs in psychological experiments, I proceeded to do a small experiment to see whether we could administer a…
+- [We should treat AIs like Human participants in psychological experiments](https://realitybending.github.io/news/2023-ai-participants/): 2023-04-05. A lot of diverse and interesting perspectives have been recently discussed in regards to chatGPT and AGI, but there is one opinion that I found particularly…
+- [When fiction is better than reality: Cypher's Complex](https://realitybending.github.io/news/2023-cyphers-complex/): 2023-02-07. Ever felt like reality was dull as compared to a fictional world? You might have experienced Cypher's Complex
+- [New location and new logo!](https://realitybending.github.io/news/2023-new-logo/): 2023-02-01. The Reality Bending Lab is moving to the UK, and we're revealing the new logo to celebrate its official start!
+- [About signal complexity](https://realitybending.github.io/news/2022-signal-complexity/): 2022-12-05. We recently did a bit of groundwork to better understand how to use signal complexity in neurophysiology.
+- [NeuroKit2 0.2.0 is out 🎉](https://realitybending.github.io/news/2022-neurokit-020/): 2022-05-18. NeuroKit2 0.2.0 is out with a brand new website and documentation!
+- [Podcast 'Learn Bayesian Stats' with Dominique Makowski](https://realitybending.github.io/news/2022-learn-bayesian-stats-podcast/): 2022-02-01. In the latest episode of the 'Learning Bayesian Statistics' podcast, we talk about R, Python, Reality Bending and more!
+- [Pyllusion has been published](https://realitybending.github.io/news/2021-pyllusion-published/): 2021-11-30. Pyllusion, the software for creating illusions in Python, has been published.
+- [NeuroKit2 0.1.5 'Complexity' is out 🎉](https://realitybending.github.io/news/2021-neurokit-015-complexity/): 2021-11-12. NeuroKit2 0.1.5 is out with greater support for complexity analysis of neurophysiological signals.
+- ["Your sample is too small": How to Answer to Reviewers](https://realitybending.github.io/news/2021-sample-too-small/): 2021-11-05. Some tips on how to answer to reviewers when they say the sample is too small but that we cannot increase it.
+- [How to sync two folders in two separate GitHub repositories](https://realitybending.github.io/news/2021-sync-github-repos/): 2021-10-31. Say you have a repo A, in which you want to duplicate some content with repo B. You can do that easily using GitHub actions.
+- [The symbolism behind the ReBeL logo](https://realitybending.github.io/news/2021-logo-symbolism/): 2021-06-30. Can you guess all the hidden symbols and elements present in our logo?
+- [How to share data analysis scripts with publications?](https://realitybending.github.io/news/2021-share-analysis-scripts/): 2021-02-10. Including data analysis as Supplementary Materials can be a tedious task. How can we simplify the sharing of our work? So that it can be fully appreciated, as…
+- [What visual agnosia might feel like](https://realitybending.github.io/news/2021-visual-agnosia/): 2021-01-03. Can you name one thing in this photo? It all looks familiar, but something is off.
+- [Time as a computational limit](https://realitybending.github.io/news/2020-time-as-a-computational-limit/): 2020-11-13. Note: this is a thought-experiment, not to be taken too seriously.
+- [What is Reality Bending?](https://realitybending.github.io/news/2020-what-is-reality-bending/): 2020-09-28. As you know, reality bending is my primary research direction. However, it is not (yet) a well-established scientific topic, nor is it clearly defined. In…
+- [How to extract individual scores from repeated measures](https://realitybending.github.io/news/2020-individual-scores/): 2020-09-14. We compare different methods (individual models, Bayesian models with informative priors, random effects from mixed models) to extract individual scores from…
+- [What is neuropsychology?](https://realitybending.github.io/news/2020-what-is-neuropsychology/): 2020-09-13. In which I discuss the place of neuropsychology in the galaxy of sciences, its structure and its definition.
+- [Why psychologists should join GitHub](https://realitybending.github.io/news/2020-github-for-psychologists/): 2020-05-27. Top reasons why engaging into GitHub will give you the edge and benefit psychological science.
+- [R or Python for Psychologists](https://realitybending.github.io/news/2020-r-or-python/): 2020-05-22. Most psychology students or researchers are faced with the challenge of learning a programming language. Which one should you pick?
+- [How to correctly analyze reaction time (RT) data](https://realitybending.github.io/news/2020-analyze-reaction-times/): 2020-05-18. Most researchers use the normal distribution to model reaction times, but it's wrong! Discover how to perform a good analysis of RT data.
+- [One Python code line for a Mandelbrot fractal](https://realitybending.github.io/news/2020-python-mandelbrot/): 2020-05-16. Create a Mandelbrot or Buddhabrot fractal in Python using NeuroKit.
+- [In defence of the 95% CI](https://realitybending.github.io/news/2020-defence-of-95-ci/): 2020-05-15. The one where I discuss arguments in favour of 95% instead of alternatives like 90 or 89%.
+- [Introduction to Bayesian statistics with R](https://realitybending.github.io/news/2020-intro-bayesian-stats-r/): 2020-05-14. A gentle introduction to Bayesian statistics with R for people not familiar with any of these.
+- [Generate an artificial ECG signal in Python](https://realitybending.github.io/news/2019-simulate-ecg/): 2019-05-17. Simulate a synthetic but realistic ECG signal in Python using NeuroKit.
 
 ## Notes for crawlers
 
-- Everything on this site is open to automated agents, including those that
-  train models. See [robots.txt](https://realitybending.github.io/robots.txt).
-- When citing, prefer the DOI recorded in the publications manifest over this
-  site's own URL — the publisher's record is canonical for a paper.
-- This file is maintained by hand today. Once the site's content has real
-  per-item URLs, it is regenerated alongside the sitemap.
+- Everything here is open to automated agents, including those that train
+  models. See [robots.txt](https://realitybending.github.io/robots.txt).
+- When citing a paper, prefer its DOI over this site's URL — the publisher's
+  record is canonical for a publication.
+- Generated by generate_pages.py alongside sitemap.xml. Do not hand-edit.

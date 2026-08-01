@@ -4,6 +4,38 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+        <!-- ── Every relative URL on this page resolves against the site root ──
+             Not decoration, and not only for the generated pages: routes are
+             carried by the *path* now (shared/routes.js), so `writeRoute` moves
+             this document's URL from `/` to `/people/memories/` to
+             `/publications/gallery/` as the reader goes. A site-relative
+             `research/img/logo-neurokit.png` in a card built *after* that move
+             resolves to `/publications/gallery/research/img/…` and 404s.
+
+             That is exactly the bug this fixed: the Creations logos, the
+             publication figures and the Information backdrops all vanished,
+             because those are the panels built on demand rather than at
+             startup — and `fetch(post.file)` was about to fail the same way.
+             It shows as empty space, not as an error.
+
+             The cost is that a bare `href="#sec-…"` now resolves against the
+             base, so it stops being a same-document fragment once the path has
+             moved and the browser would reload rather than scroll. The nine
+             section anchors are scrolled by hand instead — see the delegated
+             click handler at the foot of script.js.
+
+             `./` and NOT `/`, and the difference matters twice over. A
+             relative base is resolved **once, at parse time**, against the
+             document's own URL, and is then frozen — measured: after
+             `replaceState("/people/memories/")` the baseURI is still the site
+             root. So it fixes the moving-path bug exactly as `/` does, while
+             making no assumption about where the site is mounted. `/` broke
+             every setup that is not the deployed root: a server started at the
+             repo with the site at /WIP/, or the folder opened over file://.
+             Every stylesheet and every module resolved to the wrong place and
+             the page came up bare. -->
+        <base href="./" />
+
         <!-- ── How this page describes itself ──────────────────────────────
              The site is one document, so this block is the *whole* of what a
              crawler or a social card gets before any JavaScript runs. Two
@@ -712,12 +744,31 @@
                    Adding `visible` is not decoration: #main-page is
                    `pointer-events: none` until it has that class, so a door
                    merely hidden leaves the whole page unclickable. */
-                if (window.location.hash.length > 1) {
+                /* `data-route` is the same statement in the other direction: a
+                   page generate_pages.py built for one post or one person has
+                   no hash, because the route is in the path. Both mean the
+                   reader chose a destination before arriving. */
+                if (window.location.hash.length > 1 || document.body.dataset.route) {
                     doorScreen.classList.add("opening")
                     doorScreen.setAttribute("aria-hidden", "true")
                     doorScreen.hidden = true
                     mainPage.classList.add("visible")
                 }
+
+                /* ── The pre-rendered content, removed before it is ever seen ──
+                   A generated page carries its content as plain semantic HTML
+                   in #prerender, which is what a crawler that runs nothing
+                   comes away with — and what a reader with no JavaScript keeps.
+                   For everyone else the modules are about to open the real
+                   panel over the same content, so the static copy has to go.
+
+                   Here, and not in a module, for exactly the reason the door
+                   skip is here: this block is parsed inline, before the
+                   deferred modules and before the first paint, so nothing is
+                   ever composited. From a module the reader would see the flat
+                   copy flash and then be replaced. */
+                var prerender = document.getElementById("prerender")
+                if (prerender) prerender.remove()
                 doorScreen.addEventListener("click", openDoors)
                 doorScreen.addEventListener("keydown", function (event) {
                     if (event.key !== "Enter" && event.key !== " ") return

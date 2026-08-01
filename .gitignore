@@ -60,3 +60,28 @@ docs/*
 *_full.jpg
 *_full.png
 WIP/img/Intro.mp4
+
+# ── Output of WIP/generate_pages.py ──
+# ~240 files: one index.html per post, member, publication and section, plus a
+# redirect stub for every old-site URL. They are built in CI from the manifests
+# and the index.html shell, so committing them would churn 240 files on every
+# content edit and bury the one-line change that actually happened.
+#
+# WIP/index.html is NOT ignored — it is the template these are generated from.
+# Nor is WIP/404.html, which is hand-written.
+WIP/news/*/index.html
+WIP/news/index.html
+WIP/people/*/index.html
+WIP/people/index.html
+WIP/publications/*/index.html
+WIP/publications/index.html
+WIP/research/index.html
+WIP/research/*/index.html
+WIP/information/
+WIP/join/
+WIP/services/
+WIP/post/
+WIP/publication/
+WIP/authors/
+WIP/jobs/
+WIP/__pycache__/

@@ -3,6 +3,7 @@ import { buildMemoryMeta, getMemoriesManifest } from "../shared/memories-data.js
 import { registerProfileActions } from "../shared/profile-api.js"
 import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
 import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRoute } from "../shared/deep-link.js"
+import { registerMemberFolders } from "../shared/routes.js"
 import { registerRouteTitle } from "../shared/page-meta.js"
 
 /* people.js
@@ -1018,6 +1019,15 @@ import { registerRouteTitle } from "../shared/page-meta.js"
             }
 
             onRoute(applyRoute)
+
+            /* A member's route is the bare folder — the one route with no
+               prefix — so `pathForRoute("dominique-makowski")` cannot tell it
+               from a typo without the set. Handed over here, in the same `.then`
+               as everything else that needs the manifest, and safe because a
+               route is only ever *written* in response to a press, long after
+               this has run. Reading is unaffected: `/people/<x>/` is
+               unambiguous from its shape. */
+            registerMemberFolders(manifest.members.map((m) => m.folder))
 
             /* A member's route is the bare folder, so this resolver is the only
                thing that can tell `#dominique-makowski` from a typo — same

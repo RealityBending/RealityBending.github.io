@@ -436,6 +436,37 @@ if (INITIAL_ROUTE) {
     window.addEventListener("load", landOnInitialSection)
 }
 
+/* ── The section anchors have to be scrolled by hand now ──
+ * `<base href="/">` in index.html is what keeps every site-relative URL on the
+ * page resolving against the site root rather than against whatever path
+ * `writeRoute` last wrote (see the note in index.html). It has one cost: a bare
+ * `href="#sec-people-full"` resolves to `/#sec-people-full`, which stops being
+ * a same-document fragment the moment the URL is `/people/memories/` — the
+ * browser would treat it as a navigation and reload the page.
+ *
+ * So these nine anchors are handled here instead. The behaviour is the one they
+ * always had, only smooth on purpose: a click inside the page is a move the
+ * reader initiated and reads better animated, which is the same distinction
+ * `revealSection` already makes between arriving and navigating.
+ *
+ * Delegated from the document so it covers the nav, the FABs and anything
+ * added later, and registered without `capture` so the existing
+ * `[data-contact-tab-target]` listeners still run — they open the tab, this
+ * moves the page, and neither knows about the other.
+ *
+ * Modifier-clicks and middle-clicks fall through untouched: those mean "open
+ * this somewhere else", and a preventDefault would silently break them.
+ */
+document.addEventListener("click", (event) => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+    const anchor = event.target.closest && event.target.closest('a[href*="#sec-"]')
+    if (!anchor) return
+    const sectionId = (anchor.getAttribute("href") || "").split("#")[1]
+    if (!sectionId || !document.getElementById(sectionId)) return
+    event.preventDefault()
+    revealSection(sectionId, { smooth: true })
+})
+
 initContactTabs()
 initHeroGlow()
 initPeopleVideo()
