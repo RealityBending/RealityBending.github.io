@@ -1,0 +1,14 @@
+{
+  "doi": "10.21105/joss.03393",
+  "title": "see: An R Package for Visualizing Statistical Models",
+  "year": 2021,
+  "journal": "Journal of Open Source Software",
+  "type": "Journal Article",
+  "authors": "Lüdecke, D., Patil, I., Ben-Shachar, M., Wiernik, B., Waggoner, P., & Makowski, D.",
+  "is_preprint": false,
+  "pdf": "publications/2021_See/2021_See.pdf",
+  "keywords": [],
+  "citations": 114,
+  "featured": "publications/2021_See/featured.jpg",
+  "folder": "2021_See"
+}

@@ -1,0 +1,14 @@
+{
+  "doi": "10.3758/s13428-020-01516-y",
+  "title": "NeuroKit2: A Python toolbox for neurophysiological signal processing",
+  "year": 2021,
+  "journal": "Behavior Research Methods",
+  "type": "Journal Article",
+  "authors": "Makowski, D., Pham, T., Lau, Z. J., Brammer, J. C., Lespinasse, F., Pham, H., Schölzel, C., & Chen, S. H. A.",
+  "is_preprint": false,
+  "pdf": "publications/2021_Neurokit2/2021_Neurokit2.pdf",
+  "keywords": [],
+  "citations": 1196,
+  "featured": "publications/2021_Neurokit2/featured.jpg",
+  "folder": "2021_Neurokit2"
+}

@@ -1,6 +1,10 @@
 import { ACTIVE_NAV_SECTIONS, applySectionTheme } from "./site-sections.js"
 import { initMarginTabNav, swapTabPanels } from "./shared/tab-slide.js"
 import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, readRoute, revealSection, writeRoute } from "./shared/deep-link.js"
+/* Imported for its side effect: the module hooks the route and keeps the tab
+   title in step. Here as well as in the two sections that register resolvers,
+   so a section failing to load cannot leave the title frozen. */
+import "./shared/page-meta.js"
 
 /* script.js
  * Entry-point for the landing page interaction.

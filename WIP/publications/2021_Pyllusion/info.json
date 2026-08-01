@@ -1,0 +1,14 @@
+{
+  "doi": "10.1177/03010066211057347",
+  "title": "A Parametric Framework to Generate Visual Illusions Using Python",
+  "year": 2021,
+  "journal": "Perception",
+  "type": "Journal Article",
+  "authors": "Makowski, D., Lau, Z. J., Pham, T., Paul Boyce, W., & Annabel Chen, S.",
+  "is_preprint": false,
+  "pdf": "publications/2021_Pyllusion/2021_Pyllusion.pdf",
+  "keywords": [],
+  "citations": 5,
+  "featured": "publications/2021_Pyllusion/featured.png",
+  "folder": "2021_Pyllusion"
+}

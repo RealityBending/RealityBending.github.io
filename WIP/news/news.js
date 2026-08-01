@@ -2,6 +2,7 @@ import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
 import { openProfileByFolder } from "../shared/profile-api.js"
 import { createPager } from "../shared/pager.js"
 import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRoute } from "../shared/deep-link.js"
+import { registerRouteTitle } from "../shared/page-meta.js"
 import { element as el } from "../shared/dom.js"
 
 /* news.js
@@ -554,6 +555,17 @@ import { element as el } from "../shared/dom.js"
         }
 
         onRoute(applyRoute)
+
+        /* The tab label for an open post. Registered here rather than at
+           startup for the same reason applyRoute is: a slug is only a title
+           once the manifest has landed. */
+        registerRouteTitle((route) => {
+            const slug = matchRoute(route, "post")
+            if (!slug) return null
+            const post = allPosts.find((entry) => entry.slug === slug)
+            return post ? post.title : null
+        })
+
         /* Only re-land if this section actually owned the route. `landOnLoad`
            fires unconditionally once armed, so arming it in every section meant
            four of them scrolling to themselves at `load` and the last one

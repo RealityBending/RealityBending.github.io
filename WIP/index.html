@@ -3,7 +3,60 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Reality Bending Lab</title>
+
+        <!-- ── How this page describes itself ──────────────────────────────
+             The site is one document, so this block is the *whole* of what a
+             crawler or a social card gets before any JavaScript runs. Two
+             consequences worth knowing:
+
+             - shared/page-meta.js rewrites the title and the og:* tags as the
+               reader moves between hash routes, which is for the browser tab,
+               the history menu and bookmarks. It is NOT read by search or
+               social crawlers: those fetch the raw HTML and never run the
+               modules, so what is written here is what they index and what
+               every shared link renders as, whichever route it points at.
+             - the canonical is absolute and is the deployed root, not this
+               folder. WIP/ is where the site is built; it is served from
+               https://realitybending.github.io/. Moving that (a CNAME, a
+               different path) means changing SITE_URL here, in sitemap.xml,
+               in robots.txt and in page-meta.js — they are four copies of one
+               fact and nothing keeps them in step. -->
+        <title>Reality Bending Lab — Neuropsychology of Reality | University of Sussex</title>
+        <meta
+            name="description"
+            content="The Reality Bending Lab, led by Dominique Makowski at the University of Sussex, studies how people construct and distort reality — perception, illusions, deception, fake news and AI beliefs."
+        />
+        <link rel="canonical" href="https://realitybending.github.io/" />
+
+        <!-- Open Graph: what X, LinkedIn, Bluesky, Slack, Mastodon and iMessage
+             show when a link is shared. Without these a shared link is a bare
+             grey rectangle. og:image must be an absolute URL — relative paths
+             are not resolved by any of these crawlers. -->
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Reality Bending Lab" />
+        <meta property="og:title" content="Reality Bending Lab — Neuropsychology of Reality" />
+        <meta
+            property="og:description"
+            content="Led by Dominique Makowski at the University of Sussex: research on reality perception, illusions, deception, fake news and AI beliefs."
+        />
+        <meta property="og:url" content="https://realitybending.github.io/" />
+        <meta property="og:image" content="https://realitybending.github.io/img/og-card.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Reality Bending Lab" />
+        <meta property="og:locale" content="en_GB" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@Dom_Makowski" />
+        <meta name="twitter:creator" content="@Dom_Makowski" />
+
+        <!-- Cream behind the black mark in both icons: a transparent logo is
+             black-on-black in a dark tab bar. The Sussex wordmark in the corner
+             of lab_logo_black.png is cropped away for these — at 48px it is
+             noise rather than a second brand. -->
+        <link rel="icon" type="image/png" href="img/favicon.png" />
+        <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+        <meta name="theme-color" content="#f5f4ef" />
+
         <!-- One stylesheet cut into numbered pieces. THE ORDER IS THE CASCADE:
              these are loaded and applied exactly as listed, so a rule in a
              later file beats the same-specificity rule in an earlier one.
@@ -46,6 +99,98 @@
                     "three": "https://cdn.jsdelivr.net/npm/three@0.167.1/build/three.module.js",
                     "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.167.1/examples/jsm/"
                 }
+            }
+        </script>
+
+        <!-- ── Structured data ─────────────────────────────────────────────
+             What the lab *is*, in the vocabulary Google, Bing and the LLM
+             crawlers parse directly rather than infer from prose. This is the
+             one part of the page that does not depend on JavaScript having run
+             and does not depend on anything being fetched, so it is what a
+             crawler that renders nothing still comes away with.
+
+             It is hand-kept, and it duplicates three things that live in a
+             manifest: the lab's name, the PI's name and the PI's social links
+             (people/people_manifest.json, member `dominique-makowski`). Kept by
+             hand because there is exactly one PI and one organisation and a
+             script to derive two objects would be more machinery than the
+             thing it generates. If a fourth of these appears, generate it.
+
+             @id lets the three refer to each other rather than repeat: the
+             WebSite is published by the Organization, the Person works for it.
+
+             Publications are deliberately NOT here. They would be twenty
+             ScholarlyArticle nodes on a page that is not about any of them,
+             and Google matches structured data against what the page visibly
+             shows. They belong on per-publication pages, which do not exist
+             yet — see the Tier 3 note in CLAUDE.md. -->
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@graph": [
+                    {
+                        "@type": "ResearchOrganization",
+                        "@id": "https://realitybending.github.io/#organization",
+                        "name": "Reality Bending Lab",
+                        "alternateName": "ReBeL",
+                        "url": "https://realitybending.github.io/",
+                        "logo": "https://realitybending.github.io/img/lab_logo_black.png",
+                        "image": "https://realitybending.github.io/img/og-card.jpg",
+                        "email": "D.Makowski@sussex.ac.uk",
+                        "description": "Research group studying the neuropsychology of reality and its distortions — perception, illusions, deception, fake news, AI beliefs, and their links with emotion, cognitive control and the Self.",
+                        "parentOrganization": {
+                            "@type": "CollegeOrUniversity",
+                            "name": "University of Sussex",
+                            "url": "https://www.sussex.ac.uk/"
+                        },
+                        "address": {
+                            "@type": "PostalAddress",
+                            "streetAddress": "Pevensey 1, room 2B7, School of Psychology, University of Sussex",
+                            "addressLocality": "Brighton",
+                            "postalCode": "BN1 9QH",
+                            "addressCountry": "GB"
+                        },
+                        "founder": { "@id": "https://realitybending.github.io/#dominique-makowski" },
+                        "sameAs": ["https://github.com/RealityBending", "https://x.com/Dom_Makowski"],
+                        "knowsAbout": [
+                            "Neuropsychology",
+                            "Reality perception",
+                            "Visual illusions",
+                            "Deception",
+                            "Misinformation",
+                            "Interoception",
+                            "Psychophysiology",
+                            "Bayesian statistics"
+                        ]
+                    },
+                    {
+                        "@type": "Person",
+                        "@id": "https://realitybending.github.io/#dominique-makowski",
+                        "name": "Dominique Makowski",
+                        "jobTitle": "Lecturer in Psychology",
+                        "image": "https://realitybending.github.io/people/dominique-makowski/avatar.jpg",
+                        "email": "D.Makowski@sussex.ac.uk",
+                        "affiliation": { "@id": "https://realitybending.github.io/#organization" },
+                        "worksFor": { "@id": "https://realitybending.github.io/#organization" },
+                        "url": "https://realitybending.github.io/#dominique-makowski",
+                        "sameAs": [
+                            "https://scholar.google.com/citations?user=bg0BZ-QAAAAJ&hl",
+                            "https://github.com/DominiqueMakowski",
+                            "https://x.com/Dom_Makowski",
+                            "https://www.researchgate.net/profile/Dominique_Makowski",
+                            "https://www.linkedin.com/in/dominiquemakowski/",
+                            "https://dominiquemakowski.github.io/CV/"
+                        ]
+                    },
+                    {
+                        "@type": "WebSite",
+                        "@id": "https://realitybending.github.io/#website",
+                        "url": "https://realitybending.github.io/",
+                        "name": "Reality Bending Lab",
+                        "inLanguage": "en-GB",
+                        "publisher": { "@id": "https://realitybending.github.io/#organization" }
+                    }
+                ]
             }
         </script>
     </head>

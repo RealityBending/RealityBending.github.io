@@ -1,0 +1,14 @@
+{
+  "doi": "10.21105/joss.02306",
+  "title": "Methods and Algorithms for Correlation Analysis in R",
+  "year": 2020,
+  "journal": "Journal of Open Source Software",
+  "type": "Journal Article",
+  "authors": "Makowski, D., Ben-Shachar, M., Patil, I., & Lüdecke, D.",
+  "is_preprint": false,
+  "pdf": "publications/2020_Correlation/2020_Correlation.pdf",
+  "keywords": [],
+  "citations": 403,
+  "featured": "publications/2020_Correlation/featured.jpg",
+  "folder": "2020_Correlation"
+}

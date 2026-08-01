@@ -76,10 +76,51 @@ export function writeRoute(route) {
     // a bare "#" and the reader's copy of it has a dangling character.
     const url = route ? "#" + route : window.location.pathname + window.location.search
     window.history.replaceState(null, "", url)
+    // Observers only — never the route handlers. See onRouteSettled.
+    notifySettled(route)
 }
 
 export function onRoute(handler) {
     listeners.push(handler)
+}
+
+/* ── A second channel, for observers rather than handlers ──
+ * `onRoute` fires only when the *reader* moved, which is the whole point of
+ * writeRoute being a replaceState: a section can write its own route without
+ * re-entering its own handler.
+ *
+ * But something that merely wants to *know* what the URL now says — the title
+ * in shared/page-meta.js — needs both cases, because "the reader opened a post"
+ * and "a module wrote #post-… after a click" produce the same URL and should
+ * produce the same title.
+ *
+ * So: a separate list, notified from both places, and it does not weaken the
+ * re-entrancy guarantee above because of one rule —
+ *
+ *   AN OBSERVER MUST NOT WRITE THE ROUTE.
+ *
+ * `notifying` enforces it rather than trusting it: a write from inside a
+ * notification would otherwise notify again, and two observers each nudging the
+ * URL would spin. Observers are for reading the route, never for steering it.
+ */
+const observers = []
+let notifying = false
+
+export function onRouteSettled(observer) {
+    observers.push(observer)
+}
+
+function notifySettled(route) {
+    if (notifying) return
+    notifying = true
+    observers.forEach((observer) => {
+        try {
+            observer(route)
+        } catch (error) {
+            console.error("deep-link: a route observer failed for #" + route, error)
+        }
+    })
+    notifying = false
 }
 
 window.addEventListener("hashchange", () => {
@@ -91,6 +132,7 @@ window.addEventListener("hashchange", () => {
             console.error("deep-link: a route handler failed for #" + route, error)
         }
     })
+    notifySettled(route)
 })
 
 /* Where a deep link lands. `#main-page` is the scroll container, not the

@@ -1,0 +1,14 @@
+{
+  "doi": "10.21105/JOSS.01541",
+  "title": "bayestestR: Describing Effects and their Uncertainty, Existence and Significance within the Bayesian Framework",
+  "year": 2019,
+  "journal": "The Journal of Open Source Software",
+  "type": "Journal Article",
+  "authors": "Makowski, D., Ben-Shachar, M., & Lüdecke, D.",
+  "is_preprint": false,
+  "pdf": "publications/2019_Bayestestr/2019_Bayestestr.pdf",
+  "keywords": [],
+  "citations": 1295,
+  "featured": "publications/2019_Bayestestr/featured.jpg",
+  "folder": "2019_Bayestestr"
+}

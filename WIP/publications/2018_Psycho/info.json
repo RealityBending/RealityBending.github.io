@@ -1,0 +1,14 @@
+{
+  "doi": "10.21105/JOSS.00470",
+  "title": "The psycho Package: an Efficient and Publishing-Oriented Workflow for Psychological Science",
+  "year": 2018,
+  "journal": "The Journal of Open Source Software",
+  "type": "Journal Article",
+  "authors": "Makowski, D.",
+  "is_preprint": false,
+  "pdf": "publications/2018_Psycho/2018_Psycho.pdf",
+  "keywords": [],
+  "citations": 341,
+  "featured": "publications/2018_Psycho/featured.jpg",
+  "folder": "2018_Psycho"
+}

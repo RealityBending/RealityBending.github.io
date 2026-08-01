@@ -1,0 +1,13 @@
+# Reality Bending Lab — https://realitybending.github.io/
+#
+# Everything is open, including to the LLM crawlers (GPTBot, ClaudeBot,
+# PerplexityBot, Google-Extended). That is a deliberate choice rather than an
+# omission: this is a public research lab and being quotable by an assistant
+# that is asked "who studies interoception at Sussex" is worth more here than
+# withholding the text. To opt out of AI training while staying in search,
+# disallow those agents by name below — blocking them does not affect ranking.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://realitybending.github.io/sitemap.xml

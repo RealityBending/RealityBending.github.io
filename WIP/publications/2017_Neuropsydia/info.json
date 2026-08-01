@@ -1,0 +1,14 @@
+{
+  "doi": "10.21105/JOSS.00259",
+  "title": "Neuropsydia.py: A Python Module for Creating Experiments, Tasks and Questionnaires",
+  "year": 2017,
+  "journal": "The Journal of Open Source Software",
+  "type": "Journal Article",
+  "authors": "Makowski, D., & Dutriaux, L.",
+  "is_preprint": false,
+  "pdf": "publications/2017_Neuropsydia/2017_Neuropsydia.pdf",
+  "keywords": [],
+  "citations": 17,
+  "featured": "publications/2017_Neuropsydia/featured.jpg",
+  "folder": "2017_Neuropsydia"
+}

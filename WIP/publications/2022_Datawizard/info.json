@@ -1,0 +1,14 @@
+{
+  "doi": "10.21105/joss.04684",
+  "title": "datawizard: An R Package for Easy Data Preparation and Statistical Transformations",
+  "year": 2022,
+  "journal": "Journal of Open Source Software",
+  "type": "Journal Article",
+  "authors": "Patil, I., Makowski, D., Ben-Shachar, M. S., Wiernik, B. M., Bacher, E., & Lüdecke, D.",
+  "is_preprint": false,
+  "pdf": "publications/2022_Datawizard/2022_Datawizard.pdf",
+  "keywords": [],
+  "citations": 49,
+  "featured": "publications/2022_Datawizard/featured.jpg",
+  "folder": "2022_Datawizard"
+}

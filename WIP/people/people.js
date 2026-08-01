@@ -3,6 +3,7 @@ import { buildMemoryMeta, getMemoriesManifest } from "../shared/memories-data.js
 import { registerProfileActions } from "../shared/profile-api.js"
 import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
 import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRoute } from "../shared/deep-link.js"
+import { registerRouteTitle } from "../shared/page-meta.js"
 
 /* people.js
  * Renders the People section as a Multi-Layered Perceptron (MLP) diagram.
@@ -1017,6 +1018,15 @@ import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRou
             }
 
             onRoute(applyRoute)
+
+            /* A member's route is the bare folder, so this resolver is the only
+               thing that can tell `#dominique-makowski` from a typo — same
+               membership test applyRoute makes, and for the same reason. */
+            registerRouteTitle((route) => {
+                const member = route && manifest.members.find((m) => m.folder === route)
+                return member ? member.name : null
+            })
+
             // Armed only when this section owned the route — see news.js.
             if (applyRoute(INITIAL_ROUTE)) landOnLoad("sec-people-full")
 
