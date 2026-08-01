@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en-GB">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Page not found — Reality Bending Lab</title>
+
+        <!-- A 404 must never be indexed. GitHub Pages serves this file with a
+             real 404 status for any unmatched path, so the status line is
+             already right; this stops the *page* being kept as a result. -->
+        <meta name="robots" content="noindex" />
+
+        <!-- ── Every path here is root-absolute, and that is not a style
+             choice ──
+             GitHub Pages serves this one file for *any* unmatched depth, while
+             the browser's address bar keeps the URL that was asked for. A
+             relative `img/…` on a request for /news/typo/ resolves to
+             /news/typo/img/… and 404s inside the 404. -->
+        <link rel="icon" type="image/png" href="/img/favicon.png" />
+        <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
+        <meta name="theme-color" content="#f5f4ef" />
+
+        <!-- Self-contained rather than linked to css/. The numbered sheets are
+             one stylesheet cut into pieces and every one of them is written for
+             the single-page shell — the door, #main-page as a scroll container,
+             the sections. None of that exists here, and pulling 21 files in to
+             use none of them is 300KB for a page nobody should stay on. -->
+        <style>
+            :root {
+                --cream: #f5f4ef;
+                --ink: #23262b;
+                --muted: #6b7078;
+                --accent: #5599ff;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 1.5rem;
+                padding: 2rem;
+                background: var(--cream);
+                color: var(--ink);
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    Roboto,
+                    sans-serif;
+                text-align: center;
+            }
+
+            img {
+                width: min(260px, 60vw);
+                height: auto;
+            }
+
+            h1 {
+                margin: 0;
+                font-size: clamp(1.5rem, 4vw, 2.1rem);
+                font-weight: 600;
+                letter-spacing: -0.01em;
+            }
+
+            p {
+                margin: 0;
+                max-width: 40ch;
+                color: var(--muted);
+                line-height: 1.6;
+            }
+
+            .home {
+                display: inline-block;
+                margin-top: 0.5rem;
+                padding: 0.7rem 1.6rem;
+                border-radius: 999px;
+                background: var(--ink);
+                color: var(--cream);
+                text-decoration: none;
+                font-weight: 500;
+                transition: background 0.2s ease;
+            }
+
+            .home:hover,
+            .home:focus-visible {
+                background: var(--accent);
+            }
+
+            /* The four places worth offering instead of the homepage. Real
+               links, so this page is also a (small) crawlable route back into
+               the site from anywhere a bad URL was followed. */
+            .elsewhere {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.4rem 1.4rem;
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                font-size: 0.92rem;
+            }
+
+            .elsewhere a {
+                color: var(--muted);
+                text-decoration: none;
+                border-bottom: 1px solid rgba(107, 112, 120, 0.35);
+            }
+
+            .elsewhere a:hover,
+            .elsewhere a:focus-visible {
+                color: var(--ink);
+                border-bottom-color: var(--ink);
+            }
+        </style>
+    </head>
+    <body>
+        <img src="/img/lab_logo_black.png" alt="Reality Bending Lab" />
+        <h1>This page bent out of reality.</h1>
+        <p>The address you followed does not exist here. It may have moved when the site was rebuilt.</p>
+        <a class="home" href="/">Back to the lab</a>
+        <ul class="elsewhere">
+            <li><a href="/#sec-people-full">People</a></li>
+            <li><a href="/#sec-research-full">Research</a></li>
+            <li><a href="/#sec-news-full">News</a></li>
+            <li><a href="/#sec-publications-full">Publications</a></li>
+            <li><a href="/#sec-contact-full">Contact</a></li>
+        </ul>
+    </body>
+</html>

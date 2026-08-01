@@ -1,0 +1,44 @@
+# Reality Bending Lab
+
+> A psychology and neuroscience research group at the University of Sussex
+> (Brighton, UK), led by Dr Dominique Makowski. The lab studies the
+> neuropsychology of reality and its distortions — how people construct,
+> perceive and misjudge what is real — spanning visual illusions, deception and
+> lie detection, misinformation and fake news, beliefs about AI-generated
+> content, interoception and the body's role in emotion, and the cognitive
+> control of reality monitoring. It also develops open-source scientific
+> software (NeuroKit2, Pyllusion, easystats and others), psychometric scales
+> (the LIE Scale, the Illusion Game) and Bayesian statistical methods.
+
+The site is a single-page application: the human-facing routes are hash
+fragments (`/#post-<slug>`, `/#<member-folder>`) and are not separately
+addressable. Until per-item pages exist, the machine-readable content of this
+site is the set of JSON manifests below — these are the complete, canonical
+data the page itself renders from, and they can be fetched directly.
+
+Contact: D.Makowski@sussex.ac.uk · Pevensey 1, room 2B7, School of Psychology,
+University of Sussex, Brighton BN1 9QH, United Kingdom.
+
+## Data
+
+- [People manifest](https://realitybending.github.io/people/people_manifest.json): 14 current and former lab members — name, role, biography, research interests, and links to ORCID, GitHub, Google Scholar and personal sites.
+- [News manifest](https://realitybending.github.io/news/news_manifest.json): metadata for 38 blog posts and lab announcements — title, date, authors, category and summary. A post's full text lives at `news/<slug>/post.json` under the `content` key.
+- [Publications manifest](https://realitybending.github.io/publications/publications_manifest.json): 66 journal articles, preprints and book chapters — title, authors, year, venue, DOI, citation count, and a path to the open-access PDF where one is hosted here.
+- [Collaborations manifest](https://realitybending.github.io/collaborations/collaborations_manifest.json): close collaborators and consultants.
+
+## Software
+
+- [NeuroKit2](https://neuropsychology.github.io/NeuroKit/): Python toolbox for neurophysiological signal processing (ECG, EDA, EMG, RSP, EEG).
+- [Pyllusion](https://realitybending.github.io/Pyllusion/): parametric generation of visual illusions.
+- [easystats](https://easystats.github.io/easystats/): R ecosystem for statistical modelling, effect sizes and Bayesian reporting.
+- [NeuropsyXart](https://dominiquemakowski.github.io/NeuropsyXart/): generative art from neuropsychological data.
+- [GitHub organisation](https://github.com/RealityBending): all lab software and study repositories.
+
+## Notes for crawlers
+
+- Everything on this site is open to automated agents, including those that
+  train models. See [robots.txt](https://realitybending.github.io/robots.txt).
+- When citing, prefer the DOI recorded in the publications manifest over this
+  site's own URL — the publisher's record is canonical for a paper.
+- This file is maintained by hand today. Once the site's content has real
+  per-item URLs, it is regenerated alongside the sitemap.

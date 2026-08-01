@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en-GB">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="noindex" />
+        <title>routes.js self-check</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 2rem;
+                background: #f5f4ef;
+                color: #23262b;
+                font: 14px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            }
+            h1 {
+                font-size: 1.1rem;
+            }
+            #result {
+                white-space: pre-wrap;
+            }
+            .pass {
+                color: #23663a;
+                font-weight: 700;
+            }
+            .fail {
+                color: #b3261e;
+                font-weight: 700;
+            }
+            table {
+                border-collapse: collapse;
+                margin-top: 1.5rem;
+            }
+            td {
+                padding: 0.15rem 1.2rem 0.15rem 0;
+                vertical-align: top;
+            }
+            td:first-child {
+                color: #6b7078;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>shared/routes.js — self-check</h1>
+        <div id="result">running…</div>
+        <table id="table"></table>
+
+        <script type="module">
+            import { verify, pathForRoute, routeForPath, registerMemberFolders } from "../shared/routes.js"
+
+            const result = document.getElementById("result")
+            const failures = verify()
+
+            if (failures.length === 0) {
+                result.innerHTML = '<span class="pass">PASS</span> — every route round-trips.'
+            } else {
+                result.innerHTML =
+                    '<span class="fail">FAIL</span> — ' + failures.length + " problem(s):\n" + failures.join("\n")
+            }
+
+            /* The map as a table, so the shapes can be eyeballed rather than
+               trusted. Uses the real member folders from the manifest. */
+            const members = await fetch("../people/people_manifest.json")
+                .then((r) => r.json())
+                .then((m) => m.members.map((x) => x.folder))
+            registerMemberFolders(members)
+
+            const sample = [
+                "",
+                "people",
+                "people-memories",
+                members[0],
+                members[6],
+                "research",
+                "research-creations",
+                "news",
+                "news-featured",
+                "post-2023-new-logo",
+                "publications",
+                "publications-gallery",
+                "pub-2015_EmotionRegulationAging",
+                "contact",
+                "contact-join",
+                "join-phd",
+                "services-consulting",
+                "sec-people-full",
+            ]
+
+            const table = document.getElementById("table")
+            for (const route of sample) {
+                const path = pathForRoute(route)
+                const back = path ? routeForPath(path) : "(stays a fragment)"
+                const ok = path === null || back === route
+                const row = document.createElement("tr")
+                row.innerHTML =
+                    "<td>" +
+                    (route || "(empty)") +
+                    "</td><td>" +
+                    (path === null ? "#" + route : path) +
+                    "</td><td>" +
+                    (ok ? "✓" : "✗ back → " + back) +
+                    "</td>"
+                table.appendChild(row)
+            }
+        </script>
+    </body>
+</html>
