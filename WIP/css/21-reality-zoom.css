@@ -1191,6 +1191,188 @@
     border-bottom-color: color-mix(in srgb, var(--rz-accent) 90%, #fff);
 }
 
+/* ── The turning prism ──
+   Four instruments on a square prism: phrenology, EEG, chronoscope, model. It
+   turns a quarter at a time and each face carries its own label, so nothing in
+   script has to know which one is showing and there is no caption to keep in
+   step — the same reason the cardiac loop next door is pure CSS.
+
+   ── The face order is the argument ──
+   The pairs are *adjacent*, at 0°/90° and 180°/270°, not opposite. Opposite
+   faces are half a turn apart and can never be seen in one movement, so the
+   pairing would have to be asserted in words. Adjacent, the quarter-turn is the
+   sentence: phrenology becomes EEG, the chronoscope becomes a model. Reordering
+   `faces` in research-content.js breaks that and nothing will warn you.
+
+   ── The size is one number, and it has to be the *rendered* one ──
+   `--rz-prism-size` is the side of the prism and `translateZ` is half of it —
+   that is what makes four rotated planes meet at their edges instead of
+   floating apart. So the number the faces push out by must be the width the
+   stage actually got, not the width it asked for. `translateZ` has no
+   percentage basis, which is the one thing about a CSS prism that cannot be
+   expressed in percentages; `100cqi` against the figure is what stands in for
+   it. Sized against the viewport instead (`76vw`, the first attempt) the stage
+   asked for 336px inside a 275px column, was clamped to the column, and the
+   faces went on translating by half of 336 — four planes meeting 30px outside
+   their own edges.
+
+   `container-type: inline-size` and not `size`: the figure's width comes from
+   its grid track and its height from its contents, and containing the block
+   axis would collapse it. Same trap as `.hero__brain` in the stacked layout. */
+.rz-fig--prism {
+    max-width: 24rem;
+    container-type: inline-size;
+}
+
+.rz-prism__stage {
+    --rz-prism-size: min(21rem, 100cqi);
+    width: var(--rz-prism-size);
+    height: var(--rz-prism-size);
+    /* Far enough back that the turn reads as a turn and not as a fisheye. At
+       ~2.2× the side the receding edge foreshortens visibly and the near edge
+       does not bow. */
+    perspective: calc(var(--rz-prism-size) * 2.2);
+}
+
+.rz-prism {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    /* A hold, then a quarter turn, four times over. Negative rotation so the
+       faces arrive in the order they are written. `.rz-prism__face` sets its
+       own angle from --rz-face, so this animation never names a face. */
+    animation: rz-prism-turn 24s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* Paused until the landmark is holding the screen, and scoped away from static
+   mode where nothing is ever `--held` — the same arrangement, and the same
+   trap, as the cardiac loop. Without the scope the stacked fallback would show
+   a prism frozen mid-turn, i.e. two half-faces and no readable instrument. */
+.rz:not(.rz--static) .rz-scene:not(.rz-scene--held) .rz-prism {
+    animation-play-state: paused;
+}
+
+@keyframes rz-prism-turn {
+    0%,
+    19% {
+        transform: rotateY(0deg);
+    }
+    25%,
+    44% {
+        transform: rotateY(-90deg);
+    }
+    50%,
+    69% {
+        transform: rotateY(-180deg);
+    }
+    75%,
+    94% {
+        transform: rotateY(-270deg);
+    }
+    100% {
+        transform: rotateY(-360deg);
+    }
+}
+
+.rz-prism__face {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    gap: 0.4rem;
+    padding: 1.2rem 1.3rem;
+    box-sizing: border-box;
+    border: 1px solid color-mix(in srgb, var(--rz-accent) 30%, transparent);
+    border-radius: 0.9rem;
+    background: color-mix(in srgb, var(--rz-accent) 8%, rgba(8, 8, 10, 0.82));
+    text-align: center;
+    /* The face's own quarter turn, then pushed out to the prism's surface.
+       Order matters: rotate first, translate along the rotated axis. */
+    transform: rotateY(calc(var(--rz-face) * 90deg)) translateZ(calc(var(--rz-prism-size) / 2));
+    /* Without this the three faces behind show through their own backs and the
+       drawings overlay each other. */
+    backface-visibility: hidden;
+}
+
+.rz-prism__art {
+    width: min(9.5rem, 44%);
+    height: auto;
+    fill: none;
+    stroke: var(--rz-accent);
+    stroke-width: 3.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    overflow: visible;
+}
+
+.rz-prism__solid {
+    fill: var(--rz-accent);
+    stroke: none;
+}
+
+/* The pieces of a drawing that are scaffolding rather than the instrument: a
+   decision boundary, the axis a distribution sits on, the traces that lost. */
+.rz-prism__bound,
+.rz-prism__dist {
+    stroke-width: 2.4;
+    opacity: 0.75;
+}
+
+.rz-prism__dash {
+    stroke-width: 2;
+    stroke-dasharray: 5 7;
+    opacity: 0.45;
+}
+
+.rz-prism__faint {
+    opacity: 0.35;
+}
+
+.rz-prism__trace {
+    stroke-width: 2.4;
+    opacity: 0.7;
+}
+
+.rz-prism__era {
+    margin: 0.5rem 0 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rz-accent);
+}
+
+.rz-prism__name {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #f4f2ee;
+}
+
+.rz-prism__text {
+    margin: 0;
+    max-width: 20rem;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: rgba(238, 236, 232, 0.76);
+}
+
+.rz-prism__caption {
+    margin: 0;
+    max-width: 24rem;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.78rem;
+    line-height: 1.6;
+    text-align: center;
+    color: rgba(238, 236, 232, 0.6);
+}
+
 /* ── The rail ──
    Once the section is black this is its only navigation, so it stays visible
    rather than appearing on hover.
@@ -1667,6 +1849,57 @@ nav .nav-logo--sussex {
     .rz-strand {
         opacity: 1;
         translate: 0 0;
+    }
+
+    /* ── The prism, unfolded ──
+       There is no scroll to hold a landmark here and this branch also covers
+       reduced motion, so a turning box is the wrong object twice over: nothing
+       would pause it, and it would still be showing one face in four at any
+       moment. Laid flat as a 2×2 grid instead, which keeps the pairs on the
+       same row — faces 0/1 above, 2/3 below — so the comparison the turn makes
+       is still made, by adjacency rather than by time.
+
+       Every 3D property has to be unwound explicitly: `position`, the face's
+       own `transform`, `preserve-3d` and the perspective. Leaving any one of
+       them turns the grid back into a stack of four overlapping absolute
+       boxes. */
+    /* A definite width, and `100%` is not one here. In this branch `.rz-scene`
+       is a single auto-sized grid track, so a percentage width on anything
+       inside it resolves against an indefinite basis and the track falls back
+       to the content's own max-content — which for a 2×2 grid of four short
+       drawings is about 183px, i.e. 86px columns. Sizing off the viewport
+       instead makes the track definite and the whole chain follows. */
+    .rz-prism__stage {
+        width: min(24rem, 84vw);
+        height: auto;
+        perspective: none;
+    }
+
+    .rz-prism {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.7rem;
+        height: auto;
+        transform-style: flat;
+        animation: none;
+    }
+
+    .rz-prism__face {
+        position: static;
+        inset: auto;
+        transform: none;
+        backface-visibility: visible;
+        padding: 1.1rem 1rem;
+    }
+
+    .rz-prism__art {
+        width: min(6rem, 50%);
+    }
+
+    /* Two columns of ~9rem is not a paragraph's worth of room; the face's name
+       and era carry it and the sentence goes. */
+    .rz-prism__text {
+        display: none;
     }
 
     .rz-rail {

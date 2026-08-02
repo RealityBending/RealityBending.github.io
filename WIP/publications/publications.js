@@ -64,6 +64,36 @@ import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRou
         })
     }
 
+    /* ── Arming a page's badges ──
+     * The placeholders are built with a neutral class (see the card builder);
+     * this is what gives them the names the two vendors' scripts scan for, and
+     * it is called with the cards the pager has just put on screen.
+     *
+     * The class is the switch and not a `data-` attribute, because the class is
+     * what both scripts select on — so an unarmed badge is invisible to them by
+     * construction rather than by our remembering to filter something.
+     *
+     * `armed` is what keeps this idempotent: `renderView` runs on every filter,
+     * every sort and every page turn, and a card that has already been armed
+     * has already been *populated*, so re-arming it would ask both vendors for
+     * a number they have already drawn. Returns whether anything changed, so
+     * the caller can skip the refresh when nothing did.
+     */
+    const BADGE_CLASSES = { altmetric: "altmetric-embed", dimensions: "__dimensions_badge_embed__" }
+
+    function armMetricBadges(cards) {
+        let armed = 0
+        cards.forEach((card) => {
+            card.querySelectorAll("[data-metric-badge]").forEach((slot) => {
+                const name = BADGE_CLASSES[slot.dataset.metricBadge]
+                if (!name || slot.classList.contains(name)) return
+                slot.classList.add(name)
+                armed += 1
+            })
+        })
+        return armed > 0
+    }
+
     function refreshOfficialMetricBadges() {
         if (typeof window._altmetric_embed_init === "function") {
             window._altmetric_embed_init()
@@ -79,12 +109,13 @@ import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRou
             return Promise.resolve()
         }
 
+        /* Loading only. The refresh belongs to the caller's `.then` below and
+           used to be here as well, which meant the first call scanned and
+           populated everything twice — and both vendors answer a second scan
+           with a second round of API calls, measured at three per DOI where one
+           was due. */
         if (!metricBadgeScriptsPromise) {
-            metricBadgeScriptsPromise = Promise.all([loadScriptOnce(ALTMETRIC_SCRIPT_SRC), loadScriptOnce(DIMENSIONS_SCRIPT_SRC)]).then(
-                () => {
-                    refreshOfficialMetricBadges()
-                },
-            )
+            metricBadgeScriptsPromise = Promise.all([loadScriptOnce(ALTMETRIC_SCRIPT_SRC), loadScriptOnce(DIMENSIONS_SCRIPT_SRC)])
         }
 
         return metricBadgeScriptsPromise.then(() => {
@@ -438,16 +469,32 @@ import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRou
                 const badges = document.createElement("div")
                 badges.className = "pub-card__badges"
 
+                /* ── The two third-party badges are placed, not armed ──
+                   All 66 cards are built up front and the pager shows five, so
+                   writing `altmetric-embed` and `__dimensions_badge_embed__`
+                   here handed both vendors' scripts every publication at once:
+                   111 image requests to badges.altmetric.com and
+                   badge.dimensions.ai on the *homepage*, before the reader has
+                   scrolled anywhere near this section, for 61 cards that are
+                   `hidden`. Measured.
+
+                   So the class names those scripts scan for are withheld until
+                   a card is actually on a page the reader is looking at, and
+                   `armMetricBadges` below puts them on. Everything else — the
+                   DOI, the badge options — is written now, because none of it
+                   is what triggers a fetch. */
                 if (pub.doi) {
                     const altmetric = document.createElement("div")
-                    altmetric.className = "altmetric-embed"
+                    altmetric.className = "pub-metric-badge"
+                    altmetric.dataset.metricBadge = "altmetric"
                     altmetric.setAttribute("data-badge-type", "donut")
                     altmetric.setAttribute("data-badge-popover", "right")
                     altmetric.setAttribute("data-doi", pub.doi)
                     badges.appendChild(altmetric)
 
                     const dimensions = document.createElement("span")
-                    dimensions.className = "__dimensions_badge_embed__"
+                    dimensions.className = "pub-metric-badge"
+                    dimensions.dataset.metricBadge = "dimensions"
                     dimensions.setAttribute("data-doi", pub.doi)
                     dimensions.setAttribute("data-style", "small_circle")
                     badges.appendChild(dimensions)
@@ -681,10 +728,18 @@ import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRou
                     card.hidden = true
                 })
                 const start = currentPage * PAGE_SIZE
-                filtered.slice(start, start + PAGE_SIZE).forEach((card) => {
+                const onPage = filtered.slice(start, start + PAGE_SIZE)
+                onPage.forEach((card) => {
                     card.hidden = false
                     container.appendChild(card)
                 })
+
+                /* The two third-party badges are given their real class names
+                   here and nowhere else — this is the only place that knows
+                   which cards a reader can see. Only when something was newly
+                   armed: the vendors' scripts walk the whole document, and on
+                   an archive this size that is not free. */
+                if (armMetricBadges(onPage)) scheduleOfficialMetricBadges()
 
                 // Empty state
                 let emptyMsg = container.querySelector(".pub-search-empty")
@@ -703,10 +758,11 @@ import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRou
                 pager.render(currentPage, totalPages)
             }
 
-            // Initial render
+            // Initial render. It arms and schedules the badges for the first
+            // page itself, so there is no blanket call here any more — that one
+            // ran against a document holding all 66 cards.
             renderView()
             buildScholarMetrics(pubs.length)
-            scheduleOfficialMetricBadges()
 
             /* -- Tab switching, and the URL --
                `#publications-<tab>`, the same scheme every other section uses

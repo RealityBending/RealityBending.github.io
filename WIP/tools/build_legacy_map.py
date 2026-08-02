@@ -25,7 +25,7 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-WIP = os.path.dirname(os.path.abspath(__file__))
+WIP = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT = os.path.dirname(WIP)
 
 # ── Hand-mapped: no key exists to join these on ──
@@ -41,9 +41,14 @@ HAND = {
     # section indexes
     "post": "news/",
     "publication": "publications/",
-    "people": "people/",
-    "research": "research/",
     "authors": "people/",
+    # NOT here: `people` and `research`. Both were live on the old site and both
+    # are live on this one *at the same path*, so nothing moved and there is
+    # nothing to redirect. Mapping them to themselves wrote a stub at a path
+    # generate_pages.py had already filled with the real hub — a page whose
+    # meta-refresh pointed at itself, i.e. an infinite reload, `noindex`, and no
+    # content, at two of the six section URLs. The identity guard below is what
+    # stops the same mistake being made again.
 }
 
 # ── Overrides: a title the port deliberately changed ──
@@ -54,7 +59,8 @@ TITLE_OVERRIDES = {
     "post/2021-12-01-recruiting_nice": "join/research-assistant/",
 }
 
-# ── Deliberately NOT mapped (see SEO-PLAN.md, Phase 2) ──
+# ── Deliberately NOT mapped ──
+# (see CLAUDE.md, "What the old site's URLs taught us")
 # tag/ (161), category/ (25), tags, categories, publication-type/,
 # publication_types, event, talk/ (2). A redirect to an irrelevant page is
 # treated as a soft 404 and discarded; a 404 is the correct answer for a page
@@ -151,6 +157,16 @@ for old_path, target in HAND.items():
     mapping[old_path] = target
     audit["hand"].append((old_path, target))
 
+# ── A URL that did not move is not a redirect ──
+# An old path that equals its own target is a page whose address is unchanged.
+# Emitting a stub for it does not redirect anything: it overwrites the real page
+# at that path with a meta-refresh pointing at itself. Drop them here rather
+# than only guarding in generate_pages.py, so the map itself never claims a
+# move that did not happen.
+identity = sorted(old for old, new in mapping.items() if old.strip("/") == new.strip("/"))
+for old_path in identity:
+    del mapping[old_path]
+
 # ── REPORT ──
 print(f"live old URLs in sitemap: {len(live)}")
 print(f"mapped: {len(mapping)}\n")
@@ -167,6 +183,12 @@ print("── unmatched ──")
 for old, title, is_live in audit["unmatched"]:
     flag = "LIVE — NEEDS A DECISION" if is_live else "not in sitemap, ignorable"
     print(f"   [{flag}] {old}\n        title: {title or '(none)'}")
+
+if identity:
+    print("── unchanged addresses, no stub written ──")
+    for old_path in identity:
+        print(f"   {old_path}  is already its own target")
+    print()
 
 print("\n── live old URLs left unmapped, by kind (deliberate: see header) ──")
 kinds = {}

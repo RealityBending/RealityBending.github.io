@@ -130,6 +130,30 @@
         padding: 1.75rem;
     }
 
+    /* Same padding as the panel above it, so the two blocks read as one column
+       rather than as two cards of different insets. The photograph goes above
+       the prose: beside it there is not enough width left for a readable
+       measure, and narrowing it further crops the landscape to a sliver. */
+    .contact-why {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+        padding: 1.6rem 1.75rem 1.8rem;
+    }
+
+    /* A banner at the photograph's own shape, so nothing is cropped away — the
+       column crop only earns its keep when it has a tall box to fill. */
+    .contact-why__figure {
+        min-height: 0;
+        aspect-ratio: 16 / 9;
+    }
+
+    /* A percentage of a 16:9 banner is a much shorter box than a percentage of
+       the desktop column, so the crest is sized against the width here. */
+    .contact-why__crest {
+        height: auto;
+        width: 34%;
+    }
+
     .contact-full__map {
         border-left: 0;
         border-top: 1px solid rgba(17, 17, 17, 0.09);

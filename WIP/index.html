@@ -118,6 +118,67 @@
         <link rel="stylesheet" href="css/20-wide.css" />
         <link rel="stylesheet" href="css/21-reality-zoom.css" />
         <link rel="stylesheet" href="css/22-debug.css" />
+
+        <!-- ── The no-JS stylesheet ──
+             In <head> because it has to apply before the first paint, and
+             inside <noscript> because it must never apply to anyone else.
+             Deliberately not in the numbered set: those sheets are written for
+             the working site, and a `#door-screen { display: none }` sitting in
+             one of them is a rule waiting to be applied by accident.
+
+             `display: none` on the door and `pointer-events: auto` on
+             #main-page are together what opens the landing screen — the door
+             merely hidden still leaves the page unclickable, which is the same
+             pair the inline bootstrap sets for a deep link. The four hidden
+             sections and the note that replaces them are explained at the
+             <noscript> block in the body. -->
+        <noscript>
+            <style>
+                #door-screen {
+                    display: none;
+                }
+                #main-page {
+                    pointer-events: auto;
+                }
+                #main-page::before {
+                    display: none;
+                }
+                #sec-people-full,
+                #sec-research-full,
+                #sec-news-full,
+                #sec-publications-full,
+                .fab-group {
+                    display: none;
+                }
+                .noscript-note {
+                    max-width: 44rem;
+                    margin: 3rem auto;
+                    padding: 1.6rem 1.8rem;
+                    border: 1px solid rgba(17, 17, 17, 0.14);
+                    border-radius: 18px;
+                    background: rgba(255, 255, 255, 0.72);
+                    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                }
+                .noscript-note__lead {
+                    margin: 0;
+                    font-size: 1rem;
+                    line-height: 1.75;
+                    color: #3c3936;
+                }
+                .noscript-note__links {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 0.5rem 1.4rem;
+                    margin: 1.1rem 0 0;
+                    padding: 0;
+                    list-style: none;
+                }
+                .noscript-note__links a {
+                    font-weight: 600;
+                    color: #7e2f2f;
+                }
+            </style>
+        </noscript>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet" />
@@ -371,6 +432,43 @@
                     </div>
                 </div>
             </div>
+
+            <!-- ── With JavaScript off ──
+                 The homepage is the one page here with no `#prerender` block —
+                 a generated page carries its content statically and a reader
+                 with no JS keeps it, but this one is the shell the modules fill.
+                 Two things follow, and the second is the one that matters:
+
+                 - Four sections would render as a heading, a tab bar and
+                   nothing, which reads as broken rather than as degraded. The
+                   <style> in <head> takes them away, and this block replaces
+                   them with links to the same six sections at their real paths
+                   — which *are* statically rendered, so those links work.
+                 - **The door would otherwise be a wall.** #door-screen is fixed
+                   over everything and #main-page is `pointer-events: none`
+                   until script adds `.visible`; without that stylesheet a
+                   reader with no JS cannot get past the landing screen at all,
+                   and nothing on the page tells them why.
+
+                 The hero and the whole Information section are static markup
+                 and survive untouched, so what is left is a real page: who the
+                 lab is, where it is, and the way in to everything else. -->
+            <noscript>
+                <div class="noscript-note">
+                    <p class="noscript-note__lead">
+                        This site uses JavaScript for its interactive parts — the 3D brain, the research dive, and the panels that
+                        open over People, News and Publications. Every one of those has a plain page of its own:
+                    </p>
+                    <ul class="noscript-note__links">
+                        <li><a href="people/">People</a></li>
+                        <li><a href="research/">Research</a></li>
+                        <li><a href="news/">News</a></li>
+                        <li><a href="publications/">Publications</a></li>
+                        <li><a href="join/">Join the Lab</a></li>
+                        <li><a href="information/">Information</a></li>
+                    </ul>
+                </div>
+            </noscript>
 
             <!-- ════════════════════════════════════
        PEOPLE SECTION
@@ -674,6 +772,125 @@
                                 loading="lazy"
                                 referrerpolicy="no-referrer-when-downgrade"
                             ></iframe>
+                        </div>
+                    </div>
+
+                    <!-- ── Why here ──
+                         Carried over from the old site, where it sat under the
+                         Sussex photograph on the homepage, and kept for the
+                         reason it was written: most of the people this lab
+                         wants to hear from are not in the UK, and "University
+                         of Sussex, Brighton" means nothing to them. An address
+                         says where the lab is; this says what it is like to be
+                         there, which is the part a prospective PhD student in
+                         Lisbon or Singapore is actually weighing.
+
+                         Below the address panel rather than inside it: the
+                         glass card answers "where", and its left column is
+                         already a lede plus an address against a map. This is a
+                         different question and gets its own block, at reading
+                         width rather than in a half-column.
+
+                         It is also the only substantial block of static prose
+                         on the page outside the hero, which is worth knowing
+                         before anyone trims it — the raw HTML a crawler that
+                         runs nothing comes away with is ~270 words, and this is
+                         a third of them. See SEO-PLAN.md §4. -->
+                    <div class="contact-why">
+                        <!-- ── The picture and the mark, together ──
+                             The section's own backdrop is a collage, parallaxed
+                             and largely behind the panels; this is the one place
+                             a reader gets to actually look at the place. The
+                             crest rides on it rather than sitting beside it,
+                             because a crest next to a photograph of the same
+                             campus is two ways of saying "Sussex" competing for
+                             the same corner — on it, the photograph is the
+                             subject and the mark is the label.
+
+                             A column rather than a banner across the top: the
+                             block is only ~380px tall, and a 1200px-wide band
+                             cut to that leaves a 5:1 letterbox of a landscape.
+                             As a column it fills whatever height the prose turns
+                             out to be, the same arrangement the publication
+                             cards use for their figures. It becomes a banner
+                             below 900px, at the photograph's own 16:9. -->
+                        <figure class="contact-why__figure">
+                            <img
+                                class="contact-why__photo"
+                                src="information/img/sussex_landscape.jpg"
+                                alt="The University of Sussex campus in the South Downs"
+                                width="1200"
+                                height="675"
+                                loading="lazy"
+                            />
+                            <img
+                                class="contact-why__crest"
+                                src="information/img/logo_sussex.svg"
+                                alt="University of Sussex crest"
+                                width="577"
+                                height="624"
+                                loading="lazy"
+                            />
+                        </figure>
+                        <div class="contact-why__copy">
+                            <p class="contact-full__eyebrow">University of Sussex</p>
+                            <p class="contact-why__lede">
+                                <a
+                                    class="contact-inline-link"
+                                    href="https://en.wikipedia.org/wiki/Brighton"
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                    >Brighton</a
+                                >
+                                is the sunniest city in the UK and, by some margin, its most cheerfully strange — on the sea, an
+                                hour from London. The University of Sussex sits just above it in the South Downs, and its School of
+                                Psychology is one of the largest and strongest in the country.
+                            </p>
+                            <p class="contact-why__lede">
+                                It is famous for its research on consciousness and interoception, with scientists like
+                                <a
+                                    class="contact-inline-link"
+                                    href="https://www.anilseth.com/"
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                    >Anil Seth</a
+                                >,
+                                <a
+                                    class="contact-inline-link"
+                                    href="https://en.wikipedia.org/wiki/Andy_Clark"
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                    >Andy Clark</a
+                                >,
+                                <a
+                                    class="contact-inline-link"
+                                    href="https://scholar.google.fr/citations?user=1n48dTUAAAAJ&amp;hl=en"
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                    >Zoltan Dienes</a
+                                >
+                                and
+                                <a
+                                    class="contact-inline-link"
+                                    href="https://scholar.google.co.uk/citations?user=5jA5GcAAAAAJ&amp;hl=en"
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                    >Hugo Critchley</a
+                                >, its teaching of cutting-edge psychological methods (with stats rockstar
+                                <a
+                                    class="contact-inline-link"
+                                    href="https://en.wikipedia.org/wiki/Andy_Field_(academic)"
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                    >Andy Field</a
+                                >), its history of multidisciplinary research (arts and science), and its radical engagement in
+                                open and disruptive science.
+                            </p>
+                            <p class="contact-why__tail">
+                                <a class="contact-cta" href="#sec-contact-full" data-contact-tab-target="join"
+                                    >Join this community</a
+                                >
+                            </p>
                         </div>
                     </div>
                 </div>

@@ -6,7 +6,7 @@
  * fragment is not an address: Google retired the crawlable-fragment scheme in
  * 2015 and no crawler indexes one separately. So the whole site is a single
  * indexable URL, whatever is rendered into it. Giving each thing a real path is
- * what lifts that cap — see SEO-PLAN.md.
+ * what lifts that cap — see CLAUDE.md, "The generated pages".
  *
  * This module is the *whole* of that change as far as the rest of the site is
  * concerned. `shared/deep-link.js` already funnels every URL write through

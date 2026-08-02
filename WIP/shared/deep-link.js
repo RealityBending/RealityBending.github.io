@@ -17,7 +17,8 @@
  * `shared/routes.js` is the whole of that translation and the only place that
  * knows a route has a URL shape at all. It changed because a fragment is not an
  * address: no crawler indexes one separately, so the entire site was a single
- * indexable URL whatever was rendered into it (SEO-PLAN.md).
+ * indexable URL whatever was rendered into it. See CLAUDE.md, "The
+ * generated pages".
  *
  * Every path here is a real file, written by generate_pages.py — which is why
  * that script and this module ship together. Writing a path nothing serves
@@ -88,25 +89,41 @@ function currentHash() {
 /* ── Where a route comes from, in order ──
  * 1. A hash, if there is one. That is a legacy link, or a reader who edited the
  *    URL, and it still has to work.
- * 2. `body[data-route]`, written by generate_pages.py. This is the authority on
- *    a generated page: it is the route the page was built for, and it does not
- *    depend on this module and routes.js agreeing about how to read a path.
- * 3. The path itself, for anything served at a real URL without that attribute.
+ * 2. The path itself, which is where every route the site writes now lives.
  *
- * A route is a route whichever of the three it came from — nothing downstream
- * can tell, which is the whole point. */
+ * A route is a route whichever of the two it came from — nothing downstream can
+ * tell, which is the whole point.
+ *
+ * ── Why `body[data-route]` is not in that list ──
+ * It used to be, second, as "the authority on a generated page". It cannot be:
+ * it is a *build-time* attribute that never changes, while this function is
+ * asked what the URL says *now*. On any of the generated pages it therefore
+ * pinned the answer to the route the page was built for, for the whole visit,
+ * however far the reader navigated — and the bug that surfaced it is a good
+ * illustration of how quiet that is. Arriving on `/services/iacs-2026/`, the
+ * Services tab wrote `contact-services` on its way to opening, and the card's
+ * own more specific route was then written back over it exactly as the other
+ * sections do. Except that `writeRoute`'s "already there" guard asked
+ * `currentRoute()`, got the frozen `services-iacs-2026`, concluded there was
+ * nothing to do, and returned — leaving the reader on `/information/services/`
+ * with the right card open and the wrong address. Nothing threw, and the tab
+ * looked right.
+ *
+ * So it is read once, below, as what it actually is: a statement about how the
+ * page was opened. It is still the belt-and-braces it was meant to be — if a
+ * path ever fails to parse, the page still knows its own route — but only for
+ * the arrival, which is the only moment it can be true. */
 function currentRoute() {
     const hash = currentHash()
     if (hash) return hash
-    const declared = document.body && document.body.dataset ? document.body.dataset.route : ""
-    if (declared) return declared
     return routeForPath(toSitePath(window.location.pathname)) || ""
 }
 
 /* The route the page was opened on, captured at module evaluation — before any
    section has had the chance to write its own. This is what the door screen
    asks about and what each section applies once its content is there. */
-export const INITIAL_ROUTE = currentRoute()
+export const INITIAL_ROUTE =
+    currentRoute() || (document.body && document.body.dataset ? document.body.dataset.route || "" : "")
 
 export function readRoute() {
     return currentRoute()

@@ -37,7 +37,7 @@
 import { SERVICES_CONTENT } from "./services-content.js"
 import { element, createRichText } from "../shared/rich-text.js"
 import { createHoneycomb } from "../shared/honeycomb.js"
-import { writeRoute } from "../shared/deep-link.js"
+import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRoute } from "../shared/deep-link.js"
 
 const ROOT_ID = "services-root"
 
@@ -234,11 +234,22 @@ function buildEntryCard(entry, domain, content) {
     front.inert = false
     back.inert = true
 
-    front.addEventListener("click", () => setFlipped(true))
+    /* Turning a card over is what makes its route shareable — the rule the rest
+       of the site keeps and this tab was the one place that did not: `flip` was
+       reachable from a route but no press ever wrote one, so the address bar
+       never named the card on screen. `write` is false when the flip came out
+       of the URL, the same flag every other "activate" here takes, or applying
+       a route would immediately rewrite it. */
+    const turnOver = () => {
+        setFlipped(true)
+        writeRoute("services-" + entry.id)
+    }
+
+    front.addEventListener("click", turnOver)
     front.addEventListener("keydown", (event) => {
         if (event.key !== "Enter" && event.key !== " ") return
         event.preventDefault()
-        setFlipped(true)
+        turnOver()
     })
 
     return { cell, hex, id: entry.id, domainId: domain.id, flip: setFlipped }
@@ -425,14 +436,22 @@ function buildFilters(content, onSelect) {
         new ResizeObserver(replaceIfColumnsChanged).observe(grid)
     }
 
-    /* Deep links. `#services-iacs-2026` both opens the Services tab — by
-       clicking its button, so script.js's own handler does the work — and
-       turns that card over. */
-    function openFromHash() {
-        const match = /^#services-(.+)$/.exec(window.location.hash)
-        if (!match) return
-        const card = allCards.find((entry) => entry.id === match[1])
-        if (!card) return
+    /* Deep links. `/services/iacs-2026/` both opens the Services tab — by
+       clicking its button, so script.js's own handler does the work — and turns
+       that card over.
+
+       This module read `location.hash` directly until the routes became paths,
+       and that is a mistake worth naming because nothing failed loudly when it
+       was made: `writeRoute` is a `replaceState` that fires no `hashchange`, so
+       a module listening for one hears the reader and never the router — which
+       was fine while every route *was* a hash and silently deaf the moment they
+       stopped being one. Going through `onRoute`/`INITIAL_ROUTE` like every
+       other section is what makes it hear both. */
+    function applyRoute(route) {
+        const id = matchRoute(route, "services")
+        if (!id) return false
+        const card = allCards.find((entry) => entry.id === id)
+        if (!card) return false
 
         const tab = document.getElementById("contact-tab-btn-services")
         if (tab && tab.getAttribute("aria-selected") !== "true") tab.click()
@@ -440,16 +459,20 @@ function buildFilters(content, onSelect) {
         // filtered out would flip something nobody can see.
         if (card.cell.hidden) applyFilter(ALL_FILTER)
         if (card.flip) card.flip(true)
-        /* That click goes through the Information tab handler, which now writes
-           its own `#contact-services` (shared/deep-link.js) — and would replace
-           the very link the reader followed. This route is the more specific of
-           the two and outranks it; a programmatic click is the one case the tab
+        revealSection("sec-contact-full")
+        /* That click goes through the Information tab handler, which writes its
+           own `contact-services` (shared/deep-link.js) — and would replace the
+           very link the reader followed. This route is the more specific of the
+           two and outranks it; a programmatic click is the one case the tab
            handler cannot tell apart from a press. */
-        writeRoute(match[0].slice(1))
+        writeRoute(route)
+        return true
     }
 
-    window.addEventListener("hashchange", openFromHash)
-    openFromHash()
+    onRoute(applyRoute)
+    // Information is the last section, so its offset is the sum of every one
+    // above it — all still fetching when the route above is applied.
+    if (applyRoute(INITIAL_ROUTE)) landOnLoad("sec-contact-full")
 
     /* A hidden tab has no width, so the first `place()` above ran against a
        clientWidth of 0 and fell back to the widest honeycomb. Re-place whenever

@@ -1,9 +1,9 @@
 """Give every piece of content a real URL, and put its text in the raw HTML.
 
-Run after the three update_*.py scripts and after build_legacy_map.py:
+Run after the three update_*.py scripts and after tools/build_legacy_map.py:
 
     python update_people.py && python update_publications.py && python update_news.py
-    python build_legacy_map.py
+    python tools/build_legacy_map.py
     python generate_pages.py
 
 ── What this writes ──
@@ -177,7 +177,9 @@ def link_fragments_to_paths(shell: str) -> str:
     def fix(match):
         tag, anchor = match.group(0), match.group(1)
         target = re.search(r'data-contact-tab-target="([^"]+)"', tag)
-        path = (TAB_PATHS.get(target.group(1)) if target else None) or ANCHOR_PATHS.get(anchor)
+        path = (TAB_PATHS.get(target.group(1)) if target else None) or ANCHOR_PATHS.get(
+            anchor
+        )
         return tag.replace(f'href="#{anchor}"', f'href="{path}"') if path else tag
 
     return re.sub(r'<a\b[^>]*href="#(sec-[a-z-]+)"[^>]*>', fix, shell)
@@ -230,9 +232,25 @@ def set_tag(shell: str, pattern: str, replacement: str, label: str) -> str:
     return out
 
 
-def build_page(shell: str, *, route, path, title, description, image, prerender, jsonld=None) -> str:
-    """One generated page: the shell, re-headed and given its content."""
+def build_page(
+    shell: str,
+    *,
+    route,
+    path,
+    title,
+    description,
+    image,
+    prerender,
+    jsonld=None,
+    canonical=None,
+) -> str:
+    """One generated page: the shell, re-headed and given its content.
+
+    `canonical` overrides the self-canonical for the handful of paths that are a
+    second address for a page that already exists — see CANONICAL_ALIASES.
+    """
     url = SITE_URL + path
+    canonical_url = SITE_URL + (canonical or path)
     desc = clip(strip_tags(description)) or (
         "The Reality Bending Lab at the University of Sussex — the neuropsychology "
         "of reality and its distortions."
@@ -252,7 +270,9 @@ def build_page(shell: str, *, route, path, title, description, image, prerender,
         "<base>",
     )
 
-    out = set_tag(out, r"<title>.*?</title>", f"<title>{esc(page_title)}</title>", "<title>")
+    out = set_tag(
+        out, r"<title>.*?</title>", f"<title>{esc(page_title)}</title>", "<title>"
+    )
     out = set_tag(
         out,
         r'<meta\s+name="description"\s+content=".*?"\s*/>',
@@ -262,10 +282,14 @@ def build_page(shell: str, *, route, path, title, description, image, prerender,
     out = set_tag(
         out,
         r'<link rel="canonical" href=".*?" />',
-        # Self-canonical, always. Pointing a publication page at its DOI or its
-        # publisher is the instinctively honest thing to do and it deindexes
-        # the page completely; the relationship belongs in JSON-LD instead.
-        f'<link rel="canonical" href="{esc(url)}" />',
+        # Self-canonical unless the caller names an alias. Pointing a
+        # publication page at its DOI or its publisher is the instinctively
+        # honest thing to do and it deindexes the page completely; the
+        # relationship belongs in JSON-LD instead. The exception is a path that
+        # is genuinely a *second address for the same view* — see
+        # CANONICAL_ALIASES — where self-canonical is what creates the
+        # duplicate rather than what prevents it.
+        f'<link rel="canonical" href="{esc(canonical_url)}" />',
         "canonical",
     )
     out = set_tag(
@@ -296,7 +320,9 @@ def build_page(shell: str, *, route, path, title, description, image, prerender,
         # The homepage's card is a known 1200×630. An arbitrary figure or avatar
         # is not, and a wrong declared size crops the preview badly — better to
         # let the crawler measure the file.
-        out = re.sub(r'\s*<meta property="og:image:(width|height)" content="\d+" />', "", out)
+        out = re.sub(
+            r'\s*<meta property="og:image:(width|height)" content="\d+" />', "", out
+        )
 
     # A second JSON-LD block rather than a rewrite of the first: the graph in
     # index.html describes the lab and the website, which is true on every page,
@@ -376,13 +402,18 @@ def write(path: str, content: str) -> None:
 def build_news(shell, posts):
     for post in posts:
         slug = post["slug"]
-        detail = json.loads((ROOT / "news" / slug / "post.json").read_text(encoding="utf-8"))
+        detail = json.loads(
+            (ROOT / "news" / slug / "post.json").read_text(encoding="utf-8")
+        )
         content = detail.get("content") or ""
         if isinstance(content, list):
             content = "".join(content)
         content = rebase_content_images(content, f"news/{slug}")
 
-        authors = ", ".join(a["name"] if isinstance(a, dict) else str(a) for a in (post.get("authors") or []))
+        authors = ", ".join(
+            a["name"] if isinstance(a, dict) else str(a)
+            for a in (post.get("authors") or [])
+        )
         summary = post.get("summary") or strip_tags(content)
         hero = f'<img src="{post["image"]}" alt="" />' if post.get("image") else ""
 
@@ -402,7 +433,13 @@ def build_news(shell, posts):
             "datePublished": post.get("date"),
             "url": f"{SITE_URL}/news/{slug}/",
             "mainEntityOfPage": f"{SITE_URL}/news/{slug}/",
-            "author": [{"@type": "Person", "name": a["name"] if isinstance(a, dict) else str(a)} for a in (post.get("authors") or [])],
+            "author": [
+                {
+                    "@type": "Person",
+                    "name": a["name"] if isinstance(a, dict) else str(a),
+                }
+                for a in (post.get("authors") or [])
+            ],
             "publisher": {"@id": f"{SITE_URL}/#organization"},
             "articleSection": post.get("category"),
         }
@@ -467,7 +504,11 @@ def build_people(shell, members):
             f'<li><a href="{esc(s["url"])}" rel="noopener noreferrer">{esc(s.get("label") or s["url"])}</a></li>'
             for s in socials
         )
-        avatar = f'<img src="{m["avatar"]}" alt="{esc(m["name"])}" width="220" />' if m.get("avatar") else ""
+        avatar = (
+            f'<img src="{m["avatar"]}" alt="{esc(m["name"])}" width="220" />'
+            if m.get("avatar")
+            else ""
+        )
 
         body = f"""
             <article>
@@ -546,7 +587,11 @@ def build_publications(shell, publications):
     for p in publications:
         folder = p["folder"]
         info_path = ROOT / "publications" / folder / "info.json"
-        info = json.loads(info_path.read_text(encoding="utf-8")) if info_path.exists() else p
+        info = (
+            json.loads(info_path.read_text(encoding="utf-8"))
+            if info_path.exists()
+            else p
+        )
         abstract = (info.get("abstract") or "").strip()
         summary = (info.get("summary") or "").strip()
         doi = p.get("doi") or ""
@@ -560,7 +605,9 @@ def build_publications(shell, publications):
             bits.append(f'<img src="{p["featured"]}" alt="" />')
         refs = []
         if doi:
-            refs.append(f'<li>DOI: <a href="https://doi.org/{esc(doi)}">{esc(doi)}</a></li>')
+            refs.append(
+                f'<li>DOI: <a href="https://doi.org/{esc(doi)}">{esc(doi)}</a></li>'
+            )
         if p.get("pdf"):
             refs.append(f'<li><a href="{esc(p["pdf"])}">Full text (PDF)</a></li>')
         if refs:
@@ -605,7 +652,9 @@ def build_publications(shell, publications):
                 route=f"pub-{folder}",
                 path=f"/publications/{folder}/",
                 title=p["title"],
-                description=summary or abstract or f'{p.get("authors","")} ({p.get("year","")}). {p.get("journal","")}',
+                description=summary
+                or abstract
+                or f'{p.get("authors","")} ({p.get("year","")}). {p.get("journal","")}',
                 image=p.get("featured"),
                 prerender=prerender(body),
                 jsonld=jsonld,
@@ -643,6 +692,79 @@ def build_publications(shell, publications):
     sitemap_urls.append("/publications/")
 
 
+def service_card_pages():
+    """One page per Services card, read out of services-content.js.
+
+    Turning a card over writes `/services/<id>/`, so by the site's own rule
+    every one of those has to be a real file — the reader who reloads or shares
+    what is in the address bar must not get a 404. They were 404s until this
+    existed, which is the failure that rule was written to prevent.
+
+    Scraped rather than hand-listed, and that is the trade: the join stages
+    above *are* hand-listed and there are three of them that change once a
+    decade, while this list is the lab's client work and grows. A second copy of
+    a growing list goes stale silently; a regex against the file it lives in
+    cannot. It is narrow on purpose — `id:` at the indentation the entries are
+    written at, inside `entries:` only — and raises if it finds nothing, because
+    a content module that has been reformatted past it must not quietly produce
+    zero pages.
+
+    A card's page is a signpost, like the tab pages: its back face carries the
+    same invitation as every other card's, so there is nothing per-card to
+    pre-render beyond the title that names it.
+    """
+    source = (ROOT / "information" / "services-content.js").read_text(encoding="utf-8")
+    entries = re.search(r"\n    entries:\s*\[(.*?)\n    \],", source, re.S)
+    if not entries:
+        raise SystemExit(
+            "generate_pages.py: could not find `entries:` in services-content.js"
+        )
+
+    cards = re.findall(r'^\s*id:\s*"([^"]+)"', entries.group(1), re.M)
+    titles = dict(
+        re.findall(r'id:\s*"([^"]+)".*?title:\s*"([^"]+)"', entries.group(1), re.S)
+    )
+    if not cards:
+        raise SystemExit(
+            "generate_pages.py: no service card ids found in services-content.js"
+        )
+
+    return [
+        (
+            f"services-{card}",
+            f"/services/{card}/",
+            titles.get(card, "Services") + " — Services",
+            f"{titles.get(card, 'Work')} — one of the projects and services the Reality Bending Lab delivers.",
+        )
+        for card in cards
+    ]
+
+
+# ── Two addresses for one view ──
+# `/join/` and `/services/` show exactly what `/information/join/` and
+# `/information/services/` show: the same tab of the same section, with the same
+# pre-render. Both shapes have to exist as files — routes.js can produce either,
+# and the old site's `jobs` index redirects to the first — but only one of each
+# pair should be a search result, or they compete with each other for it.
+#
+# The `/information/…` form wins because it is the one the *site* writes: press
+# the Join tab and `activateContactTab` puts `/information/join/` in the address
+# bar, so it is the URL readers will actually share and link. The short form is
+# a way in, not a destination.
+#
+# Canonical rather than a redirect stub, deliberately. A stub would be the
+# stronger signal, but these are live routes the router still writes — turning
+# one into a meta-refresh means a reader who lands on `/join/` gets a page
+# reload on arrival, and that is exactly the self-redirect trap that cost two
+# section hubs (see build_stubs). They also drop out of sitemap.xml below: a
+# sitemap advertises destinations, and a page that points its canonical
+# elsewhere is not one.
+CANONICAL_ALIASES = {
+    "/join/": "/information/join/",
+    "/services/": "/information/services/",
+}
+
+
 def build_sections(shell):
     """The routes that are a view rather than a thing.
 
@@ -653,29 +775,135 @@ def build_sections(shell):
     form.
     """
     pages = [
-        ("research", "/research/", "Research", "How the lab studies the construction and distortion of reality."),
-        ("research-overview", "/research/overview/", "Research — Overview", "An illustrated tour of the lab's research programme."),
-        ("research-creations", "/research/creations/", "Research — Creations", "Inventions and open-source tools built by the Reality Bending Lab."),
-        ("contact", "/information/", "Information", "Contact, how to join the lab, and the services it offers."),
-        ("contact-join", "/information/join/", "Join the Lab", "Research assistant, PhD and postdoc routes into the Reality Bending Lab."),
-        ("contact-services", "/information/services/", "Services", "Consulting and collaboration with the Reality Bending Lab."),
+        (
+            "research",
+            "/research/",
+            "Research",
+            "How the lab studies the construction and distortion of reality.",
+        ),
+        (
+            "research-overview",
+            "/research/overview/",
+            "Research — Overview",
+            "An illustrated tour of the lab's research programme.",
+        ),
+        (
+            "research-creations",
+            "/research/creations/",
+            "Research — Creations",
+            "Inventions and open-source tools built by the Reality Bending Lab.",
+        ),
+        (
+            "contact",
+            "/information/",
+            "Information",
+            "Contact, how to join the lab, and the services it offers.",
+        ),
+        # `/information/contact/` as well as bare `/information/`, and it is not
+        # redundant: `activateContactTab` writes `contact-<tab>` for every tab
+        # including the default one, exactly as News writes `news-all` and
+        # People writes `people-lab`. It was the one default tab whose page was
+        # missing, so pressing the *first* tab of the last section — the most
+        # ordinary thing a reader can do there — left an address that 404s on
+        # reload.
+        (
+            "contact-contact",
+            "/information/contact/",
+            "Contact",
+            "How to reach the Reality Bending Lab at the University of Sussex.",
+        ),
+        (
+            "contact-join",
+            "/information/join/",
+            "Join the Lab",
+            "Research assistant, PhD and postdoc routes into the Reality Bending Lab.",
+        ),
+        (
+            "contact-services",
+            "/information/services/",
+            "Services",
+            "Consulting and collaboration with the Reality Bending Lab.",
+        ),
         # Bare `/join/` and `/services/` exist because routes.js can produce
         # them (`pathForRoute("join")`) and because legacy_map.json points the
         # old site's `jobs` index at the first. The rule this keeps is that
-        # every path the router can write is a real file.
-        ("join", "/join/", "Join the Lab", "Research assistant, PhD and postdoc routes into the Reality Bending Lab."),
-        ("services", "/services/", "Services", "Consulting, analysis and collaboration with the Reality Bending Lab."),
-        ("join-research-assistant", "/join/research-assistant/", "Join as a Research Assistant", "Assistantships, placements and JRA schemes with the Reality Bending Lab."),
-        ("join-phd", "/join/phd/", "PhD in the Reality Bending Lab", "How a PhD in the Reality Bending Lab actually works, and where the funding comes from."),
-        ("join-postdoc", "/join/postdoc/", "Postdoc in the Reality Bending Lab", "Fellowships and postdoctoral routes into the Reality Bending Lab."),
-        ("people-lab", "/people/lab/", "The Lab", "Members of the Reality Bending Lab."),
-        ("people-collaborations", "/people/collaborations/", "Collaborations", "The lab's collaboration network, close collaborators and consultants."),
-        ("people-memories", "/people/memories/", "Memories", "Photographs from the life of the Reality Bending Lab."),
-        ("news-all", "/news/all/", "All posts", "Every post from the Reality Bending Lab."),
-        ("news-featured", "/news/featured/", "Featured posts", "Selected posts from the Reality Bending Lab."),
-        ("publications-list", "/publications/list/", "Publications — List", "The lab's publications as a list."),
-        ("publications-gallery", "/publications/gallery/", "Publications — Gallery", "The lab's publications as a gallery of figures."),
+        # every path the router can write is a real file. They are canonicalised
+        # away — see CANONICAL_ALIASES.
+        (
+            "join",
+            "/join/",
+            "Join the Lab",
+            "Research assistant, PhD and postdoc routes into the Reality Bending Lab.",
+        ),
+        (
+            "services",
+            "/services/",
+            "Services",
+            "Consulting, analysis and collaboration with the Reality Bending Lab.",
+        ),
+        (
+            "join-research-assistant",
+            "/join/research-assistant/",
+            "Join as a Research Assistant",
+            "Assistantships, placements and JRA schemes with the Reality Bending Lab.",
+        ),
+        (
+            "join-phd",
+            "/join/phd/",
+            "PhD in the Reality Bending Lab",
+            "How a PhD in the Reality Bending Lab actually works, and where the funding comes from.",
+        ),
+        (
+            "join-postdoc",
+            "/join/postdoc/",
+            "Postdoc in the Reality Bending Lab",
+            "Fellowships and postdoctoral routes into the Reality Bending Lab.",
+        ),
+        (
+            "people-lab",
+            "/people/lab/",
+            "The Lab",
+            "Members of the Reality Bending Lab.",
+        ),
+        (
+            "people-collaborations",
+            "/people/collaborations/",
+            "Collaborations",
+            "The lab's collaboration network, close collaborators and consultants.",
+        ),
+        (
+            "people-memories",
+            "/people/memories/",
+            "Memories",
+            "Photographs from the life of the Reality Bending Lab.",
+        ),
+        (
+            "news-all",
+            "/news/all/",
+            "All posts",
+            "Every post from the Reality Bending Lab.",
+        ),
+        (
+            "news-featured",
+            "/news/featured/",
+            "Featured posts",
+            "Selected posts from the Reality Bending Lab.",
+        ),
+        (
+            "publications-list",
+            "/publications/list/",
+            "Publications — List",
+            "The lab's publications as a list.",
+        ),
+        (
+            "publications-gallery",
+            "/publications/gallery/",
+            "Publications — Gallery",
+            "The lab's publications as a gallery of figures.",
+        ),
     ]
+    pages += service_card_pages()
+
     for route, path, title, description in pages:
         section = SECTION_IDS.get(route.split("-")[0], "sec-people-full")
         body = f"""
@@ -685,6 +913,7 @@ def build_sections(shell):
                 <p>{esc(description)}</p>
                 <p><a href="./#{esc(section)}">Open this section on the Reality Bending Lab site.</a></p>
             </div>"""
+        alias = CANONICAL_ALIASES.get(path)
         write(
             path.strip("/") + "/index.html",
             build_page(
@@ -695,9 +924,13 @@ def build_sections(shell):
                 description=description,
                 image=None,
                 prerender=prerender(body),
+                canonical=alias,
             ),
         )
-        sitemap_urls.append(path)
+        # A page whose canonical points elsewhere is not a destination, so it is
+        # not advertised. The file still exists and still serves.
+        if not alias:
+            sitemap_urls.append(path)
 
 
 def build_stubs():
@@ -714,11 +947,29 @@ def build_stubs():
     """
     map_path = ROOT / "legacy_map.json"
     if not map_path.exists():
-        print("  ! legacy_map.json is missing — run build_legacy_map.py first; no stubs written")
+        print(
+            "  ! legacy_map.json is missing — run tools/build_legacy_map.py first; no stubs written"
+        )
         return 0
 
     mapping = json.loads(map_path.read_text(encoding="utf-8"))
+
+    # ── A stub may never land on a page this run has already written ──
+    # Two of the old site's section indexes (`people`, `research`) live at the
+    # same path on this site, so their "redirect" was a page whose meta-refresh
+    # pointed at itself: an infinite reload, `noindex`, and none of the hub's
+    # content, at two of the six section URLs — while sitemap.xml went on
+    # advertising both. `tools/build_legacy_map.py` no longer emits an identity
+    # mapping, and this is the second half of that fix: the stub writer is the
+    # only thing that can clobber a real page, so it is where the invariant
+    # belongs. Any hand-edit of legacy_map.json is covered too.
+    claimed = {p.strip("/") for p in written}
+    skipped = []
     for old, new in sorted(mapping.items()):
+        stub_path = f"{old.strip('/')}/index.html"
+        if stub_path.strip("/") in claimed or old.strip("/") == new.strip("/"):
+            skipped.append(old)
+            continue
         target = "/" + new.lstrip("/")
         stub = f"""<!doctype html>
 <html lang="en-GB">
@@ -734,8 +985,11 @@ def build_stubs():
     </body>
 </html>
 """
-        write(f"{old}/index.html", stub)
-    return len(mapping)
+        write(stub_path, stub)
+
+    for old in skipped:
+        print(f"  ! no stub for {old}/ — that path is already a real page on this site")
+    return len(mapping) - len(skipped)
 
 
 def build_sitemap():
@@ -776,12 +1030,13 @@ def build_llms(posts, members, publications):
     they were the only fetchable content. They still are listed, but the pages
     come first: an agent that can read a page should be given the page.
     """
+
     def lines(rows):
         return "\n".join(rows)
 
     text = f"""# Reality Bending Lab
 
-> A psychology and neuroscience research group at the University of Sussex
+> A psychology and neuroscience world-leading research group at the University of Sussex
 > (Brighton, UK), led by Dr Dominique Makowski. The lab studies the
 > neuropsychology of reality and its distortions — how people construct,
 > perceive and misjudge what is real — spanning visual illusions, deception and
@@ -834,10 +1089,16 @@ University of Sussex, Brighton BN1 9QH, United Kingdom.
 def main():
     shell = load_template()
 
-    posts = json.loads((ROOT / "news" / "news_manifest.json").read_text(encoding="utf-8"))["posts"]
-    members = json.loads((ROOT / "people" / "people_manifest.json").read_text(encoding="utf-8"))["members"]
+    posts = json.loads(
+        (ROOT / "news" / "news_manifest.json").read_text(encoding="utf-8")
+    )["posts"]
+    members = json.loads(
+        (ROOT / "people" / "people_manifest.json").read_text(encoding="utf-8")
+    )["members"]
     publications = json.loads(
-        (ROOT / "publications" / "publications_manifest.json").read_text(encoding="utf-8")
+        (ROOT / "publications" / "publications_manifest.json").read_text(
+            encoding="utf-8"
+        )
     )["publications"]
 
     build_news(shell, posts)
@@ -854,7 +1115,9 @@ def main():
     print(f"    news:          {len(posts)} + 1 hub")
     print(f"    people:        {len(members)} + 1 hub")
     print(f"    publications:  {len(publications)} + 1 hub")
-    print(f"    sections:      {content_pages - len(posts) - len(members) - len(publications) - 3}")
+    print(
+        f"    sections:      {content_pages - len(posts) - len(members) - len(publications) - 3}"
+    )
     print(f"✓ {stubs} redirect stubs from legacy_map.json")
     print(f"✓ sitemap.xml — {urls} URLs")
     print("✓ llms.txt")

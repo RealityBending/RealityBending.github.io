@@ -1,5 +1,5 @@
 /* page-meta.js
- * The document title, kept in step with the hash route.
+ * The document title, kept in step with the route.
  *
  * ── What this is not ──
  * This is not SEO, and it is worth being blunt about that so it is not
@@ -107,7 +107,17 @@ function sync(route) {
     const title = label ? `${label} · ${SITE_NAME}` : BASE_TITLE
     document.title = title
     setProperty("og:title", title)
-    setProperty("og:url", route ? SITE_URL + "#" + route : SITE_URL)
+    /* The site's own address for this route, which is `location.pathname` and
+       not a hash. It was `SITE_URL + "#" + route` — the shape routes had before
+       they became paths, and a URL that now resolves to nothing: the one client
+       this line exists for (a chat preview that runs a real browser) was being
+       handed `…/#people-memories` for a page whose real address is
+       `…/people/memories/`. Read off the document rather than rebuilt from the
+       route, because deep-link.js is the only thing that knows how a route maps
+       to a path *and* where the site is mounted. SITE_URL supplies the origin
+       so a preview generated from a local or staging copy still names the
+       deployed page — which is the whole point of an absolute og:url. */
+    setProperty("og:url", SITE_URL.replace(/\/$/, "") + window.location.pathname)
 }
 
 /* Registering re-runs the current route: a resolver almost always arrives

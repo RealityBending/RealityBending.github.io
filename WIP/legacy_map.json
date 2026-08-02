@@ -21,7 +21,6 @@
   "jobs/phd": "join/phd/",
   "jobs/postdoc": "join/postdoc/",
   "jobs/projects": "research/",
-  "people": "people/",
   "post": "news/",
   "post/2019-05-17-simulate_ecg": "news/2019-simulate-ecg/",
   "post/2020-05-14-intro_bayestestr": "news/2020-intro-bayesian-stats-r/",
@@ -99,6 +98,5 @@
   "publication/sperduti2017distinctive": "publications/2017_ExecutiveFunctionsEmotionRegulation/",
   "publication/sperduti2017interaction": "publications/2017_InteractionBetweenAttentionalSystems/",
   "publication/sperduti2017meditation": "publications/2017_MeditationAndSuccessfulAging/",
-  "publication/tuena2017virtual": "publications/2017_VirtualEmbodimentMemory/",
-  "research": "research/"
+  "publication/tuena2017virtual": "publications/2017_VirtualEmbodimentMemory/"
 }

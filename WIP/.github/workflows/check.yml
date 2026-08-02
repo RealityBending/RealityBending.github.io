@@ -1,0 +1,54 @@
+# ── Check a pull request builds and its routes hold ──────────────────────────
+#
+# STAGED, NOT LIVE — see the header of deploy.yml. This replaces the old
+# check.yml, which was the Hugo deploy pipeline minus the publish step.
+#
+# It runs the same generator the deploy runs, and then the two route checks. The
+# point is not that the generator might crash — it might, and a head-substitution
+# miss is fatal by design — but that the checks catch the class of bug this site
+# is actually prone to: a URL the router writes that nothing serves. Every one of
+# those is invisible until somebody reloads or shares a link.
+#
+# It deliberately does not diff the generated output against the last run.
+# Nothing generated is committed, so there is no baseline, and adding one would
+# reintroduce exactly the churn that decision avoids.
+
+name: 📦 Check
+
+on:
+    pull_request:
+        branches: [main]
+    workflow_dispatch:
+
+permissions:
+    contents: read
+
+jobs:
+    check:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: actions/setup-python@v5
+              with:
+                  python-version: "3.12"
+
+            - name: Generate pages, stubs, sitemap and llms.txt
+              run: python generate_pages.py
+
+            - name: Check every writable route is a real page
+              run: python tools/check-paths.py
+
+            # Cheap sanity on the two hand-kept files that describe the site to
+            # crawlers. Both are generated, so this is really a check that the
+            # generator ran, but a zero-URL sitemap has shipped before on other
+            # projects and it is one line to rule out.
+            - name: Sanity-check the discovery files
+              run: |
+                  python - <<'PY'
+                  import re, sys
+                  urls = re.findall(r"<loc>", open("sitemap.xml", encoding="utf-8").read())
+                  if len(urls) < 100:
+                      sys.exit(f"sitemap.xml has only {len(urls)} URLs — the generator did not run properly")
+                  print(f"sitemap.xml: {len(urls)} URLs")
+                  PY

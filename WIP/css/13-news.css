@@ -306,6 +306,173 @@
     margin-top: 0.25rem;
 }
 
+/* ── Featured: cards, two across ──
+   The other tab's rows are the right shape for scanning forty entries; this is
+   a shortlist of six being browsed, where the picture is the reason to press.
+   So the picture becomes the top of the card and the cards run two across,
+   which is also what tells a reader which tab they are on without their having
+   to look at the tab bar.
+
+   `auto-fit` with a floor rather than a fixed `1fr 1fr`: it is two columns at
+   the 1200px content cap and one below ~854px, with no breakpoint to keep in
+   step with anything — the count follows the room the section has. 26rem is
+   what puts that second boundary there: at 24rem a third column fits inside
+   the cap and the cards come out at 385px, which is too narrow for a serif
+   title over a three-line summary. Widening the cap is what would buy a third
+   column, and that is a decision about the section rather than about this
+   grid.
+
+   `min(26rem, 100%)` and not a bare `26rem`: a track minimum is a *minimum*,
+   so on a 375px phone the single column stayed 416px wide and pushed
+   #main-page into horizontal overflow — 432 against 375, measured. The `min()`
+   lets the floor collapse to the container once there is no room for it, which
+   is the one case `auto-fit` cannot handle on its own. */
+.news-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(26rem, 100%), 1fr));
+    gap: 1.4rem;
+    align-items: stretch;
+}
+
+/* Everything here is deliberately the row's own dressing — same border, same
+   radius, same cream, same lift on hover — because these are the same posts in
+   the same section. The layout is what differs, not the material. */
+.news-feature {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    width: 100%;
+    padding: 0;
+    text-align: left;
+    border: 1px solid rgba(51, 204, 204, 0.2);
+    border-radius: 1.1rem;
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: 0 16px 34px rgba(17, 17, 17, 0.05);
+    overflow: hidden;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease;
+}
+
+.news-feature:hover,
+.news-feature:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 22px 44px rgba(17, 17, 17, 0.09);
+    border-color: rgba(51, 204, 204, 0.5);
+}
+
+/* A fixed ratio rather than the picture's own: these are heroes cropped for a
+   1400px-wide reader panel and they arrive in every shape, so letting each one
+   set its own height would stagger the titles across a row. 16:9 is the crop
+   they mostly already are. */
+.news-feature__media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: rgba(51, 204, 204, 0.08);
+}
+
+.news-feature__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.news-feature:hover .news-feature__media img {
+    transform: scale(1.04);
+}
+
+/* The category rides on the picture, which is what marks these as picked
+   rather than listed. Opaque rather than a tint: it sits over a photograph
+   that could be any colour, and a translucent chip on the Matrix stills was
+   unreadable. */
+.news-feature__tag {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    padding: 0.3em 0.75em;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.94);
+    color: var(--news-accent-deep);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(17, 17, 17, 0.18);
+}
+
+/* The 1fr row before the byline is what pushes it to the foot, so bylines line
+   up across a pair whichever way the two summaries wrapped. */
+.news-feature__body {
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    gap: 0.5rem;
+    padding: 1.1rem 1.25rem 1.2rem;
+    min-width: 0;
+}
+
+.news-feature--textonly .news-feature__body {
+    padding-top: 1.35rem;
+}
+
+.news-feature__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.75rem;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #8a857c;
+}
+
+.news-feature__date {
+    color: var(--news-accent-deep);
+    font-weight: 700;
+}
+
+/* Larger than the row's title and clamped to three lines: with the summary
+   clamped too, every card in a row is within a line of the same height, so the
+   grid does not leave one card floating in a tall cell. */
+.news-feature__title {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.34rem;
+    font-weight: 400;
+    line-height: 1.28;
+    color: #1f241e;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+}
+
+.news-feature__summary {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.94rem;
+    line-height: 1.65;
+    color: #605b53;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+}
+
+.news-feature .news-byline {
+    align-self: end;
+    padding-top: 0.2rem;
+}
+
 /* ── The pager ──
    The counter is the reason this exists, so it holds the middle and the arrows
    go dead at the ends rather than disappearing — controls that come and go
@@ -950,6 +1117,8 @@
 @media (prefers-reduced-motion: reduce) {
     .news-card,
     .news-card__thumb img,
+    .news-feature,
+    .news-feature__media img,
     .news-reader,
     .news-reader__backdrop,
     .news-another,
@@ -958,11 +1127,13 @@
     }
 
     .news-card:hover,
+    .news-feature:hover,
     .news-another:hover {
         transform: none;
     }
 
     .news-card:hover .news-card__thumb img,
+    .news-feature:hover .news-feature__media img,
     .news-another:hover .news-another__img {
         transform: none;
     }

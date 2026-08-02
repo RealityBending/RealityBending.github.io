@@ -628,7 +628,7 @@ def load_publications(works: list[dict]) -> list[dict]:
         # sentences on what the paper found are the one thing about it that is
         # not already on the publisher's site, on PubMed and on ResearchGate.
         # An abstract makes the page longer; this is what makes it worth
-        # indexing. See SEO-PLAN.md.
+        # indexing. See CLAUDE.md, "The generated pages".
         merged.setdefault("summary", "")
 
         pdf = None

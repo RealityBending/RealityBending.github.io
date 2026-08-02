@@ -39,7 +39,7 @@ from PIL import Image
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parent.parent
 OLD_PUBLICATIONS = ROOT.parent / "content" / "publication"
 NEW_PUBLICATIONS = ROOT / "publications"
 MANIFEST = NEW_PUBLICATIONS / "publications_manifest.json"

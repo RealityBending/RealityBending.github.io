@@ -409,8 +409,70 @@ import { element as el } from "../shared/dom.js"
 
     /* ── Featured ──
      * The front door: a short curated list, no filter and no pager, because
-     * neither has anything to do on four rows a human chose. `featured: true`
-     * in a post.json is the whole mechanism. */
+     * neither has anything to do on a handful of posts a human chose.
+     * `featured: true` in a post.json is the whole mechanism.
+     *
+     * ── Why these are cards and the archive is rows ──
+     * The archive's row is the right shape for a list you are *scanning*:
+     * thumbnail at a fixed 15rem, the summary doing the work, forty entries
+     * reading down the page. This is a shortlist you are *browsing*, six or so
+     * of them, and the picture is the reason to press. So the picture becomes
+     * the top of the card and the cards run two across — which is also what
+     * separates the two tabs at a glance, rather than making a reader read the
+     * tab bar to know which one they are on.
+     *
+     * ── And why there is no lead card ──
+     * A big first card spanning both columns is the obvious editorial move and
+     * it would be a lie here: `featured` is a flag with no ordering, so the
+     * first card is only the most recently flagged post, not the most
+     * important one. The same reason nothing on this site reports the size of
+     * a filtered set or dresses an h-index up as an achievement. Equal weight,
+     * because the data gives them equal weight.
+     */
+    function buildFeatureCard(post) {
+        const card = el("button", "news-feature")
+        card.type = "button"
+        card.addEventListener("click", () => openPost(post, card))
+
+        if (post.image) {
+            const media = el("div", "news-feature__media")
+            const img = el("img")
+            img.src = post.image
+            img.alt = ""
+            img.loading = "lazy"
+            media.appendChild(img)
+            /* The category rides on the picture rather than sitting under the
+               title, which is what marks these as picked rather than listed —
+               and it keeps the body a clean run of date, title, summary,
+               byline whatever the summary's length. */
+            if (post.category) media.appendChild(el("span", "news-feature__tag", post.category))
+            card.appendChild(media)
+        } else {
+            card.classList.add("news-feature--textonly")
+        }
+
+        const body = el("div", "news-feature__body")
+
+        const meta = el("div", "news-feature__meta")
+        meta.appendChild(el("time", "news-feature__date", formatDate(post.date, true)))
+        if (post.minutes) meta.appendChild(el("span", "news-feature__read", post.minutes + " min read"))
+        // With no picture there is nowhere for the badge to ride, so it joins
+        // the meta line rather than being dropped.
+        if (post.category && !post.image) meta.appendChild(el("span", "news-tag", post.category))
+        body.appendChild(meta)
+
+        body.appendChild(el("h3", "news-feature__title", post.title))
+        if (post.summary) body.appendChild(el("p", "news-feature__summary", post.summary))
+
+        /* The byline goes last and is pushed to the foot by the body's own
+           1fr row, so it lines up across a pair whether or not the two
+           summaries wrap to the same number of lines. */
+        body.appendChild(buildByline(post, "news-byline news-byline--card"))
+
+        card.appendChild(body)
+        return card
+    }
+
     function buildFeatured(posts) {
         const featured = posts.filter((post) => post.featured)
         featuredList.replaceChildren()
@@ -418,7 +480,7 @@ import { element as el } from "../shared/dom.js"
             featuredList.appendChild(el("p", "news-empty", "Nothing featured yet."))
             return
         }
-        featured.forEach((post) => featuredList.appendChild(buildRow(post)))
+        featured.forEach((post) => featuredList.appendChild(buildFeatureCard(post)))
     }
 
     /* ── All posts: categories and pages ── */
@@ -645,7 +707,9 @@ import { element as el } from "../shared/dom.js"
         if (write !== false) writeRoute("news-" + id)
     }
 
-    const featuredList = el("div", "news-list")
+    // Its own class, not `news-list`: the two tabs lay their posts out
+    // differently on purpose — see buildFeatureCard.
+    const featuredList = el("div", "news-features")
     panelFor("featured").appendChild(featuredList)
 
     const filters = el("div", "news-filters")

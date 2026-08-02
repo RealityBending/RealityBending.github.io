@@ -241,6 +241,98 @@
     display: block;
 }
 
+/* ── The University block ──
+   A second block under the address panel, on the same glass so the tab reads as
+   one surface with two things on it rather than a card and then some loose text
+   over a photograph. The address panel answers *where*; this answers what it is
+   like to be there, which is what a prospective student who has never heard of
+   Brighton is actually weighing. */
+.contact-why {
+    max-width: var(--content-max-width);
+    margin: 1.25rem auto 0;
+    padding: 2rem 2.4rem 2.2rem;
+    display: grid;
+    grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
+    gap: 2rem;
+    align-items: stretch;
+    background: rgba(252, 251, 248, 0.78);
+    backdrop-filter: blur(6px) saturate(1.08);
+    -webkit-backdrop-filter: blur(6px) saturate(1.08);
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 26px;
+    box-shadow: 0 26px 60px rgba(17, 17, 17, 0.16);
+}
+
+/* The photograph fills whatever height the prose turns out to be — the same
+   arrangement the publication cards use, and the reason `align-items` is
+   `stretch` rather than `start`. A minimum so a short paragraph cannot squash
+   it into a strip. */
+.contact-why__figure {
+    position: relative;
+    margin: 0;
+    min-height: 14rem;
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(140, 52, 52, 0.08);
+}
+
+.contact-why__photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* The crest centred on the photograph, black, with nothing behind it. It was on
+   a cream plate at first, on the reasoning that the file is line art with no
+   fills of its own and black on trees and sky is unreadable — which is true of
+   a dark photograph and not of this one. The chalk cliffs and the sea are pale
+   almost everywhere, so the mark reads directly and the plate was a box drawn
+   around something that did not need one. Replacing the picture with a darker
+   one means putting it back. */
+.contact-why__crest {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    height: 42%;
+    width: auto;
+    display: block;
+    /* Enough to lift it off a busy patch without reading as a glow. */
+    filter: drop-shadow(0 1px 6px rgba(252, 251, 248, 0.85));
+}
+
+/* A measure, not the whole track. With the crest taking ~130px of a 1123px
+   content box the prose otherwise ran to 993px — about 120 characters a line,
+   which is roughly twice a comfortable one. 48rem is ~95 here; the track stays
+   `1fr` so the block itself still fills the panel width above it. */
+.contact-why__copy {
+    display: grid;
+    gap: 0.85rem;
+    max-width: 48rem;
+}
+
+/* The eyebrow is inside the copy column, so it lines up with the prose rather
+   than with the crest, and it carries no bottom margin of its own — the
+   column's gap is doing that job for every child at once. */
+.contact-why__copy .contact-full__eyebrow {
+    margin: 0;
+}
+
+.contact-why__lede {
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.02rem;
+    line-height: 1.8;
+    color: #3c3936;
+}
+
+.contact-why__tail {
+    margin: 0.5rem 0 0;
+}
+
 .join,
 .services {
     max-width: var(--content-max-width);
@@ -281,8 +373,13 @@
     bottom: -14%;
     display: block;
     /* The Join tab swaps a per-level photograph in through this property; the
-       fallback is the section's own and stays the single place it is named. */
-    background: var(--contact-backdrop-image, url("../img/sussex-bg.jpg")) center / cover no-repeat;
+       fallback is the section's own and stays the single place it is named.
+       It lives in `information/img/` with the rest of this section's pictures —
+       `img/` at the root is for what more than one section uses (the brain, the
+       icons, the social card, the People loop), and nothing else has ever asked
+       for this one. Relative `url()` resolves against the *stylesheet*, so from
+       `css/` that is `../information/img/…`. */
+    background: var(--contact-backdrop-image, url("../information/img/sussex-bg.jpg")) center / cover no-repeat;
     transform: translate3d(0, var(--contact-parallax, 0px), 0);
     will-change: transform;
     /* Full strength and full colour, top to bottom — no fade over it. */

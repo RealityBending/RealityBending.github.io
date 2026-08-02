@@ -509,11 +509,138 @@ function buildStrandsFigure(config) {
     return wrap
 }
 
+/* ── The instruments on the prism's four faces ──
+ * Line art on a 200×200 grid in `currentColor`, at the same weight as
+ * `.rz-strand__mark`'s 32×32 glyphs — the site's one drawing vocabulary, six
+ * times larger because these are the subject rather than a bullet. Anything
+ * added here has to be drawn to that weight or the set stops reading as a set.
+ *
+ * They are drawings and not photographs on purpose. A phrenological bust, a
+ * Hipp chronoscope, an EEG cap and a posterior over accumulated evidence are
+ * four objects with nothing in common photographically — four different
+ * centuries, materials and framings — and the whole point of the figure is that
+ * they are the same gesture. Drawn to one line weight they look like what they
+ * are: four attempts at the same measurement. It also means no licence to
+ * track, nothing to re-encode, and they stay sharp at any size.
+ *
+ * The pairs are adjacent on the prism rather than opposite (see the stylesheet)
+ * so that a single quarter-turn carries the argument. */
+const PRISM_ARTS = {
+    // Gall's bust: a profile in mapped compartments, which is the whole idea —
+    // a faculty per region, readable from the outside.
+    phrenology: `<svg class="rz-prism__art" viewBox="0 0 200 200" aria-hidden="true">
+        <path d="M64 168 V132 C40 122 32 98 34 80 C37 47 63 26 98 26 C136 26 160 50 162 82 C163 100 156 112 145 116 L148 132 L134 136 L136 152 L118 156 L118 168 Z"/>
+        <path d="M34 80 C64 66 108 62 148 72"/>
+        <path d="M45 56 C74 76 74 108 62 132"/>
+        <path d="M74 32 C88 62 92 100 84 140"/>
+        <path d="M104 27 C110 60 112 100 108 130"/>
+        <path d="M132 33 C132 66 130 96 126 118"/>
+        <path d="M40 100 C74 92 120 92 158 100"/>
+        <path d="M36 118 C64 114 100 114 148 118"/>
+        <circle class="rz-prism__solid" cx="151" cy="97" r="4"/>
+    </svg>`,
+    // The modern answer to the same question: the same skull, sampled at the
+    // scalp, with the trace it produces running underneath.
+    eeg: `<svg class="rz-prism__art" viewBox="0 0 200 200" aria-hidden="true">
+        <path d="M62 150 V128 C40 118 32 96 34 78 C37 47 63 26 98 26 C136 26 160 48 162 80 C163 98 156 110 145 114 L148 128 L136 132 L138 148"/>
+        <path d="M40 62 C70 44 124 44 154 64"/>
+        <circle class="rz-prism__solid" cx="52" cy="74" r="5"/>
+        <circle class="rz-prism__solid" cx="76" cy="53" r="5"/>
+        <circle class="rz-prism__solid" cx="104" cy="46" r="5"/>
+        <circle class="rz-prism__solid" cx="132" cy="53" r="5"/>
+        <circle class="rz-prism__solid" cx="154" cy="74" r="5"/>
+        <path d="M52 74 C58 88 66 92 76 90"/>
+        <path d="M76 53 C82 70 88 78 100 80"/>
+        <path d="M132 53 C128 70 122 78 110 80"/>
+        <path d="M154 74 C148 88 140 92 130 90"/>
+        <path class="rz-prism__trace" d="M22 176 H44 L50 160 L56 188 L62 168 L70 176 H88 L94 156 L100 190 L106 170 L114 176 H134 L140 162 L146 186 L152 170 L158 176 H180"/>
+    </svg>`,
+    // Hipp's chronoscope: a dial reading thousandths of a second, over the
+    // clockwork that got it there. The first instrument that made "how long did
+    // that thought take" an answerable question.
+    chronoscope: `<svg class="rz-prism__art" viewBox="0 0 200 200" aria-hidden="true">
+        <circle cx="100" cy="82" r="52"/>
+        <circle cx="100" cy="82" r="44"/>
+        <path d="M100 38 V46"/><path d="M144 82 H136"/><path d="M100 126 V118"/><path d="M56 82 H64"/>
+        <path d="M131 51 L126 56"/><path d="M131 113 L126 108"/><path d="M69 113 L74 108"/><path d="M69 51 L74 56"/>
+        <path d="M100 82 L128 62"/>
+        <path d="M100 82 L88 108"/>
+        <circle class="rz-prism__solid" cx="100" cy="82" r="5"/>
+        <path d="M74 134 V150 H126 V134"/>
+        <path d="M62 150 H138 L146 172 H54 Z"/>
+        <circle cx="84" cy="161" r="7"/>
+        <circle cx="116" cy="161" r="7"/>
+        <path d="M84 161 L116 161"/>
+    </svg>`,
+    // And its modern answer: evidence accumulating between two bounds until one
+    // is crossed, with the response-time distribution the traces produce.
+    model: `<svg class="rz-prism__art" viewBox="0 0 200 200" aria-hidden="true">
+        <path class="rz-prism__bound" d="M26 46 H182"/>
+        <path class="rz-prism__bound" d="M26 138 H182"/>
+        <path d="M26 46 V138"/>
+        <path class="rz-prism__dash" d="M26 92 H182"/>
+        <path d="M26 92 C44 88 52 74 66 72 C80 70 84 84 96 78 C108 72 112 56 124 52 C132 49 138 47 144 46"/>
+        <path class="rz-prism__faint" d="M26 92 C42 98 50 112 62 110 C76 108 80 94 92 100 C104 106 110 124 122 130 C130 134 138 137 146 138"/>
+        <path class="rz-prism__faint" d="M26 92 C40 90 48 80 58 82 C70 84 74 96 86 92 C100 87 106 68 118 60 C128 53 136 48 142 46"/>
+        <path class="rz-prism__dist" d="M120 178 C128 178 130 156 138 156 C146 156 148 178 158 178"/>
+        <path d="M100 178 H182"/>
+        <path d="M144 46 L144 40"/>
+    </svg>`,
+}
+
+/* ── The prism ──
+ * Four faces on a square prism, turning a quarter at a time. The pairs are
+ * adjacent, not opposite, and that is the whole design: opposite faces are 180°
+ * apart and can never be seen in one movement, so the pairing would have to be
+ * asserted in a caption. Adjacent, the quarter-turn *is* the sentence —
+ * phrenology becomes EEG, chronoscope becomes a model — and the reader watches
+ * the argument rather than reading it.
+ *
+ * Everything is CSS: the turn is one animation on the prism, paused while the
+ * landmark is not holding, exactly as the cardiac loop next door is. So there
+ * is no rotation state in script, nothing to keep in step with a caption, and
+ * nothing to unwind when the reader scrubs backwards — a face carries its own
+ * label because it is on the face, which is also why nothing here has to know
+ * which one is showing.
+ */
+function buildPrismFigure(config) {
+    const wrap = el("div", "rz-fig rz-fig--prism")
+
+    const stage = el("div", "rz-prism__stage")
+    const prism = el("div", "rz-prism")
+
+    const faces = Array.isArray(config.faces) ? config.faces.slice(0, 4) : []
+    faces.forEach((face, index) => {
+        const panel = el("div", "rz-prism__face")
+        panel.style.setProperty("--rz-face", String(index))
+
+        const art = PRISM_ARTS[face.art]
+        if (art) panel.appendChild(svgMarkup(art))
+
+        if (face.era) panel.appendChild(el("p", "rz-prism__era", face.era))
+        if (face.name) panel.appendChild(el("h4", "rz-prism__name", face.name))
+        if (face.text) panel.appendChild(el("p", "rz-prism__text", face.text))
+
+        prism.appendChild(panel)
+    })
+
+    stage.appendChild(prism)
+    wrap.appendChild(stage)
+
+    /* One line under the turn, saying what it is a turn *of*. The faces name
+       themselves; this names the pairing, which is the thing no single face can
+       say. */
+    if (config.caption) wrap.appendChild(el("p", "rz-prism__caption", config.caption))
+
+    return wrap
+}
+
 const FIGURE_BUILDERS = {
     map: buildMapFigure,
     ponzo: buildPonzoFigure,
     artworks: buildArtworksFigure,
     heartbrain: buildHeartBrainFigure,
+    prism: buildPrismFigure,
     strands: buildStrandsFigure,
 }
 

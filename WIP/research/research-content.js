@@ -109,6 +109,60 @@ export const RESEARCH_CONTENT = Object.freeze({
                     },
                 },
                 {
+                    /* ── The long view ──
+                       Carried over from the old site, where it was the third of
+                       three research themes and read "What is the history of
+                       psychology and neuropsychiatry? What are the methods and
+                       tools of tomorrow?" — a real dimension of the lab that
+                       the first pass at this section compressed away entirely.
+                       It earns a station rather than a tile in the list below,
+                       because it is not another *topic*: it is a stance about
+                       how to do any of the others.
+
+                       The figure is a four-faced prism and the pairs sit on
+                       adjacent faces, so one quarter-turn takes phrenology to
+                       EEG and the chronoscope to a model. The claim being made
+                       is that those are the same gesture a century apart, and
+                       the turn is what makes it rather than a caption. */
+                    id: "longview",
+                    eyebrow: "The long view",
+                    title: "Then, and next",
+                    short: "Then & next",
+                    accent: "#c9a227",
+                    text: "Every instrument in this lab will look quaint eventually — which is exactly why the ones that already do are worth reading. The early psychologists asked our questions with the tools they had, and were often less wrong than their instruments make them look. We dig those up, and we build the ones that will date next.",
+                    tags: ["History of psychology", "Open-source methods", "Computational models"],
+                    figure: {
+                        type: "prism",
+                        caption: "Two centuries, two questions, four answers — and the turn between each pair is about a hundred years.",
+                        faces: [
+                            {
+                                art: "phrenology",
+                                era: "c. 1810",
+                                name: "Phrenology",
+                                text: "Read the mind off the skull. Wrong about almost everything, right that the brain has parts that do different things.",
+                            },
+                            {
+                                art: "eeg",
+                                era: "today",
+                                name: "Electrophysiology",
+                                text: "Read the brain off the scalp. The same bet — that structure shows from outside — with two centuries of better instruments behind it.",
+                            },
+                            {
+                                art: "chronoscope",
+                                era: "c. 1840",
+                                name: "The chronoscope",
+                                text: "Time a thought to the thousandth of a second. The first machine that made \"how long did that take?\" a question with an answer.",
+                            },
+                            {
+                                art: "model",
+                                era: "today",
+                                name: "Evidence accumulation",
+                                text: "Simulate the decision instead of stopwatching it — and get the whole distribution rather than a mean. We write the software that fits these.",
+                            },
+                        ],
+                    },
+                },
+                {
                     /* The last station, and the only one that is a list rather
                        than a demonstration: these are the lab's other lines of
                        work, and the point is their breadth. `strands` is the
