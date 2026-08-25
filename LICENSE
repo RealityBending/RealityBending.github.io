@@ -1,0 +1,48 @@
+MIT License
+
+Copyright (c) 2026 Dominique Makowski and the Reality Bending Lab
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+Note on third-party material
+============================
+
+The MIT licence above covers the code in this repository — the HTML, CSS,
+JavaScript and Python that make the site work.
+
+It does not, and cannot, cover material in this repository that belongs to
+someone else. That includes at least:
+
+  - img/brain.glb — the 3-D brain mesh, by dgallichan via Sketchfab,
+    licensed CC-BY-4.0. Attribution is required if you reuse it.
+  - img/magritte_falsemirror.jpg, research/img/era-*.jpg and
+    research/img/art_*.jpg — reproductions of artworks and historical
+    photographs, included here as illustration.
+  - research/img/train_ciotat_*.webp / .jpg — frames of the Lumière
+    brothers' L'Arrivée d'un train en gare de La Ciotat (1896).
+  - publications/*/*.pdf and publications/*/featured.* — papers and figures
+    whose rights sit with their publishers and co-authors.
+  - information/img/logo_sussex.svg and the photographs of the University of
+    Sussex — University of Sussex marks and imagery.
+  - research/img/logo-*.png — the marks of the software projects they name.
+  - Photographs of lab members and lab events.
+
+If you want to reuse any of that, the licence you need is theirs, not this one.

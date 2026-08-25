@@ -65,7 +65,7 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8")
 
 ROOT = Path(__file__).resolve().parent
-SITE_URL = "https://realitybending.github.io"
+SITE_URL = "https://realitybendinglab.com"
 TEMPLATE = ROOT / "index.html"
 
 SECTION_IDS = {

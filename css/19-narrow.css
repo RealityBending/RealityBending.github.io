@@ -51,70 +51,24 @@
         max-width: none;
     }
 
+    /* ── No brain and no button ring on a phone ──
+       Both are the desktop hero's *ornament*, and stacked they stopped being
+       either ornamental or useful: a WebGL canvas and six wrapped pills came to
+       723px of a 1292px hero on a 375x812 screen, so more than half of the
+       first screenful was a widget nobody can orbit comfortably with a thumb,
+       standing between the reader and the page. The nav bar above carries all
+       six destinations already, so nothing is lost — this is the second copy of
+       that menu, not the only one.
+
+       `display: none` on the host, rather than on the two children, so the
+       whole grid row goes with it — and it is the switch **brain.js is gated
+       on**: the inline module in index.html imports it only when this box is
+       displayed, which is what keeps the 5.7 MB brain.glb off a phone
+       connection entirely. The stylesheet stays the one place that decides,
+       exactly as `--rz-mode` does for the Research zoom. Changing this
+       selector means checking that gate. */
     .hero__brain {
-        padding: 2rem var(--content-inline-gutter) 1rem;
-        background: #f5f4ef;
-        border-radius: 28px 28px 0 0;
-        /* Stacked, this row's height *is* its content, so size containment
-           would collapse it to nothing. The disc it was for is gone here. */
-        container-type: normal;
-    }
-
-    .brain-atlas {
-        width: min(var(--content-max-width), 100%);
-        aspect-ratio: auto;
-        transform: none;
-        display: flex;
-        flex-direction: column;
-        gap: 1.25rem;
-    }
-
-    .brain-atlas__center {
-        position: relative;
-        inset: auto;
-        width: 100%;
-        order: -1;
-    }
-
-    #brain-viewer {
-        width: min(48rem, 88vw);
-        height: min(420px, 68vw);
-        margin: 0 auto;
-    }
-
-    .menu-buttons {
-        position: relative;
-        inset: auto;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.6rem;
-        padding: 0 var(--content-inline-gutter) 2.5rem;
-        background: #f5f4ef;
-    }
-
-    .menu-buttons .menu-button {
-        position: relative;
-        top: auto;
-        left: auto;
-        transform: none;
-    }
-
-    /* The stacked layout drops the centring translate, so the arc entrance
-       keyframe no longer applies. */
-    #main-page.visible .menu-button {
-        animation: none;
-    }
-
-    .menu-button:hover,
-    .menu-button:focus-visible,
-    .menu-button.is-highlighted {
-        transform: translateY(-2px) scale(1.04);
-    }
-
-    .menu-button:active {
-        transform: translateY(0) scale(0.97);
+        display: none;
     }
 
     .contact-full__inner {
@@ -216,18 +170,37 @@
 
     .mlp-layer {
         flex-direction: column;
+        /* 2.5rem each side is the desktop band, where the role label runs down
+           the *side* of the row and the padding is what keeps two bands apart.
+           Stacked, the label is above the nodes and taking part in that gap, so
+           the same number reads as a hole. */
+        padding: 1.5rem 0;
     }
 
+    /* ── The label has to give up `writing-mode`, not only `position` ──
+       This was the whole of the "huge vertical spacing between groups" on a
+       phone. Taken out of its absolute box the label kept `vertical-lr` from
+       the desktop rule, so it went on rendering as a column of sideways type —
+       and a static block's height is then the *length of its text*: measured at
+       375px, "Principal Investigator" was **177px tall** and 10px wide, sitting
+       between every pair of rows as a near-invisible sliver with 160-odd px of
+       apparent dead air around it. It also made every band a different height,
+       since the roles are different lengths.
+
+       Horizontal, the same label is 19px. Measured over the four bands:
+       402/298/328/386px → 212px each, and #people-grid 1451px → 883px. */
     .mlp-layer__label {
         position: static;
         transform: none;
-        margin-bottom: 0.6rem;
+        writing-mode: horizontal-tb;
+        text-align: center;
+        margin-bottom: 0.5rem;
         width: auto;
     }
 
     .mlp-layer__nodes {
         justify-content: center;
-        gap: 2rem;
+        gap: 1.5rem;
         padding: 0;
     }
 

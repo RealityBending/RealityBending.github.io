@@ -245,11 +245,26 @@
     border-color: color-mix(in srgb, var(--pub-preprint) 70%, transparent);
 }
 
-/* "Preprint" label — top-right corner */
+/* ── The eyebrow: year, then state ──
+   One line above the title carrying the card's bibliographic state. The badge
+   was `position: absolute` in the card's top-right corner until it was noticed
+   that 46 of the 65 cards have a figure in that corner — so on two thirds of
+   the list the label sat on top of a chart. In the flow beside the year it
+   collides with nothing, and it is next to the other fact of the same kind.
+
+   `align-items: baseline` rather than `center`: the year is letter-spaced caps
+   and the badge is a pill with its own padding, so centring the boxes puts the
+   two sets of letters on visibly different lines. */
+.pub-card__eyebrow {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    margin-bottom: 0.4em;
+}
+
+/* "Preprint" label — beside the year */
 .pub-card__preprint-badge {
-    position: absolute;
-    top: 0.7rem;
-    right: 0.9rem;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.58rem;
     font-weight: 700;
@@ -300,15 +315,15 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
     opacity: 0.88;
 }
 
+/* The margin lives on .pub-card__eyebrow now — the year is one item in a flex
+   row rather than the whole line. */
 .pub-card__year {
-    display: inline-block;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.62rem;
     font-weight: 700;
     letter-spacing: 0.12em;
     color: var(--pub-ink);
     opacity: 0.75;
-    margin-bottom: 0.4em;
 }
 
 .pub-card__title {
@@ -318,14 +333,6 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
     line-height: 1.45;
     color: #222;
     margin: 0 0 0.35em;
-}
-
-/* Clear of the corner badge, which is absolutely placed and would otherwise
-   sit on the end of a long first line. Only where it actually collides: a card
-   with a figure has the badge over the figure's column instead, and every
-   other title gets the width back. */
-.pub-card--preprint:not(.pub-card--has-image) .pub-card__title {
-    padding-right: 4.75rem;
 }
 
 .pub-card__title a {

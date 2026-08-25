@@ -92,10 +92,71 @@ tools/              developer tools. **Nothing here is part of the site** — no
                       same reason
 MIGRATION.md        the record of the cutover from the Hugo site, plus what is
                     still open afterwards. Disposable once §7 is worked through
-.github/workflows/  the deploy and check pipelines
+.github/workflows/  the deploy and check pipelines. **Deleting these does not
+                    stop the site publishing** — it stops the *generated* pages
+                    publishing, which looks like nothing at all until somebody
+                    reloads a deep link (see "How this actually gets deployed")
 .gitignore          everything generate_pages.py writes, plus the full-size image
-                    sources (see "The size budget")
+                    sources (see "The size budget"). **Name generated files,
+                    never a folder that also holds source** — see below
+LICENSE             MIT for the code, plus the list of what in here is somebody
+                    else's (the brain mesh is CC-BY-4.0, the paintings and the
+                    papers are not ours to relicense)
+README.md           written for lab students: how to add a profile and how to
+                    write a post. It is the one file here whose audience is not
+                    a maintainer, so it explains JSON and image sizes from
+                    scratch and assumes no git
 ```
+
+### How this actually gets deployed
+
+**Pages must be set to *Settings → Pages → Source: GitHub Actions*, and the
+whole design collapses silently if it is not.** `deploy.yml` has always said so
+in a comment; this is what it looks like when it is ignored.
+
+On "Deploy from a branch", GitHub runs its own built-in `pages build and
+deployment` workflow on every push *as well as* ours. Both succeed. The branch
+one wins, and the branch is by definition the thing that does **not** contain
+the ~250 generated pages, `sitemap.xml` or `llms.txt` — every one of which is
+gitignored precisely because CI is supposed to build it.
+
+The failure is invisible from every angle you would normally look from:
+
+- The homepage is perfect, because the homepage *is* `index.html` on the branch.
+- Every in-page route works, because the router is client-side — press a member
+  and the URL says `/people/dominique-makowski/` and the panel opens.
+- Actions is green. Our workflow ran, generated all 148 pages, passed
+  `check-paths.py`, and uploaded an artifact nothing served.
+- It only shows when somebody **reloads or shares** one of those URLs, which is
+  the one thing the whole generated-pages exercise exists to support.
+
+Two runs of the built-in workflow next to ours in the Actions list is the tell.
+If `curl -o /dev/null -w '%{http_code}' https://realitybendinglab.com/sitemap.xml`
+returns 404, the branch is being served.
+
+### `.gitignore`: name the files, not the folder
+
+`information/` was ignored as a whole folder, and it is the one generated
+directory that also holds source — `join.js`, `services.js`, their
+`-content.js`, and the section's own `img/`. Files added *before* that rule
+stayed tracked, so it looked fine for months. Three assets added afterwards —
+`sussex-bg.jpg`, `sussex_landscape.jpg` and `logo_sussex.svg` — were silently
+never committed.
+
+**That failure is invisible locally and only exists on the deployed site**,
+which is what makes it worth writing down: the files are on your disk, so the
+local server serves them, the Contact and Services backdrops render, and
+nothing in the repository looks wrong. `git status` does not mention them —
+that is the entire point of an ignore rule. Only the deployed site 404s.
+
+It is `information/index.html` + `information/*/index.html` now. The other six
+generated folders hold nothing else and are anchored with a leading slash
+(`/join/`, not `join/`) so they cannot also swallow `information/join/` and
+disguise which rule is doing the work.
+
+**Before adding a folder to `.gitignore`, check whether anything in it is
+source.** And when an image "does not show" on the deployed site but does
+locally, `git check-ignore -v <path>` is the first thing to run.
 
 `site-sections.js` is the place to change a section's colour, its brain region,
 or its nav entry — the hero buttons, nav links and 3D brain highlight all read
@@ -112,6 +173,19 @@ depend on that and nothing warns you when it breaks:
   (`min-width: 1800px`) are cross-section and come *after* every section file
   because they have to beat it. They are not "the responsive file" — most
   breakpoints live with the rules they modify.
+
+  **Taking an element out of an absolute box means undoing every property that
+  box implied, not just `position`.** The People roster's role label is
+  `position: absolute` + `writing-mode: vertical-lr` on desktop, running down
+  the side of each band. Stacked, `19-narrow.css` reset `position`, `transform`
+  and `width` — and left the writing mode. So the label went on rendering as a
+  column of sideways type, and **a static block's height is then the length of
+  its text**: measured at 375px, "Principal Investigator" was 177px tall and
+  10px wide. Every pair of rows was separated by a near-invisible sliver with
+  160-odd px of apparent dead air around it, and every band was a different
+  height because the roles are different lengths. It reads as a spacing bug,
+  which is what it was reported as. Horizontal, the same label is 19px:
+  402/298/328/386px per band → 212px each, `#people-grid` 1451px → 877px.
 - `21-reality-zoom.css` comes after `20-wide.css` and carries its own 1800px
   override for exactly that reason (see "The Research zoom" below).
 
@@ -202,6 +276,42 @@ Related: a full-bleed child sized with `calc(-50vw + 50%)` assumes its element
 is centred in the viewport. Once a section carries asymmetric padding that stops
 being true and the background falls short. Overshoot (`left: -100vw; right:
 -100vw`) and let the section's own `overflow-x: clip` cut it back.
+
+### There is no brain and no button ring below 900px
+
+`css/19-narrow.css` takes `.hero__brain` away entirely, and the gate that goes
+with it is in `index.html`. Stacked, the WebGL canvas and the six wrapped pills
+came to **723px of a 1292px hero on a 375x812 screen** — more than half the
+first screenful spent on a model nobody can orbit with a thumb. The nav bar
+carries all six destinations already, so the ring is the *second* copy of that
+menu, not the only one; the hero is 769px now.
+
+**Hiding it in CSS is not enough, and both of the other two halves were missed
+on the first pass:**
+
+- **`brain.js` is all top-level code with no init function**, so a static
+  `<script src>` runs whatever the stylesheet says: three.js builds a renderer
+  against a 0x0 container and fetches the 5.7 MB `img/brain.glb` to draw
+  nothing. It is a conditional `import()` in an inline module now, gated on
+  `getComputedStyle(host).display !== "none"` — asking the stylesheet rather
+  than re-testing the breakpoint, the same arrangement as `--rz-mode`.
+- **`<link rel="preload" href="img/brain.glb">` is honoured whether or not
+  anything ever asks for the file.** Gating the module while leaving the
+  preload alone saved exactly nothing — measured, the phone still pulled all
+  5.7 MB. It carries `media="(min-width: 901px)"` now, and **that is the one
+  place this breakpoint is written twice**: a preload cannot ask the
+  stylesheet. Keep it in step with `19-narrow.css`.
+- **The resize listener is for a tablet turning over, not for a dragged
+  window.** An iPad is 768px in portrait and 1024px in landscape, so it crosses
+  this breakpoint on rotation; without it the brain is permanently absent for
+  anyone who loaded the page the short way round. It fires once and removes
+  itself.
+
+Verified at 375 (no fetch), 768 (no fetch), 768 → 1100 (loads on the resize)
+and 1280 (loads at parse). Note when checking this in a preview pane that
+**`resize_window` does not dispatch a `resize` event to the page**, so the
+rotation path has to be driven by hand — a canvas that fails to appear there is
+the pane, not the gate.
 
 ### The hero's disc has to be taller than the hero
 
@@ -1647,7 +1757,7 @@ nobody notices.
 ```
 
 **`category` is one value from a closed list, not free tags** — `CATEGORIES` in
-`update_news.py`, currently Research, Thoughts, Methods, Lab, Media, in that
+`update_news.py`, currently Research, Thoughts, Methods, Lab, Awards, Media, in that
 order because it is a running order and not an alphabet. The old site tagged
 every post with "Reality Bending Lab", "University of Sussex" and "Psychology",
 which is true of all of them and so filters nothing; what a reader wants to say
@@ -2039,8 +2149,24 @@ Two things that must not take the accent:
 
 - **The preprint state.** A green state chip inside a green section says
   nothing, so `--pub-preprint` is the site's amber. The tint stays on the
-  card's border, its corner badge, and a tint of the field faint enough that a
-  row of mixed cards still reads as one set.
+  card's border, its badge, and a tint of the field faint enough that a row of
+  mixed cards still reads as one set.
+
+**The badge sits beside the year, in `.pub-card__eyebrow`, and used to be
+`position: absolute` in the card's top-right corner.** That corner is where the
+figure column is on **46 of the 65 cards**, so on two thirds of the list the
+label sat on top of a chart. Three things came out of moving it:
+
+- It is next to the year because the year is the card's *other* piece of
+  bibliographic state, and that line already exists.
+- `align-items: baseline`, not `center`: the year is letter-spaced caps with no
+  box and the badge is a pill with its own padding, so centring the two boxes
+  puts the two sets of letters on visibly different lines.
+- **The `padding-right: 4.75rem` the title needed to dodge the corner is
+  gone**, and with it the `:not(.pub-card--has-image)` qualifier that scoped it.
+  A long title on a preprint gets its full measure back. A preprint card's
+  eyebrow is 15.7px against a plain card's 11px — the pill genuinely is taller,
+  and that is the whole of the difference.
 - **The PDF and GitHub badges.** Acrobat red and GitHub purple are what those
   things look like everywhere a reader has ever met them. They are not section
   colours and must not become them.
@@ -2328,12 +2454,30 @@ real paths instead of hashes, which is a separate job (see below).
 
 Four things worth knowing:
 
-- **`https://realitybending.github.io/` is written in five places** — the
-  canonical and `og:*` in `index.html`, `SITE_URL` in `generate_pages.py`,
-  `SITE_URL` in `page-meta.js`, the `Sitemap:` line in `robots.txt`, and the
-  prefix `tools/build_legacy_map.py` strips off the old sitemap's URLs. They
-  are five copies of one fact and nothing keeps them in step. A CNAME or a
-  different deploy path means changing all five.
+- **The site is `https://realitybendinglab.com/`, and that is written in four
+  places** — the canonical, `og:*` and JSON-LD `@id`s in `index.html`,
+  `SITE_URL` in `generate_pages.py`, `SITE_URL` in `page-meta.js`, and the
+  `Sitemap:` line in `robots.txt`. They are four copies of one fact and nothing
+  keeps them in step.
+  **`tools/build_legacy_map.py` is not a fifth**, and this is the distinction to
+  hold on to: the `https://realitybending.github.io/` prefix it strips is the
+  *old Hugo site's* deployed URL, in a frozen script reading a frozen sitemap.
+  It is correct precisely because it did not move.
+  **The site's original URL genuinely was `https://realitybending.github.io/`**,
+  which is where the repository's name comes from: it is a GitHub Pages user
+  site, and that is the address Pages gives one for free. The lab then bought
+  `realitybendinglab.com` from Namecheap and set it as the custom domain in
+  **Settings → Pages → Custom domain**, which is what wrote the `CNAME` file at
+  the repo root. So there are two live hostnames and only one of them is the
+  site: Pages still answers on `realitybending.github.io` and **301s to the
+  custom domain**. That redirect is exactly why the stale canonicals were
+  invisible for so long — a wrong canonical never 404s, it just quietly points
+  every indexed page at the wrong host, and every link you click still works.
+  Two consequences worth keeping in mind: **`CNAME` must stay committed** (it
+  is the deployed artifact's only record of the domain, and `deploy.yml` uploads
+  the repo root, so it travels), and the DNS behind it lives at Namecheap rather
+  than anywhere in this repository — a resolution failure is not something any
+  file here can explain.
   **`sitemap.xml` is not one of them**, and used to be listed here as one: it
   is generated by `generate_pages.py` and gitignored, so it follows `SITE_URL`
   automatically — as does `llms.txt`. `BASE_TITLE` in `page-meta.js` is a

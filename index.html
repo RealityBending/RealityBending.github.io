@@ -50,16 +50,23 @@
              - the canonical is absolute and is the deployed root, not this
                folder, so it stays correct when the site is served from a
                sub-path or opened locally. It is
-               https://realitybending.github.io/. Moving that (a CNAME, a
-               different path) means changing SITE_URL here, in sitemap.xml,
-               in robots.txt and in page-meta.js — they are four copies of one
-               fact and nothing keeps them in step. -->
+               https://realitybendinglab.com/, which is the CNAME in the repo
+               root — a domain bought from Namecheap and set as the custom
+               domain in the repository's Pages settings, which is what wrote
+               that file. It is NOT realitybending.github.io, which was this
+               site's original address (a GitHub Pages user site, hence the
+               repository's name) and which Pages still answers on and 301s
+               away from. Moving it again means changing
+               this file, SITE_URL in generate_pages.py, SITE_URL in
+               page-meta.js and the Sitemap: line in robots.txt — four copies
+               of one fact, and nothing keeps them in step. sitemap.xml is
+               *not* a fifth: it is generated, so it follows SITE_URL. -->
         <title>Reality Bending Lab — Neuropsychology of Reality | University of Sussex</title>
         <meta
             name="description"
             content="The Reality Bending Lab, led by Dominique Makowski at the University of Sussex, studies how people construct and distort reality — perception, illusions, deception, fake news and AI beliefs."
         />
-        <link rel="canonical" href="https://realitybending.github.io/" />
+        <link rel="canonical" href="https://realitybendinglab.com/" />
 
         <!-- Open Graph: what X, LinkedIn, Bluesky, Slack, Mastodon and iMessage
              show when a link is shared. Without these a shared link is a bare
@@ -72,8 +79,8 @@
             property="og:description"
             content="Led by Dominique Makowski at the University of Sussex: research on reality perception, illusions, deception, fake news and AI beliefs."
         />
-        <meta property="og:url" content="https://realitybending.github.io/" />
-        <meta property="og:image" content="https://realitybending.github.io/img/og-card.jpg" />
+        <meta property="og:url" content="https://realitybendinglab.com/" />
+        <meta property="og:image" content="https://realitybendinglab.com/img/og-card.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content="Reality Bending Lab" />
@@ -184,7 +191,18 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet" />
         <!-- Preload heavy assets during the landing screen -->
-        <link rel="preload" href="img/brain.glb" as="fetch" crossorigin />
+        <!-- ── `media` here is not optional ──
+             This is a 5.7 MB fetch, and a preload hint is honoured whether or
+             not anything ever asks for the file — so gating the *module* below
+             on `.hero__brain` being displayed saved nothing at all while this
+             line went on pulling the model down on every phone.
+
+             A preload cannot ask the stylesheet the way the module can, so this
+             is the one place the 900px breakpoint is written twice. It has to
+             stay in step with `.hero__brain { display: none }` in
+             css/19-narrow.css: 901px here is that sheet's `max-width: 900px`
+             inverted. Change one and change the other. -->
+        <link rel="preload" href="img/brain.glb" as="fetch" crossorigin media="(min-width: 901px)" />
         <link rel="preload" href="img/lab_logo_black.png" as="image" />
         <!-- model-viewer web component -->
         <script type="importmap">
@@ -224,12 +242,12 @@
                 "@graph": [
                     {
                         "@type": "ResearchOrganization",
-                        "@id": "https://realitybending.github.io/#organization",
+                        "@id": "https://realitybendinglab.com/#organization",
                         "name": "Reality Bending Lab",
                         "alternateName": "ReBeL",
-                        "url": "https://realitybending.github.io/",
-                        "logo": "https://realitybending.github.io/img/lab_logo_black.png",
-                        "image": "https://realitybending.github.io/img/og-card.jpg",
+                        "url": "https://realitybendinglab.com/",
+                        "logo": "https://realitybendinglab.com/img/lab_logo_black.png",
+                        "image": "https://realitybendinglab.com/img/og-card.jpg",
                         "email": "D.Makowski@sussex.ac.uk",
                         "description": "Research group studying the neuropsychology of reality and its distortions — perception, illusions, deception, fake news, AI beliefs, and their links with emotion, cognitive control and the Self.",
                         "parentOrganization": {
@@ -244,7 +262,7 @@
                             "postalCode": "BN1 9QH",
                             "addressCountry": "GB"
                         },
-                        "founder": { "@id": "https://realitybending.github.io/#dominique-makowski" },
+                        "founder": { "@id": "https://realitybendinglab.com/#dominique-makowski" },
                         "sameAs": ["https://github.com/RealityBending", "https://x.com/Dom_Makowski"],
                         "knowsAbout": [
                             "Neuropsychology",
@@ -259,14 +277,14 @@
                     },
                     {
                         "@type": "Person",
-                        "@id": "https://realitybending.github.io/#dominique-makowski",
+                        "@id": "https://realitybendinglab.com/#dominique-makowski",
                         "name": "Dominique Makowski",
                         "jobTitle": "Lecturer in Psychology",
-                        "image": "https://realitybending.github.io/people/dominique-makowski/avatar.jpg",
+                        "image": "https://realitybendinglab.com/people/dominique-makowski/avatar.jpg",
                         "email": "D.Makowski@sussex.ac.uk",
-                        "affiliation": { "@id": "https://realitybending.github.io/#organization" },
-                        "worksFor": { "@id": "https://realitybending.github.io/#organization" },
-                        "url": "https://realitybending.github.io/#dominique-makowski",
+                        "affiliation": { "@id": "https://realitybendinglab.com/#organization" },
+                        "worksFor": { "@id": "https://realitybendinglab.com/#organization" },
+                        "url": "https://realitybendinglab.com/#dominique-makowski",
                         "sameAs": [
                             "https://scholar.google.com/citations?user=bg0BZ-QAAAAJ&hl",
                             "https://github.com/DominiqueMakowski",
@@ -278,11 +296,11 @@
                     },
                     {
                         "@type": "WebSite",
-                        "@id": "https://realitybending.github.io/#website",
-                        "url": "https://realitybending.github.io/",
+                        "@id": "https://realitybendinglab.com/#website",
+                        "url": "https://realitybendinglab.com/",
                         "name": "Reality Bending Lab",
                         "inLanguage": "en-GB",
-                        "publisher": { "@id": "https://realitybending.github.io/#organization" }
+                        "publisher": { "@id": "https://realitybendinglab.com/#organization" }
                     }
                 ]
             }
@@ -1005,6 +1023,36 @@
         <script type="module" src="publications/publications.js"></script>
         <script type="module" src="information/join.js"></script>
         <script type="module" src="information/services.js"></script>
-        <script type="module" src="brain.js"></script>
+        <!-- ── brain.js is loaded only where the hero has somewhere to put it ──
+             `css/19-narrow.css` takes `.hero__brain` away below 900px, and this
+             asks the stylesheet rather than re-testing the breakpoint, so the
+             two can never disagree — the same arrangement the Research zoom's
+             `--rz-mode` uses. A static `<script src>` would still run: three.js
+             would build a renderer against a 0x0 container and fetch the 5.7 MB
+             img/brain.glb over a phone connection to draw nothing.
+
+             brain.js is all top-level code with no init function, so the gate
+             has to be here rather than inside it.
+
+             The resize listener is not for a reader dragging a window: it is
+             for a tablet turning over. An iPad is 768px in portrait and 1024px
+             in landscape, so it crosses this breakpoint on rotation, and
+             without it the brain would be permanently absent for anyone who
+             happened to load the page the short way round. It fires once and
+             then removes itself. -->
+        <script type="module">
+            const brainHost = document.querySelector(".hero__brain")
+            const wanted = () => brainHost && getComputedStyle(brainHost).display !== "none"
+            if (wanted()) {
+                import("./brain.js")
+            } else if (brainHost) {
+                const onResize = () => {
+                    if (!wanted()) return
+                    window.removeEventListener("resize", onResize)
+                    import("./brain.js")
+                }
+                window.addEventListener("resize", onResize, { passive: true })
+            }
+        </script>
     </body>
 </html>

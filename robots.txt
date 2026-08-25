@@ -1,4 +1,4 @@
-# Reality Bending Lab — https://realitybending.github.io/
+# Reality Bending Lab — https://realitybendinglab.com/
 #
 # Everything is open, including to the LLM crawlers (GPTBot, ClaudeBot,
 # PerplexityBot, Google-Extended). That is a deliberate choice rather than an
@@ -10,4 +10,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://realitybending.github.io/sitemap.xml
+Sitemap: https://realitybendinglab.com/sitemap.xml

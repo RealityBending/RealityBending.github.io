@@ -38,7 +38,7 @@ const SITE_NAME = "Reality Bending Lab"
 /* Kept identical to <title> in index.html by hand. If these two drift, the tab
    label changes when the reader lands on the hero, which reads as a flicker. */
 const BASE_TITLE = "Reality Bending Lab — Neuropsychology of Reality | University of Sussex"
-const SITE_URL = "https://realitybending.github.io/"
+const SITE_URL = "https://realitybendinglab.com/"
 
 /* The routes whose label is knowable without any content: a section, and any
    tab of it. The value is what the reader would call the place they are in.

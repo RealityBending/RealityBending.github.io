@@ -385,12 +385,34 @@ import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRou
                 const body = document.createElement("div")
                 body.className = "pub-card__body"
 
-                /* year pill */
-                if (pub.year) {
-                    const year = document.createElement("span")
-                    year.className = "pub-card__year"
-                    year.textContent = pub.year
-                    body.appendChild(year)
+                /* ── Eyebrow: the year, and the preprint state beside it ──
+                   The badge used to be `position: absolute` in the card's
+                   top-right corner, which put it over the figure column on the
+                   46 cards that have one — a label sitting on a chart, in the
+                   one place the card has a picture rather than space. Here it
+                   is a sibling of the year, which is the card's other piece of
+                   bibliographic state and already occupies this line. It also
+                   removes the `padding-right` the title needed to dodge the
+                   corner, so a long title gets its full measure back.
+
+                   The row is built whenever there is either a year or a
+                   preprint flag, so a preprint with no year still shows it. */
+                if (pub.year || pub.is_preprint) {
+                    const eyebrow = document.createElement("div")
+                    eyebrow.className = "pub-card__eyebrow"
+                    if (pub.year) {
+                        const year = document.createElement("span")
+                        year.className = "pub-card__year"
+                        year.textContent = pub.year
+                        eyebrow.appendChild(year)
+                    }
+                    if (pub.is_preprint) {
+                        const preprintBadge = document.createElement("span")
+                        preprintBadge.className = "pub-card__preprint-badge"
+                        preprintBadge.textContent = "Preprint"
+                        eyebrow.appendChild(preprintBadge)
+                    }
+                    body.appendChild(eyebrow)
                 }
 
                 /* title â€” links to DOI */
@@ -560,14 +582,6 @@ import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRou
                     img.loading = "lazy"
                     wrap.appendChild(img)
                     card.appendChild(wrap)
-                }
-
-                /* preprint badge — top-right corner label */
-                if (pub.is_preprint) {
-                    const preprintBadge = document.createElement("span")
-                    preprintBadge.className = "pub-card__preprint-badge"
-                    preprintBadge.textContent = "Preprint"
-                    card.appendChild(preprintBadge)
                 }
 
                 container.appendChild(card)
