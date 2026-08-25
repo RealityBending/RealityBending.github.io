@@ -1,0 +1,996 @@
+/* ── 14 · PUBLICATIONS SECTION ──
+   The list and its cards, the cite modal, keyword tags, sort bar, the gallery
+   tab and the search bar. The pager is the shared one (css/07-shared.css); all
+   this section does is declare its two tokens below.
+
+   The section's accent is --section-publications (#55cc77, the green it has on
+   the hero's arc and on the brain). It used to be a slate blue-violet that
+   appeared nowhere else on the site, which made the tab bar, the chips and the
+   sort buttons read as belonging to some other page. Every tint here is now
+   mixed off --pub-accent, so recolouring the section is one token; --pub-ink
+   is the same hue taken down far enough to be read as text on cream, which
+   #55cc77 itself is much too light for. Exactly the arrangement News has.
+
+   Part of the numbered set in css/ — the sheets are one stylesheet cut into
+   pieces and index.html links them in this order. Order is the cascade: a
+   rule here loses to the same-specificity rule in any later file. */
+
+/* ── Publications section ── */
+.publications-full {
+    padding: 5rem var(--content-inline-gutter);
+    background: #f5f4ef;
+    position: relative;
+
+    --pub-accent: var(--section-publications);
+    --pub-accent-soft: rgba(85, 204, 119, 0.16);
+    --pub-ink: #23663a;
+
+    /* A preprint is the one thing in here that must not be the section's own
+       colour: it is a state, and a green state chip inside a green section
+       says nothing. Amber is the site's Join hue, borrowed for the same reason
+       the zoom borrows the other sections' — the palette is six colours and
+       these are two of them, not one-offs. */
+    --pub-preprint: #d98b1f;
+
+    /* What the shared pager (css/07-shared.css) reads. */
+    --pager-accent: var(--pub-accent);
+    --pager-ink: var(--pub-ink);
+}
+
+/* Title left, the Scholar button right. It was `position: absolute` in a
+   relative box, which put the button over the title's line at any width where
+   the two did not both fit. */
+.pub-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.9rem 1.5rem;
+    max-width: var(--content-max-width);
+    margin: 0 auto 1.5rem;
+}
+
+.publications-full h2 {
+    display: block;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    color: rgba(17, 17, 17, 0.18);
+    margin: 0;
+}
+
+/* ── The Scholar button (see publications.js) ──
+   A link that cycles the lab's bibliometrics and then undercuts them. The
+   states are stacked in **one grid cell** rather than swapped in and out, so
+   the button is sized once by the widest and tallest of them: a header that
+   resized itself every few seconds would shove the tab bar down the page while
+   somebody was reading it. Same reason the zoom's ask line reserves two lines'
+   height whether or not it needs them. */
+.pub-scholar {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6em 1.1em;
+    border-radius: 0.75em;
+    text-decoration: none;
+    background: var(--pub-accent-soft);
+    border: 1px solid color-mix(in srgb, var(--pub-accent) 34%, transparent);
+    color: var(--pub-ink);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    transition:
+        background 0.16s ease,
+        border-color 0.16s ease,
+        transform 0.16s ease;
+}
+
+.pub-scholar:hover,
+.pub-scholar:focus-visible {
+    background: color-mix(in srgb, var(--pub-accent) 26%, transparent);
+    border-color: var(--pub-accent);
+    transform: translateY(-1px);
+}
+
+.pub-scholar__cap {
+    flex: none;
+    width: 1.7rem;
+    height: 1.7rem;
+    fill: currentColor;
+    opacity: 0.75;
+}
+
+.pub-scholar__states {
+    display: grid;
+    align-items: center;
+    min-width: 15.5rem;
+    max-width: 15.5rem;
+    min-height: 2.5rem;
+}
+
+.pub-scholar__state {
+    grid-area: 1 / 1;
+    align-self: center;
+    opacity: 0;
+    transform: translateY(0.4em);
+    transition:
+        opacity 0.45s ease,
+        transform 0.45s ease;
+}
+
+.pub-scholar__state.is-on {
+    opacity: 1;
+    transform: none;
+}
+
+.pub-scholar__figure {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    line-height: 1.1;
+}
+
+.pub-scholar__caption {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.72;
+}
+
+/* The two punchlines. Sentence case and a smaller size, because they are an
+   aside rather than another figure — and the difference is what tells a reader
+   the button has stopped reporting and started talking. */
+.pub-scholar__state--aside {
+    font-size: 0.78rem;
+    font-style: italic;
+    line-height: 1.45;
+    opacity: 0;
+}
+
+.pub-scholar__state--aside.is-on {
+    opacity: 0.9;
+}
+
+/* Reduced motion: the rotation *is* the effect, so there is nothing to slow
+   down — the three figures stand side by side instead and the jokes, which
+   only work as a punchline after them, are dropped. */
+.pub-scholar--still .pub-scholar__states {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.3rem 1.1rem;
+    min-width: 0;
+    max-width: none;
+}
+
+.pub-scholar--still .pub-scholar__state {
+    opacity: 1;
+    transform: none;
+    transition: none;
+}
+
+.pub-scholar--still .pub-scholar__state--aside {
+    display: none;
+}
+
+#publications-list {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* ── The cards ──
+   Rows: the figure is a column of its own on the right and fills whatever
+   height the row turns out to be, so a short entry and a long one still line
+   their images up. It used to be a 160px thumbnail centred in that space.
+
+   Plain white, the same field the News rows and the Creations tiles sit on.
+   This carried an SVG fibre grain for a while — a paper texture, inline as a
+   data URI. It was tried at two strengths, invisible and then visible, and the
+   visible one simply looked dirty: a page whose sections are all clean cream
+   and white has nothing for it to belong to. Not worth a third attempt. */
+.pub-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    border: 1px solid color-mix(in srgb, var(--pub-accent) 24%, transparent);
+    border-radius: 1.1rem;
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: 0 16px 34px rgba(17, 17, 17, 0.05);
+    overflow: hidden;
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease;
+}
+
+.pub-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 22px 44px rgba(17, 17, 17, 0.09);
+    border-color: color-mix(in srgb, var(--pub-accent) 52%, transparent);
+}
+
+/* The figure's column, on the right — a publication's figure is a chart
+   rather than a photograph, and it illustrates the entry rather than
+   announcing it, so it follows the title instead of preceding it. (The News
+   rows put their thumbnail first, which is the other case: there the picture
+   *is* the hook.) 13rem, for the same reason it is second: it is one of
+   several things in the row.
+
+   DOM order matches, so nothing here has to reorder anything. */
+.pub-card--has-image {
+    grid-template-columns: 1fr 13rem;
+    column-gap: 1.5rem;
+}
+
+/* `display: grid` above outranks the UA rule for the attribute, so without
+   this every card stays visible through pagination. Same trap as
+   .research-tab-panel and .join-stage. */
+.pub-card[hidden] {
+    display: none !important;
+}
+
+/* Preprint variant — the amber state: the card's edge, its badge, and a tint
+   of the field faint enough that a row of mixed cards still reads as one set. */
+.pub-card--preprint {
+    border-color: color-mix(in srgb, var(--pub-preprint) 38%, transparent);
+    background: color-mix(in srgb, var(--pub-preprint) 7%, rgba(255, 255, 255, 0.72));
+}
+
+.pub-card--preprint:hover {
+    border-color: color-mix(in srgb, var(--pub-preprint) 70%, transparent);
+}
+
+/* "Preprint" label — top-right corner */
+.pub-card__preprint-badge {
+    position: absolute;
+    top: 0.7rem;
+    right: 0.9rem;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2em 0.65em;
+    border-radius: 1em;
+    background: color-mix(in srgb, var(--pub-preprint) 16%, transparent);
+    color: color-mix(in srgb, var(--pub-preprint) 78%, #2a1f08);
+    border: 1px solid color-mix(in srgb, var(--pub-preprint) 38%, transparent);
+    pointer-events: none;
+}
+
+.pub-card__body {
+    min-width: 0;
+    padding: 1.4rem 1.6rem 1.45rem;
+}
+
+/* The column gap is the body's right margin once there is a figure beside it. */
+.pub-card--has-image .pub-card__body {
+    padding-right: 0;
+}
+
+.pub-card__featured-wrap {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    background: var(--pub-accent-soft);
+}
+
+.pub-card__featured {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition:
+        transform 0.4s ease,
+        opacity 0.15s ease;
+}
+
+.pub-card:hover .pub-card__featured {
+    transform: scale(1.04);
+}
+
+a.pub-card__featured-wrap:hover .pub-card__featured {
+    opacity: 0.88;
+}
+
+.pub-card__year {
+    display: inline-block;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--pub-ink);
+    opacity: 0.75;
+    margin-bottom: 0.4em;
+}
+
+.pub-card__title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.45;
+    color: #222;
+    margin: 0 0 0.35em;
+}
+
+/* Clear of the corner badge, which is absolutely placed and would otherwise
+   sit on the end of a long first line. Only where it actually collides: a card
+   with a figure has the badge over the figure's column instead, and every
+   other title gets the width back. */
+.pub-card--preprint:not(.pub-card--has-image) .pub-card__title {
+    padding-right: 4.75rem;
+}
+
+.pub-card__title a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.pub-card__title a:hover {
+    color: var(--pub-ink);
+}
+
+.pub-card__meta {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.75rem;
+    color: #888;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.6em;
+}
+
+/* PDF round badge — Acrobat-style. Red because that is what a PDF is, in every
+   application a reader has ever opened one from; it is not a section colour
+   and must not become one. Same for the GitHub badge below. */
+.pub-card__pdf-badge {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #e8192c;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    text-decoration: none;
+    transition:
+        background 0.15s ease,
+        transform 0.15s ease;
+}
+
+.pub-card__pdf-badge:hover {
+    background: #c8001f;
+    transform: scale(1.07);
+}
+
+.pub-card__authors-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.55em;
+    margin: 0.15em 0 0.35em;
+}
+
+.pub-card__authors {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.78rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+.pub-card__cite-btn {
+    flex-shrink: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.18em 0.6em;
+    border-radius: 1em;
+    border: 1px solid color-mix(in srgb, var(--pub-accent) 34%, transparent);
+    background: transparent;
+    color: color-mix(in srgb, var(--pub-ink) 72%, transparent);
+    cursor: pointer;
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+}
+
+.pub-card__cite-btn:hover {
+    background: var(--pub-accent-soft);
+    color: var(--pub-ink);
+}
+
+/* ── Cite modal ──
+   On <body>, so it takes the tokens from :root rather than from
+   .publications-full — hence its own copy of the two it needs. */
+.pub-cite-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    --pub-accent: var(--section-publications);
+    --pub-accent-soft: rgba(85, 204, 119, 0.16);
+    --pub-ink: #23663a;
+}
+
+.pub-cite-modal[hidden] {
+    display: none;
+}
+
+.pub-cite-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.pub-cite-dialog {
+    position: relative;
+    background: #fff;
+    border-radius: 0.6em;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.18);
+    width: min(560px, 92vw);
+    padding: 1.4rem 1.6rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.pub-cite-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pub-cite-tabs {
+    display: flex;
+    gap: 0.3rem;
+}
+
+.pub-cite-tab {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 0.28em 0.85em;
+    border-radius: 1em;
+    border: 1px solid color-mix(in srgb, var(--pub-accent) 30%, transparent);
+    background: transparent;
+    color: color-mix(in srgb, var(--pub-ink) 62%, transparent);
+    cursor: pointer;
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+}
+
+.pub-cite-tab--active {
+    background: var(--pub-accent-soft);
+    color: var(--pub-ink);
+    border-color: color-mix(in srgb, var(--pub-accent) 55%, transparent);
+}
+
+.pub-cite-close {
+    font-size: 1.3rem;
+    line-height: 1;
+    padding: 0.1em 0.35em;
+    border: none;
+    background: none;
+    color: #999;
+    cursor: pointer;
+    transition: color 0.15s ease;
+    margin-left: auto;
+}
+
+.pub-cite-close:hover {
+    color: #333;
+}
+
+.pub-cite-content {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: #333;
+    background: #f7f6f2;
+    border-radius: 0.35em;
+    padding: 0.9em 1em;
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin: 0;
+    max-height: 240px;
+    overflow-y: auto;
+}
+
+.pub-cite-copy {
+    align-self: flex-end;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 0.38em 1.1em;
+    border-radius: 0.3em;
+    border: 1px solid color-mix(in srgb, var(--pub-accent) 34%, transparent);
+    background: transparent;
+    color: var(--pub-ink);
+    cursor: pointer;
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+}
+
+.pub-cite-copy:hover {
+    background: var(--pub-accent-soft);
+}
+
+.pub-card__badges {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.75rem;
+}
+
+/* Force consistent badge sizing and scale their inner content to fit */
+.pub-card__badges .altmetric-embed,
+.pub-card__badges .__dimensions_badge_embed__,
+.pub-card__github-badge,
+.pub-card__spotify-badge,
+.pub-card__pdf-badge {
+    width: 56px;
+    height: 56px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.pub-card__badges .altmetric-embed img,
+.pub-card__badges .altmetric-embed svg,
+.pub-card__badges .altmetric-embed iframe,
+.pub-card__badges .__dimensions_badge_embed__ img,
+.pub-card__badges .__dimensions_badge_embed__ svg,
+.pub-card__badges .__dimensions_badge_embed__ iframe {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+}
+
+.pub-card__github-badge {
+    border-radius: 50%;
+    background: #673ab7;
+    color: #fff;
+    transition:
+        background 0.15s ease,
+        transform 0.15s ease;
+}
+
+.pub-card__github-badge:hover {
+    background: #ff5722;
+    transform: scale(1.07);
+}
+
+.pub-card__github-badge svg {
+    width: 50px;
+    height: 50px;
+    fill: #fff;
+}
+
+/* Spotify badge. Spotify green, for the same reason the PDF badge is red: it is
+   the colour that platform is, in every application a reader has ever opened it
+   from — not a section colour, and it must not become one. The mark is the
+   three waves alone rather than the full lockup, so the circle here is the same
+   circle the other two badges are. */
+.pub-card__spotify-badge {
+    border-radius: 50%;
+    background: #1db954;
+    color: #fff;
+    transition:
+        background 0.15s ease,
+        transform 0.15s ease;
+}
+
+.pub-card__spotify-badge:hover {
+    background: #12833b;
+    transform: scale(1.07);
+}
+
+/* The three waves alone occupy the middle band of the mark's 24x24 box — the
+   rest of it is the circle this badge draws itself. So the viewBox is cropped
+   to the ink (measured, 3.7,6.45 17.1x11.25 with a hair of padding) and the
+   height follows the 1.5:1 that leaves, or the glyph renders at 45% of its box
+   and reads as a mistake next to the GitHub mark, which fills its own. */
+.pub-card__spotify-badge svg {
+    /* 37 of the circle's 56 is the ~66% Spotify's own icon gives the waves. */
+    width: 37px;
+    height: auto;
+    fill: #fff;
+}
+
+/* ── Publication keyword tags (clickable buttons) ── */
+.pub-card__keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: 0.55rem;
+}
+
+.pub-card__keyword {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 0.22em 0.7em;
+    border-radius: 1em;
+    border: 1px solid color-mix(in srgb, var(--pub-accent) 26%, transparent);
+    background: color-mix(in srgb, var(--pub-accent) 9%, transparent);
+    color: color-mix(in srgb, var(--pub-ink) 78%, transparent);
+    cursor: pointer;
+    transition:
+        background 0.15s ease,
+        color 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.pub-card__keyword:hover {
+    background: var(--pub-accent-soft);
+    color: var(--pub-ink);
+    border-color: color-mix(in srgb, var(--pub-accent) 50%, transparent);
+}
+
+.pub-card__keyword--active {
+    background: color-mix(in srgb, var(--pub-accent) 24%, transparent);
+    color: var(--pub-ink);
+    border-color: var(--pub-accent);
+}
+
+/* ── Citation count — inline next to journal ── */
+.pub-card__cite-inline {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.75rem;
+    color: #888;
+    white-space: nowrap;
+    cursor: default;
+}
+
+/* ── Sort bar ── */
+.pub-sort-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    max-width: var(--content-max-width);
+    margin: 0 auto 1rem;
+    padding: 0 var(--content-inline-gutter);
+}
+
+.pub-sort-label {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #999;
+    margin-right: 0.2rem;
+}
+
+.pub-sort-btn {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.32em 0.9em;
+    border-radius: 0.3em;
+    border: 1px solid color-mix(in srgb, var(--pub-accent) 28%, transparent);
+    background: transparent;
+    color: color-mix(in srgb, var(--pub-ink) 66%, transparent);
+    cursor: pointer;
+    transition:
+        background 0.15s ease,
+        color 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.pub-sort-btn:hover {
+    background: color-mix(in srgb, var(--pub-accent) 10%, transparent);
+    color: var(--pub-ink);
+}
+
+.pub-sort-btn--active {
+    background: var(--pub-accent-soft);
+    color: var(--pub-ink);
+    border-color: color-mix(in srgb, var(--pub-accent) 55%, transparent);
+}
+
+.pub-sort-arrow {
+    display: inline-block;
+    min-width: 0.8em;
+    text-align: left;
+}
+
+/* ── Publication tabs ── */
+.pub-tabs-nav {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    max-width: var(--content-max-width);
+    margin: 0 auto 2rem;
+    padding: 0 var(--content-inline-gutter);
+    border-bottom: 1px solid color-mix(in srgb, var(--pub-accent) 22%, transparent);
+}
+
+.pub-tab-btn {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.55em 1.5em;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    background: transparent;
+    color: color-mix(in srgb, var(--pub-ink) 48%, transparent);
+    cursor: pointer;
+    transition:
+        color 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.pub-tab-btn:hover {
+    color: color-mix(in srgb, var(--pub-ink) 80%, transparent);
+}
+
+.pub-tab-btn--active {
+    color: var(--pub-ink);
+    border-bottom-color: var(--pub-accent);
+}
+
+/* ── Gallery tab ── */
+#pub-tab-gallery > .pub-sort-bar {
+    margin-top: 0.5rem;
+}
+
+#publications-gallery {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: 1rem var(--content-inline-gutter) 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 1.5rem;
+}
+
+.pub-gallery__item {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    border-radius: 0.5em;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid color-mix(in srgb, var(--pub-accent) 18%, transparent);
+    transition:
+        box-shadow 0.2s ease,
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.pub-gallery__item:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--pub-accent) 45%, transparent);
+}
+
+.pub-gallery__img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+}
+
+.pub-gallery__caption {
+    padding: 0.7rem 0.85rem;
+}
+
+.pub-gallery__year {
+    display: block;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--pub-ink);
+    opacity: 0.75;
+    margin-bottom: 0.25em;
+}
+
+.pub-gallery__title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.78rem;
+    color: #333;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* ── Publications search bar ── */
+.pub-search-bar {
+    position: relative; /* anchor for the dropdown */
+    max-width: var(--content-max-width);
+    margin: 0 auto 1.5rem;
+    padding: 0 var(--content-inline-gutter);
+}
+
+/* Chip + input wrapper — looks like a single input field */
+.pub-search-field {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4em 1.1em;
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    border-radius: 2em;
+    background: rgba(255, 255, 255, 0.6);
+    transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.pub-search-field:focus-within {
+    border-color: color-mix(in srgb, var(--pub-accent) 60%, transparent);
+    box-shadow: 0 0 0 3px var(--pub-accent-soft);
+}
+
+.pub-search-chips {
+    display: contents; /* chips flow inline with the input */
+}
+
+.pub-search-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2em;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 0.2em 0.55em 0.2em 0.7em;
+    border-radius: 1em;
+    background: color-mix(in srgb, var(--pub-accent) 22%, transparent);
+    color: var(--pub-ink);
+    white-space: nowrap;
+}
+
+.pub-search-chip__remove {
+    font-size: 0.9em;
+    line-height: 1;
+    padding: 0;
+    border: none;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.12s ease;
+}
+
+.pub-search-chip__remove:hover {
+    opacity: 1;
+}
+
+#pub-search {
+    flex: 1;
+    min-width: 10ch;
+    padding: 0.15em 0;
+    border: none;
+    background: transparent;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.85rem;
+    color: #333;
+    outline: none;
+}
+
+.pub-search-empty {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+    padding: 2.5rem 0;
+    margin: 0;
+}
+
+/* ── Keyword dropdown ── */
+.pub-search-dropdown {
+    position: absolute;
+    top: calc(100% + 0.3rem);
+    left: 2rem;
+    right: 2rem;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.11);
+    border-radius: 0.9em;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    margin: 0;
+    padding: 0.4em 0;
+    z-index: 200;
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.pub-search-dropdown__item {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.82rem;
+    padding: 0.5em 1.3em;
+    cursor: pointer;
+    color: #444;
+    transition:
+        background 0.1s ease,
+        color 0.1s ease;
+}
+
+.pub-search-dropdown__item:hover {
+    background: color-mix(in srgb, var(--pub-accent) 12%, transparent);
+    color: var(--pub-ink);
+}
+
+/* The Scholar button's fixed 15.5rem of states is wider than a phone's content
+   column once the icon and the padding are added, so below this it gives up
+   the fixed width and takes the row instead. Stacking the states in one grid
+   cell is what makes that safe: the box is still sized once by the tallest of
+   them at whatever width it ends up with, so the punchline wrapping to three
+   lines does not make the button change size when it comes round. */
+@media (max-width: 620px) {
+    .pub-scholar {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .pub-scholar__states {
+        min-width: 0;
+        max-width: none;
+    }
+}
+
+/* Cards go to a single column at the same width the News rows do, and for the
+   same reason: 13rem of figure plus a title, a byline, a journal line, chips
+   and a row of 56px badges needs more room than 19-narrow.css grants, and a
+   6rem-wide crop of a chart is not a chart. */
+@media (max-width: 780px) {
+    .pub-card--has-image {
+        grid-template-columns: 1fr;
+        column-gap: 0;
+    }
+
+    .pub-card--has-image .pub-card__featured-wrap {
+        height: 11rem;
+    }
+
+    .pub-card--has-image .pub-card__featured {
+        position: static;
+    }
+
+    .pub-card--has-image .pub-card__body {
+        padding-right: 1.6rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pub-card,
+    .pub-card__featured,
+    .pub-gallery__item,
+    .pub-scholar,
+    .pub-scholar__state {
+        transition: none;
+    }
+
+    .pub-card:hover,
+    .pub-gallery__item:hover,
+    .pub-scholar:hover {
+        transform: none;
+    }
+
+    .pub-card:hover .pub-card__featured {
+        transform: none;
+    }
+}

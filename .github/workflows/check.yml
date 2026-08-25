@@ -1,31 +1,54 @@
+# ── Check a pull request builds and its routes hold ──────────────────────────
+#
+# This replaced the old check.yml, which was the Hugo deploy pipeline minus the
+# publish step.
+#
+# It runs the same generator the deploy runs, and then the two route checks. The
+# point is not that the generator might crash — it might, and a head-substitution
+# miss is fatal by design — but that the checks catch the class of bug this site
+# is actually prone to: a URL the router writes that nothing serves. Every one of
+# those is invisible until somebody reloads or shares a link.
+#
+# It deliberately does not diff the generated output against the last run.
+# Nothing generated is committed, so there is no baseline, and adding one would
+# reintroduce exactly the churn that decision avoids.
+
+name: 📦 Check
+
 on:
     pull_request:
-        branches:
-            - main
+        branches: [main]
+    workflow_dispatch:
 
-name: 📦 Check build
+permissions:
+    contents: read
 
 jobs:
-    build:
-        runs-on: macOS-latest
-        env:
-            GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-
+    check:
+        runs-on: ubuntu-latest
         steps:
-            - name: Checkout
-              uses: actions/checkout@v3
+            - uses: actions/checkout@v4
 
-            - name: Setup R
-              uses: r-lib/actions/setup-r@v2
+            - uses: actions/setup-python@v5
+              with:
+                  python-version: "3.12"
 
-            - name: Setup Pandoc
-              uses: r-lib/actions/setup-pandoc@v2
+            - name: Generate pages, stubs, sitemap and llms.txt
+              run: python generate_pages.py
 
-            - name: Install rmarkdown and blogdown
-              run: Rscript -e 'install.packages(c("rmarkdown","blogdown", "remotes"))'
+            - name: Check every writable route is a real page
+              run: python tools/check-paths.py
 
-            - name: Install hugo
-              run: Rscript -e 'blogdown::install_hugo("0.150.0")' # Latest is currently broken
-
-            - name: Build site with blogdown
-              run: Rscript -e 'tryCatch(blogdown::build_site(), error = function(e) { message(e); quit(status = 1) })'
+            # Cheap sanity on the two hand-kept files that describe the site to
+            # crawlers. Both are generated, so this is really a check that the
+            # generator ran, but a zero-URL sitemap has shipped before on other
+            # projects and it is one line to rule out.
+            - name: Sanity-check the discovery files
+              run: |
+                  python - <<'PY'
+                  import re, sys
+                  urls = re.findall(r"<loc>", open("sitemap.xml", encoding="utf-8").read())
+                  if len(urls) < 100:
+                      sys.exit(f"sitemap.xml has only {len(urls)} URLs — the generator did not run properly")
+                  print(f"sitemap.xml: {len(urls)} URLs")
+                  PY
