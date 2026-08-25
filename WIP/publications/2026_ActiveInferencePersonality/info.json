@@ -6,11 +6,12 @@
   "type": "Preprint",
   "authors": "Makowski, D.",
   "is_preprint": true,
-  "pdf": null,
+  "pdf": "https://doi.org/10.31234/osf.io/9pequ_v2",
   "keywords": [],
   "citations": 0,
-  "featured": null,
+  "featured": "publications/2026_ActiveInferencePersonality/featured.jpg",
   "folder": "2026_ActiveInferencePersonality",
   "abstract": "Contemporary personality science rests on robust descriptive taxonomies, such as the Big-5, that catalogue how individuals differ but remain largely silent on why these differences arise and structure as they do. We introduce the Deep-Self Predictive Cascade Model, a conceptual framework that recasts personality in the language of active inference. Personality is modelled not as an inventory of traits but as the topography of an agent's expected free energy landscape: a set of attractor basins whose depth and location are set by deep prior beliefs and precision-allocation strategies. We describe a four-level hierarchy that cascades from six foundational Ultra-Priors, governing the agent's epistemic, allostatic, and teleological imperatives, through three Core Affective States and six Precision Biases that allocate resources across the minimal, agentic, and narrative self-models, to the observable phenotypes catalogued by trait taxonomy. This parameter space provides a common vocabulary onto which major cybernetic, affective, and clinical frameworks can be mapped. We present a proof-of-concept simulation provides evidence that the cascade's topology is capable of reproducing the empirical covariance structure of the Big-5, as well as a set of falsifiable predictions to test and refine our proposal.",
-  "summary": ""
+  "summary": "",
+  "github": "https://github.com/RealityBending/DeepSelfModel"
 }

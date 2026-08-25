@@ -337,9 +337,7 @@ function buildFilters(content, onSelect) {
     const allCards = outroCard ? entryCards.concat([outroCard]) : entryCards
 
     /* The header holds only the filter bar — the chips name the three strands
-       of work between them, so a heading over them was saying it twice. It is
-       still the element sizeBanner() measures to, since it is still the line
-       where the pitch ends and the work begins. */
+       of work between them, so a heading over them was saying it twice. */
     const gallery = element("section", "services-gallery")
     const header = element("div", "services-gallery__header")
 
@@ -364,7 +362,6 @@ function buildFilters(content, onSelect) {
 
     function place() {
         comb.place()
-        sizeBanner()
     }
 
     /* ── Filtering ──
@@ -388,29 +385,6 @@ function buildFilters(content, onSelect) {
         allCards.forEach((card) => {
             if (card.flip && card.hex.classList.contains("services-hex--flipped")) card.flip(false)
         })
-    }
-
-    /* ── Where the photograph stops ──
-     * The banner should end at the honeycomb, so the pitch floats over the
-     * photograph and the work sits on the page. That line is the bottom of the
-     * hero, which moves with the headline's wrapping and the viewport, so it is
-     * measured rather than guessed at — a fixed max-height was tuned against a
-     * hero that had three panels under it and overran by 120px once they were
-     * removed.
-     */
-    function sizeBanner() {
-        const section = root.closest(".contact-full")
-        if (!section || section.dataset.activeTab !== "services") return
-
-        const backdrop = section.querySelector(".contact-full__backdrop")
-        if (!backdrop) return
-
-        const top = backdrop.getBoundingClientRect().top
-        const end = header.getBoundingClientRect().top
-        // A hidden tab measures every rect at zero; nothing to size against.
-        if (end <= top) return
-
-        section.style.setProperty("--svc-banner-height", Math.round(end - top) + "px")
     }
 
     applyFilter(ALL_FILTER)

@@ -1,9 +1,12 @@
 {
     "name": "Róisín Sharma",
     "category": "Research Assistant",
-    "details": "Research Assistant",
+    "details": "Placement Student and Research Assistant",
+    "email": "rs843@sussex.ac.uk",
     "affiliation": "University of Sussex",
-    "interests": ["Statistical Analysis", "Cognitive Science", "Learning languages", "Chess"],
+    "keywords": ["perception", "synaesthesia", "psychometrics"],
+    "hook": "Let's treat each other well to mutually adjust our idiosyncratic perceptual constructions to be of a kinder reality!🪼",
+    "interests": ["Statistical Analysis", "Cognitive Science", "Learning languages", "Chess (strictly informally!)"],
     "experience": [
         {
             "degree": "BSc Psychology",

@@ -168,6 +168,29 @@ import { buildCreations } from "./creations.js"
         if (section && mainPage) mainPage.scrollTo({ top: section.offsetTop, behavior: "smooth" })
     }
 
+    /* A control inside a panel that points at another tab of this same section —
+       today the Creations links on the zoom's last landmark. They are real
+       anchors at the tab's own path (see hrefForRoute), so middle-click, "copy
+       link address" and a crawler all get the address the router would write;
+       this is what keeps a plain click in the page rather than letting the
+       browser reload it. Same shape as Information's
+       [data-contact-tab-target].
+
+       Delegated on `root` because the zoom builds its landmarks once and this
+       is the only place that knows what a tab is. `goToTab` shuts the gate on
+       the way out, so a link pressed mid-dive leaves the zoom exactly as the
+       Creations FAB does. */
+    root.addEventListener("click", (event) => {
+        if (event.defaultPrevented || event.button !== 0) return
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+        const link = event.target.closest ? event.target.closest("a[data-research-tab]") : null
+        if (!link || !root.contains(link)) return
+        const tabId = link.dataset.researchTab
+        if (!tabs.some((tab) => tab.id === tabId)) return
+        event.preventDefault()
+        goToTab(tabId)
+    })
+
     /* The floating way through to Creations. It joins the two standing FABs
        rather than being placed in the section, because the Overview is a
        ~700vh sticky stage: anything anchored inside it is either fixed to one

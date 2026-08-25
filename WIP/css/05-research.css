@@ -151,10 +151,14 @@
    is a component of this section and needs to beat nothing that comes later —
    the zoom's separate sheet exists only because it has to outrank 20-wide.css.
 
-   Two dark plates, one per row, each with a painting behind it. Dark because
-   the tab next door is a black stage and a page of white cards on the other
-   side of the tab bar reads as a different site; and because both rows are
-   short, so the plates are bands rather than walls.
+   Two plates, one per row, both on the section's own cream. They were dark
+   with paintings behind them, on the argument that the tab next door is a black
+   stage and a page of white cards on the other side of the tab bar reads as a
+   different site. That was right about the tab bar and wrong about the tab:
+   what actually reads as two different pages is a black band sitting on a cream
+   one, which is what the tab became once Tools went light on its own account.
+   The `--art` tone is still here and is one line of content away (see "The two
+   tones" below); nothing uses it.
 
    Each row carries its own `--rc-accent`, written inline from the content
    module, and every tint below is `color-mix`ed off it — so a row's colour is
@@ -201,18 +205,25 @@
 }
 
 /* ── The two tones ──
-   A row with a painting is a dark plate; a row without one is light. Tools is
-   the light one, and the reason is that its cards are eleven pictures already:
-   a painting behind them is a twelfth, competing with the set it is supposed to
-   be holding. Inventions keeps its Copernicus, because a list of ideas is a
-   page of text and the picture is what makes it a thing to look at.
+   A row with a painting is a dark plate; a row without one is light, and
+   `group.image` in creations-content.js is the whole switch. **Both rows are
+   light now** — Tools because its cards are eleven pictures already and a
+   painting behind them is a twelfth competing with the set it is supposed to be
+   holding, Inventions because a dark band above a cream one made the tab read
+   as two pages rather than two rows of one. The dark path is kept because it is
+   one line of content away, not because anything uses it.
 
    The light plate is not a plate at all: no background, no shadow, nothing but
-   the section's own cream behind the cards. A tinted box was tried first and it
-   read as a tray under the row — one more edge to explain, when the eleven
-   cards already have edges of their own and the shadows are what lift them off
-   the page. It keeps the padding, so its head and its cards line up with the
-   dark plate's above. */
+   the section's own cream. A tinted box was tried first and it read as a tray
+   under the row — one more edge to explain, when the cards already have edges
+   of their own and their shadows are what lift them off the page. It keeps the
+   padding, so the two rows' heads line up.
+
+   Everything below the head had to be re-dressed for it, because the base rules
+   are the dark ones: the light plate had only ever held cards, which bring
+   their own white face, and the moment it held the list every line of it was
+   white on cream. Anything added to a plate needs both tones or it is
+   invisible in one of them. */
 .rc-plate--light {
     background: none;
     box-shadow: none;
@@ -226,6 +237,59 @@
 .rc-plate--light .rc-plate__lede {
     color: rgba(20, 24, 30, 0.6);
     text-shadow: none;
+}
+
+/* The list, on cream. Each value is its dark counterpart turned over rather
+   than re-invented, so the row keeps its weights: the hairline and the hover
+   are the same fractions of the ink instead of of white, and every text-shadow
+   goes — it exists to hold a line of text against a bright passage of a
+   painting, and there is no painting. */
+.rc-plate--light .rc-item {
+    border-top-color: rgba(20, 24, 30, 0.14);
+}
+
+.rc-plate--light a.rc-item__row:hover {
+    background: rgba(20, 24, 30, 0.05);
+}
+
+.rc-plate--light a.rc-item__row:focus-visible {
+    outline-color: rgba(20, 24, 30, 0.55);
+}
+
+/* Gold had to come down, not just lose its shadow: #e8b73f is a warm mark
+   against a night painting and a smudge on cream. Darkened, it is still the one
+   thing on the row that is not the plate's blue — which is the whole job of it,
+   marking an idea as the lab's own. */
+.rc-plate--light .rc-item__star {
+    color: #a8761a;
+    text-shadow: none;
+}
+
+.rc-plate--light .rc-item__body {
+    color: rgba(20, 24, 30, 0.72);
+    text-shadow: none;
+}
+
+.rc-plate--light .rc-item__name {
+    color: #23272e;
+}
+
+.rc-plate--light .rc-item__dash {
+    color: rgba(20, 24, 30, 0.3);
+}
+
+/* Mixed toward the ink rather than toward white, which is the same move
+   --res-ink makes for this section's blue: #5599ff is a light blue meant to be
+   seen against black and is barely there as small text on cream. */
+.rc-plate--light .rc-item__link {
+    color: color-mix(in srgb, var(--rc-accent, #559664) 62%, #10151d);
+    border-bottom-color: color-mix(in srgb, var(--rc-accent, #559664) 55%, transparent);
+    text-shadow: none;
+}
+
+.rc-plate--light .rc-item__row:hover .rc-item__link,
+.rc-plate--light .rc-item__row:focus-visible .rc-item__link {
+    border-bottom-color: color-mix(in srgb, var(--rc-accent, #559664) 85%, #10151d);
 }
 
 /* The painting is held back rather than hidden: enough scrim that white text

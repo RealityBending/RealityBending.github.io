@@ -240,7 +240,9 @@
     }
 
     .people-full {
-        padding: 3rem 0;
+        /* The token, not the shorthand: the backdrop box stops at this same
+           number, so setting `padding` here would leave it at 5rem. */
+        --people-pad-block: 3rem;
     }
 }
 

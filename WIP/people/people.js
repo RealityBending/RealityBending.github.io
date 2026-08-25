@@ -2,7 +2,7 @@ import { openImageLightbox } from "../shared/media-lightbox.js"
 import { buildMemoryMeta, getMemoriesManifest } from "../shared/memories-data.js"
 import { registerProfileActions } from "../shared/profile-api.js"
 import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
-import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRoute } from "../shared/deep-link.js"
+import { hrefForRoute, INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRoute } from "../shared/deep-link.js"
 import { registerMemberFolders } from "../shared/routes.js"
 import { registerRouteTitle } from "../shared/page-meta.js"
 
@@ -46,16 +46,56 @@ import { registerRouteTitle } from "../shared/page-meta.js"
        constant is for produced the browser's broken-image icon, which is worse
        than the nothing it was standing in for. Inline rather than a file: it is
        200 bytes, it can never 404, and a placeholder that needs a network
-       request to say "no picture" is a placeholder that can fail twice. */
+       request to say "no picture" is a placeholder that can fail twice.
+
+       The greys were a shade lighter (#e7e4da / #c9c4b6, 1.36:1 between them)
+       and washed out at the size this is actually seen: every member has an
+       avatar, so the one place it renders is the open seat below — 156px of it
+       in a row of photographs, where it read as a blank disc rather than as a
+       person. #dcd8cc / #a9a294 is 1.78:1, still soft enough to stay a
+       placeholder. Both halves had to move: darkening the silhouette alone
+       makes it a mark on paper instead of a figure on a ground. */
     const DEFAULT_AVATAR =
         "data:image/svg+xml;charset=utf-8," +
         encodeURIComponent(
             '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">' +
-                '<rect width="96" height="96" fill="#e7e4da"/>' +
-                '<circle cx="48" cy="38" r="16" fill="#c9c4b6"/>' +
-                '<path d="M16 96a32 32 0 0 1 64 0z" fill="#c9c4b6"/>' +
+                '<rect width="96" height="96" fill="#dcd8cc"/>' +
+                '<circle cx="48" cy="38" r="16" fill="#a9a294"/>' +
+                '<path d="M16 96a32 32 0 0 1 64 0z" fill="#a9a294"/>' +
                 "</svg>"
         )
+    /* ── An empty level, and the one thing it can say ──
+     * A role with nobody in it used to be skipped, which is the tidy answer and
+     * the wrong one: the Postdoc row disappearing does not read as "there is an
+     * opening", it reads as a lab with no postdocs and no interest in one. So
+     * an empty level still renders, holding a single open seat that leads to
+     * the Join tab.
+     *
+     * Only the levels the lab actually recruits for are in this map, and each
+     * names the `#join-<stage>` it leads to — a seat with nowhere to send
+     * anyone would be an advert for a vacancy that cannot be applied for. It is
+     * keyed on the manifest's own `category` values, which are the ones
+     * update_people.py writes.
+     *
+     * A level with members in it never shows a seat: the row already answers
+     * who is here, and an open seat next to four faces reads as a fifth person
+     * whose picture failed to load. */
+    const OPEN_SEAT_STAGES = {
+        Postdoc: "postdoc",
+        "PhD Student": "phd",
+        "Research Assistant": "research-assistant",
+    }
+
+    /* The seat's hover ring, which is the members' own `keywords` ring with
+       three words instead of three research topics — the whole of it is reused,
+       so the seat behaves like every node around it rather than being the one
+       that does nothing on hover.
+       One set for every level rather than a set per level: Postdoc is the only
+       empty one today, and these three are general enough to hold for a PhD
+       seat too. "Fellowships" is the word that would have to change first if
+       the Research Assistant row ever emptied. */
+    const SEAT_KEYWORDS = ["Fellowships", "Join us", "Info"]
+
     const NS = "http://www.w3.org/2000/svg"
 
     function toCartesian(cx, cy, radius, angleDeg) {
@@ -1052,15 +1092,80 @@ import { registerRouteTitle } from "../shared/page-meta.js"
                 },
             })
 
+            /* The open seat that stands in for an empty level — see
+               OPEN_SEAT_STAGES.
+
+               It is an anchor at the level's *own* path rather than a div with
+               a listener, which is the same shape the zoom's Creations links
+               take and for the same reasons: middle-click, "copy link address"
+               and a crawler all get `/join/postdoc/`, a real page about the
+               thing the seat is offering, instead of the homepage. A plain
+               click never gets that far — join.js catches `[data-join-stage]`
+               and opens the tab in place — and it catches it from the
+               *document*, which matters here: this node is built from a
+               manifest that lands long after script.js wired the static
+               `[data-contact-tab-target]` controls, so a per-element listener
+               would never have seen it.
+
+               `#sec-contact-full` is the fallback for a stage with no path of
+               its own, since `hrefForRoute` returns "" there; script.js's own
+               delegated handler scrolls that one. */
+            function buildOpenSeat(category, stageId) {
+                const node = document.createElement("a")
+                node.className = "mlp-node mlp-node--seat"
+                node.href = hrefForRoute("join-" + stageId) || "#sec-contact-full"
+                node.dataset.joinStage = stageId
+                node.style.setProperty("--node-color", accentFor(category))
+                // "You?" is the label, but on its own it is not a destination —
+                // this says where pressing it goes, which the sighted reader
+                // gets from the row's own heading.
+                node.setAttribute("aria-label", "The lab has no " + (CATEGORY_LABELS[category] || category).toLowerCase() + " right now — see how to join")
+
+                const pulse = document.createElement("div")
+                pulse.className = "mlp-node__pulse"
+                node.appendChild(pulse)
+
+                const ring = document.createElement("div")
+                ring.className = "mlp-node__ring"
+                const img = document.createElement("img")
+                /* The site's own no-avatar placeholder, unchanged. A seat-only
+                   silhouette was drawn first — same greys, dashed edge, shorter
+                   shoulders — and every difference from this one turned out to
+                   be decoration: a person with no picture and a person who is
+                   not here yet are the same drawing, and the row's own emptiness
+                   is what says which. One asset, and it is one the section
+                   already had to keep working. */
+                img.src = DEFAULT_AVATAR
+                // Decorative: the aria-label above already says what this is,
+                // and alt text here would be read twice.
+                img.alt = ""
+                img.className = "mlp-node__avatar"
+                ring.appendChild(img)
+                node.appendChild(ring)
+
+                const nameEl = document.createElement("span")
+                nameEl.className = "mlp-node__name"
+                nameEl.textContent = "You?"
+                node.appendChild(nameEl)
+
+                // Same builder, same position in the node, same hover rule as
+                // every member — see SEAT_KEYWORDS.
+                const keywordRing = buildKeywordRing(SEAT_KEYWORDS, accentFor(category))
+                if (keywordRing) node.appendChild(keywordRing)
+
+                return node
+            }
+
             manifest.roles.forEach((category, li) => {
                 if (category === "Alumni") return
-                const members = manifest.by_role[category]
-                if (!members || !members.length) return
+                const members = manifest.by_role[category] || []
+                const seatStage = OPEN_SEAT_STAGES[category]
+                if (!members.length && !seatStage) return
 
                 const layer = document.createElement("div")
                 layer.className = "mlp-layer"
                 layer.style.setProperty("--layer-index", li)
-                layer.style.setProperty("--member-count", members.length)
+                layer.style.setProperty("--member-count", members.length || 1)
 
                 /* label — category name only, rendered vertically via CSS */
                 const label = document.createElement("div")
@@ -1115,6 +1220,14 @@ import { registerRouteTitle } from "../shared/page-meta.js"
                     nodesWrap.appendChild(node)
                     nodes.push(node)
                 })
+
+                if (!members.length) {
+                    const seat = buildOpenSeat(category, seatStage)
+                    nodesWrap.appendChild(seat)
+                    // Into `nodes` too, so it picks up the same hover handling
+                    // as every other node in the network.
+                    nodes.push(seat)
+                }
 
                 layer.appendChild(nodesWrap)
                 container.appendChild(layer)

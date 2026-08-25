@@ -10,12 +10,19 @@
    Markup is built by information/services.js; copy lives in
    services-content.js.
 
-   Like the Join tab this floats over the section's photograph, so the hero,
-   the pillars and the outro use the same frosted-sheet recipe as
-   .join-console — one blur per sheet, lighter unblurred washes inside it. The
-   gallery sits below the banner's mask on the section's own cream, so its
-   cards are opaque paper instead. That change of surface is the point: the
-   pitch floats over the photograph, the evidence sits on the page.
+   The whole tab floats over the section's photograph — which runs the full
+   height here and holds still while the tab scrolls over it (see "Services:
+   the photograph is the surface" in css/15-contact.css). So the hero uses the
+   same frosted-sheet recipe as .join-console — one blur per sheet, lighter
+   unblurred washes inside it — while the cards below stay opaque paper. That
+   difference is still the point, but it is now a difference of weight on one
+   surface rather than two surfaces: the pitch is a sheet you see through, the
+   evidence is a card you cannot.
+
+   The photograph used to stop at the honeycomb and hand the rest of the
+   section back to cream, which is why anything here that looks like it was
+   written for a cream ground probably was. The filter chips were, and are the
+   one thing that had to be re-dressed for the dark.
 
    Colour is per domain, not per section: services.js writes --svc-accent /
    --deep / --ink onto each pillar and each card from that card's own domain,
@@ -114,12 +121,24 @@
     margin-top: 0.3rem;
 }
 
+/* Dressed for the photograph, not for cream: this row is the only thing on the
+   tab with no surface of its own — the hero is a frosted sheet and the cards
+   are opaque paper — so it carries its own pill, and the ink is the accent
+   *lifted* rather than --svc-ink, which is that hue taken down to be read on
+   cream and is invisible against a dark field. Same arrangement, and the same
+   reason, as the Creations cards' kind label over their scrim.
+
+   All three numbers are one measurement: against the brightest patch of the
+   collage under the section's 0.62 scrim, a 0.55 pill and 20% white in the ink
+   put the weakest chip at 4.7:1, clear of the 4.5:1 AA floor for text this
+   small. Lifting less (15%) drops it to 4.47. Whichever of the three moves,
+   re-measure — they only work together. */
 .services-filter {
     padding: 0.42rem 0.95rem;
-    border: 1px solid rgba(var(--svc-ink), 0.22);
+    border: 1px solid color-mix(in srgb, rgb(var(--svc-accent)) 42%, transparent);
     border-radius: 999px;
-    background: transparent;
-    color: rgba(var(--svc-ink), 0.85);
+    background: rgba(12, 12, 14, 0.55);
+    color: color-mix(in srgb, rgb(var(--svc-accent)) 80%, #fff);
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.68rem;
     font-weight: 700;
@@ -133,8 +152,8 @@
 }
 
 .services-filter:hover {
-    background: rgba(var(--svc-accent), 0.12);
-    border-color: rgba(var(--svc-ink), 0.38);
+    background: rgba(12, 12, 14, 0.72);
+    border-color: color-mix(in srgb, rgb(var(--svc-accent)) 70%, transparent);
 }
 
 .services-filter--active {
@@ -144,7 +163,8 @@
 }
 
 .services-filter:focus-visible {
-    outline: 2px solid rgb(var(--svc-ink));
+    /* The ink, not --svc-ink: a dark ring on a dark field is not a focus ring. */
+    outline: 2px solid color-mix(in srgb, rgb(var(--svc-accent)) 80%, #fff);
     outline-offset: 2px;
 }
 

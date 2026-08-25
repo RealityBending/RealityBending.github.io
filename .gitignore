@@ -59,6 +59,7 @@ docs/*
 # requests them. See "The size budget" in WIP/CLAUDE.md.
 *_full.jpg
 *_full.png
+*_full.webp
 WIP/img/Intro.mp4
 
 # ── Output of WIP/generate_pages.py ──

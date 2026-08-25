@@ -13,7 +13,17 @@
         {
             "name": "Annabel Chen",
             "image": "collaborations/img/annabel_chen.png",
-            "affiliation": "Nanyang Technological University<br>Singapore"
+            "affiliation": "Nanyang Technological University<br>Singapore",
+            "education": [
+                {
+                    "degree": "Ph.D., Clinical Psychology (APA accredited)",
+                    "institution": "Purdue University"
+                },
+                {
+                    "degree": "M.S., Clinical Psychology",
+                    "institution": "Purdue University"
+                }
+            ]
         },
         {
             "name": "Giulia Poerio",

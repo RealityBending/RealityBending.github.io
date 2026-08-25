@@ -463,6 +463,48 @@ function createBackdropController() {
         tab.addEventListener("click", syncBackdrop)
     })
 
+    /* ── A control elsewhere on the page that names a *level* ──
+     * `data-contact-tab-target="join"` opens the tab and lands on its first
+     * level, which is the right answer for the nav and the FABs and the wrong
+     * one for anything that has a particular level in mind. The People
+     * roster's empty Postdoc seat is the first of those: sending someone who
+     * pressed it to the undergraduate routes is the same mistake the Join rail
+     * was given per-level routes to fix.
+     *
+     * Three things about the shape:
+     *
+     * - **Delegated from the document, not bound per element.** The seat is
+     *   built from a manifest that lands long after script.js ran its
+     *   `querySelectorAll("[data-contact-tab-target]")`, so a static binding
+     *   would never see it — and that is exactly the trap `data-join-stage`
+     *   would otherwise walk into if it were added to that list instead.
+     * - **It does the same three things `applyRoute` does** — open the tab by
+     *   clicking its button, raise the level, land on the section — because a
+     *   reader pressing the control and a reader following the link to it
+     *   should arrive at the same place. The control's href *is* that link
+     *   (`/join/postdoc/`), so without the preventDefault the browser would
+     *   reload the whole page to reach a tab.
+     * - **Modifier- and middle-clicks fall straight through**, so "open in a
+     *   new tab" still opens the real page.
+     *
+     * `select` with `write` left on is deliberate: this is a reader pressing
+     * something, so the address bar should end up on `#join-<stage>` — over the
+     * `#contact-join` the tab click just wrote, which is the same overwrite
+     * `applyRoute` makes and for the same reason. */
+    document.addEventListener("click", (event) => {
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+        const control = event.target.closest && event.target.closest("[data-join-stage]")
+        if (!control) return
+        const index = stages.findIndex((stage) => stage.id === control.dataset.joinStage)
+        if (index === -1) return
+        event.preventDefault()
+
+        const joinTab = document.getElementById("contact-tab-btn-join")
+        if (joinTab && joinTab.getAttribute("aria-selected") !== "true") joinTab.click()
+        select(index)
+        revealSection("sec-contact-full", { smooth: true })
+    })
+
     // Arrow keys across the rail, per the tablist pattern.
     ladder.addEventListener("keydown", (event) => {
         const delta = event.key === "ArrowRight" ? 1 : event.key === "ArrowLeft" ? -1 : 0

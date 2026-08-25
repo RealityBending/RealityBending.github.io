@@ -260,6 +260,26 @@
     padding-right: var(--rz-rail-space);
 }
 
+/* ── …and the same room again on the left, but only for a centred scene ──
+   The reservation above is one-sided because it is protecting a *column*: a
+   two-column landmark puts its figure hard against the rail, and padding the
+   other side would only narrow the copy for nothing.
+
+   A `--text-only` scene has no columns. Its content is centred in the padding
+   box, so a one-sided reservation centres it 88px (half the rail's 11rem) left
+   of the stage — which is exactly the offset the opening landmark showed once
+   it lost its figure and became the only scene of this kind. Measured at 1280:
+   the copy's centre sat 72px left of the stage's own. Mirroring the padding
+   makes the padding box concentric with the stage again, so "centred" means
+   centred on screen rather than centred in whatever is left over.
+
+   It costs the copy 11rem of available width, which nothing here notices: the
+   paragraphs cap at 38rem and the column is wider than that at every width
+   this branch runs at. */
+.rz--unlocked:not(.rz--static) .rz-scene--text-only {
+    padding-left: var(--rz-rail-space);
+}
+
 .rz-scene:nth-child(even) .rz-scene__figure {
     order: -1;
 }
@@ -270,10 +290,189 @@
     text-align: center;
 }
 
+/* ── A landmark's background film ──
+   Contained and feathered rather than bled across the stage. That is a decision
+   about the *source*: the clip is 540 × 360, so a modest upscale is what 1896
+   footage carries happily and a stage-wide one is mush. The mask is what keeps a
+   contained video from reading as a boxed-in clip — with its edges dissolved
+   there is no rectangle to notice, so it reads as the dark of the stage having a
+   picture in it. It also sidesteps the full-bleed trap this file documents
+   elsewhere: no `calc(-50vw + 50%)`, so the scene's padding for the rail cannot
+   make it fall short.
+
+   ── It is sized in its own right, NOT stretched to the scene, and that is the
+   whole of why this was invisible ──
+   It used to be `inset: -14% -9%`, i.e. the scene's box plus an overshoot. That
+   was written when this landmark had a figure and its copy was one column of a
+   two-column scene — a box roughly the shape of the film. The landmark then lost
+   its figure and became `--text-only`, which spans the full width, and the box
+   went with it: measured at 1280, **1477 × 331** for a 3:2 clip. `cover` answered
+   by scaling 540px up to 1477 (2.7×) and cropping away two thirds of the frame's
+   height, so what was left was a blown-up horizontal sliver of the middle — grey
+   mush that reads as nothing at all, which is exactly how it was reported. No
+   amount of opacity fixes that; the fault was the geometry.
+
+   So the box states its own size and keeps the clip's own 3:2. `cover` then has
+   nothing to crop. Centred on the scene, so it sits behind the copy whether or
+   not the landmark has a figure, and capped three ways — see below. */
+.rz-scene__film {
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    /* ── Three caps, and the third one is the stage ──
+       Width, viewport width, and viewport *height* — because the box keeps a
+       3:2 and the stage is exactly 100vh and clips, so a box capped on width
+       alone grows past the stage the moment the window is wide and short.
+       `132vh` is that bound solved for the ratio: height = width / 1.5, so
+       width ≤ 1.32 × vh keeps the box inside 88% of the stage. Measured —
+       1280 × 720 takes the 58rem and lands 928 × 619 in a 720 stage; 1280 × 600
+       takes the vh cap instead at 792 × 528. The feathering means the last few
+       per cent would not show if it did overrun, which is exactly why nothing
+       would tell you about it.
+
+       58rem is a 1.72× upscale of the 540px source, up from 1.36×. That is
+       still well inside what archival footage carries once it is desaturated
+       and feathered; what it must not become is stage-wide, which is ~3.5× and
+       is mush. The copy caps at 38rem, so the picture now shows ~160px clear of
+       the text on each side rather than being almost entirely behind it. */
+    width: min(58rem, 92vw, 132vh);
+    aspect-ratio: 3 / 2;
+    translate: -50% -50%;
+    overflow: hidden;
+    border-radius: 1.5rem;
+    -webkit-mask-image: radial-gradient(72% 68% at 50% 50%, #000 42%, transparent 100%);
+    mask-image: radial-gradient(72% 68% at 50% 50%, #000 42%, transparent 100%);
+    pointer-events: none;
+}
+
+/* ── Dimmed only once there is text to protect ──
+   This is the ground four paragraphs sit directly on, with no scrim between
+   them, so while they are up the film has to stay under the type rather than
+   competing with it. A flat dimming answered that by holding the film at one
+   value for the whole landmark — and the value the type wants is far below the
+   value a film wants. Measured through the filter chain and composited over
+   the stage's own #06070b: a mean frame reached **26 of 255** and the
+   brightest patch (the station roof) 67. That is a film that is loaded,
+   decoded and playing, and to the eye is not there — which is exactly how it
+   was reported, and it is the same failure an earlier pass had already tried
+   to fix by taking the opacity from 0.3 to 0.5. One number was never going to
+   do it.
+
+   `--rz-film-solo` is the beat before the first paragraph arrives, written
+   every scroll frame by `paint()` (see FILM_TEXT_START). At 1 the film is
+   simply the picture; it settles to the type's value as the first paragraph
+   fades in, and scrubs back on the way out. Composited over the stage: mean
+   **65 → 39**, brightest patch **180 → 105**.
+
+   **Both ends came down when the clip was cut to the arrival, and that was not
+   taste.** The band the copy sits over runs a mean of 84 and a peak of 221 in
+   the arrival, against 67 and 171 in the full reel these numbers were first
+   set against — bright sky and a bright platform, where the rest of the reel
+   is a crowd in front of dark carriages. At the old 0.66/0.84 the new cut put
+   the worst patch at 128 of 255, which is **3.97:1** for white body copy:
+   under AA, on the one landmark whose copy has nothing between it and the
+   picture. 0.58/0.78 takes it to 105 and **5.5:1**. Re-measure both if the
+   clip is ever recut — a different ten seconds of the same film is a
+   different exposure.
+
+   **The settled floor is higher than the old flat value, and the copy is more
+   readable rather than less** — see `.rz-scene--film .rz-scene__text`, which
+   gives up `--rz-ink-dim` for solid white and gains more than the brighter
+   film costs. Measured over the settled film, on the arrival cut: **14.9:1** on a
+   mean frame and **5.5:1** over the brightest patch — where 62% white on the
+   film as it was first shipped came to 7.3:1 and 5.0:1.
+   Both numbers move together, so re-measure the pair whenever either does; the
+   worst patch is a small highlight and the text-shadow is what carries it.
+
+   `--rz-film-solo` defaults to 0 here rather than being left unset, so the
+   settled value is what any branch where `paint()` never runs would get. */
+.rz-scene--film {
+    --rz-film-solo: 0;
+}
+
+.rz-scene__video {
+    width: 100%;
+    height: 100%;
+    /* The loop and the still both come from the content module as inline
+       custom properties, because a relative `url()` declared here would
+       resolve against `css/` rather than through `<base>`. `cover` on the
+       clip's own 3:2 in a 3:2 box has nothing to crop — see the box above,
+       where stretching it is what made this invisible once before. */
+    background-image: var(--rz-film-src);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: calc(0.58 + var(--rz-film-solo) * 0.28);
+    filter: grayscale(0.45) contrast(1.06) brightness(calc(0.78 + var(--rz-film-solo) * 0.14));
+}
+
 .rz-scene__copy {
     display: grid;
     gap: 1rem;
     align-content: center;
+}
+
+/* ── The film landmark's text arrives a line at a time ──
+   Scoped to `--film` and not to `.rz-scene` at large: this is the opening
+   landmark and the stagger is doing a specific job there — the three paragraphs
+   are a story with a turn in it, and handing them over at once wastes it. Every
+   other landmark states its case in one block and should keep arriving as one.
+
+   There is no eyebrow and no title here any more — "How is reality
+   constructed?" moved to the last landmark, where it lands the whole dive —
+   so the film has nothing captioning it and these three lines are the entire
+   scene.
+
+   **Driven by `--rz-text-in`, not a CSS transition.** A transition-delay is
+   wall-clock: it used to hold the first paragraph back a beat and step the
+   rest in behind it, which reads well at a normal scroll speed and fails at a
+   fast one — a reader who flicks through the landmark's slot faster than the
+   delay counts down passes it having only ever seen the film, the paragraphs
+   having technically run just off-screen. `--rz-text-in` is written every
+   scroll frame in reality-zoom.js's `paint()`, as a fraction of the landmark's
+   own `local` progress — the same number everything else in the dive already
+   answers to — so a fast scroll compresses the reveal instead of skipping it,
+   and it stays scrubbable in both directions.
+
+   **`.rz--static` has to hand the text back**, and this is the trap the deck's
+   `opacity: 1` is the other half of: `paint()` never runs in the stacked or
+   reduced-motion branch, so `--rz-text-in` is never written and, without the
+   reset below, the opening landmark would be three invisible paragraphs on a
+   phone. */
+/* Solid white and a shadow, where every other landmark's copy is
+   `--rz-ink-dim` (62% white). That is not this landmark asserting itself: it
+   is the only copy on the dive that sits on a *picture* rather than on the
+   stage's own black, and 62% white over a film is the half of the contrast
+   budget that costs nothing to buy back. It is what pays for the film being
+   legible above — the pair was measured together. The shadow is for the
+   brightest patch of the frame, which is a small highlight the average cannot
+   speak for. */
+.rz-scene--film .rz-scene__text {
+    --rz-text-in: 0;
+    max-width: 38rem;
+    font-size: clamp(1.02rem, 1.35vw, 1.24rem);
+    color: #fff;
+    text-shadow:
+        0 1px 2px rgba(6, 7, 11, 0.72),
+        0 0 18px rgba(6, 7, 11, 0.85);
+    opacity: var(--rz-text-in);
+    translate: 0 calc((1 - var(--rz-text-in)) * 1.3rem);
+}
+
+.rz--static .rz-scene--film .rz-scene__text {
+    opacity: 1;
+    translate: 0 0;
+}
+
+/* The opening landmark's paragraphs are four short beats rather than one block
+   of argument, so they take more air between them than `--essay`'s 0.75rem —
+   that gap is sized for a twenty-line block fighting the 100vh stage for room,
+   and this scene is 260px tall in a 720px stage with plenty to spare. It is
+   also what makes the break after "…still continue to fade…" read as a beat
+   instead of a wrap. Scoped to `--film` so no other essay landmark loosens. */
+.rz-scene--film.rz-scene--essay .rz-scene__copy {
+    gap: 1.35rem;
 }
 
 .rz-scene__eyebrow {
@@ -302,6 +501,63 @@
     font-size: clamp(0.95rem, 1.15vw, 1.08rem);
     line-height: 1.78;
     color: var(--rz-ink-dim);
+}
+
+/* ── A beat before a paragraph, in space as well as in time ──
+   Set from the content module (`{ text, pause: true }`), which is where the
+   reason for it lives: the line above ends on an ellipsis, and a paragraph
+   arriving at the standard gap reads as the next sentence rather than as the
+   turn it is. The stagger holds a matching step of dead air — see
+   FILM_TEXT_STEP — because a wider gap alone, with the reveal still stepping
+   at its usual cadence, reads as a hole in the layout rather than as a pause.
+
+   It costs the scene ~26px of height, which the 100vh stage has: this
+   landmark measures ~260px in a 720px stage, where `--essay`'s clipping
+   problem is a twenty-line block.
+
+   **It has to sit after `.rz-scene__text`, not with the `--film` rules
+   above.** Both selectors are one class, so `margin: 0` there wins on source
+   order from anywhere earlier in the file — which is the cascade this
+   stylesheet is numbered around, and it silently zeroed the gap. */
+.rz-scene__text--beat {
+    margin-top: 1.6rem;
+}
+
+/* ── A landmark that argues rather than captions ──
+   Set when the landmark's `text` is several paragraphs. The stage is exactly
+   100vh and clips, so the leading that is right for four lines is not right for
+   twenty: measured at 920 × 600 — the tightest two-column case there is, since
+   below 900px the whole thing stacks and scrolls — the question landmark came
+   to 617px in a 600px stage and lost its last paragraph. Nothing warns you,
+   because the stage's own `overflow: hidden` is what is clipping it.
+
+   The three steps are ordered by what they cost: the gap and the leading are
+   typography that a block this long wanted anyway, and only the last resort
+   touches the size of the type. */
+.rz-scene--essay .rz-scene__copy {
+    gap: 0.75rem;
+}
+
+.rz-scene--essay .rz-scene__text {
+    line-height: 1.62;
+}
+
+/* Narrow *and* short, which is the only place the first two steps do not
+   already clear the stage on their own. Measured at 920 × 600, the tightest
+   two-column case: 617px before any of this, 561 with the leading alone — which
+   fits, but by 39px, and a stage 40px shorter would clip again. Wide and short
+   is never the problem, because the copy column grows with the viewport and the
+   block wraps to fewer lines: 1120 × 600 comes to 474 untouched.
+
+   The lower bound is the stacked fallback's own breakpoint, and it is not
+   cosmetic: below 900px the stage stops being sticky and the page simply
+   scrolls, so there is nothing to clip — a phone at 375 × 667 would otherwise
+   match this query and shrink its text for a reason that does not apply. */
+@media (min-width: 901px) and (max-width: 1100px) and (max-height: 700px) {
+    .rz-scene--essay .rz-scene__text {
+        font-size: clamp(0.9rem, 1.05vw, 1rem);
+        line-height: 1.56;
+    }
 }
 
 .rz-scene__note {
@@ -414,112 +670,240 @@
     cursor: default;
 }
 
-/* ── The map ──
-   Reality at the hub, and the concepts the lab studies on a ring around it. The
-   geometry is all computed in reality-zoom.js — including each edge's own
-   length, handed over as --rz-edge-len so the draw-on is a real dash rather
-   than one number guessed long enough to cover the longest edge.
+/* ── The cloud ──
+   Reality at the centre, the six dimensions the lab measures large around it,
+   and the rest of its vocabulary smaller further out. Every coordinate is
+   computed in reality-zoom.js by packing the words along an outward spiral, so
+   nothing here may set a position — and **the font here and the font the
+   packer measures with have to be the same one**, family, weight and size, or
+   the boxes it packed are not the boxes that get painted and the words
+   overlap. `font-size` is written per word as an attribute for exactly that
+   reason: it is the packer's number, not the stylesheet's.
 
    Three tones, and they are the three the rest of the zoom already uses for the
-   same three ideas: the body's red, control's blue, the self's purple. */
-.rz-map {
+   same three ideas: the body's red, control's blue, the self's purple. A word
+   with no tone is one of the lab's methods rather than one of its subjects. */
+/* 26rem is `.rz-fig`'s own cap, which is what actually binds — repeated here so
+   the number the packer's viewBox is scaled by is visible next to it. At 416px
+   drawn for a 460-unit viewBox the scale is 0.90, and that is what turns the
+   smallest word's 9.5 units into the 8.6px it is read at. */
+.rz-cloud {
     width: 100%;
-    max-width: 25rem;
+    max-width: 26rem;
     height: auto;
     overflow: visible;
 }
 
-.rz-map__node--hub {
-    --rz-map-tone: #8fb7ff;
-}
-
-.rz-map__node--body,
-.rz-map__edge--body {
-    --rz-map-tone: #ff5f57;
-}
-
-.rz-map__node--control,
-.rz-map__edge--control {
-    --rz-map-tone: #5599ff;
-}
-
-.rz-map__node--self,
-.rz-map__edge--self {
-    --rz-map-tone: #a98bff;
-}
-
-/* Opaque, mixed towards the stage's own black rather than left translucent:
-   the ring passes behind every disc, and a see-through node reads as a bead
-   threaded onto the line instead of a stop on it. Same call as the rail's dots. */
-.rz-map__disc {
-    fill: color-mix(in srgb, var(--rz-map-tone, #8fb7ff) 18%, #06070b);
-    stroke: color-mix(in srgb, var(--rz-map-tone, #8fb7ff) 62%, transparent);
-    stroke-width: 1.2;
-}
-
-.rz-map__label {
-    fill: rgba(255, 255, 255, 0.82);
+.rz-cloud__word {
+    --rz-cloud-tone: #8fb7ff;
+    /* How far the word is let back up once its landmark holds the screen. It is
+       a token rather than an `opacity` per tier because the entry animates this
+       property from 0, and a tier that names its own value has to name it twice
+       — once at rest and once in the `--held` rule — where the two then drift. */
+    --rz-word-opacity: 1;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.05em;
+    fill: color-mix(in srgb, var(--rz-cloud-tone) 62%, #fff);
 }
 
-.rz-map__node--hub .rz-map__disc {
-    fill: color-mix(in srgb, var(--rz-map-tone) 22%, #06070b);
-    stroke: color-mix(in srgb, var(--rz-map-tone) 78%, transparent);
-    stroke-width: 1.6;
+.rz-cloud__word--body {
+    --rz-cloud-tone: #ff5f57;
 }
 
-.rz-map__node--hub .rz-map__label {
+.rz-cloud__word--control {
+    --rz-cloud-tone: #5599ff;
+}
+
+.rz-cloud__word--self {
+    --rz-cloud-tone: #a98bff;
+}
+
+/* The two tiers are told apart by weight and by how far back each sits, not by
+   size alone — size is the packer's and already varies inside a tier (a
+   24-character dimension is set smaller than an 8-character one, or it is a
+   banner rather than a word), so on its own the line between "a dimension" and
+   "a keyword" is not one a reader could draw. */
+.rz-cloud__word--dimension {
+    font-weight: 700;
+}
+
+/* 0.68 and no lower, and it is a measurement rather than a taste: the dimmest
+   word in the cloud is a control-blue keyword, rgb(150 192 255), and over the
+   veil's own near-black that composites to 5.3:1 at this value and to 3.9:1 at
+   0.56 — under AA for text this small. The smallest word here renders at 8.6px
+   (9.5 in a 460-unit viewBox drawn 416px wide), which is the floor the network
+   this replaced already sat at. */
+.rz-cloud__word--keyword {
+    font-weight: 500;
+    --rz-word-opacity: 0.68;
+}
+
+/* Serif, white and much larger: it is the thing the other twenty-four are
+   around, and every one of them is set in the same sans at the same weight. */
+.rz-cloud__word--hub {
     font-family: Georgia, "Times New Roman", serif;
-    font-size: 21px;
+    font-size: 34px;
     font-weight: 400;
     letter-spacing: 0.01em;
     fill: #fff;
 }
 
-/* The hub is index 0, so it is the first thing there and the ring assembles
-   around it. */
-.rz-map__node {
+/* Index 0 is "Reality", so it is the first word there and the rest assemble
+   around it — the same order the network's hub and ring had. The step is small
+   (0.035s against the network's 0.08s) because there are twenty-five of these
+   where there were seven: at the old spacing the last word arrived two seconds
+   after the first, which is longer than the landmark's own way in. */
+.rz-cloud__word {
     opacity: 0;
-    transition: opacity 0.5s ease calc(var(--rz-node-index) * 0.08s);
+    transition: opacity 0.5s ease calc(var(--rz-word-index) * 0.035s);
 }
 
-.rz-map__glow {
+.rz-cloud__glow {
     opacity: 0;
     transition: opacity 0.9s ease 0.15s;
 }
 
-.rz-map__edge {
-    fill: none;
-    stroke-linecap: round;
-    stroke-dasharray: var(--rz-edge-len, 200);
-    stroke-dashoffset: var(--rz-edge-len, 200);
-    transition: stroke-dashoffset 0.7s cubic-bezier(0.22, 1, 0.36, 1) calc(0.3s + var(--rz-edge-index, 0) * 0.07s);
+.rz-scene--held .rz-cloud__word {
+    opacity: var(--rz-word-opacity);
 }
 
-.rz-map__edge--spoke {
-    stroke: color-mix(in srgb, var(--rz-map-tone, #8fb7ff) 62%, transparent);
-    stroke-width: 1.4;
-}
-
-/* Last, and faint: the spokes are the claim — everything here is a way reality
-   is put together — and the ring is only the reminder that they are not
-   separate from each other. */
-.rz-map__edge--ring {
-    stroke: rgba(255, 255, 255, 0.16);
-    stroke-width: 1;
-    transition-delay: calc(0.72s + var(--rz-edge-index, 0) * 0.05s);
-}
-
-.rz-scene--held .rz-map__node,
-.rz-scene--held .rz-map__glow {
+.rz-scene--held .rz-cloud__glow {
     opacity: 1;
 }
 
-.rz-scene--held .rz-map__edge {
-    stroke-dashoffset: 0;
+/* ── A word that has a paper behind it ──
+   **It grows, and it is not underlined.** An underline is what a link in a
+   paragraph looks like, and these are not in a paragraph — a dotted rule under
+   every second word turned the picture into a form. Growing is the thing a word
+   cloud can do that prose cannot, and it says the same thing without adding a
+   mark: the word comes forward, and the strip below fills in.
+
+   `--rz-word-opacity` is what the keyword tier is dimmed to, so coming up to 1
+   is the same move the tiers already use for recession, and the two together
+   are what make the growth read as a lift rather than as a wobble.
+
+   1.1 is a measured ceiling, not a taste. The packer pads every box by
+   `PAD_X = 5` units *on each side*, so two words' ink is at least 10 units
+   apart; the widest word here is "Phenomenological Control" at ~180 units,
+   which grows by 18 — 9 a side — and still clears its neighbours. Going past
+   that puts the longest words through whatever is beside them, and SVG paints
+   in document order, so there is no z-index to lift the hovered one out with. */
+.rz-cloud__anchor {
+    cursor: pointer;
+}
+
+/* `fill-box` is what makes `center` the word's own centre rather than the
+   viewBox's — without it every word flies toward the middle as it grows. */
+.rz-cloud__word--linked {
+    transform-box: fill-box;
+    transform-origin: center;
+    /* Deliberately two timings. The opacity is the landmark's way in and is
+       staggered by word index; the transform is a response to the pointer and
+       must not inherit a delay of up to 0.9s. */
+    transition:
+        opacity 0.5s ease calc(var(--rz-word-index) * 0.035s),
+        transform 0.18s ease;
+}
+
+/* Not scoped to `--held`: a landmark that is not holding has `pointer-events:
+   none` and is `inert`, so it can be neither hovered nor focused and does not
+   need saying twice — and the stacked fallback, where nothing is ever held,
+   would otherwise lose the feedback entirely. */
+.rz-cloud__anchor:hover .rz-cloud__word--linked,
+.rz-cloud__anchor:focus-visible .rz-cloud__word--linked {
+    --rz-word-opacity: 1;
+    transform: scale(1.1);
+}
+
+/* ── The strip under the cloud ──
+   Empty until a word is pressed, and holding its full height throughout — a
+   landmark is centred in the stage, so a strip that appeared on a press would
+   shift the whole scene under the reader at the moment they pressed it. Same
+   reason `.pub-scholar__states` stacks and the ask line reserves two lines.
+
+   The height comes from the link itself, which is laid out at `opacity: 0`
+   rather than removed; the one part that has no height of its own at rest is
+   the title, hence its `min-height`.
+
+   No margin: `.rz-fig` is a grid with its own 1rem gap, and a margin here would
+   be that space twice over. */
+.rz-cloud-cite {
+    display: grid;
+    width: 100%;
+    text-align: left;
+}
+
+.rz-cloud-cite__link {
+    display: grid;
+    gap: 0.25rem;
+    margin: 0;
+    text-decoration: none;
+    transition: opacity 0.25s ease;
+}
+
+.rz-cloud-cite[data-state="rest"] .rz-cloud-cite__link {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* The landmark's accent, as every other eyebrow in the zoom is. */
+.rz-cloud-cite__label {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--rz-accent);
+}
+
+/* ── The title is white, and gold was tried ──
+   #e8b73f — the Creations tab's "this one is ours" mark over a dark plate — on
+   the argument that the cloud's own three tones are spoken for (body, control,
+   self) so a title in any of them reads as a fourth word in that scheme. It
+   isn't wrong about the scheme and it is still wrong here: white is not one of
+   the three either, and a warm title turned the strip into a thing of its own
+   rather than the caption of the picture above it. Reverted. The one point of
+   colour is the accent label, as everywhere else in the zoom.
+
+   Clamped to two lines rather than allowed to run: it is the one string here
+   not written for this box, and a 130-character review title is not going to be
+   shortened because it is being quoted. The `min-height` is what reserves the
+   space while it is empty — without it the strip is 16px until the first press
+   and 72px after, which is the resize the reservation was for. Both
+   declarations say the same thing; the second keeps saying it if the type
+   changes. */
+.rz-cloud-cite__title {
+    min-height: 2.9em;
+    min-height: 2lh;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.86rem;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.82);
+}
+
+/* Reserved for the same reason the title above is, and it is easy to miss that
+   it needs it too: with only the title reserved the strip was 63px at rest and
+   75px filled, and the figure is centred in the scene — so the whole cloud
+   stepped up 6px the first time a word was pressed. */
+.rz-cloud-cite__who {
+    min-height: 1.2em;
+    min-height: 1lh;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.rz-cloud-cite__link:hover .rz-cloud-cite__title,
+.rz-cloud-cite__link:focus-visible .rz-cloud-cite__title {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
 }
 
 /* Ponzo. Both bars are the same rect; only the rails differ. */
@@ -1079,225 +1463,323 @@
     }
 }
 
-/* ── The other strands ──
-   The last landmark is a list, not a demonstration, so it is four tiles rather
-   than one thing to press.
+/* ── The swap machinery ──
+   The word cloud rewrites the landmark's own heading and paragraph as the
+   reader moves over it, so those two lines have to hold still while their
+   contents change. `.rz-scene__copy` is `align-content: center`, which means a
+   line that changed height would not merely resize — it would move the whole
+   column under the pointer mid-gesture.
 
-   `auto-fit` with a floor rather than a fixed two columns: at the stage's own
-   width these sit two-up, and in the stacked fallback on a phone the same rule
-   drops them to one without a breakpoint to keep in step with anything. */
-.rz-fig--strands {
-    max-width: 30rem;
-}
+   Each swapped line therefore keeps a hidden ghost of its longest possible
+   contents in the same grid cell, with the live text laid over it. The cell is
+   then as tall as the tallest candidate **at every column width**, which is the
+   thing a `min-height` in `lh` gets wrong: the right number of lines is
+   different at 264px and at 416px. Measured before this existed: the paragraph
+   swung 66px → 133px as the pointer crossed the cloud.
 
-.rz-strands {
-    list-style: none;
+   The heading's ghost is the longest *word* in the cloud, computed in
+   reality-zoom.js — so a new word longer than "Phenomenological Control" widens
+   the reservation on its own. Same trick, and the same reason, as the Scholar
+   button stacking its five states in one cell. */
+.rz-swap {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
-    gap: 0.7rem;
-    width: 100%;
-    padding: 0;
-    margin: 0;
 }
 
-.rz-strand {
-    display: grid;
-    justify-items: start;
-    /* `start` would bunch the tiles at the top of a row sized by its tallest;
-       the 1fr row the text sits in is what pushes a tile's link to its foot, so
-       the links line up across the row. */
-    align-content: stretch;
-    grid-template-rows: auto auto 1fr auto;
-    gap: 0.45rem;
-    padding: 0.9rem 0.95rem 1rem;
-    border: 1px solid color-mix(in srgb, var(--rz-accent) 26%, transparent);
-    border-radius: 0.8rem;
-    background: color-mix(in srgb, var(--rz-accent) 7%, transparent);
-    text-align: left;
-    opacity: 0;
-    /* `translate`, not a transform: .rz-scene already animates `transform` for
-       the whole landmark, and a child's own transform is independent of it. */
-    translate: 0 0.5rem;
-    transition:
-        opacity 0.45s ease calc(var(--rz-strand-index) * 0.1s),
-        translate 0.45s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--rz-strand-index) * 0.1s);
+.rz-swap__ghost,
+.rz-swap__live {
+    grid-area: 1 / 1;
 }
 
-.rz-scene--held .rz-strand {
-    opacity: 1;
-    translate: 0 0;
+/* The heading's cell is two lines tall, because the longest word in the cloud
+   wraps to two and the reservation has to cover it — but most words, and the
+   resting title, are one. Centring the live line in the cell splits that slack
+   above and below instead of leaving it all underneath, where it read as a hole
+   between the heading and the paragraph. Grid items stretch by default, so this
+   has to be `align-self` on the item; `align-content` on the container does
+   nothing here, the track being exactly as tall as its tallest item.
+   The paragraph is deliberately *not* centred — prose starts at the top. */
+.rz-scene__title .rz-swap__live {
+    align-self: center;
 }
 
-.rz-strand__mark {
-    width: 1.6rem;
-    height: 1.6rem;
-    margin-bottom: 0.1rem;
-    fill: none;
-    stroke: var(--rz-accent);
-    stroke-width: 1.5;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    overflow: visible;
+/* ── The last landmark's copy, tightened ──
+   Every candidate the title's ghost reserves against is wider than this
+   column, so the cell is two lines tall even when the live line — almost
+   always — is one: measured, 57px of dead air the centring above split
+   evenly above and below the visible line. Above the title that reads as
+   generous leading under the eyebrow; below it, it read as too much air
+   between the heading, the paragraph and the cloud beside it, which is what
+   was reported. Pushing the live line to the foot of its cell moves that
+   same 57px above the title instead of splitting it, so the paragraph and
+   the figure sit close under the heading where the reader's eye actually
+   lands next. The copy's own gap and the gap to the figure are trimmed to
+   match. */
+.rz-scene[data-landmark="beyond"] {
+    gap: clamp(1.5rem, 3vw, 3rem);
 }
 
-/* The one or two parts of a glyph that are a dot rather than an outline. */
-.rz-strand__solid {
-    fill: var(--rz-accent);
-    stroke: none;
+.rz-scene[data-landmark="beyond"] .rz-scene__copy {
+    gap: 0.65rem;
 }
 
-.rz-strand__name {
-    margin: 0;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.11em;
-    text-transform: uppercase;
-    color: color-mix(in srgb, var(--rz-accent) 58%, #fff);
-}
-
-.rz-strand__text {
-    margin: 0;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 0.7rem;
-    line-height: 1.55;
-    color: rgba(255, 255, 255, 0.5);
-}
-
-/* Underlined on the accent rather than made into a button: a tile is a line of
-   work, and the link is a footnote to it, not a second thing to press. */
-.rz-strand__link {
+.rz-scene[data-landmark="beyond"] .rz-scene__title .rz-swap__live {
     align-self: end;
-    margin-top: 0.15rem;
+}
+
+/* `visibility`, never `display: none` — a ghost that is not laid out reserves
+   nothing, which is the whole of its job. */
+.rz-swap__ghost {
+    visibility: hidden;
+}
+
+/* The link under the paragraph it belongs to. At rest it has no `href`, so it is
+   neither followable nor a tab stop, but it is laid out all the same.
+
+   A fixed box, not `min-height: 1lh`: the `↗` and `→` fall back to a font with
+   taller metrics than the label's, so the line box grew by 1.2px the moment the
+   link had any text in it — measured — and the centred column passed that
+   straight up into the heading. `overflow: hidden` is the belt to that brace. */
+.rz-swap__link {
+    justify-self: start;
+    height: 1.5em;
+    line-height: 1.5;
+    overflow: hidden;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 0.62rem;
+    font-size: 0.72rem;
     font-weight: 700;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
+    letter-spacing: 0.06em;
     text-decoration: none;
     color: color-mix(in srgb, var(--rz-accent) 62%, #fff);
-    border-bottom: 1px solid color-mix(in srgb, var(--rz-accent) 45%, transparent);
-    padding-bottom: 0.15em;
-    transition: border-color 0.18s ease;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-.rz-strand__link::after {
-    content: " ↗";
-    opacity: 0.75;
+.rz-swap__link[href] {
+    opacity: 1;
 }
 
-.rz-strand__link:hover,
-.rz-strand__link:focus-visible {
-    border-bottom-color: color-mix(in srgb, var(--rz-accent) 90%, #fff);
+.rz-swap__link[href]:hover,
+.rz-swap__link[href]:focus-visible {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
 }
 
-/* ── The turning prism ──
-   Four instruments on a square prism: phrenology, EEG, chronoscope, model. It
-   turns a quarter at a time and each face carries its own label, so nothing in
-   script has to know which one is showing and there is no caption to keep in
-   step — the same reason the cardiac loop next door is pure CSS.
+/* ── The timeline ──
+   A plate that cross-fades, a time axis under it that the reader can walk, and
+   a caption naming the station showing. It replaced a four-faced turning prism,
+   and the reason was the count: the claim is about a five-century arc, and two
+   pairs of instruments cannot carry one.
 
-   ── The face order is the argument ──
-   The pairs are *adjacent*, at 0°/90° and 180°/270°, not opposite. Opposite
-   faces are half a turn apart and can never be seen in one movement, so the
-   pairing would have to be asserted in words. Adjacent, the quarter-turn is the
-   sentence: phrenology becomes EEG, the chronoscope becomes a model. Reordering
-   `faces` in research-content.js breaks that and nothing will warn you.
+   ── Its height is fixed, and that is the property to protect ──
+   The frame is a fixed aspect ratio, the year and the credit are placed *over*
+   the picture, and the caption's two lines are reserved below. The landmarks
+   are centred in the stage, so anything here that grew when the station changed
+   would shift the whole scene under the reader — the same rule the cloud's cite
+   strip and the ask line are built on. A picture arriving at a different shape
+   is cropped to 4/3 on the way in rather than changing that number.
 
-   ── The size is one number, and it has to be the *rendered* one ──
-   `--rz-prism-size` is the side of the prism and `translateZ` is half of it —
-   that is what makes four rotated planes meet at their edges instead of
-   floating apart. So the number the faces push out by must be the width the
-   stage actually got, not the width it asked for. `translateZ` has no
-   percentage basis, which is the one thing about a CSS prism that cannot be
-   expressed in percentages; `100cqi` against the figure is what stands in for
-   it. Sized against the viewport instead (`76vw`, the first attempt) the stage
-   asked for 336px inside a 275px column, was clamped to the column, and the
-   faces went on translating by half of 336 — four planes meeting 30px outside
-   their own edges.
-
-   `container-type: inline-size` and not `size`: the figure's width comes from
-   its grid track and its height from its contents, and containing the block
-   axis would collapse it. Same trap as `.hero__brain` in the stacked layout. */
-.rz-fig--prism {
-    max-width: 24rem;
-    container-type: inline-size;
+   ── What is advancing it lives in reality-zoom.js ──
+   The ticker only runs while the scene is `--held`, so the stacked and
+   reduced-motion branch (where nothing is ever held) is a manual picker with no
+   second code path to write. What is left here is the dressing and one drifting
+   glow, and that glow is paused exactly as the cardiac loop is. */
+.rz-fig--era {
+    max-width: 26rem;
 }
 
-.rz-prism__stage {
-    --rz-prism-size: min(21rem, 100cqi);
-    width: var(--rz-prism-size);
-    height: var(--rz-prism-size);
-    /* Far enough back that the turn reads as a turn and not as a fisheye. At
-       ~2.2× the side the receding edge foreshortens visibly and the near edge
-       does not bow. */
-    perspective: calc(var(--rz-prism-size) * 2.2);
-}
+/* ── The table the cards are dealt on ──
+   A plain box with nothing drawn in it: no border, no background, no padding.
+   The dressing belongs to the cards, because each one is a photograph lying on
+   a pile — a frame around the pile would be a picture frame with prints
+   rattling inside it.
 
-.rz-prism {
+   ── Why these three numbers, and how to redo them ──
+   The stage keeps the 4/3 the pictures were cropped to, and the fan has to fit
+   inside it exactly. There is one derivation and **the card count is in it**, so
+   adding a card means redoing all three:
+
+     card = c (fraction of the stage's width)
+     a 4/3 card in a 4/3 stage is also c of the stage's *height* — which is why
+     one number describes both axes and the offsets come out equal
+     c + (N − 1) · step = 1        → step = (1 − c) / (N − 1)   [of the stage]
+     --rz-dx / --rz-dy = step / c                               [of the card]
+
+   At N = 7 and c = 0.66: step = 0.34/6 = 5.67% of the stage, 8.59% of a card.
+   `--rz-dx` is trimmed to 8.5% and `--rz-dy` to 8.4% so the pile lands just
+   inside rather than exactly on the edge — measured at 1280, the last card's
+   right edge reaches 339.9 in a 341.1 box.
+
+   **The step is also the width of the sliver each card leaves showing, and that
+   sliver is the only part of a card that can be pointed at**, so it is the thing
+   the count trades against. It was c = 0.68 at six cards; dropping to 0.66 buys
+   back a little of what the seventh card costs. Measured: 19px at the 1280px
+   column, 14px in the narrow desktop column at 920px. Thin, but pointer-only —
+   below 900px the deck stops being a fan at all and becomes the contact sheet,
+   so **no sliver is ever a touch target** and the 24px floor does not apply
+   here. An eighth card would take the narrow column under ~12px, which is the
+   point at which this layout should be reconsidered rather than re-tuned.
+
+   The offsets are per-card *transform* percentages, so they resolve against the
+   card's own border box rather than the stage's. That is what keeps the maths
+   stable when the figure is resized: every card is the same size, so one pair of
+   percentages describes the whole fan at every width. */
+.rz-era {
+    --rz-card: 66%;
+    --rz-dx: 8.5%;
+    --rz-dy: 8.4%;
+    /* One card's worth of stagger. Six cards land in ~0.95s including the last
+       one's own travel, which is "fast sequence" without being a flicker. */
+    --rz-deal: 0.115s;
     position: relative;
+    aspect-ratio: 4 / 3;
     width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    /* A hold, then a quarter turn, four times over. Negative rotation so the
-       faces arrive in the order they are written. `.rz-prism__face` sets its
-       own angle from --rz-face, so this animation never names a face. */
-    animation: rz-prism-turn 24s cubic-bezier(0.65, 0, 0.35, 1) infinite;
 }
 
-/* Paused until the landmark is holding the screen, and scoped away from static
-   mode where nothing is ever `--held` — the same arrangement, and the same
-   trap, as the cardiac loop. Without the scope the stacked fallback would show
-   a prism frozen mid-turn, i.e. two half-faces and no readable instrument. */
-.rz:not(.rz--static) .rz-scene:not(.rz-scene--held) .rz-prism {
-    animation-play-state: paused;
+/* ── A card ──
+   Its own edge, radius and shadow, because it is a print lying on a pile. The
+   shadow is what separates it from the card underneath — with six overlapping
+   rectangles of similar tone, the shadow is doing more work here than anywhere
+   else in the dive, and flattening it makes the fan read as one striped image.
+
+   `z-index: var(--rz-i)` is the stacking *and* the hit-testing: a card is
+   covered by the ones dealt after it, so the only part of it that can take a
+   pointer is the sliver still showing — which is exactly the edge the reader is
+   aiming at. Nothing computes hit areas. */
+.rz-era__card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: var(--rz-i, 0);
+    width: var(--rz-card);
+    aspect-ratio: 4 / 3;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--rz-accent) 28%, transparent);
+    border-radius: 0.5rem;
+    background:
+        radial-gradient(120% 90% at 50% 10%, color-mix(in srgb, var(--rz-accent) 11%, transparent), transparent 72%),
+        rgba(8, 8, 11, 0.7);
+    box-shadow:
+        0 0.9rem 1.8rem rgba(0, 0, 0, 0.55),
+        0 0 0 1px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    /* Undealt: the whole pile square on the first card's position, invisible.
+       Dealing spreads it. */
+    opacity: 0;
+    transform: translate(0, 0);
+    transition:
+        transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.32s ease,
+        box-shadow 0.3s ease,
+        filter 0.3s ease;
 }
 
-@keyframes rz-prism-turn {
-    0%,
-    19% {
-        transform: rotateY(0deg);
-    }
-    25%,
-    44% {
-        transform: rotateY(-90deg);
-    }
-    50%,
-    69% {
-        transform: rotateY(-180deg);
-    }
-    75%,
-    94% {
-        transform: rotateY(-270deg);
-    }
-    100% {
-        transform: rotateY(-360deg);
-    }
+/* Dealt. The stagger is the whole animation and it is `--rz-i` times a step, so
+   adding a card costs nothing here. Only set while the deck carries the class —
+   without it the delay is zero, which is what makes the gather-up on leaving a
+   single movement rather than the deal run backwards. */
+.rz-era.is-dealt .rz-era__card {
+    opacity: 1;
+    transform: translate(calc(var(--rz-i) * var(--rz-dx)), calc(var(--rz-i) * var(--rz-dy)));
+    transition-delay: calc(var(--rz-i) * var(--rz-deal));
 }
 
-.rz-prism__face {
+/* Peeled: lifted off the pile and out to the right so the card underneath can
+   be seen whole. It keeps its own fan offset and adds to it, so the cards leave
+   along the pile's own diagonal rather than collapsing to one place.
+   No delay — a peel is one gesture and must answer immediately. */
+.rz-era.is-dealt .rz-era__card[data-peeled="true"] {
+    opacity: 0.12;
+    transform: translate(calc(var(--rz-i) * var(--rz-dx) + 46%), calc(var(--rz-i) * var(--rz-dy) - 7%)) rotate(3.5deg);
+    transition-delay: 0s;
+    pointer-events: none;
+}
+
+/* The card being read. Deliberately **no transform**: the one way to make this
+   gesture feel unreliable is to move the thing the reader is trying to look at,
+   so the lift is light and shadow only. */
+.rz-era.is-dealt .rz-era__card[data-focus="true"] {
+    box-shadow:
+        0 1.4rem 2.6rem rgba(0, 0, 0, 0.62),
+        0 0 0 1px color-mix(in srgb, var(--rz-accent) 45%, transparent);
+    filter: brightness(1.05);
+}
+
+.rz-era__card:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--rz-accent) 70%, #fff);
+    outline-offset: 2px;
+}
+
+/* A vignette closing the corners so each print reads as lit rather than
+   printed flat. */
+.rz-era__card::after {
+    content: "";
     position: absolute;
     inset: 0;
-    display: grid;
-    align-content: center;
-    justify-items: center;
-    gap: 0.4rem;
-    padding: 1.2rem 1.3rem;
-    box-sizing: border-box;
-    border: 1px solid color-mix(in srgb, var(--rz-accent) 30%, transparent);
-    border-radius: 0.9rem;
-    background: color-mix(in srgb, var(--rz-accent) 8%, rgba(8, 8, 10, 0.82));
-    text-align: center;
-    /* The face's own quarter turn, then pushed out to the prism's surface.
-       Order matters: rotate first, translate along the rotated axis. */
-    transform: rotateY(calc(var(--rz-face) * 90deg)) translateZ(calc(var(--rz-prism-size) / 2));
-    /* Without this the three faces behind show through their own backs and the
-       drawings overlay each other. */
-    backface-visibility: hidden;
+    background: radial-gradient(128% 108% at 50% 44%, transparent 56%, rgba(4, 5, 9, 0.5) 100%);
+    pointer-events: none;
 }
 
-.rz-prism__art {
-    width: min(9.5rem, 44%);
+.rz-era__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Warm at the old end of the run and neutral at ours — five centuries in one
+       property, and with the years now hidden behind a hover it is the only
+       thing saying at a glance that the pile runs from old to new. */
+    filter: sepia(calc((1 - var(--rz-plate-t)) * 55%)) saturate(0.92) contrast(1.04);
+}
+
+.rz-era__card--drawn {
+    display: grid;
+    place-items: center;
+    background: radial-gradient(72% 72% at 50% 46%, color-mix(in srgb, var(--rz-accent) 10%, transparent), transparent 74%);
+}
+
+/* ── The legend ──
+   Two reserved lines, filled only for the card being pointed at and otherwise
+   describing the one on top. Its height is fixed whether or not either line has
+   anything in it — the landmarks are centred in a stage that clips, so a strip
+   that grew when the reader pointed at something would shift the whole scene
+   under them mid-gesture. Same rule as the cloud's cite strip. */
+.rz-era__legend {
+    display: grid;
+    gap: 0.15rem;
+    width: 100%;
+    margin-top: 0.85rem;
+}
+
+.rz-era__legend-title {
+    margin: 0;
+    min-height: 1lh;
+    overflow: hidden;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.95rem;
+    line-height: 1.3;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #f4f2ee;
+}
+
+.rz-era__legend-meta {
+    margin: 0;
+    min-height: 1lh;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.7rem;
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+    color: color-mix(in srgb, var(--rz-accent) 45%, #fff);
+}
+
+/* ── The drawings ──
+   Line art on a 200×200 grid, stroked in the landmark's accent. They are the
+   fallback a card shows if it is ever given no picture; every card has one
+   today, so nothing renders these. See ERA_ARTS in reality-zoom.js for why they
+   are drawn rather than sourced, and why they stay. */
+.rz-era__art {
+    width: min(11rem, 50%);
     height: auto;
     fill: none;
     stroke: var(--rz-accent);
@@ -1307,70 +1789,19 @@
     overflow: visible;
 }
 
-.rz-prism__solid {
+.rz-era__solid {
     fill: var(--rz-accent);
     stroke: none;
 }
 
-/* The pieces of a drawing that are scaffolding rather than the instrument: a
-   decision boundary, the axis a distribution sits on, the traces that lost. */
-.rz-prism__bound,
-.rz-prism__dist {
-    stroke-width: 2.4;
-    opacity: 0.75;
-}
-
-.rz-prism__dash {
-    stroke-width: 2;
-    stroke-dasharray: 5 7;
-    opacity: 0.45;
-}
-
-.rz-prism__faint {
+/* The part of a drawing that is scaffolding rather than the instrument. */
+.rz-era__faint {
     opacity: 0.35;
 }
 
-.rz-prism__trace {
+.rz-era__trace {
     stroke-width: 2.4;
     opacity: 0.7;
-}
-
-.rz-prism__era {
-    margin: 0.5rem 0 0;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 0.64rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--rz-accent);
-}
-
-.rz-prism__name {
-    margin: 0;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.15rem;
-    font-weight: 400;
-    line-height: 1.2;
-    color: #f4f2ee;
-}
-
-.rz-prism__text {
-    margin: 0;
-    max-width: 20rem;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 0.82rem;
-    line-height: 1.6;
-    color: rgba(238, 236, 232, 0.76);
-}
-
-.rz-prism__caption {
-    margin: 0;
-    max-width: 24rem;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 0.78rem;
-    line-height: 1.6;
-    text-align: center;
-    color: rgba(238, 236, 232, 0.6);
 }
 
 /* ── The rail ──
@@ -1667,6 +2098,26 @@ nav .nav-logo--sussex {
         scale: 1;
         letter-spacing: 0.045em;
     }
+
+    /* The deck. Nothing here ever turns — this preference also selects the
+       stacked branch, where `paint()` never runs, so no landmark is ever
+       `--held` and the ticker never advances. The contact-sheet layout that
+       covers that is `.rz--static .rz-era` below; all this has to do is make
+       sure nothing animates on the way into it. */
+    .rz-era__card,
+    .rz-era__img,
+    .rz-era__art {
+        transition: none;
+    }
+
+    /* Nothing is ever `--held` here, so the paragraphs' reveal has to be undone
+       or the opening landmark is four invisible lines. The beat's own margin
+       stays: it is space, not motion. */
+    .rz-scene--film .rz-scene__text {
+        opacity: 1;
+        translate: 0 0;
+        transition: none;
+    }
 }
 
 /* Puts the overlay back. Centred at the foot of the stage, where the eye is
@@ -1732,6 +2183,37 @@ nav .nav-logo--sussex {
 @media (max-width: 900px), (prefers-reduced-motion: reduce) {
     .rz {
         --rz-mode: stack;
+    }
+
+    /* ── The still, not the loop ──
+       It has to be **this** query and not the reduced-motion one next to it:
+       this is the single place the mode is decided, and reduced motion is only
+       one of its two halves — put here first, a 375px phone with animation
+       switched on still took the loop. Only the winning `background-image` is
+       ever fetched, so naming both costs one request either way, and this
+       branch pays 13 KB instead of 687.
+
+       It is also more than the branch used to get: the old `<video>` was gated
+       on `--rz-mode` in script, so a phone and a reduced-motion reader had no
+       film of any kind and this landmark opened on nothing but its paragraphs.
+
+       `--rz-film-solo` is never written here, since `paint()` does not run, so
+       the picture takes `.rz-scene--film`'s own default of 0 — the settled
+       value the copy's contrast is measured against. */
+    .rz-scene__video {
+        background-image: var(--rz-film-still);
+    }
+
+    /* The film box is absolute, and stacked there is nothing under it to
+       resolve against: `.rz-scene` gives up its `transform` and `filter` here,
+       so both containing blocks go with them and the box climbed all the way to
+       `.rz-track`. Measured on a 375px phone — the picture landed at y=2406
+       while its own landmark was at y=379, i.e. floating behind whichever
+       station happens to be half way down the stack. Restoring a containing
+       block on the landmark itself is the whole fix; every offset in the base
+       rule is already written against it. */
+    .rz-scene--film {
+        position: relative;
     }
 
     .rz-track {
@@ -1835,71 +2317,80 @@ nav .nav-logo--sussex {
         order: 0;
     }
 
-    .rz-map__node,
-    .rz-map__glow {
+    .rz-cloud__glow {
         opacity: 1;
     }
 
-    .rz-map__edge {
-        stroke-dashoffset: 0;
+    .rz-cloud__word {
+        opacity: var(--rz-word-opacity);
     }
 
-    /* Nothing is ever `--held` here, so the tiles would stay at their entry
-       offset for good. */
-    .rz-strand {
-        opacity: 1;
-        translate: 0 0;
-    }
 
-    /* ── The prism, unfolded ──
-       There is no scroll to hold a landmark here and this branch also covers
-       reduced motion, so a turning box is the wrong object twice over: nothing
-       would pause it, and it would still be showing one face in four at any
-       moment. Laid flat as a 2×2 grid instead, which keeps the pairs on the
-       same row — faces 0/1 above, 2/3 below — so the comparison the turn makes
-       is still made, by adjacency rather than by time.
+    /* ── The deck, as a contact sheet ──
+       Nothing is ever `--held` in this branch, because paint() never runs — so
+       the ticker in reality-zoom.js never advances and the deck never turns.
+       **That used to need no layout and now does.** While there was a dot axis
+       under the cards, a reader who got no animation could still walk the run
+       by hand; with the axis gone they would be left looking at the first card
+       — one Bosch — for ever, and would never reach the photograph the whole
+       sequence exists to arrive at.
 
-       Every 3D property has to be unwound explicitly: `position`, the face's
-       own `transform`, `preserve-3d` and the perspective. Leaving any one of
-       them turns the grid back into a stack of four overlapping absolute
-       boxes. */
-    /* A definite width, and `100%` is not one here. In this branch `.rz-scene`
+       So the fan is unwound into a flat grid and every card is shown at once.
+       It is the honest still of a deal: the same pictures in the same order,
+       nothing to wait for and nothing overlapping. It also lets this branch be
+       taller than the zoom's, which it can afford — below 900px the stage is
+       not 100vh and the landmark scrolls.
+
+       **The cards are still buttons here, and that is what makes the legend
+       work without a hover.** A tap fires `click`, `focus()` runs, and the strip
+       underneath names the picture — so a phone reader gets the attributions
+       the fan gives a mouse, by the one gesture they have.
+
+       `auto-fit` with a floor rather than a fixed column count, so a phone gets
+       two across and a reduced-motion desktop gets three or more, with no
+       breakpoint here that has to be kept in step with anything.
+
+       A definite width, and `100%` is not one here. In this branch `.rz-scene`
        is a single auto-sized grid track, so a percentage width on anything
        inside it resolves against an indefinite basis and the track falls back
-       to the content's own max-content — which for a 2×2 grid of four short
-       drawings is about 183px, i.e. 86px columns. Sizing off the viewport
-       instead makes the track definite and the whole chain follows. */
-    .rz-prism__stage {
-        width: min(24rem, 84vw);
-        height: auto;
-        perspective: none;
+       to the content's own max-content. */
+    .rz-fig--era {
+        width: min(26rem, 100%);
     }
 
-    .rz-prism {
+    .rz--static .rz-era {
+        aspect-ratio: auto;
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 0.7rem;
-        height: auto;
-        transform-style: flat;
-        animation: none;
+        grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
+        gap: 0.5rem;
     }
 
-    .rz-prism__face {
+    /* Back into flow, un-fanned and fully visible. The aspect-ratio is what the
+       absolute positioning used to give them; without it a grid item with no
+       intrinsic height collapses. `opacity: 1` is the load-bearing one — the
+       deal never fires in this branch, so without it every card would sit at
+       the undealt `opacity: 0` and the figure would be blank.
+
+       `transition: none` is required, not tidiness: without it, crossing into
+       this branch (a resize past 900px, a phone turned on its side) animates
+       six cards out of the fan, which is a deal nobody asked for on a layout
+       whose entire point is that nothing moves. */
+    .rz--static .rz-era__card {
         position: static;
-        inset: auto;
+        width: auto;
+        aspect-ratio: 4 / 3;
+        opacity: 1;
         transform: none;
-        backface-visibility: visible;
-        padding: 1.1rem 1rem;
+        transition: none;
+        border-radius: 0.5rem;
+        box-shadow: 0 0.5rem 1.2rem rgba(0, 0, 0, 0.45);
     }
 
-    .rz-prism__art {
-        width: min(6rem, 50%);
-    }
-
-    /* Two columns of ~9rem is not a paragraph's worth of room; the face's name
-       and era carry it and the sentence goes. */
-    .rz-prism__text {
-        display: none;
+    /* Nothing is peeled or lifted when nothing overlaps. */
+    .rz--static .rz-era__card[data-peeled="true"] {
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
     }
 
     .rz-rail {

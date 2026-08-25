@@ -409,29 +409,86 @@
    runs to ~3700px on the PhD level, and stretched over that, `cover` scales a
    1920×960 image five-fold to show a 14% slice of it — an unreadable smear.
 
-   So on those tabs the banner stops at a height the image can actually fill
-   and hands the rest of the section back to its own cream. The mask is what
-   keeps the cut from reading as a hard line: it is a bottom edge on a
-   photograph, not the top-to-bottom fade *over* the image that was
-   deliberately removed from .contact-full__backdrop-img.
+   So Join stops the banner at a height the image can actually fill and hands
+   the rest of the section back to its own cream. The mask is what keeps the
+   cut from reading as a hard line: it is a bottom edge on a photograph, not
+   the top-to-bottom fade *over* the image that was deliberately removed from
+   .contact-full__backdrop-img.
 
-   Services is the shorter of the two but wants the cut for a second reason:
-   the photograph is the frame around the hero and the pillars, and the case
-   gallery below reads as a list on paper. Ending the banner there is the line
-   between the pitch and the evidence. */
+   Services had the same cut and no longer does — it answers the same length
+   problem by pinning a viewport-tall picture instead of stretching one. See
+   the block below. */
 .contact-full[data-active-tab="join"] .contact-full__backdrop {
     max-height: 56rem;
     -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 9rem), transparent 100%);
     mask-image: linear-gradient(to bottom, #000 calc(100% - 9rem), transparent 100%);
 }
 
-/* --svc-banner-height is measured by services.js: the banner ends where the
-   contract gallery begins, and that line moves with the hero's height. The
-   value here is the fallback for first paint. */
+/* ── Services: the photograph is the surface the tab scrolls on ──
+   It runs the whole tab instead of stopping at the honeycomb, and it holds
+   still while the content moves over it.
+
+   `position: sticky` and nothing else — no script, no transform. That matters
+   beyond tidiness: driving this from a scroll handler puts the picture a frame
+   behind the content, because the content is moved by the compositor and the
+   picture by JS, and the lag is plainly visible at speed. Sticky is resolved
+   during layout by the same pass that places everything else, so the two can
+   never disagree.
+
+   `background-attachment: fixed` cannot do it: it resolves against the window,
+   and the window is not what scrolls here — #main-page is — and iOS ignores it
+   outright. `position: fixed` cannot either: it would leave the box behind and
+   paint over the sections either side. */
 .contact-full[data-active-tab="services"] .contact-full__backdrop {
-    max-height: var(--svc-banner-height, 34rem);
-    -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 11rem), transparent 100%);
-    mask-image: linear-gradient(to bottom, #000 calc(100% - 11rem), transparent 100%);
+    max-height: none;
+    -webkit-mask-image: none;
+    mask-image: none;
+    /* `overflow: hidden` would make this box a scroll container, and a sticky
+       child sticks to its *nearest* one — which never scrolls, so it would
+       simply sit at the top and never move. `clip-path` cuts the picture to
+       the same rectangle without claiming to be scrollable. */
+    overflow: visible;
+    clip-path: inset(0);
+}
+
+/* Viewport-tall rather than the banner's ±14% overhang: the overhang is travel
+   for a layer that moves, and this one does not. Sticky keeps it inside the
+   box on its own — the offset is bounded by the containing block, so the
+   picture stops at the foot of the tab rather than following the reader into
+   the footer. */
+.contact-full[data-active-tab="services"] .contact-full__backdrop-img {
+    position: sticky;
+    top: 0;
+    bottom: auto;
+    height: 100vh;
+    transform: none;
+    will-change: auto;
+}
+
+/* The crossfade partner is the Join tab's machinery. Sticky puts it in flow,
+   where it would be a second viewport-tall box under the first instead of a
+   layer over it, and there is nothing here for it to fade. */
+.contact-full[data-active-tab="services"] .contact-full__backdrop-img--out {
+    display: none;
+}
+
+/* The scrim, and it is what makes the honeycomb readable rather than what
+   makes the picture pretty: the cards are opaque cream, so the darker the
+   field behind them the more they read as things on a surface. Flat and over
+   the whole tab, not a gradient stopping at the gallery — the picture no
+   longer ends anywhere, so a scrim that faded would just reintroduce the seam
+   this replaced.
+
+   0.62 is measured, not chosen by eye: it is what keeps the filter chips —
+   the one thing on this tab with no surface of its own — clear of the 4.5:1
+   AA floor against the brightest patch of the collage, with the chips
+   restyled for a dark field in 17-services.css. It leaves the hero's frosted
+   sheet at 213/255 in its worst case, where its ink still holds 10:1. */
+.contact-full[data-active-tab="services"] .contact-full__backdrop::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(12, 12, 14, 0.62);
 }
 
 @media (prefers-reduced-motion: reduce) {

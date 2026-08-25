@@ -17,7 +17,7 @@
       "title": "Lecturer in Psychology",
       "affiliation": "University of Sussex",
       "location": "Brighton, UK",
-      "summary": "<p>Trained as a clinical neuropsychologist and CBT psychotherapist, Dominique Makowski is a lecturer at the University of Sussex studying how people construct, bend, and experience reality.</p><p>His work spans altered states of consciousness, illusion, deception, fake news, meditation, and immersive experience, with an emphasis on making advanced psychological methods more accessible through <strong>open-source tools</strong>.</p>",
+      "summary": "<p>Trained as a clinical neuropsychologist and CBT psychotherapist, Dr Dominique Makowski is an assistant professor at the University of Sussex and a world-leading expert on the perception and experience of reality.</p><p>His work spans altered states of consciousness, illusions, deception, fake news, with a focus on the role of the body and emotions in cognition (e.g., emotion regulation and interoception), with an emphasis on making advanced psychological methods (neurophysiology, Bayesian statistics, computational models) more accessible through open-source tools.</p>",
       "socials": [
         {
           "label": "Google Scholar",
@@ -180,18 +180,29 @@
       "name": "Catriona Osborn Moar",
       "category": "PhD Student",
       "email": "C.Osborn-Moar@sussex.ac.uk",
-      "details": "",
+      "details": "PhD Candidate, Sussex Neuroscience 4-Year PhD Programme",
       "website": "",
-      "title": "",
+      "title": "Complexity",
       "affiliation": "University of Sussex",
       "location": "",
-      "summary": "",
-      "socials": [],
+      "summary": "Panta rhei ('everything flows') - A reminder of the inherent dynamism of existence. As Carlo Rovelli neatly puts it: all reality is interaction. From the realm of quantum mechanics to evolutionary biology, the notion of interaction pervades our understanding of the universe. The very fabric of life is woven from interactions.",
+      "socials": [
+        {
+          "label": "ResearchGate",
+          "url": "https://www.researchgate.net/profile/Catriona-Osborn-Moar"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/CatrionaOM"
+        }
+      ],
       "interests": [
-        "Ongoing brain activity and thought",
-        "Active Inference",
-        "Complex systems and criticality",
-        "Altered states of consciousness"
+        "Ongoing brain activity, thought & experience",
+        "(En)active Inference",
+        "Complex systems & criticality",
+        "Altered states of consciousness",
+        "Mental health, critical psychiatry",
+        "Philosophy of science"
       ],
       "achievements": [],
       "experience": [
@@ -217,7 +228,11 @@
           "logo": ""
         }
       ],
-      "keywords": [],
+      "keywords": [
+        "complexity",
+        "consciousness",
+        "inference"
+      ],
       "hook": "",
       "avatar": "people/catriona-osborn-moar/avatar.jpg"
     },
@@ -226,52 +241,55 @@
       "name": "Oliver Collins",
       "category": "Research Assistant",
       "email": "",
-      "details": "Placement Student",
+      "details": "Undergraduate Psychology Student",
       "website": "",
-      "title": "",
+      "title": "Psychophysiology and the Perception of Reality",
       "affiliation": "University of Sussex",
-      "location": "",
-      "summary": "",
+      "location": "Brighton, UK",
+      "summary": "An Undergraduate Psychology student at the University of Sussex on track to obtain a First-Class degree, with over 1,200 hours of research experience. Research interests include the relationship between cognition and physiology (in particular cardiovascular signals), computational cognitive modelling, metascience, as well as the development of software to facilitate psychophysiological research. Experience in developing human-computer interfaces combining physiological signals and music as a line of side projects.",
       "socials": [
         {
           "label": "GitHub",
           "url": "https://github.com/OliverACollins"
         },
         {
-          "label": "X",
-          "url": "https://x.com/OliverACollins"
-        },
-        {
           "label": "ResearchGate",
           "url": "https://www.researchgate.net/profile/Oliver-Collins-6"
+        },
+        {
+          "label": "LinkedIn",
+          "url": "https://www.linkedin.com/in/oliver-collins/"
         }
       ],
       "interests": [
-        "Cognitive Psychology",
-        "Statistics",
-        "Playing guitar",
-        "Go-karting"
+        "Psychophysiology",
+        "Visual Illusions",
+        "Metascience"
       ],
       "achievements": [],
       "experience": [
         {
-          "degree": "BSc Psychology with Clinical Approaches",
+          "degree": "BSc in Psychology with Clinical Approaches with a Professional Placement Year",
           "institution": "University of Sussex",
-          "year": "",
+          "year": "2023-2027",
           "details": "",
           "logo": ""
         }
       ],
-      "keywords": [],
-      "hook": "",
+      "keywords": [
+        "psychophysiology",
+        "metascience",
+        "reality"
+      ],
+      "hook": "In his spare time, Oliver enjoys playing guitar, go-karting, and building LEGO!",
       "avatar": "people/oliver-collins/avatar.jpg"
     },
     {
       "folder": "roisin-sharma",
       "name": "Róisín Sharma",
       "category": "Research Assistant",
-      "email": "",
-      "details": "Research Assistant",
+      "email": "rs843@sussex.ac.uk",
+      "details": "Placement Student and Research Assistant",
       "website": "",
       "title": "",
       "affiliation": "University of Sussex",
@@ -291,7 +309,7 @@
         "Statistical Analysis",
         "Cognitive Science",
         "Learning languages",
-        "Chess"
+        "Chess (strictly informally!)"
       ],
       "achievements": [],
       "experience": [
@@ -303,8 +321,12 @@
           "logo": ""
         }
       ],
-      "keywords": [],
-      "hook": "",
+      "keywords": [
+        "perception",
+        "synaesthesia",
+        "psychometrics"
+      ],
+      "hook": "Let's treat each other well to mutually adjust our idiosyncratic perceptual constructions to be of a kinder reality!🪼",
       "avatar": "people/roisin-sharma/avatar.jpg"
     },
     {
@@ -662,7 +684,7 @@
         "title": "Lecturer in Psychology",
         "affiliation": "University of Sussex",
         "location": "Brighton, UK",
-        "summary": "<p>Trained as a clinical neuropsychologist and CBT psychotherapist, Dominique Makowski is a lecturer at the University of Sussex studying how people construct, bend, and experience reality.</p><p>His work spans altered states of consciousness, illusion, deception, fake news, meditation, and immersive experience, with an emphasis on making advanced psychological methods more accessible through <strong>open-source tools</strong>.</p>",
+        "summary": "<p>Trained as a clinical neuropsychologist and CBT psychotherapist, Dr Dominique Makowski is an assistant professor at the University of Sussex and a world-leading expert on the perception and experience of reality.</p><p>His work spans altered states of consciousness, illusions, deception, fake news, with a focus on the role of the body and emotions in cognition (e.g., emotion regulation and interoception), with an emphasis on making advanced psychological methods (neurophysiology, Bayesian statistics, computational models) more accessible through open-source tools.</p>",
         "socials": [
           {
             "label": "Google Scholar",
@@ -827,18 +849,29 @@
         "name": "Catriona Osborn Moar",
         "category": "PhD Student",
         "email": "C.Osborn-Moar@sussex.ac.uk",
-        "details": "",
+        "details": "PhD Candidate, Sussex Neuroscience 4-Year PhD Programme",
         "website": "",
-        "title": "",
+        "title": "Complexity",
         "affiliation": "University of Sussex",
         "location": "",
-        "summary": "",
-        "socials": [],
+        "summary": "Panta rhei ('everything flows') - A reminder of the inherent dynamism of existence. As Carlo Rovelli neatly puts it: all reality is interaction. From the realm of quantum mechanics to evolutionary biology, the notion of interaction pervades our understanding of the universe. The very fabric of life is woven from interactions.",
+        "socials": [
+          {
+            "label": "ResearchGate",
+            "url": "https://www.researchgate.net/profile/Catriona-Osborn-Moar"
+          },
+          {
+            "label": "GitHub",
+            "url": "https://github.com/CatrionaOM"
+          }
+        ],
         "interests": [
-          "Ongoing brain activity and thought",
-          "Active Inference",
-          "Complex systems and criticality",
-          "Altered states of consciousness"
+          "Ongoing brain activity, thought & experience",
+          "(En)active Inference",
+          "Complex systems & criticality",
+          "Altered states of consciousness",
+          "Mental health, critical psychiatry",
+          "Philosophy of science"
         ],
         "achievements": [],
         "experience": [
@@ -864,7 +897,11 @@
             "logo": ""
           }
         ],
-        "keywords": [],
+        "keywords": [
+          "complexity",
+          "consciousness",
+          "inference"
+        ],
         "hook": "",
         "avatar": "people/catriona-osborn-moar/avatar.jpg"
       }
@@ -875,52 +912,55 @@
         "name": "Oliver Collins",
         "category": "Research Assistant",
         "email": "",
-        "details": "Placement Student",
+        "details": "Undergraduate Psychology Student",
         "website": "",
-        "title": "",
+        "title": "Psychophysiology and the Perception of Reality",
         "affiliation": "University of Sussex",
-        "location": "",
-        "summary": "",
+        "location": "Brighton, UK",
+        "summary": "An Undergraduate Psychology student at the University of Sussex on track to obtain a First-Class degree, with over 1,200 hours of research experience. Research interests include the relationship between cognition and physiology (in particular cardiovascular signals), computational cognitive modelling, metascience, as well as the development of software to facilitate psychophysiological research. Experience in developing human-computer interfaces combining physiological signals and music as a line of side projects.",
         "socials": [
           {
             "label": "GitHub",
             "url": "https://github.com/OliverACollins"
           },
           {
-            "label": "X",
-            "url": "https://x.com/OliverACollins"
-          },
-          {
             "label": "ResearchGate",
             "url": "https://www.researchgate.net/profile/Oliver-Collins-6"
+          },
+          {
+            "label": "LinkedIn",
+            "url": "https://www.linkedin.com/in/oliver-collins/"
           }
         ],
         "interests": [
-          "Cognitive Psychology",
-          "Statistics",
-          "Playing guitar",
-          "Go-karting"
+          "Psychophysiology",
+          "Visual Illusions",
+          "Metascience"
         ],
         "achievements": [],
         "experience": [
           {
-            "degree": "BSc Psychology with Clinical Approaches",
+            "degree": "BSc in Psychology with Clinical Approaches with a Professional Placement Year",
             "institution": "University of Sussex",
-            "year": "",
+            "year": "2023-2027",
             "details": "",
             "logo": ""
           }
         ],
-        "keywords": [],
-        "hook": "",
+        "keywords": [
+          "psychophysiology",
+          "metascience",
+          "reality"
+        ],
+        "hook": "In his spare time, Oliver enjoys playing guitar, go-karting, and building LEGO!",
         "avatar": "people/oliver-collins/avatar.jpg"
       },
       {
         "folder": "roisin-sharma",
         "name": "Róisín Sharma",
         "category": "Research Assistant",
-        "email": "",
-        "details": "Research Assistant",
+        "email": "rs843@sussex.ac.uk",
+        "details": "Placement Student and Research Assistant",
         "website": "",
         "title": "",
         "affiliation": "University of Sussex",
@@ -940,7 +980,7 @@
           "Statistical Analysis",
           "Cognitive Science",
           "Learning languages",
-          "Chess"
+          "Chess (strictly informally!)"
         ],
         "achievements": [],
         "experience": [
@@ -952,8 +992,12 @@
             "logo": ""
           }
         ],
-        "keywords": [],
-        "hook": "",
+        "keywords": [
+          "perception",
+          "synaesthesia",
+          "psychometrics"
+        ],
+        "hook": "Let's treat each other well to mutually adjust our idiosyncratic perceptual constructions to be of a kinder reality!🪼",
         "avatar": "people/roisin-sharma/avatar.jpg"
       }
     ],

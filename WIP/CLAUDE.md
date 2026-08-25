@@ -246,14 +246,36 @@ background and below all content, touching nothing else.
 Travel is clamped to `|box.height - layer.height| / 2`, which covers both
 arrangements in use:
 
-- **shorter than its box** (People video) — the box is the section; the video is
-  sized to full width at its own aspect ratio so the whole frame stays visible,
-  moves within the letterbox gap and is never cropped. This was an explicit
-  requirement for that clip.
+- **shorter than its box** (People video) — the box is `.people-full__video`,
+  which is the section *minus its bottom padding*; the video is sized to full
+  width at its own aspect ratio so the whole frame stays visible, moves within
+  the letterbox gap and is never cropped. This was an explicit requirement for
+  that clip.
 - **taller than its box** (Information image) — the box is the banner wrapper,
   which starts at the tab line rather than the section top, so the section is
   the wrong thing to measure against. The image overhangs the wrapper by 14%
   and is cropped by it; it moves within that overhang.
+
+**`anchor: "bottom"` is where the swing sits inside the slack, and only the
+People video asks for it.** Centred — the default — is right for a layer taller
+than its box, where the overhang is symmetric. It is wrong for one shorter than
+its box: the video's feathered bottom edge then floats at whatever height the
+roster gives the section, and it finished *below* the Alumni bar, which reads as
+the backdrop outliving the roster. Anchored, full progress lands the layer's
+bottom edge exactly on the box's.
+
+**Both halves of that are needed and neither works alone.** The box has to stop
+at the section's bottom padding (`inset: 0 0 var(--people-pad-block) 0`) — the
+line the Alumni bar sits on — *and* the swing has to be anchored to it.
+Shortening the box alone only moves the float; anchoring alone lands the band on
+the section's edge, a padding's worth past the bar. `--people-pad-block` exists
+because `19-narrow.css` takes that padding to 3rem, and the box has to follow:
+that sheet sets **the token, not `padding`**, or the two drift apart with
+nothing to warn you.
+
+Consequently `initPeopleVideo` passes the *backdrop*, not the section, to
+`trackSectionParallax` — the custom property is written there and inherits down
+to the video.
 
 The scroll ratio is clamped to `[0, 1]`. `viewMargin` deliberately runs
 `update()` while the layer is still below the fold, where the raw ratio goes
@@ -341,6 +363,71 @@ that takes is worth knowing because it is the standard one:
   stylesheet: with no transition there is no `transitionend`, so the height
   would never be handed back.
 
+### An empty level in the roster is an open seat, not a missing row
+
+`people.js` (`OPEN_SEAT_STAGES`, `buildOpenSeat`), `.mlp-node--seat` in
+`css/10-people-mlp.css`, and the `[data-join-stage]` handler in
+`information/join.js`.
+
+A role with nobody in it used to be skipped, which is the tidy answer and the
+wrong one: the Postdoc row disappearing does not read as "there is an opening",
+it reads as a lab with no postdocs and no interest in one. The level renders
+anyway, holding one node that is nobody — the section's own no-avatar
+silhouette and "You?" — which leads to that level's own step of the Join rail.
+Six things:
+
+- **Only the levels the lab recruits for get a seat, and each names the
+  `#join-<stage>` it leads to.** `OPEN_SEAT_STAGES` is that map, keyed on the
+  manifest's own `category` values. A seat with nowhere to send anyone would be
+  an advert for a vacancy that cannot be applied for, so a role absent from the
+  map is still skipped when empty.
+- **A level with members in it never shows a seat.** The row already answers who
+  is here, and an open seat beside four faces reads as a fifth person whose
+  picture failed to load.
+- **The href is the level's own path** (`/join/postdoc/`, from `hrefForRoute`),
+  not `#sec-contact-full`. Middle-click, "copy link address" and a crawler then
+  get a real page about the thing the seat is offering. This is the same shape
+  as the zoom's Creations links — see "Shareable URLs".
+- **The plain click is caught in `join.js`, delegated from the document, and
+  that is not a style choice.** `data-contact-tab-target` would have been the
+  obvious attribute to reuse, and it cannot work here: script.js binds those
+  with one `querySelectorAll` at startup, and this node is built from a manifest
+  that lands long afterwards. The handler does what `applyRoute` does — click
+  the tab button, `select` the level, `revealSection` — because following the
+  link and pressing the control have to arrive at the same place. It writes
+  `join-<stage>` over the `contact-join` the tab click just wrote, for the
+  reason documented under "Shareable URLs".
+  It is also the general answer for "a control elsewhere on the page that wants
+  a particular Join level", where `data-contact-tab-target="join"` only ever
+  lands on the first one.
+- **The picture is `DEFAULT_AVATAR`, the section's existing no-avatar
+  placeholder.** A seat-only silhouette was drawn first — same greys, a dashed
+  edge, shorter shoulders — and every difference from this one turned out to be
+  decoration: a person with no picture and a person who is not here yet are the
+  same drawing, and the row's own emptiness is what says which. One asset, and
+  it is one the section already had to keep working.
+  It did get **darker** in the process (#e7e4da / #c9c4b6 → #dcd8cc / #a9a294,
+  1.36:1 between the two tones → 1.78:1). That constant had never been seen at
+  size — every member has an avatar, so the open seat is the only place it
+  renders — and at 156px in a row of photographs the old greys read as a blank
+  disc rather than as a person. Both tones had to move together: darkening the
+  silhouette alone makes it a mark on paper instead of a figure on a ground.
+- **The hover ring is the members' own**, with `SEAT_KEYWORDS`
+  ("Fellowships", "Join us", "Info") where a member has research topics —
+  `buildKeywordRing` unchanged, same place in the node, same CSS. That is what
+  stops the seat being the one node in the roster that does nothing when
+  pointed at. One set for every level rather than a set per level, because
+  Postdoc is the only empty one today; "Fellowships" is the word that would
+  have to change first if the Research Assistant row ever emptied.
+- **`.mlp-node--seat` is two properties, and that is the whole of its
+  styling.** An earlier pass gave the seat an italic accent-coloured name, an
+  avatar faded to 0.72 that came up on hover, and a focus ring of its own; all
+  of it was the seat insisting it was a special kind of node when the empty row
+  already says so. What is left undoes the anchor's underline and colour, which
+  is the one real difference — every other node is a `<div>`. Focus is the
+  browser's default ring, as it is everywhere else on this site. **Anything
+  added here should have to justify not being a member node.**
+
 ### Shareable URLs
 
 `shared/deep-link.js`, and `shared/routes.js` beside it.
@@ -390,6 +477,18 @@ Four things follow:
 - **`writeRoute` always clears the hash.** Arriving on `#post-x` and then
   pressing something else must not leave the old fragment stapled to the new
   path, or the URL names two things and the canonical agrees with neither.
+- **`hrefForRoute` is the read-only half of that, for a control in the page that
+  wants to be a real anchor.** Some in-page destinations are somewhere the
+  router already owns — the zoom's strand links pointing at the Creations tab —
+  and a `<button>` there costs middle-click, "copy link address" and anything
+  that follows links. This gives back the mounted URL the route lives at, so
+  the anchor's href is exactly what `writeRoute` would put in the address bar,
+  and it is mount-aware: a typed `/research/creations/` is a URL outside a
+  `/WIP/`-mounted copy. **The click still has to be handled in script**, or the
+  browser reloads the page to reach a tab. It returns "" for a route with no
+  path of its own — a caller should treat that as no link, since the `#route`
+  fallback that is right for the address bar is wrong in an href, where a bare
+  fragment resolves against `<base>`.
 - **`<base>` in `index.html` is mandatory, it is not only for the generated
   pages, and it must be `./` rather than `/`.** This one has already broken the
   site twice, in opposite directions.
@@ -855,6 +954,31 @@ locked on a narrow screen is still the overlay, not a stack of landmarks.
   is `.rz--rail`, not `.rz--dark`, because it outlives the dark at both ends;
   and it carries a `drop-shadow` now, because it is up while a bright sky is
   still behind it.
+- **A landmark's `text` may be one string or several, and several is a
+  different object.** An array becomes a paragraph each, and `buildLandmark`
+  marks the scene `.rz-scene--essay` when there is more than one. That class is
+  not decoration: **the stage is exactly 100vh and clips**, so the leading that
+  is right for a four-line caption overflows at twenty lines and the section
+  silently loses its last paragraph to `overflow: hidden`. Measured at
+  920 × 600 — the tightest two-column case, since below 900px the whole thing
+  stacks and scrolls — the question landmark came to 617px in a 600px stage.
+  The three steps are ordered by what they cost: a tighter copy gap and a
+  tighter leading (which a block this long wanted anyway) take it to 561, and
+  only then does a query at `(min-width: 901px) and (max-width: 1100px) and
+  (max-height: 700px)` touch the size of the type, bringing it to 503. Wide and
+  short is never the problem — the copy column grows with the viewport and the
+  block wraps to fewer lines, so 1120 × 600 comes to 474 untouched. The lower
+  bound of that query is the stacked fallback's own breakpoint, or a phone at
+  375 × 667 would match it and shrink its text where nothing can clip.
+- **`--held` gates the keyboard as well as the mouse now.** `paint()` sets
+  `scene.inert` to the opposite of held, next to the class it already toggles.
+  `pointer-events` had always kept the pointer out of a landmark that was not
+  facing the reader; without this the *tab order* still ran through every
+  widget in the whole dive whatever was on screen, which the cloud made
+  impossible to ignore — that one landmark contributes twenty-five links. It is
+  written **only inside `paint()`**, and that is what keeps the stacked fallback
+  safe: nothing is ever held there because `paint()` never runs, so a blanket
+  rule would have made the entire static page non-interactive.
 - **The figures are per-landmark and their state lives in `data-*`, but they
   all ask the same way.** `buildAsk()` is the strip under a figure — one line
   and one button, where the button turns the question into its answer and
@@ -868,74 +992,309 @@ locked on a narrow screen is still the overlay, not a stack of landmarks.
   "In construction" when pressed (`aria-disabled`, not `disabled`, so keyboard
   focus is not dropped on the floor). It carries no caption: the loop is the
   explanation.
-  The last station (`strands`) is the exception to all of it — four tiles of
-  other work, with no control at all, because it is a list rather than a
-  demonstration. Its glyphs are line art on a 32×32 grid in `currentColor`; a
-  new one drawn to a different weight will read as a different set. They are
-  now the only line-art marks on the site — the Creations tab used to carry a
-  second set to the same spec and no longer does. The tiles are `auto-fit`
-  with a `12rem` floor rather than a
-  fixed two columns, so the stacked fallback drops them to one without a
-  breakpoint that has to be kept in step with anything.
-  A strand may carry a `link`, which shows as "See example" (or its own
-  `linkLabel`) — the one thing a list can offer where every other landmark has
-  something to press. It is optional per tile, so the tiles are
-  `auto auto 1fr auto` rather than `align-content: start`: the 1fr row is what
-  pushes the links to the foot, so they line up across a row whether or not
-  every tile in it has one.
+  The **first** landmark is the exception at the other end: it has no figure at
+  all now. It carries the Lumière train film behind it and three paragraphs that
+  arrive one at a time, and the word cloud it used to hold went to the last
+  landmark. See "The opening landmark" below.
+  The **last** landmark is the network (see below), and it is where the one
+  "point at a label, get text" gesture in the dive now lives.
+  A node there may carry an `href` — an off-site paper, shown as "See example ↗"
+  — **or a `tab`, which is the same offer pointing at another tab of this
+  section**: Assessment and Open Science both point at Creations, because the
+  work those two name is the work that tab holds, and a paper somewhere else
+  would be a worse answer than the lab's own shelf of it. Three things about
+  that shape, which is the one to copy for any other in-page destination:
+  - **It is a real anchor at the tab's own path**, from `hrefForRoute` in
+    `deep-link.js` — so middle-click, "copy link address" and a crawler all get
+    the address the router itself would write, and it is mount-aware, where a
+    typed `/research/creations/` would be a URL outside a `/WIP/`-mounted copy.
+  - **The plain click is caught in `research.js`**, by a delegated listener on
+    the section root keyed to `a[data-research-tab]` — the same shape as
+    Information's `[data-contact-tab-target]`. Without it the browser reloads
+    the page to reach a tab. It skips modifier- and middle-clicks, so those
+    still open the page for real. It goes through `goToTab`, so a link pressed
+    mid-dive shuts the gate and scrolls the header back exactly as the
+    Creations FAB does.
+  - **The two kinds must not look alike.** `↗` is this site's mark for "leaves
+    the site" and has to keep meaning only that, so the internal one takes `→`
+    ("See our tools →") and no `target`/`rel`.
   The AI-Beliefs pair is two real paintings (see Assets) with the same badge
   over both; picking one only marks the reader's answer, and the button is what
   tells them. Nothing but the frame is laid out in a card — a verdict line
   under each painting used to sit there at opacity 0 while the question was
   still open, which is what put more space under the pair than over it.
-- **The Then-and-next prism is four faces on a square box, and the pairs are
-  adjacent.** `buildPrismFigure` + `PRISM_ARTS` in `reality-zoom.js`, `.rz-prism`
-  in the stylesheet. Phrenology → EEG and chronoscope → evidence accumulation:
-  the same question two centuries apart, twice. They sit at 0°/90° and
-  180°/270° rather than opposite each other, and that is the whole design —
-  opposite faces are half a turn apart and can never be seen in one movement, so
-  the pairing would have to be asserted in a caption; adjacent, the quarter-turn
-  *is* the sentence. **Reordering `faces` in `research-content.js` breaks it and
-  nothing will warn you.**
-  Four more things:
-  - **The turn is one CSS animation and nothing else**, paused while the
-    landmark is not `--held`, exactly as the cardiac loop next door is — and
-    scoped away from `.rz--static` for the same reason. Each face carries its
-    own label, so there is no caption to keep in step with a rotation, no
-    rotation state in script, and nothing to unwind when the reader scrubs
-    backwards.
-  - **`translateZ` must be half the *rendered* side, and `translateZ` has no
-    percentage basis** — that is the one thing about a CSS prism that cannot be
-    expressed in percentages. `--rz-prism-size` is `min(21rem, 100cqi)` against
-    a `container-type: inline-size` on `.rz-fig--prism`. Sized against the
-    viewport (`76vw`, the first attempt) the stage asked for 336px inside a
-    275px column, was clamped to the column, and the faces went on translating
-    by half of 336 — four planes meeting 30px outside their own edges.
-    `inline-size` and not `size`: the figure's height comes from its contents.
-  - **The stacked fallback lays the four faces out as a 2×2 grid**, pairs on the
-    same row, so the comparison is still made — by adjacency instead of by time.
-    Every 3D property has to be unwound explicitly (`position`, the face's own
-    `transform`, `preserve-3d`, the perspective); leaving any one of them turns
-    the grid back into four overlapping absolute boxes. And the stage needs a
-    **viewport-derived width there, because `100%` is not a definite one**: in
-    that branch `.rz-scene` is a single auto-sized track, so a percentage
-    resolves against an indefinite basis and the track collapses to the
-    drawings' own max-content — 86px columns, measured.
-  - **The four drawings are line art on a 200×200 grid**, at the same weight as
-    `.rz-strand__mark`'s 32×32 glyphs and in `currentColor`. Deliberately not
-    photographs: a phrenological bust, a Hipp chronoscope, an EEG cap and a
-    posterior over accumulated evidence have nothing in common photographically,
-    and the entire point of the figure is that they are one gesture. Anything
-    added has to be drawn to that weight or the set stops reading as a set.
-- **The map is a network, and its geometry is computed.** Reality at the hub,
-  six concepts on an ellipse around it, spokes to each and a faint ring between
-  neighbours — all derived from four numbers in `buildMapFigure`, with every
-  edge trimmed to the two circles it runs between and carrying its own length
-  as `--rz-edge-len` so the draw-on is a real dash. A label sits on the far
-  side of its node from the hub, which is not decoration: the ring passes
-  *between* nodes, so a label always hung underneath is crossed by it at both
-  of the vertical pairs. The three tones are the zoom's own — the body's red,
-  control's blue, the self's purple.
+- **The Metascience landmark's figure is a fanned deck of photographs, and it
+  ends on this lab.** `buildEraFigure` + `ERA_ARTS` in `reality-zoom.js`,
+  `.rz-era*` in the stylesheet, seven `stations` in `research-content.js`, in
+  this order: Bosch's stone of madness, Pinel, a phrenological chart, Charcot's
+  lesson, Galvani's frog-leg experiment, Wundt's laboratory, and a photograph of
+  the Reality Bending Lab recording EEG and physiology. They spread down and to
+  the right in about a second and come to rest as a pile.
+
+  **The order groups by what kind of reading each plate is, then turns.** The
+  first three are observations taken from the outside — two paintings of
+  madness treated as spectacle, then a chart of the skull read like a map —
+  and Charcot's lesson closes that group as its clinical peak, a live
+  demonstration for an audience. Galvani then turns the deck from watching the
+  mind to measuring the body's own electricity, which the last two cards carry
+  forward: an instrument recording it, then this lab still doing so. The
+  galvanoscope sits out of date order for that reason — it is 1791, a century
+  before the Salpêtrière lesson beside it — because the argument is the group,
+  not the year.
+  **The last card is the argument.** The station is not "old instruments are
+  interesting"; it is the old site's Metascience theme, whose three parts
+  (history and philosophy, data analysis and statistics, methods and tools) are
+  the landmark's three tags. A line of instruments that each looked definitive
+  and each turned out to be a stage, ending on our own bench, is the only
+  honest place to put ourselves in it. **Nothing may be appended after `lab`**
+  without changing what the run says.
+  Seven things:
+  - **The stack is the point, not the sequence.** Two earlier versions showed one
+    picture at a time — a walkable timeline with a dot axis, then a deck turning
+    on a spindle — and both spent nearly all of their life showing a single
+    image, so the *arc* had to be remembered rather than seen. Fanned, all six
+    are on screen at once and the claim is the picture: six overlapping frames,
+    oldest at the back, ours in front. The deal is what says which order they
+    came in.
+  - **Peeling is what earns the legend back.** Every card keeps a sliver showing,
+    and pointing at one lifts everything in front of it away so it can be seen
+    whole. With the pictures now permanently overlapping, a reader who wants to
+    know what the half-hidden painting behind the lab photograph *is* has a way
+    to ask and an answer that appears only when asked — which is different from
+    the caption-on-every-card the timeline had, and which was four labels for one
+    image.
+    The peel is `data-peeled` on the cards *after* the focused one, never
+    anything on the focused card itself: **a reveal that also moved the thing
+    being revealed is the one way to make this gesture feel unreliable.**
+  - **The legend's height is reserved and its two lines are optional.** Title on
+    one line, `artist, year` on the next, filled for whatever is being pointed at
+    and otherwise describing the card on top. **Two cards genuinely have no
+    attribution** — a phrenological chart and a catalogue engraving of a
+    chronoscope are anonymous works, and inventing one for either would be worse
+    than a short line. The year is the *picture's*, not the era's: Robert-Fleury
+    painted 1795 in 1876, and a date under a painting is read as that painting's
+    date. That distinction is why the era years the timeline stamped on the frame
+    are gone rather than reused.
+  - **Every card is a real `<button>`.** It peels the stack back to itself and
+    names its own painting, which is a control — so it carries its legend as an
+    `aria-label`. Six tab stops, and they cost nothing elsewhere: `paint()` marks
+    every scene that is not holding the screen `inert`. Stacking is
+    `z-index: var(--rz-i)`, and that is also the hit-testing — a card is covered
+    by the ones dealt after it, so the only part that can take a pointer is the
+    sliver still showing, which is exactly the edge the reader aims at. Nothing
+    computes hit areas.
+  - **The three fan numbers are one derivation and the card count is in it.**
+    `--rz-card` + 5 × `--rz-dx` = 100% of the stage's width; vertically the pile
+    reaches 98.6% of its height. Measured at 1280: the last card's right edge
+    lands at 341.0 in a 341.1 box. **Changing the number of cards means
+    re-deriving all three** — at seven, the same steps overflow. The offsets are
+    per-card *transform* percentages, so they resolve against the card's own box
+    and the maths holds at every figure size.
+  - **The deal is a CSS stagger, not a JS timer.** One class on the deck, and the
+    per-card delay is `--rz-i` times a step. A background tab clamps timers to
+    roughly 1Hz, which would turn a one-second deal into six seconds of cards
+    arriving one at a time; a transition delay is not a timer. The ticker that
+    remains only arms the pictures and watches `--held` — dealing on hold and
+    clearing on release is what makes the run play again on a second visit.
+  - **The stacked branch needs its own layout, and `opacity: 1` is the
+    load-bearing line.** Nothing is ever `--held` there, so the deal never fires
+    — without the reset every card would sit at its undealt `opacity: 0` and the
+    figure would be blank. `.rz--static .rz-era` lays them out as a flat
+    `auto-fit` contact sheet instead, and **the cards are still buttons there**,
+    so a tap names a picture: that is how a phone gets the attributions the fan
+    gives a mouse. `transition: none` is required too, or a resize across 900px
+    animates six cards out of the fan.
+  - **The drawings are now a fallback nothing takes.** Every station has a
+    picture, so `ERA_ARTS` renders only if one is ever missing — kept because a
+    station added without an `img` has to render as *something*, and a grey box
+    with a filename in it cannot be told from a broken image. **Each viewBox
+    origin is offset so the drawing's own `getBBox()` centre lands on
+    (100, 100)**; measured, they were up to 14 units out.
+- **The last landmark is the word cloud, and it absorbed the four tiles that
+  used to live there.** `buildCloudFigure` in `reality-zoom.js`, `.rz-cloud*` in
+  the stylesheet, twenty-six words in `research-content.js`. **Pointing at a word
+  rewrites the landmark's own heading and paragraph** and offers the work behind
+  it — a citation that leaves the site, or "See our tools →" into Creations.
+  It has moved and changed shape twice, and the reasons are worth keeping
+  because both were nearly the opposite call. The cloud began in the *opening*
+  landmark and lost its place there to the Lumière film. It arrived here as a
+  nine-node network, on the argument that the last thing the dive says should be
+  legible rather than impressive. That was right about legibility and wrong about
+  **count**: nine nodes on a ring is all a ring will hold, and the point of this
+  landmark is how far the question reaches — which is exactly what twenty-six
+  words can show and nine cannot.
+  Six things:
+  - **The tiles were merged in, not discarded.** Three of the four — Deep Self,
+    Neuroaesthetics, Open Science — were *already* words in the cloud, so their
+    paragraphs became `about` on the word that existed rather than a second entry
+    saying the same thing. Only Assessment needed a word of its own. Check that
+    before adding anything here: the cloud's vocabulary is wide, and the odds are
+    the thing being added is already in it.
+  - **A word can carry three optional things and they compose.** `about` is
+    prose; `paper` is `{title, cite, doi}`; `tab` points at another tab of this
+    section. The paragraph shows `about` when there is one and the paper's
+    *title* when there is not — most of the vocabulary carries a publication
+    rather than a paragraph, and **writing twenty-six blurbs to fill that line
+    would be inventing lab copy**, where the title of the work is the honest
+    answer to "what does this word mean here". The link prefers the paper.
+  - **A word with none of the three is drawn but not pointable**, which is the
+    right answer when nothing in the list really covers it — a wrong paper is
+    worse than none.
+  - **Both swapped lines reserve their tallest state, and a `min-height` cannot
+    do it.** `.rz-scene__copy` is `align-content: center`, so a line that changed
+    height would not merely resize, it would move the whole column under the
+    pointer mid-gesture. Each keeps a hidden ghost of its longest candidate in
+    the same grid cell (`.rz-swap`), which is the only form that works at *every*
+    column width. The heading's ghost is **computed** — the longest word in the
+    cloud — so a new word longer than "Phenomenological Control" widens the
+    reservation on its own. Measured across all twenty-six at 1280 and 920: the
+    heading, the paragraph, the scene and the heading's own top are each a single
+    value.
+  - **The heading's cell is two lines and most headings are one**, so the live
+    line is `align-self: center` — the slack splits above and below instead of
+    sitting underneath as a hole. It has to be `align-self` on the item: grid
+    items stretch by default, and `align-content` on the container does nothing
+    when the track is exactly as tall as its tallest item. The paragraph is
+    deliberately not centred; prose starts at the top.
+  - **The link is a fixed box, not `min-height: 1lh`.** The `↗` and `→` fall back
+    to a font with taller metrics than the label's, so the line box grew by 1.2px
+    the moment the link had text — measured — and the centred column passed that
+    into the heading. `height: 1.5em` + `overflow: hidden` pins it. At rest it
+    has no `href`, so it is neither followable nor a tab stop.
+  - **A word with a `tab` is a real anchor at that tab's path**, from
+    `hrefForRoute`, carrying `data-research-tab` so research.js's delegated
+    listener switches tab instead of the browser reloading the page. A word with
+    neither paper nor tab but with `about` is still pointable, and gets a `<g
+    role="button" tabindex="0">` rather than a dead `<a>` — an anchor with no
+    `href` is not focusable and announces itself as a link to nowhere.
+- **The opening landmark has no figure: it has a film behind it — and the film
+  is an animated image, not a `<video>`.**
+  `background: { image, still }` on a landmark in `research-content.js`, built by
+  `buildLandmark` into a `.rz-scene__film` layer.
+  The Lumière brothers' *L'Arrivée d'un train* runs behind three paragraphs that
+  arrive one at a time — the 1896 audience that could not believe the train was
+  not real, and then the same edge of reality today. It replaced the word cloud,
+  which moved to the last landmark.
+  Five things:
+  - **It stopped being a `<video>` because a `<video>` could not be made to
+    show up.** It was two encodes, `preload="none"`, a `--rz-mode` gate, a
+    `load()` before `play()`, a silent `anullsrc` track muxed in against
+    Chrome's power-pause, a `pause` listener fighting it anyway, and a logged
+    `play()` rejection because the console was the only place a failure could
+    be seen. Every piece of that was correct and measured, and the film was
+    still reported **twice** as one that never played. That is the lesson worth
+    keeping: a `<video>` has a queue of independent ways to end up sitting on
+    one dark frame — an autoplay policy that refuses `play()`, the power-pause,
+    a suspended `preload`, a mode gate — and **none of them is reachable or
+    visible from CSS**, so the symptom is identical in all four cases and
+    identical to a genuine bug. An animated image has none of them. `armSceneFilm`
+    is gone, and with it every one of those notes.
+  - **Animated WebP, not GIF, and the difference is not marginal.** 687 KB at
+    the source's full 540 × 360 and 15fps, against **3 MB** for a GIF that had
+    to fall to 360px, 10fps and 32 colours to get even that far — 1896 film
+    grain changes every pixel every frame, which is exactly what a GIF's
+    frame-delta compression cannot do anything with. Denoising first
+    (`hqdn3d`) helps and does not close the gap. Support is Chrome 32 /
+    Firefox 65 / Safari 14, wider than several things this page already needs.
+  - **The clip is cut to the arrival, not the whole 51.7s.** t = 3.8 → 13.6:
+    the title card ends, the platform is empty, the train appears far off and
+    grows until the locomotive fills the frame. The rest of the reel is people
+    on a platform, and it was what a reader arriving mid-loop used to get.
+    **Recutting it changes the exposure, and the dimming is measured against
+    it.** The band the copy sits over runs a mean of 84 and a peak of 221 in the
+    arrival, against 67 and 171 in the full reel — bright sky and bright
+    platform, where the rest is a crowd against dark carriages. Carrying the
+    old dimming over put the worst patch at 128 of 255, i.e. **3.97:1** for
+    white body copy, under AA on the one landmark whose copy has nothing
+    between it and the picture. Re-measure `.rz-scene__video`'s two ramps
+    against any new cut.
+  - **The withholding survives and now costs nothing.** A browser does not
+    fetch a background image inside a `display: none` subtree, and `.rz-scenes`
+    is `display: none` until the gate opens — so the discipline the old
+    `preload`/`data-src` dance existed to enforce is a property of the layout.
+    **Verified: 0 requests before the gate at 1280**, one 687 KB request after.
+  - **The stacked branch gets the still, and that is a gain, not a fallback.**
+    13 KB, chosen in the stylesheet by the same media query that sets
+    `--rz-mode: stack`, so the mode is still decided in one place and script
+    does not read it back at all. It has to be **that** query and not the
+    `prefers-reduced-motion` one beside it — put there first, a 375px phone
+    with animation switched on still took the loop. And a phone used to get
+    **no film of any kind**, because the old gate was `--rz-mode` in script:
+    this landmark opened on a phone with nothing but its paragraphs.
+  - **Stacked, `.rz-scene--film` has to take `position: relative` back.** The
+    film box is absolute, and `.rz-scene` gives up its `transform` and `filter`
+    in that branch — so both containing blocks go with them and the box climbs
+    to `.rz-track`. Measured on a 375px phone: the picture sat at y=2406 while
+    its own landmark was at y=379, behind whichever station happened to be half
+    way down the stack.
+  - **The two paths are declared in the content module and resolved against
+    `document.baseURI` in script.** A `url()` in `css/` resolves against that
+    folder — and so, it turns out, does a `url()` sitting in a *custom
+    property* that a rule in `css/` consumes, even when the property itself is
+    declared inline on the element. First attempt produced
+    `/css/research/img/…` and a 404. `new URL(path, document.baseURI)` is what
+    `<base>` would have done for an `<img src>`, and keeps it mount-aware.
+  - **It is contained to the scene's box and feathered, not bled across the
+    stage**, and that is about the source: at the box's 928px the 540px clip is
+    a 1.72× upscale, which archival footage carries once it is desaturated and
+    feathered, where stage-wide is ~3.5× and is mush.
+    **The box is capped three ways — `min(58rem, 92vw, 132vh)` — and the third
+    is the one nothing would tell you about.** It keeps a 3:2 and the stage is
+    exactly 100vh and clips, so a cap on width alone grows past the stage as
+    soon as the window is wide and short; `132vh` is that bound solved for the
+    ratio (height = width / 1.5, so width ≤ 1.32 × vh holds the box inside 88%
+    of the stage). Measured: 1280 × 720 takes the 58rem at 928 × 619, and
+    1280 × 600 takes the vh cap instead at 792 × 528, clear by 36px at each end.
+    The feathering is exactly why an overrun would not show. The radial mask is what stops a contained video reading as a boxed-in
+    clip — with no visible rectangle it reads as the dark having a picture in it.
+    It also sidesteps the full-bleed trap this file documents elsewhere: no
+    `calc(-50vw + 50%)`, so the scene's asymmetric `padding-right` for the rail
+    cannot make it fall short.
+  - **The paragraph stagger counts `data-slot`, set per paragraph by
+    `buildLandmark`, never `:nth-of-type`.** The copy column also holds a `<p>`
+    eyebrow, so type counting is off by one — it put the delays on the wrong
+    paragraphs and gave the last one none at all. And `.rz--static` has to hand
+    the text back: nothing is ever `--held` there, so without the reset the
+    opening landmark is four invisible paragraphs on a phone.
+  - **A paragraph may ask for a beat before it, and that costs a slot.** An
+    entry in `text` is a plain string or `{ text, pause: true }`; the fourth
+    one here is paused, because the line before it ends on an ellipsis and a
+    paragraph arriving at the standard gap and the standard cadence closes that
+    off instead of letting it hang. A pause is **both** halves or it is
+    neither: `.rz-scene__text--beat` opens 1.6rem above the paragraph, and the
+    stagger skips a slot so the reveal holds a matching step of dead air — the
+    gap on its own reads as a hole in the layout rather than as a pause.
+    Two things nothing warns you about. **`FILM_TEXT_STEP` has to be
+    re-derived** when a pause is added, since the last paragraph now ends at
+    `START + (slots + 1)·STEP` and that has to clear `EXIT_START`; four
+    paragraphs and one pause put it at 0.115, ending on 0.675 against 0.74. And
+    **`.rz-scene__text--beat` has to sit after `.rz-scene__text`** in the
+    sheet, not up with the `--film` rules: both selectors are one class, so
+    `margin: 0` wins on source order from anywhere earlier and silently zeroes
+    the gap.
+  - **The film is dimmed only once there is text to protect, and a single flat
+    value is what made it look broken.** Four paragraphs sit directly on the
+    clip with no scrim between them, so while they are up it has to stay under
+    the type — but the value the type wants is far below the value a film
+    wants. Measured through the filter chain and composited over the stage's
+    own `#06070b`, a flat dimming put a mean frame at **26 of 255** and the
+    brightest patch (the station roof) at 67: loaded, decoded, playing, and to
+    the eye simply not there, which is how it was reported. An earlier pass had
+    already tried to fix it by moving the one number from 0.3 to 0.5.
+    `--rz-film-solo` is the beat before the first paragraph arrives, written
+    every scroll frame by `paint()` off the same `local` as everything else, so
+    it scrubs both ways: at 1 the film is just the picture, and it settles as
+    that paragraph fades in. Composited, mean **63 → 39**, brightest patch
+    **168 → 101**.
+    **The settled floor is brighter than the old flat value and the copy is
+    more readable, not less** — the two moved together. `.rz-scene--film
+    .rz-scene__text` gives up `--rz-ink-dim` (62% white) for solid white plus a
+    shadow, which is worth more than the brighter film costs: **15:1** on a
+    mean frame against the old 7.3:1, and **5.9:1** over the brightest patch
+    against the old 5.0:1. Re-measure the pair whenever either moves; the worst
+    patch is a small highlight and the shadow is what carries it. Note the old
+    comment in the sheet claimed 9.2:1 by computing against `#fff` when the
+    copy was 62% white — **parse the colour that is actually rendering.**
 - **The Body & Emotions loop is a whole cardiac cycle in CSS**, on `--rz-cycle`
   and on nothing else, so the ejection, the baroreceptor burst and the ring's
   systolic arc cannot drift apart; the percentages are documented over the
@@ -1006,27 +1365,62 @@ it was written.
 
 **A row with a painting behind it is a dark plate; a row without one is light,
 and `group.image` is the whole switch** (`rc-plate--art` / `rc-plate--light`).
-Inventions has the painting — Copernicus at his instruments, an astronomer
-working out a new arrangement of the world — because a list of ideas is a page
-of text and the picture is what makes it a thing to look at. Dark also because
-the tab next door is a black stage, and a page of white cards on the other side
-of the tab bar reads as a different site.
+**Both rows are light now and nothing sets `image`**, so the dark tone is a
+path the code still supports and nothing takes. It went in two steps, and both
+are the same lesson from opposite ends:
 
-**Tools is the light one, and it did not start that way.** It carried Wright of
-Derby's orrery lecture: a room of people gathered round an instrument being
-*used*, which is what a tool is for. That reasoning was sound about the painting
-and wrong about the row — once every tool arrived as a card with a picture of
-its own, the painting was a twelfth picture competing with the eleven it was
-supposed to be holding. **The light plate is not a plate at all** — no
-background, no shadow, nothing but the section's own cream behind the cards. A
-tinted box (`#efece4`, a shade deeper than the section's `#f5f4ef`) was tried
-first and read as a tray under the row: one more edge to explain, when eleven
-cards have edges of their own and their shadows are what lift them off the page.
-It keeps the plate's padding, so its head and its cards line up with the dark
-plate's above, and its label and lede take dark ink and drop the `text-shadow`,
-which exists for text over a picture.
+- **Tools went light first.** It carried Wright of Derby's orrery lecture: a
+  room of people gathered round an instrument being *used*, which is what a
+  tool is for. That reasoning was sound about the painting and wrong about the
+  row — once every tool arrived as a card with a picture of its own, the
+  painting was a twelfth picture competing with the eleven it was supposed to
+  be holding.
+- **Inventions followed, and the argument for its painting is worth keeping
+  because it was a good one.** It had Copernicus at his instruments — an
+  astronomer working out a new arrangement of the world — on the grounds that a
+  list of ideas is a page of text and the picture is what makes it a thing to
+  look at; dark also because the tab next door is a black stage and a page of
+  white cards on the other side of the tab bar reads as a different site. The
+  second half was right about the tab bar and wrong about the tab: once Tools
+  was cream, what read as two different pages was a black band sitting on a
+  cream one, inside one tab. Consistency across the tab beat contrast with the
+  tab beside it.
 
-Four things about the plate that has one:
+**The light plate is not a plate at all** — no background, no shadow, nothing
+but the section's own cream. A tinted box (`#efece4`, a shade deeper than the
+section's `#f5f4ef`) was tried first and read as a tray under the row: one more
+edge to explain, when the cards have edges of their own and their shadows are
+what lift them off the page. It keeps the plate's padding, so the two rows'
+heads line up.
+
+**Every `rc-` rule below the head is written for the dark plate, and
+`--light` has to turn each one over.** That is the trap the second step walked
+into: `--light` had only ever dressed a label and a lede, because the only
+light row held cards and a card brings its own white face. The moment it held
+the *list*, every line was white on cream — invisible, and nothing warns you.
+So `--light` now also carries the hairline, the hover, the focus ring, the
+star, the body, the name, the dash and the reference link. **Anything added to
+a plate needs both tones.**
+
+Two of those are not just the dark value with its `text-shadow` dropped:
+
+- **The gold star had to come down** (`#e8b73f` → `#a8761a`). Gold is the mark
+  that reads against a night painting and a smudge on cream. It stays gold
+  rather than becoming the row's blue for the reason it was gold in the first
+  place: it marks an idea as the lab's own rather than restating the plate's
+  colour.
+- **The reference link mixes toward the ink, not toward white**
+  (`color-mix(… 62%, #10151d)` against the dark tone's `50%, #fff`) — the same
+  move `--res-ink` makes for this section's blue, because `#5599ff` is a light
+  blue meant to be seen against black and is barely there as small text on
+  cream.
+
+Measured on cream: name and label 13.6:1, body 6.7:1, reference 5.2:1, lede
+4.5:1, star 3.6:1 as a graphical mark. The dash is 1.9:1 and deliberately so —
+it is punctuation between the name and the idea, and it is exactly the fraction
+of the ink that the dark tone makes of white.
+
+Four things about the dark tone, for whoever turns it back on:
 
 - The painting is an **`<img>`, not a CSS background**. The path is written from
   the site root in the content module, where a `url()` in `css/` would resolve
@@ -1037,12 +1431,12 @@ Four things about the plate that has one:
   child **without a z-index anywhere on the content**. The scrim is diagonal
   rather than flat, so one band of the painting stays lighter — a flat wash
   leaves a picture nobody can tell is a picture.
-- **The scrim is set by measurement, not by eye.** The first pass (art at 0.5,
+- **The scrim was set by measurement, not by eye.** The first pass (art at 0.5,
   scrim 0.95 / 0.74 / 0.92) was dark enough that neither painting could be made
-  out at all. It is now 0.85 and 0.74 / 0.42 / 0.68, which puts the composite
+  out at all. It is 0.85 and 0.74 / 0.42 / 0.68, which puts the composite
   at a mean luminance of 22–28 of 255 and a worst patch of 105 — white text
   keeps 18:1 on average and 5.5:1 against the brightest thing in either
-  picture, which is the glowing chart in the Copernicus. Going one step lighter
+  picture, which was the glowing chart in the Copernicus. Going one step lighter
   again drops that worst case to 3.6:1, below AA, for four points of mean.
   That is the trade, and the way to re-check it after changing a picture is to
   composite it onto a canvas and take the luminance — the same trick the
@@ -1156,7 +1550,8 @@ A few more things that look incidental and are not:
   tool's name on its card, the reference at the end of an invention.
 - **One mark for the whole tab, and it is a text star — on the Inventions side
   only.** This carried nine hand-drawn line-art glyphs, one per item, to the
-  same 32×32 spec as the zoom's `.rz-strand__mark`. At bullet size a drawing is
+  same 32×32 spec the zoom's strand tiles used before the map replaced them (the
+  zoom's surviving drawings are `ERA_ARTS`). At bullet size a drawing is
   a smudge that has to be squinted at, and there was nothing to work out from
   any of them; the star says "one of ours" and gets out of the way. The tools
   carried one too and dropped it when the picture became the top of the card —
@@ -1744,6 +2139,62 @@ owns it** — it swaps a per-level photograph through it on every press. An
 ambient cycle would be fighting that machinery for the same element, and on the
 Join tab the reader's chosen level would be interrupted by a timer.
 
+### Information: the Services tab's photograph is the surface
+
+The other two tabs parallax the backdrop as a banner; Services runs it the full
+height of the tab and holds it still while the content scrolls over it. Five
+things:
+
+- **`position: sticky` and nothing else — no script, no transform.** That is not
+  tidiness, it is the whole point. This was first built as a scroll handler
+  writing a translate, and it visibly dragged: the content is moved by the
+  compositor and the picture by JS, so the picture arrives a frame late and the
+  gap opens up at speed. Sticky is resolved during layout, by the same pass that
+  places everything else, so the two can never disagree. **Do not reintroduce a
+  scroll handler here.**
+- **`background-attachment: fixed` cannot do it and neither can `position:
+  fixed`.** The first resolves against the window, and the window is not what
+  scrolls here — `#main-page` is — and iOS ignores it outright. The second
+  leaves the box behind and paints over the sections either side.
+- **The box has to give up `overflow: hidden`, and that is a trap worth
+  knowing.** A sticky child sticks to its *nearest* scroll container, and
+  `overflow: hidden` makes one — which never scrolls, so the picture would sit
+  at the top of the box and never move. `clip-path: inset(0)` cuts it to the
+  same rectangle without claiming to be scrollable. Nothing else is needed to
+  keep the picture inside the tab: a sticky offset is bounded by its containing
+  block, so it stops at the foot of the box on its own.
+- **The crossfade partner is `display: none` here.** It is the Join tab's
+  machinery; sticky puts it in flow, where it would be a second viewport-tall
+  box under the first rather than a layer over it.
+- **The scrim is flat, dark, and over the whole tab.** It is what makes the
+  honeycomb readable — the cards are opaque cream, so the darker the field the
+  more they read as things on a surface — and it is flat because the picture no
+  longer ends anywhere, so a scrim that faded would just put back the seam this
+  replaced.
+
+**The scrim's 0.62 and the filter chips' dressing are one measurement, in two
+files.** The chips are the only thing on the tab with no surface of their own —
+the hero is a frosted sheet, the cards are paper — so `17-services.css` gives
+them their own `rgba(12, 12, 14, 0.55)` pill and takes their ink from the
+accent *lifted* 20% toward white, rather than from `--svc-ink`, which is that
+hue taken **down** to be read on cream and is invisible on a dark field. Same
+arrangement and same reason as the Creations cards' kind label over their
+scrim. Measured against the brightest patch of the collage the three chips land
+at 5.3–7.0:1, and against the darkest at 8.7–11.4:1; the hero's sheet stays at
+225/255 in its worst case, 13.5:1 for the headline. Whichever of the three
+numbers moves — scrim, pill, lift — re-measure, because they only work
+together, and **parse `color-mix` output properly when you do**: it comes back
+as `color(srgb 1 0.68 0.36)`, and reading those floats as 0–255 reports every
+chip as failing.
+
+There is deliberately **no reduced-motion branch**. A sticky background is
+layout, not animation — nothing moves, the page moves past it — and the
+alternative was two appearances for one tab, which would have meant two
+sets of chip colours to keep in step.
+
+The banner this replaced took its height from `--svc-banner-height`, measured
+by a `sizeBanner()` in `services.js`. Both are gone; nothing reads that
+property now.
 
 `.contact-why` in `index.html`, styled in `css/15-contact.css`. A second glass
 block under the address panel on the Contact tab, carried over near-verbatim
@@ -1843,13 +2294,17 @@ real paths instead of hashes, which is a separate job (see below).
 
 Four things worth knowing:
 
-- **`https://realitybending.github.io/` is written in four places** — the
-  canonical and `og:*` in `index.html`, `sitemap.xml`, `robots.txt`, and
-  `SITE_URL` in `page-meta.js`. They are four copies of one fact and nothing
-  keeps them in step. A CNAME or a different deploy path means changing all
-  four. `BASE_TITLE` in `page-meta.js` is a fifth copy, of `<title>`: if those
-  two drift the tab label changes when the reader reaches the hero, which reads
-  as a flicker.
+- **`https://realitybending.github.io/` is written in five places** — the
+  canonical and `og:*` in `index.html`, `SITE_URL` in `generate_pages.py`,
+  `SITE_URL` in `page-meta.js`, the `Sitemap:` line in `robots.txt`, and the
+  prefix `tools/build_legacy_map.py` strips off the old sitemap's URLs. They
+  are five copies of one fact and nothing keeps them in step. A CNAME or a
+  different deploy path means changing all five.
+  **`sitemap.xml` is not one of them**, and used to be listed here as one: it
+  is generated by `generate_pages.py` and gitignored, so it follows `SITE_URL`
+  automatically — as does `llms.txt`. `BASE_TITLE` in `page-meta.js` is a
+  separate copy, of `<title>`: if those two drift the tab label changes when
+  the reader reaches the hero, which reads as a flicker.
 - **`onRouteSettled` is a second channel next to `onRoute`, and the split is
   deliberate.** `onRoute` fires only when the *reader* moved, which is what lets
   `writeRoute` be a `replaceState` that no handler can re-enter (see "Shareable
@@ -2016,9 +2471,14 @@ spacing.
 | `img/favicon.png`, `img/apple-touch-icon.png` | **used** — 48px / 180px, 1.5 and 5.9 KB. `lab_logo_black.png` cropped to `getbbox()`, then its lower 16% dropped to lose the Sussex wordmark, on the site's cream so the mark survives a dark tab bar |
 | `img/brain.glb` | **used** — the hero's 3D brain, 5.7 MB. Repacked from Sketchfab's 13.2 MB (see above); CC-BY-4.0, dgallichan |
 | `img/magritte_falsemirror.jpg` | **used** — the eye the Research zoom dives into (2000×1345; the pupil constants are measured off it) |
+| `research/img/train_ciotat_loop.webp` | **used** — the Lumière brothers' *L'Arrivée d'un train*, behind the zoom's opening landmark. **Animated WebP**, 687 KB / 540 × 360 / 143 frames at 15fps, cut to the arrival alone (t = 3.8 → 13.6 of the source). It is a `background-image`, not a `<video>` — see "The opening landmark" for why that was the fix rather than a preference. Regenerate from `train_ciotat.webm` with `-vf "fps=15,scale=540:-1:flags=lanczos,hqdn3d=5:5:8:8" -c:v libwebp_anim -q:v 50 -compression_level 6 -loop 0 -an`. **Do not swap it for a GIF**: the same cut at 360px, 10fps and 32 colours is 3 MB, because film grain defeats frame-delta compression. Not fetched before the gate opens, and never fetched at all below 900px or under reduced motion — measured, 0 requests |
+| `research/img/train_ciotat_still.jpg` | **used** — one frame of the same clip (t = 11.2, the locomotive in frame), 13 KB / 540 × 360. What the stacked branch and reduced motion get in place of the loop, chosen in the stylesheet by the query that sets `--rz-mode: stack`. That branch used to get no film at all |
+| `research/img/train_ciotat.webm`, `.mp4` | **source only** — 2.1 MB VP9/Opus and 1.35 MB H.264/AAC, both 540 × 360 / 51.7s, the full reel. Nothing on the page requests either any more; they are what the WebP and the still are cut from, and the 5.33 MB VP8 original is beside them as a gitignored `train_ciotat_full.webm`. **Untracked, so deleting them is not recoverable from git** — by this file's own rule they should either go or become `_full`-suffixed and gitignored, and that is a call for whoever next touches this |
+| `research/img/era-galvanoscope.jpg` | **used** — Galvani's bimetallic-arc frog-leg experiment, the deck's fifth card. An anonymous 19th-century textbook plate on cream paper, so it needed the same dark remap as `era-wundt` once did: mean luminance **222.8 → 102.5**, into the paintings' 72–111 band. Cropped from a portrait `_full` (864 × 1024) to 4:3 at 900 × 675, dropping the French figure caption, which is illegible at card size anyway |
 | `research/img/art_fake.jpg` | **used** — the AI-Beliefs pair, left card. 737×900, ~95 KB |
 | `research/img/art_real.jpg` | **used** — same pair, right card. 717×900, ~125 KB |
-| `research/img/copernicus.jpg` | **used** — the Inventions plate. 1600×1151, 220 KB, from a 4000×2877 / 2.3 MB original |
+| `research/img/era-*.jpg` | **used** — all seven cards of the Metascience deck, ~810 KB between them, in deck order: `era-folly` (Bosch), `era-pinel` (Robert-Fleury), `era-phrenology`, `era-charcot` (Brouillet), `era-galvanoscope`, `era-wundt`, `era-lab`. All 900 × 675 / q82 except `era-wundt`, which is 684 × 513 — the whole of what its source had, and **never upscale**: the budget is a ceiling. Each is beside its own gitignored `_full`, cropped to *exactly* 4:3 so nothing is squeezed — **and the card's ratio is 4/3 because of that**, not the other way round: changing it would `cover` these and quietly cut seven chosen crops. `era-wundt` is the Leipzig laboratory with Wundt in it, which replaced a trade engraving of a bare chronoscope — the room was always what the station claimed. `era-lab` is the lab's own multimodal session, the one card that is not historical and the one the run ends on, which is the point of it. Every card has a picture, so the `ERA_ARTS` drawings are a fallback nothing takes — see below |
+| `research/img/copernicus.jpg` | **unused** — was the Inventions plate until that row went light; nothing requests it now. 1600×1151, 220 KB, and its 4000×2877 / 2.3 MB original is beside it as a gitignored `_full`, so the web copy is regenerable and safe to delete. Still committed, which is the one thing here that breaks the "nothing no page requests is in the repository" rule |
 | `publications/*/*.pdf` | **used** — 40 papers, 58.9 MB, copied byte for byte (no ghostscript/qpdf/pikepdf here). Fetched only when a reader presses the badge, so this is clone weight, not page weight |
 | `publications/*/featured.{jpg,png}` | **used** — 41 figures, 2.3 MB. 39 imported from the old site's `content/publication/*/featured.*` by `tools/import_publication_assets.py`, 19.9 MB → 2.1 MB. See the recipe below |
 | `research/img/*_full.jpg`, `*_full.png` | source only — gitignored, kept on disk so a web copy can be regenerated. Every `logo-*.png` has one |
@@ -2061,6 +2521,7 @@ at, doubled for a 2× screen — not to whatever came off the camera:
 | publication figure | 1000px | a 13rem column |
 | collaborator | 400px | a small round portrait |
 | tool logo | short side ~1000px | a 233px Creations card — generous on purpose, these are the pictures the row is made of |
+| timeline plate | 900px wide | a 416px 4:3 frame at its widest, cropped to that ratio on the way in |
 
 This is written down because the site drifted a very long way from it while
 these notes were being careful about news images. Measured on a cold load the
@@ -2126,7 +2587,10 @@ renders. Decimation below 377k triangles is the only genuinely lossy option and
 needs trimesh or open3d.
 
 Large originals are not committed, and `.gitignore` is what keeps it that way:
-`*_full.jpg`, `*_full.png` and `WIP/img/Intro.mp4`. They stay on disk so a
+`*_full.jpg`, `*_full.png`, `*_full.webp` and `WIP/img/Intro.mp4`. **A source
+arrives in whatever format it arrives in** — the timeline's plates came as a
+`.webp` and a `.png` among the jpegs, and the `_full` rule has to cover the
+extension or a 10 MB original walks into the repository. They stay on disk so a
 derivative can be regenerated — `encode_intro_bg.sh` still takes its source as
 `$1` — but nothing that no page requests is in the repository. This had drifted:
 Intro.mp4 (54 MB) and every `*_full.jpg` were tracked, ~62 MB every clone paid
@@ -2177,7 +2641,13 @@ reference a 3 MB PNG.
   largest here is 159 KB. All 39 match now — `nicolas2017centenaire` did not
   until its DOI was added to `EXTRA_DOIS`, which is what an unmatched line
   usually means: a paper the manifest does not have rather than a broken join.
-- animated GIFs: there is no ffmpeg here, but PIL will resize one frame by
+- **ffmpeg *is* available, and this file said for a long time that it was not.**
+  Not on `PATH`, which is where the belief came from — it ships inside the
+  `imageio-ffmpeg` wheel, and `py -c "import imageio_ffmpeg;
+  print(imageio_ffmpeg.get_ffmpeg_exe())"` prints the path to a full build
+  (libvpx-vp9, libx264, libopus, aac all present). That is what re-encoded the
+  Ciotat film. Check there before concluding a video job cannot be done here.
+- animated GIFs: PIL will resize one frame by
   frame. 360px wide, every third frame and a 64-colour adaptive palette took
   the two Matrix clips from 2.4 / 4.4 MB to ~700 KB, which is about as far as
   the format goes. They are only fetched when the post is opened.

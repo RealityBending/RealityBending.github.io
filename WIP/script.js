@@ -211,7 +211,18 @@ function trackSectionParallax(section, layer, customProperty, options) {
         // past its own overhang — which uncovers a strip at the far edge.
         const progress = span > 0 ? Math.min(1, Math.max(0, (enter - rect.top) / span)) : 0.5
 
-        section.style.setProperty(customProperty, ((progress - 0.5) * 2 * travel).toFixed(1) + "px")
+        /* Where the swing sits inside the slack. Centred by default, which is
+           what a layer taller than its box wants — the overhang is symmetric
+           and either edge is as far from view as the other.
+           `bottom` offsets it so that full progress lands the layer's bottom
+           edge exactly on the box's. That is for the People video, which is
+           *shorter* than its box: centred, its feathered bottom edge floats at
+           whatever height the roster happens to give the section, and it used
+           to finish below the Alumni bar. Anchored, the band always ends on the
+           line the content ends on, whoever joins or leaves the lab. */
+        const offset = settings.anchor === "bottom" ? slack - travel : 0
+
+        section.style.setProperty(customProperty, (offset + (progress - 0.5) * 2 * travel).toFixed(1) + "px")
     }
 
     mainPage.addEventListener("scroll", update, { passive: true })
@@ -256,6 +267,11 @@ function initInformationBackdrop() {
     // Measured against the banner, not the section: the travel comes from the
     // image's overhang inside the banner, and the banner is the shorter of the
     // two now that it starts at the tab line.
+    /* The Services tab is deliberately not driven from here: it holds its
+       photograph still with `position: sticky` and no script at all. A scroll
+       handler was tried and is the thing to not go back to — the content is
+       moved by the compositor and the picture would be moved by JS, so the
+       picture arrives a frame late and visibly drags behind at speed. */
     trackSectionParallax(backdrop, layer, "--contact-parallax")
 }
 
@@ -263,7 +279,13 @@ function initInformationBackdrop() {
 function initPeopleVideo() {
     const section = document.querySelector(".people-full")
     const video = section && section.querySelector(".people-full__video-el")
-    if (!section || !video || !mainPage) return
+    // The box the parallax measures against is the backdrop, not the section:
+    // it stops at the section's bottom padding — the line the Alumni bar sits
+    // on — so "as low as the band goes" and "where the roster ends" are the
+    // same place. Measured against the section they differ by that padding,
+    // which is what put the fade below the bar.
+    const videoBox = section && section.querySelector(".people-full__video")
+    if (!section || !video || !videoBox || !mainPage) return
 
     // Under reduced motion the poster stays put and nothing is ever fetched.
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
@@ -315,7 +337,8 @@ function initPeopleVideo() {
     })
 
     // Parallax also tells us when the section is near enough to start fetching.
-    const tracker = trackSectionParallax(section, video, "--people-video-parallax", {
+    const tracker = trackSectionParallax(videoBox, video, "--people-video-parallax", {
+        anchor: "bottom",
         onViewChange: (visible) => {
             inView = visible
             sync()

@@ -1,19 +1,36 @@
 {
     "name": "Oliver Collins",
     "category": "Research Assistant",
-    "details": "Placement Student",
+    "title": "Psychophysiology and the Perception of Reality",
     "affiliation": "University of Sussex",
-    "interests": ["Cognitive Psychology", "Statistics", "Playing guitar", "Go-karting"],
-    "experience": [
+    "location": "Brighton, UK",
+    "email": "",
+    "details": "Undergraduate Psychology Student",
+    "summary": "An Undergraduate Psychology student at the University of Sussex on track to obtain a First-Class degree, with over 1,200 hours of research experience. Research interests include the relationship between cognition and physiology (in particular cardiovascular signals), computational cognitive modelling, metascience, as well as the development of software to facilitate psychophysiological research. Experience in developing human-computer interfaces combining physiological signals and music as a line of side projects.",
+    "website": "",
+    "socials": [
         {
-            "degree": "BSc Psychology with Clinical Approaches",
-            "institution": "University of Sussex",
-            "year": ""
+            "label": "GitHub",
+            "url": "https://github.com/OliverACollins"
+        },
+        {
+            "label": "ResearchGate",
+            "url": "https://www.researchgate.net/profile/Oliver-Collins-6"
+        },
+        {
+            "label": "LinkedIn",
+            "url": "https://www.linkedin.com/in/oliver-collins/"
         }
     ],
-    "socials": [
-        { "label": "GitHub", "url": "https://github.com/OliverACollins" },
-        { "label": "X", "url": "https://x.com/OliverACollins" },
-        { "label": "ResearchGate", "url": "https://www.researchgate.net/profile/Oliver-Collins-6" }
-    ]
+    "interests": ["Psychophysiology", "Visual Illusions", "Metascience"],
+    "experience": [
+        {
+            "degree": "BSc in Psychology with Clinical Approaches with a Professional Placement Year",
+            "institution": "University of Sussex",
+            "year": "2023-2027",
+            "details": ""
+        }
+    ],
+    "keywords": ["psychophysiology", "metascience", "reality"],
+    "hook": "In his spare time, Oliver enjoys playing guitar, go-karting, and building LEGO!"
 }

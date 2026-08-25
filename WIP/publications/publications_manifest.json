@@ -23,10 +23,10 @@
       "type": "Journal Article",
       "authors": "Lüdecke, D., Makowski, A. C., Klein, J., Ben-Shachar, M. S., & Makowski, D.",
       "is_preprint": false,
-      "pdf": null,
+      "pdf": "publications/2026_ChoosingInformativePriors/2026_ChoosingInformativePriors.pdf",
       "keywords": [],
       "citations": 2,
-      "featured": null,
+      "featured": "publications/2026_ChoosingInformativePriors/featured.webp",
       "folder": "2026_ChoosingInformativePriors",
       "summary": ""
     },
@@ -53,12 +53,13 @@
       "type": "Preprint",
       "authors": "Neves, A., Pfaff, M., Scharte, R. E., Nogueira-Arjona, R., Poerio, G., & Makowski, D.",
       "is_preprint": true,
-      "pdf": null,
+      "pdf": "https://osf.io/preprints/psyarxiv/2mpqd_v1",
       "keywords": [],
       "citations": 0,
-      "featured": null,
+      "featured": "publications/2026_MegaanalysisIAS/featured.webp",
       "folder": "2026_MegaanalysisIAS",
-      "summary": ""
+      "summary": "",
+      "github": "https://github.com/RealityBending/InteroceptionIAS"
     },
     {
       "doi": "10.31234/osf.io/9pequ_v2",
@@ -68,12 +69,13 @@
       "type": "Preprint",
       "authors": "Makowski, D.",
       "is_preprint": true,
-      "pdf": null,
+      "pdf": "https://doi.org/10.31234/osf.io/9pequ_v2",
       "keywords": [],
       "citations": 0,
-      "featured": null,
+      "featured": "publications/2026_ActiveInferencePersonality/featured.jpg",
       "folder": "2026_ActiveInferencePersonality",
-      "summary": ""
+      "summary": "",
+      "github": "https://github.com/RealityBending/DeepSelfModel"
     },
     {
       "doi": "10.5334/joc.469",
@@ -136,12 +138,13 @@
       "type": "Preprint",
       "authors": "Makowski, D., Neves, A., & Field, A. P.",
       "is_preprint": true,
-      "pdf": null,
+      "pdf": "https://doi.org/10.31234/osf.io/z68v3_v1",
       "keywords": [],
       "citations": 0,
-      "featured": null,
+      "featured": "publications/2025_Choco/featured.jpg",
       "folder": "2025_Choco",
-      "summary": ""
+      "summary": "",
+      "github": "https://github.com/RealityBending/FictionChoco"
     },
     {
       "doi": "10.1525/collabra.143431",
@@ -151,12 +154,13 @@
       "type": "Journal Article",
       "authors": "Makowski, D., Te, A. S., Neves, A., & Chen, S. A.",
       "is_preprint": false,
-      "pdf": null,
+      "pdf": "publications/2025_PHQ4/2025_PHQ4.pdf",
       "folder": "2025_PHQ4",
-      "featured": null,
+      "featured": "publications/2025_PHQ4/featured.jpg",
       "keywords": [],
       "citations": 0,
-      "summary": ""
+      "summary": "",
+      "github": "https://github.com/DominiqueMakowski/PHQ4R"
     },
     {
       "doi": "10.21105/joss.07969",

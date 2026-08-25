@@ -6,11 +6,12 @@
   "type": "Journal Article",
   "authors": "Makowski, D., Te, A. S., Neves, A., & Chen, S. A.",
   "is_preprint": false,
-  "pdf": null,
+  "pdf": "publications/2025_PHQ4/2025_PHQ4.pdf",
   "folder": "2025_PHQ4",
-  "featured": null,
+  "featured": "publications/2025_PHQ4/featured.jpg",
   "keywords": [],
   "citations": 0,
   "abstract": "The PHQ-4 is an ultra-brief (4 items) screening questionnaire for depression and anxiety. In this brief report, we test the benefits of adding one additional response option (“Once or twice”, in between “Not at all” and “Several days”) to improve the scale’s sensitivity to milder alterations, and thus increase its usefulness in subclinical populations. A first pilot study (N=485) showed a prevalent usage of the new response option by participants. Its utility was confirmed in a follow-up validation study (N=836), where we that the refined version offers an improved sensitivity to subclinical variability in depression (indexed by the BDI-II) as compared to the original version. In conclusion, adding the “once or twice” response option is a low-cost way of increasing the PHQ-4’s sensitivity to subclinical variability, making it a tool of choice for general population research.",
-  "summary": ""
+  "summary": "",
+  "github": "https://github.com/DominiqueMakowski/PHQ4R"
 }

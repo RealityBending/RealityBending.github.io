@@ -227,6 +227,18 @@ export const JOIN_CONTENT = Object.freeze({
                             links: [{ label: "Scholarship database", href: "https://www.daad.de/en/study-research-teach-abroad/" }],
                         },
                         {
+                            name: "Commonwealth PhD Scholarships (LDCs)",
+                            tags: ["Bangladesh"],
+                            meta: "Bangladesh + 16 other Commonwealth least-developed states · fees + stipend",
+                            blurb: "Fully funded UK PhD study for citizens of Bangladesh, The Gambia, Kiribati, Lesotho, Malawi, Mozambique, Nigeria, Pakistan, Rwanda, Sierra Leone, Solomon Islands, Sri Lanka, Tanzania, Togo, Tuvalu, Uganda or Zambia, who could not otherwise afford to study in the UK. Applications go through a nominating body in your home country, not directly to the scheme, and it expects you to return home afterwards.",
+                            links: [
+                                {
+                                    label: "Commonwealth Scholarships",
+                                    href: "https://cscuk.fcdo.gov.uk/scholarships/commonwealth-phd-scholarships-for-least-developed-countries-and-vulnerable-states/",
+                                },
+                            ],
+                        },
+                        {
                             name: "Scholarships for Singaporeans (gov.uk compilation)",
                             tags: ["Singapore"],
                             meta: "Singapore",

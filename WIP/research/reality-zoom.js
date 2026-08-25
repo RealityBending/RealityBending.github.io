@@ -30,6 +30,7 @@
  */
 
 import { element as el } from "../shared/dom.js"
+import { hrefForRoute } from "../shared/deep-link.js"
 
 /* Measured off img/magritte_falsemirror.jpg (2000×1345) by scanning the middle
    of the canvas for the pupil's dark run: it spans x 831→1096, y 537→804. Eyed
@@ -49,6 +50,33 @@ const OUTRO_VH = 1.2
 /* Where inside its own slot a landmark rises, holds, and leaves. */
 const ENTER_END = 0.24
 const EXIT_START = 0.74
+
+/* ── The opening landmark's paragraphs, against its own `local` progress ──
+ * Tied to scroll position rather than to a timer: an earlier version staggered
+ * these on a CSS transition-delay, which is wall-clock and therefore has no
+ * relationship to how fast the reader is actually moving through the
+ * landmark's own slot. A fast flick could cross the whole slot before the
+ * delay had finished counting, landing the reader on the next station having
+ * seen the film alone — the paragraphs technically ran, just off-screen.
+ * `local` is the one number every other reveal in this module already keys
+ * on, so a paragraph's opacity is a fraction of it in exactly the same way a
+ * landmark's own `enter`/`exit` are: nothing to skip, because there is no
+ * clock to outrun, and it stays scrubbable in both directions.
+ * `FILM_TEXT_START` holds every paragraph back until the film itself has had
+ * a beat alone (the "video plays first" ask); each paragraph then fades in
+ * across `FILM_TEXT_STEP` of local progress, back to back, finishing well
+ * inside the landmark's own held span (EXIT_START = 0.74).
+ *
+ * **The step has to be re-derived when a paragraph is added or removed, and a
+ * pause counts as one of them**: the last paragraph ends at
+ * START + (slots + 1)·STEP, and that has to clear EXIT_START or the final line
+ * is still arriving while the landmark is already leaving. This landmark
+ * carries four paragraphs and one pause, so the last one sits in slot 4 and
+ * ends at START + 5·STEP — which is why the step came down from 0.13 to 0.115
+ * when the pause went in. It ends at 0.675, inside 0.74 with room to spare, and
+ * the pause reads as a full step of dead air after "…continue to fade…". */
+const FILM_TEXT_START = 0.1
+const FILM_TEXT_STEP = 0.115
 
 /* The rail's own presence, which is deliberately *not* the veil's. It used to
    ride `--rz-veil`, and the veil only starts closing at 72% of the dive — so
@@ -105,121 +133,391 @@ function svgMarkup(markup) {
  * it is still on its way in.
  */
 
-/* ── The map ──
- * Reality at the hub, and around it the things the lab actually measures.
- * Drawn rather than shipped as an image so the edges can draw themselves when
- * the landmark arrives.
+/* ── The cloud ──
+ * Reality at the centre, the six dimensions the lab actually measures large
+ * around it, and the rest of its vocabulary smaller still further out. It was a
+ * network first — hub, six discs on an ellipse, spokes and a ring — and the
+ * cloud says the same thing with more of it: the six were the whole of what the
+ * landmark could show, and the lab's own research page lists five times as many
+ * words than that.
  *
- * Everything is computed from four numbers — the hub's radius, a satellite's,
- * and the two radii of the ellipse they sit on — and every edge is trimmed to
- * the circles it runs between, so moving a concept or adding a seventh needs no
- * other coordinate touched. The one thing set by hand is where a label breaks:
- * SVG does not wrap text, so a two-word concept is given as two lines.
+ * ── Nothing is positioned by hand ──
+ * Every word is placed by walking an outward elliptical spiral from the centre
+ * and stopping at the first point where its box clears everything already
+ * placed. That is the only way this stays maintainable: a cloud whose
+ * coordinates are typed in has to be re-typed the moment a word is added, made
+ * longer, or resized, and there is no way to tell by reading it whether two
+ * words overlap. Here, adding a word costs a line of data.
  *
- * The tones group the concepts rather than decorating them — red is the body,
- * blue is control, purple is the self — which is the same three colours the
- * rest of the zoom already uses for the same three ideas.
+ * Consequently **a word that cannot be fitted is dropped, not overlapped** —
+ * the failure mode is a slightly emptier cloud rather than an illegible one.
+ * If a word is missing from the picture, the list below is too long for the
+ * viewBox, not broken.
+ *
+ * ── The spiral is elliptical, and matches the box ──
+ * `SPREAD_X` / `SPREAD_Y` are the viewBox's own aspect. A circular spiral in a
+ * 460×360 box runs out of room at the top and bottom while the sides are still
+ * empty, and every word after that point is dropped.
+ *
+ * The tones group the words rather than decorating them — red is the body, blue
+ * is control and perception, purple is the self — which is the same three
+ * colours the rest of the zoom already uses for the same three ideas. A word
+ * with no tone is one of the lab's methods rather than one of its subjects, and
+ * takes the neutral.
  */
-const MAP_NODES = [
-    { lines: ["Deep Self"], tone: "self" },
-    { lines: ["Cognitive", "Control"], tone: "control" },
-    { lines: ["Phenomenological", "Control"], tone: "control" },
-    { lines: ["Bodily States"], tone: "body" },
-    { lines: ["Interoception"], tone: "body" },
-    { lines: ["Emotions"], tone: "body" },
-]
+/* ── Why the box is this size, and the list this long ──
+ * The viewBox is drawn at whatever width the figure column gives it, so its
+ * units are a scale factor and nothing else: 420 units drawn 416px wide is
+ * ~1:1, and drawn 343px wide — the stacked fallback on a 375px phone — is 0.82.
+ * The smallest word here is 11 units, so it is read at 10.9px and 9.0px
+ * respectively, and 9px is the floor the network this replaced already sat at.
+ *
+ * That is the whole constraint, and it is a budget — but **the budget is the
+ * word sizes, not the number of words**, and that distinction cost a round
+ * trip. An early pass fitted eighteen keywords by shrinking them until the
+ * smallest read at 7.1px on a phone, which is where "thirteen is what fits"
+ * came from. It was never the box: at these sizes the packer places all
+ * eighteen inside this same 420 × 335 with nothing dropped, because the box was
+ * only 77% filled vertically. Growing it to 400 was tried and is worse — the
+ * spiral then has slack, and the ink drifts 23 units off centre instead of 4.
+ *
+ * So the rule for a nineteenth is: add it at 11 units or more and check the
+ * packing (a dropped word is silent — see below), rather than reaching for
+ * either smaller type or a bigger box.
+ */
+const CLOUD_W = 420
+const CLOUD_H = 335
+const CLOUD_CX = CLOUD_W / 2
+const CLOUD_CY = CLOUD_H / 2
+/* The clear circle around "Reality" — measured off the word itself below, this
+   is only the floor under it so the first ring never crowds the centre. */
+const CLOUD_HUB_R = 52
+const SPREAD_X = 1.28
+const SPREAD_Y = 0.82
 
-function buildMapFigure() {
-    const CX = 220
-    const CY = 160
-    const HUB_R = 46
-    const NODE_R = 22
-    const RING_X = 152
-    const RING_Y = 100
+/* The words themselves are content and live in research-content.js — see the
+   note over `figure` there for what each field is and why. This file is the
+   packer and the wiring; it knows a word has a `text`, a `size`, maybe a `tone`
+   and maybe a `paper`, and nothing else about them. */
 
-    const wrap = el("div", "rz-fig rz-fig--map")
+/* ── The paper behind a word ──
+ * A word carrying a `paper` becomes a link, and the strip under the cloud shows
+ * which one. Three things about the shape:
+ *
+ * ── It reveals, then it opens ──
+ * The first press on a word that is not already showing only shows it; the next
+ * one follows the link. That is one rule covering two devices rather than two
+ * rules: a mouse has already hovered by the time it clicks, so a click opens on
+ * the first go, while a finger — which cannot hover — gets a tap to look and a
+ * tap to go. Without it, tapping a 9px word on a phone throws the reader
+ * straight out of the dive to a publisher's site they never saw the name of.
+ *
+ * ── The word is the link, not the strip's copy of it ──
+ * It is a real SVG <a>, so middle-click, "copy link address" and Enter all work
+ * without anything here implementing them, which is the same reason the strand
+ * tiles and the open seat are anchors. The strip is an <a> too and points at
+ * the same place — it is what a reader who has read the title reaches for —
+ * but it only *has* an href while a paper is showing, so in its resting state
+ * it is not a link and not a tab stop.
+ *
+ * ── It leaves the site, and says so ──
+ * `↗` is this site's mark for that and has to keep meaning only that. Going to
+ * the DOI rather than to this site's own /publications/<folder>/ page is not a
+ * preference: those pages exist for crawlers, but no module claims a `pub-`
+ * route, so a reader following one lands on a shell with nothing open. And it
+ * opens in a new tab because the whole point of the ask was not to take the
+ * reader out of a dive they are half way down.
+ */
+const CITE_LABEL = "Example ↗"
+
+function paperHref(paper) {
+    if (!paper) return ""
+    if (paper.href) return paper.href
+    return paper.doi ? "https://doi.org/" + paper.doi : ""
+}
+
+/* Word widths come from a canvas rather than from an estimate, because the
+   packing is only as good as the boxes it is packing: guess a width 15% short
+   and two words are laid over each other, guess it long and the cloud has holes
+   in it. The font string has to match `.rz-cloud__word` in the stylesheet — the
+   family, the weight and the size — and the letter-spacing is added back by
+   hand, since canvas has no notion of it. */
+const CLOUD_TRACKING = 0.05 /* the `letter-spacing`, in em */
+let measureCtx
+function measureWord(text, size) {
+    if (measureCtx === undefined) measureCtx = document.createElement("canvas").getContext("2d") || null
+    const tracking = text.length * size * CLOUD_TRACKING
+    // No canvas is not a case that happens in a browser, but a wrong-by-10%
+    // fallback is a better answer than a thrown error inside a figure builder.
+    if (!measureCtx) return text.length * size * 0.56 + tracking
+    measureCtx.font = '600 ' + size + 'px "Helvetica Neue", Helvetica, Arial, sans-serif'
+    return measureCtx.measureText(text).width + tracking
+}
+
+function buildCloudFigure(config, scene) {
+    const wrap = el("div", "rz-fig rz-fig--cloud")
+    const dimensions = Array.isArray(config && config.dimensions) ? config.dimensions : []
+    const keywords = Array.isArray(config && config.keywords) ? config.keywords : []
+    const words = dimensions.concat(keywords)
+    /* A group rather than role="img": the picture used to be one opaque label,
+       and it cannot be that once some of the words inside it are links. The
+       label is kept as the group's own name, so the summary is still announced
+       before the words are walked. */
     const root = svg("svg", {
-        viewBox: "0 0 440 340",
-        class: "rz-map",
-        role: "img",
-        "aria-label": "Reality at the centre of a network of what the lab studies: " + MAP_NODES.map((node) => node.lines.join(" ")).join(", "),
+        viewBox: "0 0 " + CLOUD_W + " " + CLOUD_H,
+        class: "rz-cloud",
+        role: "group",
+        "aria-label": "Reality at the centre of what the lab studies: " + words.map((word) => word.text).join(", "),
     })
 
     const defs = svg("defs", {})
-    const glow = svg("radialGradient", { id: "rz-map-glow" })
+    const glow = svg("radialGradient", { id: "rz-cloud-glow" })
     glow.appendChild(svg("stop", { offset: "0", "stop-color": "#8fb7ff", "stop-opacity": "0.4" }))
     glow.appendChild(svg("stop", { offset: "1", "stop-color": "#8fb7ff", "stop-opacity": "0" }))
     defs.appendChild(glow)
     root.appendChild(defs)
 
-    root.appendChild(svg("circle", { class: "rz-map__glow", cx: CX, cy: CY, r: 152, fill: "url(#rz-map-glow)" }))
+    root.appendChild(svg("circle", { class: "rz-cloud__glow", cx: CLOUD_CX, cy: CLOUD_CY, r: 164, fill: "url(#rz-cloud-glow)" }))
 
-    // From twelve o'clock, clockwise — so the order of MAP_NODES is the order
-    // they are read in.
-    const hub = { x: CX, y: CY }
-    const points = MAP_NODES.map((node, index) => {
-        const angle = (-90 + index * (360 / MAP_NODES.length)) * (Math.PI / 180)
-        return { ...node, x: CX + Math.cos(angle) * RING_X, y: CY + Math.sin(angle) * RING_Y }
-    })
+    /* Boxes are padded as they go in rather than as they are tested, so the gap
+       between two words is the same whichever of them was placed first. */
+    const PAD_X = 5
+    const PAD_Y = 2.5
+    const placed = []
 
-    /* An edge stops at the two circles it joins rather than running under them,
-       and carries its own length, so the draw-on is a real dash rather than one
-       guessed number long enough to cover every edge. */
-    function link(a, b, ra, rb, className, order) {
-        const dx = b.x - a.x
-        const dy = b.y - a.y
-        const len = Math.hypot(dx, dy) || 1
-        const ux = dx / len
-        const uy = dy / len
-        const line = svg("line", {
-            class: className,
-            x1: (a.x + ux * ra).toFixed(1),
-            y1: (a.y + uy * ra).toFixed(1),
-            x2: (b.x - ux * rb).toFixed(1),
-            y2: (b.y - uy * rb).toFixed(1),
-        })
-        line.style.setProperty("--rz-edge-len", (len - ra - rb).toFixed(1))
-        line.style.setProperty("--rz-edge-index", String(order))
-        return line
+    function boxAt(x, y, w, h) {
+        return { x1: x - w / 2 - PAD_X, x2: x + w / 2 + PAD_X, y1: y - h / 2 - PAD_Y, y2: y + h / 2 + PAD_Y }
     }
 
-    // Ring first, then spokes, then the discs — painted in that order so each
-    // one covers the ends of the last.
-    points.forEach((point, index) => root.appendChild(link(point, points[(index + 1) % points.length], NODE_R, NODE_R, "rz-map__edge rz-map__edge--ring", index)))
-    points.forEach((point, index) => root.appendChild(link(hub, point, HUB_R, NODE_R, "rz-map__edge rz-map__edge--spoke rz-map__edge--" + point.tone, index)))
+    function fits(box) {
+        if (box.x1 < 4 || box.x2 > CLOUD_W - 4 || box.y1 < 4 || box.y2 > CLOUD_H - 4) return false
+        return !placed.some((other) => box.x1 < other.x2 && box.x2 > other.x1 && box.y1 < other.y2 && box.y2 > other.y1)
+    }
 
-    /* A label sits on the far side of its node from the hub — under the bottom
-       three, over the top three. Not decoration: the ring passes *between* the
-       nodes, so a label always hung underneath is crossed by it wherever two
-       nodes sit above one another, which at six nodes is both of the vertical
-       pairs. Pushed outwards, every label is clear of every edge, and the block
-       reads as pointing away from the centre. Lines stack towards the node, so
-       whichever line is nearest the disc is the one nearest it either way. */
-    const LINE = 13
-    points.forEach((point, index) => {
-        const group = svg("g", { class: "rz-map__node rz-map__node--" + point.tone })
-        group.style.setProperty("--rz-node-index", String(index + 1))
-        group.appendChild(svg("circle", { class: "rz-map__disc", cx: point.x.toFixed(1), cy: point.y.toFixed(1), r: NODE_R }))
+    /* The spiral. `startAngle` is what keeps the six large words spread around
+       the centre instead of stacked on one side: each starts its walk a sixth
+       of a turn on from the last, and the first free point is therefore in its
+       own sector. The step is deliberately finer than the radius grows, so a
+       word tries most of a turn at one distance before moving outwards. */
+    function place(w, h, startAngle) {
+        for (let step = 0; step < 1400; step += 1) {
+            const angle = startAngle + step * 0.26
+            const radius = CLOUD_HUB_R + step * 0.42
+            const x = CLOUD_CX + Math.cos(angle) * radius * SPREAD_X
+            const y = CLOUD_CY + Math.sin(angle) * radius * SPREAD_Y
+            const box = boxAt(x, y, w, h)
+            if (fits(box)) return { x, y, box }
+        }
+        return null
+    }
 
-        const above = point.y < CY
-        point.lines.forEach((text, row) => {
-            const y = above ? point.y - NODE_R - 12 - (point.lines.length - 1 - row) * LINE : point.y + NODE_R + 16 + row * LINE
-            const label = svg("text", { class: "rz-map__label", x: point.x.toFixed(1), y: y.toFixed(1), "text-anchor": "middle" })
-            label.textContent = text
-            group.appendChild(label)
+    // "Reality" first and at the centre, so everything else is placed around it.
+    const hubSize = 34
+    const hubWidth = measureWord("Reality", hubSize)
+    placed.push({
+        x1: CLOUD_CX - Math.max(hubWidth / 2 + PAD_X, CLOUD_HUB_R),
+        x2: CLOUD_CX + Math.max(hubWidth / 2 + PAD_X, CLOUD_HUB_R),
+        y1: CLOUD_CY - CLOUD_HUB_R * 0.62,
+        y2: CLOUD_CY + CLOUD_HUB_R * 0.62,
+    })
+    const hub = svg("text", { class: "rz-cloud__word rz-cloud__word--hub", x: CLOUD_CX, y: CLOUD_CY + hubSize * 0.34, "text-anchor": "middle" })
+    hub.style.setProperty("--rz-word-index", "0")
+    hub.textContent = "Reality"
+    root.appendChild(hub)
+
+    /* ── The cloud writes into the landmark's own heading and paragraph ──
+     * It used to carry its own strip underneath, showing the paper behind the
+     * word. The payload is bigger now — a word can carry prose as well as a
+     * paper — and putting it in the copy column means the reader watches the
+     * *landmark* change under them rather than a caption filling in below a
+     * picture. So this builder takes the scene, like the map it briefly
+     * replaced, and every other builder still ignores that argument.
+     *
+     * ── Both swapped lines reserve their tallest state ──
+     * The heading goes from "What we work on" to "Phenomenological Control" and
+     * the paragraph from a 45-word statement to a paper title, and
+     * `.rz-scene__copy` is `align-content: center` — so anything that changed
+     * height would move the whole column under the pointer. Each therefore keeps
+     * a hidden ghost of its longest candidate in the same grid cell, which is
+     * the only form that works at *every* column width. For the heading that
+     * candidate has to be computed: it is the longest word in the cloud, and a
+     * new one longer than "Phenomenological Control" changes it. */
+    const heading = scene ? scene.querySelector(".rz-scene__title") : null
+    const target = scene ? scene.querySelector(".rz-scene__text") : null
+    const restTitle = heading ? heading.textContent : ""
+    const restText = target ? target.textContent : ""
+    const longestLabel = words
+        .map((word) => word.text || "")
+        .concat(restTitle)
+        .reduce((best, candidate) => (candidate.length > best.length ? candidate : best), "")
+
+    function reserve(host, ghostText) {
+        if (!host) return null
+        host.textContent = ""
+        host.classList.add("rz-swap")
+        const ghost = el("span", "rz-swap__ghost", ghostText)
+        ghost.setAttribute("aria-hidden", "true")
+        const liveNode = el("span", "rz-swap__live")
+        host.appendChild(ghost)
+        host.appendChild(liveNode)
+        return liveNode
+    }
+    const liveTitle = reserve(heading, longestLabel)
+    const liveText = reserve(target, restText)
+
+    /* The link, under the paragraph it belongs to. At rest it has no `href`, so
+       it is neither followable nor a tab stop — but it is laid out all the same,
+       on a fixed box rather than `min-height: 1lh`, because the arrows fall back
+       to a font with taller metrics than the label's. */
+    const link = el("a", "rz-swap__link")
+    if (target && target.parentNode) target.parentNode.insertBefore(link, target.nextSibling)
+
+    let showing = null
+    function reveal(word) {
+        showing = word
+        if (liveTitle) liveTitle.textContent = word.text || ""
+        /* Prose when the word has any, and the paper's title when it does not.
+           Most of the vocabulary carries a publication rather than a paragraph —
+           writing twenty-six blurbs to fill this line would be inventing lab copy
+           — and the title of the work *is* the honest answer to "what does this
+           word mean here". */
+        if (liveText) liveText.textContent = word.about || (word.paper && word.paper.title) || ""
+        link.removeAttribute("target")
+        link.removeAttribute("rel")
+        link.removeAttribute("data-research-tab")
+        if (word.link) {
+            /* A word whose answer is neither a paper nor this section's own
+               shelf — Neuroaesthetics' comic. Same shape as a paper's link
+               (off-site, new tab) but the label is written out rather than
+               built from a citation, since there is no citation to build it
+               from. Takes the slot over `paper` when both are given. */
+            link.href = word.link.href
+            link.target = "_blank"
+            link.rel = "noreferrer noopener"
+            link.textContent = word.link.label || CITE_LABEL
+        } else if (word.paper) {
+            link.href = paperHref(word.paper)
+            link.target = "_blank"
+            link.rel = "noreferrer noopener"
+            /* The citation *is* the label where there is one: it says whose work
+               it is and that it leaves the site, in one line, where "Example ↗"
+               said only the second. `CITE_LABEL` is the fallback for a paper
+               with no short form written out. */
+            link.textContent = word.paper.cite ? word.paper.cite + " ↗" : CITE_LABEL
+        } else if (word.tab) {
+            link.href = hrefForRoute("research-" + word.tab)
+            link.dataset.researchTab = word.tab
+            link.textContent = "See our tools →"
+        } else {
+            link.removeAttribute("href")
+            link.textContent = ""
+            link.setAttribute("aria-hidden", "true")
+            link.tabIndex = -1
+            return
+        }
+        link.removeAttribute("aria-hidden")
+        link.tabIndex = 0
+    }
+    function rest() {
+        showing = null
+        if (liveTitle) liveTitle.textContent = restTitle
+        if (liveText) liveText.textContent = restText
+        link.removeAttribute("href")
+        link.removeAttribute("target")
+        link.removeAttribute("rel")
+        link.removeAttribute("data-research-tab")
+        link.textContent = ""
+        link.setAttribute("aria-hidden", "true")
+        link.tabIndex = -1
+    }
+    // Leaving the whole figure rests it, rather than leaving a word: otherwise
+    // the pointer could never travel from one word to the next without emptying
+    // the paragraph on the way between them.
+    wrap.addEventListener("pointerleave", rest)
+
+    /* Dimensions before keywords, so the large words take the inside of the
+       spiral and the small ones fill in around them — which is the picture: the
+       nearer the centre, the more of the lab it is. */
+    words.forEach((word, index) => {
+        const isDimension = index < dimensions.length
+        const width = measureWord(word.text, word.size)
+        // Golden angle for the keywords: any fixed fraction of a turn puts them
+        // in lanes, and lanes in a word cloud read as a table that went wrong.
+        const startAngle = isDimension ? (index * Math.PI * 2) / dimensions.length - Math.PI / 2 : index * 2.3999
+        const spot = place(width, word.size * 1.05, startAngle)
+        if (!spot) return
+
+        placed.push(spot.box)
+        /* Where the word goes when it is followed rather than merely pointed at.
+           A `link` or a paper leaves the site; a `tab` is another tab of this
+           section and stays on it, so it takes a real path from the router and
+           the delegated listener in research.js catches the click. A word with
+           none of the three is still *pointable* — it has prose to show — it
+           simply has nowhere to go. */
+        const href = word.link ? word.link.href : word.paper ? paperHref(word.paper) : word.tab ? hrefForRoute("research-" + word.tab) : ""
+        const speaks = !!(word.link || word.paper || word.about || word.tab)
+        const node = svg("text", {
+            class:
+                "rz-cloud__word rz-cloud__word--" +
+                (isDimension ? "dimension" : "keyword") +
+                (word.tone ? " rz-cloud__word--" + word.tone : "") +
+                (speaks ? " rz-cloud__word--linked" : ""),
+            x: spot.x.toFixed(1),
+            y: (spot.y + word.size * 0.34).toFixed(1),
+            "text-anchor": "middle",
+            "font-size": word.size,
         })
-        root.appendChild(group)
+        node.style.setProperty("--rz-word-index", String(index + 1))
+        node.textContent = word.text
+        if (!speaks) {
+            root.appendChild(node)
+            return
+        }
+
+        /* An `<a>` when there is somewhere to go, so middle-click, "copy link
+           address" and Enter all work with nothing here implementing them. When
+           there is not, the word still has to be reachable by keyboard and
+           pointer — hence a `<text>` given a button's role rather than a dead
+           anchor, which is not focusable and would announce itself as a link to
+           nowhere. */
+        let hit
+        if (href) {
+            hit = svg("a", { href, class: "rz-cloud__anchor" })
+            if (word.link || word.paper) {
+                hit.setAttribute("target", "_blank")
+                hit.setAttribute("rel", "noreferrer noopener")
+            } else if (word.tab) {
+                hit.setAttribute("data-research-tab", word.tab)
+            }
+        } else {
+            hit = svg("g", { class: "rz-cloud__anchor", role: "button", tabindex: "0" })
+            hit.setAttribute("aria-label", word.text)
+        }
+        hit.appendChild(node)
+        /* Touch is excluded on purpose. A tap fires `pointerenter` before its
+           `click`, so without this the finger would have "hovered" by the time
+           the click arrives, the reveal-then-open rule below would think it was
+           the second press, and the first tap on a 9px word would leave the
+           site. Pen is left in — it hovers for real. */
+        hit.addEventListener("pointerenter", (event) => {
+            if (event.pointerType === "touch") return
+            reveal(word)
+        })
+        hit.addEventListener("focus", () => reveal(word))
+        // Reveal, then open — see the note over CITE_LABEL. A modifier- or
+        // middle-click is somebody asking for a new tab explicitly and is never
+        // swallowed, and neither is the second press.
+        hit.addEventListener("click", (event) => {
+            if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return
+            if (showing === word) return
+            event.preventDefault()
+            reveal(word)
+        })
+        root.appendChild(hit)
     })
 
-    const hubNode = svg("g", { class: "rz-map__node rz-map__node--hub" })
-    hubNode.style.setProperty("--rz-node-index", "0")
-    hubNode.appendChild(svg("circle", { class: "rz-map__disc", cx: CX, cy: CY, r: HUB_R }))
-    const hubLabel = svg("text", { class: "rz-map__label", x: CX, y: CY + 7, "text-anchor": "middle" })
-    hubLabel.textContent = "Reality"
-    hubNode.appendChild(hubLabel)
-    root.appendChild(hubNode)
-
     wrap.appendChild(root)
+    rest()
     return wrap
 }
 
@@ -455,80 +753,60 @@ function buildHeartBrainFigure(config) {
     return wrap
 }
 
-/* ── The other strands ──
- * The last landmark is a list rather than a demonstration — four lines of work
- * that are not the dive's own subject — so it is four small tiles instead of
- * one thing to press. The glyphs are line art on a shared 32×32 grid, drawn in
- * `currentColor` so a tile's own accent carries them; keep any new one to the
- * same weight or it will read as a different set.
- */
-const STRAND_MARKS = {
-    // Nested rings closing on a filled core: down through the layers.
-    // r 11.5 rather than filling the box: a ring always reads larger than a
-    // glyph of the same measured width, and the other three are ~22 across.
-    self: `<svg class="rz-strand__mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11.5"/><circle cx="16" cy="16" r="7.5"/><circle class="rz-strand__solid" cx="16" cy="16" r="3"/></svg>`,
-    // A gauge with its needle: the instrument, rather than what it measures.
-    assess: `<svg class="rz-strand__mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M 4 23 A 12 12 0 0 1 28 23"/><path d="M 16 23 L 23.5 14.5"/><circle class="rz-strand__solid" cx="16" cy="23" r="2"/><path d="M 6.4 15.6 L 8 16.8"/><path d="M 16 9 L 16 11"/><path d="M 25.6 15.6 L 24 16.8"/></svg>`,
-    // A spiral — five half-turns of shrinking radius, all the same sweep.
-    art: `<svg class="rz-strand__mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M 27 16 A 10.5 10.5 0 0 0 6 16 A 8 8 0 0 0 22 16 A 6 6 0 0 0 10 16 A 4 4 0 0 0 18 16 A 2.5 2.5 0 0 0 13 16"/></svg>`,
-    // The open padlock, which is the open-access mark itself.
-    open: `<svg class="rz-strand__mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="7" y="15" width="15" height="12" rx="2.5"/><path d="M 12 15 V 10.5 A 5 5 0 0 1 22 10.5"/></svg>`,
-}
-
-function buildStrandsFigure(config) {
-    const wrap = el("div", "rz-fig rz-fig--strands")
-
-    const list = el("ul", "rz-strands")
-    ;(config.items || []).forEach((item, index) => {
-        const tile = el("li", "rz-strand")
-        // Staggers them in rather than flashing all four at once.
-        tile.style.setProperty("--rz-strand-index", String(index))
-
-        const mark = STRAND_MARKS[item.mark]
-        if (mark) tile.appendChild(svgMarkup(mark))
-        if (item.name) tile.appendChild(el("h4", "rz-strand__name", item.name))
-        if (item.text) tile.appendChild(el("p", "rz-strand__text", item.text))
-
-        /* A strand is a line of work, not a demonstration, so the one thing it
-           can offer is somewhere to see it. Optional per tile — a strand with
-           nothing published yet stays three fields — and pushed to the foot by
-           the stylesheet so the links line up across a row whatever length the
-           texts are. Every href here leaves the site. */
-        if (item.link) {
-            const link = el("a", "rz-strand__link", item.linkLabel || "See example")
-            link.href = item.link
-            link.target = "_blank"
-            link.rel = "noreferrer noopener"
-            tile.appendChild(link)
-        }
-
-        list.appendChild(tile)
-    })
-
-    wrap.appendChild(list)
-    return wrap
-}
-
-/* ── The instruments on the prism's four faces ──
+/* ── The instruments on the timeline's plates ──
  * Line art on a 200×200 grid in `currentColor`, at the same weight as
- * `.rz-strand__mark`'s 32×32 glyphs — the site's one drawing vocabulary, six
- * times larger because these are the subject rather than a bullet. Anything
- * added here has to be drawn to that weight or the set stops reading as a set.
+ * `.rz-cloud`'s old glyphs were — the site's one drawing vocabulary, six times
+ * larger than a bullet because these are the subject. Anything added here has to
+ * be drawn to that weight or the set stops reading as a set. (The Creations
+ * tab's star and these are now the whole of it; the strand tiles that carried a
+ * third set went with the last landmark's rebuild.)
  *
- * They are drawings and not photographs on purpose. A phrenological bust, a
- * Hipp chronoscope, an EEG cap and a posterior over accumulated evidence are
- * four objects with nothing in common photographically — four different
- * centuries, materials and framings — and the whole point of the figure is that
- * they are the same gesture. Drawn to one line weight they look like what they
- * are: four attempts at the same measurement. It also means no licence to
- * track, nothing to re-encode, and they stay sharp at any size.
+ * ── They are the placeholder, and they have to look finished ──
+ * A station shows its drawing until it is given an `img`, at which point the
+ * painting takes the plate and the drawing is not built at all. So this set is
+ * what the widget looks like today, and what a station with no picture to find
+ * looks like for good — the frontier being one of those by construction. A grey
+ * box with a filename in it would have been the honest placeholder and the
+ * wrong one: a reader cannot tell "not gathered yet" from "broken", and the one
+ * thing this figure cannot afford is looking unfinished.
  *
- * The pairs are adjacent on the prism rather than opposite (see the stylesheet)
- * so that a single quarter-turn carries the argument. */
-const PRISM_ARTS = {
+ * Drawn rather than photographed for the reason the prism this replaced was: a
+ * Bosch, a Hipp chronoscope, an EEG trace and a posterior over accumulated
+ * evidence have nothing in common photographically, and at this size, in one
+ * line weight, they look like what they are — five centuries of the same
+ * gesture. That stops being true one picture at a time as the real ones arrive,
+ * which is fine: by then the frame's own dressing is what holds them together.
+ */
+const ERA_ARTS = {
+    // Bosch's Cure of Folly: the skull opened and the stone lifted out of it.
+    // The blade and the funnel hat are the painting's own detail and are left
+    // out — at 150px they are two more things to squint at, and the stone
+    // coming out of a head is the whole of what the station is saying.
+    folly: `<svg class="rz-era__art" viewBox="-2 4.5 200 200" aria-hidden="true">
+        <path d="M66 186 V154 C46 145 39 124 41 108 C44 78 67 58 98 58 C131 58 153 79 155 108 C156 124 149 134 139 138 L142 152 L130 156 L132 170 L116 174 L116 186 Z"/>
+        <path d="M50 100 C72 70 126 68 150 98"/>
+        <path d="M140 122 C132 130 120 132 112 128"/>
+        <circle class="rz-era__solid" cx="102" cy="30" r="7"/>
+        <path class="rz-era__faint" d="M84 40 L90 48"/>
+        <path class="rz-era__faint" d="M120 40 L114 48"/>
+        <path class="rz-era__faint" d="M102 48 V56"/>
+    </svg>`,
+    // Pinel at the Salpêtrière: the cuff open and empty, and the chain that was
+    // on it broken and falling away. The empty ring is the point — this is the
+    // one station whose subject is something *stopping*.
+    pinel: `<svg class="rz-era__art" viewBox="12.5 7.5 200 200" aria-hidden="true">
+        <path d="M110 46 A 42 42 0 1 0 110 106"/>
+        <path d="M104 55 A 30 30 0 1 0 104 97"/>
+        <path d="M110 46 L104 55"/>
+        <path d="M110 106 L104 97"/>
+        <ellipse cx="138" cy="132" rx="15" ry="9" transform="rotate(42 138 132)"/>
+        <ellipse cx="168" cy="164" rx="15" ry="9" transform="rotate(42 168 164)"/>
+        <path class="rz-era__faint" d="M118 108 L126 100"/>
+        <path class="rz-era__faint" d="M126 116 L136 110"/>
+    </svg>`,
     // Gall's bust: a profile in mapped compartments, which is the whole idea —
     // a faculty per region, readable from the outside.
-    phrenology: `<svg class="rz-prism__art" viewBox="0 0 200 200" aria-hidden="true">
+    phrenology: `<svg class="rz-era__art" viewBox="0 0 200 200" aria-hidden="true">
         <path d="M64 168 V132 C40 122 32 98 34 80 C37 47 63 26 98 26 C136 26 160 50 162 82 C163 100 156 112 145 116 L148 132 L134 136 L136 152 L118 156 L118 168 Z"/>
         <path d="M34 80 C64 66 108 62 148 72"/>
         <path d="M45 56 C74 76 74 108 62 132"/>
@@ -537,114 +815,330 @@ const PRISM_ARTS = {
         <path d="M132 33 C132 66 130 96 126 118"/>
         <path d="M40 100 C74 92 120 92 158 100"/>
         <path d="M36 118 C64 114 100 114 148 118"/>
-        <circle class="rz-prism__solid" cx="151" cy="97" r="4"/>
+        <circle class="rz-era__solid" cx="151" cy="97" r="4"/>
     </svg>`,
-    // The modern answer to the same question: the same skull, sampled at the
-    // scalp, with the trace it produces running underneath.
-    eeg: `<svg class="rz-prism__art" viewBox="0 0 200 200" aria-hidden="true">
-        <path d="M62 150 V128 C40 118 32 96 34 78 C37 47 63 26 98 26 C136 26 160 48 162 80 C163 98 156 110 145 114 L148 128 L136 132 L138 148"/>
-        <path d="M40 62 C70 44 124 44 154 64"/>
-        <circle class="rz-prism__solid" cx="52" cy="74" r="5"/>
-        <circle class="rz-prism__solid" cx="76" cy="53" r="5"/>
-        <circle class="rz-prism__solid" cx="104" cy="46" r="5"/>
-        <circle class="rz-prism__solid" cx="132" cy="53" r="5"/>
-        <circle class="rz-prism__solid" cx="154" cy="74" r="5"/>
-        <path d="M52 74 C58 88 66 92 76 90"/>
-        <path d="M76 53 C82 70 88 78 100 80"/>
-        <path d="M132 53 C128 70 122 78 110 80"/>
-        <path d="M154 74 C148 88 140 92 130 90"/>
-        <path class="rz-prism__trace" d="M22 176 H44 L50 160 L56 188 L62 168 L70 176 H88 L94 156 L100 190 L106 170 L114 176 H134 L140 162 L146 186 L152 170 L158 176 H180"/>
-    </svg>`,
-    // Hipp's chronoscope: a dial reading thousandths of a second, over the
-    // clockwork that got it there. The first instrument that made "how long did
-    // that thought take" an answerable question.
-    chronoscope: `<svg class="rz-prism__art" viewBox="0 0 200 200" aria-hidden="true">
+    // Hipp's chronoscope, which is what Wundt's room was built around: a dial
+    // reading thousandths of a second, over the clockwork that got it there.
+    // The first instrument that made "how long did that thought take" an
+    // answerable question.
+    chronoscope: `<svg class="rz-era__art" viewBox="0 0 200 200" aria-hidden="true">
         <circle cx="100" cy="82" r="52"/>
         <circle cx="100" cy="82" r="44"/>
         <path d="M100 38 V46"/><path d="M144 82 H136"/><path d="M100 126 V118"/><path d="M56 82 H64"/>
         <path d="M131 51 L126 56"/><path d="M131 113 L126 108"/><path d="M69 113 L74 108"/><path d="M69 51 L74 56"/>
         <path d="M100 82 L128 62"/>
         <path d="M100 82 L88 108"/>
-        <circle class="rz-prism__solid" cx="100" cy="82" r="5"/>
+        <circle class="rz-era__solid" cx="100" cy="82" r="5"/>
         <path d="M74 134 V150 H126 V134"/>
         <path d="M62 150 H138 L146 172 H54 Z"/>
         <circle cx="84" cy="161" r="7"/>
         <circle cx="116" cy="161" r="7"/>
         <path d="M84 161 L116 161"/>
     </svg>`,
-    // And its modern answer: evidence accumulating between two bounds until one
-    // is crossed, with the response-time distribution the traces produce.
-    model: `<svg class="rz-prism__art" viewBox="0 0 200 200" aria-hidden="true">
-        <path class="rz-prism__bound" d="M26 46 H182"/>
-        <path class="rz-prism__bound" d="M26 138 H182"/>
-        <path d="M26 46 V138"/>
-        <path class="rz-prism__dash" d="M26 92 H182"/>
-        <path d="M26 92 C44 88 52 74 66 72 C80 70 84 84 96 78 C108 72 112 56 124 52 C132 49 138 47 144 46"/>
-        <path class="rz-prism__faint" d="M26 92 C42 98 50 112 62 110 C76 108 80 94 92 100 C104 106 110 124 122 130 C130 134 138 137 146 138"/>
-        <path class="rz-prism__faint" d="M26 92 C40 90 48 80 58 82 C70 84 74 96 86 92 C100 87 106 68 118 60 C128 53 136 48 142 46"/>
-        <path class="rz-prism__dist" d="M120 178 C128 178 130 156 138 156 C146 156 148 178 158 178"/>
-        <path d="M100 178 H182"/>
-        <path d="M144 46 L144 40"/>
+    // Brouillet's clinical lesson: a patient held up in front of a room full of
+    // men looking at her. The audience is the subject of the drawing rather
+    // than the background to it — that a demonstration needed a theatre is the
+    // thing the station is about.
+    charcot: `<svg class="rz-era__art" viewBox="1 14 200 200" aria-hidden="true">
+        <path d="M16 88 C58 54 142 54 184 88"/>
+        <circle cx="24" cy="72" r="7"/>
+        <circle cx="46" cy="58" r="7"/>
+        <circle cx="70" cy="49" r="7"/>
+        <circle cx="96" cy="45" r="7"/>
+        <circle cx="122" cy="47" r="7"/>
+        <circle cx="148" cy="55" r="7"/>
+        <circle cx="172" cy="70" r="7"/>
+        <circle cx="62" cy="118" r="10"/>
+        <path d="M62 130 V 166"/>
+        <path d="M62 140 L96 132"/>
+        <path d="M62 166 L50 190"/>
+        <path d="M62 166 L74 190"/>
+        <circle class="rz-era__solid" cx="150" cy="130" r="9"/>
+        <path d="M142 137 C126 150 112 158 96 160"/>
+        <path class="rz-era__faint" d="M96 160 L74 168"/>
+        <path d="M86 178 H186"/>
+        <path class="rz-era__faint" d="M104 178 V190"/>
+        <path class="rz-era__faint" d="M176 178 V190"/>
+    </svg>`,
+    // Berger's answer to the skull-readers: the same head, sampled at the
+    // scalp, with the trace it produces running underneath.
+    eeg: `<svg class="rz-era__art" viewBox="1 8 200 200" aria-hidden="true">
+        <path d="M62 150 V128 C40 118 32 96 34 78 C37 47 63 26 98 26 C136 26 160 48 162 80 C163 98 156 110 145 114 L148 128 L136 132 L138 148"/>
+        <path d="M40 62 C70 44 124 44 154 64"/>
+        <circle class="rz-era__solid" cx="52" cy="74" r="5"/>
+        <circle class="rz-era__solid" cx="76" cy="53" r="5"/>
+        <circle class="rz-era__solid" cx="104" cy="46" r="5"/>
+        <circle class="rz-era__solid" cx="132" cy="53" r="5"/>
+        <circle class="rz-era__solid" cx="154" cy="74" r="5"/>
+        <path d="M52 74 C58 88 66 92 76 90"/>
+        <path d="M76 53 C82 70 88 78 100 80"/>
+        <path d="M132 53 C128 70 122 78 110 80"/>
+        <path d="M154 74 C148 88 140 92 130 90"/>
+        <path class="rz-era__trace" d="M22 176 H44 L50 160 L56 188 L62 168 L70 176 H88 L94 156 L100 190 L106 170 L114 176 H134 L140 162 L146 186 L152 170 L158 176 H180"/>
     </svg>`,
 }
 
-/* ── The prism ──
- * Four faces on a square prism, turning a quarter at a time. The pairs are
- * adjacent, not opposite, and that is the whole design: opposite faces are 180°
- * apart and can never be seen in one movement, so the pairing would have to be
- * asserted in a caption. Adjacent, the quarter-turn *is* the sentence —
- * phrenology becomes EEG, chronoscope becomes a model — and the reader watches
- * the argument rather than reading it.
+/* ── The deck ──
+ * Five centuries of asking the lab's questions with whatever was to hand, dealt
+ * as a fanned stack of photographs: the cards spread down and to the right, one
+ * after another in about a second, and the run comes to rest on a photograph of
+ * this lab recording EEG and physiology. **That ending is the argument** — the
+ * landmark is about a line of instruments that each looked definitive and each
+ * turned out to be a stage, and putting our own bench on top of the pile is the
+ * only honest place to put it.
  *
- * Everything is CSS: the turn is one animation on the prism, paused while the
- * landmark is not holding, exactly as the cardiac loop next door is. So there
- * is no rotation state in script, nothing to keep in step with a caption, and
- * nothing to unwind when the reader scrubs backwards — a face carries its own
- * label because it is on the face, which is also why nothing here has to know
- * which one is showing.
+ * ── The stack is the point, not the sequence ──
+ * Two earlier versions showed one picture at a time: a walkable timeline with a
+ * dot axis, then a deck turning on a spindle. Both spent most of their life
+ * showing a single image, so the *arc* — the thing the landmark is actually
+ * claiming — had to be remembered rather than seen. Fanned, all six are on
+ * screen at once and the claim is the picture: six overlapping frames, oldest
+ * at the back, ours in front. The deal is what says which order they came in.
+ *
+ * ── Peeling is the only way back ──
+ * Every card keeps a sliver showing, and pointing at one lifts everything in
+ * front of it away so it can be seen whole. That is what earns the legend back:
+ * with the pictures now permanently overlapping, a reader who wants to know what
+ * the half-hidden painting behind the lab photograph *is* has a way to ask, and
+ * an answer that appears only when asked. It is not a caption on every card,
+ * which is what the timeline had and what made it four labels for one image.
+ *
+ * ── The deal plays while the landmark holds, and the stagger is CSS ──
+ * A quarter-second ticker watches `.rz-scene--held` and does two things: arms
+ * the pictures, and adds or removes one class. The per-card delay is the
+ * stylesheet's (`--rz-i` times a step) and not a JS timer, because a background
+ * tab clamps timers to roughly 1Hz — which would turn a one-second deal into six
+ * seconds of cards arriving one at a time. A transition delay is not a timer.
+ *
+ * ── The stacked branch needs its own layout ──
+ * There, and under reduced motion, `paint()` never runs, so nothing is ever held
+ * and the deal never fires. `.rz--static` lays the deck out flat as a contact
+ * sheet instead — every card at once, nothing overlapping, nothing to wait for,
+ * and the cards are still buttons so a tap names one. It is written in the
+ * stylesheet rather than here, so crossing the breakpoint switches between the
+ * two for free. See `.rz--static .rz-era` in `css/21-reality-zoom.css`.
  */
-function buildPrismFigure(config) {
-    const wrap = el("div", "rz-fig rz-fig--prism")
+const ERA_TICK_MS = 250
 
-    const stage = el("div", "rz-prism__stage")
-    const prism = el("div", "rz-prism")
+/* The legend a card shows: its own title, then artist and year on the line
+ * under it. Both parts are optional and two of the six plates genuinely have no
+ * attribution to give — a phrenological chart and a catalogue engraving of a
+ * chronoscope are anonymous, and **inventing a name for either would be worse
+ * than leaving the line short.** The lab's own photograph has a title and no
+ * artist for the same reason in reverse. */
+function eraMeta(station) {
+    return [station.artist, station.year].filter(Boolean).join(", ")
+}
 
-    const faces = Array.isArray(config.faces) ? config.faces.slice(0, 4) : []
-    faces.forEach((face, index) => {
-        const panel = el("div", "rz-prism__face")
-        panel.style.setProperty("--rz-face", String(index))
+function buildEraFigure(config) {
+    const wrap = el("div", "rz-fig rz-fig--era")
+    const stations = Array.isArray(config.stations) ? config.stations.filter((item) => item && item.id) : []
+    if (!stations.length) return wrap
 
-        const art = PRISM_ARTS[face.art]
-        if (art) panel.appendChild(svgMarkup(art))
+    const last = stations.length - 1
+    const deck = el("div", "rz-era")
 
-        if (face.era) panel.appendChild(el("p", "rz-prism__era", face.era))
-        if (face.name) panel.appendChild(el("h4", "rz-prism__name", face.name))
-        if (face.text) panel.appendChild(el("p", "rz-prism__text", face.text))
+    /* ── Every card is a real button ──
+     * The previous deck was one `role="img"` with a single authored label,
+     * because nothing in it could be pointed at. This one can: each card peels
+     * the stack back to itself and names its own painting, which is a control,
+     * so it is a `<button>` with its legend as the accessible name. Six tab
+     * stops, and they cost nothing anywhere else on the page — `paint()` marks
+     * every scene that is not holding the screen `inert`, so only the landmark
+     * actually in front of the reader is ever in the tab order.
+     *
+     * Stacking is source order via `z-index: var(--rz-i)`, which is also what
+     * makes the hit-testing work with no code: a card is covered by the ones
+     * dealt after it, so the only part of it that can receive a pointer is the
+     * sliver still showing — exactly the edge the reader is aiming at. */
+    const cards = stations.map((station, index) => {
+        const card = el("button", "rz-era__card" + (station.img ? " rz-era__card--photo" : " rz-era__card--drawn"))
+        card.type = "button"
+        card.style.setProperty("--rz-i", String(index))
+        // How far along the run this card is: the stylesheet warms the old ones
+        // and leaves the last one alone, which is the only thing left saying
+        // that this is five centuries and not six photographs.
+        card.style.setProperty("--rz-plate-t", (last ? index / last : 0).toFixed(3))
+        card.setAttribute("aria-label", [station.title, eraMeta(station)].filter(Boolean).join(" — "))
 
-        prism.appendChild(panel)
+        if (station.img) {
+            const image = el("img", "rz-era__img")
+            /* ── The src is withheld until the gate opens ──
+               `.rz-scenes` is `display: none` until the reader opens the zoom,
+               and these six pictures are 706 KB — measured — for a dive most
+               readers never open. **`loading="lazy"` does not defer them**,
+               which is the trap: an image with no layout box can never
+               intersect the viewport, so the browser loads it immediately
+               rather than never. `armImages()` below assigns `src` on the first
+               tick where the figure has a box, i.e. the moment the gate opens.
+               `loading` stays as the honest statement that these are not
+               urgent, and it is written before `src` because assigning `src`
+               starts the fetch there and then and a `loading` written
+               afterwards does not call it back. */
+            image.loading = "lazy"
+            image.fetchPriority = "low"
+            image.decoding = "async"
+            // The button's own aria-label already names the picture.
+            image.alt = ""
+            image.dataset.src = station.img
+            card.appendChild(image)
+        } else {
+            /* The fallback nothing currently takes: every station has a picture.
+               It stays because a station added without one has to render as
+               *something*, and a grey box with a filename in it cannot be told
+               from a broken image. */
+            const art = ERA_ARTS[station.art]
+            if (art) card.appendChild(svgMarkup(art))
+        }
+
+        deck.appendChild(card)
+        return card
     })
 
-    stage.appendChild(prism)
-    wrap.appendChild(stage)
+    /* The legend. Its height is reserved in the stylesheet — one line for the
+       title and one for the attribution, whether or not either is there — for
+       the reason everything in this dive reserves its height: the landmarks are
+       centred in a stage that clips, so a strip that grew when the reader
+       pointed at something would shift the whole scene under them mid-gesture. */
+    const legend = el("div", "rz-era__legend")
+    const legendTitle = el("p", "rz-era__legend-title")
+    const legendMeta = el("p", "rz-era__legend-meta")
+    legend.appendChild(legendTitle)
+    legend.appendChild(legendMeta)
 
-    /* One line under the turn, saying what it is a turn *of*. The faces name
-       themselves; this names the pairing, which is the thing no single face can
-       say. */
-    if (config.caption) wrap.appendChild(el("p", "rz-prism__caption", config.caption))
+    wrap.appendChild(deck)
+    wrap.appendChild(legend)
+
+    /* ── Peeling ──
+     * Pointing at a card lifts every card in front of it off the pile and names
+     * the one underneath. `focus(null)` is the rest state, which shows the top
+     * card — the lab — because that is what is actually facing the reader when
+     * nobody is pointing at anything.
+     *
+     * The peel is `data-peeled` on the cards *after* the focused one rather
+     * than anything on the focused card itself, so the card being revealed
+     * never moves. A reveal that also slid the thing being revealed is the one
+     * way to make this gesture feel unreliable. */
+    function focus(index) {
+        const at = index === null ? last : index
+        cards.forEach((card, i) => {
+            card.dataset.peeled = String(index !== null && i > index)
+            card.dataset.focus = String(i === at)
+        })
+        const station = stations[at]
+        legendTitle.textContent = station.title || ""
+        legendMeta.textContent = eraMeta(station)
+    }
+
+    cards.forEach((card, index) => {
+        /* Touch is excluded for the reason the rest of this file excludes it: a
+           tap fires `pointerenter` before its own `click`, so the two would
+           fight over one gesture. On a touch screen the click below is what
+           does the work, and the stacked branch lays the deck out flat so there
+           is something to tap at. */
+        card.addEventListener("pointerenter", (event) => {
+            if (event.pointerType === "touch") return
+            focus(index)
+        })
+        card.addEventListener("focus", () => focus(index))
+        card.addEventListener("click", () => focus(index))
+    })
+    deck.addEventListener("pointerleave", () => focus(null))
+    deck.addEventListener("focusout", (event) => {
+        if (!deck.contains(event.relatedTarget)) focus(null)
+    })
+
+    focus(null)
+
+    /* The pictures, once there is anything to show them in. `offsetParent` is
+       null for an element inside a `display: none` box and non-null the moment
+       the gate opens it, which is the whole test — no observer, and nothing
+       here has to know that a gate exists. Runs once. */
+    let armed = false
+    function armImages() {
+        if (armed || !wrap.offsetParent) return
+        armed = true
+        wrap.querySelectorAll("img[data-src]").forEach((image) => {
+            image.src = image.dataset.src
+            image.removeAttribute("data-src")
+        })
+    }
+
+    /* ── The deal ──
+     * One class, and the stagger is the stylesheet's (`--rz-i` times a step).
+     * It was a JS timer walking an index, and a CSS stagger is better here for
+     * a reason that has bitten this file before: a background tab clamps timers
+     * to roughly 1Hz, which would turn a one-second deal into six seconds of
+     * cards arriving one at a time. A transition delay is not a timer and does
+     * not care.
+     *
+     * The ticker that remains does two things only: arm the pictures, and watch
+     * `--held`. Dealing on hold and clearing on release is what makes the run
+     * play again on a second visit rather than being permanently spent.
+     */
+    let held = false
+    setInterval(() => {
+        armImages()
+        const scene = wrap.closest(".rz-scene")
+        const holding = !!scene && scene.classList.contains("rz-scene--held")
+        if (holding === held) return
+        held = holding
+        if (held) {
+            deck.classList.add("is-dealt")
+            return
+        }
+        /* Off screen: gather the pile back up, and drop any peel with it — a
+           reader who left mid-hover would otherwise come back to a stack that
+           is still holding itself open for a pointer that has gone. The class
+           goes off without a stagger (the stylesheet zeroes the delay when it
+           is absent), so the reset is a single movement rather than the deal
+           run backwards. */
+        deck.classList.remove("is-dealt")
+        focus(null)
+    }, ERA_TICK_MS)
 
     return wrap
 }
 
 const FIGURE_BUILDERS = {
-    map: buildMapFigure,
+    cloud: buildCloudFigure,
     ponzo: buildPonzoFigure,
     artworks: buildArtworksFigure,
     heartbrain: buildHeartBrainFigure,
-    prism: buildPrismFigure,
-    strands: buildStrandsFigure,
+    era: buildEraFigure,
 }
 
 /* ── Assembly ── */
+
+/* ── A landmark's background film ──
+ * One landmark has one, and it is an **animated image, not a `<video>`**.
+ *
+ * That is the whole of what this used to be: two encodes, a `preload="none"`
+ * held back until the gate opened, a `--rz-mode` gate, a `load()` before
+ * `play()`, a silent `anullsrc` track muxed in to dodge Chrome's power-pause,
+ * a `pause` listener to fight it anyway, and a `play()` rejection logged
+ * because the console message was the only thing that could identify a
+ * failure. All of it correct, and the film was still reported twice as one
+ * that never played — a `<video>` has too many ways to sit on one dark frame
+ * that nothing in CSS can see or reach. An animated image has none of them: it
+ * decodes and runs wherever an `<img>` would.
+ *
+ * **The withholding survives the change and costs nothing.** `.rz-scenes` is
+ * `display: none` until the gate opens, and a browser does not fetch a
+ * background image inside a `display: none` subtree — so the discipline the
+ * old `preload`/`data-src` dance existed to enforce is now a property of the
+ * layout. Verified: 0 requests before the gate.
+ *
+ * **The stacked branch gets the still, not the loop**, chosen in the stylesheet
+ * off the same media query that sets `--rz-mode: stack` — so there is still one
+ * place the mode is decided, and it is not read back into script at all any
+ * more. A phone pays 13 KB instead of 687, and gets a picture where this
+ * landmark used to open with none.
+ *
+ * The two paths come from the content module, as inline custom properties: a
+ * relative `url()` in `css/` resolves against that folder, and these have to go
+ * through `<base>`.
+ */
 
 /* Which side the figure sits on comes from :nth-child in the stylesheet, so a
    landmark's position in the list is the only thing that decides it. */
@@ -654,10 +1148,62 @@ function buildLandmark(landmark) {
     scene.dataset.landmark = landmark.id
     scene.style.setProperty("--rz-accent", landmark.accent || "#5599ff")
 
+    /* Behind everything in the scene, on a negative z-index. The scene already
+       makes a stacking context of its own (it carries a `transform`), so the
+       layer cannot escape underneath the stage — and because it is a child of
+       the scene it inherits `--rz-in`, which means it fades in and out with the
+       landmark for free rather than needing a line in `paint()`. */
+    const film = landmark.background && landmark.background.image
+    if (film) {
+        scene.classList.add("rz-scene--film")
+        const filmBox = el("div", "rz-scene__film")
+        /* Decorative: it is the landmark's ground, and the paragraphs over it
+           are the content. A `div` rather than an `<img>` for that reason, and
+           because the stylesheet has to be able to choose between the loop and
+           the still per media query. */
+        const picture = el("div", "rz-scene__video")
+        /* Resolved against `document.baseURI` here, and that is not belt and
+           braces. A `url()` inside a custom property is resolved against the
+           stylesheet that *consumes* it, not the rule that declares it — so
+           these, declared inline but read by `background-image` in
+           `css/21-reality-zoom.css`, came out as `/css/research/img/…` and
+           404'd. Measured, first try. `new URL(…, document.baseURI)` is what
+           `<base>` would have done for an `<img src>`, which keeps it
+           mount-aware for a `/WIP/`-served copy. */
+        const url = (path) => 'url("' + new URL(path, document.baseURI).href + '")'
+        picture.style.setProperty("--rz-film-src", url(film))
+        picture.style.setProperty("--rz-film-still", url(landmark.background.still || film))
+        filmBox.appendChild(picture)
+        scene.appendChild(filmBox)
+    }
+
     const copy = el("div", "rz-scene__copy")
     if (landmark.eyebrow) copy.appendChild(el("p", "rz-scene__eyebrow", landmark.eyebrow))
     if (landmark.title) copy.appendChild(el("h3", "rz-scene__title", landmark.title))
-    if (landmark.text) copy.appendChild(el("p", "rz-scene__text", landmark.text))
+    /* One string or several: a landmark that has an argument to make rather
+       than a caption to give gets a paragraph per step of it, and .rz-scene__copy
+       is already a grid with a gap, so nothing has to space them. */
+    const paragraphs = Array.isArray(landmark.text) ? landmark.text : landmark.text ? [landmark.text] : []
+    /* An entry is a plain string, or `{ text, pause: true }` — a beat held open
+       before it. A pause is worth one slot of the stagger and one extra gap
+       above the paragraph, and `data-slot` is what carries the first half of
+       that into `paint()`: the stagger counts slots rather than array indices,
+       so a pause costs a step without anything downstream being renumbered by
+       hand. See `.rz-scene__text--beat` for the space, and FILM_TEXT_STEP for
+       why the step had to come down when this one was added. */
+    let slot = 0
+    paragraphs.forEach((entry) => {
+        const beat = !!(entry && typeof entry === "object" && entry.pause)
+        if (beat) slot += 1
+        const node = el("p", "rz-scene__text" + (beat ? " rz-scene__text--beat" : ""), typeof entry === "string" ? entry : entry.text)
+        node.dataset.slot = String(slot)
+        copy.appendChild(node)
+        slot += 1
+    })
+    /* Several paragraphs is a different object from a caption and has to be set
+       as one: the stage is exactly 100vh and clips, so the leading that is right
+       for four lines overflows at twenty. See .rz-scene--essay. */
+    if (paragraphs.length > 1) scene.classList.add("rz-scene--essay")
     if (landmark.note) copy.appendChild(el("p", "rz-scene__note", landmark.note))
 
     if (Array.isArray(landmark.tags) && landmark.tags.length) {
@@ -670,7 +1216,13 @@ function buildLandmark(landmark) {
     const builder = landmark.figure && FIGURE_BUILDERS[landmark.figure.type]
     if (builder) {
         const figure = el("div", "rz-scene__figure")
-        figure.appendChild(builder(landmark.figure))
+        /* The scene is passed as a second argument for the one builder that
+           writes back into the copy column — the map rewrites the landmark's own
+           paragraph as the reader moves over it, which is a different gesture
+           from a caption appearing under a figure. Every other builder ignores
+           it. The copy is already built and appended by this point, so the
+           `.rz-scene__text` the map goes looking for is there to be found. */
+        figure.appendChild(builder(landmark.figure, scene))
         scene.appendChild(figure)
     } else {
         scene.classList.add("rz-scene--text-only")
@@ -785,6 +1337,13 @@ export function buildRealityZoom(tab) {
 export function initRealityZoom(parts, mainPage) {
     const { root, track, stage, zoom, image, question, sceneNodes, railTrack, dots, close, gateButton, hint } = parts
     if (!root || !mainPage) return null
+
+    /* One scene has a film behind it and paragraphs staggered against its own
+       `local` progress (see FILM_TEXT_START above) — queried once rather than
+       every scroll frame, since the paragraph count and order never change. */
+    const filmTexts = sceneNodes.map((scene) =>
+        scene.classList.contains("rz-scene--film") ? [...scene.querySelectorAll(".rz-scene__text")] : null,
+    )
 
     /* Timeline, derived from the same vh budgets the track is sized with so the
        two can never disagree. */
@@ -1034,11 +1593,41 @@ export function initRealityZoom(parts, mainPage) {
             scene.style.setProperty("--rz-z", (lerp(0.82, 1, enter) * lerp(1, 1.42, exit)).toFixed(3))
             scene.style.setProperty("--rz-blur", (lerp(7, 0, enter) + lerp(0, 5, exit)).toFixed(2))
 
+            // The film's own paragraphs, staggered against this landmark's
+            // `local` rather than a timer — see FILM_TEXT_START above.
+            const paragraphs = filmTexts[index]
+            if (paragraphs) {
+                paragraphs.forEach((paragraph, i) => {
+                    const from = FILM_TEXT_START + Number(paragraph.dataset.slot || i) * FILM_TEXT_STEP
+                    paragraph.style.setProperty("--rz-text-in", easeOut(span(local, from, from + FILM_TEXT_STEP)).toFixed(3))
+                })
+                /* How much of the landmark still belongs to the film alone.
+                   The clip is dimmed to the point of being a ghost once four
+                   paragraphs are sitting directly on it — which is what it has
+                   to be, since nothing is between them — and that is how a
+                   playing film came to be reported as one that never played.
+                   So it is only dimmed once there is something to protect:
+                   full strength through the beat before the first paragraph,
+                   settling as that paragraph arrives. Keyed on `local` like
+                   every other reveal here, so it scrubs in both directions. */
+                const solo = 1 - easeOut(span(local, FILM_TEXT_START, FILM_TEXT_START + FILM_TEXT_STEP))
+                scene.style.setProperty("--rz-film-solo", solo.toFixed(3))
+            }
+
             // Held is about input: only the landmark actually facing the reader
             // may be clicked. The rail's highlight is a separate question — it
             // follows whichever is *most* present, so it does not blink off in
             // the dark between two landmarks.
-            scene.classList.toggle("rz-scene--held", opacity > 0.6)
+            const held = opacity > 0.6
+            scene.classList.toggle("rz-scene--held", held)
+            /* Keyboard's half of the same gate. `pointer-events` has always
+               kept the mouse out of a landmark on its way in; without this the
+               tab order runs through every widget in the dive whatever is on
+               screen, which the cloud made impossible to ignore — it alone
+               contributes twenty-five links. Written only here, so the stacked
+               fallback (where paint() never runs, and nothing is ever held)
+               keeps every control it has. */
+            if (scene.inert === held) scene.inert = !held
             if (opacity > strongest) {
                 strongest = opacity
                 nextActive = index

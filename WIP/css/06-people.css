@@ -8,7 +8,10 @@
 
 /* ── People section – MLP Neural Network ── */
 .people-full {
-    padding: 5rem 0 5rem 0;
+    /* One token because two things need the same number: the section's own
+       block padding, and where the backdrop stops. 19-narrow.css moves it. */
+    --people-pad-block: 5rem;
+    padding: var(--people-pad-block) 0;
     background: #f5f4ef;
     position: relative;
     overflow-x: clip;
@@ -21,14 +24,22 @@
 
 /* ── Backdrop video ──
    Sized to the full section width at its own 16:9 ratio, so the whole frame is
-   always visible — nothing is cropped. It ends up shorter than the section,
-   and that leftover height is exactly the room the parallax moves within
-   (--people-video-parallax, written by initPeopleVideo in script.js). */
+   always visible — nothing is cropped. It ends up shorter than the box, and
+   that leftover height is exactly the room the parallax moves within
+   (--people-video-parallax, written by initPeopleVideo in script.js).
+
+   The box stops at the section's bottom padding rather than at the section's
+   edge, and the parallax is bottom-anchored against it (`anchor: "bottom"` in
+   trackSectionParallax), so the band's last frame ends on the same line the
+   content does — the foot of the Alumni bar. Centred against the whole
+   section it finished a padding's worth *below* the bar, which read as the
+   backdrop outliving the roster. Both halves are needed: shortening the box
+   alone only moves the float, anchoring alone lands it on the section edge. */
 /* Gated to the team roster tab — script.js sets .people-full--video-on from
    the lab panel's hidden state, and the other two tabs stay plain. */
 .people-full__video {
     position: absolute;
-    inset: 0;
+    inset: 0 0 var(--people-pad-block) 0;
     z-index: -1;
     overflow: hidden;
     pointer-events: none;

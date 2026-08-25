@@ -49,6 +49,7 @@ llms.txt
 # each and no page ever requests them. See "The size budget" in CLAUDE.md.
 *_full.jpg
 *_full.png
+*_full.webp
 img/Intro.mp4
 
 # ── Local noise ──

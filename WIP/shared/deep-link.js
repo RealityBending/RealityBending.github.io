@@ -160,6 +160,22 @@ export function matchRoute(route, prefix) {
     return route.startsWith(prefix + "-") ? route.slice(prefix.length + 1) : null
 }
 
+/* The real, mounted URL a route lives at — for a control *inside* the page that
+   navigates somewhere the router already owns, and so wants to be a genuine
+   anchor rather than a button: middle-click, "copy link address" and a crawler
+   all get the same address the router would write. The click itself is still
+   handled in script, or the browser would reload the page to reach a tab.
+
+   It goes through `toMountedPath` for the same reason `writeRoute` does — an
+   href of `/research/creations/` is a URL outside a /WIP/-mounted copy. Returns
+   "" for a route with no path of its own, which a caller should treat as "no
+   link": a `#route` fallback is right for the address bar and wrong for an
+   href, where a bare fragment resolves against `<base>` (see CLAUDE.md). */
+export function hrefForRoute(route) {
+    const path = pathForRoute(route)
+    return path ? toMountedPath(path) : ""
+}
+
 export function writeRoute(route) {
     if (currentRoute() === route && !currentHash()) return
 

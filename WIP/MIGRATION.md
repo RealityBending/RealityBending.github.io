@@ -11,10 +11,6 @@ done, and knowing which parts changes what you have to do.
 what is still open; once the site is live and §7 is worked through, delete it.
 Everything permanent about how the site works lives in `CLAUDE.md`.
 
-It also absorbed two documents that used to sit beside it — `SEO-PLAN.md`, whose
-plan is spent and whose reasoning is now in CLAUDE.md under "The generated
-pages", and `AUDIT.md`, the pre-cutover audit. §9 is what is left of that audit.
-
 ---
 
 ## 0 · Before you start
@@ -203,7 +199,7 @@ In rough order of value:
 
 ## 8 · One thing still open
 
-Neither blocks cutover. Both are judgement calls that were left for you.
+It does not block cutover. It is a judgement call that was left for you.
 
 
 ### 8.1 The generated publication pages show an abstract the site does not
@@ -235,8 +231,9 @@ against a local server with all four generator scripts run:
   zoom. The only console output is Chrome's own video power-pause warning, which
   CLAUDE.md documents and the encoder already mitigates.
 - **All 250 network requests return 200.** No broken images, no 404 assets.
-- **Routes hold both ways.** `tools/check-routes.html` passes all 26 route
-  shapes; `tools/check-paths.py` passes all 149 routes the site can write.
+- **Routes hold both ways.** `tools/check-routes.html` round-trips all 18 route
+  shapes it exercises; `tools/check-paths.py` passes all 149 routes the site can
+  write.
 - **Legacy coverage is complete where it matters** — all 37 old post URLs, all
   39 publication URLs and all 7 job URLs redirect. The 254 unmapped are
   deliberate; see CLAUDE.md.

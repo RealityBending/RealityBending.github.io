@@ -177,6 +177,28 @@
     color: var(--layer-ink-strong);
 }
 
+/* ── The open seat ──
+   An empty level renders as one node that is nobody — the section's own
+   no-avatar silhouette and "You?" — leading to that level's step of the Join
+   rail. people.js builds it, join.js catches the click.
+
+   **This rule is deliberately the whole of its styling.** It is a `.mlp-node`
+   in every other respect: same box, same ring, same pulse, same name, same
+   hover. An earlier pass gave the seat an italic accent-coloured name, a faded
+   avatar that came up on hover, and a focus ring of its own, and all of it was
+   the seat insisting it was a special kind of node when the empty row already
+   says so. Anything added here should have to justify not being a member node.
+
+   What is left is the one real difference: it is an `<a>` where every other
+   node is a `<div>`, which is what buys middle-click, "copy link address" and
+   a keyboard tab stop — and the anchor's own underline and colour are what
+   have to be undone for it to look like the rest. Focus is the browser's
+   default ring, as it is everywhere else on this site. */
+.mlp-node--seat {
+    text-decoration: none;
+    color: inherit;
+}
+
 /* ── Keyword ring (3 curved slots, shown on hover) ── */
 .mlp-node__keyword-ring {
     position: absolute;

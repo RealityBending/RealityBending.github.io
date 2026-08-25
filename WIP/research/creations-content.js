@@ -11,17 +11,20 @@
  * thing's own picture on it. So `groups` carries its own renderer in `kind`
  * ("list" or "cards"), and adding a third row is a content change.
  *
- * A group with an `image` — a path from the site root, like a tool's `logo` —
- * is a dark plate with that painting behind it. Inventions has one, an
- * astronomer working out a new arrangement of the world, because a list of
- * ideas is a page of text and the picture is what makes it a thing to look at.
- * A replacement has to survive being darkened to a texture and cropped to a
- * wide band, so a picture whose subject is a small bright thing in one corner
- * is the wrong kind.
+ * A group with no `image` is a light plate — nothing but the section's own
+ * cream — and **neither row sets one**, which is what makes the tab read as one
+ * page. Tools never wanted a painting: eleven pictures of their own, each on a
+ * white card, and a twelfth behind them competes with the set. Inventions did
+ * have one, an astronomer working out a new arrangement of the world, on the
+ * argument that a list of ideas is a page of text and the picture is what makes
+ * it a thing to look at — true, and still outweighed by a black band sitting on
+ * a cream one inside a single tab.
  *
- * A group with no `image` is a light plate, which is what Tools is: eleven
- * pictures of their own, each on a white card. A painting behind those is a
- * twelfth picture competing with them, and it lost.
+ * A group *with* an `image` — a path from the site root, like a tool's `logo` —
+ * is a dark plate with that painting behind it. The path is still supported and
+ * is one line from here. If you take it, the picture has to survive being
+ * darkened to a texture and cropped to a wide band, so a subject that is a
+ * small bright thing in one corner is the wrong kind.
  *
  * Item keys, both rows: `name`, `line` (the one-line description — this is the
  * whole of what a reader gets, so it has to stand alone), `href` and
@@ -45,8 +48,13 @@ export const CREATIONS_TAB = Object.freeze({
             label: "Inventions",
             lede: "Ideas and concepts we defined.",
             accent: "#5599ff",
-            image: "research/img/copernicus.jpg",
             items: [
+                {
+                    name: "The Affective Reality Theory",
+                    line: "The hypothesis we developed and that we work to validate.",
+                    href: "#post-2023-affective-reality-theory",
+                    linkLabel: "Blog post",
+                },
                 {
                     name: "Probability of Direction (pd)",
                     line: "Our index of effect existence became a standard tool for Bayesian analysis reporting.",
@@ -64,6 +72,12 @@ export const CREATIONS_TAB = Object.freeze({
                     line: "A new way of statistically modelling data from slider scales.",
                     href: "https://doi.org/10.31234/osf.io/z68v3_v1",
                     linkLabel: "Preprint",
+                },
+                {
+                    name: "Cypher's Syndrome",
+                    line: "People preferring fictional lives to reality.",
+                    href: "#post-2023-cyphers-complex",
+                    linkLabel: "Blog post",
                 },
             ],
         },
@@ -105,6 +119,14 @@ export const CREATIONS_TAB = Object.freeze({
                     line: "Evidence accumulation models in Julia.",
                     href: "https://github.com/itsdfish/SequentialSamplingModels.jl",
                     linkLabel: "GitHub",
+                },
+                {
+                    name: "cogmod",
+                    type: "R package",
+                    logo: "research/img/logo-cogmod.png",
+                    line: "Cognitive models for subjective scales and decision-making tasks (DDM, RDM, LBA, ...).",
+                    href: "https://dominiquemakowski.github.io/cogmod/",
+                    linkLabel: "Docs",
                 },
                 {
                     name: "The Mint",

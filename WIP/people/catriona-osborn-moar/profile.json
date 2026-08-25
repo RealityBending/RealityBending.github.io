@@ -1,13 +1,19 @@
 {
     "name": "Catriona Osborn Moar",
     "category": "PhD Student",
+    "title": "Complexity",
+    "details": "PhD Candidate, Sussex Neuroscience 4-Year PhD Programme",
     "email": "C.Osborn-Moar@sussex.ac.uk",
     "affiliation": "University of Sussex",
+    "keywords": ["complexity", "consciousness", "inference"],
+    "summary": "Panta rhei ('everything flows') - A reminder of the inherent dynamism of existence. As Carlo Rovelli neatly puts it: all reality is interaction. From the realm of quantum mechanics to evolutionary biology, the notion of interaction pervades our understanding of the universe. The very fabric of life is woven from interactions.",
     "interests": [
-        "Ongoing brain activity and thought",
-        "Active Inference",
-        "Complex systems and criticality",
-        "Altered states of consciousness"
+        "Ongoing brain activity, thought & experience",
+        "(En)active Inference",
+        "Complex systems & criticality",
+        "Altered states of consciousness",
+        "Mental health, critical psychiatry",
+        "Philosophy of science"
     ],
     "experience": [
         {
@@ -26,5 +32,8 @@
             "year": "2021"
         }
     ],
-    "socials": []
+    "socials": [
+        { "label": "ResearchGate", "url": "https://www.researchgate.net/profile/Catriona-Osborn-Moar" },
+        { "label": "GitHub", "url": "https://github.com/CatrionaOM" }
+    ]
 }
