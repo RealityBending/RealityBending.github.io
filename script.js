@@ -1,5 +1,6 @@
 import { ACTIVE_NAV_SECTIONS, applySectionTheme } from "./site-sections.js"
 import { initMarginTabNav, swapTabPanels } from "./shared/tab-slide.js"
+import { onScroll } from "./shared/scroll-loop.js"
 import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, readRoute, revealSection, writeRoute } from "./shared/deep-link.js"
 /* Imported for its side effect: the module hooks the route and keeps the tab
    title in step. Here as well as in the two sections that register resolvers,
@@ -56,6 +57,17 @@ try {
 // ── Active nav section highlighting ──
 const sectionNavMap = ACTIVE_NAV_SECTIONS
 
+/* The bar's own links, which are static markup in index.html — re-querying
+   them on every scroll frame was a document-wide selector run for a set that
+   cannot change. */
+let navLinks = null
+
+/* What the bar is currently showing, so a frame that finds the same section
+   does no DOM work at all. This runs on every painted frame of a 13,000px page
+   and the answer changes perhaps six times in a whole visit; without the
+   early-out it cleared and re-set `.active` across every link each time. */
+let shownSectionId
+
 function updateActiveNav() {
     const mid = window.innerHeight / 2
     let activeSectionId = null
@@ -70,11 +82,11 @@ function updateActiveNav() {
         }
     }
 
-    document.querySelectorAll("nav a").forEach((a) => a.classList.remove("active"))
-    if (activeSectionId) {
-        const link = document.querySelector(`nav a[data-section-id="${activeSectionId}"]`)
-        if (link) link.classList.add("active")
-    }
+    if (activeSectionId === shownSectionId) return
+    shownSectionId = activeSectionId
+
+    if (!navLinks) navLinks = document.querySelectorAll("nav a")
+    navLinks.forEach((a) => a.classList.toggle("active", Boolean(activeSectionId) && a.dataset.sectionId === activeSectionId))
 }
 
 // ── Nav visibility: hidden over the hero, revealed once scrolled past it ──
@@ -85,15 +97,24 @@ const heroSection = document.querySelector(".hero")
 // --nav-reveal, so the bar eases in with the scroll instead of snapping.
 const NAV_REVEAL_END = 90
 
+// The last value written. The reveal is pinned at 1 for everything below the
+// hero, which is the whole page bar the first screenful, so most frames have
+// nothing to say — and a custom property written with the value it already has
+// still costs a style invalidation.
+let shownReveal
+
 function updateNavVisibility() {
     if (!navBar || !heroSection) return
 
     const heroBottom = heroSection.getBoundingClientRect().bottom
     const revealStart = Math.max(NAV_REVEAL_END + 120, window.innerHeight * 0.45)
-    const reveal = Math.min(1, Math.max(0, (revealStart - heroBottom) / (revealStart - NAV_REVEAL_END)))
+    const reveal = Math.min(1, Math.max(0, (revealStart - heroBottom) / (revealStart - NAV_REVEAL_END))).toFixed(3)
 
-    navBar.style.setProperty("--nav-reveal", reveal.toFixed(3))
-    navBar.classList.toggle("nav--hidden", reveal <= 0.02)
+    if (reveal === shownReveal) return
+    shownReveal = reveal
+
+    navBar.style.setProperty("--nav-reveal", reveal)
+    navBar.classList.toggle("nav--hidden", Number(reveal) <= 0.02)
 }
 
 function initContactTabs() {
@@ -180,6 +201,11 @@ function trackSectionParallax(section, layer, customProperty, options) {
     const maxTravel = settings.maxTravel || 160
     const viewMargin = settings.viewMargin || 200
     let inView = false
+    // The last offset written. Both of these layers spend long stretches at the
+    // end of their travel — the People video is clamped for the whole roster
+    // below the fold — and re-writing a custom property with the value it
+    // already holds still invalidates style on the subtree that reads it.
+    let shownOffset
 
     function update() {
         const rect = section.getBoundingClientRect()
@@ -222,10 +248,13 @@ function trackSectionParallax(section, layer, customProperty, options) {
            line the content ends on, whoever joins or leaves the lab. */
         const offset = settings.anchor === "bottom" ? slack - travel : 0
 
-        section.style.setProperty(customProperty, (offset + (progress - 0.5) * 2 * travel).toFixed(1) + "px")
+        const value = (offset + (progress - 0.5) * 2 * travel).toFixed(1) + "px"
+        if (value === shownOffset) return
+        shownOffset = value
+        section.style.setProperty(customProperty, value)
     }
 
-    mainPage.addEventListener("scroll", update, { passive: true })
+    onScroll(mainPage, update)
     window.addEventListener("resize", update)
 
     // Section height is not settled at startup and changes with the tabs; both
@@ -384,6 +413,12 @@ function initHeroGlow() {
  */
 function initSitePromoFab() {
     const fab = document.getElementById("fab-site-promo")
+    // Every other init in this file guards its own element and this one did
+    // not: measureCollapse() reads `fab.parentElement` unconditionally, so a
+    // shell without the button threw a TypeError at module evaluation rather
+    // than simply going without a FAB.
+    if (!fab || !mainPage) return
+
     const target = document.getElementById("sec-contact-full")
     /* What "far enough in" is measured against. It used to be a fraction of the
        page — half way down, on the theory that People and Research are behind
@@ -425,7 +460,7 @@ function initSitePromoFab() {
         fab.classList.toggle("is-shown", scrolled && !arrived)
     }
 
-    mainPage.addEventListener("scroll", update, { passive: true })
+    onScroll(mainPage, update)
     window.addEventListener("resize", () => {
         measureCollapse()
         update()
@@ -435,8 +470,8 @@ function initSitePromoFab() {
 }
 
 if (mainPage) {
-    mainPage.addEventListener("scroll", updateActiveNav, { passive: true })
-    mainPage.addEventListener("scroll", updateNavVisibility, { passive: true })
+    onScroll(mainPage, updateActiveNav)
+    onScroll(mainPage, updateNavVisibility)
     window.addEventListener("resize", updateNavVisibility)
     updateActiveNav()
     updateNavVisibility()

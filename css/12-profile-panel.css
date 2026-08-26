@@ -457,43 +457,6 @@
     transform: none;
 }
 
-.profile-panel__fun-fact {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 0.55rem;
-    padding: 0.95rem 0 0.15rem 1.1rem;
-    border-radius: 0;
-    background: none;
-    border: 0;
-    box-shadow: none;
-}
-
-.profile-panel__fun-fact::before {
-    content: "";
-    position: absolute;
-    inset: 0.95rem auto 0.15rem 0;
-    width: 2px;
-    border-radius: 999px;
-    background: linear-gradient(180deg, rgba(212, 165, 74, 0.95), rgba(240, 190, 86, 0.35));
-}
-
-.profile-panel__fun-fact-label {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #926815;
-}
-
-.profile-panel__fun-fact-text {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1rem;
-    line-height: 1.72;
-    color: #4a4237;
-}
-
 .profile-panel__socials {
     display: flex;
     flex-wrap: wrap;
@@ -541,24 +504,6 @@
     color: #111;
     transform: translateY(-1px);
     box-shadow: none;
-}
-
-.profile-panel__keywords {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.profile-panel__keyword {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.8rem;
-    border-radius: 999px;
-    background: rgba(17, 17, 17, 0.05);
-    color: #555;
 }
 
 .profile-panel__sections {

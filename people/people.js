@@ -1165,7 +1165,6 @@ import { registerRouteTitle } from "../shared/page-meta.js"
                 const layer = document.createElement("div")
                 layer.className = "mlp-layer"
                 layer.style.setProperty("--layer-index", li)
-                layer.style.setProperty("--member-count", members.length || 1)
 
                 /* label — category name only, rendered vertically via CSS */
                 const label = document.createElement("div")

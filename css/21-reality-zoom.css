@@ -816,96 +816,6 @@
     transform: scale(1.1);
 }
 
-/* ── The strip under the cloud ──
-   Empty until a word is pressed, and holding its full height throughout — a
-   landmark is centred in the stage, so a strip that appeared on a press would
-   shift the whole scene under the reader at the moment they pressed it. Same
-   reason `.pub-scholar__states` stacks and the ask line reserves two lines.
-
-   The height comes from the link itself, which is laid out at `opacity: 0`
-   rather than removed; the one part that has no height of its own at rest is
-   the title, hence its `min-height`.
-
-   No margin: `.rz-fig` is a grid with its own 1rem gap, and a margin here would
-   be that space twice over. */
-.rz-cloud-cite {
-    display: grid;
-    width: 100%;
-    text-align: left;
-}
-
-.rz-cloud-cite__link {
-    display: grid;
-    gap: 0.25rem;
-    margin: 0;
-    text-decoration: none;
-    transition: opacity 0.25s ease;
-}
-
-.rz-cloud-cite[data-state="rest"] .rz-cloud-cite__link {
-    opacity: 0;
-    pointer-events: none;
-}
-
-/* The landmark's accent, as every other eyebrow in the zoom is. */
-.rz-cloud-cite__label {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--rz-accent);
-}
-
-/* ── The title is white, and gold was tried ──
-   #e8b73f — the Creations tab's "this one is ours" mark over a dark plate — on
-   the argument that the cloud's own three tones are spoken for (body, control,
-   self) so a title in any of them reads as a fourth word in that scheme. It
-   isn't wrong about the scheme and it is still wrong here: white is not one of
-   the three either, and a warm title turned the strip into a thing of its own
-   rather than the caption of the picture above it. Reverted. The one point of
-   colour is the accent label, as everywhere else in the zoom.
-
-   Clamped to two lines rather than allowed to run: it is the one string here
-   not written for this box, and a 130-character review title is not going to be
-   shortened because it is being quoted. The `min-height` is what reserves the
-   space while it is empty — without it the strip is 16px until the first press
-   and 72px after, which is the resize the reservation was for. Both
-   declarations say the same thing; the second keeps saying it if the type
-   changes. */
-.rz-cloud-cite__title {
-    min-height: 2.9em;
-    min-height: 2lh;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    overflow: hidden;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 0.86rem;
-    line-height: 1.45;
-    color: rgba(255, 255, 255, 0.82);
-}
-
-/* Reserved for the same reason the title above is, and it is easy to miss that
-   it needs it too: with only the title reserved the strip was 63px at rest and
-   75px filled, and the figure is centred in the scene — so the whole cloud
-   stepped up 6px the first time a word was pressed. */
-.rz-cloud-cite__who {
-    min-height: 1.2em;
-    min-height: 1lh;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 0.72rem;
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.rz-cloud-cite__link:hover .rz-cloud-cite__title,
-.rz-cloud-cite__link:focus-visible .rz-cloud-cite__title {
-    color: #fff;
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
-}
-
 /* Ponzo. Both bars are the same rect; only the rails differ. */
 .rz-ponzo {
     width: 100%;
@@ -1833,7 +1743,8 @@
     pointer-events: none;
 }
 
-/* `.rz--rail`, not `.rz--dark`: the rail outlives the dark at both ends now. */
+/* The rail has its own class rather than riding the veil: it comes up before
+   the dark does and outlasts it at both ends. */
 .rz--rail .rz-rail__dot {
     pointer-events: auto;
 }

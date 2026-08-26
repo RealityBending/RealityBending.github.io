@@ -4,8 +4,7 @@
    Research, News, Publications, Join, Information — is the source order of the
    buttons in index.html and of the nav's own list; the two are independent.
 
-   colorHex / atlasColor mirror the --section-* tokens in css/01-base.css :root,
-   which
+   colorHex mirrors the --section-* tokens in css/01-base.css :root, which
    belong to a position on the hero's arc rather than to a section. Reorder the
    menu by moving the names between the tokens, and update both files. */
 export const SITE_SECTIONS = Object.freeze([
@@ -17,9 +16,6 @@ export const SITE_SECTIONS = Object.freeze([
         brainRegionIndex: 4,
         colorVar: "--section-research",
         colorHex: "#5599ff",
-        atlasColor: "rgba(85, 153, 255, 0.9)",
-        atlasDisplayRange: [300, 360],
-        atlasHitRange: [240, 300],
         brainLabel: "Research →",
         viewAzimuth: -Math.PI / 2,
         viewPolar: 1.0,
@@ -34,9 +30,6 @@ export const SITE_SECTIONS = Object.freeze([
         brainRegionIndex: 0,
         colorVar: "--section-people",
         colorHex: "#aa55ff",
-        atlasColor: "rgba(170, 85, 255, 0.9)",
-        atlasDisplayRange: [60, 120],
-        atlasHitRange: [0, 60],
         brainLabel: "People →",
         viewAzimuth: Math.PI,
         viewPolar: 1.25,
@@ -51,9 +44,6 @@ export const SITE_SECTIONS = Object.freeze([
         brainRegionIndex: 5,
         colorVar: "--section-news",
         colorHex: "#33cccc",
-        atlasColor: "rgba(51, 204, 204, 0.88)",
-        atlasDisplayRange: [0, 60],
-        atlasHitRange: [300, 360],
         brainLabel: "News →",
         viewAzimuth: -Math.PI / 2,
         viewPolar: Math.PI / 2,
@@ -68,9 +58,6 @@ export const SITE_SECTIONS = Object.freeze([
         brainRegionIndex: 1,
         colorVar: "--section-publications",
         colorHex: "#55cc77",
-        atlasColor: "rgba(85, 204, 119, 0.88)",
-        atlasDisplayRange: [120, 180],
-        atlasHitRange: [60, 120],
         brainLabel: "Publications →",
         viewAzimuth: Math.PI / 2,
         viewPolar: 1.0,
@@ -92,9 +79,6 @@ export const SITE_SECTIONS = Object.freeze([
         brainRegionIndex: 3,
         colorVar: "--section-join",
         colorHex: "#ff9933",
-        atlasColor: "rgba(255, 153, 51, 0.88)",
-        atlasDisplayRange: [240, 300],
-        atlasHitRange: [180, 240],
         brainLabel: "Join →",
         viewAzimuth: 0,
         viewPolar: 1.25,
@@ -110,9 +94,6 @@ export const SITE_SECTIONS = Object.freeze([
         brainRegionIndex: 2,
         colorVar: "--section-contact",
         colorHex: "#ff5555",
-        atlasColor: "rgba(255, 85, 85, 0.88)",
-        atlasDisplayRange: [180, 240],
-        atlasHitRange: [120, 180],
         brainLabel: "Information →",
         viewAzimuth: Math.PI / 2,
         viewPolar: Math.PI / 2,
@@ -120,37 +101,11 @@ export const SITE_SECTIONS = Object.freeze([
     },
 ])
 
-export const SECTION_BY_ID = new Map(SITE_SECTIONS.map((section) => [section.id, section]))
-
 export const ACTIVE_NAV_SECTIONS = SITE_SECTIONS.filter((section) => section.pageSectionId).map((section) => ({
     sectionId: section.id,
     navHref: section.navHref,
     pageSectionId: section.pageSectionId,
 }))
-
-export const ATLAS_HIT_SECTORS = SITE_SECTIONS.map((section) => ({
-    id: section.id,
-    start: section.atlasHitRange[0],
-    end: section.atlasHitRange[1],
-}))
-
-function buildAtlasRangeGradient(range, color) {
-    const [start, end] = range
-    return `conic-gradient(from -60deg, transparent 0deg ${start}deg, ${color} ${start}deg ${end}deg, transparent ${end}deg 360deg)`
-}
-
-export function buildAtlasBaseGradient() {
-    const stops = SITE_SECTIONS.slice()
-        .sort((left, right) => left.atlasDisplayRange[0] - right.atlasDisplayRange[0])
-        .map((section) => `${section.atlasColor} ${section.atlasDisplayRange[0]}deg ${section.atlasDisplayRange[1]}deg`)
-
-    return `conic-gradient(from -60deg, ${stops.join(", ")})`
-}
-
-export function buildAtlasHighlightGradient(sectionId) {
-    const section = SECTION_BY_ID.get(sectionId)
-    return section ? buildAtlasRangeGradient(section.atlasDisplayRange, section.atlasColor) : "transparent"
-}
 
 export function applySectionTheme(doc = document) {
     SITE_SECTIONS.forEach((section) => {
@@ -173,10 +128,4 @@ export function applySectionTheme(doc = document) {
             heroSection.style.setProperty("--section-color", `var(${section.colorVar})`)
         }
     })
-
-    const atlas = doc.querySelector(".brain-atlas")
-    if (atlas) {
-        atlas.style.setProperty("--atlas-sector-gradient", buildAtlasBaseGradient())
-        atlas.style.setProperty("--atlas-active-gradient", "transparent")
-    }
 }

@@ -31,6 +31,7 @@
 
 import { element as el } from "../shared/dom.js"
 import { hrefForRoute } from "../shared/deep-link.js"
+import { onScroll } from "../shared/scroll-loop.js"
 
 /* Measured off img/magritte_falsemirror.jpg (2000×1345) by scanning the middle
    of the canvas for the pupil's dark run: it spans x 831→1096, y 537→804. Eyed
@@ -1367,7 +1368,6 @@ export function initRealityZoom(parts, mainPage) {
             track.style.height = ""
             // Both would otherwise be left behind by whatever the last scroll
             // frame wrote before the viewport crossed the breakpoint.
-            root.classList.remove("rz--dark")
             mainPage.classList.remove("main-page--dark-zoom")
             return
         }
@@ -1423,10 +1423,23 @@ export function initRealityZoom(parts, mainPage) {
         coverScale = (far / pupilR) * 1.06
     }
 
-    function progress() {
-        const rect = track.getBoundingClientRect()
-        const range = track.offsetHeight - stage.clientHeight
-        return range > 0 ? clamp01(-rect.top / range) : 0
+    /* Everything render() has to measure, read in one go before any of it
+       writes. See the note on render() below. */
+    function readFrame() {
+        const trackRect = track.getBoundingClientRect()
+        const stageRect = stage.getBoundingClientRect()
+        const stageHeight = stage.clientHeight
+        const range = track.offsetHeight - stageHeight
+        const viewport = window.innerHeight
+        return {
+            trackTop: trackRect.top,
+            trackBottom: trackRect.bottom,
+            stageTop: stageRect.top,
+            stageBottom: stageRect.bottom,
+            stageHeight,
+            viewport,
+            progress: range > 0 ? clamp01(-trackRect.top / range) : 0,
+        }
     }
 
     let activeIndex = -1
@@ -1460,10 +1473,10 @@ export function initRealityZoom(parts, mainPage) {
        collapse safe from here on: the stage and everything after the section
        move up by the height the track loses, so the one correction in
        setUnlocked covers both and nothing on screen appears to move. */
-    function leftBy() {
-        const rect = track.getBoundingClientRect()
-        if (rect.top > window.innerHeight * EXIT_UP_MARGIN) return "up"
-        if (rect.bottom < stage.clientHeight - window.innerHeight * EXIT_DOWN_MARGIN) return "down"
+    function leftBy(frame) {
+        const f = frame || readFrame()
+        if (f.trackTop > f.viewport * EXIT_UP_MARGIN) return "up"
+        if (f.trackBottom < f.stageHeight - f.viewport * EXIT_DOWN_MARGIN) return "down"
         return ""
     }
 
@@ -1495,13 +1508,15 @@ export function initRealityZoom(parts, mainPage) {
         exitFrame = 0
         // Re-tested in the frame that does the work, not just in the one that
         // asked for it: a reader who crossed the edge and came straight back
-        // never wanted the gate shut.
+        // never wanted the gate shut. So `leftBy` is called with no frame here
+        // — this is the one place that has to measure again rather than reuse
+        // what render() read.
         if (isStatic || isLocked() || root.offsetParent === null || !leftBy()) return
         setUnlocked(false, { reposition: false })
     }
 
-    function armExit() {
-        if (!leftBy()) {
+    function armExit(frame) {
+        if (!leftBy(frame)) {
             disarmExit()
             return
         }
@@ -1525,20 +1540,24 @@ export function initRealityZoom(parts, mainPage) {
             // Painting it once is enough — nothing moves until it is opened.
             if (!atRest) {
                 atRest = true
-                paint(0)
+                paint(0, readFrame())
             }
             disarmExit()
             return
         }
 
         atRest = false
-        paint(progress())
-        armExit()
+        /* One measurement, taken before the first write of the frame and handed
+           to both of the things that need it. paint() used to take its own
+           after writing a few hundred custom properties, and armExit() a third
+           after that — two forced synchronous layouts per scroll event, on the
+           one path that runs on every frame of an ~800vh dive. */
+        const frame = readFrame()
+        paint(frame.progress, frame)
+        armExit(frame)
     }
 
-    function paint(p) {
-        root.style.setProperty("--rz-progress", p.toFixed(4))
-
+    function paint(p, frame) {
         /* How far through the pull-back, in its own 0 → 1. Everything the dive
            did is multiplied by (1 - surface), which runs the whole thing
            backwards without a second set of numbers to keep in step. */
@@ -1657,15 +1676,14 @@ export function initRealityZoom(parts, mainPage) {
            at 1 and the veil stays opaque — which would leave the nav dressed
            for a black section for the whole rest of the page. The stage's own
            rect is the thing that actually says whether the dark is on screen. */
-        const stageRect = stage.getBoundingClientRect()
-        const onScreen = stageRect.bottom > 0 && stageRect.top < window.innerHeight
+        const onScreen = frame.stageBottom > 0 && frame.stageTop < frame.viewport
         const dark = veil > 0.5 && onScreen
-        root.classList.toggle("rz--dark", dark)
         mainPage.classList.toggle("main-page--dark-zoom", dark)
-        // The rail now comes up before the dark does and outlasts it, so what
-        // makes it clickable can no longer be `.rz--dark`. Same off-screen
-        // guard though: past the end of the track --rz-progress is pinned at 1,
-        // and nothing in here should stay hit-testable over the next section.
+        // The rail comes up before the dark does and outlasts it at both ends,
+        // so it carries its own class rather than riding the veil's. Same
+        // off-screen guard though: past the end of the track `p` is pinned at
+        // 1, and nothing in here should stay hit-testable over the next
+        // section.
         root.classList.toggle("rz--rail", railIn > 0.4 && onScreen)
     }
 
@@ -1807,7 +1825,7 @@ export function initRealityZoom(parts, mainPage) {
         true,
     )
 
-    mainPage.addEventListener("scroll", render, { passive: true })
+    onScroll(mainPage, render)
     window.addEventListener("resize", refresh)
     if (typeof ResizeObserver !== "undefined") new ResizeObserver(refresh).observe(stage)
 

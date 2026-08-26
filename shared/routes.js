@@ -2,25 +2,22 @@
  * The translation between a route string and a URL path.
  *
  * ── What this is for ──
- * The site's routes are currently hashes (`#post-2023-new-logo`), and a
- * fragment is not an address: Google retired the crawlable-fragment scheme in
- * 2015 and no crawler indexes one separately. So the whole site is a single
- * indexable URL, whatever is rendered into it. Giving each thing a real path is
- * what lifts that cap — see CLAUDE.md, "The generated pages".
+ * Routes used to be hashes (`#post-2023-new-logo`), and a fragment is not an
+ * address: Google retired the crawlable-fragment scheme in 2015 and no crawler
+ * indexes one separately, so the whole site was a single indexable URL whatever
+ * was rendered into it. Giving each thing a real path is what lifted that cap —
+ * see CLAUDE.md, "The generated pages".
  *
- * This module is the *whole* of that change as far as the rest of the site is
- * concerned. `shared/deep-link.js` already funnels every URL write through
- * `writeRoute` and every read through `currentHash`, and hands handlers an
- * opaque route string — nothing outside it knows the URL is a hash. So the
- * route strings stay exactly as they are, every `applyRoute` stays exactly as
- * it is, and only the two ends of deep-link.js change.
+ * This module is the *whole* of that translation as far as the rest of the site
+ * is concerned. `shared/deep-link.js` funnels every URL write through
+ * `writeRoute` and every read through `readRoute`, and hands handlers an opaque
+ * route string — nothing outside those two modules knows a route has a URL
+ * shape at all. So the route strings are unchanged, and so is every
+ * `applyRoute`.
  *
- * ── Nothing imports this yet ──
- * It is inert on purpose. Adopting it means deep-link.js reading the path and
- * `writeRoute` writing one, and that must not happen until generate_pages.py is
- * writing a real file at every path this can produce — otherwise the first
- * reload after a tab click is a 404. Kept separate so it can be read and
- * checked on its own first.
+ * ── Every path this can produce must be a real file ──
+ * `generate_pages.py` writes them and `tools/check-paths.py` is the gate: a
+ * path nothing serves makes the first reload after a tab click a 404.
  *
  * ── The one constraint, and nothing enforces it ──
  * `/news/<x>/` is a post when `x` is a slug and a tab when `x` is a tab name,
@@ -45,8 +42,6 @@ const SECTION_PATHS = new Map([
     ["publications", "publications"],
     ["contact", "information"],
 ])
-
-const PATH_SECTIONS = new Map([...SECTION_PATHS].map(([route, path]) => [path, route]))
 
 /* The tabs of each section, by path segment. These are the reserved names. */
 const RESERVED = new Map([

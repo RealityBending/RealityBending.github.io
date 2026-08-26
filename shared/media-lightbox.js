@@ -74,7 +74,3 @@ export function openImageLightbox({ src, alt = "", label = "Image viewer", title
     lightbox.root.classList.add("is-open")
     lightbox.closeButton.focus()
 }
-
-export function closeImageLightbox() {
-    ensureLightbox().close()
-}

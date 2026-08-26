@@ -36,12 +36,16 @@ script.js           door screen, nav, hero glow, tabs, backdrop parallax
 site-sections.js    single source of truth for sections: colour, brain region, nav
 brain.js            three.js brain in the hero; maps regions to sections
 shared/             cross-section helpers (tab-slide, pager, lightbox, honeycomb,
-                    deep-link, page-meta, profile-api, dom, rich-text); their CSS
-                    counterpart is css/07-shared.css — except honeycomb.js,
-                    which is placement only and leaves the dressing to its one
-                    caller (Services; the Creations tab was the other until its
-                    tools became cards), and deep-link.js, page-meta.js and
-                    dom.js, which have no CSS at all
+                    deep-link, page-meta, profile-api, dom, rich-text,
+                    scroll-loop); their CSS counterpart is css/07-shared.css —
+                    except honeycomb.js, which is placement only and leaves the
+                    dressing to its one caller (Services; the Creations tab was
+                    the other until its tools became cards), and deep-link.js,
+                    page-meta.js, dom.js and scroll-loop.js, which have no CSS
+                    at all
+shared/scroll-loop.js
+                    the page's one scroll listener (see "Everything that reacts
+                    to scroll shares one frame" below)
 shared/deep-link.js the site's shareable hashes (see "Shareable URLs" below)
 shared/page-meta.js the tab title, kept in step with the route — not SEO
                     (see "How the page describes itself" below)
@@ -216,7 +220,7 @@ plain source order — `nav ul` in `index.html` and `.menu-buttons` in the same
 file — and the button colours come from `:nth-child` rules, so a colour belongs
 to a **position on the arc, not to a section**. Reordering the menu means moving
 the section names between the `--section-*` tokens in `css/01-base.css` `:root`
-(and the matching `colorHex` / `atlasColor` in `site-sections.js`), leaving the
+(and the matching `colorHex` in `site-sections.js`), leaving the
 purple → red sequence where it is. `SITE_SECTIONS`' own array order is
 unrelated: it is brain.js's hit-test precedence, and the regions overlap.
 
@@ -353,6 +357,62 @@ into normal flow at the bottom of the section. Prefer giving the backdrop
 `z-index: -1` plus `isolation: isolate` on the section over reaching for a
 blanket child selector — the negative layer then paints above the section's own
 background and below all content, touching nothing else.
+
+### Everything that reacts to scroll shares one frame
+
+`shared/scroll-loop.js`. Six things read `#main-page` scrolling — the active-nav
+highlight, the nav's reveal over the hero, the two backdrop parallaxes, the
+"Like this website?" FAB and the Research zoom's whole dive — and each used to
+register its own listener. Every one of them has the same shape: measure with
+`getBoundingClientRect()`, then write a custom property or toggle a class.
+
+Six of those interleaved in one event is textbook layout thrash — the first
+handler's write invalidates layout, so the second handler's read forces the
+page to be laid out again before it can answer — and it ran **per event**, which
+on a trackpad is several times per painted frame. Measured on the homepage,
+twelve scroll events at a settled position:
+
+| | before | after |
+|---|---|---|
+| `getBoundingClientRect()` calls | 120 | 10 |
+| of those, taken after a style write | 115 | 3 |
+| `setProperty` calls | 22 | 1 |
+| document-wide `querySelectorAll` | 12 | 0 |
+
+Mid-dive on the Research zoom, the same twelve events: **120 → 9** reads,
+**118 → 1** forced, and **384 → 30** style writes.
+
+Three things hold that up, and they are separable:
+
+- **`onScroll(container, handler)` coalesces into one `requestAnimationFrame`.**
+  That is where a scroll-driven write belongs anyway: rAF runs after the frame's
+  scroll events and before style and layout. Handlers are wrapped individually,
+  so one throwing cannot take the other five down with it — which is the
+  isolation separate listeners gave for free.
+- **A handler that would write what is already there returns first.** The active
+  nav answers with the same section for hundreds of frames at a time, and the
+  parallaxes sit clamped at the end of their travel for whole sections; a
+  custom property re-written with its current value still invalidates style on
+  everything that reads it.
+- **A module that can take all its measurements at once does** — `readFrame()`
+  in `reality-zoom.js` is that, and it is why the dive's forced layouts went to
+  one. `paint()` used to take its own rect *after* writing a few hundred custom
+  properties, and `leftBy()` a third after that.
+
+**`resize` is deliberately left alone.** It is a transient gesture rather than a
+continuous one, and every scroll-driven module here routes `resize` to the same
+update function — which is what makes
+`window.dispatchEvent(new Event("resize"))` a working stand-in for a scroll in a
+preview pane that fires neither scroll events nor animation frames (see
+"Verifying changes"). Putting resize behind a frame would take that away, and
+buy almost nothing.
+
+**What it does not do is reorder reads before writes *across* handlers.** That
+needs every caller split in two, and the win is much smaller than the one above
+— the expensive part was doing the whole run several times a frame. The three
+reads still left after a write are the nav handlers measuring after the zoom has
+written; if that ever matters, splitting the API is the move, not reordering
+registration, which would be an implicit priority nothing states.
 
 ### Backdrop parallax
 
@@ -1065,7 +1125,8 @@ locked on a narrow screen is still the overlay, not a stack of landmarks.
   again before the eye had finished coming back. It now comes up between 26%
   and 58% of the dive, over the painting, and goes down between 24% and 70% of
   the outro, after the eye is back. Two consequences: what makes it clickable
-  is `.rz--rail`, not `.rz--dark`, because it outlives the dark at both ends;
+  is its own `.rz--rail` rather than the veil's own state, because it outlives
+  the dark at both ends;
   and it carries a `drop-shadow` now, because it is up while a bright sky is
   still behind it.
 - **A landmark's `text` may be one string or several, and several is a
@@ -2863,16 +2924,39 @@ Two more that look like real bugs there and are not:
   the same scroll with `behavior: "instant"` to check where the code meant to
   land.
 
-Scroll-driven work is still testable there, with three tricks:
+Scroll-driven work is still testable there, with four tricks:
 
 ```js
 document.getElementById("main-page").classList.add("visible")  // then remove #door-screen
 mainPage.style.scrollBehavior = "auto"   // else scrollTop assignments are ignored
+window.requestAnimationFrame = (fn) => setTimeout(() => fn(performance.now()), 0)
 window.dispatchEvent(new Event("resize"))  // stands in for the scroll event
 ```
 
 `scroll` events do **not** fire in such a pane, so setting `scrollTop` alone
 paints nothing. Every scroll-driven module here also listens for `resize` and
 routes it to the same `refresh()`, so dispatching one after each scroll
-assignment runs a render at the new position. `requestAnimationFrame` never
-fires either — stub it with `setTimeout(fn, 16)` to drive a tween.
+assignment runs a render at the new position — which is exactly why
+`shared/scroll-loop.js` leaves `resize` as a direct listener.
+
+**`requestAnimationFrame` never fires there, and the reason is worth knowing
+because it looks like a bug in whatever you are testing:
+`document.visibilityState` is permanently `"hidden"` in that pane, and a hidden
+document gets no animation frames.** Since `scroll-loop.js` coalesces every
+scroll handler into one rAF, nothing on the page reacts to scrolling at all
+until it is stubbed — the third line above. Stub it *before* dispatching
+anything, then drive real `scroll` events on `#main-page` and await a tick:
+
+```js
+mp.scrollTop = 5000
+mp.dispatchEvent(new Event("scroll"))
+await new Promise((r) => setTimeout(r, 40))
+```
+
+Two things that follow. A `javascript_tool` call that is **aborted mid-flight**
+(a long loop that hits the pane's timeout) can leave the stubbed loop wedged
+with a frame scheduled and never run, and every later scroll then does nothing —
+reload the page rather than debugging the symptom. And a screenshot is not
+available for the same reason the frames are not: the pane is not compositing.
+Read computed styles and rects instead, which is what the rest of this section
+already says.

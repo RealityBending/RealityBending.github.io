@@ -241,11 +241,6 @@
     opacity: 1;
 }
 
-.hero-logo {
-    width: 110px;
-    opacity: 0.88;
-}
-
 /* ── Hero menu buttons (equal round buttons on the disc edge) ── */
 .menu-buttons {
     position: absolute;

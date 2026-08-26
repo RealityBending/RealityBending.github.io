@@ -1,5 +1,6 @@
 import { RESEARCH_CONTENT } from "./research-content.js"
 import { initMarginTabNav, LEAVE_DURATION, swapTabPanels } from "../shared/tab-slide.js"
+import { onScroll } from "../shared/scroll-loop.js"
 import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRoute } from "../shared/deep-link.js"
 import { buildRealityZoom, initRealityZoom } from "./reality-zoom.js"
 import { buildCreations } from "./creations.js"
@@ -218,7 +219,7 @@ import { buildCreations } from "./creations.js"
             fab.classList.toggle("is-shown", onScreen && activeTab === zoomTab.id)
         }
 
-        mainPage.addEventListener("scroll", update, { passive: true })
+        onScroll(mainPage, update)
         window.addEventListener("resize", update)
         update()
         syncFab = update

@@ -239,8 +239,3 @@
     fill: rgba(255, 255, 255, 0.98);
 }
 
-/* hide the old info card entirely — replaced by disc */
-.mlp-node__info {
-    display: none;
-}
-

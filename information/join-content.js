@@ -229,8 +229,8 @@ export const JOIN_CONTENT = Object.freeze({
                         {
                             name: "Commonwealth PhD Scholarships (LDCs)",
                             tags: ["Bangladesh"],
-                            meta: "Bangladesh + 16 other Commonwealth least-developed states · fees + stipend",
-                            blurb: "Fully funded UK PhD study for citizens of Bangladesh, The Gambia, Kiribati, Lesotho, Malawi, Mozambique, Nigeria, Pakistan, Rwanda, Sierra Leone, Solomon Islands, Sri Lanka, Tanzania, Togo, Tuvalu, Uganda or Zambia, who could not otherwise afford to study in the UK. Applications go through a nominating body in your home country, not directly to the scheme, and it expects you to return home afterwards.",
+                            meta: "Commonwealth states",
+                            blurb: "Fully funded UK PhD study for citizens of Bangladesh and other Commonwealth countries.",
                             links: [
                                 {
                                     label: "Commonwealth Scholarships",

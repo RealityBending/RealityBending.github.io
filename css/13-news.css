@@ -556,12 +556,6 @@
 
 /* ── Tags ── */
 
-.news-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-}
-
 .news-tag {
     padding: 0.25em 0.7em;
     border-radius: 999px;
