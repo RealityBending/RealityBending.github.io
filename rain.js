@@ -19,6 +19,14 @@
 
     const landingScreen = document.getElementById("door-screen")
 
+    /* A page opened at a real route never shows the door — index.html's
+       bootstrap hides it before the first paint — so there is nothing for the
+       rain to fall on. Worth an early return rather than a wasted loop: the
+       stop below hangs off the door's own `transitionend`, and a door that was
+       hidden rather than faded never fires one, so both canvases would keep
+       animating for the entire visit behind the page the reader came for. */
+    if (landingScreen && landingScreen.hidden) return
+
     function Rain(canvasId, phrases) {
         const canvas = document.getElementById(canvasId)
         if (!canvas) return null

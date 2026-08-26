@@ -1022,10 +1022,25 @@
                    no hash, because the route is in the path. Both mean the
                    reader chose a destination before arriving. */
                 if (window.location.hash.length > 1 || document.body.dataset.route) {
+                    /* `hidden` is the whole skip, and for a long time it did
+                       nothing: #door-screen is `display: flex` and [hidden]
+                       loses to a display rule (CLAUDE.md), so what was meant
+                       to be an instant removal played the entire landing
+                       animation instead — 900ms of door, 300ms of dissolve,
+                       and an invisible screen swallowing taps for all 1200ms
+                       of it. css/02-door.css now carries the
+                       `#door-screen[hidden]` rule that makes this line true.
+                       Keep the two together. */
                     doorScreen.classList.add("opening")
                     doorScreen.setAttribute("aria-hidden", "true")
                     doorScreen.hidden = true
                     mainPage.classList.add("visible")
+                    /* And the fade behind the door, which is a separate
+                       second of waiting: see `:root.deep-link` in
+                       css/01-base.css. On <html> rather than on #main-page
+                       because the custom properties it sets are inherited
+                       from the root. */
+                    document.documentElement.classList.add("deep-link")
                 }
 
                 /* ── The pre-rendered content, removed before it is ever seen ──

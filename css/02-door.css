@@ -23,6 +23,25 @@
         visibility 0s linear calc(var(--intro-screen-fade-delay) + var(--intro-screen-fade-duration));
 }
 
+/* ── [hidden] loses to the display rule above ──
+   The site-wide rule in CLAUDE.md, and this is the element it cost the most.
+   Two places set `hidden` on the door and both were silently doing nothing:
+
+     - index.html's bootstrap, on a page opened at a real route. It sets
+       `hidden` to take the door out *before the first paint* — that is the
+       whole point of it being inline — and instead the reader of a shared link
+       got the full landing screen for 900ms and then watched it dissolve over
+       another 300ms, with the invisible door still eating every tap until the
+       `visibility` step of the transition landed at 1200ms.
+     - script.js's `transitionend`, after a normal open, where `.opening`'s
+       `visibility: hidden` was quietly covering for it.
+
+   With this rule `hidden` means what it says: gone, no transition to wait for,
+   nothing in the hit-test layer. */
+#door-screen[hidden] {
+    display: none;
+}
+
 /* Landing backdrop, in two layers. The base is the near-white the black logo is
    read against once the doors are clicked; the ::after on top of it is the near
    black the white logo starts on. Clicking fades the dark layer out — a lighter

@@ -1,4 +1,4 @@
-import { ACTIVE_NAV_SECTIONS, applySectionTheme } from "./site-sections.js"
+import { ACTIVE_NAV_SECTIONS, applySectionTheme, SITE_SECTIONS } from "./site-sections.js"
 import { initMarginTabNav, swapTabPanels } from "./shared/tab-slide.js"
 import { onScroll } from "./shared/scroll-loop.js"
 import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, readRoute, revealSection, writeRoute } from "./shared/deep-link.js"
@@ -523,6 +523,39 @@ document.addEventListener("click", (event) => {
     if (!sectionId || !document.getElementById(sectionId)) return
     event.preventDefault()
     revealSection(sectionId, { smooth: true })
+})
+
+/* ── The hero's six menu buttons ──
+ * They belonged to brain.js, which is loaded only where `.hero__brain` is
+ * displayed — 901px and up, so that a phone does not build a WebGL renderer
+ * against a 0×0 container and pull 5.7 MB of brain.glb to draw nothing. The
+ * menu is not gated that way: it is on screen at every width. So below 900px
+ * the whole hero menu was inert, and tapping People, Research or any of the
+ * others left the reader exactly where they were, on the hero.
+ *
+ * Here instead, in the module that always loads. brain.js keeps the *hover* —
+ * that one really is about the brain, since it flies the camera to the region —
+ * and keeps the click on the mesh itself, easter egg included.
+ *
+ * `revealSection` rather than the `scrollIntoView` brain.js used, so a button
+ * and the nav link for the same section now do the identical thing; #main-page
+ * is the scroll container, not the window, and revealSection is what knows it.
+ *
+ * The buttons are <button>, not anchors, so the `a[href*="#sec-"]` handler
+ * below was never going to catch them. Join carries its own
+ * data-contact-tab-target, whose listener opens the tab — that one runs
+ * alongside this and neither knows about the other, the same arrangement the
+ * two Information links in the nav already have.
+ */
+const MENU_TARGETS = new Map(SITE_SECTIONS.map((section) => [section.id, section.scrollTargetId]))
+
+document.addEventListener("click", (event) => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+    const button = event.target.closest && event.target.closest(".menu-button")
+    if (!button) return
+    const target = MENU_TARGETS.get(button.id)
+    if (!target || !document.getElementById(target)) return
+    revealSection(target, { smooth: true })
 })
 
 /* ── The mark in the bar goes home ──

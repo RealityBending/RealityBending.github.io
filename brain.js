@@ -512,9 +512,13 @@ function raycastBrain(e) {
 }
 
 function clickedRegionFromEvent(e) {
-    const sectionEl = e.target.closest(".menu-button")
-    if (sectionEl) return regionsById.get(sectionEl.id) ?? null
-
+    /* The menu buttons used to be claimed here, and this module is loaded only
+       where the hero has room for the brain — at 901px and up. Below that the
+       menu is still on screen and this file is not, so every one of the six
+       buttons did nothing at all and the reader stayed on the hero. They are
+       script.js's now, which loads at every width; hovering one still lands
+       here, in the pointermove branch below, because that is genuinely about
+       the brain. Do not take the click back. */
     if (container.contains(e.target)) {
         const hit = raycastBrain(e)
         if (hit) return regionFromHit(hit)

@@ -36,6 +36,8 @@ body {
     --intro-screen-fade-duration: 300ms;
     --main-overlay-fade-delay: 300ms;
     --main-overlay-fade-duration: 1000ms;
+    /* Overridden to 0 for a reader who did not land on the landing page — see
+       `:root.deep-link` below. */
     /* The hero's menu buttons run down the left edge of the disc in this order —
        People, Research, News, Publications, Join, Information — and the six
        colours are the arc they trace, purple through to red. The colour belongs
@@ -53,5 +55,23 @@ body {
     --content-inline-gutter: clamp(1rem, 3vw, 2rem);
     --content-inline-size: min(var(--content-max-width), calc(100% - (var(--content-inline-gutter) * 2)));
     --debug-margins: 0; /* set to 1 to show dashed margin guides */
+}
+
+/* ── A reader who followed a link is not landing ──
+   Set by index.html's bootstrap, before the first paint, on any page opened at
+   a real route rather than at the site root: a person, a post, a photograph.
+   They chose a destination before they arrived, and the whole introduction —
+   the door, and then a second of the page dissolving in behind it — is the
+   site introducing itself to somebody who has already come in. The door is
+   skipped for them in the bootstrap; this is the same statement for the fade.
+
+   Zeroed rather than shortened. A fast fade is still a fade, and the thing
+   being faded in is a page they asked for by name.
+
+   `:root.deep-link` beats the bare `:root` above on specificity, so this can
+   sit next to what it overrides instead of at the end of the cascade. */
+:root.deep-link {
+    --main-overlay-fade-delay: 0ms;
+    --main-overlay-fade-duration: 0ms;
 }
 
