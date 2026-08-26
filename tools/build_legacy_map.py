@@ -38,7 +38,11 @@ import os
 import re
 import sys
 
-sys.stdout.reconfigure(encoding="utf-8")
+# See generate_pages.py: a notebook's stdout has no `reconfigure`. (This script
+# is frozen and can no longer run — the trees it joins were deleted at the
+# migration — but there is no reason for it to fail on the wrong line.)
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 WIP = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT = os.path.dirname(WIP)

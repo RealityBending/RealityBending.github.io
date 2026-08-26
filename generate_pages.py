@@ -17,6 +17,7 @@ Run after the three update_*.py scripts and after tools/build_legacy_map.py:
     research/ information/ join/ services/ + their tabs
     <old path>/index.html           redirect stubs, from legacy_map.json
     sitemap.xml                     all of the above
+    robots.txt                      the crawl policy + the sitemap pointer
     llms.txt                        rewritten against the real paths
 
 ── How a generated page differs from index.html ──
@@ -61,13 +62,90 @@ import html
 import json
 import re
 import sys
+import textwrap
 from pathlib import Path
 
-sys.stdout.reconfigure(encoding="utf-8")
+# ── Two lines that a notebook does not have ──
+# A Windows console defaults to cp1252 and these scripts print ✓/✗ and names, so
+# without the reconfigure they do their work and then die on the summary line —
+# which reads exactly like a failure to write the files. But `sys.stdout` in a
+# Jupyter/IPython cell is an ipykernel `OutStream`, which has no `reconfigure`,
+# and `__file__` is not defined there at all. Both are guarded rather than
+# assumed, the same way the three update_*.py scripts already do it: this is a
+# repository people open in a notebook.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-ROOT = Path(__file__).resolve().parent
-SITE_URL = "https://realitybendinglab.com"
+try:
+    ROOT = Path(__file__).resolve().parent
+except NameError:
+    ROOT = Path.cwd()
+
 TEMPLATE = ROOT / "index.html"
+
+# ── And then the guess is checked, because this script *writes* ──
+# The `Path.cwd()` fallback above is a guess, and unlike the update_*.py scripts
+# — which write one manifest into a folder they also read — this one writes ~250
+# files and two site-wide indexes. A wrong ROOT means a site scattered into
+# whatever directory the notebook happened to start in. index.html is the one
+# file that must be here, so its absence is the cheapest possible proof that
+# ROOT is wrong, and it is checked before anything is created.
+if not TEMPLATE.exists():
+    raise SystemExit(
+        f"generate_pages: no index.html in {ROOT}\n"
+        "  This script must run from the repository root. From a notebook, "
+        "`__file__` does not exist and the working directory is used instead — "
+        "os.chdir() to the repo root first, or run it as "
+        "`python generate_pages.py`."
+    )
+
+
+def _site_url() -> str:
+    """The deployed origin, read from index.html's own canonical.
+
+    ── Why it is not a constant here ──
+    It used to be, and it was one of four copies of the same fact — this
+    module, `shared/page-meta.js`, `robots.txt`, and index.html's
+    canonical/og/JSON-LD — with nothing keeping them in step. A wrong one never
+    404s: Pages still answers on `realitybending.github.io` and 301s to the
+    custom domain, so a stale copy quietly points every indexed page at the
+    wrong host while every link a human clicks still works. That is exactly how
+    it went unnoticed for months.
+
+    So there is one literal now, in the one file a crawler actually reads it
+    from, and everything else derives:
+
+        index.html <link rel="canonical">   the source
+          ├── this module (and so sitemap.xml, llms.txt, robots.txt)
+          └── shared/page-meta.js, off the live DOM
+
+    CNAME is checked against it rather than being a fifth copy: it is the
+    deployed artifact's only record of the domain, it is what Pages serves on,
+    and the two disagreeing is a misconfiguration nothing else would report.
+    """
+    head = TEMPLATE.read_text(encoding="utf-8")
+    found = re.search(r'<link rel="canonical" href="(https?://[^"]+?)/?"', head)
+    if not found:
+        raise SystemExit(
+            "generate_pages: index.html has no absolute <link rel=\"canonical\">. "
+            "That tag is where the deployed origin is written, and every "
+            "absolute URL this script emits derives from it."
+        )
+    origin = found.group(1).rstrip("/")
+
+    cname = ROOT / "CNAME"
+    if cname.exists():
+        host = cname.read_text(encoding="utf-8").strip()
+        if host and host != origin.split("//", 1)[1]:
+            raise SystemExit(
+                f"generate_pages: CNAME says '{host}' but index.html's canonical "
+                f"says '{origin}'. Pages serves on the CNAME; every canonical, "
+                f"og:url and sitemap entry would point somewhere else."
+            )
+    return origin
+
+
+SITE_URL = _site_url()
 
 SECTION_IDS = {
     "people": "sec-people-full",
@@ -1082,6 +1160,40 @@ def build_stubs():
     return len(mapping) - len(skipped)
 
 
+def build_robots():
+    """robots.txt, generated so its `Sitemap:` line cannot go stale.
+
+    It was hand-written and carried the deployed URL as a fourth copy — see
+    `_site_url`. There is nothing else in it that a human needs to edit in a
+    hurry: the policy is four lines and the reasoning is here.
+
+    ── The policy, and why it is a choice rather than an omission ──
+    Everything is open, including to the LLM crawlers (GPTBot, ClaudeBot,
+    PerplexityBot, Google-Extended). This is a public research lab, and being
+    quotable by an assistant asked "who studies interoception at Sussex" is
+    worth more than withholding the text. To opt out of AI training while
+    staying in search, disallow those agents by name — blocking them does not
+    affect ranking.
+    """
+    (ROOT / "robots.txt").write_text(
+        "# Reality Bending Lab\n"
+        "#\n"
+        "# Generated by generate_pages.py alongside sitemap.xml and llms.txt.\n"
+        "# Do not hand-edit: the Sitemap line below is derived from index.html's\n"
+        "# canonical, which is the one place this site's URL is written.\n"
+        "#\n"
+        "# Open to everything, including the LLM crawlers, deliberately. To opt\n"
+        "# out of AI training while staying in search, disallow GPTBot,\n"
+        "# ClaudeBot, PerplexityBot and Google-Extended by name in build_robots().\n"
+        "\n"
+        "User-agent: *\n"
+        "Allow: /\n"
+        "\n"
+        f"Sitemap: {SITE_URL}/sitemap.xml\n",
+        encoding="utf-8",
+    )
+
+
 def build_sitemap():
     """One entry per real URL, homepage first.
 
@@ -1113,6 +1225,31 @@ def build_sitemap():
     return len(urls)
 
 
+def organization() -> dict:
+    """The `ResearchOrganization` node out of index.html's JSON-LD.
+
+    That block is the site's machine-readable statement of what the lab is, and
+    the one a crawler reads without running anything — so it is the source for
+    the lab's description, email and address rather than a parallel copy of
+    them. See `_site_url` for the same argument about the origin.
+    """
+    found = re.search(
+        r'<script type="application/ld\+json">(.*?)</script>', TEMPLATE.read_text(encoding="utf-8"), re.S
+    )
+    if not found:
+        raise SystemExit(
+            "generate_pages: index.html has no JSON-LD block. llms.txt takes the "
+            "lab's description, email and address from it."
+        )
+    graph = json.loads(found.group(1)).get("@graph", [])
+    for node in graph:
+        if node.get("@type") == "ResearchOrganization":
+            return node
+    raise SystemExit(
+        "generate_pages: no ResearchOrganization node in index.html's JSON-LD."
+    )
+
+
 def build_llms(posts, members, publications):
     """llms.txt, rewritten against the real paths.
 
@@ -1124,23 +1261,35 @@ def build_llms(posts, members, publications):
     def lines(rows):
         return "\n".join(rows)
 
-    text = f"""# Reality Bending Lab
+    # The lab's own description, email and address are not retyped here. They
+    # are in index.html's JSON-LD, which is the machine-readable statement of
+    # what this organisation is and the copy a crawler already reads — so it is
+    # the source, and this is a second rendering of it. Three hand-written
+    # copies of an address is how one of them ends up out of date.
+    org = organization()
+    address = org.get("address", {})
+    postal = ", ".join(
+        part
+        for part in (
+            address.get("streetAddress"),
+            address.get("addressLocality"),
+            address.get("postalCode"),
+        )
+        if part
+    )
 
-> A psychology and neuroscience world-leading research group at the University of Sussex
-> (Brighton, UK), led by Dr Dominique Makowski. The lab studies the
-> neuropsychology of reality and its distortions — how people construct,
-> perceive and misjudge what is real — spanning visual illusions, deception and
-> lie detection, misinformation and fake news, beliefs about AI-generated
-> content, interoception and the body's role in emotion, and the cognitive
-> control of reality monitoring. It also develops open-source scientific
-> software (NeuroKit2, Pyllusion, easystats and others), psychometric scales
-> (the LIE Scale, the Illusion Game) and Bayesian statistical methods.
+    blurb = textwrap.fill(
+        org.get("description", ""), width= 78, initial_indent="> ", subsequent_indent="> "
+    )
+
+    text = f"""# {org.get("name", "Reality Bending Lab")}
+
+{blurb}
 
 Every page below is a real URL whose content is in the raw HTML — no JavaScript
 is needed to read any of it.
 
-Contact: D.Makowski@sussex.ac.uk · Pevensey 1, room 2B7, School of Psychology,
-University of Sussex, Brighton BN1 9QH, United Kingdom.
+Contact: {org.get("email", "")} · {postal}.
 
 ## Sections
 
@@ -1202,6 +1351,7 @@ def main():
     content_pages = len(written)
 
     stubs = build_stubs()
+    build_robots()
     urls = build_sitemap()
     build_llms(posts, members, publications)
 
@@ -1215,7 +1365,7 @@ def main():
     )
     print(f"✓ {stubs} redirect stubs from legacy_map.json")
     print(f"✓ sitemap.xml — {urls} URLs")
-    print("✓ llms.txt")
+    print("✓ robots.txt, llms.txt")
 
 
 if __name__ == "__main__":

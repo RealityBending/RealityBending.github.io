@@ -49,6 +49,9 @@ information/*/index.html
 # concentrated into two files. Run the generator to see them.
 sitemap.xml
 llms.txt
+# robots.txt joined them when its `Sitemap:` line stopped being a hand-kept
+# fourth copy of the site's URL — see `_site_url` in generate_pages.py.
+robots.txt
 
 # ── Full-size sources for the derivatives ──
 # Every one of these is the original a committed web copy was encoded from —

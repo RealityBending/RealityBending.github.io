@@ -38,7 +38,25 @@ const SITE_NAME = "Reality Bending Lab"
 /* Kept identical to <title> in index.html by hand. If these two drift, the tab
    label changes when the reader lands on the hero, which reads as a flicker. */
 const BASE_TITLE = "Reality Bending Lab — Neuropsychology of Reality | University of Sussex"
-const SITE_URL = "https://realitybendinglab.com/"
+/* The deployed origin, read off the page's own canonical rather than written
+   here. It was a literal, and one of four copies of the same fact with nothing
+   keeping them in step — see `_site_url` in generate_pages.py, which is now the
+   only other thing that resolves it, and does so from the same tag.
+
+   Every page carries an absolute canonical: index.html's is the site root and a
+   generated page's is that page, so the *origin* is the same in both and is
+   what this needs. It supplies the origin for `og:url` so a preview generated
+   from a local or staging copy still names the deployed page, which is the
+   whole point of an absolute og:url — hence the fallback, for a copy of
+   index.html whose canonical has been stripped. */
+const SITE_URL = (() => {
+    const canonical = document.querySelector('link[rel="canonical"]')
+    try {
+        return new URL(canonical.href).origin
+    } catch (error) {
+        return window.location.origin
+    }
+})()
 
 /* The routes whose label is knowable without any content: a section, and any
    tab of it. The value is what the reader would call the place they are in.
@@ -117,7 +135,7 @@ function sync(route) {
        to a path *and* where the site is mounted. SITE_URL supplies the origin
        so a preview generated from a local or staging copy still names the
        deployed page — which is the whole point of an absolute og:url. */
-    setProperty("og:url", SITE_URL.replace(/\/$/, "") + window.location.pathname)
+    setProperty("og:url", SITE_URL + window.location.pathname)
 }
 
 /* Registering re-runs the current route: a resolver almost always arrives

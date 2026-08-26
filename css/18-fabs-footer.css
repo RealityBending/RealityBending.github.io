@@ -34,9 +34,16 @@
     text-decoration: none;
     cursor: pointer;
     white-space: nowrap;
+    /* The last three are for the dark dress below, at the same 0.35s the nav
+       cross-fades over (21-reality-zoom.css) — so the whole page changes
+       clothes in one movement rather than the bar and the buttons arriving
+       separately. */
     transition:
         transform 0.15s ease,
-        box-shadow 0.15s ease;
+        box-shadow 0.15s ease,
+        background 0.35s ease,
+        color 0.35s ease,
+        border-color 0.35s ease;
     box-shadow: 0 4px 16px rgba(17, 17, 17, 0.12);
     background: #f5f4ef;
     color: #111;
@@ -46,6 +53,49 @@
 .fab:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(17, 17, 17, 0.16);
+}
+
+/* ── Over the Research zoom, the pair inverts ──
+   `.fab--primary` is #111 on cream, which over the zoom's #06070b stage is a
+   near-black pill on a near-black field: only its cream lettering showed, and
+   it read as text floating on nothing rather than as a button. The plain `.fab`
+   beside it fares better but still loses both of the things that separate it
+   from a page — its 1px hairline and its drop shadow are dark.
+
+   So the two swap grounds rather than being patched: the plain one takes the
+   same dark glass the nav wears over the stage (21-reality-zoom.css) and the
+   primary takes the cream. That preserves the hierarchy exactly instead of
+   flattening it — on a light page the emphatic button is the dark one, and on a
+   dark one it is the light one.
+
+   `main-page--dark-zoom` is the zoom's own class and the zoom is the only thing
+   that sets it, so these rules are live exactly when the stage is (see
+   `paint()` in research/reality-zoom.js). The rules sit here rather than with
+   the nav's because this file owns the FAB.
+
+   `.fab--promo` and `.fab--research` are excluded because they are not on this
+   ground in the first place: each carries its own saturated gradient
+   (Information's red, Research's purple) and reads on either field. Without the
+   two `:not()`s these rules would win on specificity and flatten both.
+
+   **`.fab--primary` is excluded from the first rule rather than overridden by
+   the second.** Three `:not()`s put that selector at (1,4,0) against the
+   primary's (1,2,0), so written as an override the primary silently loses and
+   both buttons come out as dark glass — which is what happened on the first
+   pass, and it looks like a rule that did not apply. Disjoint selectors, no
+   specificity race. */
+#main-page.main-page--dark-zoom .fab:not(.fab--primary):not(.fab--promo):not(.fab--research) {
+    background: rgba(8, 9, 13, 0.72);
+    backdrop-filter: blur(12px);
+    color: #f5f4ef;
+    border-color: rgba(255, 255, 255, 0.24);
+}
+
+#main-page.main-page--dark-zoom .fab--primary {
+    background: #f5f4ef;
+    backdrop-filter: none;
+    color: #111;
+    border-color: #f5f4ef;
 }
 
 .fab--primary {

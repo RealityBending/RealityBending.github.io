@@ -37,9 +37,24 @@ import os
 import re
 import sys
 
-sys.stdout.reconfigure(encoding="utf-8")
+# Guarded for the same reason as generate_pages.py: `sys.stdout` in a notebook
+# is an ipykernel OutStream with no `reconfigure`, and `__file__` is undefined
+# there. This one only reads, so a wrong ROOT reports every path as missing
+# rather than doing damage — but it is still checked, because "183 MISSING" is a
+# much worse error message than "you are in the wrong directory".
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+try:
+    ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+except NameError:
+    ROOT = os.getcwd()
+
+if not os.path.exists(os.path.join(ROOT, "index.html")):
+    sys.exit(
+        f"check-paths: no index.html in {ROOT}\n"
+        "  Run this from the repository root, after generate_pages.py."
+    )
 
 # The tab names each section's module can write. The one hand-kept list here,
 # and the one thing this check cannot derive.

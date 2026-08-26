@@ -57,10 +57,11 @@
                site's original address (a GitHub Pages user site, hence the
                repository's name) and which Pages still answers on and 301s
                away from. Moving it again means changing
-               this file, SITE_URL in generate_pages.py, SITE_URL in
-               page-meta.js and the Sitemap: line in robots.txt — four copies
-               of one fact, and nothing keeps them in step. sitemap.xml is
-               *not* a fifth: it is generated, so it follows SITE_URL. -->
+               **this tag is the single source of the site's URL.**
+               `generate_pages.py` reads the origin from it (and so do
+               sitemap.xml, llms.txt and robots.txt), `shared/page-meta.js`
+               reads it off the live DOM, and CNAME is checked against it.
+               There are no other copies — do not reintroduce one. -->
         <title>Reality Bending Lab — Neuropsychology of Reality | University of Sussex</title>
         <meta
             name="description"
@@ -249,7 +250,7 @@
                         "logo": "https://realitybendinglab.com/img/lab_logo_black.png",
                         "image": "https://realitybendinglab.com/img/og-card.jpg",
                         "email": "D.Makowski@sussex.ac.uk",
-                        "description": "Research group studying the neuropsychology of reality and its distortions — perception, illusions, deception, fake news, AI beliefs, and their links with emotion, cognitive control and the Self.",
+                        "description": "A psychology and neuroscience world-leading research group at the University of Sussex (Brighton, UK), led by Dr Dominique Makowski. The lab studies the neuropsychology of reality and its distortions — how people construct, perceive and misjudge what is real — spanning visual illusions, deception and lie detection, misinformation and fake news, beliefs about AI-generated content, interoception and the body's role in emotion, and the cognitive control of reality monitoring. It also develops open-source scientific software (NeuroKit2, Pyllusion, easystats and others), psychometric scales (the LIE Scale, the Illusion Game) and Bayesian statistical methods.",
                         "parentOrganization": {
                             "@type": "CollegeOrUniversity",
                             "name": "University of Sussex",
