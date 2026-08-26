@@ -306,6 +306,33 @@
                 ]
             }
         </script>
+
+        <!-- ── GoatCounter, with its own pageview counting switched off ──
+             `no_onload` is the whole point of this block, and it is not a
+             preference. count.js counts a pageview when it loads and then
+             again on History API changes — and this site is one document that
+             writes every URL with `replaceState` (CLAUDE.md: "Every URL write
+             is a replaceState"). Whether a given version of count.js hooks
+             `replaceState` as well as `pushState` is not a thing to depend on:
+             leaving it on means either one pageview for an entire visit, or
+             two for every route once shared/analytics.js also reports. So it
+             counts nothing by itself, and shared/analytics.js calls
+             `goatcounter.count()` once per route the reader actually reaches,
+             off `onRouteSettled` — the same channel page-meta.js reads.
+
+             The settings object must be assigned before count.js runs, which
+             is why it is a separate blocking line above an async script rather
+             than an attribute on it. The id is how analytics.js knows when the
+             async script has arrived; a hit made before then is queued. -->
+        <script>
+            window.goatcounter = { no_onload: true }
+        </script>
+        <script
+            id="goatcounter"
+            data-goatcounter="https://dommak.goatcounter.com/count"
+            async
+            src="//gc.zgo.at/count.js"
+        ></script>
     </head>
     <body>
         <!-- ════════════════════════════════════
@@ -1033,6 +1060,10 @@
         <script type="module" src="publications/publications.js"></script>
         <script type="module" src="information/join.js"></script>
         <script type="module" src="information/services.js"></script>
+        <!-- Counts routes, renders nothing. Last of the modules deliberately:
+             it observes what the others do to the URL, and observing them is
+             the one job it has. -->
+        <script type="module" src="shared/analytics.js"></script>
         <!-- ── brain.js is loaded only where the hero has somewhere to put it ──
              `css/19-narrow.css` takes `.hero__brain` away below 900px, and this
              asks the stylesheet rather than re-testing the breakpoint, so the
