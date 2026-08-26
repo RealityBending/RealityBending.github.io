@@ -45,6 +45,17 @@
         max-width: 10rem;
     }
 
+    /* 14rem of sidebar less 1.25rem of padding each side leaves 11.5rem —
+       184px — and "REALITY BENDING LAB" at the bar's own 0.78rem/0.22em
+       measures 191px, so the column broke the name over two lines. 0.72rem
+       measures 177px: one line, with enough slack left that a fallback face
+       cannot push it back over. Measured, not guessed.
+
+       Only here. The horizontal bar has a whole screen and keeps 0.78rem. */
+    .nav-brand {
+        font-size: 0.72rem;
+    }
+
     nav ul {
         flex-direction: column;
         gap: 1rem;

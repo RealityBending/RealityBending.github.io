@@ -91,6 +91,27 @@ nav.nav--hidden {
     color: #111;
 }
 
+/* ── .nav-left is the link home ──
+   The whole cluster is one target: the two logos and the name are one mark,
+   and half of it being clickable is worse than none of it being.
+
+   Opacity rather than a colour change, and that is the reason it is here
+   rather than a variant of `nav a:hover`: 21-reality-zoom.css recolours the
+   brand and both logos for the dark dress the Research zoom puts on the bar,
+   and a fade does not care what colour they ended up. The same rule reads
+   correctly in both.
+
+   No hover state is needed over the hero — `nav.nav--hidden` is
+   pointer-events: none there, which is exactly when there is nowhere to go. */
+.nav-home {
+    transition: opacity 0.2s;
+}
+
+.nav-home:hover,
+.nav-home:focus-visible {
+    opacity: 0.6;
+}
+
 nav ul {
     list-style: none;
     display: flex;

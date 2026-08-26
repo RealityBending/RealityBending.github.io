@@ -327,11 +327,20 @@
   ════════════════════════════════════ -->
         <div id="main-page">
             <nav class="nav--hidden">
-                <div class="nav-left">
+                <!-- The mark is the way home. A real anchor rather than a
+                     button, so middle-click and "copy link address" behave —
+                     and `href="."` rather than "/" for the same reason
+                     `<base href="./">` is relative: it resolves against the
+                     base, which is the site root from a generated page three
+                     segments down and from a sub-path-mounted copy alike.
+                     The plain left click is handled in script.js instead, or
+                     the browser would reload the whole site to reach a place
+                     that is already on screen. -->
+                <a class="nav-left nav-home" href="." aria-label="Reality Bending Lab — back to top">
                     <img src="img/sussex_logo.svg" alt="University of Sussex logo" class="nav-logo nav-logo--sussex" />
                     <img src="img/lab_logo_black.png" alt="Reality Bending Lab logo" class="nav-logo" />
                     <span class="nav-brand">Reality Bending Lab</span>
-                </div>
+                </a>
                 <ul>
                     <li><a href="#sec-people-full">People</a></li>
                     <li><a href="#sec-research-full">Research</a></li>

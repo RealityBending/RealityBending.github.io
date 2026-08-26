@@ -525,6 +525,32 @@ document.addEventListener("click", (event) => {
     revealSection(sectionId, { smooth: true })
 })
 
+/* ── The mark in the bar goes home ──
+ * The same bargain the section anchors above strike, for the same reason: it
+ * is a real `<a href=".">` so that middle-click, "copy link address" and a
+ * crawler all get the site root, and the plain left click is handled here
+ * instead — the browser would otherwise reload the entire site to reach a
+ * place that is one smooth scroll away.
+ *
+ * `writeRoute("")` is the other half of it, and not decoration. The reader can
+ * be at `/people/memories/2025-beach/` when they press this; leaving that in
+ * the address bar would have the URL naming a photograph nobody is looking at,
+ * and page-meta.js — which follows every write — would keep its title in the
+ * tab. "" is the route with no name, and routes.js maps it to `/`.
+ *
+ * Not delegated, unlike the section anchors: there is exactly one of these and
+ * it is in the markup at parse time.
+ */
+const navHome = document.querySelector(".nav-home")
+if (navHome && mainPage) {
+    navHome.addEventListener("click", (event) => {
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+        event.preventDefault()
+        mainPage.scrollTo({ top: 0, behavior: "smooth" })
+        writeRoute("")
+    })
+}
+
 initContactTabs()
 initHeroGlow()
 initPeopleVideo()
