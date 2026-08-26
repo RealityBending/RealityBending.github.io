@@ -424,21 +424,30 @@
     mask-image: linear-gradient(to bottom, #000 calc(100% - 9rem), transparent 100%);
 }
 
-/* ── Services: the photograph is the surface the tab scrolls on ──
-   It runs the whole tab instead of stopping at the honeycomb, and it holds
-   still while the content moves over it.
+/* ── Contact + Services: the photograph is the surface the tab scrolls on ──
+   Contact used to be driven by trackSectionParallax like the People video —
+   a translate3d nudge tracking scroll progress — which read as fussy next to
+   Services' stillness once the two sat one tab apart. Both now hold the
+   picture pinned and let the content move over it; only the scrim differs
+   (see below), because nothing sits directly on Contact's photograph the way
+   the honeycomb chips sit on Services' — the frosted panels here already
+   carry their own contrast.
 
    `position: sticky` and nothing else — no script, no transform. That matters
    beyond tidiness: driving this from a scroll handler puts the picture a frame
    behind the content, because the content is moved by the compositor and the
    picture by JS, and the lag is plainly visible at speed. Sticky is resolved
    during layout by the same pass that places everything else, so the two can
-   never disagree.
+   never disagree. trackSectionParallax keeps running and keeps writing
+   --contact-parallax — harmless, since neither tab's image rule below reads
+   it — rather than teaching the function to skip a tab; see initInformationBackdrop
+   in script.js.
 
    `background-attachment: fixed` cannot do it: it resolves against the window,
    and the window is not what scrolls here — #main-page is — and iOS ignores it
    outright. `position: fixed` cannot either: it would leave the box behind and
    paint over the sections either side. */
+.contact-full[data-active-tab="contact"] .contact-full__backdrop,
 .contact-full[data-active-tab="services"] .contact-full__backdrop {
     max-height: none;
     -webkit-mask-image: none;
@@ -456,6 +465,7 @@
    box on its own — the offset is bounded by the containing block, so the
    picture stops at the foot of the tab rather than following the reader into
    the footer. */
+.contact-full[data-active-tab="contact"] .contact-full__backdrop-img,
 .contact-full[data-active-tab="services"] .contact-full__backdrop-img {
     position: sticky;
     top: 0;
@@ -468,12 +478,13 @@
 /* The crossfade partner is the Join tab's machinery. Sticky puts it in flow,
    where it would be a second viewport-tall box under the first instead of a
    layer over it, and there is nothing here for it to fade. */
+.contact-full[data-active-tab="contact"] .contact-full__backdrop-img--out,
 .contact-full[data-active-tab="services"] .contact-full__backdrop-img--out {
     display: none;
 }
 
-/* The scrim, and it is what makes the honeycomb readable rather than what
-   makes the picture pretty: the cards are opaque cream, so the darker the
+/* The Services scrim, and it is what makes the honeycomb readable rather than
+   what makes the picture pretty: the cards are opaque cream, so the darker the
    field behind them the more they read as things on a surface. Flat and over
    the whole tab, not a gradient stopping at the gallery — the picture no
    longer ends anywhere, so a scrim that faded would just reintroduce the seam
@@ -489,6 +500,21 @@
     position: absolute;
     inset: 0;
     background: rgba(12, 12, 14, 0.62);
+}
+
+/* Contact's scrim goes the other way: light, not dark. Everything that sits
+   over this photograph — the address panel, the "Why here" block — is already
+   its own frosted, near-opaque cream surface, so there is no chip-on-bare-photo
+   case to protect the way Services has. The wash is for tone: it keeps the
+   collage pale and desaturated so it reads as a backdrop for cream panels
+   rather than a competing photograph at full strength, and it is mixed from
+   the panels' own tint (252, 251, 248) rather than plain white so the two read
+   as one palette. */
+.contact-full[data-active-tab="contact"] .contact-full__backdrop::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(252, 251, 248, 0.55);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -8,10 +8,10 @@
       "type": "Journal Article",
       "authors": "Rinaldi, L. J., Agbude, R., Andermane, N., Makowski, D., Forster, S., Simner, J., & Ward, J.",
       "is_preprint": false,
-      "pdf": null,
+      "pdf": "publications/2026_MisophoniaAttention/2026_MisophoniaAttention.pdf",
       "keywords": [],
       "citations": 0,
-      "featured": null,
+      "featured": "publications/2026_MisophoniaAttention/featured.jpg",
       "folder": "2026_MisophoniaAttention",
       "summary": ""
     },
@@ -38,10 +38,10 @@
       "type": "Preprint",
       "authors": "Scharte, R. E., Greenwood, K., Romero Sanchiz, P., Neves, A., Makowski, D., & Nogueira-Arjona, R.",
       "is_preprint": true,
-      "pdf": null,
+      "pdf": "https://osf.io/preprints/psyarxiv/gzv78",
       "keywords": [],
       "citations": 0,
-      "featured": null,
+      "featured": "publications/2026_InteroceptionAndSubstanceUse/featured.png",
       "folder": "2026_InteroceptionAndSubstanceUse",
       "summary": ""
     },
@@ -60,6 +60,36 @@
       "folder": "2026_MegaanalysisIAS",
       "summary": "",
       "github": "https://github.com/RealityBending/InteroceptionIAS"
+    },
+    {
+      "doi": "10.31234/osf.io/5h62c_v1",
+      "title": "The cogmod R Package: Easy-to-Use Bayesian Cognitive Models for Reaction Times, Choices and Subjective Ratings, with Applications to Computational Neuropsychology",
+      "year": 2026,
+      "journal": "",
+      "type": "Preprint",
+      "authors": "Makowski, D.",
+      "is_preprint": true,
+      "keywords": [],
+      "summary": "",
+      "pdf": null,
+      "citations": 0,
+      "featured": "publications/2026_cogmod/featured.png",
+      "folder": "2026_cogmod"
+    },
+    {
+      "doi": "10.31234/osf.io/kdcxa_v2",
+      "title": "This Is Not the ex-Gaussian Model You Are Looking For: On the Default Parameterization of Bayesian ex-Gaussian Models in brms",
+      "year": 2026,
+      "journal": "",
+      "type": "Preprint",
+      "authors": "Geller, J., Angele, B., & Makowski, D.",
+      "is_preprint": true,
+      "keywords": [],
+      "summary": "",
+      "pdf": "https://osf.io/preprints/psyarxiv/kdcxa",
+      "citations": 0,
+      "featured": "publications/2026_ExGauss/featured.png",
+      "folder": "2026_ExGauss"
     },
     {
       "doi": "10.31234/osf.io/9pequ_v2",
@@ -105,11 +135,12 @@
       "type": "Preprint",
       "authors": "Dickinson, R., Makowski, D., Van Marwijk, H., & Ford, E.",
       "is_preprint": true,
-      "pdf": null,
+      "pdf": "https://osf.io/preprints/psyarxiv/7xgbt",
       "keywords": [],
       "citations": 1,
-      "featured": null,
+      "featured": "publications/2025_BadNews/featured.png",
       "folder": "2025_BadNews",
+      "github": "https://github.com/RealityBending/FakeNewsIntervention",
       "summary": ""
     },
     {
@@ -127,7 +158,7 @@
         "Fake news",
         "Misinformation"
       ],
-      "citations": 4,
+      "citations": 5,
       "summary": ""
     },
     {
@@ -170,11 +201,12 @@
       "type": "Journal Article",
       "authors": "Makowski, D., Ben-Shachar, M. S., Wiernik, B. M., Patil, I., Thériault, R., & Lüdecke, D.",
       "is_preprint": false,
-      "pdf": null,
+      "pdf": "https://joss.theoj.org/papers/10.21105/joss.07969",
       "folder": "2025_Modelbased",
-      "featured": null,
+      "featured": "publications/2025_Modelbased/featured.png",
+      "github": "https://github.com/easystats/modelbased",
       "keywords": [],
-      "citations": 32,
+      "citations": 35,
       "summary": ""
     },
     {
@@ -185,11 +217,12 @@
       "type": "Journal Article",
       "authors": "Fernandez, K., Makowski, D., & Fisher, C.",
       "is_preprint": false,
-      "pdf": null,
+      "pdf": "https://proceedings.juliacon.org/papers/10.21105/jcon.00186",
       "keywords": [],
       "citations": 0,
-      "featured": null,
+      "featured": "publications/2025_Sequentialsamplingmodels/featured.png",
       "folder": "2025_Sequentialsamplingmodels",
+      "github": "https://github.com/itsdfish/SequentialSamplingModels.jl",
       "summary": ""
     },
     {
@@ -231,10 +264,10 @@
       "type": "Journal Article",
       "authors": "Pham, T., Johnco, C. J., Lau, Z. J., Makowski, D., & Forbes, M. K.",
       "is_preprint": false,
-      "pdf": null,
+      "pdf": "publications/2025_WhichHeartRateVariability/2025_WhichHeartRateVariability.pdf",
       "keywords": [],
-      "citations": 4,
-      "featured": null,
+      "citations": 5,
+      "featured": "publications/2025_WhichHeartRateVariability/featured.jpg",
       "folder": "2025_WhichHeartRateVariability",
       "summary": ""
     },
@@ -263,7 +296,7 @@
       "is_preprint": false,
       "pdf": null,
       "keywords": [],
-      "citations": 39,
+      "citations": 41,
       "featured": null,
       "folder": "2024_CheckYourOutliers",
       "summary": ""
@@ -430,7 +463,7 @@
       "is_preprint": false,
       "pdf": "publications/2022_BrainEntropyFractalDimensions/2022_BrainEntropyFractalDimensions.pdf",
       "keywords": [],
-      "citations": 220,
+      "citations": 229,
       "featured": "publications/2022_BrainEntropyFractalDimensions/featured.jpg",
       "folder": "2022_BrainEntropyFractalDimensions",
       "summary": ""
@@ -445,7 +478,7 @@
       "is_preprint": false,
       "pdf": "publications/2022_Datawizard/2022_Datawizard.pdf",
       "keywords": [],
-      "citations": 49,
+      "citations": 50,
       "featured": "publications/2022_Datawizard/featured.jpg",
       "folder": "2022_Datawizard",
       "summary": ""
@@ -520,7 +553,7 @@
       "is_preprint": false,
       "pdf": null,
       "keywords": [],
-      "citations": 32,
+      "citations": 34,
       "featured": null,
       "folder": "2021_BoredDistractedAndForgetful",
       "summary": ""
@@ -535,7 +568,7 @@
       "is_preprint": false,
       "pdf": "publications/2021_HeartRateVariabilityPsychology/2021_HeartRateVariabilityPsychology.pdf",
       "keywords": [],
-      "citations": 375,
+      "citations": 381,
       "featured": "publications/2021_HeartRateVariabilityPsychology/featured.jpg",
       "folder": "2021_HeartRateVariabilityPsychology",
       "summary": ""
@@ -565,7 +598,7 @@
       "is_preprint": false,
       "pdf": "publications/2021_Neurokit2/2021_Neurokit2.pdf",
       "keywords": [],
-      "citations": 1196,
+      "citations": 1227,
       "featured": "publications/2021_Neurokit2/featured.jpg",
       "folder": "2021_Neurokit2",
       "summary": ""
@@ -580,7 +613,7 @@
       "is_preprint": false,
       "pdf": "publications/2021_Performance/2021_Performance.pdf",
       "keywords": [],
-      "citations": 5123,
+      "citations": 5282,
       "featured": "publications/2021_Performance/featured.jpg",
       "folder": "2021_Performance",
       "summary": ""
@@ -655,7 +688,7 @@
       "is_preprint": false,
       "pdf": "publications/2020_Effectsize/2020_Effectsize.pdf",
       "keywords": [],
-      "citations": 1877,
+      "citations": 1928,
       "featured": "publications/2020_Effectsize/featured.jpg",
       "folder": "2020_Effectsize",
       "summary": ""
@@ -670,7 +703,7 @@
       "is_preprint": false,
       "pdf": "publications/2020_Parameters/2020_Parameters.pdf",
       "keywords": [],
-      "citations": 449,
+      "citations": 457,
       "featured": "publications/2020_Parameters/featured.jpg",
       "folder": "2020_Parameters",
       "summary": ""
@@ -685,7 +718,7 @@
       "is_preprint": false,
       "pdf": "publications/2020_Correlation/2020_Correlation.pdf",
       "keywords": [],
-      "citations": 403,
+      "citations": 404,
       "featured": "publications/2020_Correlation/featured.jpg",
       "folder": "2020_Correlation",
       "summary": ""
@@ -730,7 +763,7 @@
       "is_preprint": false,
       "pdf": "publications/2019_Bayestestr/2019_Bayestestr.pdf",
       "keywords": [],
-      "citations": 1295,
+      "citations": 1319,
       "featured": "publications/2019_Bayestestr/featured.jpg",
       "folder": "2019_Bayestestr",
       "summary": ""
@@ -760,7 +793,7 @@
       "is_preprint": false,
       "pdf": "publications/2019_IndicesOfEffectExistence/2019_IndicesOfEffectExistence.pdf",
       "keywords": [],
-      "citations": 811,
+      "citations": 825,
       "featured": "publications/2019_IndicesOfEffectExistence/featured.jpg",
       "folder": "2019_IndicesOfEffectExistence",
       "summary": ""
@@ -775,7 +808,7 @@
       "is_preprint": false,
       "pdf": "publications/2019_Insight/2019_Insight.pdf",
       "keywords": [],
-      "citations": 122,
+      "citations": 123,
       "featured": "publications/2019_Insight/featured.jpg",
       "folder": "2019_Insight",
       "summary": ""
@@ -820,7 +853,7 @@
       "is_preprint": false,
       "pdf": "publications/2018_Psycho/2018_Psycho.pdf",
       "keywords": [],
-      "citations": 341,
+      "citations": 343,
       "featured": "publications/2018_Psycho/featured.jpg",
       "folder": "2018_Psycho",
       "summary": ""
@@ -925,7 +958,7 @@
       "is_preprint": false,
       "pdf": "publications/2017_ExecutiveFunctionsEmotionRegulation/2017_ExecutiveFunctionsEmotionRegulation.pdf",
       "keywords": [],
-      "citations": 59,
+      "citations": 60,
       "featured": "publications/2017_ExecutiveFunctionsEmotionRegulation/featured.png",
       "folder": "2017_ExecutiveFunctionsEmotionRegulation",
       "summary": ""

@@ -119,6 +119,8 @@ OMIT_TITLES: set[str] = {
 SLUG_OVERRIDES: dict[str, str] = {
     # ── the eight worked examples ──
     "2026_ChoosingInformativePriorsIn": "2026_ChoosingInformativePriors",
+    "2026_ThisIsNotThe": "2026_ExGauss",
+    "2026_TheCogmodRPackage": "2026_cogmod",
     "2025_TheMintScaleA": "2025_Mint",
     "2025_SequentialsamplingmodelsjlSimulatingAndEvaluating": "2025_Sequentialsamplingmodels",
     "2025_ModelbasedAnRPackage": "2025_Modelbased",

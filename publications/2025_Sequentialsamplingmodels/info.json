@@ -6,11 +6,12 @@
   "type": "Journal Article",
   "authors": "Fernandez, K., Makowski, D., & Fisher, C.",
   "is_preprint": false,
-  "pdf": null,
+  "pdf": "https://proceedings.juliacon.org/papers/10.21105/jcon.00186",
   "keywords": [],
   "citations": 0,
-  "featured": null,
+  "featured": "publications/2025_Sequentialsamplingmodels/featured.png",
   "folder": "2025_Sequentialsamplingmodels",
+  "github": "https://github.com/itsdfish/SequentialSamplingModels.jl",
   "abstract": "",
   "summary": ""
 }
