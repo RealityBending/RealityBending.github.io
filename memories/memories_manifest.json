@@ -1,6 +1,71 @@
 {
   "memories": [
     {
+      "file": "memories/img/2026_ESCAN_spritz.png",
+      "filename": "2026_ESCAN_spritz.png",
+      "title": "Spritz etc.",
+      "caption": "Mandatory spritzing in Rome at ESCAN 2026",
+      "year": 2026,
+      "month": 6,
+      "people": [
+        "ana-neves",
+        "oliver-collins",
+        "dominique-makowski"
+      ],
+      "tags": []
+    },
+        {
+      "file": "memories/img/2026_ESCAN_Ana.webp",
+      "filename": "2026_ESCAN_Ana.webp",
+      "title": "Ana Neves' Talk (ESCAN 2026)",
+      "caption": "Ana's first big conference talk at the European Society of Cognitive and Affective Neuroscience (ESCAN)",
+      "year": 2026,
+      "month": 6,
+      "people": [
+        "ana-neves"
+      ],
+      "tags": []
+    },
+    {
+      "file": "memories/img/2025_Dissection.webp",
+      "filename": "2025_Dissection.webp",
+      "title": "Dissection",
+      "caption": "'Inside the Cadaver' dissection event",
+      "year": 2025,
+      "month": 10,
+      "people": [
+        "ana-neves",
+        "dominique-makowski"
+      ],
+      "tags": []
+    },
+    {
+      "file": "memories/img/2025_ana_masters.png",
+      "filename": "2025_ana_masters.png",
+      "title": "Ana got her Masters!",
+      "caption": "Graduation ceremony",
+      "year": 2025,
+      "month": 1,
+      "people": [
+        "ana-neves",
+        "dominique-makowski"
+      ],
+      "tags": []
+    },
+    {
+      "file": "memories/img/2025_beach.png",
+      "filename": "2025_beach.png",
+      "title": "Brighton Beach",
+      "caption": "Casual spring evening at Brighton Beach",
+      "year": 2025,
+      "month": 5,
+      "people": [
+        "ana-neves",
+        "dominique-makowski"
+      ],
+      "tags": []
+    },
+    {
       "file": "memories/img/2025_ASSC_Crete.jpeg",
       "filename": "2025_ASSC_Crete.jpeg",
       "title": "ASSC Crete",
@@ -30,6 +95,33 @@
       "year": 2025,
       "month": 1,
       "people": [],
+      "tags": []
+    },
+    {
+      "file": "memories/img/2024_rome.png",
+      "filename": "2024_rome.png",
+      "title": "They see me rollin'",
+      "caption": "Driving trough Rome for the Italian Association for Cognitive Sciences Conference (IACSC)",
+      "year": 2024,
+      "month": 10,
+      "people": [
+        "ana-neves",
+        "dominique-makowski"
+      ],
+      "tags": []
+    },
+    {
+      "file": "memories/img/2024_pizza.png",
+      "filename": "2024_pizza.png",
+      "title": "Pizza Night",
+      "caption": "Pizza night together with Theo's lab",
+      "year": 2024,
+      "month": 1,
+      "people": [
+        "ana-neves",
+        "dominique-makowski",
+        "emma-benn"
+      ],
       "tags": []
     },
     {
