@@ -601,7 +601,17 @@ import { registerRouteTitle } from "../shared/page-meta.js"
                     cap.textContent = mem.caption
                     thumb.appendChild(cap)
                 }
-                thumb.addEventListener("click", () =>
+                /* The picture gets the address, and the *panel* gets it back
+                   on close — which is why `onClose` is a callback the caller
+                   owns rather than something the viewer decides. The reader
+                   opened this from a profile, so closing it must not leave them
+                   on the Memories tab's route with a profile still on screen,
+                   which is what the gallery's own handler would write.
+
+                   Both writes are `replaceState` and fire no `hashchange`, so
+                   neither can re-enter `applyRoute` above and close the panel
+                   that is doing the writing. */
+                thumb.addEventListener("click", () => {
                     openImageLightbox({
                         src: mem.file,
                         alt: mem.caption || mem.title || "",
@@ -609,8 +619,11 @@ import { registerRouteTitle } from "../shared/page-meta.js"
                         title: mem.title || "",
                         caption: mem.caption || "",
                         meta: buildMemoryMeta(mem),
-                    }),
-                )
+                        id: mem.slug || "",
+                        onClose: () => writeRoute(folder),
+                    })
+                    if (mem.slug) writeRoute("memory-" + mem.slug)
+                })
                 grid.appendChild(thumb)
             })
             if (matching.length > 4) {
@@ -794,7 +807,11 @@ import { registerRouteTitle } from "../shared/page-meta.js"
             panelClose.addEventListener("click", () => closePanel())
             backdrop.addEventListener("click", () => closePanel())
             document.addEventListener("keydown", (e) => {
-                if (e.key === "Escape") closePanel()
+                /* Escape closes the top layer only. The image viewer opens over
+                   this panel — a memory in its own strip — and marks the event
+                   from the capture phase when it takes one; see
+                   shared/media-lightbox.js. */
+                if (e.key === "Escape" && !e.defaultPrevented) closePanel()
             })
 
             function openMinimalProfile(m) {
@@ -1050,6 +1067,24 @@ import { registerRouteTitle } from "../shared/page-meta.js"
                    whether or not the destination is this section. Silent when
                    nothing was open, which is the usual case. */
                 closePanel(false)
+
+                /* ── A memory is a picture *in* the Memories tab ──
+                   `/people/memories/<slug>/`, and this section owns everything
+                   about that route except the picture: the tab, the scroll, and
+                   the `landOnLoad` correction below. memories.js opens the
+                   viewer and nothing else — it has no access to the tab
+                   machinery, and clicking the tab button the way join.js does
+                   would race the manifest that button's own listener waits on.
+
+                   Claimed for any `memory-` route, including a slug that names
+                   nothing: the reader then lands on the gallery rather than on
+                   the top of the page, which is the closest thing to what they
+                   asked for. */
+                if (route && route.startsWith("memory-")) {
+                    revealSection("sec-people-full")
+                    activatePeopleTab("memories", false)
+                    return true
+                }
 
                 const tab = matchRoute(route, "people")
                 if (tab === null || !TABS.includes(tab)) return false

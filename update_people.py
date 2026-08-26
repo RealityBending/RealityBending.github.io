@@ -19,6 +19,7 @@ Run:
 import json
 import re
 import sys
+import unicodedata
 from pathlib import Path
 
 # The report below prints ✓/✗ and member names, and a Windows console defaults
@@ -279,12 +280,42 @@ def parse_memory_filename(image_name: str) -> dict[str, int | str]:
     }
 
 
+# ── A memory's slug is its shareable URL ──
+# `/people/memories/<slug>/` is a real page (generate_pages.py writes one per
+# memory), so this is the id the whole deep-link chain joins on — routes.js,
+# memories.js, the lightbox and the generated page all key off it.
+#
+# Derived from the image's own filename, which is the only stable name a memory
+# has: the title is hand-editable and two of them can be identical ("Lab
+# lunch"), and there is no folder here the way there is for a member or a post.
+#
+# ASCII-folded on purpose, for the reason update_publications.py folds a
+# publication slug: this becomes a directory name and a URL path, so an accented
+# stem would have to be percent-encoded everywhere it is written, and git and
+# Dropbox normalise NFC/NFD differently on Windows and macOS.
+#
+# A hand-written `slug` in the manifest wins, and that is deliberate: a URL that
+# has been shared must survive the image being renamed or re-encoded to a
+# different extension. Uniqueness is enforced below, in load_memories, where the
+# whole set is visible.
+def memory_slug(stem: str) -> str:
+    folded = unicodedata.normalize("NFKD", stem).encode("ascii", "ignore").decode()
+    slug = re.sub(r"[^a-zA-Z0-9]+", "-", folded).strip("-").lower()
+    return slug
+
+
 def normalize_memory_entry(entry: dict, image_path: Path) -> dict:
     defaults = parse_memory_filename(image_path.name)
     relative_path = image_path.relative_to(ROOT).as_posix()
     normalized = dict(entry)
     normalized["file"] = relative_path
     normalized["filename"] = image_path.name
+    # Existing wins so a shared URL survives a rename — but only when it holds
+    # something, or a blank seeded by hand would freeze for ever (the same
+    # qualification update_publications.py makes for `abstract`).
+    normalized["slug"] = clean_string(normalized.get("slug")) or memory_slug(
+        image_path.stem
+    ) or memory_slug(image_path.name)
     normalized["title"] = clean_string(normalized.get("title")) or defaults["title"]
     normalized["caption"] = clean_string(normalized.get("caption"))
     normalized.pop("description", None)
@@ -318,7 +349,7 @@ def load_existing_memories_manifest() -> list[dict]:
     return [dict(item) for item in entries if isinstance(item, dict)]
 
 
-def load_memories() -> list[dict]:
+def load_memories(people: list[dict] | None = None) -> list[dict]:
     MEMORIES_DIR.mkdir(exist_ok=True)
     MEMORIES_IMAGE_DIR.mkdir(exist_ok=True)
 
@@ -368,6 +399,48 @@ def load_memories() -> list[dict]:
         )
         memories.append(normalize_memory_entry(existing or {}, image_path))
 
+    # ── Slugs are URLs, so a collision is reported, not repaired ──
+    # `mkdir(exist_ok=True)` in generate_pages.py means two memories sharing a
+    # slug is not an error there: the second page overwrites the first and one
+    # photograph goes missing from a set nobody counts by hand. So it has to be
+    # caught here.
+    #
+    # Reported rather than auto-suffixed on purpose. A generated `-2` is a URL
+    # nobody chose, attached to whichever of the two happened to sort second —
+    # so it moves if either file is renamed, and it would have gone unnoticed.
+    # Two images folding to one slug means two filenames differing only in case
+    # or punctuation, which is an oversight in the folder rather than a case to
+    # support: `2024_Rome.jpg` and `2024_rome.png` were the only pair, and the
+    # fix was to name the second `2024_Rome2.png`.
+    seen: dict[str, str] = {}
+    for memory in memories:
+        slug = memory.get("slug") or "memory"
+        if slug in seen:
+            warn(
+                "memories",
+                f"'{memory['filename']}' and '{seen[slug]}' both give the slug "
+                f"'{slug}' — one page would overwrite the other. Rename one of "
+                f"the images.",
+            )
+        seen[slug] = memory["filename"]
+
+    # ── The names, not the folders ──
+    # `people` on a memory is a list of member *folders*, because that is what
+    # joins it to a profile. The viewer was printing them raw — "2025 ·
+    # ana-neves, dominique-makowski" — under a photograph that is now a page
+    # people share. Resolved here rather than in the browser because this script
+    # writes both manifests in the same run, so the two can never disagree, and
+    # the alternative is a second fetch racing the first.
+    #
+    # A folder that names no member is titlecased rather than dropped: guests
+    # appear in these photographs, and the folder is a slug of their name.
+    names = {p["folder"]: p["name"] for p in (people or [])}
+    for memory in memories:
+        memory["people_names"] = [
+            names.get(folder) or humanize_memory_name(folder)
+            for folder in memory.get("people", [])
+        ]
+
     memories.sort(
         key=lambda item: (
             -clean_int(item.get("year"), 0),
@@ -396,7 +469,7 @@ def main():
         if names:
             print(f"  {role}: {', '.join(names)}")
 
-    memories = load_memories()
+    memories = load_memories(people)
     memories_manifest = {"memories": memories}
     with open(MEMORIES_OUTPUT, "w", encoding="utf-8") as f:
         json.dump(memories_manifest, f, indent=2, ensure_ascii=False)

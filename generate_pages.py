@@ -11,6 +11,7 @@ Run after the three update_*.py scripts and after tools/build_legacy_map.py:
     news/index.html                 the archive, every post as a real <a href>
     people/<folder>/index.html      one per member
     people/index.html               the lab, every member linked
+    people/memories/<slug>/index.html   one per photograph, the picture as og:image
     publications/<slug>/index.html  one per publication
     publications/index.html         the list, every publication linked
     research/ information/ join/ services/ + their tabs
@@ -583,6 +584,95 @@ def build_people(shell, members):
     sitemap_urls.append("/people/")
 
 
+def build_memories(shell, memories, members):
+    """One page per photograph in the Memories tab.
+
+    ── Why these get pages at all ──
+    A memory is the one thing on this site whose *point* is the picture, and a
+    link to a picture is shared into a chat client far more often than it is
+    typed into a search bar. Without a page of its own, every one of the 32
+    resolved to the homepage and previewed as the site's own og-card — so the
+    thing being sent was never the thing that arrived. The page's `og:image` is
+    the photograph, which is the whole of what this is for.
+
+    `/people/memories/<slug>/` — three segments, the only route on the site that
+    is. It nests under the tab because that is where closing the viewer leaves
+    the reader (see routes.js, MEMORY_BASE), and because a slug that deep cannot
+    collide with a member folder.
+
+    ── The people in it are real links ──
+    Both directions of that were already in the data (`people` on the memory,
+    and the profile panel's own strip), and they are the only internal links a
+    crawler can follow out of one of these pages other than the crumbs. A folder
+    that names no member is dropped rather than linked: guests appear in these
+    photographs too.
+    """
+    names = {m["folder"]: m["name"] for m in members}
+
+    for memory in memories:
+        slug = memory.get("slug")
+        if not slug:
+            continue
+
+        title = memory.get("title") or memory.get("filename") or "Memory"
+        caption = memory.get("caption") or ""
+        when = str(memory.get("year") or "").strip()
+        shown = [f for f in (memory.get("people") or []) if f in names]
+
+        people_links = ", ".join(
+            f'<a href="people/{esc(f)}/">{esc(names[f])}</a>' for f in shown
+        )
+        meta = " · ".join(part for part in (when, people_links) if part)
+
+        body = f"""
+            <figure>
+                {crumbs(("People", "people/"), ("Memories", "people/memories/"), (title, None))}
+                <h1>{esc(title)}</h1>
+                <img src="{esc(memory["file"])}" alt="{esc(caption or title)}" />
+                <figcaption>
+                    {f"<p>{esc(caption)}</p>" if caption else ""}
+                    {f'<p class="meta">{meta}</p>' if meta else ""}
+                </figcaption>
+            </figure>"""
+
+        jsonld = {
+            "@context": "https://schema.org",
+            "@type": "ImageObject",
+            "name": title,
+            "contentUrl": absolute(memory["file"]),
+            "url": f"{SITE_URL}/people/memories/{slug}/",
+            "isPartOf": {"@id": f"{SITE_URL}/#website"},
+            "copyrightHolder": {"@id": f"{SITE_URL}/#organization"},
+        }
+        if caption:
+            jsonld["caption"] = caption
+        if when:
+            jsonld["datePublished"] = when
+        if shown:
+            jsonld["about"] = [
+                {"@type": "Person", "name": names[f], "url": f"{SITE_URL}/people/{f}/"}
+                for f in shown
+            ]
+
+        write(
+            f"people/memories/{slug}/index.html",
+            build_page(
+                shell,
+                route=f"memory-{slug}",
+                path=f"/people/memories/{slug}/",
+                title=title,
+                # The caption is the only prose a memory has; the title is
+                # already the <title>, so falling back to it would make the
+                # description a duplicate of it rather than a second sentence.
+                description=caption or f"{title} — the Reality Bending Lab.",
+                image=memory["file"],
+                prerender=prerender(body),
+                jsonld=jsonld,
+            ),
+        )
+        sitemap_urls.append(f"/people/memories/{slug}/")
+
+
 def build_publications(shell, publications):
     for p in publications:
         folder = p["folder"]
@@ -1100,9 +1190,13 @@ def main():
             encoding="utf-8"
         )
     )["publications"]
+    memories = json.loads(
+        (ROOT / "memories" / "memories_manifest.json").read_text(encoding="utf-8")
+    )["memories"]
 
     build_news(shell, posts)
     build_people(shell, members)
+    build_memories(shell, memories, members)
     build_publications(shell, publications)
     build_sections(shell)
     content_pages = len(written)
@@ -1114,9 +1208,10 @@ def main():
     print(f"✓ {content_pages} content pages")
     print(f"    news:          {len(posts)} + 1 hub")
     print(f"    people:        {len(members)} + 1 hub")
+    print(f"    memories:      {len(memories)}")
     print(f"    publications:  {len(publications)} + 1 hub")
     print(
-        f"    sections:      {content_pages - len(posts) - len(members) - len(publications) - 3}"
+        f"    sections:      {content_pages - len(posts) - len(members) - len(memories) - len(publications) - 3}"
     )
     print(f"✓ {stubs} redirect stubs from legacy_map.json")
     print(f"✓ sitemap.xml — {urls} URLs")

@@ -63,6 +63,20 @@ const ITEM_ROUTES = [
     { prefix: "services", base: "services" },
 ]
 
+/* ── The one route that is three segments deep ──
+ * `memory-<slug>` -> `/people/memories/<slug>/`. A memory is a picture *in* the
+ * Memories tab rather than a thing beside it, and the tab is where the reader
+ * is left when they close it — so it nests under the tab's own path instead of
+ * taking a base of its own. That is also what keeps its ids out of everyone
+ * else's way: a slug three segments down cannot collide with a member folder,
+ * so `RESERVED` gains nothing here.
+ *
+ * There is deliberately no bare `memory` route. It would be a second address
+ * for `/people/memories/`, which already has one — the same duplicate
+ * CANONICAL_ALIASES exists to undo in generate_pages.py, and here it can simply
+ * not be created. */
+const MEMORY_BASE = "/people/memories/"
+
 /* ── Members are registered, not guessed ──
  * `pathForRoute("dominique-makowski")` has to know that route names a member
  * rather than a section or a typo, and the set of members lives in a manifest
@@ -93,6 +107,10 @@ export function pathForRoute(route) {
     // page rather than a thing with an address. It keeps the hash.
     if (route === "sec" || route.startsWith("sec-")) return null
 
+    if (route.startsWith("memory-")) {
+        return MEMORY_BASE + route.slice("memory-".length) + "/"
+    }
+
     for (const { prefix, base } of ITEM_ROUTES) {
         if (route === prefix) return `/${base}/`
         if (route.startsWith(prefix + "-")) {
@@ -120,10 +138,15 @@ export function routeForPath(pathname) {
     const parts = (pathname || "/").split("/").filter(Boolean)
     if (parts.length === 0) return ""
 
-    const [base, id] = parts
+    const [base, id, sub] = parts
 
     if (base === "people") {
         if (!id) return "people"
+        // `/people/memories/<slug>/` — the one path with a third segment. It has
+        // to be read before the tab is, or a memory would resolve to the tab it
+        // sits in and a shared link would open the gallery instead of the
+        // picture.
+        if (id === "memories" && sub) return `memory-${sub}`
         return isReserved("people", id) ? `people-${id}` : id
     }
 
@@ -169,6 +192,8 @@ export function verify() {
         ["people-lab", "/people/lab/"],
         ["people-collaborations", "/people/collaborations/"],
         ["people-memories", "/people/memories/"],
+        ["memory-2025-beach", "/people/memories/2025-beach/"],
+        ["memory-2019-tms-tam", "/people/memories/2019-tms-tam/"],
         ["dominique-makowski", "/people/dominique-makowski/"],
         ["zen-juen", "/people/zen-juen/"],
         ["research", "/research/"],

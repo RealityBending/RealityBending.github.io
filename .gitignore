@@ -10,6 +10,10 @@ news/*/index.html
 news/index.html
 people/*/index.html
 people/index.html
+# One page per photograph in the Memories tab. `people/*/index.html` above
+# already covers people/memories/index.html itself; this is the level below it,
+# and it is the only generated path on the site that is three segments deep.
+people/memories/*/index.html
 publications/*/index.html
 publications/index.html
 research/index.html

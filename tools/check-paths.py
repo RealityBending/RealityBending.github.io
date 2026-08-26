@@ -81,6 +81,10 @@ def main():
         expected.append("/news/%s/" % post["slug"])
     for pub in manifest("publications", "publications_manifest.json")["publications"]:
         expected.append("/publications/%s/" % pub["folder"])
+    # The one route that is three segments deep — see routes.js, MEMORY_BASE.
+    for memory in manifest("memories", "memories_manifest.json")["memories"]:
+        if memory.get("slug"):
+            expected.append("/people/memories/%s/" % memory["slug"])
 
     for section, tabs in TABS.items():
         for tab in tabs:
