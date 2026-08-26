@@ -1,12 +1,12 @@
-# REBeL's Website
+# REBEL's Website
 
-The website of the **Reality Bending Lab** — https://realitybendinglab.com
+The content for the website of the **Reality Bending Lab**: https://realitybendinglab.com
 
 This repository *is* the site. There is no build step, no framework and no
 `npm install`: plain HTML, plain CSS, plain JavaScript modules, and a few Python
 scripts that turn folders of content into the JSON files the page reads.
 
-**If you are a lab member wanting to add your profile or write a post, you only need the two guides below.** 
+**If you are a lab member wanting to add your profile or write a post, you only need the two guides below.**
 You do not need to understand the rest of the site, and you cannot break it by adding a folder.
 
 - [Add your profile](#add-your-profile)
@@ -146,29 +146,29 @@ A fuller example, using every optional field:
 
 Field by field:
 
-| Field | What it is |
-|---|---|
-| `name` | **Required.** How you want to be named across the whole site. |
-| `category` | **Required.** One of the five roles above. |
-| `title` | Your job title, shown under your name. |
-| `affiliation`, `location` | Where you are. |
-| `email`, `website` | Shown as contact links. Leave `email` out if you would rather not publish it. |
-| `keywords` | Three or so short words. These are the ring that appears around your photo when someone points at it — so single words work far better than phrases. |
-| `hook` | One playful sentence, shown by the "discover someone" button. |
-| `summary` | Your bio. Written as HTML: wrap each paragraph in `<p>…</p>`. |
-| `interests` | Research interests, as a list of short phrases. |
-| `achievements` | Prizes and awards, as a list of lines. |
-| `experience` | Your CV, newest first. Each entry takes `degree`, `institution`, `year` and an optional `details`. |
-| `socials` | Your profiles elsewhere. `GitHub`, `Google Scholar`, `ResearchGate`, `X`, `Twitter`, `LinkedIn` and `ORCID` get their proper icon automatically; anything else gets a generic one and still works. |
-| `details` | A free HTML block at the end of your panel. |
+| Field                     | What it is                                                                                                                                                                                         |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`                    | **Required.** How you want to be named across the whole site.                                                                                                                                      |
+| `category`                | **Required.** One of the five roles above.                                                                                                                                                         |
+| `title`                   | Your job title, shown under your name.                                                                                                                                                             |
+| `affiliation`, `location` | Where you are.                                                                                                                                                                                     |
+| `email`, `website`        | Shown as contact links. Leave `email` out if you would rather not publish it.                                                                                                                      |
+| `keywords`                | Three or so short words. These are the ring that appears around your photo when someone points at it — so single words work far better than phrases.                                               |
+| `hook`                    | One playful sentence, shown by the "discover someone" button.                                                                                                                                      |
+| `summary`                 | Your bio. Written as HTML: wrap each paragraph in `<p>…</p>`.                                                                                                                                      |
+| `interests`               | Research interests, as a list of short phrases.                                                                                                                                                    |
+| `achievements`            | Prizes and awards, as a list of lines.                                                                                                                                                             |
+| `experience`              | Your CV, newest first. Each entry takes `degree`, `institution`, `year` and an optional `details`.                                                                                                 |
+| `socials`                 | Your profiles elsewhere. `GitHub`, `Google Scholar`, `ResearchGate`, `X`, `Twitter`, `LinkedIn` and `ORCID` get their proper icon automatically; anything else gets a generic one and still works. |
+| `details`                 | A free HTML block at the end of your panel.                                                                                                                                                        |
 
 `summary` and `details` are **HTML**, not plain text — a blank line between two
 paragraphs does nothing, and `<p>…</p>` around each one is what you want.
 
 ### 4. Regenerate the list
 
-Open a pull request with just your folder. 
-Someone will run the `update_people.py` script to update the website 
+Open a pull request with just your folder.
+Someone will run the `update_people.py` script to update the website
 
 ---
 
@@ -216,17 +216,17 @@ that is the only place it lives.
 }
 ```
 
-| Field | What it is |
-|---|---|
-| `title` | **Required.** |
-| `date` | **Required**, as `YYYY-MM-DD`. This is what orders the news list. |
-| `content` | **Required.** The post itself — see below. |
-| `authors` | A list. Use someone's **people folder name** (`"ada-lovelace"`) and the site fills in their photo and links their name to their profile. A guest with no profile is written as a plain name (`"Jane Guest"`) and stays plain text. |
-| `category` | One of `Research`, `Thoughts`, `Methods`, `Lab`, `Awards`, `Media`. This is the chip readers filter by. |
-| `summary` | Shown on the index. If you leave it out, the first paragraph is used. |
-| `subtitle` | Optional, shown under the title. |
-| `featured` | `true` puts the post on the Featured tab. |
-| `draft` | `true` keeps the post out of the site entirely. **Use this while you are writing.** |
+| Field      | What it is                                                                                                                                                                                                                         |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `title`    | **Required.**                                                                                                                                                                                                                      |
+| `date`     | **Required**, as `YYYY-MM-DD`. This is what orders the news list.                                                                                                                                                                  |
+| `content`  | **Required.** The post itself — see below.                                                                                                                                                                                         |
+| `authors`  | A list. Use someone's **people folder name** (`"ada-lovelace"`) and the site fills in their photo and links their name to their profile. A guest with no profile is written as a plain name (`"Jane Guest"`) and stays plain text. |
+| `category` | One of `Research`, `Thoughts`, `Methods`, `Lab`, `Awards`, `Media`. This is the chip readers filter by.                                                                                                                            |
+| `summary`  | Shown on the index. If you leave it out, the first paragraph is used.                                                                                                                                                              |
+| `subtitle` | Optional, shown under the title.                                                                                                                                                                                                   |
+| `featured` | `true` puts the post on the Featured tab.                                                                                                                                                                                          |
+| `draft`    | `true` keeps the post out of the site entirely. **Use this while you are writing.**                                                                                                                                                |
 
 ### 3. About `content`
 
@@ -284,12 +284,12 @@ at 156 pixels. The site once pulled 122 MB on a single visit this way. Resizing
 
 So: before you commit an image, resize it to the size it is actually shown at.
 
-| What it is | Resize to (longest side) |
-|---|---|
-| Your profile photo (`avatar.jpg`) | 700 px |
-| A post's header (`featured.jpg`) | 1400 px |
-| A picture inside a post | 1100 px |
-| A lab photo for the Memories wall | 1400 px |
+| What it is                        | Resize to (longest side) |
+| --------------------------------- | ------------------------ |
+| Your profile photo (`avatar.jpg`) | 700 px                   |
+| A post's header (`featured.jpg`)  | 1400 px                  |
+| A picture inside a post           | 1100 px                  |
+| A lab photo for the Memories wall | 1400 px                  |
 
 Quality 80–85 as JPEG is plenty. Two further rules:
 
@@ -307,7 +307,7 @@ Any tool will do this — Preview on a Mac, Photos on Windows, GIMP, or
 
 
 Use the GitHub website. On the repository page, **Add file → Upload files**, drag
-your folder in, and choose *"Create a new branch for this commit and start a pull request"* at the bottom. 
+your folder in, and choose *"Create a new branch for this commit and start a pull request"* at the bottom.
 Say in the description that you could not run the update
 script, and someone will do it.
 
