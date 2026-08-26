@@ -7,10 +7,14 @@
   "authors": "Makowski, D.",
   "is_preprint": false,
   "pdf": "publications/2018_Psycho/2018_Psycho.pdf",
-  "keywords": [],
+  "keywords": [
+    "Software Development",
+    "Statistical Methods",
+    "Open Science"
+  ],
   "citations": 343,
   "featured": "publications/2018_Psycho/featured.jpg",
   "folder": "2018_Psycho",
   "abstract": "",
-  "summary": ""
+  "summary": "The psycho R package turns the output of common statistical models into sentences that can go straight into a manuscript, with the APA-formatted numbers already in place. It is the direct ancestor of the easystats suite that replaced it."
 }

@@ -7,10 +7,14 @@
   "authors": "Makowski, D., & Waggoner, P. D.",
   "is_preprint": false,
   "pdf": "publications/2023_WhereAreWeGoing/2023_WhereAreWeGoing.pdf",
-  "keywords": [],
+  "keywords": [
+    "Statistical Methods",
+    "Open Science",
+    "Software Development"
+  ],
   "citations": 1,
   "featured": "publications/2023_WhereAreWeGoing/featured.jpg",
   "folder": "2023_WhereAreWeGoing",
   "abstract": "The field of statistical computing is rapidly developing and evolving. Shifting away from the formerly siloed landscape of mathematics, statistics, and computer science, recent advancements in statistical computing are largely characterized by a fusing of these worlds; namely, programming, software development, and applied statistics are merging in new and exciting ways. There are numerous drivers behind this advancement, including open movement (encompassing development, science, and access), the advent of data science as a field, and collaborative problem-solving, as well as practice-altering advances in subfields such as artificial intelligence, machine learning, and Bayesian estimation. In this paper, we trace this shift in how modern statistical computing is performed, and that which has recently emerged from it. This discussion points to a future of boundless potential for the field.",
-  "summary": ""
+  "summary": "Statistics, computer science and software development used to be separate trades and are now one activity. This paper traces how statistical computing got there — the open movement, data science, collaborative problem-solving, machine learning and newly accessible Bayesian estimation — and what follows for the field."
 }

@@ -9,6 +9,7 @@ Run:
 """
 
 import html
+import difflib
 import json
 import re
 import sys
@@ -68,6 +69,22 @@ OMIT_DOIS: set[str] = {
     # factor of illusion sensitivity…". Same study, same abstract, no shared
     # opening for the rule to catch.
     "10.31234/osf.io/9pjx5",
+    # Preprint of 10.1007/s12144-024-06890-w (2024_TheHeartCanLie). Retitled —
+    # "The Heart can Lie: The Role of…" against "The heart can lie: a
+    # preliminary investigation of the role of…" — so the title keys differ,
+    # and the abstracts were reworded between the two (0.77 similar, under the
+    # 0.90 the automatic rule needs). The near-duplicate report at the end of a
+    # run is what surfaced it.
+    "10.31234/osf.io/p342w",
+    # Preprint of 10.1037/CNS0000345 (2024_TheBeautyAndTheSelf), retitled from
+    # "Beauty is in the eye of the beholder: Evidence from a common mnemonic
+    # advantage…" to "The Beauty and the Self: A Common Mnemonic Advantage…".
+    # Nothing automatic could have caught this one: the titles share less than
+    # half their words and the *published* entry has no abstract to compare
+    # against — CrossRef holds none for it. Its abstract has been copied onto
+    # the published entry's info.json by hand so it is not lost with the
+    # preprint.
+    "10.31234/osf.io/rw39q",
 }
 
 # The mirror of OMIT_DOIS: works to include that the ORCID profile does not
@@ -84,6 +101,81 @@ EXTRA_DOIS: dict[str, str] = {
     # imported by import_publication_figures.py.
     "10.3917/bupsy.549.0163": "Centenaire Ribot (première partie) — Bulletin de psychologie",
 }
+
+# ── One work, one entry ──
+# A study reaches this list twice in three ways, and all three were being missed
+# by comparing `re.sub(r"\s+", " ", title.lower())` — which is not a key, it is
+# a title with its spaces tidied.
+#
+# - **A zero-width character is not whitespace.** `\s` does not match U+FEFF, so
+#   "Check your outliers\ufeff!" and "Check your outliers!" were two works to
+#   the old rule and the preprint sat beside its own journal version for a year.
+#   The key therefore keeps nothing but letters and digits.
+# - **An erratum carries the paper's title plus a pointer to it** — "In Medio
+#   Stat Virtus: … (vol 85, pg 1613, 2021)" is a correction notice, not a second
+#   study, and CrossRef types it `journal-article` like anything else. The tail
+#   is what names it, and stripping the tail is what makes it collide with the
+#   paper it corrects.
+# - **A retitled preprint shares no title at all with what it became.** That is
+#   what OMIT_DOIS above is full of. The tell there is the *abstract*, which
+#   survives a retitling — see `_abstract_key` in the dedupe pass.
+ZERO_WIDTH = dict.fromkeys(map(ord, "\u200b\u200c\u200d\u2060\ufeff"))
+ERRATUM_TAIL = re.compile(r"\s*\((?:vol\.?|volume)\s*\d+[^)]*\)\s*$", re.IGNORECASE)
+
+
+def _title_key(title: str) -> str:
+    """A title reduced to what two records of one work must have in common."""
+    text = ERRATUM_TAIL.sub("", str(title or "")).translate(ZERO_WIDTH)
+    return re.sub(r"[^a-z0-9]+", " ", text.lower()).strip()
+
+
+def _is_erratum(title: str) -> bool:
+    return bool(ERRATUM_TAIL.search(str(title or "")))
+
+
+def _abstract_key(work: dict) -> str:
+    """The abstract as a comparison key, or "" for one too short to trust.
+
+    Two entries with the same abstract are one paper however differently they
+    are named. The length floor is what keeps that from firing on a one-line
+    editorial note that two records happen to share.
+    """
+    text = re.sub(r"[^a-z0-9]+", " ", (work.get("abstract") or "").lower()).strip()
+    return text if len(text) >= 200 else ""
+
+
+def _similar(a: str, b: str) -> float:
+    return difflib.SequenceMatcher(None, a[:1500], b[:1500]).ratio()
+
+
+def _word_overlap(a: str, b: str) -> float:
+    wa = set(_title_key(a).split())
+    wb = set(_title_key(b).split())
+    return len(wa & wb) / max(1, len(wa | wb))
+
+
+def _surnames(authors: str) -> set:
+    parts = (authors or "").replace("&", ",").split(",")
+    return {p.strip().split()[0].lower() for p in parts if len(p.strip()) > 2}
+
+
+# ── What is removed automatically, and what is only reported ──
+# The three removal rules below are the ones that cannot be wrong: an identical
+# title key, an erratum tail, a near-identical abstract. Everything short of
+# that is *reported* rather than dropped, and the asymmetry is deliberate —
+# deleting a real paper because two titles happen to overlap is a far worse
+# failure than leaving a duplicate on the page, and a fuzzy threshold tuned on
+# twelve preprints is not something to hand a delete to.
+#
+# The measured gap is not comfortable enough to automate either way. Of the
+# three genuine pairs in the archive the title overlaps were 1.00, 0.80 and
+# 0.48; the closest *non*-duplicate pair (the Mint scale against the Affective
+# Style Questionnaire — two questionnaire validations) was 0.27. So the report
+# fires at 0.40 and a human decides.
+DUPLICATE_REPORT_TITLE = 0.40
+DUPLICATE_REPORT_ABSTRACT = 0.60
+DUPLICATE_REMOVE_ABSTRACT = 0.90
+
 
 # The same suppression for a work with no DOI to name it by. "D. Makowski" is
 # not a unique name and ORCID records are self-claimed, so a profile picks up
@@ -153,10 +245,8 @@ SLUG_OVERRIDES: dict[str, str] = {
     "2024_ExploringTheRoleOf": "2024_NewsOutletsConspiracyTheory",
     "2023_ANovelVisualIllusion": "2023_NovelVisualIllusionParadigm",
     "2023_AttenuatingSubjectiveCrowdingThrough": "2023_AttenuatingSubjectiveCrowding",
-    "2023_CheckYourOutliersAn": "2023_CheckYourOutliers",
     "2023_DisentanglingTheSocialFrom": "2023_DisentanglingTheSocial",
     "2021_HeartRateVariabilityIn": "2021_HeartRateVariabilityPsychology",
-    "2020_BeautyIsInThe": "2020_BeautyIsInTheEye",
     "2020_TheHeartOfCognitive": "2020_TheHeartOfCognitiveControl",
     "2020_TheImpactOfState": "2020_MindfulnessProspectiveMemory",
     "2019_DispositionalMindfulnessAttenuatesThe": "2019_DispositionalMindfulness",
@@ -493,7 +583,7 @@ def fetch_orcid_works(limit: int = MAX_PUBLICATIONS) -> list[dict]:
         if doi_base in OMIT_DOIS:
             print(f"  ⊘ suppressed (OMIT_DOIS): {w['title'][:60]}")
             continue
-        if re.sub(r"\s+", " ", w["title"].lower().strip()) in OMIT_TITLES:
+        if _title_key(w["title"]) in OMIT_TITLES:
             print(f"  ⊘ suppressed (OMIT_TITLES): {w['title'][:60]}")
             continue
         if any(doi.startswith(pfx) for pfx in PREPRINT_DOI_PREFIXES):
@@ -553,23 +643,86 @@ def fetch_orcid_works(limit: int = MAX_PUBLICATIONS) -> list[dict]:
 
     works.sort(key=lambda w: (-(w["year"] or 0), w["title"].lower()))
 
-    published_title_norms: set[str] = set()
-    for w in works:
-        if not w.get("is_preprint"):
-            published_title_norms.add(re.sub(r"\s+", " ", w["title"].lower().strip()))
+    # ── One work, one entry ──
+    # Four rules, in the order they can be trusted: an erratum names the paper
+    # it corrects, a preprint that became a paper shares its title, a retitled
+    # preprint shares its abstract, and anything else that reduces to the same
+    # key is the same record twice. See the note above _title_key.
+    published_keys = {
+        _title_key(w["title"]) for w in works if not w.get("is_preprint")
+    }
+    published_abstracts = {
+        _abstract_key(w): w["title"]
+        for w in works
+        if not w.get("is_preprint") and _abstract_key(w)
+    }
 
-    seen_titles: set[str] = set()
+    seen_keys: set[str] = set()
     unique: list[dict] = []
     for w in works:
-        norm = re.sub(r"\s+", " ", w["title"].lower().strip())
-        if norm in seen_titles:
+        key = _title_key(w["title"])
+
+        if _is_erratum(w["title"]) and key in published_keys:
+            print(f"  ⊘ removed erratum (the paper it corrects is listed): {w['title'][:60]}")
             continue
-        if w.get("is_preprint") and norm in published_title_norms:
+        if w.get("is_preprint") and key in published_keys:
             print(f"  ⊘ removed preprint (published version exists): {w['title'][:60]}")
             continue
-        seen_titles.add(norm)
+        if w.get("is_preprint") and _abstract_key(w):
+            # The case OMIT_DOIS exists for, caught without a hand-written
+            # entry: same study, retitled between the preprint and the journal,
+            # so nothing about the two titles gives it away. A *near*-identical
+            # abstract is enough — the wording is often touched in review.
+            twin = next(
+                (
+                    title
+                    for key, title in published_abstracts.items()
+                    if _similar(_abstract_key(w), key) >= DUPLICATE_REMOVE_ABSTRACT
+                ),
+                None,
+            )
+            if twin:
+                print(f"  ⊘ removed preprint (same abstract as: {twin[:45]}): {w['title'][:45]}")
+                continue
+        if key in seen_keys:
+            print(f"  ⊘ removed duplicate record: {w['title'][:60]}")
+            continue
+
+        seen_keys.add(key)
         unique.append(w)
     works = unique
+
+    # ── Near-duplicates: reported, never removed ──
+    # The failure this exists for is silent by nature — a preprint sitting
+    # beside its own journal version looks exactly like two papers unless
+    # somebody reads both titles — and it had happened three times before
+    # anything checked. Every survivor is listed with what to do about it,
+    # because the fix is one line in OMIT_DOIS and the hard part was noticing.
+    surviving_published = [w for w in works if not w.get("is_preprint")]
+    for w in works:
+        if not w.get("is_preprint"):
+            continue
+        for other in surviving_published:
+            title_score = _word_overlap(w["title"], other["title"])
+            abstract_score = (
+                _similar(_abstract_key(w), _abstract_key(other))
+                if _abstract_key(w) and _abstract_key(other)
+                else 0.0
+            )
+            if (
+                title_score < DUPLICATE_REPORT_TITLE
+                and abstract_score < DUPLICATE_REPORT_ABSTRACT
+            ):
+                continue
+            shared = _surnames(w.get("authors")) & _surnames(other.get("authors"))
+            warn(
+                "POSSIBLE DUPLICATE",
+                f"preprint {w.get('doi', '?')} ({w['title'][:55]}) looks like "
+                f"{other.get('doi', '?')} ({other['title'][:55]}) — "
+                f"title {title_score:.2f}, abstract {abstract_score:.2f}, "
+                f"{len(shared)} authors in common. If they are one paper, add "
+                f"the preprint's DOI to OMIT_DOIS.",
+            )
 
     if limit:
         works = works[:limit]
@@ -716,7 +869,12 @@ def main():
     # and took the slug with it, or the work left the ORCID profile. Reported
     # rather than deleted: a stale folder may hold a PDF or a figure that was
     # put there by hand, and the new folder will not have it.
-    live = {p["folder"] for p in publications}
+    # `publications/list/` and `publications/gallery/` are the section's two
+    # tabs, written here by generate_pages.py — they are pages, not
+    # publications, and telling a maintainer to delete them is advice that
+    # takes the tab URLs down with them. They are also why no publication
+    # folder may be named `list` or `gallery` (routes.js, RESERVED).
+    live = {p["folder"] for p in publications} | {"list", "gallery"}
     orphans = sorted(
         d.name for d in PUBLICATIONS_DIR.iterdir() if d.is_dir() and d.name not in live
     )

@@ -7,10 +7,13 @@
   "authors": "Makowski, D., Sperduti, M., Nicolas, S., & Piolino, P.",
   "is_preprint": false,
   "pdf": "publications/2017_BeingThereAndRemembering/2017_BeingThereAndRemembering.pdf",
-  "keywords": [],
+  "keywords": [
+    "Virtual Reality",
+    "Episodic Memory"
+  ],
   "citations": 106,
   "featured": "publications/2017_BeingThereAndRemembering/featured.jpg",
   "folder": "2017_BeingThereAndRemembering",
   "abstract": "",
-  "summary": ""
+  "summary": "The sense of \"being there\" in a virtual environment — presence — is usually treated as a measure of how convincing the simulation is. Here it predicts memory: the stronger the presence during an episode, the better it was later remembered."
 }

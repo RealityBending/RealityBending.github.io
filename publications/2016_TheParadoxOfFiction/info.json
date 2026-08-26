@@ -7,10 +7,15 @@
   "authors": "Sperduti, M., Arcangeli, M., Makowski, D., Wantzen, P., Zalla, T., Lemaire, S., Dokic, J., Pelletier, J., & Piolino, P.",
   "is_preprint": false,
   "pdf": "publications/2016_TheParadoxOfFiction/2016_TheParadoxOfFiction.pdf",
-  "keywords": [],
+  "keywords": [
+    "Fiction",
+    "Emotion Regulation",
+    "Reality Beliefs",
+    "Self-Reference"
+  ],
   "citations": 26,
   "featured": "publications/2016_TheParadoxOfFiction/featured.jpg",
   "folder": "2016_TheParadoxOfFiction",
   "abstract": "",
-  "summary": ""
+  "summary": "People are moved by events they know never happened. This study varies whether the same material is taken to be real or fictional, and finds the emotional response modulated by how self-relevant the scenario is rather than by its reality status alone."
 }

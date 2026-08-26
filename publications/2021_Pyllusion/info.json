@@ -7,10 +7,13 @@
   "authors": "Makowski, D., Lau, Z. J., Pham, T., Paul Boyce, W., & Annabel Chen, S.",
   "is_preprint": false,
   "pdf": "publications/2021_Pyllusion/2021_Pyllusion.pdf",
-  "keywords": [],
+  "keywords": [
+    "Visual Illusions",
+    "Software Development"
+  ],
   "citations": 5,
   "featured": "publications/2021_Pyllusion/featured.png",
   "folder": "2021_Pyllusion",
   "abstract": "Visual illusions are fascinating phenomena that have been used and studied by artists and scientists for centuries, leading to important discoveries about the neurocognitive underpinnings of perception, consciousness, and neuropsychiatric disorders such as schizophrenia or autism. Surprisingly, despite their historical and theoretical importance as psychological stimuli, there is no dedicated software, nor consistent approach, to generate illusions in a systematic fashion. Instead, scientists have to craft them by hand in an idiosyncratic fashion, or use pre-made images not tailored for the specific needs of their studies. This, in turn, hinders the reproducibility of illusion-based research, narrowing possibilities for scientific breakthroughs and their applications. With the aim of addressing this gap, Pyllusion is a Python-based open-source software (freely available at https://github.com/RealityBending/Pyllusion ), that offers a framework to manipulate and generate illusions in a systematic way, compatible with different output formats such as image files (.png, .jpg, .tiff, etc.) or experimental software (such as PsychoPy).",
-  "summary": ""
+  "summary": "Visual illusions have been central to perception research for a century and were still being made by hand, one image at a time. Pyllusion generates them parametrically instead — illusion strength becomes a number you set — so an illusion can serve as a proper experimental manipulation and the stimuli can be reproduced exactly."
 }

@@ -7,11 +7,15 @@
   "authors": "Makowski, D., Lau, Z. J., Pham, T., Te, A. S., Kirk, S., Liauw, C., & Chen, S. H. A.",
   "is_preprint": false,
   "pdf": "publications/2024_TheHeartCanLie/2024_TheHeartCanLie.pdf",
-  "keywords": [],
+  "keywords": [
+    "Deception",
+    "Interoception",
+    "Social Cognition"
+  ],
   "citations": 1,
   "featured": "publications/2024_TheHeartCanLie/featured.png",
   "folder": "2024_TheHeartCanLie",
   "abstract": "While a large part of the deception literature focuses on lying detection, the factors contributing to one’s ability to lie remain unclear. The present study examined the contribution of Theory of Mind (ToM) and interoception on our ability to lie using a directed lie paradigm with two conditions (“Interrogation” and “Polygraph”), designed to enhance each of the two mechanisms. Given the relatively small sample size ( n = 26 × 40 trials), special steps were taken to avoid false positives. Our results suggest that various facets of interoceptive abilities are positively related to the self-rated confidence in one’s own lies, especially when under the belief that bodily signals are being monitored (i.e., in the “Polygraph” condition). Beyond providing evidence for the role of the body in lying and raising interesting questions for deception science, these results carry practical implications for criminology and lie detection protocols.",
-  "summary": "",
+  "summary": "Most deception research is about catching liars. This study asks instead what makes someone good at lying, and finds interoception — how well a person reads their own bodily signals — related to how confident they are in their own lies, especially when they believe their body is being monitored.",
   "spotify": "https://open.spotify.com/episode/21sflaDBDiSITxXbyZdqvy"
 }

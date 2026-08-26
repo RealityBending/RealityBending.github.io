@@ -7,10 +7,14 @@
   "authors": "Blondé, P., Makowski, D., Sperduti, M., & Piolino, P.",
   "is_preprint": false,
   "pdf": "publications/2021_InMedioStatVirtus/2021_InMedioStatVirtus.pdf",
-  "keywords": [],
+  "keywords": [
+    "Mind Wandering",
+    "Episodic Memory",
+    "Virtual Reality"
+  ],
   "citations": 5,
   "featured": "publications/2021_InMedioStatVirtus/featured.jpg",
   "folder": "2021_InMedioStatVirtus",
   "abstract": "",
-  "summary": ""
+  "summary": "Mind wandering usually costs memory, but not in a straight line. In a virtual environment, memory for what happened was best at intermediate levels of mind wandering rather than at the lowest."
 }

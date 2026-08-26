@@ -7,10 +7,13 @@
   "authors": "Ben-Shachar, M., Lüdecke, D., & Makowski, D.",
   "is_preprint": false,
   "pdf": "publications/2020_Effectsize/2020_Effectsize.pdf",
-  "keywords": [],
+  "keywords": [
+    "Software Development",
+    "Statistical Methods"
+  ],
   "citations": 1928,
   "featured": "publications/2020_Effectsize/featured.jpg",
   "folder": "2020_Effectsize",
   "abstract": "",
-  "summary": ""
+  "summary": "effectsize computes and converts effect size indices — Cohen's d, Hedges' g, eta-squared, odds ratios and the rest — and standardises model parameters, with interpretation rules attached so that a number does not have to be looked up in a textbook before it can be read."
 }

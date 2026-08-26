@@ -7,10 +7,13 @@
   "authors": "Mavros, P., Ngoi, Z. L., Kirk, S., Te, A., Grübel, J., Melgar, L. A., Guizzo, A. O., & Makowski, D.",
   "is_preprint": true,
   "pdf": null,
-  "keywords": [],
+  "keywords": [
+    "Aesthetics",
+    "Urban Environment"
+  ],
   "citations": 2,
   "featured": null,
   "folder": "2023_AttenuatingSubjectiveCrowding",
   "abstract": "This paper reports on an online study to investigate the interaction between the environment typology, and crowdedness with aesthetic perceptions of the environment.",
-  "summary": ""
+  "summary": "How crowded a place feels is not simply how many people are in it. This online study crosses environment type with crowd density to ask whether a more beautiful environment makes the same crowd feel less crowded."
 }

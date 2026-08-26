@@ -7,10 +7,14 @@
   "authors": "Makowski, D., Ben-Shachar, M., & Lüdecke, D.",
   "is_preprint": false,
   "pdf": "publications/2019_Bayestestr/2019_Bayestestr.pdf",
-  "keywords": [],
+  "keywords": [
+    "Software Development",
+    "Bayesian Statistics",
+    "Statistical Methods"
+  ],
   "citations": 1319,
   "featured": "publications/2019_Bayestestr/featured.jpg",
   "folder": "2019_Bayestestr",
   "abstract": "",
-  "summary": ""
+  "summary": "bayestestR describes what a Bayesian posterior actually implies about an effect: credible intervals, the probability of direction, ROPE-based decisions and Bayes factors, under one vocabulary. It is the easystats package for saying whether an effect exists, how large it is, and whether the size matters."
 }

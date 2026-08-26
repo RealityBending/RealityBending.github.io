@@ -7,8 +7,13 @@
   "authors": "Makowski, D.",
   "is_preprint": true,
   "abstract": "Cognitive tasks produce structured distributions of reaction times, choices, and subjective ratings, yet these data are often reduced to condition means before analysis. This can obscure differences in variability, distributional shape, and the latent processes that generate behaviour. We introduce `cogmod`, an R package that brings Bayesian cognitive models into the regression workflow used by psychologists. `cogmod` implements descriptive response distributions, evidence accumulation models, and models for bounded ratings as brms custom families, allowing model parameters to be predicted by covariates and random effects using familiar formula syntax. Fitted models remain standard brmsfit objects and therefore support established tools for priors, diagnostics, posterior predictive checks, model comparison, and post-processing. Across worked examples, we show that this framework enables direct comparison of competing decision models, quantifies the reliability of model parameters as individual-level measures, and reveals clinically relevant differences that are invisible in conventional mean-based analyses. By placing models spanning the descriptive-to-generative continuum within a common Bayesian regression framework, `cogmod` lowers the practical barrier to richer analyses of cognitive data and makes the choice of model an empirical question rather than a software constraint. `cogmod` is openly available at .",
-  "keywords": [],
-  "summary": "",
+  "keywords": [
+    "Computational Models",
+    "Software Development",
+    "Bayesian Statistics",
+    "Reaction Times"
+  ],
+  "summary": "Cognitive tasks produce whole distributions of reaction times, choices and ratings, and analysis usually throws that away by taking a mean per condition. cogmod puts Bayesian cognitive models — descriptive distributions, evidence accumulation, bounded-rating models — inside the brms formula workflow, so parameters can be predicted by covariates and random effects, and the differences a mean hides become visible.",
   "pdf": null,
   "citations": 0,
   "featured": "publications/2026_cogmod/featured.png",

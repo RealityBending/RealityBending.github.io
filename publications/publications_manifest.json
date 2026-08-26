@@ -9,11 +9,15 @@
       "authors": "Rinaldi, L. J., Agbude, R., Andermane, N., Makowski, D., Forster, S., Simner, J., & Ward, J.",
       "is_preprint": false,
       "pdf": "publications/2026_MisophoniaAttention/2026_MisophoniaAttention.pdf",
-      "keywords": [],
+      "keywords": [
+        "Mental Health",
+        "Attention",
+        "Psychophysiology"
+      ],
       "citations": 0,
       "featured": "publications/2026_MisophoniaAttention/featured.jpg",
       "folder": "2026_MisophoniaAttention",
-      "summary": ""
+      "summary": "Misophonia is defined by an intolerance of particular everyday sounds. This study measures attention and physiological response to sounds irrelevant to the task at hand, asking whether what differs in misophonia is what gets attended or how the body responds to it."
     },
     {
       "doi": "10.3389/fpsyg.2026.1856582",
@@ -25,11 +29,14 @@
       "is_preprint": false,
       "pdf": "publications/2026_ChoosingInformativePriors/2026_ChoosingInformativePriors.pdf",
       "spotify": "https://open.spotify.com/episode/4ry1znf0AX4T0fZK8roSaz?si=i_nuchfsQv6h5tuZUfqwnQ",
-      "keywords": [],
+      "keywords": [
+        "Bayesian Statistics",
+        "Statistical Methods"
+      ],
       "citations": 2,
       "featured": "publications/2026_ChoosingInformativePriors/featured.webp",
       "folder": "2026_ChoosingInformativePriors",
-      "summary": ""
+      "summary": "Bayesian regression is at its most useful when samples are small, which is exactly when the prior matters most and researchers are least sure how to set one. A simulation study maps how prior location and scale move the posterior at different sample sizes, and a case-control example (N=526) shows a frequentist odds ratio of 8.87 with an interval running to 165 becoming a stable 4.01 under a literature-based prior."
     },
     {
       "doi": "10.31234/osf.io/gzv78_v1",
@@ -40,11 +47,14 @@
       "authors": "Scharte, R. E., Greenwood, K., Romero Sanchiz, P., Neves, A., Makowski, D., & Nogueira-Arjona, R.",
       "is_preprint": true,
       "pdf": "https://osf.io/preprints/psyarxiv/gzv78",
-      "keywords": [],
+      "keywords": [
+        "Interoception",
+        "Mental Health"
+      ],
       "citations": 0,
       "featured": "publications/2026_InteroceptionAndSubstanceUse/featured.png",
       "folder": "2026_InteroceptionAndSubstanceUse",
-      "summary": ""
+      "summary": "A systematic review and meta-analysis of 27 studies. Acute intoxication showed no effect on interoception at all; people meeting criteria for a substance use disorder showed clearly lower interoceptive accuracy than controls (g = −0.7), with no difference in interoceptive sensibility or magnitude."
     },
     {
       "doi": "10.31234/osf.io/2mpqd_v5",
@@ -55,11 +65,14 @@
       "authors": "Neves, A., Pfaff, M., Scharte, R. E., Nogueira-Arjona, R., Poerio, G., & Makowski, D.",
       "is_preprint": true,
       "pdf": "https://osf.io/preprints/psyarxiv/2mpqd_v1",
-      "keywords": [],
+      "keywords": [
+        "Interoception",
+        "Psychometrics"
+      ],
       "citations": 0,
       "featured": "publications/2026_MegaanalysisIAS/featured.webp",
       "folder": "2026_MegaanalysisIAS",
-      "summary": "",
+      "summary": "A mega-analysis of the Interoceptive Accuracy Scale across 17 datasets and more than 33,000 participants. A stable 14-item core emerged, organised into seven sensation pairs and performing as well as the original 21 items; adaptive traits related positively and maladaptive traits negatively to the scores.",
       "github": "https://github.com/RealityBending/InteroceptionIAS"
     },
     {
@@ -70,8 +83,13 @@
       "type": "Preprint",
       "authors": "Makowski, D.",
       "is_preprint": true,
-      "keywords": [],
-      "summary": "",
+      "keywords": [
+        "Computational Models",
+        "Software Development",
+        "Bayesian Statistics",
+        "Reaction Times"
+      ],
+      "summary": "Cognitive tasks produce whole distributions of reaction times, choices and ratings, and analysis usually throws that away by taking a mean per condition. cogmod puts Bayesian cognitive models — descriptive distributions, evidence accumulation, bounded-rating models — inside the brms formula workflow, so parameters can be predicted by covariates and random effects, and the differences a mean hides become visible.",
       "pdf": null,
       "citations": 0,
       "featured": "publications/2026_cogmod/featured.png",
@@ -85,8 +103,12 @@
       "type": "Preprint",
       "authors": "Geller, J., Angele, B., & Makowski, D.",
       "is_preprint": true,
-      "keywords": [],
-      "summary": "",
+      "keywords": [
+        "Bayesian Statistics",
+        "Computational Models",
+        "Reaction Times"
+      ],
+      "summary": "The ex-Gaussian model separates the bulk of a response time distribution from its tail, and brms fits it by default with a μ that means the mean of the whole distribution rather than the location of the Gaussian component. Because a shift in the bulk and a change in the tail can cancel out in the overall mean, inferences drawn from the default μ may be wrong. The paper shows how, and how to fit the classical parameterisation instead.",
       "pdf": "https://osf.io/preprints/psyarxiv/kdcxa",
       "citations": 0,
       "featured": "publications/2026_ExGauss/featured.png",
@@ -101,11 +123,15 @@
       "authors": "Makowski, D.",
       "is_preprint": true,
       "pdf": "https://doi.org/10.31234/osf.io/9pequ_v2",
-      "keywords": [],
+      "keywords": [
+        "Computational Models",
+        "Personality",
+        "Self-Reference"
+      ],
       "citations": 0,
       "featured": "publications/2026_ActiveInferencePersonality/featured.jpg",
       "folder": "2026_ActiveInferencePersonality",
-      "summary": "",
+      "summary": "Trait taxonomies such as the Big Five describe how people differ but not why the differences take the shape they do. The Deep-Self Predictive Cascade Model recasts personality in the language of active inference — as the topography of an agent's expected free energy landscape — and a proof-of-concept simulation reproduces the empirical covariance structure of the Big Five out of that four-level cascade.",
       "github": "https://github.com/RealityBending/DeepSelfModel"
     },
     {
@@ -121,12 +147,12 @@
       "featured": "publications/2025_PerceptualDisfluency/featured.png",
       "github": "https://github.com/jgeller112/Disfluency_Ms",
       "keywords": [
-        "Cognitive Models",
-        "R",
-        "Methods"
+        "Reaction Times",
+        "Computational Models",
+        "Attention"
       ],
       "citations": 0,
-      "summary": ""
+      "summary": "Perceptual disfluency — degrading a stimulus so that it is harder to take in — is normally summarised as a change in mean response time. This paper analyses the whole response time distribution instead, where a shift in the bulk and a change in the tail are separable and can offset one another in the mean."
     },
     {
       "doi": "10.31234/osf.io/7xgbt_v1",
@@ -137,12 +163,15 @@
       "authors": "Dickinson, R., Makowski, D., Van Marwijk, H., & Ford, E.",
       "is_preprint": true,
       "pdf": "https://osf.io/preprints/psyarxiv/7xgbt",
-      "keywords": [],
+      "keywords": [
+        "Misinformation",
+        "Reality Beliefs"
+      ],
       "citations": 1,
       "featured": "publications/2025_BadNews/featured.png",
       "folder": "2025_BadNews",
       "github": "https://github.com/RealityBending/FakeNewsIntervention",
-      "summary": ""
+      "summary": "266 participants either played Bad News, a fifteen-minute game that teaches the tactics of misinformation from the inside, or played Tetris. The game group improved significantly more at spotting misinformation afterwards, and political ideology was linked to how vulnerable people were to begin with."
     },
     {
       "doi": "10.1371/journal.pone.0321818",
@@ -156,11 +185,10 @@
       "folder": "2025_InterventionsForCombatingCovid19",
       "featured": "publications/2025_InterventionsForCombatingCovid19/featured.jpg",
       "keywords": [
-        "Fake news",
         "Misinformation"
       ],
       "citations": 5,
-      "summary": ""
+      "summary": "A realist systematic review of 35 studies covering eight kinds of intervention against COVID-19 misinformation. Game-type interventions come out best on the combination of impact and scalability, and nothing works well enough on its own — so the recommendation is packages of interventions tailored to context rather than a single fix."
     },
     {
       "doi": "10.31234/osf.io/z68v3_v1",
@@ -171,11 +199,16 @@
       "authors": "Makowski, D., Neves, A., & Field, A. P.",
       "is_preprint": true,
       "pdf": "https://doi.org/10.31234/osf.io/z68v3_v1",
-      "keywords": [],
+      "keywords": [
+        "Computational Models",
+        "Reality Beliefs",
+        "Aesthetics",
+        "Bayesian Statistics"
+      ],
       "citations": 0,
       "featured": "publications/2025_Choco/featured.jpg",
       "folder": "2025_Choco",
-      "summary": "",
+      "summary": "Rating scales whose two ends mean opposite choices produce bimodal data that ordinary models fit badly. CHOCO models them as a mixture of two Beta distributions, estimating the choice and the confidence behind it separately. Applied to judgments of whether faces were real or AI-generated, attractive faces were more likely to be called real, particularly by male participants.",
       "github": "https://github.com/RealityBending/FictionChoco"
     },
     {
@@ -189,9 +222,12 @@
       "pdf": "publications/2025_PHQ4/2025_PHQ4.pdf",
       "folder": "2025_PHQ4",
       "featured": "publications/2025_PHQ4/featured.jpg",
-      "keywords": [],
+      "keywords": [
+        "Psychometrics",
+        "Mental Health"
+      ],
       "citations": 0,
-      "summary": "",
+      "summary": "The PHQ-4 screens depression and anxiety in four items, and its coarse response scale makes it blunt below clinical thresholds. Adding one option — \"once or twice\", between \"not at all\" and \"several days\" — was used heavily by participants and, across a pilot (N=485) and a validation study (N=836), improved sensitivity to subclinical variation at essentially no cost.",
       "github": "https://github.com/DominiqueMakowski/PHQ4R"
     },
     {
@@ -206,9 +242,12 @@
       "folder": "2025_Modelbased",
       "featured": "publications/2025_Modelbased/featured.png",
       "github": "https://github.com/easystats/modelbased",
-      "keywords": [],
+      "keywords": [
+        "Software Development",
+        "Statistical Methods"
+      ],
       "citations": 35,
-      "summary": ""
+      "summary": "modelbased is the easystats package for the step after fitting: estimated marginal means, marginal effects, contrasts and model predictions, for any supported model, so that what a model implies can be read off directly rather than reconstructed from its coefficients."
     },
     {
       "doi": "10.21105/jcon.00186",
@@ -219,12 +258,16 @@
       "authors": "Fernandez, K., Makowski, D., & Fisher, C.",
       "is_preprint": false,
       "pdf": "https://proceedings.juliacon.org/papers/10.21105/jcon.00186",
-      "keywords": [],
+      "keywords": [
+        "Computational Models",
+        "Reaction Times",
+        "Software Development"
+      ],
       "citations": 0,
       "featured": "publications/2025_Sequentialsamplingmodels/featured.png",
       "folder": "2025_Sequentialsamplingmodels",
       "github": "https://github.com/itsdfish/SequentialSamplingModels.jl",
-      "summary": ""
+      "summary": "SequentialSamplingModels.jl brings the standard evidence-accumulation models of choice and response time — the drift diffusion model and its relatives — into Julia, with one interface for simulating from them and evaluating their likelihoods."
     },
     {
       "doi": "10.31234/osf.io/8qrht_v1",
@@ -235,11 +278,14 @@
       "authors": "Makowski, D., Neves, A., Benn, E. L., Bennett, M., & Poerio, G.",
       "is_preprint": true,
       "pdf": null,
-      "keywords": [],
+      "keywords": [
+        "Interoception",
+        "Psychometrics"
+      ],
       "citations": 0,
       "featured": null,
       "folder": "2025_Mint",
-      "summary": ""
+      "summary": "Existing interoception questionnaires disagree with one another about what they measure. The Multimodal Interoception Questionnaire (Mint) was built from a modality-by-context item pool and reduced by psychometric network analysis across two samples (N=559 and N=737), yielding 33 items in three metaclusters and 11 facets. It outperformed the MAIA-2, BPQ and IAS at predicting alexithymia, ADHD, autism and somatic symptom clusters."
     },
     {
       "doi": "10.1016/j.actpsy.2024.104670",
@@ -250,11 +296,14 @@
       "authors": "Makowski, D., Te, A. S., Neves, A., Kirk, S., Liang, N. Z., Mavros, P., & Chen, S. A.",
       "is_preprint": false,
       "pdf": "publications/2025_TooBeautifulToBeFake/2025_TooBeautifulToBeFake.pdf",
-      "keywords": [],
+      "keywords": [
+        "Aesthetics",
+        "Reality Beliefs"
+      ],
       "citations": 7,
       "featured": "publications/2025_TooBeautifulToBeFake/featured.jpg",
       "folder": "2025_TooBeautifulToBeFake",
-      "summary": "",
+      "summary": "As AI-generated faces become indistinguishable from photographs, what people fall back on to judge reality starts to matter. Attractive faces were less likely to be judged as artificially generated: beauty reads as authenticity.",
       "spotify": "https://open.spotify.com/episode/0xSlDxONenS3zwZvA53Gpp"
     },
     {
@@ -266,11 +315,16 @@
       "authors": "Pham, T., Johnco, C. J., Lau, Z. J., Makowski, D., & Forbes, M. K.",
       "is_preprint": false,
       "pdf": "publications/2025_WhichHeartRateVariability/2025_WhichHeartRateVariability.pdf",
-      "keywords": [],
+      "keywords": [
+        "Heart Rate Variability",
+        "Psychophysiology",
+        "Signal Processing",
+        "Statistical Methods"
+      ],
       "citations": 5,
       "featured": "publications/2025_WhichHeartRateVariability/featured.jpg",
       "folder": "2025_WhichHeartRateVariability",
-      "summary": ""
+      "summary": "There are dozens of HRV indices and many of them measure much the same thing. Consensus clustering of 89 indices across 635 resting ECG recordings from two samples produced 21 robust clusters, and from those a recommended set of 13 indices for short resting-state recordings — enough to cover the space without reporting the same quantity six times."
     },
     {
       "doi": "10.1016/J.JECP.2023.105810",
@@ -281,11 +335,13 @@
       "authors": "Rose, L., Kovarski, K., Caetta, F., Makowski, D., & Chokron, S.",
       "is_preprint": false,
       "pdf": null,
-      "keywords": [],
+      "keywords": [
+        "Social Cognition"
+      ],
       "citations": 2,
       "featured": null,
       "folder": "2024_BeyondEmpathy",
-      "summary": ""
+      "summary": "Altruism in children is usually explained by empathy. This study asks what cognitive capacities add on top of it in middle childhood, and finds them cutting both ways — increasing generosity in some conditions and curbing it in others."
     },
     {
       "doi": "10.3758/s13428-024-02356-w",
@@ -296,11 +352,15 @@
       "authors": "Thériault, R., Ben-Shachar, M. S., Patil, I., Lüdecke, D., Wiernik, B. M., & Makowski, D.",
       "is_preprint": false,
       "pdf": null,
-      "keywords": [],
+      "keywords": [
+        "Statistical Methods",
+        "Software Development",
+        "Open Science"
+      ],
       "citations": 41,
       "featured": null,
       "folder": "2024_CheckYourOutliers",
-      "summary": ""
+      "summary": "Outliers are usually removed on a rule of thumb and rarely reported. This tutorial sets out what an outlier actually is, which detection method suits which design, and how to run and document the whole procedure in R with easystats."
     },
     {
       "doi": "10.3390/covid4120132",
@@ -311,11 +371,14 @@
       "authors": "Dickinson, R., Makowski, D., van Marwijk, H., & Ford, E.",
       "is_preprint": false,
       "pdf": null,
-      "keywords": [],
+      "keywords": [
+        "Misinformation",
+        "Reality Beliefs"
+      ],
       "citations": 1,
       "featured": null,
       "folder": "2024_NewsOutletsConspiracyTheory",
-      "summary": ""
+      "summary": "Improper use of hydroxychloroquine against COVID-19 has been linked to some 17,000 preventable deaths. A thematic analysis of 128 news pieces from a fortnight in March 2020 shows the coverage amplifying right-wing political elites, leaning on optimistic framing and anecdote, and hardening a split between Trump supporters and the public health apparatus."
     },
     {
       "doi": "10.1038/s41598-024-68331-9",
@@ -326,11 +389,14 @@
       "authors": "Salgues, S., Jacquot, A., Makowski, D., Tahar, C., Baekeland, J., Arcangeli, M., Dokic, J., Piolino, P., & Sperduti, M.",
       "is_preprint": false,
       "pdf": null,
-      "keywords": [],
+      "keywords": [
+        "Aesthetics",
+        "Self-Reference"
+      ],
       "citations": 5,
       "featured": null,
       "folder": "2024_SelfreferenceAndEmotionalReaction",
-      "summary": ""
+      "summary": "What makes something beautiful to a particular person. This study separates two candidate drivers of aesthetic judgment — how self-relevant the work feels, and how strong an emotional reaction it produces — and reports both of them contributing."
     },
     {
       "doi": "10.1037/CNS0000345",
@@ -341,11 +407,15 @@
       "authors": "Lee, H., Jacquot, A., Makowski, D., Arcangeli, M., Dokic, J., Piolino, P., & Sperduti, M.",
       "is_preprint": false,
       "pdf": "publications/2024_TheBeautyAndTheSelf/2024_TheBeautyAndTheSelf.pdf",
-      "keywords": [],
+      "keywords": [
+        "Aesthetics",
+        "Self-Reference",
+        "Episodic Memory"
+      ],
       "citations": 4,
       "featured": "publications/2024_TheBeautyAndTheSelf/featured.jpg",
       "folder": "2024_TheBeautyAndTheSelf",
-      "summary": ""
+      "summary": "Is beauty in the object or in the beholder? Using the memory advantage for self-related material as a probe, paintings encoded under a judgment of beauty were remembered as well as those encoded in a self-reference condition — but only when the beauty judgment was extreme. Intense aesthetic experience appears to engage the self."
     },
     {
       "doi": "10.1007/s12144-024-06890-w",
@@ -356,11 +426,15 @@
       "authors": "Makowski, D., Lau, Z. J., Pham, T., Te, A. S., Kirk, S., Liauw, C., & Chen, S. H. A.",
       "is_preprint": false,
       "pdf": "publications/2024_TheHeartCanLie/2024_TheHeartCanLie.pdf",
-      "keywords": [],
+      "keywords": [
+        "Deception",
+        "Interoception",
+        "Social Cognition"
+      ],
       "citations": 1,
       "featured": "publications/2024_TheHeartCanLie/featured.png",
       "folder": "2024_TheHeartCanLie",
-      "summary": "",
+      "summary": "Most deception research is about catching liars. This study asks instead what makes someone good at lying, and finds interoception — how well a person reads their own bodily signals — related to how confident they are in their own lies, especially when they believe their body is being monitored.",
       "spotify": "https://open.spotify.com/episode/21sflaDBDiSITxXbyZdqvy"
     },
     {
@@ -372,11 +446,15 @@
       "authors": "Makowski, D., Te, A. S., Kirk, S., Liang, N. Z., & Chen, S. H. A.",
       "is_preprint": false,
       "pdf": "publications/2023_NovelVisualIllusionParadigm/2023_NovelVisualIllusionParadigm.pdf",
-      "keywords": [],
+      "keywords": [
+        "Visual Illusions",
+        "Personality",
+        "Psychometrics"
+      ],
       "citations": 12,
       "featured": "publications/2023_NovelVisualIllusionParadigm/featured.jpg",
       "folder": "2023_NovelVisualIllusionParadigm",
-      "summary": "",
+      "summary": "Ten classic illusions, generated parametrically and embedded in a perceptual discrimination task, given to 250 people. Sensitivity to one illusion predicts sensitivity to the others — evidence for a general factor, labelled Factor i — which relates positively to Agreeableness and Honesty-Humility and negatively to Psychoticism, Antagonism, Disinhibition and Negative Affect.",
       "spotify": "https://open.spotify.com/episode/5MxwkDxgcMjE0WlL6EMdl2"
     },
     {
@@ -388,26 +466,14 @@
       "authors": "Mavros, P., Ngoi, Z. L., Kirk, S., Te, A., Grübel, J., Melgar, L. A., Guizzo, A. O., & Makowski, D.",
       "is_preprint": true,
       "pdf": null,
-      "keywords": [],
+      "keywords": [
+        "Aesthetics",
+        "Urban Environment"
+      ],
       "citations": 2,
       "featured": null,
       "folder": "2023_AttenuatingSubjectiveCrowding",
-      "summary": ""
-    },
-    {
-      "doi": "10.31234/osf.io/bu6nt",
-      "title": "Check your outliers! An introduction to identifying statistical outliers in R with easystats",
-      "year": 2023,
-      "journal": "",
-      "type": "Preprint",
-      "authors": "Thériault, R., Ben-Shachar, M. S., Patil, I., Lüdecke, D., Wiernik, B. M., & Makowski, D.",
-      "is_preprint": true,
-      "pdf": null,
-      "keywords": [],
-      "citations": 4,
-      "featured": null,
-      "folder": "2023_CheckYourOutliers",
-      "summary": ""
+      "summary": "How crowded a place feels is not simply how many people are in it. This online study crosses environment type with crowd density to ask whether a more beautiful environment makes the same crowd feel less crowded."
     },
     {
       "doi": "10.34641/mg.55",
@@ -418,26 +484,15 @@
       "authors": "Mavros, P., Olszewska-Guizzo, A., & Makowski, D.",
       "is_preprint": false,
       "pdf": null,
-      "keywords": [],
+      "keywords": [
+        "Aesthetics",
+        "Urban Environment",
+        "Social Cognition"
+      ],
       "citations": null,
       "featured": null,
       "folder": "2023_DisentanglingTheSocial",
-      "summary": ""
-    },
-    {
-      "doi": "10.31234/osf.io/p342w",
-      "title": "The Heart can Lie: The Role of Interoception and Theory of Mind in Deception",
-      "year": 2023,
-      "journal": "",
-      "type": "Preprint",
-      "authors": "Makowski, D., Lau, Z. J., Pham, T., Te, A., Kirk, S., & Liauw Yong Tong, C.",
-      "is_preprint": true,
-      "pdf": null,
-      "keywords": [],
-      "citations": 0,
-      "featured": null,
-      "folder": "2023_TheHeartCanLie",
-      "summary": ""
+      "summary": "A book chapter arguing that research on how people respond to urban space conflates two different things — a place's social content and its aesthetic properties — and setting out how neuropsychological methods can pull the two apart."
     },
     {
       "doi": "10.3390/math11081821",
@@ -448,11 +503,15 @@
       "authors": "Makowski, D., & Waggoner, P. D.",
       "is_preprint": false,
       "pdf": "publications/2023_WhereAreWeGoing/2023_WhereAreWeGoing.pdf",
-      "keywords": [],
+      "keywords": [
+        "Statistical Methods",
+        "Open Science",
+        "Software Development"
+      ],
       "citations": 1,
       "featured": "publications/2023_WhereAreWeGoing/featured.jpg",
       "folder": "2023_WhereAreWeGoing",
-      "summary": ""
+      "summary": "Statistics, computer science and software development used to be separate trades and are now one activity. This paper traces how statistical computing got there — the open movement, data science, collaborative problem-solving, machine learning and newly accessible Bayesian estimation — and what follows for the field."
     },
     {
       "doi": "10.1111/EJN.15800",
@@ -463,11 +522,15 @@
       "authors": "Lau, Z. J., Pham, T., Chen, S. H. A., & Makowski, D.",
       "is_preprint": false,
       "pdf": "publications/2022_BrainEntropyFractalDimensions/2022_BrainEntropyFractalDimensions.pdf",
-      "keywords": [],
+      "keywords": [
+        "Complexity Science",
+        "Signal Processing",
+        "Psychophysiology"
+      ],
       "citations": 229,
       "featured": "publications/2022_BrainEntropyFractalDimensions/featured.jpg",
       "folder": "2022_BrainEntropyFractalDimensions",
-      "summary": ""
+      "summary": "Complexity measures — entropy, fractal dimension, predictability — are increasingly applied to EEG, and their names hide what they actually compute. This review explains them in plain terms, sorts them into measures of predictability and of regularity, and synthesises what they have shown across consciousness research, mood and anxiety disorders, schizophrenia, neurodevelopmental and neurodegenerative conditions, and the lifespan."
     },
     {
       "doi": "10.21105/joss.04684",
@@ -478,26 +541,14 @@
       "authors": "Patil, I., Makowski, D., Ben-Shachar, M. S., Wiernik, B. M., Bacher, E., & Lüdecke, D.",
       "is_preprint": false,
       "pdf": "publications/2022_Datawizard/2022_Datawizard.pdf",
-      "keywords": [],
+      "keywords": [
+        "Software Development",
+        "Statistical Methods"
+      ],
       "citations": 50,
       "featured": "publications/2022_Datawizard/featured.jpg",
       "folder": "2022_Datawizard",
-      "summary": ""
-    },
-    {
-      "doi": "10.1007/S00426-022-01660-4",
-      "title": "In Medio Stat Virtus: intermediate levels of mind wandering improve episodic memory encoding in a virtual environment (vol 85, pg 1613, 2021)",
-      "year": 2022,
-      "journal": "Psychological Research",
-      "type": "Journal Article",
-      "authors": "Blondé, P., Makowski, D., Sperduti, M., & Piolino, P.",
-      "is_preprint": false,
-      "pdf": null,
-      "keywords": [],
-      "citations": 0,
-      "featured": null,
-      "folder": "2022_InMedioStatVirtus",
-      "summary": ""
+      "summary": "datawizard is the data-preparation layer under easystats: selecting, reshaping, recoding, standardising, centring, winsorising and describing, under one grammar and with essentially no dependencies."
     },
     {
       "doi": "10.1038/S41598-022-23992-2",
@@ -508,11 +559,14 @@
       "authors": "Kovarski, K., Dos Reis, J., Chevais, C., Hamel, A., Makowski, D., & Sperduti, M.",
       "is_preprint": false,
       "pdf": "publications/2022_MovieEditingInfluencesSpectators/2022_MovieEditingInfluencesSpectators.pdf",
-      "keywords": [],
+      "keywords": [
+        "Time Perception",
+        "Fiction"
+      ],
       "citations": 8,
       "featured": "publications/2022_MovieEditingInfluencesSpectators/featured.jpg",
       "folder": "2022_MovieEditingInfluencesSpectators",
-      "summary": ""
+      "summary": "Editing is how a film handles time, and it turns out to change how long a scene feels. Across an online study and a pre-registered replication, scenes with continuous editing were judged longer than scenes with action-discontinuity editing, which were in turn judged longer than scenes with no editing at all."
     },
     {
       "doi": "10.3390/e24081036",
@@ -523,11 +577,15 @@
       "authors": "Makowski, D., Te, A. S., Pham, T., Lau, Z. J., & Chen, S. H. A.",
       "is_preprint": false,
       "pdf": "publications/2022_TheStructureOfChaos/2022_TheStructureOfChaos.pdf",
-      "keywords": [],
+      "keywords": [
+        "Complexity Science",
+        "Signal Processing",
+        "Psychophysiology"
+      ],
       "citations": 5,
       "featured": "publications/2022_TheStructureOfChaos/featured.jpg",
       "folder": "2022_TheStructureOfChaos",
-      "summary": ""
+      "summary": "There are well over a hundred complexity indices in circulation and almost no empirical comparison between them. This paper computes 112 of them on signals varying in noise, length and frequency content, maps how they relate, and recommends 12 that between them carry 86% of the variance of the whole set."
     },
     {
       "doi": "10.1177/03010066211057347",
@@ -538,11 +596,14 @@
       "authors": "Makowski, D., Lau, Z. J., Pham, T., Paul Boyce, W., & Annabel Chen, S.",
       "is_preprint": false,
       "pdf": "publications/2021_Pyllusion/2021_Pyllusion.pdf",
-      "keywords": [],
+      "keywords": [
+        "Visual Illusions",
+        "Software Development"
+      ],
       "citations": 5,
       "featured": "publications/2021_Pyllusion/featured.png",
       "folder": "2021_Pyllusion",
-      "summary": ""
+      "summary": "Visual illusions have been central to perception research for a century and were still being made by hand, one image at a time. Pyllusion generates them parametrically instead — illusion strength becomes a number you set — so an illusion can serve as a proper experimental manipulation and the stimuli can be reproduced exactly."
     },
     {
       "doi": "10.1177/17470218211026301",
@@ -553,11 +614,14 @@
       "authors": "Blondé, P., Sperduti, M., Makowski, D., & Piolino, P.",
       "is_preprint": false,
       "pdf": null,
-      "keywords": [],
+      "keywords": [
+        "Mind Wandering",
+        "Episodic Memory"
+      ],
       "citations": 34,
       "featured": null,
       "folder": "2021_BoredDistractedAndForgetful",
-      "summary": ""
+      "summary": "Mind wandering and boredom are closely tied, and both look as though they should hurt memory. Measured in the same task and set against each other, mind wandering is the reliable predictor of what gets remembered — boredom adds almost nothing once it is accounted for."
     },
     {
       "doi": "10.3390/s21123998",
@@ -568,11 +632,15 @@
       "authors": "Pham, T., Lau, Z. J., Chen, S. H. A., & Makowski, D.",
       "is_preprint": false,
       "pdf": "publications/2021_HeartRateVariabilityPsychology/2021_HeartRateVariabilityPsychology.pdf",
-      "keywords": [],
+      "keywords": [
+        "Heart Rate Variability",
+        "Psychophysiology",
+        "Signal Processing"
+      ],
       "citations": 381,
       "featured": "publications/2021_HeartRateVariabilityPsychology/featured.jpg",
       "folder": "2021_HeartRateVariabilityPsychology",
-      "summary": ""
+      "summary": "Heart rate variability is easy to record and hard to analyse well: the indices are many, the pipelines inconsistent, and the choices that matter rarely visible in a paper. This review explains the commonly used HRV indices and what each is good for, then walks through a full analysis step by step in NeuroKit2."
     },
     {
       "doi": "10.1007/s00426-020-01358-5",
@@ -583,11 +651,15 @@
       "authors": "Blondé, P., Makowski, D., Sperduti, M., & Piolino, P.",
       "is_preprint": false,
       "pdf": "publications/2021_InMedioStatVirtus/2021_InMedioStatVirtus.pdf",
-      "keywords": [],
+      "keywords": [
+        "Mind Wandering",
+        "Episodic Memory",
+        "Virtual Reality"
+      ],
       "citations": 5,
       "featured": "publications/2021_InMedioStatVirtus/featured.jpg",
       "folder": "2021_InMedioStatVirtus",
-      "summary": ""
+      "summary": "Mind wandering usually costs memory, but not in a straight line. In a virtual environment, memory for what happened was best at intermediate levels of mind wandering rather than at the lowest."
     },
     {
       "doi": "10.3758/s13428-020-01516-y",
@@ -598,11 +670,15 @@
       "authors": "Makowski, D., Pham, T., Lau, Z. J., Brammer, J. C., Lespinasse, F., Pham, H., Schölzel, C., & Chen, S. H. A.",
       "is_preprint": false,
       "pdf": "publications/2021_Neurokit2/2021_Neurokit2.pdf",
-      "keywords": [],
+      "keywords": [
+        "Software Development",
+        "Psychophysiology",
+        "Signal Processing"
+      ],
       "citations": 1227,
       "featured": "publications/2021_Neurokit2/featured.jpg",
       "folder": "2021_Neurokit2",
-      "summary": ""
+      "summary": "NeuroKit2 is the lab's Python toolbox for neurophysiological signals — ECG, PPG, EDA, EMG, RSP and EEG — taking each from a raw recording to cleaned features through the same interface. It is the most widely used piece of software the lab has produced."
     },
     {
       "doi": "10.21105/joss.03139",
@@ -613,11 +689,14 @@
       "authors": "Lüdecke, D., Ben-Shachar, M., Patil, I., Waggoner, P., & Makowski, D.",
       "is_preprint": false,
       "pdf": "publications/2021_Performance/2021_Performance.pdf",
-      "keywords": [],
+      "keywords": [
+        "Software Development",
+        "Statistical Methods"
+      ],
       "citations": 5285,
       "featured": "publications/2021_Performance/featured.jpg",
       "folder": "2021_Performance",
-      "summary": ""
+      "summary": "performance is the easystats package for asking whether a model is any good: R², ICC, overdispersion, collinearity, outliers and residual normality, plus model comparison. `check_model()` runs the diagnostics that apply and draws them, rather than leaving the analyst to remember which ones those are."
     },
     {
       "doi": "10.21105/joss.03393",
@@ -628,11 +707,14 @@
       "authors": "Lüdecke, D., Patil, I., Ben-Shachar, M., Wiernik, B., Waggoner, P., & Makowski, D.",
       "is_preprint": false,
       "pdf": "publications/2021_See/2021_See.pdf",
-      "keywords": [],
-      "citations": 114,
+      "keywords": [
+        "Software Development",
+        "Statistical Methods"
+      ],
+      "citations": 115,
       "featured": "publications/2021_See/featured.jpg",
       "folder": "2021_See",
-      "summary": ""
+      "summary": "see is the plotting half of easystats: it takes what the other packages return — model checks, effect sizes, posteriors, correlation matrices, cluster solutions — and draws it, so that a diagnostic is looked at rather than read off a table."
     },
     {
       "doi": "10.1007/s12144-021-01760-1",
@@ -643,11 +725,15 @@
       "authors": "Makowski, D., Pham, T., Lau, Z. J., Raine, A., & Chen, S. H. A.",
       "is_preprint": false,
       "pdf": "publications/2021_TheStructureOfDeception/2021_TheStructureOfDeception.pdf",
-      "keywords": [],
+      "keywords": [
+        "Deception",
+        "Psychometrics",
+        "Personality"
+      ],
       "citations": 15,
       "featured": "publications/2021_TheStructureOfDeception/featured.jpg",
       "folder": "2021_TheStructureOfDeception",
-      "summary": ""
+      "summary": "Lying is usually studied as something to be detected. This paper turns it around and measures it as a disposition, validating the Lying Profile Questionnaire — how much, how well and why a person lies — as a way of describing the structure of everyday deception."
     },
     {
       "doi": "10.1007/S41811-019-00060-8",
@@ -658,26 +744,14 @@
       "authors": "Makowski, D., Sperduti, M., Lavallée, S., Nicolas, S., & Piolino, P.",
       "is_preprint": false,
       "pdf": "publications/2020_AffectiveStyleQuestionnaire/2020_AffectiveStyleQuestionnaire.pdf",
-      "keywords": [],
+      "keywords": [
+        "Psychometrics",
+        "Emotion Regulation"
+      ],
       "citations": 2,
       "featured": "publications/2020_AffectiveStyleQuestionnaire/featured.jpg",
       "folder": "2020_AffectiveStyleQuestionnaire",
-      "summary": ""
-    },
-    {
-      "doi": "10.31234/osf.io/rw39q",
-      "title": "Beauty is in the eye of the beholder: Evidence from a common mnemonic advantage between aesthetics judgement and self-reference",
-      "year": 2020,
-      "journal": "",
-      "type": "Preprint",
-      "authors": "Lee, H., Jacquot, A., Makowski, D., Arcangeli, M., Dokic, J., Piolino, P., & Sperduti, M.",
-      "is_preprint": true,
-      "pdf": null,
-      "keywords": [],
-      "citations": 0,
-      "featured": null,
-      "folder": "2020_BeautyIsInTheEye",
-      "summary": ""
+      "summary": "A short French adaptation of the Affective Style Questionnaire, which measures the habitual ways people handle their own emotions — concealing them, adjusting them, or tolerating them — validated on a French-speaking sample."
     },
     {
       "doi": "10.21105/joss.02815",
@@ -688,11 +762,14 @@
       "authors": "Ben-Shachar, M., Lüdecke, D., & Makowski, D.",
       "is_preprint": false,
       "pdf": "publications/2020_Effectsize/2020_Effectsize.pdf",
-      "keywords": [],
+      "keywords": [
+        "Software Development",
+        "Statistical Methods"
+      ],
       "citations": 1928,
       "featured": "publications/2020_Effectsize/featured.jpg",
       "folder": "2020_Effectsize",
-      "summary": ""
+      "summary": "effectsize computes and converts effect size indices — Cohen's d, Hedges' g, eta-squared, odds ratios and the rest — and standardises model parameters, with interpretation rules attached so that a number does not have to be looked up in a textbook before it can be read."
     },
     {
       "doi": "10.21105/joss.02445",
@@ -703,11 +780,14 @@
       "authors": "Lüdecke, D., Ben-Shachar, M., Patil, I., & Makowski, D.",
       "is_preprint": false,
       "pdf": "publications/2020_Parameters/2020_Parameters.pdf",
-      "keywords": [],
-      "citations": 457,
+      "keywords": [
+        "Software Development",
+        "Statistical Methods"
+      ],
+      "citations": 458,
       "featured": "publications/2020_Parameters/featured.jpg",
       "folder": "2020_Parameters",
-      "summary": ""
+      "summary": "The parameters R package extracts what a model actually estimated — coefficients, standard errors, intervals, p-values — out of any of the dozens of model classes in R and into one tidy frame, along with the bootstrapping, standardisation and dimensionality-reduction usually needed next."
     },
     {
       "doi": "10.21105/joss.02306",
@@ -718,11 +798,14 @@
       "authors": "Makowski, D., Ben-Shachar, M., Patil, I., & Lüdecke, D.",
       "is_preprint": false,
       "pdf": "publications/2020_Correlation/2020_Correlation.pdf",
-      "keywords": [],
-      "citations": 404,
+      "keywords": [
+        "Software Development",
+        "Statistical Methods"
+      ],
+      "citations": 405,
       "featured": "publications/2020_Correlation/featured.jpg",
       "folder": "2020_Correlation",
-      "summary": ""
+      "summary": "The correlation R package covers the whole family through one function — Pearson, Spearman, Kendall, biserial, polychoric, tetrachoric, partial and Bayesian — choosing the method that suits the variables it is given, and returning matrices that are ready to plot or report."
     },
     {
       "doi": "10.1111/PSYP.13490",
@@ -733,11 +816,16 @@
       "authors": "Makowski, D., Sperduti, M., Blondé, P., Nicolas, S., & Piolino, P.",
       "is_preprint": false,
       "pdf": "publications/2020_TheHeartOfCognitiveControl/2020_TheHeartOfCognitiveControl.pdf",
-      "keywords": [],
+      "keywords": [
+        "Interoception",
+        "Psychophysiology",
+        "Attention",
+        "Reaction Times"
+      ],
       "citations": 26,
       "featured": "publications/2020_TheHeartOfCognitiveControl/featured.jpg",
       "folder": "2020_TheHeartOfCognitiveControl",
-      "summary": ""
+      "summary": "Baroreceptors fire in time with the heartbeat, and that rhythm is known to shape cognition in emotional settings. Using a task with no emotional content, this study shows the effect is not specific to emotion: responses were faster during systole, and inhibition was most likely to fail towards the middle of it."
     },
     {
       "doi": "10.1016/j.concog.2020.102920",
@@ -748,11 +836,15 @@
       "authors": "Girardeau, J., Blondé, P., Makowski, D., Abram, M., Piolino, P., & Sperduti, M.",
       "is_preprint": false,
       "pdf": "publications/2020_MindfulnessProspectiveMemory/2020_MindfulnessProspectiveMemory.pdf",
-      "keywords": [],
+      "keywords": [
+        "Mindfulness",
+        "Episodic Memory",
+        "Virtual Reality"
+      ],
       "citations": 15,
       "featured": "publications/2020_MindfulnessProspectiveMemory/featured.jpg",
       "folder": "2020_MindfulnessProspectiveMemory",
-      "summary": ""
+      "summary": "Prospective memory is remembering to do something later, and it is what mind wandering is most likely to cost. This virtual-reality study separates state from dispositional mindfulness and asks which of the two predicts remembering an intention in a realistic environment."
     },
     {
       "doi": "10.21105/JOSS.01541",
@@ -763,11 +855,15 @@
       "authors": "Makowski, D., Ben-Shachar, M., & Lüdecke, D.",
       "is_preprint": false,
       "pdf": "publications/2019_Bayestestr/2019_Bayestestr.pdf",
-      "keywords": [],
+      "keywords": [
+        "Software Development",
+        "Bayesian Statistics",
+        "Statistical Methods"
+      ],
       "citations": 1319,
       "featured": "publications/2019_Bayestestr/featured.jpg",
       "folder": "2019_Bayestestr",
-      "summary": ""
+      "summary": "bayestestR describes what a Bayesian posterior actually implies about an effect: credible intervals, the probability of direction, ROPE-based decisions and Bayes factors, under one vocabulary. It is the easystats package for saying whether an effect exists, how large it is, and whether the size matters."
     },
     {
       "doi": "10.1016/J.CONCOG.2018.11.004",
@@ -778,11 +874,14 @@
       "authors": "Makowski, D., Sperduti, M., Lavallée, S., Nicolas, S., & Piolino, P.",
       "is_preprint": false,
       "pdf": "publications/2019_DispositionalMindfulness/2019_DispositionalMindfulness.pdf",
-      "keywords": [],
+      "keywords": [
+        "Mindfulness",
+        "Attention"
+      ],
       "citations": 24,
       "featured": "publications/2019_DispositionalMindfulness/featured.jpg",
       "folder": "2019_DispositionalMindfulness",
-      "summary": ""
+      "summary": "In the emotional attentional blink, an emotionally charged distractor makes the next target hard to see at all. People higher in dispositional mindfulness showed a smaller blink, suggesting trait mindfulness buffers the attentional cost of emotional distraction."
     },
     {
       "doi": "10.3389/fpsyg.2019.02767",
@@ -793,11 +892,14 @@
       "authors": "Makowski, D., Ben-Shachar, M. S., Chen, S. H. A., & Lüdecke, D.",
       "is_preprint": false,
       "pdf": "publications/2019_IndicesOfEffectExistence/2019_IndicesOfEffectExistence.pdf",
-      "keywords": [],
-      "citations": 825,
+      "keywords": [
+        "Bayesian Statistics",
+        "Statistical Methods"
+      ],
+      "citations": 826,
       "featured": "publications/2019_IndicesOfEffectExistence/featured.jpg",
       "folder": "2019_IndicesOfEffectExistence",
-      "summary": ""
+      "summary": "There are several ways to say a Bayesian effect \"exists\" — the probability of direction, ROPE coverage, Bayes factors, MAP-based p-values — and they do not always agree. This paper compares them on simulated data, sets out which to report, and maps each onto the frequentist p-value researchers are arriving from."
     },
     {
       "doi": "10.21105/JOSS.01412",
@@ -808,11 +910,14 @@
       "authors": "Lüdecke, D., Waggoner, P., & Makowski, D.",
       "is_preprint": false,
       "pdf": "publications/2019_Insight/2019_Insight.pdf",
-      "keywords": [],
+      "keywords": [
+        "Software Development",
+        "Statistical Methods"
+      ],
       "citations": 123,
       "featured": "publications/2019_Insight/featured.jpg",
       "folder": "2019_Insight",
-      "summary": ""
+      "summary": "insight is the package the rest of easystats stands on: one interface for getting information out of a fitted model — its predictors, random effects, priors, formula — whatever package produced it. It exists because every model class in R exposes its internals differently."
     },
     {
       "doi": "10.3758/S13415-018-00681-0",
@@ -823,11 +928,16 @@
       "authors": "Makowski, D., Sperduti, M., Pelletier, J., Blondé, P., La Corte, V., Arcangeli, M., Zalla, T., Lemaire, S., Dokic, J., Nicolas, S., & Piolino, P.",
       "is_preprint": false,
       "pdf": "publications/2019_FictionalReappraisal/2019_FictionalReappraisal.pdf",
-      "keywords": [],
+      "keywords": [
+        "Emotion Regulation",
+        "Fiction",
+        "Reality Beliefs",
+        "Psychophysiology"
+      ],
       "citations": 13,
       "featured": "publications/2019_FictionalReappraisal/featured.jpg",
       "folder": "2019_FictionalReappraisal",
-      "summary": ""
+      "summary": "The same images, presented as real photographs or as staged fiction, measured at three levels at once: what people reported feeling, what their bodies did, and what their brains did. The paper reports the correlates of fictional reappraisal at each level, and treats it as an emotion-regulation strategy nobody has to choose to use."
     },
     {
       "doi": "10.70675/b893631fzf9dfz4924za932z080163f62da9",
@@ -838,11 +948,16 @@
       "authors": "Makowski, D.",
       "is_preprint": false,
       "pdf": null,
-      "keywords": [],
+      "keywords": [
+        "Emotion Regulation",
+        "Fiction",
+        "Reality Beliefs",
+        "Psychophysiology"
+      ],
       "citations": 0,
       "featured": null,
       "folder": "2018_ImplicitEmotionRegulation",
-      "summary": ""
+      "summary": "The doctoral thesis behind the lab's fictional-reappraisal work. Four studies present the same affective material as either real or fictional and follow the consequences through subjective experience, physiology and brain response. Believing something to be fiction reliably dampens the emotion; the effect does not interact with self-reference, but does depend on executive and interoceptive capacity."
     },
     {
       "doi": "10.21105/JOSS.00470",
@@ -853,11 +968,15 @@
       "authors": "Makowski, D.",
       "is_preprint": false,
       "pdf": "publications/2018_Psycho/2018_Psycho.pdf",
-      "keywords": [],
+      "keywords": [
+        "Software Development",
+        "Statistical Methods",
+        "Open Science"
+      ],
       "citations": 343,
       "featured": "publications/2018_Psycho/featured.jpg",
       "folder": "2018_Psycho",
-      "summary": ""
+      "summary": "The psycho R package turns the output of common statistical models into sentences that can go straight into a manuscript, with the APA-formatted numbers already in place. It is the direct ancestor of the easystats suite that replaced it."
     },
     {
       "doi": "10.1016/J.CONCOG.2017.06.015",
@@ -868,11 +987,14 @@
       "authors": "Makowski, D., Sperduti, M., Nicolas, S., & Piolino, P.",
       "is_preprint": false,
       "pdf": "publications/2017_BeingThereAndRemembering/2017_BeingThereAndRemembering.pdf",
-      "keywords": [],
+      "keywords": [
+        "Virtual Reality",
+        "Episodic Memory"
+      ],
       "citations": 106,
       "featured": "publications/2017_BeingThereAndRemembering/featured.jpg",
       "folder": "2017_BeingThereAndRemembering",
-      "summary": ""
+      "summary": "The sense of \"being there\" in a virtual environment — presence — is usually treated as a measure of how convincing the simulation is. Here it predicts memory: the stronger the presence during an episode, the better it was later remembered."
     },
     {
       "doi": "10.3917/bupsy.549.0163",
@@ -883,11 +1005,13 @@
       "authors": "Nicolas, S., & Makowski, D.",
       "is_preprint": false,
       "pdf": "publications/2017_CentenaireRibotPremierePartie/2017_CentenaireRibotPremierePartie.pdf",
-      "keywords": [],
+      "keywords": [
+        "History of Psychology"
+      ],
       "citations": 1,
       "featured": "publications/2017_CentenaireRibotPremierePartie/featured.jpg",
       "folder": "2017_CentenaireRibotPremierePartie",
-      "summary": ""
+      "summary": "The first of two papers marking the centenary of Théodule Ribot's death, following how the founder of modern French psychology first reached print with the Parisian publisher Ladrange. It covers the 1870 book on English psychology whose introduction reads as the founding manifesto of the new French psychology, and the 1873 doctoral thesis on psychological heredity that already holds much of what came later."
     },
     {
       "doi": null,
@@ -898,11 +1022,15 @@
       "authors": "Tuena, C., Serino, S., Gaston-Bellegarde, A., Orriols, E., Makowski, D., Riva, G., & Piolino, P.",
       "is_preprint": false,
       "pdf": "publications/2017_VirtualEmbodimentMemory/2017_VirtualEmbodimentMemory.pdf",
-      "keywords": [],
+      "keywords": [
+        "Virtual Reality",
+        "Episodic Memory",
+        "Self-Reference"
+      ],
       "citations": null,
       "featured": "publications/2017_VirtualEmbodimentMemory/featured.jpg",
       "folder": "2017_VirtualEmbodimentMemory",
-      "summary": ""
+      "summary": "A proof-of-concept study giving participants ownership of a virtual body, and asking what being embodied somewhere does to episodic memory for what happens around it."
     },
     {
       "doi": "10.1007/S00221-017-5081-6",
@@ -913,11 +1041,14 @@
       "authors": "Sperduti, M., Armougum, A., Makowski, D., Blondé, P., & Piolino, P.",
       "is_preprint": false,
       "pdf": "publications/2017_InteractionBetweenAttentionalSystems/2017_InteractionBetweenAttentionalSystems.pdf",
-      "keywords": [],
+      "keywords": [
+        "Attention",
+        "Episodic Memory"
+      ],
       "citations": 5,
       "featured": "publications/2017_InteractionBetweenAttentionalSystems/featured.jpg",
       "folder": "2017_InteractionBetweenAttentionalSystems",
-      "summary": ""
+      "summary": "What becomes of a memory formed while attention is busy resolving a conflict. The study measures the cost of attentional conflict at encoding on how information is bound together into a single episode."
     },
     {
       "doi": "10.1684/PNV.2017.0672",
@@ -928,11 +1059,14 @@
       "authors": "Sperduti, M., Makowski, D., Blondé, P., & Piolino, P.",
       "is_preprint": false,
       "pdf": "publications/2017_MeditationAndSuccessfulAging/2017_MeditationAndSuccessfulAging.pdf",
-      "keywords": [],
+      "keywords": [
+        "Mindfulness",
+        "Aging"
+      ],
       "citations": 13,
       "featured": "publications/2017_MeditationAndSuccessfulAging/featured.jpg",
       "folder": "2017_MeditationAndSuccessfulAging",
-      "summary": ""
+      "summary": "A review of whether meditative practice can counteract age-related cognitive decline, and of what the evidence does and does not support once \"successful aging\" is treated as something that can be trained."
     },
     {
       "doi": "10.21105/JOSS.00259",
@@ -943,11 +1077,14 @@
       "authors": "Makowski, D., & Dutriaux, L.",
       "is_preprint": false,
       "pdf": "publications/2017_Neuropsydia/2017_Neuropsydia.pdf",
-      "keywords": [],
+      "keywords": [
+        "Software Development",
+        "Open Science"
+      ],
       "citations": 17,
       "featured": "publications/2017_Neuropsydia/featured.jpg",
       "folder": "2017_Neuropsydia",
-      "summary": ""
+      "summary": "Neuropsydia.py is a Python module for building experiments, cognitive tasks and questionnaires. It is written for researchers rather than programmers: the recurring pieces of a psychology task — instructions, scales, response collection, timing — are single calls rather than a graphics stack to configure."
     },
     {
       "doi": "10.1016/J.ACTPSY.2016.12.001",
@@ -958,11 +1095,15 @@
       "authors": "Sperduti, M., Makowski, D., Arcangeli, M., Wantzen, P., Zalla, T., Lemaire, S., Dokic, J., Pelletier, J., & Piolino, P.",
       "is_preprint": false,
       "pdf": "publications/2017_ExecutiveFunctionsEmotionRegulation/2017_ExecutiveFunctionsEmotionRegulation.pdf",
-      "keywords": [],
+      "keywords": [
+        "Emotion Regulation",
+        "Attention",
+        "Fiction"
+      ],
       "citations": 60,
       "featured": "publications/2017_ExecutiveFunctionsEmotionRegulation/featured.png",
       "folder": "2017_ExecutiveFunctionsEmotionRegulation",
-      "summary": ""
+      "summary": "Deliberate emotion regulation is known to draw on executive function. This study asks whether implicit regulation — reappraisal a person never decides to perform — does the same, and which executive components it recruits."
     },
     {
       "doi": "10.1484/J.EYHP.5.112940",
@@ -973,11 +1114,15 @@
       "authors": "Nicolas, S., & Makowski, D.",
       "is_preprint": false,
       "pdf": "publications/2016_MentalFatigueWeberCompass/2016_MentalFatigueWeberCompass.pdf",
-      "keywords": [],
+      "keywords": [
+        "History of Psychology",
+        "Psychometrics",
+        "Attention"
+      ],
       "citations": 10,
       "featured": "publications/2016_MentalFatigueWeberCompass/featured.jpg",
       "folder": "2016_MentalFatigueWeberCompass",
-      "summary": ""
+      "summary": "Before intelligence testing, Alfred Binet spent years looking for a physical measure of mental fatigue, and tactile sensitivity — the two-point threshold read off Weber's compass — was the leading candidate. This paper reconstructs those experiments and the conclusion Binet drew about what aesthesiometry could and could not measure."
     },
     {
       "doi": "10.1016/J.ACTPSY.2016.02.003",
@@ -988,11 +1133,16 @@
       "authors": "Sperduti, M., Arcangeli, M., Makowski, D., Wantzen, P., Zalla, T., Lemaire, S., Dokic, J., Pelletier, J., & Piolino, P.",
       "is_preprint": false,
       "pdf": "publications/2016_TheParadoxOfFiction/2016_TheParadoxOfFiction.pdf",
-      "keywords": [],
+      "keywords": [
+        "Fiction",
+        "Emotion Regulation",
+        "Reality Beliefs",
+        "Self-Reference"
+      ],
       "citations": 26,
       "featured": "publications/2016_TheParadoxOfFiction/featured.jpg",
       "folder": "2016_TheParadoxOfFiction",
-      "summary": ""
+      "summary": "People are moved by events they know never happened. This study varies whether the same material is taken to be real or fictional, and finds the emotional response modulated by how self-relevant the scenario is rather than by its reality status alone."
     },
     {
       "doi": "10.1080/13825585.2016.1159652",
@@ -1003,11 +1153,15 @@
       "authors": "Sperduti, M., Makowski, D., & Piolino, P.",
       "is_preprint": false,
       "pdf": "publications/2016_LongTermMeditationExecutive/2016_LongTermMeditationExecutive.pdf",
-      "keywords": [],
+      "keywords": [
+        "Mindfulness",
+        "Aging",
+        "Attention"
+      ],
       "citations": 30,
       "featured": "publications/2016_LongTermMeditationExecutive/featured.jpg",
       "folder": "2016_LongTermMeditationExecutive",
-      "summary": ""
+      "summary": "A cross-sectional comparison of long-term meditators and non-meditators across the adult lifespan, testing whether sustained practice buffers the age-related decline of attention. The protective association was specific to the executive component rather than to attention in general."
     },
     {
       "doi": "10.1684/PNV.2015.0561",
@@ -1018,11 +1172,14 @@
       "authors": "Makowski, D., Sperduti, M., Blanchet, S., Nicolas, S., & Piolino, P.",
       "is_preprint": false,
       "pdf": "publications/2015_EmotionRegulationAging/2015_EmotionRegulationAging.pdf",
-      "keywords": [],
+      "keywords": [
+        "Emotion Regulation",
+        "Aging"
+      ],
       "citations": 5,
       "featured": "publications/2015_EmotionRegulationAging/featured.jpg",
       "folder": "2015_EmotionRegulationAging",
-      "summary": ""
+      "summary": "Emotional wellbeing tends to hold up in later life even as the cognitive resources that emotion regulation is thought to depend on decline. This review works through that apparent paradox and what it implies for models treating regulation as a single, effortful capacity."
     }
   ]
 }

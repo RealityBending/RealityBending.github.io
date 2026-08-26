@@ -7,10 +7,15 @@
   "authors": "Makowski, D., Sperduti, M., Pelletier, J., Blondé, P., La Corte, V., Arcangeli, M., Zalla, T., Lemaire, S., Dokic, J., Nicolas, S., & Piolino, P.",
   "is_preprint": false,
   "pdf": "publications/2019_FictionalReappraisal/2019_FictionalReappraisal.pdf",
-  "keywords": [],
+  "keywords": [
+    "Emotion Regulation",
+    "Fiction",
+    "Reality Beliefs",
+    "Psychophysiology"
+  ],
   "citations": 13,
   "featured": "publications/2019_FictionalReappraisal/featured.jpg",
   "folder": "2019_FictionalReappraisal",
   "abstract": "",
-  "summary": ""
+  "summary": "The same images, presented as real photographs or as staged fiction, measured at three levels at once: what people reported feeling, what their bodies did, and what their brains did. The paper reports the correlates of fictional reappraisal at each level, and treats it as an emotion-regulation strategy nobody has to choose to use."
 }

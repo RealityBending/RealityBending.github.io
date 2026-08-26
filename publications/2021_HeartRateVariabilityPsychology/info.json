@@ -7,10 +7,14 @@
   "authors": "Pham, T., Lau, Z. J., Chen, S. H. A., & Makowski, D.",
   "is_preprint": false,
   "pdf": "publications/2021_HeartRateVariabilityPsychology/2021_HeartRateVariabilityPsychology.pdf",
-  "keywords": [],
+  "keywords": [
+    "Heart Rate Variability",
+    "Psychophysiology",
+    "Signal Processing"
+  ],
   "citations": 381,
   "featured": "publications/2021_HeartRateVariabilityPsychology/featured.jpg",
   "folder": "2021_HeartRateVariabilityPsychology",
   "abstract": "The use of heart rate variability (HRV) in research has been greatly popularized over the past decades due to the ease and affordability of HRV collection, coupled with its clinical relevance and significant relationships with psychophysiological constructs and psychopathological disorders. Despite the wide use of electrocardiograms (ECG) in research and advancements in sensor technology, the analytical approach and steps applied to obtain HRV measures can be seen as complex. Thus, this poses a challenge to users who may not have the adequate background knowledge to obtain the HRV indices reliably. To maximize the impact of HRV-related research and its reproducibility, parallel advances in users’ understanding of the indices and the standardization of analysis pipelines in its utility will be crucial. This paper addresses this gap and aims to provide an overview of the most up-to-date and commonly used HRV indices, as well as common research areas in which these indices have proven to be very useful, particularly in psychology. In addition, we also provide a step-by-step guide on how to perform HRV analysis using an integrative neurophysiological toolkit, NeuroKit2.",
-  "summary": ""
+  "summary": "Heart rate variability is easy to record and hard to analyse well: the indices are many, the pipelines inconsistent, and the choices that matter rarely visible in a paper. This review explains the commonly used HRV indices and what each is good for, then walks through a full analysis step by step in NeuroKit2."
 }

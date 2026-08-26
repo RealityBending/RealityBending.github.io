@@ -7,10 +7,13 @@
   "authors": "Makowski, D., & Dutriaux, L.",
   "is_preprint": false,
   "pdf": "publications/2017_Neuropsydia/2017_Neuropsydia.pdf",
-  "keywords": [],
+  "keywords": [
+    "Software Development",
+    "Open Science"
+  ],
   "citations": 17,
   "featured": "publications/2017_Neuropsydia/featured.jpg",
   "folder": "2017_Neuropsydia",
   "abstract": "",
-  "summary": ""
+  "summary": "Neuropsydia.py is a Python module for building experiments, cognitive tasks and questionnaires. It is written for researchers rather than programmers: the recurring pieces of a psychology task — instructions, scales, response collection, timing — are single calls rather than a graphics stack to configure."
 }

@@ -7,10 +7,14 @@
   "authors": "Rinaldi, L. J., Agbude, R., Andermane, N., Makowski, D., Forster, S., Simner, J., & Ward, J.",
   "is_preprint": false,
   "pdf": "publications/2026_MisophoniaAttention/2026_MisophoniaAttention.pdf",
-  "keywords": [],
+  "keywords": [
+    "Mental Health",
+    "Attention",
+    "Psychophysiology"
+  ],
   "citations": 0,
   "featured": "publications/2026_MisophoniaAttention/featured.jpg",
   "folder": "2026_MisophoniaAttention",
   "abstract": "",
-  "summary": ""
+  "summary": "Misophonia is defined by an intolerance of particular everyday sounds. This study measures attention and physiological response to sounds irrelevant to the task at hand, asking whether what differs in misophonia is what gets attended or how the body responds to it."
 }

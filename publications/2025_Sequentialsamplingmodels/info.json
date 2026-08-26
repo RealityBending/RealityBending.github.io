@@ -7,11 +7,15 @@
   "authors": "Fernandez, K., Makowski, D., & Fisher, C.",
   "is_preprint": false,
   "pdf": "https://proceedings.juliacon.org/papers/10.21105/jcon.00186",
-  "keywords": [],
+  "keywords": [
+    "Computational Models",
+    "Reaction Times",
+    "Software Development"
+  ],
   "citations": 0,
   "featured": "publications/2025_Sequentialsamplingmodels/featured.png",
   "folder": "2025_Sequentialsamplingmodels",
   "github": "https://github.com/itsdfish/SequentialSamplingModels.jl",
   "abstract": "",
-  "summary": ""
+  "summary": "SequentialSamplingModels.jl brings the standard evidence-accumulation models of choice and response time — the drift diffusion model and its relatives — into Julia, with one interface for simulating from them and evaluating their likelihoods."
 }

@@ -7,10 +7,13 @@
   "authors": "Makowski, D., Ben-Shachar, M., Patil, I., & Lüdecke, D.",
   "is_preprint": false,
   "pdf": "publications/2020_Correlation/2020_Correlation.pdf",
-  "keywords": [],
-  "citations": 404,
+  "keywords": [
+    "Software Development",
+    "Statistical Methods"
+  ],
+  "citations": 405,
   "featured": "publications/2020_Correlation/featured.jpg",
   "folder": "2020_Correlation",
   "abstract": "",
-  "summary": ""
+  "summary": "The correlation R package covers the whole family through one function — Pearson, Spearman, Kendall, biserial, polychoric, tetrachoric, partial and Bayesian — choosing the method that suits the variables it is given, and returning matrices that are ready to plot or report."
 }

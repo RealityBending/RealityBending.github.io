@@ -7,10 +7,13 @@
   "authors": "Makowski, D., Sperduti, M., Lavallée, S., Nicolas, S., & Piolino, P.",
   "is_preprint": false,
   "pdf": "publications/2019_DispositionalMindfulness/2019_DispositionalMindfulness.pdf",
-  "keywords": [],
+  "keywords": [
+    "Mindfulness",
+    "Attention"
+  ],
   "citations": 24,
   "featured": "publications/2019_DispositionalMindfulness/featured.jpg",
   "folder": "2019_DispositionalMindfulness",
   "abstract": "",
-  "summary": ""
+  "summary": "In the emotional attentional blink, an emotionally charged distractor makes the next target hard to see at all. People higher in dispositional mindfulness showed a smaller blink, suggesting trait mindfulness buffers the attentional cost of emotional distraction."
 }

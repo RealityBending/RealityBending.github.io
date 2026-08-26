@@ -7,10 +7,13 @@
   "authors": "Kovarski, K., Dos Reis, J., Chevais, C., Hamel, A., Makowski, D., & Sperduti, M.",
   "is_preprint": false,
   "pdf": "publications/2022_MovieEditingInfluencesSpectators/2022_MovieEditingInfluencesSpectators.pdf",
-  "keywords": [],
+  "keywords": [
+    "Time Perception",
+    "Fiction"
+  ],
   "citations": 8,
   "featured": "publications/2022_MovieEditingInfluencesSpectators/featured.jpg",
   "folder": "2022_MovieEditingInfluencesSpectators",
   "abstract": "Filmmakers use different techniques (e.g., camera movements, editing) to shape viewers' experience. In particular, editing can be used to handle the temporal unfolding of events represented in a movie. Nevertheless, little is known about how different editing types impact viewers’ time perception. In an exploratory on-line study (90 participants) and a pre-registered conceptual replication study (60 participants), we asked participants to judge (Study 1) or reproduce (Study 2) the duration of 45 excerpts of the movie “ Le Ballon Rouge ” containing either continuous editing, action discontinuity editing or no editing. Each excerpt was formatted in three durations (2000, 2500 or 3000 ms). In both studies, we reported that scenes containing continuous editing were perceived as longer than the other two scene types. Moreover, scenes containing action discontinuity editing were perceived as longer than scenes with no editing. This study contributes to the emerging field of psycho-cinematics which could ultimately develop the dialog between arts and science.",
-  "summary": ""
+  "summary": "Editing is how a film handles time, and it turns out to change how long a scene feels. Across an online study and a pre-registered replication, scenes with continuous editing were judged longer than scenes with action-discontinuity editing, which were in turn judged longer than scenes with no editing at all."
 }

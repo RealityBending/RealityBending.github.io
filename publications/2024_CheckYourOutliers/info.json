@@ -7,10 +7,14 @@
   "authors": "Thériault, R., Ben-Shachar, M. S., Patil, I., Lüdecke, D., Wiernik, B. M., & Makowski, D.",
   "is_preprint": false,
   "pdf": null,
-  "keywords": [],
+  "keywords": [
+    "Statistical Methods",
+    "Software Development",
+    "Open Science"
+  ],
   "citations": 41,
   "featured": null,
   "folder": "2024_CheckYourOutliers",
   "abstract": "",
-  "summary": ""
+  "summary": "Outliers are usually removed on a rule of thumb and rarely reported. This tutorial sets out what an outlier actually is, which detection method suits which design, and how to run and document the whole procedure in R with easystats."
 }

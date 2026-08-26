@@ -7,10 +7,13 @@
   "authors": "Sperduti, M., Makowski, D., Blondé, P., & Piolino, P.",
   "is_preprint": false,
   "pdf": "publications/2017_MeditationAndSuccessfulAging/2017_MeditationAndSuccessfulAging.pdf",
-  "keywords": [],
+  "keywords": [
+    "Mindfulness",
+    "Aging"
+  ],
   "citations": 13,
   "featured": "publications/2017_MeditationAndSuccessfulAging/featured.jpg",
   "folder": "2017_MeditationAndSuccessfulAging",
   "abstract": "",
-  "summary": ""
+  "summary": "A review of whether meditative practice can counteract age-related cognitive decline, and of what the evidence does and does not support once \"successful aging\" is treated as something that can be trained."
 }

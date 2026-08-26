@@ -7,10 +7,13 @@
   "authors": "Lüdecke, D., Patil, I., Ben-Shachar, M., Wiernik, B., Waggoner, P., & Makowski, D.",
   "is_preprint": false,
   "pdf": "publications/2021_See/2021_See.pdf",
-  "keywords": [],
-  "citations": 114,
+  "keywords": [
+    "Software Development",
+    "Statistical Methods"
+  ],
+  "citations": 115,
   "featured": "publications/2021_See/featured.jpg",
   "folder": "2021_See",
   "abstract": "",
-  "summary": ""
+  "summary": "see is the plotting half of easystats: it takes what the other packages return — model checks, effect sizes, posteriors, correlation matrices, cluster solutions — and draws it, so that a diagnostic is looked at rather than read off a table."
 }

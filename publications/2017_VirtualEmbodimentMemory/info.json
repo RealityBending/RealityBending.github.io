@@ -7,10 +7,14 @@
   "authors": "Tuena, C., Serino, S., Gaston-Bellegarde, A., Orriols, E., Makowski, D., Riva, G., & Piolino, P.",
   "is_preprint": false,
   "pdf": "publications/2017_VirtualEmbodimentMemory/2017_VirtualEmbodimentMemory.pdf",
-  "keywords": [],
+  "keywords": [
+    "Virtual Reality",
+    "Episodic Memory",
+    "Self-Reference"
+  ],
   "citations": null,
   "featured": "publications/2017_VirtualEmbodimentMemory/featured.jpg",
   "folder": "2017_VirtualEmbodimentMemory",
   "abstract": "",
-  "summary": ""
+  "summary": "A proof-of-concept study giving participants ownership of a virtual body, and asking what being embodied somewhere does to episodic memory for what happens around it."
 }

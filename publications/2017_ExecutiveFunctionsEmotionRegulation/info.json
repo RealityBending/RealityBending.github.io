@@ -7,10 +7,14 @@
   "authors": "Sperduti, M., Makowski, D., Arcangeli, M., Wantzen, P., Zalla, T., Lemaire, S., Dokic, J., Pelletier, J., & Piolino, P.",
   "is_preprint": false,
   "pdf": "publications/2017_ExecutiveFunctionsEmotionRegulation/2017_ExecutiveFunctionsEmotionRegulation.pdf",
-  "keywords": [],
+  "keywords": [
+    "Emotion Regulation",
+    "Attention",
+    "Fiction"
+  ],
   "citations": 60,
   "featured": "publications/2017_ExecutiveFunctionsEmotionRegulation/featured.png",
   "folder": "2017_ExecutiveFunctionsEmotionRegulation",
   "abstract": "",
-  "summary": ""
+  "summary": "Deliberate emotion regulation is known to draw on executive function. This study asks whether implicit regulation — reappraisal a person never decides to perform — does the same, and which executive components it recruits."
 }

@@ -7,10 +7,14 @@
   "authors": "Makowski, D., Te, A. S., Pham, T., Lau, Z. J., & Chen, S. H. A.",
   "is_preprint": false,
   "pdf": "publications/2022_TheStructureOfChaos/2022_TheStructureOfChaos.pdf",
-  "keywords": [],
+  "keywords": [
+    "Complexity Science",
+    "Signal Processing",
+    "Psychophysiology"
+  ],
   "citations": 5,
   "featured": "publications/2022_TheStructureOfChaos/featured.jpg",
   "folder": "2022_TheStructureOfChaos",
   "abstract": "Complexity quantification, through entropy, information theory and fractal dimension indices, is gaining a renewed traction in psychophsyiology, as new measures with promising qualities emerge from the computational and mathematical advances. Unfortunately, few studies compare the relationship and objective performance of the plethora of existing metrics, in turn hindering reproducibility, replicability, consistency, and clarity in the field. Using the NeuroKit2 Python software, we computed a list of 112 (predominantly used) complexity indices on signals varying in their characteristics (noise, length and frequency spectrum). We then systematically compared the indices by their computational weight, their representativeness of a multidimensional space of latent dimensions, and empirical proximity with other indices. Based on these considerations, we propose that a selection of 12 indices, together representing 85.97% of the total variance of all indices, might offer a parsimonious and complimentary choice in regards to the quantification of the complexity of time series. Our selection includes CWPEn, Line Length (LL), BubbEn, MSWPEn, MFDFA (Max), Hjorth Complexity, SVDEn, MFDFA (Width), MFDFA (Mean), MFDFA (Peak), MFDFA (Fluctuation), AttEn. Elements of consideration for alternative subsets are discussed, and data, analysis scripts and code for the figures are open-source.",
-  "summary": ""
+  "summary": "There are well over a hundred complexity indices in circulation and almost no empirical comparison between them. This paper computes 112 of them on signals varying in noise, length and frequency content, maps how they relate, and recommends 12 that between them carry 86% of the variance of the whole set."
 }

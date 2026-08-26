@@ -10,8 +10,11 @@
   "folder": "2025_Modelbased",
   "featured": "publications/2025_Modelbased/featured.png",
   "github": "https://github.com/easystats/modelbased",
-  "keywords": [],
+  "keywords": [
+    "Software Development",
+    "Statistical Methods"
+  ],
   "citations": 35,
   "abstract": "",
-  "summary": ""
+  "summary": "modelbased is the easystats package for the step after fitting: estimated marginal means, marginal effects, contrasts and model predictions, for any supported model, so that what a model implies can be read off directly rather than reconstructed from its coefficients."
 }

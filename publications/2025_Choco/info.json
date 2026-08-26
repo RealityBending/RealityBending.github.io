@@ -7,11 +7,16 @@
   "authors": "Makowski, D., Neves, A., & Field, A. P.",
   "is_preprint": true,
   "pdf": "https://doi.org/10.31234/osf.io/z68v3_v1",
-  "keywords": [],
+  "keywords": [
+    "Computational Models",
+    "Reality Beliefs",
+    "Aesthetics",
+    "Bayesian Statistics"
+  ],
   "citations": 0,
   "featured": "publications/2025_Choco/featured.jpg",
   "folder": "2025_Choco",
   "abstract": "We introduce the Choice-Confidence (CHOCO) model as a tool to dissect the cognitive mechanisms underlying decision-making judgments, offering a better fit for data from subjective rating scales for which the two extremes correspond to discrete choices (e.g., \"positive\" vs. \"negative\", \"true\" vs. false\", \"real\" vs. \"AI-generated\"), and for which the distance from the center might reflect a gradual process, such as confidence or certainty in that choice. Conceptualized as a mixture of two Beta distributions, CHOCO simultaneously estimates the probability of selecting one category (the right side of the scale over the left side) and the confidence associated with each choice. To demonstrate its usage, we apply this model to two datasets (N=141 and N=189) in which participants judged whether face images were real photographs or AI-generated images, finding that facial attractiveness increased the likelihood of being judged as \"real\", particularly for male participants. Given that AI-generated content is becoming increasingly indistinguishable from real stimuli, understanding how individuals form beliefs about the reality of what they perceive is both theoretically important and practically urgent. We discuss how these findings relate to the broader effect of facial attractiveness, and suggest future directions for both the cognitive and psychometric application of the CHOCO framework.",
-  "summary": "",
+  "summary": "Rating scales whose two ends mean opposite choices produce bimodal data that ordinary models fit badly. CHOCO models them as a mixture of two Beta distributions, estimating the choice and the confidence behind it separately. Applied to judgments of whether faces were real or AI-generated, attractive faces were more likely to be called real, particularly by male participants.",
   "github": "https://github.com/RealityBending/FictionChoco"
 }

@@ -16,7 +16,8 @@
  * into a chat client whose preview runs a real browser.
  *
  * Deep-linkable *content* becoming indexable is a different job, and it needs
- * real paths rather than hashes. See the Tier 3 note in CLAUDE.md.
+ * real paths rather than hashes. That is what generate_pages.py writes — see
+ * docs/routing.md.
  *
  * ── How it knows what to say ──
  * A route names a thing whose title lives in a manifest that has not landed

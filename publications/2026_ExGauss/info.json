@@ -7,8 +7,12 @@
   "authors": "Geller, J., Angele, B., & Makowski, D.",
   "is_preprint": true,
   "abstract": "The ex-Gaussian distribution is a popular mathematical model for analyzing response time (RT) data because it separates the central portion of the distribution, captured by the Gaussian parameters $\\mu$ and $\\sigma$, from the positively skewed tail, captured by the exponential parameter $\\tau$. Researchers often use these parameters to make inferences about underlying cognitive processes. As Bayesian methods have become increasingly accessible, complex ex-Gaussian models can now be fit with relative ease, and in R, the {brms} package makes this especially straightforward. However, it is important to recognize that the default parameterization offered by {brms} does not map onto the classical parameterization familiar to many researchers in experimental psychology in the default model, $\\mu$ indexes the mean of the full ex-Gaussian distribution rather than the location of the Gaussian component alone. This distinction matters because changes in the Gaussian location and changes in the exponential tail can offset one another at the level of the overall mean, so some published studies may have drawn incorrect inferences from effects estimated on the default $\\mu$ parameter. Using simulated data and a published finding we highlight how using the default parameterization can lead to misleading inferences. We then demonstrate how to fit the classical parameterization directly using the {cogmod} package, with the aim of helping researchers and reviewers align ex-Gaussian model parameters with their theoretical questions.",
-  "keywords": [],
-  "summary": "",
+  "keywords": [
+    "Bayesian Statistics",
+    "Computational Models",
+    "Reaction Times"
+  ],
+  "summary": "The ex-Gaussian model separates the bulk of a response time distribution from its tail, and brms fits it by default with a μ that means the mean of the whole distribution rather than the location of the Gaussian component. Because a shift in the bulk and a change in the tail can cancel out in the overall mean, inferences drawn from the default μ may be wrong. The paper shows how, and how to fit the classical parameterisation instead.",
   "pdf": "https://osf.io/preprints/psyarxiv/kdcxa",
   "citations": 0,
   "featured": "publications/2026_ExGauss/featured.png",

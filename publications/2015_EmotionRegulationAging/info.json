@@ -7,10 +7,13 @@
   "authors": "Makowski, D., Sperduti, M., Blanchet, S., Nicolas, S., & Piolino, P.",
   "is_preprint": false,
   "pdf": "publications/2015_EmotionRegulationAging/2015_EmotionRegulationAging.pdf",
-  "keywords": [],
+  "keywords": [
+    "Emotion Regulation",
+    "Aging"
+  ],
   "citations": 5,
   "featured": "publications/2015_EmotionRegulationAging/featured.jpg",
   "folder": "2015_EmotionRegulationAging",
   "abstract": "",
-  "summary": ""
+  "summary": "Emotional wellbeing tends to hold up in later life even as the cognitive resources that emotion regulation is thought to depend on decline. This review works through that apparent paradox and what it implies for models treating regulation as a single, effortful capacity."
 }

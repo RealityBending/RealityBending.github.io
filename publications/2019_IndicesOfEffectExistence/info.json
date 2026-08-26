@@ -7,10 +7,13 @@
   "authors": "Makowski, D., Ben-Shachar, M. S., Chen, S. H. A., & Lüdecke, D.",
   "is_preprint": false,
   "pdf": "publications/2019_IndicesOfEffectExistence/2019_IndicesOfEffectExistence.pdf",
-  "keywords": [],
-  "citations": 825,
+  "keywords": [
+    "Bayesian Statistics",
+    "Statistical Methods"
+  ],
+  "citations": 826,
   "featured": "publications/2019_IndicesOfEffectExistence/featured.jpg",
   "folder": "2019_IndicesOfEffectExistence",
   "abstract": "",
-  "summary": ""
+  "summary": "There are several ways to say a Bayesian effect \"exists\" — the probability of direction, ROPE coverage, Bayes factors, MAP-based p-values — and they do not always agree. This paper compares them on simulated data, sets out which to report, and maps each onto the frequentist p-value researchers are arriving from."
 }

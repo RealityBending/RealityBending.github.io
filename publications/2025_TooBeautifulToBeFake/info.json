@@ -7,11 +7,14 @@
   "authors": "Makowski, D., Te, A. S., Neves, A., Kirk, S., Liang, N. Z., Mavros, P., & Chen, S. A.",
   "is_preprint": false,
   "pdf": "publications/2025_TooBeautifulToBeFake/2025_TooBeautifulToBeFake.pdf",
-  "keywords": [],
+  "keywords": [
+    "Aesthetics",
+    "Reality Beliefs"
+  ],
   "citations": 7,
   "featured": "publications/2025_TooBeautifulToBeFake/featured.jpg",
   "folder": "2025_TooBeautifulToBeFake",
   "abstract": "",
-  "summary": "",
+  "summary": "As AI-generated faces become indistinguishable from photographs, what people fall back on to judge reality starts to matter. Attractive faces were less likely to be judged as artificially generated: beauty reads as authenticity.",
   "spotify": "https://open.spotify.com/episode/0xSlDxONenS3zwZvA53Gpp"
 }

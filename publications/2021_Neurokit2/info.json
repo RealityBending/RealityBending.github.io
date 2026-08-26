@@ -7,10 +7,14 @@
   "authors": "Makowski, D., Pham, T., Lau, Z. J., Brammer, J. C., Lespinasse, F., Pham, H., Schölzel, C., & Chen, S. H. A.",
   "is_preprint": false,
   "pdf": "publications/2021_Neurokit2/2021_Neurokit2.pdf",
-  "keywords": [],
+  "keywords": [
+    "Software Development",
+    "Psychophysiology",
+    "Signal Processing"
+  ],
   "citations": 1227,
   "featured": "publications/2021_Neurokit2/featured.jpg",
   "folder": "2021_Neurokit2",
   "abstract": "",
-  "summary": ""
+  "summary": "NeuroKit2 is the lab's Python toolbox for neurophysiological signals — ECG, PPG, EDA, EMG, RSP and EEG — taking each from a raw recording to cleaned features through the same interface. It is the most widely used piece of software the lab has produced."
 }

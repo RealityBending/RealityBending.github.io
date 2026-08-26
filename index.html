@@ -232,11 +232,11 @@
              @id lets the three refer to each other rather than repeat: the
              WebSite is published by the Organization, the Person works for it.
 
-             Publications are deliberately NOT here. They would be twenty
+             Publications are deliberately NOT here. They would be 67
              ScholarlyArticle nodes on a page that is not about any of them,
              and Google matches structured data against what the page visibly
-             shows. They belong on per-publication pages, which do not exist
-             yet — see the Tier 3 note in CLAUDE.md. -->
+             shows. Each one carries its own node on its own page instead —
+             `build_publications` in generate_pages.py, and docs/routing.md. -->
         <script type="application/ld+json">
             {
                 "@context": "https://schema.org",

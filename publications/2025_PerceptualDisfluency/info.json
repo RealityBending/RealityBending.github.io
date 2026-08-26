@@ -11,11 +11,11 @@
   "featured": "publications/2025_PerceptualDisfluency/featured.png",
   "github": "https://github.com/jgeller112/Disfluency_Ms",
   "keywords": [
-    "Cognitive Models",
-    "R",
-    "Methods"
+    "Reaction Times",
+    "Computational Models",
+    "Attention"
   ],
   "citations": 0,
   "abstract": "",
-  "summary": ""
+  "summary": "Perceptual disfluency — degrading a stimulus so that it is harder to take in — is normally summarised as a change in mean response time. This paper analyses the whole response time distribution instead, where a shift in the bulk and a change in the tail are separable and can offset one another in the mean."
 }

@@ -7,10 +7,13 @@
   "authors": "Makowski, D., Sperduti, M., Lavallée, S., Nicolas, S., & Piolino, P.",
   "is_preprint": false,
   "pdf": "publications/2020_AffectiveStyleQuestionnaire/2020_AffectiveStyleQuestionnaire.pdf",
-  "keywords": [],
+  "keywords": [
+    "Psychometrics",
+    "Emotion Regulation"
+  ],
   "citations": 2,
   "featured": "publications/2020_AffectiveStyleQuestionnaire/featured.jpg",
   "folder": "2020_AffectiveStyleQuestionnaire",
   "abstract": "",
-  "summary": ""
+  "summary": "A short French adaptation of the Affective Style Questionnaire, which measures the habitual ways people handle their own emotions — concealing them, adjusting them, or tolerating them — validated on a French-speaking sample."
 }

@@ -7,11 +7,14 @@
   "authors": "Dickinson, R., Makowski, D., Van Marwijk, H., & Ford, E.",
   "is_preprint": true,
   "pdf": "https://osf.io/preprints/psyarxiv/7xgbt",
-  "keywords": [],
+  "keywords": [
+    "Misinformation",
+    "Reality Beliefs"
+  ],
   "citations": 1,
   "featured": "publications/2025_BadNews/featured.png",
   "folder": "2025_BadNews",
   "github": "https://github.com/RealityBending/FakeNewsIntervention",
   "abstract": "Misinformation is increasingly recognised as a global threat, exacerbated by the dominance of social media as a primary news source. Yet much remains to be understood about both effective interventions against it and the role of political ideology. In this study, 266 final participants completed pre-tests assessing their ability to identify misinformative content. The experiment group then played the Bad News Game for 15 minutes, learning about the tactics and methods used within misinformation, whereas the control group played Tetris. All participants then completed post-tests using new items. Our results suggest the Bad News Game is an effective intervention: the experiment group improved significantly more than the control group. We also report significant links between political ideology and vulnerability to misinformation.",
-  "summary": ""
+  "summary": "266 participants either played Bad News, a fifteen-minute game that teaches the tactics of misinformation from the inside, or played Tetris. The game group improved significantly more at spotting misinformation afterwards, and political ideology was linked to how vulnerable people were to begin with."
 }

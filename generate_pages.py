@@ -751,6 +751,68 @@ def build_memories(shell, memories, members):
         sitemap_urls.append(f"/people/memories/{slug}/")
 
 
+def apa_reference(p: dict) -> str:
+    """The APA reference, in the exact shape publications.js prints in the panel.
+
+    Two copies of one format is a thing to be uneasy about, and the alternative
+    was worse: the reference is the single most copied string on a publication
+    page, so it has to be in the raw HTML (a crawler and a reader with no
+    JavaScript both want it), *and* in the panel (which is where a reader
+    actually is). A generated JSON of pre-rendered references would be a third
+    artefact to keep in step. If these two drift, this is the pair to look at.
+    """
+    year = f"({p['year']})" if p.get("year") else "(n.d.)"
+    journal = f" {p['journal']}." if p.get("journal") else ""
+    doi = f" https://doi.org/{p['doi']}" if p.get("doi") else ""
+    return f"{p.get('authors') or 'Unknown'} {year}. {p.get('title', '')}.{journal}{doi}"
+
+
+def related_publications(p: dict, publications: list, count: int = 3) -> list:
+    """The three "See also" links at the foot of a publication page.
+
+    ── Why these exist at all ──
+    Before them a publication page's only outgoing internal links were its
+    breadcrumbs, so 67 of the site's ~250 pages were leaves: a crawler that
+    walks links rather than the sitemap reached one and had nowhere to go but
+    back up. Three related papers turn the archive into a graph, and they are
+    the reason `keywords` was filled in on every entry.
+
+    ── Ranked, and deterministic — unlike the panel's ──
+    publications.js re-rolls its three on every open, out of the best-scoring
+    band, because a reader who opens the same paper twice should be offered
+    something new. A *page* must not: a build that produced different internal
+    links every time would churn 67 files per deploy and never let a link
+    settle. So the tie-breaks here are total — shared keywords, then the
+    nearest year, then the folder name — and the same build always emits the
+    same three.
+
+    Entries whose title matches are dropped along with the paper itself. That
+    is a backstop, not the plan — a preprint and its journal version must never
+    both reach the manifest, and update_publications.py is where that is
+    enforced — but it is one line here and "see also: this same paper" reads as
+    a bug to every reader who meets it.
+    """
+    mine = {kw.lower() for kw in (p.get("keywords") or [])}
+    own_title = re.sub(r"[^a-z0-9]+", " ", (p.get("title") or "").lower()).strip()
+    year = p.get("year") or 0
+
+    candidates = [
+        other
+        for other in publications
+        if other["folder"] != p["folder"]
+        and re.sub(r"[^a-z0-9]+", " ", (other.get("title") or "").lower()).strip()
+        != own_title
+    ]
+    candidates.sort(
+        key=lambda other: (
+            -len(mine & {kw.lower() for kw in (other.get("keywords") or [])}),
+            abs((other.get("year") or 0) - year),
+            other["folder"],
+        )
+    )
+    return candidates[:count]
+
+
 def build_publications(shell, publications):
     for p in publications:
         folder = p["folder"]
@@ -763,6 +825,7 @@ def build_publications(shell, publications):
         abstract = (info.get("abstract") or "").strip()
         summary = (info.get("summary") or "").strip()
         doi = p.get("doi") or ""
+        keywords = p.get("keywords") or []
 
         bits = []
         if summary:
@@ -780,13 +843,58 @@ def build_publications(shell, publications):
             refs.append(f'<li><a href="{esc(p["pdf"])}">Full text (PDF)</a></li>')
         if refs:
             bits.append("<ul>" + "".join(refs) + "</ul>")
+        if keywords:
+            # Text, not links. A keyword is a filter in the panel, but that
+            # filter is client state with no URL of its own — the site has had
+            # no query-string state since Publications' own `?section=&tab=`
+            # went (see docs/routing.md), and inventing one here would be a
+            # link that looks like it does something and does not.
+            bits.append(
+                '<p class="meta">Keywords: '
+                + esc(" · ".join(keywords))
+                + "</p>"
+            )
+        # The reference, spelled out. It is the most copied string on one of
+        # these pages and the reason somebody lands here from a search for the
+        # title, so it belongs in the raw HTML rather than only in the panel.
+        bits.append(f"<h2>Cite</h2><p>{esc(apa_reference(p))}</p>")
+
+        # `Journal, 2025 · Preprint`, with nothing left dangling when a part is
+        # missing. It was an f-string that pasted `", " + year` onto the
+        # journal, so the 12 entries with no journal — preprints, the thesis,
+        # the book chapter — each opened with a bare comma.
+        state = " · ".join(
+            part
+            for part in (
+                ", ".join(
+                    bit
+                    for bit in (p.get("journal") or "", str(p["year"]) if p.get("year") else "")
+                    if bit
+                ),
+                "Preprint" if p.get("is_preprint") else "",
+            )
+            if part
+        )
+
+        related = related_publications(p, publications)
+        if related:
+            bits.append(
+                "<h2>See also</h2><ul>"
+                + "".join(
+                    f'<li><a href="publications/{esc(other["folder"])}/">{esc(other["title"])}</a>'
+                    f' <span class="meta">— {esc(other.get("authors", ""))}'
+                    f' ({esc(other.get("year") or "n.d.")})</span></li>'
+                    for other in related
+                )
+                + "</ul>"
+            )
 
         body = f"""
             <article>
                 {crumbs(("Publications", "publications/"), (p["title"], None))}
                 <h1>{esc(p["title"])}</h1>
                 <p class="meta">{esc(p.get("authors", ""))}</p>
-                <p class="meta">{esc(p.get("journal", ""))}{", " + esc(p["year"]) if p.get("year") else ""}{" · Preprint" if p.get("is_preprint") else ""}</p>
+                {f'<p class="meta">{esc(state)}</p>' if state else ""}
                 {"".join(bits)}
             </article>"""
 
@@ -1305,7 +1413,7 @@ Contact: {org.get("email", "")} · {postal}.
 
 ## Publications
 
-{lines(f'- [{p["title"]}]({SITE_URL}/publications/{p["folder"]}/): {p.get("authors","")} ({p.get("year") or "n.d."}). {p.get("journal","")}' for p in publications)}
+{lines(f'- [{p["title"]}]({SITE_URL}/publications/{p["folder"]}/): {p.get("authors","")} ({p.get("year") or "n.d."}). {p.get("journal","")}' + (f' Keywords: {", ".join(p["keywords"])}.' if p.get("keywords") else "") for p in publications)}
 
 ## News
 

@@ -7,10 +7,14 @@
   "authors": "Girardeau, J., Blondé, P., Makowski, D., Abram, M., Piolino, P., & Sperduti, M.",
   "is_preprint": false,
   "pdf": "publications/2020_MindfulnessProspectiveMemory/2020_MindfulnessProspectiveMemory.pdf",
-  "keywords": [],
+  "keywords": [
+    "Mindfulness",
+    "Episodic Memory",
+    "Virtual Reality"
+  ],
   "citations": 15,
   "featured": "publications/2020_MindfulnessProspectiveMemory/featured.jpg",
   "folder": "2020_MindfulnessProspectiveMemory",
   "abstract": "",
-  "summary": ""
+  "summary": "Prospective memory is remembering to do something later, and it is what mind wandering is most likely to cost. This virtual-reality study separates state from dispositional mindfulness and asks which of the two predicts remembering an intention in a realistic environment."
 }

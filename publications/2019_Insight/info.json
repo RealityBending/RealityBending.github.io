@@ -7,10 +7,13 @@
   "authors": "Lüdecke, D., Waggoner, P., & Makowski, D.",
   "is_preprint": false,
   "pdf": "publications/2019_Insight/2019_Insight.pdf",
-  "keywords": [],
+  "keywords": [
+    "Software Development",
+    "Statistical Methods"
+  ],
   "citations": 123,
   "featured": "publications/2019_Insight/featured.jpg",
   "folder": "2019_Insight",
   "abstract": "",
-  "summary": ""
+  "summary": "insight is the package the rest of easystats stands on: one interface for getting information out of a fitted model — its predictors, random effects, priors, formula — whatever package produced it. It exists because every model class in R exposes its internals differently."
 }

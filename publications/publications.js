@@ -3,7 +3,10 @@
  */
 import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
 import { createPager } from "../shared/pager.js"
-import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRoute } from "../shared/deep-link.js"
+import { INITIAL_ROUTE, hrefForRoute, landOnLoad, matchRoute, onRoute, revealSection, writeRoute } from "../shared/deep-link.js"
+import { element as el } from "../shared/dom.js"
+import { openImageLightbox } from "../shared/media-lightbox.js"
+import { registerRouteTitle } from "../shared/page-meta.js"
 ;(function () {
     const PAGE_SIZE = 5
 
@@ -323,8 +326,23 @@ import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRou
             citeModal.querySelector(".pub-cite-close").addEventListener("click", () => {
                 citeModal.hidden = true
             })
+            /* One Escape handler for both layers, innermost first: the cite
+               modal sits over the publication panel (z-index 1000 against 200),
+               so a single press that closed both would take the reader two
+               steps back for one keystroke. */
             document.addEventListener("keydown", (e) => {
-                if (e.key === "Escape") citeModal.hidden = true
+                if (e.key !== "Escape") return
+                /* The image viewer is a third layer above both of these, and it
+                   claims Escape from the capture phase and marks the event —
+                   see shared/media-lightbox.js. Bailing on `defaultPrevented`
+                   is what people.js does for the same reason, and without it
+                   one press would close the figure and the panel under it. */
+                if (e.defaultPrevented) return
+                if (!citeModal.hidden) {
+                    citeModal.hidden = true
+                    return
+                }
+                closeReader()
             })
 
             citeModal.querySelectorAll(".pub-cite-tab").forEach((tab) => {
@@ -348,14 +366,416 @@ import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRou
                     .catch(() => {})
             })
 
-            function openCiteModal(pub) {
+            /* `fmt` is which tab to open on, defaulting to APA — the panel's
+               own BibTeX button is the one caller that wants the other, because
+               the APA reference is already printed beside it. */
+            function openCiteModal(pub, fmt) {
                 _currentCitePub = pub
-                _currentFmt = "apa"
+                _currentFmt = fmt === "bibtex" ? "bibtex" : "apa"
                 citeModal
                     .querySelectorAll(".pub-cite-tab")
-                    .forEach((t) => t.classList.toggle("pub-cite-tab--active", t.dataset.fmt === "apa"))
+                    .forEach((t) => t.classList.toggle("pub-cite-tab--active", t.dataset.fmt === _currentFmt))
                 _renderCiteContent()
                 citeModal.hidden = false
+            }
+
+            /* ── The publication panel ──────────────────────────────────────
+             * A publication was a link to its DOI and nothing else, which made
+             * the 67 pages `generate_pages.py` writes for them addresses
+             * nothing on the site pointed at. Worse, they were reachable: a
+             * reader arriving on `/publications/<folder>/` from a search
+             * result got the shell, no handler claimed `pub-<folder>`, and
+             * they were left at the top of the homepage looking at the door.
+             *
+             * This is the News reader (news.js) and the People profile panel,
+             * in this section's colours, and it is the same singleton — built
+             * once, refilled on every open. Three things come out of it:
+             * `pub-<folder>` is a route somebody can send, the generated page
+             * is what that link resolves to for a crawler, and the abstract —
+             * which the manifest deliberately does not carry, see
+             * docs/publications.md — finally has somewhere to be shown.
+             *
+             * It lives on <body> rather than inside #main-page: that is the
+             * scroll container and it is `pointer-events: none` until the door
+             * opens, and a panel inside it would inherit both.
+             */
+            const readerBackdrop = el("div", "pub-reader__backdrop")
+            document.body.appendChild(readerBackdrop)
+
+            const reader = el("aside", "pub-reader")
+            reader.setAttribute("role", "dialog")
+            reader.setAttribute("aria-modal", "true")
+            reader.setAttribute("aria-label", "Publication")
+            reader.hidden = true
+
+            const readerClose = el("button", "pub-reader__close", "×")
+            readerClose.type = "button"
+            readerClose.setAttribute("aria-label", "Close")
+            reader.appendChild(readerClose)
+
+            const readerBody = el("div", "pub-reader__body")
+            reader.appendChild(readerBody)
+            document.body.appendChild(reader)
+
+            // Where focus goes back to when the panel closes, so a keyboard
+            // reader is not dropped at the top of the document.
+            let lastTrigger = null
+
+            /* ── The abstract ──
+             * The one field the manifest does not carry, because 28 abstracts
+             * at a median of 165 words is ~50KB every visitor downloads to
+             * render a list of titles. So it is fetched per publication, the
+             * way news.js fetches a post.json, and cached — a reader who opens
+             * the same paper twice must not ask twice.
+             *
+             * A failure is silent and returns `{}`: 36 of the 63 have no
+             * abstract anyway (JOSS deposits none), so "no abstract" is an
+             * ordinary state here rather than an error worth showing.
+             */
+            const infoCache = new Map()
+
+            function loadInfo(pub) {
+                if (infoCache.has(pub.folder)) return Promise.resolve(infoCache.get(pub.folder))
+                return fetch("publications/" + encodeURIComponent(pub.folder) + "/info.json")
+                    .then((response) => (response.ok ? response.json() : {}))
+                    .catch(() => ({}))
+                    .then((info) => {
+                        infoCache.set(pub.folder, info)
+                        return info
+                    })
+            }
+
+            /* ── "See also" ──
+             * Three publications at the foot of the panel, and the keywords are
+             * what makes them worth reading rather than three random rows: a
+             * candidate is scored by how many keywords it shares with the one
+             * being read, and the three are drawn from the best-scoring band
+             * that can fill them. Within a band the pick is random, so opening
+             * the same paper twice offers a different three — the re-roll
+             * news.js's "another post" does, constrained to things that are
+             * actually related.
+             *
+             * A publication with no keywords still gets three, out of the
+             * zero-score band, which is the whole archive: a loose suggestion
+             * beats an empty section.
+             *
+             * **Entries whose title key matches are dropped**, not only the
+             * paper itself. This is a backstop rather than the plan: a preprint
+             * and its journal version must never both be in the manifest, and
+             * update_publications.py is where that is enforced. It stays
+             * because it is two lines, because the pipeline runs against a live
+             * ORCID profile that can hand it a pair nothing has seen yet, and
+             * because "see also: this same paper" is the one suggestion that
+             * reads as a bug to every reader who meets it.
+             */
+            function normalisedTitle(title) {
+                return String(title || "")
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]+/g, " ")
+                    .trim()
+            }
+
+            function shuffled(list) {
+                const out = list.slice()
+                for (let i = out.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1))
+                    ;[out[i], out[j]] = [out[j], out[i]]
+                }
+                return out
+            }
+
+            function relatedTo(pub, count) {
+                const mine = new Set((pub.keywords || []).map((kw) => kw.toLowerCase()))
+                const ownTitle = normalisedTitle(pub.title)
+
+                const bands = new Map()
+                pubs.forEach((other) => {
+                    if (other.folder === pub.folder) return
+                    if (normalisedTitle(other.title) === ownTitle) return
+                    const score = (other.keywords || []).reduce((total, kw) => total + (mine.has(kw.toLowerCase()) ? 1 : 0), 0)
+                    if (!bands.has(score)) bands.set(score, [])
+                    bands.get(score).push(other)
+                })
+
+                const picked = []
+                for (const score of [...bands.keys()].sort((a, b) => b - a)) {
+                    for (const other of shuffled(bands.get(score))) {
+                        if (picked.length >= count) return picked
+                        picked.push(other)
+                    }
+                }
+                return picked
+            }
+
+            /* A real anchor, not a button: the destination is a route the
+               router already owns, so `hrefForRoute` gives back exactly the URL
+               `writeRoute` would put in the address bar — and with it
+               middle-click, "copy link address", and a link a crawler can
+               follow. The press itself is still handled here, or the browser
+               would reload the page to reach a panel. */
+            function routeAnchor(route, onOpen) {
+                const anchor = document.createElement("a")
+                const href = hrefForRoute(route)
+                if (href) anchor.href = href
+                anchor.addEventListener("click", (event) => {
+                    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+                    event.preventDefault()
+                    onOpen(event)
+                })
+                return anchor
+            }
+
+            function externalLink(className, label, href) {
+                const anchor = el("a", className, label)
+                anchor.href = href
+                anchor.target = "_blank"
+                anchor.rel = "noopener noreferrer"
+                return anchor
+            }
+
+            function closeReader(write) {
+                if (!reader.classList.contains("is-open")) return
+                // Back to the section's own route, so the URL never names a
+                // paper nobody is reading — except when the close is itself
+                // part of applying a route, where the caller is about to say
+                // what the URL should be.
+                reader.dataset.pub = ""
+                if (write !== false) writeRoute("publications-" + activeTab)
+                reader.classList.remove("is-open")
+                readerBackdrop.classList.remove("is-visible")
+                // Out of the tab order only once it has finished sliding out;
+                // hiding it on the spot would cut the transition.
+                setTimeout(() => {
+                    if (!reader.classList.contains("is-open")) reader.hidden = true
+                }, 380)
+                if (lastTrigger) lastTrigger.focus({ preventScroll: true })
+                lastTrigger = null
+            }
+
+            readerClose.addEventListener("click", () => closeReader())
+            readerBackdrop.addEventListener("click", () => closeReader())
+
+            function renderPublication(pub) {
+                readerBody.replaceChildren()
+
+                const article = el("article", "pub-article")
+
+                if (pub.year || pub.is_preprint) {
+                    const eyebrow = el("div", "pub-article__eyebrow")
+                    if (pub.year) eyebrow.appendChild(el("span", "pub-article__year", pub.year))
+                    if (pub.is_preprint) eyebrow.appendChild(el("span", "pub-card__preprint-badge", "Preprint"))
+                    article.appendChild(eyebrow)
+                }
+
+                article.appendChild(el("h3", "pub-article__title", pub.title))
+                if (pub.authors) article.appendChild(el("p", "pub-article__authors", pub.authors))
+
+                const meta = []
+                if (pub.journal) meta.push(pub.journal)
+                if (pub.citations != null && pub.citations >= 0) {
+                    meta.push(pub.citations + (pub.citations === 1 ? " citation" : " citations"))
+                }
+                if (meta.length) article.appendChild(el("p", "pub-article__meta", meta.join(" · ")))
+
+                /* Everywhere the paper itself can be reached, in one row and in
+                   the order somebody would want them: the publisher's record
+                   first because it is the canonical one, then the copy we can
+                   serve, then the two things that are *about* the work. */
+                const actions = el("div", "pub-article__actions")
+                if (pub.doi) {
+                    actions.appendChild(
+                        externalLink("pub-action pub-action--primary", "Read the paper", "https://doi.org/" + encodeURIComponent(pub.doi)),
+                    )
+                }
+                if (pub.pdf) actions.appendChild(externalLink("pub-action", "PDF", pub.pdf))
+                if (pub.github) actions.appendChild(externalLink("pub-action", "Code", pub.github))
+                if (pub.spotify) actions.appendChild(externalLink("pub-action", "Podcast", pub.spotify))
+                if (actions.children.length) article.appendChild(actions)
+
+                /* ── The summary and the figure share a row ──
+                   The figure had the panel's full width, which on a 920px panel
+                   is a 700px chart standing over two sentences of text — at
+                   that size the figure reads as the point of the page, and it
+                   is not: the summary is. Side by side it is about a fifth of
+                   the row, which is also how the two sit on the card the reader
+                   pressed to get here.
+
+                   Text first, figure right, matching the card and for the
+                   reason the card gives: a publication's figure illustrates an
+                   entry the title has already announced, so it follows the text
+                   rather than preceding it. Source order is visual order.
+
+                   Both sit in a tinted box under an "In brief" heading. The
+                   abstract below is the publisher's text and runs long; this is
+                   the lab's own two or three sentences and is the thing worth
+                   reading first, and on a panel of undifferentiated prose it
+                   was the harder of the two to find. The box is the section's
+                   own green, at a stronger tint than the citation box further
+                   down so the two do not read as the same kind of thing.
+
+                   `--split` rather than `:has()`, because this is built in JS
+                   and knows perfectly well whether there is a figure — 9 of the
+                   63 have none, and their summary takes the whole row. */
+                const brief = el("section", "pub-article__brief")
+                brief.appendChild(el("h4", "pub-article__h", "In brief"))
+
+                /* The box is the row's own element rather than the grid, so the
+                   heading can sit above both columns without a `grid-area` that
+                   has to be undone when there is no figure. */
+                const briefRow = el("div", "pub-article__brief-row")
+
+                // The lab's own two or three sentences on what the paper found
+                // — the one thing about it that is not already on the
+                // publisher's site. See docs/publications.md.
+                if (pub.summary) briefRow.appendChild(el("p", "pub-article__summary", pub.summary))
+
+                if (pub.featured) {
+                    briefRow.classList.add("pub-article__brief-row--split")
+                    /* A button, because shrinking the figure to a column takes a
+                       readable chart down to something a reader can only tell
+                       apart from another chart. The viewer is the one the
+                       Memories tab and the profile panel already use, so a
+                       figure here opens the way a photograph does. */
+                    const figure = el("button", "pub-article__figure")
+                    figure.type = "button"
+                    figure.setAttribute("aria-label", "View the figure full size: " + pub.title)
+                    const img = document.createElement("img")
+                    img.src = pub.featured
+                    img.alt = ""
+                    figure.appendChild(img)
+                    figure.addEventListener("click", () =>
+                        openImageLightbox({
+                            src: pub.featured,
+                            alt: pub.title,
+                            label: "Figure: " + pub.title,
+                            title: pub.title,
+                            meta: [pub.journal, pub.year].filter(Boolean).join(" \u00b7 "),
+                        }),
+                    )
+                    briefRow.appendChild(figure)
+                }
+
+                /* The heading is always there, so the row is what says whether
+                   this entry has anything to put in the box. */
+                if (briefRow.children.length) {
+                    brief.appendChild(briefRow)
+                    article.appendChild(brief)
+                }
+
+                const abstractSlot = el("div", "pub-article__abstract")
+                article.appendChild(abstractSlot)
+
+                if (pub.keywords && pub.keywords.length) {
+                    const tags = el("div", "pub-article__keywords")
+                    pub.keywords.forEach((kw) => {
+                        const tag = el("button", "pub-card__keyword", kw)
+                        tag.type = "button"
+                        // Filtering the list is something to come *back* to, so
+                        // the panel gets out of the way first.
+                        tag.addEventListener("click", () => {
+                            closeReader()
+                            addTerm(kw.toLowerCase())
+                        })
+                        tags.appendChild(tag)
+                    })
+                    article.appendChild(tags)
+                }
+
+                const cite = el("section", "pub-article__cite")
+                cite.appendChild(el("h4", "pub-article__h", "Cite this"))
+                cite.appendChild(el("p", "pub-article__apa", _apaCite(pub)))
+                const citeActions = el("div", "pub-article__cite-actions")
+                const copyApa = el("button", "pub-action", "Copy APA")
+                copyApa.type = "button"
+                copyApa.addEventListener("click", () => {
+                    navigator.clipboard
+                        .writeText(_apaCite(pub))
+                        .then(() => {
+                            copyApa.textContent = "Copied!"
+                            setTimeout(() => {
+                                copyApa.textContent = "Copy APA"
+                            }, 1800)
+                        })
+                        .catch(() => {})
+                })
+                citeActions.appendChild(copyApa)
+                const bibtex = el("button", "pub-action", "BibTeX")
+                bibtex.type = "button"
+                bibtex.addEventListener("click", () => openCiteModal(pub, "bibtex"))
+                citeActions.appendChild(bibtex)
+                cite.appendChild(citeActions)
+                article.appendChild(cite)
+
+                const related = relatedTo(pub, 3)
+                if (related.length) {
+                    const also = el("section", "pub-article__related")
+                    also.appendChild(el("h4", "pub-article__h", "See also"))
+                    const grid = el("div", "pub-related")
+                    related.forEach((other) => {
+                        const item = routeAnchor("pub-" + other.folder, () => openPublication(other, lastTrigger))
+                        item.className = "pub-related__item"
+                        if (other.featured) {
+                            const thumb = document.createElement("img")
+                            thumb.className = "pub-related__img"
+                            thumb.src = other.featured
+                            thumb.alt = ""
+                            thumb.loading = "lazy"
+                            item.appendChild(thumb)
+                        }
+                        item.appendChild(el("span", "pub-related__title", other.title))
+                        const line = [other.year, other.journal].filter(Boolean).join(" · ")
+                        if (line) item.appendChild(el("span", "pub-related__meta", line))
+                        grid.appendChild(item)
+                    })
+                    also.appendChild(grid)
+                    article.appendChild(also)
+                }
+
+                readerBody.appendChild(article)
+                reader.setAttribute("aria-label", pub.title)
+                reader.hidden = false
+                // The panel is fixed and scrolls itself; a reopened one would
+                // otherwise start where the last paper was left.
+                reader.scrollTop = 0
+
+                // The panel goes from `display: none` to displayed, so there is
+                // no starting position for the transform to animate from until
+                // it has been laid out once. Reading offsetWidth forces that
+                // synchronously — rather than waiting a frame, which leaves the
+                // open at the mercy of whether rAF is running at all.
+                void reader.offsetWidth
+                // Kept on the element so a route naming the paper already open
+                // is recognised and left alone rather than re-entered.
+                reader.dataset.pub = pub.folder
+                writeRoute("pub-" + pub.folder)
+                reader.classList.add("is-open")
+                readerBackdrop.classList.add("is-visible")
+                readerClose.focus({ preventScroll: true })
+
+                return abstractSlot
+            }
+
+            function openPublication(pub, trigger) {
+                lastTrigger = trigger || null
+                const slot = renderPublication(pub)
+
+                /* The panel opens now and the abstract arrives when it does.
+                   Waiting on one small file before showing anything reads as a
+                   dead press, and 36 of the 63 have no abstract to wait for.
+                   The guard is what makes hopping through three "see also"
+                   links safe: a response for a paper the reader has already
+                   moved on from must not write itself into the panel. */
+                loadInfo(pub).then((info) => {
+                    if (reader.dataset.pub !== pub.folder) return
+                    const abstract = (info.abstract || "").trim()
+                    if (!abstract) return
+                    slot.replaceChildren()
+                    slot.appendChild(el("h4", "pub-article__h", "Abstract"))
+                    // Text, never markup: this is the only string on the site
+                    // fetched from a third party (CrossRef), and `element` sets
+                    // textContent. See docs/publications.md.
+                    slot.appendChild(el("p", null, abstract))
+                })
             }
 
             // â”€â”€ Build all cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -371,6 +791,7 @@ import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRou
                     pub.title || "",
                     pub.authors || "",
                     pub.journal || "",
+                    pub.summary || "",
                     (pub.keywords || []).join(" "),
                     pub.is_preprint ? "preprint" : "",
                     String(pub.year || ""),
@@ -415,19 +836,17 @@ import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRou
                     body.appendChild(eyebrow)
                 }
 
-                /* title â€” links to DOI */
-                const title = document.createElement("h3")
-                title.className = "pub-card__title"
-                if (pub.doi) {
-                    const a = document.createElement("a")
-                    a.href = "https://doi.org/" + encodeURIComponent(pub.doi)
-                    a.target = "_blank"
-                    a.rel = "noopener noreferrer"
-                    a.textContent = pub.title
-                    title.appendChild(a)
-                } else {
-                    title.textContent = pub.title
-                }
+                /* ── The title opens the publication's own page ──
+                   It used to be a link straight to doi.org, which meant the
+                   only thing this site had to say about a paper was somebody
+                   else's address for it — and the page generate_pages.py
+                   writes at `/publications/<folder>/` was reachable from
+                   nowhere. The DOI has not gone anywhere; it is the first
+                   action inside the panel. */
+                const title = el("h3", "pub-card__title")
+                const titleLink = routeAnchor("pub-" + pub.folder, () => openPublication(pub, card))
+                titleLink.textContent = pub.title
+                title.appendChild(titleLink)
                 body.appendChild(title)
 
                 /* authors + cite button */
@@ -469,6 +888,16 @@ import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRou
                         meta.appendChild(citSpan)
                     }
                     body.appendChild(meta)
+                }
+
+                /* ── The lab's own sentences ──
+                   Clamped to three lines in the sheet rather than truncated
+                   here, so the card does not decide for the panel: the same
+                   string is shown in full there. It is the one thing on a card
+                   that is not bibliographic, which is why it sits between the
+                   journal line and the keywords rather than under them. */
+                if (pub.summary) {
+                    body.appendChild(el("p", "pub-card__summary", pub.summary))
                 }
 
                 /* keywords â€” clickable, add to filter */
@@ -567,14 +996,9 @@ import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRou
                    so source order matches the visual order: it is the card's
                    right-hand column and fills the row's height. */
                 if (pub.featured) {
-                    const wrap = pub.doi ? document.createElement("a") : document.createElement("div")
+                    const wrap = routeAnchor("pub-" + pub.folder, () => openPublication(pub, card))
                     wrap.className = "pub-card__featured-wrap"
-                    if (pub.doi) {
-                        wrap.href = "https://doi.org/" + encodeURIComponent(pub.doi)
-                        wrap.target = "_blank"
-                        wrap.rel = "noopener noreferrer"
-                        wrap.setAttribute("aria-label", pub.title)
-                    }
+                    wrap.setAttribute("aria-label", pub.title)
                     const img = document.createElement("img")
                     img.className = "pub-card__featured"
                     img.src = pub.featured
@@ -595,14 +1019,9 @@ import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRou
                 if (withImages.length) {
                     // Gallery items data (keep stable reference for re-sorting)
                     const galleryItems = withImages.map((pub) => {
-                        const item = document.createElement("a")
+                        const item = routeAnchor("pub-" + pub.folder, () => openPublication(pub, item))
                         item.className = "pub-gallery__item"
                         item.dataset.year = pub.year || 0
-                        if (pub.doi) {
-                            item.href = "https://doi.org/" + encodeURIComponent(pub.doi)
-                            item.target = "_blank"
-                            item.rel = "noopener noreferrer"
-                        }
                         item.setAttribute("aria-label", pub.title)
                         const img = document.createElement("img")
                         img.className = "pub-gallery__img"
@@ -720,6 +1139,10 @@ import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRou
             // â”€â”€ State â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             let currentSort = "date"
             let currentPage = 0
+            // Which tab the URL goes back to when the panel is closed — a paper
+            // is read *over* a tab, and the reader is put back on the one they
+            // came from. Same idea as news.js's `activeTab`.
+            let activeTab = "list"
             const sortDirs = { date: 1, citations: 1 } // 1 = desc (default), -1 = asc
             let activeTerms = []
             const searchInput = document.getElementById("pub-search")
@@ -802,6 +1225,7 @@ import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRou
                leave the page. `write` is false for a switch that came out of
                the URL in the first place. */
             function activateTab(tab, write) {
+                activeTab = tab
                 document.querySelectorAll(".pub-tab-btn").forEach((b) => {
                     b.classList.toggle("pub-tab-btn--active", b.dataset.tab === tab)
                     b.setAttribute("aria-selected", b.dataset.tab === tab ? "true" : "false")
@@ -816,7 +1240,26 @@ import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRou
 
             initMarginTabNav(document.querySelector(".publications-full"), ".pub-tab-btn")
 
+            /* `pub-<folder>` opens one publication in the panel,
+               `publications-<tab>` picks a tab. Idempotent — a reader can paste
+               the same link twice, and a route naming the paper already open
+               must not re-enter it under them. */
             function applyRoute(route) {
+                const folder = matchRoute(route, "pub")
+                if (folder) {
+                    const pub = pubs.find((entry) => entry.folder === folder)
+                    if (!pub) return false
+                    revealSection("sec-publications-full")
+                    if (reader.dataset.pub !== folder || !reader.classList.contains("is-open")) openPublication(pub, null)
+                    return true
+                }
+
+                /* Anything that is not a publication is somewhere else on the
+                   page, and the panel covers all of it — so it goes, whether or
+                   not the destination is this section. Silent when nothing was
+                   open, which is the usual case. */
+                closeReader(false)
+
                 const tab = matchRoute(route, "publications")
                 if (tab === null || !document.getElementById("pub-tab-" + tab)) return false
                 activateTab(tab, false)
@@ -825,6 +1268,16 @@ import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRou
             }
 
             onRoute(applyRoute)
+
+            /* The tab label for an open publication. Registered here rather
+               than at startup for the same reason applyRoute is: a folder is
+               only a title once the manifest has landed. */
+            registerRouteTitle((route) => {
+                const folder = matchRoute(route, "pub")
+                if (!folder) return null
+                const pub = pubs.find((entry) => entry.folder === folder)
+                return pub ? pub.title : null
+            })
             // Armed only when this section owned the route — see news.js.
             if (applyRoute(INITIAL_ROUTE)) landOnLoad("sec-publications-full")
 

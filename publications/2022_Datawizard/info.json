@@ -7,10 +7,13 @@
   "authors": "Patil, I., Makowski, D., Ben-Shachar, M. S., Wiernik, B. M., Bacher, E., & Lüdecke, D.",
   "is_preprint": false,
   "pdf": "publications/2022_Datawizard/2022_Datawizard.pdf",
-  "keywords": [],
+  "keywords": [
+    "Software Development",
+    "Statistical Methods"
+  ],
   "citations": 50,
   "featured": "publications/2022_Datawizard/featured.jpg",
   "folder": "2022_Datawizard",
   "abstract": "",
-  "summary": ""
+  "summary": "datawizard is the data-preparation layer under easystats: selecting, reshaping, recoding, standardising, centring, winsorising and describing, under one grammar and with essentially no dependencies."
 }

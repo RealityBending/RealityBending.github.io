@@ -7,10 +7,13 @@
   "authors": "Sperduti, M., Armougum, A., Makowski, D., Blondé, P., & Piolino, P.",
   "is_preprint": false,
   "pdf": "publications/2017_InteractionBetweenAttentionalSystems/2017_InteractionBetweenAttentionalSystems.pdf",
-  "keywords": [],
+  "keywords": [
+    "Attention",
+    "Episodic Memory"
+  ],
   "citations": 5,
   "featured": "publications/2017_InteractionBetweenAttentionalSystems/featured.jpg",
   "folder": "2017_InteractionBetweenAttentionalSystems",
   "abstract": "",
-  "summary": ""
+  "summary": "What becomes of a memory formed while attention is busy resolving a conflict. The study measures the cost of attentional conflict at encoding on how information is bound together into a single episode."
 }

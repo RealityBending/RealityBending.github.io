@@ -7,10 +7,14 @@
   "authors": "Sperduti, M., Makowski, D., & Piolino, P.",
   "is_preprint": false,
   "pdf": "publications/2016_LongTermMeditationExecutive/2016_LongTermMeditationExecutive.pdf",
-  "keywords": [],
+  "keywords": [
+    "Mindfulness",
+    "Aging",
+    "Attention"
+  ],
   "citations": 30,
   "featured": "publications/2016_LongTermMeditationExecutive/featured.jpg",
   "folder": "2016_LongTermMeditationExecutive",
   "abstract": "",
-  "summary": ""
+  "summary": "A cross-sectional comparison of long-term meditators and non-meditators across the adult lifespan, testing whether sustained practice buffers the age-related decline of attention. The protective association was specific to the executive component rather than to attention in general."
 }

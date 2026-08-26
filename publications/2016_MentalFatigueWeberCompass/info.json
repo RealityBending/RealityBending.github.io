@@ -7,10 +7,14 @@
   "authors": "Nicolas, S., & Makowski, D.",
   "is_preprint": false,
   "pdf": "publications/2016_MentalFatigueWeberCompass/2016_MentalFatigueWeberCompass.pdf",
-  "keywords": [],
+  "keywords": [
+    "History of Psychology",
+    "Psychometrics",
+    "Attention"
+  ],
   "citations": 10,
   "featured": "publications/2016_MentalFatigueWeberCompass/featured.jpg",
   "folder": "2016_MentalFatigueWeberCompass",
   "abstract": "",
-  "summary": ""
+  "summary": "Before intelligence testing, Alfred Binet spent years looking for a physical measure of mental fatigue, and tactile sensitivity — the two-point threshold read off Weber's compass — was the leading candidate. This paper reconstructs those experiments and the conclusion Binet drew about what aesthesiometry could and could not measure."
 }

@@ -7,10 +7,13 @@
   "authors": "Blondé, P., Sperduti, M., Makowski, D., & Piolino, P.",
   "is_preprint": false,
   "pdf": null,
-  "keywords": [],
+  "keywords": [
+    "Mind Wandering",
+    "Episodic Memory"
+  ],
   "citations": 34,
   "featured": null,
   "folder": "2021_BoredDistractedAndForgetful",
   "abstract": "Mind wandering, defined as focusing attention towards task-unrelated thoughts, is a common mental state known to impair memory encoding. This phenomenon is closely linked to boredom. Very few studies, however, have tested the potential impact of boredom on memory encoding. Thus, the present study aimed at manipulating mind wandering and boredom during an incidental memory encoding task, to test their differential impact on memory encoding. Thirty-two participants performed a variant of the n-back task in which they had to indicate if the current on-screen object was the same as the previous one (1-back; low working memory load) or the one presented three trials before (3-back; high working memory load). Moreover, thought probes assessing either mind wandering or boredom were randomly presented. Afterwards, a surprise recognition task was delivered. Results showed that mind wandering and boredom were highly correlated, and both decreased in the high working memory load condition, while memory performance increased. Although both boredom and mind wandering predicted memory performance taken separately, we found that mind wandering was the only reliable predictor of memory performance when controlling for boredom and working memory load. Model comparisons also revealed that a model with boredom only was outperformed by a model with mind wandering only and a model with both mind wandering and boredom, suggesting that the predictive contribution of boredom in the complete model is minimal. The present results confirm the high correlation between mind wandering and boredom and suggest that the hindering effect of boredom on memory is subordinate to the effect of mind wandering.",
-  "summary": ""
+  "summary": "Mind wandering and boredom are closely tied, and both look as though they should hurt memory. Measured in the same task and set against each other, mind wandering is the reliable predictor of what gets remembered — boredom adds almost nothing once it is accounted for."
 }

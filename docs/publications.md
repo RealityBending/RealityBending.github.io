@@ -9,26 +9,60 @@ The ORCID/CrossRef pipeline, the manifest's fields and their traps, the cards, t
 keyword dropdown, a sort bar, the shared pager, and a cite modal on `<body>`.
 
 **The list is the whole ORCID profile plus `EXTRA_DOIS`, minus `OMIT_DOIS` —
-65 entries, 10 of them preprints, 46 with a figure, 45 with a PDF.**
+63 entries, 9 of them preprints, 54 with a figure, 52 with a PDF.**
 
-**The automatic preprint dedupe only catches an exact title match**, and
-retitling between preprint and journal is ordinary, so it misses a share of
-them: `10.31234/osf.io/jz6yq` ("…Should I Use? A Data-driven Answer") and
-`10.1111/psyp.70164` ("…Should I Use for Psychophysiological Research?") are
-one paper and both survived it. The tell is **two entries whose slugs collide
-on the first four words** — that is what a retitled preprint looks like from
-here. The fix is `OMIT_DOIS`, with the base DOI and no `_vN` suffix.
+### One work, one entry
 
-That rule has now missed a pair twice, and the second one did not even give the
-slug tell: `10.31234/osf.io/9pjx5` ("The Illusion Game: A Novel Experimental
-Paradigm Provides Evidence for a General Factor of Visual Illusion Sensitivity
-and Personality Correlates") and `10.1038/S41598-023-33148-5` ("A novel visual
-illusion paradigm provides evidence for a general factor of illusion
-sensitivity and personality correlates") are one study with the same abstract,
-and they share no opening at all — one leads with the task's name, the other
-with the finding. **The reliable tell is the abstract, not the title.** Two
-entries whose `abstract` matches are one paper however differently they are
-named, and nothing in the run checks that.
+**A preprint and its published version must never both be in the list** — the
+journal version replaces the preprint, it does not join it. The rule had been
+enforced by comparing `re.sub(r"\s+", " ", title.lower())`, which is not a key,
+it is a title with its spaces tidied, and by the time anyone counted there were
+**four duplicate pairs standing in a list of 67**. `_title_key`,
+`_is_erratum` and `_abstract_key` in `update_publications.py` are what replaced
+it. Each existed because of a specific failure:
+
+- **A zero-width character is not whitespace.** `\s` does not match U+FEFF, and
+  Behavior Research Methods deposited "Check your outliers\ufeff!" — so the
+  preprint sat beside its own journal version for a year while the rule that
+  was supposed to catch it compared two strings that differed by an invisible
+  character. The key now keeps nothing but letters and digits.
+- **An erratum carries the paper's title plus a pointer to it.** "In Medio Stat
+  Virtus: … (vol 85, pg 1613, 2021)" is a correction notice, and CrossRef types
+  it `journal-article` like anything else. `ERRATUM_TAIL` strips the tail, which
+  is what makes it collide with the paper it corrects; it is dropped and the
+  paper is kept.
+- **A retitled preprint shares neither title nor slug with what it became.**
+  This is what most of `OMIT_DOIS` is: `10.31234/osf.io/jz6yq` ("…Should I Use?
+  A Data-driven Answer") against `10.1111/psyp.70164` ("…Should I Use for
+  Psychophysiological Research?"), and `10.31234/osf.io/9pjx5` ("The Illusion
+  Game: A Novel Experimental Paradigm…") against `10.1038/S41598-023-33148-5`
+  ("A novel visual illusion paradigm…"), which share no opening at all — one
+  leads with the task's name, the other with the finding. **The tell there is
+  the abstract**, which survives a retitling where a title does not.
+
+**What is removed automatically and what is only reported is a deliberate
+asymmetry.** The three rules above cannot be wrong: an identical key, an
+erratum tail, an abstract 90% identical to a published one. Everything short of
+that is *reported* — `POSSIBLE DUPLICATE` at the end of a run, naming both DOIs
+and what to do — because deleting a real paper because two titles happen to
+overlap is a far worse failure than leaving a duplicate on a page, and the hard
+part was never the fix. It was noticing.
+
+The measured gap does not support automating it either way. Of the three
+genuine preprint pairs, the title overlaps were 1.00, 0.80 and 0.48; the
+closest *non*-duplicate pair — the Mint scale against the Affective Style
+Questionnaire, two questionnaire validations — was 0.27. The report fires at
+0.40 and a human decides.
+
+**Two pairs still need `OMIT_DOIS`, and both are instructive.**
+`10.31234/osf.io/p342w` (The Heart can Lie) was retitled *and* reworded: its
+abstract is 0.77 similar to the published one, under the 0.90 a removal needs.
+`10.31234/osf.io/rw39q` (Beauty is in the Eye of the Beholder → The Beauty and
+the Self) could not have been caught by anything: the titles share less than
+half their words and CrossRef holds **no abstract at all** for the published
+version. Its abstract was copied onto `2024_TheBeautyAndTheSelf`'s `info.json`
+by hand before the preprint entry went, or the site would have lost the only
+copy it had. Check for that before omitting a preprint.
 
 `MAX_PUBLICATIONS` in `update_publications.py` was `20` while the section was
 being built and is now `None`. Four things follow from that number, none of
@@ -102,15 +136,143 @@ wrap, so a fifth link field needs the layout looked at before it is added.
   `.mp3` in its folder, carried over from the old Hugo site, which nothing on
   the new site references yet.
 
-**`abstract`, `summary` and `keywords`.** The first and third are fetched, the
-second is only ever written by hand.
+## The publication panel
+
+`.pub-reader` in `publications.js`, styled at the foot of
+`css/14-publications.css`. One publication, opened over the section by pressing
+a card's title, its figure or a gallery tile, and closed on the ✕, the backdrop
+or Escape.
+
+**It exists because the 63 pages `generate_pages.py` writes were addresses
+nothing on the site pointed at.** A card's title linked straight to doi.org, so
+the only thing this site had to say about a paper was somebody else's address
+for it — and the pages were not merely unlinked, they were *reachable*: they
+are in `sitemap.xml`, so a reader arriving on `/publications/<folder>/` from a
+search result got the shell, no handler claimed `pub-<folder>`, and they were
+left at the top of the homepage looking at the door. The route existed in
+`routes.js` and in the generator and in nothing between them.
+
+It is the News reader and the People profile panel — same geometry, same 0.38s,
+same backdrop, copied rather than shared for the reason `css/13-news.css`
+already gives. Seven things are specific to it:
+
+- **The DOI has not gone anywhere; it is the first action inside the panel.**
+  `--primary` is filled because the publisher's record is the canonical one and
+  usually the reason somebody opened the panel at all. `PDF`, `Code` and
+  `Podcast` follow it — which is where `github` and `spotify` finally get a
+  second home, though they still stay off the *generated* page for the reason
+  given above: they are about the work rather than part of it.
+- **"In brief": the summary and the figure, in a tinted box.** Two problems and
+  one element. The figure had the panel's full width — on a 920px panel that is
+  a 700px chart standing over two sentences of text, and at that size the figure
+  reads as the point of the page, which it is not. And the summary is the most
+  worth reading of the panel's prose while looking like the least of it: three
+  lines of body text above 200 words of the publisher's abstract. So the two sit
+  side by side in the section's green, under a heading that names them. Five
+  things:
+  - **The figure is a 15rem column on the right**, the arrangement and the
+    reasoning of the card the reader pressed to get here: a publication's figure
+    illustrates an entry the title has already announced, so it follows the text
+    rather than preceding it. Source order is visual order.
+  - **`--split` is set in JS, not by `:has()`.** 9 of the 63 entries have no
+    figure, and their summary must take the whole row rather than the 1fr a
+    missing figure would leave. The module knows which case it is in.
+  - **`max-height` with `object-fit: contain`, not a fixed aspect ratio.**
+    These are charts of every shape — 667×1000 and 1000×857 both occur — and one
+    tall enough to run past the summary beside it would put the panel back where
+    it started. The letterboxing is invisible against the frame's white, and the
+    frame is opaque white rather than the 72% the panel's other cards use:
+    on the tint a translucent frame goes green too.
+  - **The tint was measured, not picked.** At the 10% it started on, the box was
+    rgb(228, 250, 241) against the citation box's rgb(243, 250, 244) — five
+    levels of red between two boxes that say different things. It is 16% now,
+    rgb(228, 247, 233), fifteen levels off the citation box and seventeen off
+    the panel's cream, and the summary's ink still clears 12:1 on it.
+  - **The figure is a button** that opens `shared/media-lightbox.js`, the viewer
+    the Memories tab and the profile panel already use. A 220px chart is
+    something a reader can only tell apart from another chart, so shrinking it
+    without giving the full size back would have been a straight loss. That puts
+    a third layer over the panel, which is why the Escape handler bails on
+    `defaultPrevented` — the viewer claims the key from the capture phase, as
+    people.js already documents.
+
+  **The panel's four section labels are full `--pub-ink`, and that is a
+  correction.** "In brief", "Abstract", "Cite this" and "See also" were mixed to
+  75% of it, which measured **3.6:1 on all three grounds they sit on** — cream,
+  the citation box, the brief box. At 0.68rem/700 these are *small* text by
+  WCAG's reckoning (large starts at 18.66px bold; these render at 10.9px), so
+  3.6 is a fail rather than a near miss. Undiluted they are 6.2–6.5:1. A
+  letter-spaced uppercase label is the last thing on a page that can afford to
+  be faint.
+- **The abstract is fetched per publication**, because the manifest
+  deliberately does not carry it (see below). Cached in a `Map`, so a reader who
+  opens the same paper twice asks once, and a failure is silent and returns
+  `{}` — 36 of the 63 have no abstract anyway, so "no abstract" is an ordinary
+  state rather than an error worth showing.
+- **The panel opens first and the abstract lands into a slot.** Waiting on the
+  fetch before showing anything reads as a dead press. The guard on the way back
+  in (`reader.dataset.pub !== pub.folder`) is what makes hopping through three
+  "see also" links safe: a response for a paper the reader has already left must
+  not write itself into the panel.
+- **Re-rendering would re-roll the suggestions**, so the abstract fills a slot
+  rather than triggering a second `renderPublication`. That is the whole reason
+  the render returns the empty `<div>`.
+- **The card title, the card figure and the gallery tile are real anchors**, via
+  `hrefForRoute` — middle-click, "copy link address" and a link a crawler can
+  follow all give the same URL `writeRoute` would put in the address bar. The
+  press is still handled in script, or the browser would reload the page to
+  reach a panel.
+- **One Escape handler for three layers, innermost first.** The image viewer
+  (9000) is over the cite modal (1000) is over the panel (200), and a single
+  press that closed more than one would take the reader two steps back for one
+  keystroke. The viewer marks the event itself; the modal and the panel are
+  ordered by hand in the one handler.
+
+**"See also" is three publications, and the keywords are what make them worth
+reading.** A candidate is scored by how many keywords it shares with the paper
+being read, and the three are drawn from the best-scoring band that can fill
+them. Two things follow:
+
+- **The panel's three are random within a band and the generated page's three
+  are not.** Opening the same paper twice should offer something new, which is
+  the re-roll `news.js`'s "another post" already does — but a *page* whose
+  internal links changed on every build would churn 63 files a deploy and never
+  let a link settle. `related_publications` in `generate_pages.py` therefore has
+  total tie-breaks: shared keywords, then the nearest year, then the folder
+  name.
+- **An entry whose title key matches is dropped, not only the paper itself.**
+  This is a backstop and not the plan: a preprint and its journal version must
+  never both be in the list in the first place, and "One work, one entry" above
+  is where that is enforced. It stays because it is two lines, because the
+  pipeline runs against a live ORCID profile that can hand it a pair it has
+  never seen, and because "see also: this same paper" is the one suggestion
+  that reads as a bug to every reader who sees it. It does not *hide* anything
+  the run would have reported — the `POSSIBLE DUPLICATE` warning fires on the
+  same data, in the place a maintainer will see it.
+
+**The three outgoing links are the point on the generated page.** Before them a
+publication page's only internal links were its breadcrumbs, so 63 of the
+site's ~250 pages were leaves: a crawler that walks links rather than sitemaps
+reached one and had nowhere to go but back up. The page also carries the APA
+reference in the raw HTML — `apa_reference` in `generate_pages.py`, deliberately
+a second copy of `_apaCite` in `publications.js`, because it is the most copied
+string on one of these pages and both a crawler and the reader looking at the
+panel want it. **If those two drift, that is the pair to look at.**
+
+## Abstract, summary, keywords
+
+**`abstract` is fetched; `summary` and `keywords` are written by hand.**
+`keywords` *can* be fetched — `_crossref_keywords` reads whatever CrossRef
+deposited — and in practice that was 5 distinct terms across 2 of the 63
+entries, which is not a vocabulary. See the keyword note below.
 
 - **`abstract` comes free from a response the script already had.** Every DOI is
   cross-validated against CrossRef for the type check, the authors and the
   citation count, and the abstract was in that same `message` being discarded.
-  Coverage is **27 of 65**, and it is not random: all 10 PsyArXiv preprints have
-  one, all 12 JOSS papers do not, Elsevier and Springer mostly do not, Frontiers
-  / MDPI / Wiley / SAGE / PLOS do. An entry without one is normal.
+  Coverage is **27 of 63**, and it is not random: the PsyArXiv preprints
+  mostly have one, all 12 JOSS papers do not, Elsevier and Springer mostly do
+  not, Frontiers / MDPI / Wiley / SAGE / PLOS do. An entry without one is
+  normal. One of the 27 is hand-written — see the `OMIT_DOIS` note above.
 - **It is stored as plain text and must be inserted as text, never as HTML.**
   CrossRef returns JATS XML, and `_clean_abstract` strips every tag rather than
   translating it — unescaping entities *between* two stripping passes, so
@@ -120,13 +282,45 @@ second is only ever written by hand.
   which is the assumption `normalizeRichHtml` is written on. The tag pattern
   requires a letter after the `<`, so an abstract containing "p < .05 and
   n > 30" keeps it.
-- **`summary` is seeded empty in every `info.json` on purpose.** Nobody fills in
-  a field they do not know exists, and this is the highest-value text a
-  publication entry can carry: two or three plain sentences on what the paper
-  found are the one thing about it that is not already on the publisher's site,
-  on PubMed and on ResearchGate. An abstract makes a page longer; this is what
-  makes it worth indexing. The twelve JOSS papers — the lab's own
-  software, and the block with no abstracts at all — are where it earns most.
+- **`summary` is written for all 63, and it is the highest-value text an entry
+  carries.** Two or three plain sentences on what the paper found are the one
+  thing about it that is not already on the publisher's site, on PubMed and on
+  ResearchGate — an abstract makes a page longer, this is what makes it worth
+  indexing. It is shown three times over: clamped to three lines on the card,
+  in full above the abstract in the panel, and as the generated page's
+  `<meta name="description">`.
+
+  **Where there was no abstract to work from, the summary says what the paper
+  *does*, not what it found.** 36 of the 63 have no abstract — every JOSS
+  paper, most of the early Springer and Elsevier entries — and an invented
+  result is worse than a plain description. Keep that rule when adding one: a
+  reader can tell the difference, and a wrong finding on a lab's own website is
+  the kind of error that gets quoted back.
+
+  It has no upstream source, so `merged.setdefault("summary", "")` leaves
+  whatever is in `info.json` alone on every run — there is nothing that can
+  overwrite one.
+- **`keywords` is a controlled vocabulary, assigned by hand to all 63.** It
+  had to be: CrossRef's own deposits gave 5 terms across 2 entries, and the
+  keyword dropdown, the search chips and "see also" all read this one field. The
+  vocabulary is **32 terms** and it is the lab's strands rather than each
+  paper's own words — *Reality Beliefs*, *Interoception*, *Visual Illusions*,
+  *Emotion Regulation*, *Software Development*, *Computational Models*,
+  *Aesthetics*, *Self-Reference*, *Episodic Memory*, *Psychophysiology* and so
+  on, 2–4 per entry. Two constraints, neither enforced:
+  - **A term earns its place by joining two papers.** A keyword on one entry
+    is a dropdown row that filters to a list of one, which is a worse way of
+    finding that paper than typing its title. *Time Perception* is the one
+    term currently on a single entry, and the check to run before adding
+    another is simply to count.
+  - **The written form is the displayed form.** The dropdown, the chips and the
+    generated page all print the string as stored; matching is
+    `toLowerCase()`d, so `Reality Beliefs` and `reality beliefs` filter alike
+    but show differently. Title Case throughout.
+  - `info.json` is the record, not this list: "existing wins" below is what
+    carries them through every future ORCID run. There is no script that
+    re-applies them, on purpose — a second source of truth would drift from the
+    first.
 - **"Existing wins" is qualified for all three.** `merged.update(existing)` is
   what lets a hand-written value survive every run, but on its own it also
   freezes an *empty* one: a paper whose abstract CrossRef did not have on the
@@ -173,7 +367,7 @@ of 68 entries exactly this way, and the card renders a broken image. It is
 `detected or existing` now, the `existing` half being what lets a hand-written
 path to a PDF hosted elsewhere survive a run that finds no local file.
 
-**Forty of the 67 figures came from the old Hugo site** via
+**Forty of the figures came from the old Hugo site** via
 `tools/import_publication_assets.py` — see the Assets table.
 
 **The section is green.** `--pub-accent` is `--section-publications` (#55cc77,
@@ -195,7 +389,7 @@ Two things that must not take the accent:
 
 **The badge sits beside the year, in `.pub-card__eyebrow`, and used to be
 `position: absolute` in the card's top-right corner.** That corner is where the
-figure column is on **46 of the 65 cards**, so on two thirds of the list the
+figure column is on **54 of the 63 cards**, so on all but nine of them the
 label sat on top of a chart. Three things came out of moving it:
 
 - It is next to the year because the year is the card's *other* piece of
@@ -213,7 +407,7 @@ label sat on top of a chart. Three things came out of moving it:
   colours and must not become them.
 
 **The Altmetric and Dimensions badges are placed on every card and armed only on
-the page the reader is looking at.** All 66 cards are built up front and the
+the page the reader is looking at.** Every card is built up front and the
 pager shows five, so writing `altmetric-embed` and `__dimensions_badge_embed__`
 into the card builder handed both vendors' scripts every publication at once:
 **111 image requests** to `badges.altmetric.com` and `badge.dimensions.ai` on the

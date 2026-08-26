@@ -620,6 +620,21 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
     fill: #fff;
 }
 
+/* The lab's two or three sentences on what the paper found — the only prose
+   on a card. Three lines is the most a row can give it before the figure column
+   is taller than the text beside it; the panel shows the whole thing. */
+.pub-card__summary {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #4a5058;
+    margin: 0 0 0.2em;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
 /* ── Publication keyword tags (clickable buttons) ── */
 .pub-card__keywords {
     display: flex;
@@ -941,6 +956,421 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
     color: var(--pub-ink);
 }
 
+/* ── The publication panel ──
+   One publication, opened over the section by pressing a card, a figure or a
+   gallery tile. It is the News reader (css/13-news.css) and the People profile
+   panel (css/12-profile-panel.css) in this section's colours — same geometry,
+   same 0.38s, same backdrop — so the three read as one interaction. Copied
+   rather than shared for the reason 13-news.css already gives: the profile
+   sheet is 26KB of people-specific children, and the shell is worth extracting
+   only if a fourth of these ever appears.
+
+   It lives on <body>, outside `.publications-full`, so it declares the
+   section's tokens again — nothing above it in the tree has them. */
+.pub-reader {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(920px, 100vw);
+    height: 100vh;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, #fbfaf7 0%, #f4f1eb 100%);
+    box-shadow: -18px 0 56px rgba(7, 12, 22, 0.18);
+    border-left: 1px solid rgba(17, 17, 17, 0.06);
+    transform: translateX(100%);
+    transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    isolation: isolate;
+
+    --pub-accent: var(--section-publications);
+    --pub-accent-soft: rgba(85, 204, 119, 0.16);
+    --pub-ink: #23663a;
+    --pub-preprint: #d98b1f;
+}
+
+/* [hidden] loses to the display rule above — the panel is taken out of the tab
+   order between visits, and without this it would still be laid out. The same
+   trap .pub-card and .news-reader are already annotated for. */
+.pub-reader[hidden] {
+    display: none;
+}
+
+.pub-reader.is-open {
+    transform: translateX(0);
+}
+
+.pub-reader__backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 199;
+    background: rgba(7, 10, 18, 0.34);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.pub-reader__backdrop.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.pub-reader__close {
+    position: sticky;
+    top: 1rem;
+    align-self: flex-end;
+    margin: 1rem 1.25rem 0 0;
+    display: grid;
+    place-items: center;
+    width: 2.55rem;
+    height: 2.55rem;
+    padding: 0;
+    border: 1px solid rgba(17, 17, 17, 0.08);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    color: #273141;
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2;
+    transition:
+        background 0.15s ease,
+        transform 0.15s ease;
+}
+
+.pub-reader__close:hover {
+    background: rgba(255, 255, 255, 0.92);
+    color: #111;
+    transform: translateY(-1px);
+}
+
+.pub-reader__body {
+    padding: 0 clamp(1.25rem, 4vw, 3rem) 4rem;
+    /* Pulls the article up alongside the sticky close button rather than
+       starting a full button's height below it. */
+    margin-top: -2.4rem;
+}
+
+.pub-article {
+    max-width: 44rem;
+}
+
+/* The year and the preprint state on one line, `baseline` rather than
+   `center` for the reason the card's eyebrow already documents: the year is
+   letter-spaced caps with no box and the badge is a pill with its own padding,
+   so centring the two boxes puts the two sets of letters on visibly different
+   lines. */
+.pub-article__eyebrow {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 0.5rem;
+}
+
+.pub-article__year {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--pub-ink);
+    opacity: 0.75;
+}
+
+.pub-article__title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.3rem, 2.6vw, 1.7rem);
+    font-weight: 600;
+    line-height: 1.28;
+    color: #1b1e23;
+    margin: 0 0 0.5rem;
+}
+
+.pub-article__authors {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: #4a5058;
+    margin: 0 0 0.35rem;
+}
+
+.pub-article__meta {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: #888;
+    margin: 0;
+}
+
+/* ── The actions row ──
+   Everywhere the paper itself can be reached. `--primary` is the DOI, filled
+   because the publisher's record is the canonical one and the reason somebody
+   opened this panel; the rest are outlines. They wrap rather than scroll: four
+   is the most any entry has, and on a phone that is two lines. */
+.pub-article__actions,
+.pub-article__cite-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.1rem;
+}
+
+.pub-action {
+    display: inline-flex;
+    align-items: center;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.55em 1.15em;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--pub-accent) 40%, transparent);
+    background: rgba(255, 255, 255, 0.7);
+    color: var(--pub-ink);
+    cursor: pointer;
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        transform 0.15s ease;
+}
+
+.pub-action:hover {
+    background: var(--pub-accent-soft);
+    border-color: var(--pub-accent);
+    transform: translateY(-1px);
+}
+
+.pub-action--primary {
+    background: var(--pub-ink);
+    border-color: var(--pub-ink);
+    color: #f7fbf8;
+}
+
+.pub-action--primary:hover {
+    background: #1a4e2c;
+    border-color: #1a4e2c;
+    color: #fff;
+}
+
+/* ── "In brief": the summary and the figure, in a box of their own ──
+   Two problems, one element.
+
+   The figure used to take the panel's whole width — on a 920px panel that is a
+   700px chart standing over two sentences of text, and at that size the figure
+   reads as the point of the page, which it is not. `--split` puts it in a 15rem
+   column on the right with the summary beside it, the arrangement on the card
+   the reader pressed to get here.
+
+   And the summary is the *most* worth reading of the panel's prose while
+   looking like the least of it: three lines of body text above an abstract that
+   runs to 200 words of the publisher's own. So the pair sits in the section's
+   green rather than on the panel's cream, under a heading that names it.
+
+   **16%, and the number was measured rather than picked.** At the 10% it
+   started on the box came out rgb(238, 250, 241) against the citation box's
+   rgb(243, 250, 243) — five levels of red apart, which is two boxes that look
+   the same and say different things. 16% is rgb(228, 247, 233), and the
+   summary's ink still clears 12:1 on it.
+
+   The `--split` class is set in JS rather than by `:has()`: publications.js
+   knows whether there is a figure, and the 9 entries of 63 with none must not
+   have their summary squeezed into the 1fr that a missing figure would leave. */
+.pub-article__brief {
+    margin-top: 1.6rem;
+    padding: 1rem 1.15rem 1.15rem;
+    border: 1px solid color-mix(in srgb, var(--pub-accent) 42%, transparent);
+    border-radius: 0.7rem;
+    background: color-mix(in srgb, var(--pub-accent) 16%, #fff);
+}
+
+.pub-article__brief-row--split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 15rem;
+    align-items: start;
+    gap: 1.3rem;
+}
+
+/* White, not the 72% the rest of the panel's cards use: on the tint a
+   translucent frame goes green too, and a chart drawn on white then looks like
+   it is floating rather than mounted. */
+.pub-article__figure {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0.5rem;
+    border: 1px solid color-mix(in srgb, var(--pub-accent) 22%, transparent);
+    border-radius: 0.5rem;
+    background: #fff;
+    cursor: zoom-in;
+    transition:
+        border-color 0.15s ease,
+        transform 0.15s ease;
+}
+
+.pub-article__figure:hover {
+    border-color: color-mix(in srgb, var(--pub-accent) 55%, transparent);
+    transform: translateY(-2px);
+}
+
+/* `max-height` with `object-fit: contain` rather than a fixed ratio: these are
+   charts of every shape, and one tall enough to run past the summary beside it
+   would put the panel back where it started. */
+.pub-article__figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 14rem;
+    object-fit: contain;
+    border-radius: 0.3rem;
+}
+
+/* The lab's own sentences on what the paper found — the one thing here that is
+   not already on the publisher's site, so it is set larger than the abstract
+   and comes before it.
+
+   It carried a 3px accent bar on its left edge, which the box has made into a
+   second accent device saying the same thing twice; the box says it better. */
+.pub-article__summary {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.02rem;
+    line-height: 1.7;
+    color: #2b2f36;
+    margin: 0;
+}
+
+/* The panel's section labels — "In brief", "Abstract", "Cite this", "See also".
+   Full --pub-ink, not a tint of it: at 0.68rem/700 these are *small* text by
+   WCAG's reckoning (large starts at 18.66px bold, these are 10.9px), and the
+   75% they were mixed to measured 3.6:1 on every one of the three grounds they
+   sit on — cream, the citation box, the brief box. Undiluted it is 6.4:1. A
+   letter-spaced uppercase label is the last thing that can afford to be faint. */
+.pub-article__h {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--pub-ink);
+    margin: 0 0 0.6rem;
+}
+
+/* Empty until the abstract lands, and empty for good on the 39 entries that
+   have none — so it must take no room of its own when it holds nothing. */
+.pub-article__abstract:not(:empty) {
+    margin-top: 1.7rem;
+}
+
+.pub-article__abstract p {
+    font-size: 0.92rem;
+    line-height: 1.72;
+    color: #3a3f47;
+    margin: 0;
+}
+
+.pub-article__keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1.5rem;
+}
+
+.pub-article__cite {
+    margin-top: 2rem;
+    padding: 1.1rem 1.2rem 1.2rem;
+    border: 1px solid rgba(17, 17, 17, 0.07);
+    border-radius: 0.7rem;
+    background: color-mix(in srgb, var(--pub-accent) 6%, rgba(255, 255, 255, 0.72));
+}
+
+/* A hanging indent, because that is what a reference list looks like and it is
+   what makes this block recognisable as one at a glance rather than as another
+   paragraph. */
+.pub-article__apa {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.86rem;
+    line-height: 1.62;
+    color: #33383f;
+    margin: 0;
+    padding-left: 1.6rem;
+    text-indent: -1.6rem;
+    overflow-wrap: anywhere;
+}
+
+.pub-article__related {
+    margin-top: 2.2rem;
+}
+
+/* Three across, and they stay three: the tiles are short enough to hold a
+   wrapped title at a third of the panel, and a "see also" that reflows to a
+   column halfway down is a list rather than a row of alternatives. Below
+   680px it does become a column — see the media query at the foot of this
+   sheet. */
+.pub-related {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+}
+
+.pub-related__item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 0.75rem 0.8rem 0.85rem;
+    border: 1px solid rgba(17, 17, 17, 0.07);
+    border-radius: 0.6rem;
+    background: rgba(255, 255, 255, 0.72);
+    text-decoration: none;
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        transform 0.15s ease;
+}
+
+.pub-related__item:hover {
+    background: #fff;
+    border-color: color-mix(in srgb, var(--pub-accent) 45%, transparent);
+    transform: translateY(-2px);
+}
+
+.pub-related__img {
+    display: block;
+    width: 100%;
+    height: 4.4rem;
+    object-fit: cover;
+    border-radius: 0.35rem;
+    background: #eceae4;
+}
+
+.pub-related__title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.82rem;
+    line-height: 1.4;
+    color: #222;
+    /* Three lines of a title is enough to know whether it is the one; past
+       that the three tiles stop being the same height and the row looks
+       broken. */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.pub-related__meta {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.04em;
+    color: #8b9098;
+    margin-top: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 /* The Scholar button's fixed 15.5rem of states is wider than a phone's content
    column once the icon and the padding are added, so below this it gives up
    the fixed width and takes the row instead. Stacking the states in one grid
@@ -982,7 +1412,52 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
     }
 }
 
+/* The panel is min(920px, 100vw), so its own contents reach their limits
+   long before the page does. Three tiles across stop being readable at about
+   680px of panel — that is 215px each once the padding is off, which cannot
+   hold a wrapped title and a journal name — so below that "See also" becomes a
+   column and the thumbnails go. */
+@media (max-width: 680px) {
+    /* Two columns of a 680px panel is a 15rem figure against 17rem of prose,
+       and neither is enough. Stacked, the figure has the full width back, so it
+       can be given more height than it had beside the text. */
+    .pub-article__brief-row--split {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.2rem;
+    }
+
+    .pub-article__figure img {
+        max-height: 18rem;
+    }
+
+    .pub-related {
+        grid-template-columns: 1fr;
+    }
+
+    .pub-related__img {
+        height: 6rem;
+    }
+
+    .pub-reader__body {
+        padding-bottom: 3rem;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
+    .pub-reader,
+    .pub-reader__backdrop,
+    .pub-action,
+    .pub-article__figure,
+    .pub-related__item {
+        transition: none;
+    }
+
+    .pub-action:hover,
+    .pub-article__figure:hover,
+    .pub-related__item:hover {
+        transform: none;
+    }
+
     .pub-card,
     .pub-card__featured,
     .pub-gallery__item,
