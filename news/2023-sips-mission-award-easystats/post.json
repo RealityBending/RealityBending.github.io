@@ -1,0 +1,13 @@
+{
+    "title": "🎉 easystats wins a SIPS Mission Award",
+    "date": "2023-07-01",
+    "summary": "The easystats collection of R packages has won a Mission Award from the Society for the Improvement of Psychological Science (SIPS).",
+    "authors": ["dominique-makowski"],
+    "category": "Awards",
+    "featured": false,
+    "content": [
+        "<p>The <a href=\"https://en.wikipedia.org/wiki/Easystats\"><strong>easystats</strong></a> collection of R packages has won a <a href=\"https://improvingpsych.org/mission/awards/\"><strong>Mission Award</strong></a> from the <strong>Society for the Improvement of Psychological Science (SIPS)</strong>.</p>",
+        "<p>easystats brings together a suite of R packages (including <em>bayestestR</em>, <em>parameters</em>, <em>performance</em> and others) designed to make statistical analysis and reporting more transparent, correct and easy to use. The award recognises its impact on how psychologists analyse and communicate their data.</p>",
+        "<p>Built and maintained with a large community of contributors, easystats keeps proving that better tools make for better science.</p>"
+    ]
+}

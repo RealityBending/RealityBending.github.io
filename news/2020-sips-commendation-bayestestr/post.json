@@ -1,0 +1,13 @@
+{
+    "title": "🎉 bayestestR receives a SIPS Commendation",
+    "date": "2020-07-01",
+    "summary": "The bayestestR R package has received a Commendation from the Society for the Improvement of Psychological Science (SIPS).",
+    "authors": ["dominique-makowski"],
+    "category": "Awards",
+    "featured": false,
+    "content": [
+        "<p>The <strong>bayestestR</strong> R package, part of the <a href=\"https://en.wikipedia.org/wiki/Easystats\">easystats</a> collection, has received a <a href=\"https://improvingpsych.org/mission/awards/\"><strong>Commendation</strong></a> from the <strong>Society for the Improvement of Psychological Science (SIPS)</strong>, following its description in <a href=\"https://joss.theoj.org/papers/10.21105/joss.01541\">Makowski et al. (2019)</a> published in the <em>Journal of Open Source Software</em>.</p>",
+        "<p>bayestestR provides tools to describe and report Bayesian models and posterior distributions in a way that is accessible and standardised — helping lower the barrier to Bayesian analysis for psychologists.</p>",
+        "<p>An early recognition that helped set the tone for the easystats project's later <a href=\"#post-2023-sips-mission-award-easystats\">Mission Award</a>.</p>"
+    ]
+}

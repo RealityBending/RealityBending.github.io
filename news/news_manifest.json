@@ -18,7 +18,7 @@
     },
     {
       "name": "Awards",
-      "count": 3
+      "count": 12
     },
     {
       "name": "Media",
@@ -34,9 +34,9 @@
       "summary": "Oliver Collins, 2nd year student, has been awarded the Junior Research Assistant (JRA) scholarship for a project on illusions and bodily states.",
       "authors": [
         {
-          "name": "Dominique Makowski",
-          "folder": "dominique-makowski",
-          "avatar": "people/dominique-makowski/avatar.jpg"
+          "name": "Oliver Collins",
+          "folder": "oliver-collins",
+          "avatar": "people/oliver-collins/avatar.jpg"
         }
       ],
       "category": "Awards",
@@ -55,9 +55,9 @@
       "summary": "Emma Benn, 3rd year dissertation student, has won the SAGE Publications Prize for Outstanding Application of Statistical Methods.",
       "authors": [
         {
-          "name": "Dominique Makowski",
-          "folder": "dominique-makowski",
-          "avatar": "people/dominique-makowski/avatar.jpg"
+          "name": "Emma Benn",
+          "folder": "emma-benn",
+          "avatar": "people/emma-benn/avatar.jpg"
         }
       ],
       "category": "Awards",
@@ -221,6 +221,48 @@
       "minutes": 4
     },
     {
+      "slug": "2025-eva-mala-socobio-internship",
+      "title": "🎉 Eva Mala awarded a SoCoBio summer internship",
+      "subtitle": "",
+      "date": "2025-07-01",
+      "summary": "Eva Mala has been awarded a SoCoBio Summer Internship scholarship to work with the lab.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Awards",
+      "featured": false,
+      "image": "",
+      "file": "news/2025-eva-mala-socobio-internship/post.json",
+      "base": "news/2025-eva-mala-socobio-internship/",
+      "words": 60,
+      "minutes": 1
+    },
+    {
+      "slug": "2025-sam-marine-nhs-prize",
+      "title": "🎉 Sam Marine wins the Sussex Partnership NHS Foundation Trust Prize",
+      "subtitle": "",
+      "date": "2025-06-01",
+      "summary": "Sam Marine, 3rd year dissertation student, has won the Sussex Partnership NHS Foundation Trust Prize for the highest project mark.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Awards",
+      "featured": false,
+      "image": "",
+      "file": "news/2025-sam-marine-nhs-prize/post.json",
+      "base": "news/2025-sam-marine-nhs-prize/",
+      "words": 55,
+      "minutes": 1
+    },
+    {
       "slug": "2024-most-cited-researcher",
       "title": "🏅 Most cited researcher in the School of Psychology",
       "subtitle": "",
@@ -239,6 +281,90 @@
       "file": "news/2024-most-cited-researcher/post.json",
       "base": "news/2024-most-cited-researcher/",
       "words": 68,
+      "minutes": 1
+    },
+    {
+      "slug": "2024-outstanding-supervision-award",
+      "title": "🏆 Outstanding Student Supervision Award",
+      "subtitle": "",
+      "date": "2024-09-16",
+      "summary": "Dominique Makowski has won the University of Sussex School of Psychology's 2024 Award for Outstanding Student Supervision.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Awards",
+      "featured": false,
+      "image": "news/2024-outstanding-supervision-award/featured.jpeg",
+      "file": "news/2024-outstanding-supervision-award/post.json",
+      "base": "news/2024-outstanding-supervision-award/",
+      "words": 97,
+      "minutes": 1
+    },
+    {
+      "slug": "2024-rob-dickinson-impact-award",
+      "title": "🎉 Rob Dickinson wins the Adam Weiler Impact Award",
+      "subtitle": "",
+      "date": "2024-09-01",
+      "summary": "Rob Dickinson, PhD student, has won the Adam Weiler Impact Award.",
+      "authors": [
+        {
+          "name": "Rob Dickinson",
+          "folder": "rob-dickinson",
+          "avatar": "people/rob-dickinson/avatar.png"
+        }
+      ],
+      "category": "Awards",
+      "featured": false,
+      "image": "",
+      "file": "news/2024-rob-dickinson-impact-award/post.json",
+      "base": "news/2024-rob-dickinson-impact-award/",
+      "words": 39,
+      "minutes": 1
+    },
+    {
+      "slug": "2024-sips-mission-award-neurokit",
+      "title": "🎉 NeuroKit wins a SIPS Mission Award",
+      "subtitle": "",
+      "date": "2024-07-01",
+      "summary": "The NeuroKit Python package has won a Mission Award from the Society for the Improvement of Psychological Science (SIPS).",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Awards",
+      "featured": false,
+      "image": "news/2024-sips-mission-award-neurokit/featured.png",
+      "file": "news/2024-sips-mission-award-neurokit/post.json",
+      "base": "news/2024-sips-mission-award-neurokit/",
+      "words": 72,
+      "minutes": 1
+    },
+    {
+      "slug": "2024-research-culture-award",
+      "title": "💷 Openness in Research Award, Sussex Research Culture Awards",
+      "subtitle": "",
+      "date": "2024-06-01",
+      "summary": "Dominique Makowski has won the Openness in Research Award at the University of Sussex's 2024 Research Culture Awards, carrying a £1,000 prize.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Awards",
+      "featured": false,
+      "image": "news/2024-research-culture-award/featured.jpeg",
+      "file": "news/2024-research-culture-award/post.json",
+      "base": "news/2024-research-culture-award/",
+      "words": 99,
       "minutes": 1
     },
     {
@@ -303,6 +429,27 @@
       "base": "news/2023-jra-experience/",
       "words": 597,
       "minutes": 3
+    },
+    {
+      "slug": "2023-sips-mission-award-easystats",
+      "title": "🎉 easystats wins a SIPS Mission Award",
+      "subtitle": "",
+      "date": "2023-07-01",
+      "summary": "The easystats collection of R packages has won a Mission Award from the Society for the Improvement of Psychological Science (SIPS).",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Awards",
+      "featured": false,
+      "image": "news/2023-sips-mission-award-easystats/featured.png",
+      "file": "news/2023-sips-mission-award-easystats/post.json",
+      "base": "news/2023-sips-mission-award-easystats/",
+      "words": 84,
+      "minutes": 1
     },
     {
       "slug": "2023-affective-reality-theory",
@@ -641,6 +788,27 @@
       "minutes": 7
     },
     {
+      "slug": "2020-psychonomic-best-article-award",
+      "title": "🏅 Best Article Award, Psychonomic Society",
+      "subtitle": "",
+      "date": "2020-11-01",
+      "summary": "Makowski et al. (2019) has won the Psychonomic Society's Best Article Award, carrying a $1,000 prize.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Awards",
+      "featured": false,
+      "image": "news/2020-psychonomic-best-article-award/featured.png",
+      "file": "news/2020-psychonomic-best-article-award/post.json",
+      "base": "news/2020-psychonomic-best-article-award/",
+      "words": 91,
+      "minutes": 1
+    },
+    {
       "slug": "2020-what-is-reality-bending",
       "title": "What is Reality Bending?",
       "subtitle": "",
@@ -702,6 +870,27 @@
       "base": "news/2020-what-is-neuropsychology/",
       "words": 1338,
       "minutes": 6
+    },
+    {
+      "slug": "2020-sips-commendation-bayestestr",
+      "title": "🎉 bayestestR receives a SIPS Commendation",
+      "subtitle": "",
+      "date": "2020-07-01",
+      "summary": "The bayestestR R package has received a Commendation from the Society for the Improvement of Psychological Science (SIPS).",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Awards",
+      "featured": false,
+      "image": "news/2020-sips-commendation-bayestestr/featured.png",
+      "file": "news/2020-sips-commendation-bayestestr/post.json",
+      "base": "news/2020-sips-commendation-bayestestr/",
+      "words": 87,
+      "minutes": 1
     },
     {
       "slug": "2020-github-for-psychologists",

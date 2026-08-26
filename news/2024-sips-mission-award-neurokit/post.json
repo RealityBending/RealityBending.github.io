@@ -1,0 +1,13 @@
+{
+    "title": "🎉 NeuroKit wins a SIPS Mission Award",
+    "date": "2024-07-01",
+    "summary": "The NeuroKit Python package has won a Mission Award from the Society for the Improvement of Psychological Science (SIPS).",
+    "authors": ["dominique-makowski"],
+    "category": "Awards",
+    "featured": false,
+    "content": [
+        "<p>The <a href=\"https://en.wikipedia.org/wiki/NeuroKit\"><strong>NeuroKit</strong></a> Python package has won a <a href=\"https://improvingpsych.org/mission/awards/\"><strong>Mission Award</strong></a> from the <strong>Society for the Improvement of Psychological Science (SIPS)</strong>.</p>",
+        "<p>NeuroKit is an open-source toolbox for processing physiological signals (ECG, EDA, EMG, respiration and more), built to make robust neurophysiological analysis accessible without a bioengineering background. The award recognises its contribution to open, reproducible science.</p>",
+        "<p>A great recognition for a project that keeps growing thanks to its community of users and contributors.</p>"
+    ]
+}
