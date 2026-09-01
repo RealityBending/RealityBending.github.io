@@ -34,6 +34,10 @@ import { element as el } from "../shared/dom.js"
 
     const MANIFEST_URL = "news/news_manifest.json"
     const PAGE_SIZE = 4
+    // Long enough that a fast typist filters once rather than per keystroke,
+    // short enough that the list feels live. Same value as the Publications
+    // search, which this one is deliberately the twin of.
+    const SEARCH_DEBOUNCE_MS = 120
 
     // Every post in the manifest, for the reader's "another post" button —
     // which suggests across the whole archive, not just the tab in view.
@@ -59,6 +63,12 @@ import { element as el } from "../shared/dom.js"
         const month = MONTHS[Number(match[2]) - 1]
         return Number(match[3]) + " " + (short ? month.slice(0, 3) : month) + " " + match[1]
     }
+
+    // Authors are objects once update_news.py has matched them against the
+    // People manifest and plain strings when it could not — guests write here
+    // too. Both read as a name.
+    const authorNames = (post) =>
+        (Array.isArray(post.authors) ? post.authors : []).map((author) => (typeof author === "string" ? author : author && author.name)).filter(Boolean)
 
     /* ── Bylines ──
      * The avatars are the ones the People section already has, resolved by
@@ -494,9 +504,58 @@ import { element as el } from "../shared/dom.js"
         const selected = new Set()
         let page = 0
 
+        /* ── Search ──
+         * The Publications section's field, in this section's colours: chips
+         * for the terms already committed, whatever is half-typed in the box
+         * counting as one more, and every term having to match. It narrows
+         * *with* the category chips rather than replacing them — a category is
+         * a shelf and a search is a question, and "Methods, about Bayes" is a
+         * reasonable thing to ask for.
+         *
+         * It searches the manifest, which is metadata only: a post's body is
+         * not fetched until the post is opened, so full-text search would mean
+         * downloading the whole blog to filter a list of titles. Title,
+         * subtitle, summary, category, year and authors are what there is.
+         *
+         * A term is `{ label, value }` — what the chip says and what it matches
+         * on. The two differ for a name picked out of the suggestions: matching
+         * is lowercase throughout, and a chip reading "zen j. lau" after
+         * pressing *Zen J. Lau* looks like a bug.
+         *
+         * **A term matches word by word, not as one substring.** The titles
+         * here are sentences — "Your sample is too small" — so a reader typing
+         * what they remember of one ("sample too small") gets nothing at all
+         * from a plain `includes`, which is a search box that looks broken. */
+        const terms = []
+        let typed = ""
+
+        const wordsOf = (text) => text.toLowerCase().split(/\s+/).filter(Boolean)
+
+        /* Built once. The manifest is the whole index and nothing in it changes
+           under us, so this is a lookup rather than a re-join per keystroke. */
+        const haystacks = new Map(
+            posts.map((post) => [
+                post,
+                [post.title, post.subtitle, post.summary, post.category, (post.date || "").slice(0, 4), ...authorNames(post)]
+                    .filter(Boolean)
+                    .join(" ")
+                    .toLowerCase(),
+            ])
+        )
+
+        /* Flat, because a term's words and the box's words are wanted on the
+           same footing: every word of every term has to be somewhere in the
+           post, and which term it came from makes no difference. */
+        const activeWords = () => [...terms.flatMap((term) => term.words), ...wordsOf(typed)]
+
         function matching() {
-            if (!selected.size) return posts
-            return posts.filter((post) => selected.has(post.category))
+            const wanted = activeWords()
+            if (!selected.size && !wanted.length) return posts
+            return posts.filter((post) => {
+                if (selected.size && !selected.has(post.category)) return false
+                const haystack = haystacks.get(post) || ""
+                return wanted.every((word) => haystack.includes(word))
+            })
         }
 
         function render() {
@@ -506,7 +565,9 @@ import { element as el } from "../shared/dom.js"
 
             archiveList.replaceChildren()
             if (!shown.length) {
-                archiveList.appendChild(el("p", "news-empty", "No posts in those categories."))
+                archiveList.appendChild(
+                    el("p", "news-empty", activeWords().length ? "No posts match your search." : "No posts in those categories.")
+                )
             } else {
                 shown.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE).forEach((post) => archiveList.appendChild(buildRow(post)))
             }
@@ -522,6 +583,140 @@ import { element as el } from "../shared/dom.js"
             // reader looking at the foot of the new page.
             scrollToSection()
         }
+
+        /* ── The search field ──
+           Chips and the input inside one rounded box, with a suggestion list
+           hanging under it. Built here rather than in the assembly block below
+           because everything it touches — the term list, the page number it
+           resets, `render` — lives in this closure. */
+        const field = el("div", "news-search__field")
+        const chips = el("div", "news-search__chips")
+        chips.hidden = true
+
+        const input = el("input", "news-search__input")
+        input.type = "search"
+        input.id = "news-search"
+        input.placeholder = "Filter by title, author, year…"
+        input.setAttribute("aria-label", "Filter posts")
+        field.append(chips, input)
+
+        /* The suggestions are **authors**, not categories: a category already
+           has a chip of its own on the row below, and offering it in two places
+           is two controls for one filter. Authors are the other closed list the
+           manifest carries, and "everything Zen wrote" is the question the
+           category chips cannot answer. */
+        const suggestions = [...new Set(posts.flatMap(authorNames))].sort((a, b) => a.localeCompare(b))
+
+        const dropdown = el("ul", "news-search__dropdown")
+        dropdown.hidden = true
+        dropdown.setAttribute("role", "listbox")
+        searchBar.append(field, dropdown)
+
+        function renderDropdown() {
+            const available = suggestions.filter((name) => {
+                const lower = name.toLowerCase()
+                // Word by word, like the filter itself — "j lau" should still
+                // find Zen.
+                return !terms.some((term) => term.value === lower) && wordsOf(typed).every((word) => lower.includes(word))
+            })
+            dropdown.replaceChildren()
+            available.forEach((name) => {
+                const option = el("li", "news-search__option", name)
+                option.setAttribute("role", "option")
+                /* mousedown, not click: the input's blur fires first and would
+                   have hidden the list out from under the press. Preventing the
+                   default also keeps focus in the box, so there is no blur. */
+                option.addEventListener("mousedown", (event) => {
+                    event.preventDefault()
+                    addTerm(name)
+                })
+                dropdown.appendChild(option)
+            })
+            dropdown.hidden = !available.length
+        }
+
+        function renderChips() {
+            chips.replaceChildren()
+            terms.forEach((term, index) => {
+                const chip = el("span", "news-search__chip", term.label)
+                const remove = el("button", "news-search__chip-remove", "×")
+                remove.type = "button"
+                remove.setAttribute("aria-label", "Remove filter: " + term.label)
+                remove.addEventListener("click", () => {
+                    terms.splice(index, 1)
+                    renderChips()
+                    renderDropdown()
+                    page = 0
+                    render()
+                    input.focus()
+                })
+                chip.appendChild(remove)
+                chips.appendChild(chip)
+            })
+            chips.hidden = !terms.length
+        }
+
+        function addTerm(label) {
+            const value = label.trim().toLowerCase()
+            if (!value || terms.some((term) => term.value === value)) return
+            terms.push({ label: label.trim(), value, words: wordsOf(value) })
+            input.value = ""
+            typed = ""
+            renderChips()
+            renderDropdown()
+            page = 0
+            render()
+            input.focus()
+        }
+
+        /* Applies whatever is in the box. One path, so the debounce and the
+           blur cannot disagree about what the box currently means. */
+        function applyTyped() {
+            const next = input.value.trim().toLowerCase()
+            if (next === typed) return
+            typed = next
+            page = 0
+            render()
+        }
+
+        let searchTimer = 0
+        input.addEventListener("input", () => {
+            window.clearTimeout(searchTimer)
+            searchTimer = window.setTimeout(() => {
+                applyTyped()
+                renderDropdown()
+            }, SEARCH_DEBOUNCE_MS)
+        })
+        input.addEventListener("focus", renderDropdown)
+        input.addEventListener("blur", () => {
+            /* Flushed rather than dropped: typing a word and then clicking away
+               otherwise loses the last keystrokes' worth of filtering. The
+               dropdown goes after its own mousedown has had its turn. */
+            window.clearTimeout(searchTimer)
+            applyTyped()
+            window.setTimeout(() => {
+                dropdown.hidden = true
+            }, 160)
+        })
+        input.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                dropdown.hidden = true
+                input.blur()
+            } else if (event.key === "Enter") {
+                /* Enter commits what is typed as a chip, so the next word is a
+                   second term rather than a longer first one. */
+                event.preventDefault()
+                window.clearTimeout(searchTimer)
+                addTerm(input.value)
+            } else if (event.key === "Backspace" && input.value === "" && terms.length) {
+                // The whole chip, not a character of it — it is one token.
+                terms.pop()
+                renderChips()
+                renderDropdown()
+                page = 0
+                render()
+            }
+        })
 
         if (categories.length) {
             const filter = el("div", "news-filter")
@@ -712,13 +907,16 @@ import { element as el } from "../shared/dom.js"
     const featuredList = el("div", "news-features")
     panelFor("featured").appendChild(featuredList)
 
+    /* Two rows, not one box: the search field spans the column and the
+       category chips wrap under it. buildArchive fills both. */
+    const searchBar = el("div", "news-search")
     const filters = el("div", "news-filters")
     const archiveList = el("div", "news-list")
     // Assigned by buildArchive, which is where the page number lives. The pager
     // is built out here because the panel it sits in is assembled here.
     let pageTo = () => {}
     const pager = createPager({ onChange: (page) => pageTo(page), ariaLabel: "News pages" })
-    panelFor("all").append(filters, archiveList, pager.el)
+    panelFor("all").append(searchBar, filters, archiveList, pager.el)
 
     root.replaceChildren(shell)
 

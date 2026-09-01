@@ -12,6 +12,6 @@
     "<p>Magical numbers, or conventional thresholds, have bad press in statistics, and there are many of them. For instance, <strong>.05</strong> (for the <em>p</em>-value), or the <strong>95%</strong> range for the <strong>Confidence Interval</strong> (CI). Indeed, why 95 and not 94 or 90?</p>",
     "<p>👉 <a href=\"https://easystats.github.io/blog/posts/bayestestr_95/\"><strong>Read my complete post on the easystats' blog</strong></a> 👈</p>",
     "<hr>",
-    "<p><em>Thanks for reading!</em> <em>Do not hesitate to share this post, and leave a comment below</em> 👇</p>"
+    "<p><em>Thanks for reading!</em> <em>Do not hesitate to share this post.</em></p>"
   ]
 }

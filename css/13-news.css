@@ -113,6 +113,124 @@
     display: none;
 }
 
+/* ── Search ──
+   The Publications search field (css/14-publications.css) in this section's
+   colours — chips and the input inside one rounded box, with the author
+   suggestions hanging under it. Copied rather than shared for the same reason
+   the reader shell is: two sections' worth of tokens differ and the rules are
+   forty lines.
+
+   `position: relative` is what the dropdown is absolutely positioned against,
+   so it hangs off the field rather than off the page. */
+.news-search {
+    position: relative;
+    display: grid;
+}
+
+.news-search__field {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4em 1.1em;
+    border: 1px solid rgba(51, 204, 204, 0.28);
+    border-radius: 2em;
+    background: rgba(255, 255, 255, 0.6);
+    transition:
+        border-color 0.16s ease,
+        box-shadow 0.16s ease;
+}
+
+.news-search__field:focus-within {
+    border-color: var(--news-accent);
+    box-shadow: 0 0 0 3px var(--news-accent-soft);
+}
+
+/* The chips are laid out by the field itself, so a long list of them wraps
+   with the input rather than inside a box of its own. */
+.news-search__chips {
+    display: contents;
+}
+
+.news-search__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2em;
+    padding: 0.2em 0.55em 0.2em 0.7em;
+    border-radius: 1em;
+    background: var(--news-accent-soft);
+    color: var(--news-accent-deep);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+.news-search__chip-remove {
+    padding: 0;
+    border: none;
+    background: none;
+    color: inherit;
+    font-size: 0.9em;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.12s ease;
+}
+
+.news-search__chip-remove:hover {
+    opacity: 1;
+}
+
+.news-search__input {
+    flex: 1;
+    min-width: 10ch;
+    padding: 0.15em 0;
+    border: none;
+    background: transparent;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.85rem;
+    color: #333;
+    outline: none;
+}
+
+/* Anchored left and only as wide as it needs to be — the Publications list is
+   200-odd keywords and earns the full column, this one is ten names and would
+   otherwise be a 1150px panel holding "Ana Neves". */
+.news-search__dropdown {
+    position: absolute;
+    top: calc(100% + 0.3rem);
+    left: 1.5rem;
+    width: min(20rem, calc(100% - 3rem));
+    z-index: 20;
+    max-height: 15rem;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0.4em 0;
+    list-style: none;
+    background: #fff;
+    border: 1px solid rgba(51, 204, 204, 0.22);
+    border-radius: 0.9em;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.news-search__option {
+    padding: 0.5em 1.3em;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.82rem;
+    color: #4a453e;
+    cursor: pointer;
+    transition:
+        background 0.1s ease,
+        color 0.1s ease;
+}
+
+.news-search__option:hover {
+    background: var(--news-accent-soft);
+    color: var(--news-accent-deep);
+}
+
 /* ── Category filters ──
    Multi-select chips: pressing one adds it, pressing it again takes it away,
    and none pressed means all. So there is no "All" chip — the way back is

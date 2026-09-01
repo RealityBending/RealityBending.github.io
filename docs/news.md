@@ -166,7 +166,9 @@ to a News section is looking for; Featured is a shortcut into it rather than a
 front door of its own. Two consequences worth keeping: the tab order is a
 presentation decision, so `news.js` fills the two panels through `panelFor(id)`
 rather than by index, and the "no posts" / "could not be loaded" messages go to
-the archive list — the panel a reader is actually looking at.
+the archive list — the panel a reader is actually looking at. The empty state
+names whichever control emptied it: "No posts match your search." when a term
+is active, "No posts in those categories." otherwise.
 
 The head above the tabs is the title and nothing else. It used to carry a post
 count opposite it and a rule underneath; the tab bar draws its own line
@@ -216,6 +218,32 @@ layout is what differs, not the material. Four things:
   one category, so "Research or Thoughts" is the only useful reading of two
   chips. There is no "All" chip — none selected already means all, and the way
   back is Clear, which is only up while something is selected.
+- **Above them is the search field, and it is the Publications one.** Same
+  shape (chips for committed terms inside the box, whatever is half-typed
+  counting as one more, every term having to match), same 120ms debounce, same
+  keys — Enter commits a term, Backspace on an empty box takes the last one
+  back, Escape closes the list. The rules are copied into `css/13-news.css`
+  rather than shared, for the reason the reader shell already gives.
+  Four things differ, all of them because this is not a bibliography:
+  - **It narrows *with* the category chips, not instead of them.** A category
+    is a shelf and a search is a question, and "Methods, about Bayes" is a
+    reasonable thing to ask for.
+  - **It searches the manifest**, which is metadata only — title, subtitle,
+    summary, category, year, authors. A post's body is not fetched until the
+    post is opened, so full-text search would mean downloading the whole blog
+    to filter a list of titles.
+  - **The suggestion list is authors, not categories.** A category already has
+    a chip of its own on the row below and offering it twice is two controls
+    for one filter; authors are the other closed list the manifest carries, and
+    "everything Zen wrote" is the question the chips cannot answer. It is ten
+    names, so the dropdown is `min(20rem, …)` wide rather than the full column
+    the Publications keyword list earns.
+  - **A term is `{ label, value }`** — matching is lowercase throughout, and a
+    chip reading "zen j. lau" after pressing *Zen J. Lau* looks like a bug.
+  Blur *flushes* the pending debounce rather than dropping it, so typing a word
+  and then clicking away does not lose the last keystrokes; the dropdown's
+  items commit on `mousedown` (with the default prevented) so the input never
+  blurs out from under the press in the first place.
 - The pager is the shared one (see [layout.md](layout.md), "The pager"), which hides itself below two
   pages — so a filter that leaves one post does not leave two dead arrows and
   "Page 1 of 1" behind. `PAGE_SIZE` is in `news.js`.

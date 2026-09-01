@@ -406,7 +406,7 @@
       "image": "news/2024-task-reliability/featured.jpg",
       "file": "news/2024-task-reliability/post.json",
       "base": "news/2024-task-reliability/",
-      "words": 1303,
+      "words": 1320,
       "minutes": 6
     },
     {
@@ -664,9 +664,9 @@
     {
       "slug": "2021-sample-too-small",
       "title": "\"Your sample is too small\": How to Answer to Reviewers",
-      "subtitle": "Some tips on how to answer to reviewers when they say the sample is too small but that we cannot increase it.",
+      "subtitle": "What to do and what to write when the sample cannot be increased.",
       "date": "2021-11-05",
-      "summary": "Some tips on how to answer to reviewers when they say the sample is too small but that we cannot increase it.",
+      "summary": "Reviewers, ethics committees and funders all ask for a justification of the sample size. What can you do when more participants are not an option.",
       "authors": [
         {
           "name": "Dominique Makowski",
@@ -675,12 +675,12 @@
         }
       ],
       "category": "Methods",
-      "featured": false,
+      "featured": true,
       "image": "news/2021-sample-too-small/featured.jpg",
       "file": "news/2021-sample-too-small/post.json",
       "base": "news/2021-sample-too-small/",
-      "words": 597,
-      "minutes": 3
+      "words": 1369,
+      "minutes": 6
     },
     {
       "slug": "2021-sync-github-repos",
@@ -700,7 +700,7 @@
       "image": "news/2021-sync-github-repos/featured.jpg",
       "file": "news/2021-sync-github-repos/post.json",
       "base": "news/2021-sync-github-repos/",
-      "words": 270,
+      "words": 264,
       "minutes": 1
     },
     {
@@ -742,7 +742,7 @@
       "image": "news/2021-share-analysis-scripts/featured.gif",
       "file": "news/2021-share-analysis-scripts/post.json",
       "base": "news/2021-share-analysis-scripts/",
-      "words": 663,
+      "words": 657,
       "minutes": 3
     },
     {
@@ -784,7 +784,7 @@
       "image": "news/2020-time-as-a-computational-limit/featured.jpg",
       "file": "news/2020-time-as-a-computational-limit/post.json",
       "base": "news/2020-time-as-a-computational-limit/",
-      "words": 1624,
+      "words": 1617,
       "minutes": 7
     },
     {
@@ -847,7 +847,7 @@
       "image": "news/2020-individual-scores/featured.jpg",
       "file": "news/2020-individual-scores/post.json",
       "base": "news/2020-individual-scores/",
-      "words": 1134,
+      "words": 1128,
       "minutes": 5
     },
     {
@@ -868,7 +868,7 @@
       "image": "news/2020-what-is-neuropsychology/featured.jpg",
       "file": "news/2020-what-is-neuropsychology/post.json",
       "base": "news/2020-what-is-neuropsychology/",
-      "words": 1338,
+      "words": 1331,
       "minutes": 6
     },
     {
@@ -910,7 +910,7 @@
       "image": "news/2020-github-for-psychologists/featured.jpg",
       "file": "news/2020-github-for-psychologists/post.json",
       "base": "news/2020-github-for-psychologists/",
-      "words": 1772,
+      "words": 1759,
       "minutes": 8
     },
     {
@@ -931,7 +931,7 @@
       "image": "news/2020-r-or-python/featured.jpg",
       "file": "news/2020-r-or-python/post.json",
       "base": "news/2020-r-or-python/",
-      "words": 1805,
+      "words": 1799,
       "minutes": 8
     },
     {
@@ -952,7 +952,7 @@
       "image": "news/2020-analyze-reaction-times/featured.jpg",
       "file": "news/2020-analyze-reaction-times/post.json",
       "base": "news/2020-analyze-reaction-times/",
-      "words": 145,
+      "words": 139,
       "minutes": 1
     },
     {
@@ -973,7 +973,7 @@
       "image": "news/2020-python-mandelbrot/featured.jpg",
       "file": "news/2020-python-mandelbrot/post.json",
       "base": "news/2020-python-mandelbrot/",
-      "words": 165,
+      "words": 159,
       "minutes": 1
     },
     {
@@ -994,7 +994,7 @@
       "image": "news/2020-defence-of-95-ci/featured.jpg",
       "file": "news/2020-defence-of-95-ci/post.json",
       "base": "news/2020-defence-of-95-ci/",
-      "words": 91,
+      "words": 85,
       "minutes": 1
     },
     {
@@ -1015,7 +1015,7 @@
       "image": "news/2020-intro-bayesian-stats-r/featured.jpg",
       "file": "news/2020-intro-bayesian-stats-r/post.json",
       "base": "news/2020-intro-bayesian-stats-r/",
-      "words": 80,
+      "words": 74,
       "minutes": 1
     },
     {
@@ -1036,7 +1036,7 @@
       "image": "news/2019-simulate-ecg/featured.jpg",
       "file": "news/2019-simulate-ecg/post.json",
       "base": "news/2019-simulate-ecg/",
-      "words": 260,
+      "words": 254,
       "minutes": 1
     }
   ]

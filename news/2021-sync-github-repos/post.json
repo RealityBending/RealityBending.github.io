@@ -16,6 +16,6 @@
     "<h4>Notes</h4>",
     "<ul>\n<li>This is a one-way sync, so updates on the target repo won't affect the source repo (but might get overridden!).</li>\n<li>If you want to preserve the original commit message, set <code>commit_message: ${{ github.event.head_commit.message }}</code> <sub>(thanks <a href=\"https://github.com/DominiqueMakowski/DominiqueMakowski.github.io/issues/2\">@dobbelina</a>)</sub></li>\n</ul>",
     "<hr>",
-    "<p><em>Thanks for reading!</em> <em>Do not hesitate to share this post, and leave a comment below</em> 👇</p>"
+    "<p><em>Thanks for reading!</em> <em>Do not hesitate to share this post.</em></p>"
   ]
 }
