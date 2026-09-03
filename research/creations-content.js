@@ -63,7 +63,7 @@ export const CREATIONS_TAB = Object.freeze({
                 },
                 {
                     name: "The ABS Bayesian Priors Framework",
-                    line: "Agnostic, Believer or Skeptic: classifying priors by where they sit, independently of how tightly they hold.",
+                    line: "A better way to think and talk about priors.",
                     href: "#post-2026-skeptic-agnostic-believer",
                     linkLabel: "Blog post",
                 },
