@@ -172,7 +172,7 @@
         "interoception",
         "reality"
       ],
-      "hook": "",
+      "hook": "Did you know that Ana had the courage to re-start her psychology studies as a mature student?",
       "avatar": "people/ana-neves/avatar.jpg"
     },
     {
@@ -281,7 +281,7 @@
         "metascience",
         "reality"
       ],
-      "hook": "In his spare time, Oliver enjoys playing guitar, go-karting, and building LEGO!",
+      "hook": "Did you know that Oliver created a facial EMG-based guitar controller?",
       "avatar": "people/oliver-collins/avatar.jpg"
     },
     {
@@ -326,7 +326,7 @@
         "synaesthesia",
         "psychometrics"
       ],
-      "hook": "Let's treat each other well to mutually adjust our idiosyncratic perceptual constructions to be of a kinder reality!🪼",
+      "hook": "Did you know that Róisín created the Cognitive Research Article Sussex Student Society?",
       "avatar": "people/roisin-sharma/avatar.jpg"
     },
     {
@@ -841,7 +841,7 @@
           "interoception",
           "reality"
         ],
-        "hook": "",
+        "hook": "Did you know that Ana had the courage to re-start her psychology studies as a mature student?",
         "avatar": "people/ana-neves/avatar.jpg"
       },
       {
@@ -952,7 +952,7 @@
           "metascience",
           "reality"
         ],
-        "hook": "In his spare time, Oliver enjoys playing guitar, go-karting, and building LEGO!",
+        "hook": "Did you know that Oliver created a facial EMG-based guitar controller?",
         "avatar": "people/oliver-collins/avatar.jpg"
       },
       {
@@ -997,7 +997,7 @@
           "synaesthesia",
           "psychometrics"
         ],
-        "hook": "Let's treat each other well to mutually adjust our idiosyncratic perceptual constructions to be of a kinder reality!🪼",
+        "hook": "Did you know that Róisín created the Cognitive Research Article Sussex Student Society?",
         "avatar": "people/roisin-sharma/avatar.jpg"
       }
     ],

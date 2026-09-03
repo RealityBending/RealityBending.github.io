@@ -431,23 +431,23 @@
    which is also what tells a reader which tab they are on without their having
    to look at the tab bar.
 
-   `auto-fit` with a floor rather than a fixed `1fr 1fr`: it is two columns at
-   the 1200px content cap and one below ~854px, with no breakpoint to keep in
-   step with anything — the count follows the room the section has. 26rem is
-   what puts that second boundary there: at 24rem a third column fits inside
-   the cap and the cards come out at 385px, which is too narrow for a serif
-   title over a three-line summary. Widening the cap is what would buy a third
-   column, and that is a decision about the section rather than about this
-   grid.
+   `auto-fit` with a floor rather than a fixed `1fr 1fr 1fr`: it is three
+   columns at the 1200px content cap, two from ~1100px down and one below
+   ~730px, with no breakpoint to keep in step with anything — the count follows
+   the room the section has. 22rem is what puts three inside the cap: three
+   tracks of 22rem plus two gaps is ~1100px, so the cards come out at ~385px
+   across the full cap and never narrower than 352px. (It was 26rem and two
+   columns; the third was wanted, and the card's type is sized for it below.)
 
-   `min(26rem, 100%)` and not a bare `26rem`: a track minimum is a *minimum*,
-   so on a 375px phone the single column stayed 416px wide and pushed
-   #main-page into horizontal overflow — 432 against 375, measured. The `min()`
-   lets the floor collapse to the container once there is no room for it, which
-   is the one case `auto-fit` cannot handle on its own. */
+   `min(22rem, 100%)` and not a bare `22rem`: a track minimum is a *minimum*,
+   so on a 375px phone a bare floor keeps the single column wider than the
+   screen and pushes #main-page into horizontal overflow — measured at 26rem,
+   432 against 375. The `min()` lets the floor collapse to the container once
+   there is no room for it, which is the one case `auto-fit` cannot handle on
+   its own. */
 .news-features {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(26rem, 100%), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(22rem, 100%), 1fr));
     gap: 1.4rem;
     align-items: stretch;
 }
@@ -558,11 +558,13 @@
 
 /* Larger than the row's title and clamped to three lines: with the summary
    clamped too, every card in a row is within a line of the same height, so the
-   grid does not leave one card floating in a tall cell. */
+   grid does not leave one card floating in a tall cell. 1.2rem, down from 1.34
+   when the grid went from two columns to three: a 385px card holds about 30
+   characters a line at this size, so a typical title still fits in three. */
 .news-feature__title {
     margin: 0;
     font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.34rem;
+    font-size: 1.2rem;
     font-weight: 400;
     line-height: 1.28;
     color: #1f241e;
@@ -670,6 +672,13 @@
     color: #3d3934;
     overflow: visible;
     white-space: normal;
+}
+
+/* The category chip, beside the name. A little more air than the byline's own
+   gap, so it reads as a label on the line rather than a fourth author. */
+.news-tag--article {
+    flex: none;
+    margin-left: 0.4rem;
 }
 
 /* ── Tags ── */
@@ -852,13 +861,6 @@
     color: #605b53;
 }
 
-.news-article__foot {
-    width: min(100%, 40rem);
-    margin: 0.5rem auto 0;
-    padding-top: 1.2rem;
-    border-top: 1px solid rgba(51, 204, 204, 0.26);
-}
-
 /* ── "Keep reading" ──
    The Publications reader's "See also", in this section's material: three
    posts at the foot of the article, drawn at random by news.js from the rest
@@ -868,13 +870,18 @@
 
    Inside the article rather than on <body>, so it scrolls with the prose and
    is reached where a reader who has finished actually is. It takes the same
-   40rem column as the prose and the footer above it; three tiles across that
-   is 12.5rem each, which a 16:9 picture over a three-line title fits. Below
-   620px it becomes a column of strips — see the media query at the foot of
-   this sheet. */
+   40rem column as the prose; three tiles across that is 12.5rem each, which a
+   16:9 picture over a three-line title fits. Below 620px it becomes a column
+   of strips — see the media query at the foot of this sheet.
+
+   The hairline above it closes the prose. It belonged to a footer that carried
+   the category chip until the chip moved up beside the author's name; the rule
+   stayed, because without it the prose ran straight into the tiles. */
 .news-article__related {
     width: min(100%, 40rem);
-    margin: 1.2rem auto 0;
+    margin: 0.5rem auto 0;
+    padding-top: 1.4rem;
+    border-top: 1px solid rgba(51, 204, 204, 0.26);
 }
 
 .news-article__related-h {

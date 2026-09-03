@@ -37,6 +37,24 @@
       ]
     },
     {
+      "file": "memories/img/2026_ESCAN_Symposium.webp",
+      "filename": "2026_ESCAN_Symposium.webp",
+      "slug": "2026-escan-symposium",
+      "title": "Artificial Emotion Symposium (ESCAN 2026)",
+      "caption": "Speakers and organisers of our symposium on affective responses to AI, co-organised with Marco Sperduti at ESCAN 2026 in Rome",
+      "year": 2026,
+      "month": 6,
+      "people": [
+        "ana-neves",
+        "dominique-makowski"
+      ],
+      "tags": [],
+      "people_names": [
+        "Ana Neves",
+        "Dominique Makowski"
+      ]
+    },
+    {
       "file": "memories/img/2025_Dissection.webp",
       "filename": "2025_Dissection.webp",
       "title": "Dissection",

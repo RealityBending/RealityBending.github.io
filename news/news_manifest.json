@@ -14,7 +14,7 @@
     },
     {
       "name": "Lab",
-      "count": 9
+      "count": 10
     },
     {
       "name": "Awards",
@@ -28,10 +28,10 @@
   "posts": [
     {
       "slug": "2026-skeptic-agnostic-believer",
-      "title": "Skeptic, Agnostic, Believer: A Cleaner Way to Talk About Priors",
-      "subtitle": "\"Informative vs. non-informative\" squashes two separate dials into one word. Here is how to pull them apart.",
+      "title": "The ABS Bayesian Priors Framework (Agnostic, Believer, Skeptic)",
+      "subtitle": "Current frameworks classifying priors, such as \"Informative vs. non-informative\", conflate various things. The ABS framework might help thinking about Bayesian priors.",
       "date": "2026-09-03",
-      "summary": "A new paper in Frontiers in Psychology lays priors out on two independent axes: where they sit relative to the effect you expect (skeptic, agnostic, believer) and how tightly they hold (flat to narrow). It is a better vocabulary than \"informative vs. non-informative\", and it came out of a GitHub thread.",
+      "summary": "A new paper in Frontiers in Psychology lays priors out on two independent axes: where they sit relative to the effect you expect (skeptic, agnostic, believer) and how tightly they hold (flat to narrow).",
       "authors": [
         {
           "name": "Dominique Makowski",
@@ -40,12 +40,12 @@
         }
       ],
       "category": "Methods",
-      "featured": true,
+      "featured": false,
       "image": "news/2026-skeptic-agnostic-believer/featured.gif",
       "file": "news/2026-skeptic-agnostic-believer/post.json",
       "base": "news/2026-skeptic-agnostic-believer/",
-      "words": 1130,
-      "minutes": 5
+      "words": 973,
+      "minutes": 4
     },
     {
       "slug": "2026-oliver-collins-jra-scholarship",
@@ -67,6 +67,27 @@
       "base": "news/2026-oliver-collins-jra-scholarship/",
       "words": 61,
       "minutes": 1
+    },
+    {
+      "slug": "2026-escan-symposium-artificial-emotion",
+      "title": "Artificial Emotion: Our Symposium at ESCAN 2026",
+      "subtitle": "Four talks on how people feel about, and with, artificial intelligence, organised with Marco Sperduti in Rome.",
+      "date": "2026-06-06",
+      "summary": "At the European Society for Cognitive and Affective Neuroscience meeting in Rome, we organised a symposium with Marco Sperduti on affective responses to AI: from AI-labelled faces and artworks to social robots and interactive artificial agents.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Lab",
+      "featured": false,
+      "image": "news/2026-escan-symposium-artificial-emotion/featured.jpg",
+      "file": "news/2026-escan-symposium-artificial-emotion/post.json",
+      "base": "news/2026-escan-symposium-artificial-emotion/",
+      "words": 511,
+      "minutes": 2
     },
     {
       "slug": "2026-emma-benn-sage-prize",

@@ -71,6 +71,14 @@ is the case that catches people out: the page's own text is read straight from
 manifest, which is what the list view renders — so a change to any of those
 needs `update_publications.py` first or the section and the page disagree.
 
+Running them in the other order is harmless but leaves generated pages inside
+the source folders: `people/lab/`, `people/collaborations/`, `people/memories/`
+and `news/all/`, `news/featured/` are tab pages `generate_pages.py` writes as a
+lone `index.html` each. `update_people.py` and `update_news.py` recognise a
+folder holding nothing but `index.html` files as that and skip it silently; a
+folder with no source file *and* something else in it is still warned about,
+because that one is a member or a post someone forgot to finish.
+
 ### Two lines every one of them needs, and why
 
 Both are guarded in all five runnable scripts — the three `update_*.py`,

@@ -38,6 +38,8 @@ What every file in `img/` and the section `img/` folders is for, the per-use pix
 | `news/2023-chatgpt-personality/featured.jpg` | **used** — re-encoded from a 2.8 MB PNG at 1400px |
 | `news/2020-what-is-reality-bending/*.jpg` | **used** — hero, `don-quixote` and `wizard`, all re-encoded from 0.3–1.5 MB originals |
 | `news/2026-event-triggers/featured.png` | **used** — copied unchanged, 100 KB |
+| `memories/img/2026_ESCAN_Symposium.webp` | **used** — the symposium group photo again, 1400px on the long side / 131 KB, a second copy of the post's `speakers.jpg` because a memory's file has to live in this folder to be found |
+| `news/2026-escan-symposium-artificial-emotion/featured.jpg`, `speakers.jpg` | **used** — the symposium's title slide, kept at its native 786px (upscaling a slide export only adds bytes) at 72 KB, and the group photo re-encoded from a 1206×1579 JPEG to 1100px on the long side, 139 KB |
 | `news/2026-skeptic-agnostic-believer/featured.gif` | **used** — drawn, not photographed: `make_figure.py` beside it renders the frames with matplotlib and assembles the GIF with Pillow on one 48-colour palette. 1400×560, ~130 frames, ~460 KB — under the GIF budget despite the full hero width, because flat colour on cream compresses in a way a photographic GIF never does. Edit the script and re-run it rather than editing the image |
 | the fifteen posts ported from `content/post/` | **used** — every still re-encoded on the way in (1400px hero, 1100px in-body, q82); heroes land at 20–300 KB against originals up to 3.4 MB. GIFs copied unchanged where already under ~700 KB |
 | `img/Intro.mp4` | source only, 54 MB — gitignored, and no longer in the repository. `encode_intro_bg.sh` takes its source as `$1` if you bring it back |

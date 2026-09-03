@@ -340,16 +340,16 @@ import { element as el } from "../shared/dom.js"
 
         header.appendChild(el("h3", "news-article__title", post.title))
         if (post.subtitle) header.appendChild(el("p", "news-article__subtitle", post.subtitle))
-        header.appendChild(buildByline(post, "news-byline news-byline--article", true))
+        // The category rides on the byline, beside the author's name, where a
+        // reader deciding whether to read on is looking — it used to close the
+        // article in a footer of its own, which told them what shelf a post was
+        // on only once they had finished it.
+        const byline = buildByline(post, "news-byline news-byline--article", true)
+        if (post.category) byline.appendChild(el("span", "news-tag news-tag--article", post.category))
+        header.appendChild(byline)
         article.appendChild(header)
 
         article.appendChild(prose)
-
-        if (post.category) {
-            const foot = el("footer", "news-article__foot")
-            foot.appendChild(el("span", "news-tag", post.category))
-            article.appendChild(foot)
-        }
 
         const related = buildRelated(post)
         if (related) article.appendChild(related)

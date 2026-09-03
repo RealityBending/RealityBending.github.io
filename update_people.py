@@ -193,6 +193,14 @@ def load_people() -> list[dict]:
             continue
         profile_path = entry / "profile.json"
         if not profile_path.exists():
+            # generate_pages.py writes the section's tab pages into this folder
+            # too — people/lab/, people/collaborations/, people/memories/ and
+            # its 32 memory pages — each nothing but index.html files. Those
+            # are expected and not a member with a missing profile, so they
+            # pass in silence; a folder holding anything else (an avatar with
+            # no profile.json beside it) is still the mistake worth flagging.
+            if all(p.name == "index.html" for p in entry.rglob("*") if p.is_file()):
+                continue
             warn(entry.name, "no profile.json found — skipping")
             continue
         try:

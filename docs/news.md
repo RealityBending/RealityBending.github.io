@@ -181,7 +181,7 @@ All posts is **rows** (`.news-card`, `buildRow`) — thumbnail at a fixed 15rem 
 the left, everything else on the right — because posts run from a two-line
 link-out to a 1500-word essay, forty of them read down the page, and a grid of
 squares would give them all the same weight and the same crop. Featured is
-**cards two across** (`.news-feature`, `buildFeatureCard`), picture on top,
+**cards three across** (`.news-feature`, `buildFeatureCard`), picture on top,
 because it is six posts a human chose and the picture is the reason to press.
 It also means a reader knows which tab they are on without reading the tab bar.
 
@@ -195,14 +195,15 @@ layout is what differs, not the material. Four things:
   recently flagged post, not the most important one. Equal weight, because the
   data gives them equal weight — the same reason nothing here reports the size
   of a filtered set.
-- **`repeat(auto-fit, minmax(min(26rem, 100%), 1fr))`**, not `1fr 1fr`: two
-  columns at the 1200px content cap, one below ~854px, no breakpoint to keep in
-  step. 26rem is what puts the boundary there — at 24rem a third column fits
-  inside the cap and the cards come out at 385px, too narrow for a serif title
-  over a three-line summary. **The `min()` is load-bearing**: a track minimum is
-  a *minimum*, so a bare `26rem` kept the single column at 416px on a 375px
-  phone and pushed `#main-page` into horizontal overflow — 432 against 375,
-  measured.
+- **`repeat(auto-fit, minmax(min(22rem, 100%), 1fr))`**, not `1fr 1fr 1fr`:
+  three columns at the 1200px content cap, two from ~1100px down, one below
+  ~730px, no breakpoint to keep in step. 22rem is what puts three inside the
+  cap; the cards come out at ~385px, and the title dropped from 1.34rem to
+  1.2rem so a serif title still fits its three lines at that width. (It was
+  26rem and two columns until the third was asked for.) **The `min()` is
+  load-bearing**: a track minimum is a *minimum*, so a bare floor keeps the
+  single column wider than a 375px phone and pushes `#main-page` into
+  horizontal overflow — 432 against 375, measured at 26rem.
 - **The media is a fixed 16:9, not the picture's own ratio.** These are heroes
   cropped for a 1400px reader panel and they arrive in every shape; letting each
   set its own height staggers the titles across a row. Title and summary are
@@ -276,9 +277,13 @@ the prose it was suggesting an alternative to. Four things about it:
   link address" and a crawler all work; a plain left click is intercepted and
   opens the post in the panel instead. Hopping through three posts keeps the
   row that opened the reader as the focus target for the eventual close.
-- It sits **inside the article, in the prose's 40rem column**, after the
-  category footer — it scrolls with the text and is reached where a reader who
-  has finished actually is. Three across is 12.5rem a tile, which a 16:9
+- It sits **inside the article, in the prose's 40rem column**, under a
+  hairline that closes the prose — it scrolls with the text and is reached
+  where a reader who has finished actually is. That hairline used to belong to
+  a footer carrying the post's category chip; **the chip now rides on the
+  byline, beside the author's name** (`.news-tag--article`), where a reader
+  deciding whether to read on is looking, rather than telling them what shelf
+  the post was on once they had finished it. Three across is 12.5rem a tile, which a 16:9
   picture over a three-line title fits; a post with no picture gets a tinted
   block of the same size so the row keeps its shape. Below 620px it becomes a
   column of strips with the picture on the left, as the archive's rows do at
