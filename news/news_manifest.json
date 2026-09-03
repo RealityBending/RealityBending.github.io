@@ -10,7 +10,7 @@
     },
     {
       "name": "Methods",
-      "count": 11
+      "count": 12
     },
     {
       "name": "Lab",
@@ -26,6 +26,27 @@
     }
   ],
   "posts": [
+    {
+      "slug": "2026-skeptic-agnostic-believer",
+      "title": "Skeptic, Agnostic, Believer: A Cleaner Way to Talk About Priors",
+      "subtitle": "\"Informative vs. non-informative\" squashes two separate dials into one word. Here is how to pull them apart.",
+      "date": "2026-09-03",
+      "summary": "A new paper in Frontiers in Psychology lays priors out on two independent axes: where they sit relative to the effect you expect (skeptic, agnostic, believer) and how tightly they hold (flat to narrow). It is a better vocabulary than \"informative vs. non-informative\", and it came out of a GitHub thread.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Methods",
+      "featured": true,
+      "image": "news/2026-skeptic-agnostic-believer/featured.gif",
+      "file": "news/2026-skeptic-agnostic-believer/post.json",
+      "base": "news/2026-skeptic-agnostic-believer/",
+      "words": 1130,
+      "minutes": 5
+    },
     {
       "slug": "2026-oliver-collins-jra-scholarship",
       "title": "🎉 Oliver Collins awarded a Junior Research Assistant scholarship",
@@ -679,7 +700,7 @@
       "image": "news/2021-sample-too-small/featured.jpg",
       "file": "news/2021-sample-too-small/post.json",
       "base": "news/2021-sample-too-small/",
-      "words": 1369,
+      "words": 1361,
       "minutes": 6
     },
     {

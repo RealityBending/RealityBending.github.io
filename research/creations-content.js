@@ -62,6 +62,12 @@ export const CREATIONS_TAB = Object.freeze({
                     linkLabel: "Wikipedia",
                 },
                 {
+                    name: "The ABS Bayesian Priors Framework",
+                    line: "Agnostic, Believer or Skeptic: classifying priors by where they sit, independently of how tightly they hold.",
+                    href: "#post-2026-skeptic-agnostic-believer",
+                    linkLabel: "Blog post",
+                },
+                {
                     name: "Fictional Reappraisal",
                     line: "We coined the term for an interesting subtype of emotion regulation strategy.",
                     href: "https://en.wikipedia.org/wiki/Paradox_of_fiction#Scientific_investigations",
