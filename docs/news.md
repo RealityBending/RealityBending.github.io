@@ -251,21 +251,35 @@ layout is what differs, not the material. Four things:
   breakpoint: 15rem of thumbnail plus a readable summary needs the room, and a
   6rem crop of a photograph is not a photograph.
 
-**The "another post" tile** (`.news-another`) is the People section's discover
-button squared off — same corner, same z-index above the panel (205), same idea
-of offering somewhere else to go without interrupting the reading. Three things
-about it:
+**"Keep reading" is three posts at the foot of the article** (`.news-related`),
+the Publications reader's "See also" in shape. It replaced a single tile fixed
+in the corner over the panel, which offered one post drawn at random from the
+archive — one suggestion where three fit, and on a phone a square that covered
+the prose it was suggesting an alternative to. Four things about it:
 
-- It is **square and carries the post's own picture**, which is what makes it
-  worth pressing; the People pill is 3.3rem tall and has nowhere to put one.
-  The label and title sit over the image in one grid cell behind a gradient, so
-  the tile stays square whatever the title's length (clamped to three lines).
-- It lives on `<body>`, not in the panel — the panel is the thing that scrolls,
-  so a button inside it would either scroll away or need a sticky footer over
-  the prose.
-- It is **rebuilt on every open**, which is what re-rolls the suggestion:
-  reading three posts in a row offers three different ones. It draws from the
-  whole archive, not the tab in view.
-- Below 620px it lays flat — full width, a strip with a small thumbnail —
-  because the reader is the whole screen there and a corner square would cover
-  the prose it is suggesting an alternative to.
+- **The three are random, not related — on purpose.** `relatedTo` in
+  `news.js` shuffles the rest of the archive and takes three, on every open,
+  so reading three posts in a row offers nine different ones. The publications
+  score theirs by shared keywords, and a first version of this scored by
+  category and author; it sent every Awards post to three other Awards posts
+  and every essay to three essays — a closed loop that never showed a reader
+  another shelf. 63 papers across a dozen topics have shelves worth walking;
+  48 posts across six categories do not, and the point of the row here is
+  that there is more than the shelf a reader landed on.
+- **The generated page's three are random too, re-rolled on every build** —
+  `related_posts` in `generate_pages.py`. The publications' three are
+  deterministic so that a page's links settle ([publications.md](publications.md));
+  here a fresh three per deploy is the point, and the generated pages are not
+  in git, so there is no diff to churn. Before this a post's page had no
+  outgoing internal link but its breadcrumbs.
+- **Each tile is a real `<a>`** through `hrefForRoute`, so middle-click, "copy
+  link address" and a crawler all work; a plain left click is intercepted and
+  opens the post in the panel instead. Hopping through three posts keeps the
+  row that opened the reader as the focus target for the eventual close.
+- It sits **inside the article, in the prose's 40rem column**, after the
+  category footer — it scrolls with the text and is reached where a reader who
+  has finished actually is. Three across is 12.5rem a tile, which a 16:9
+  picture over a three-line title fits; a post with no picture gets a tinted
+  block of the same size so the row keeps its shape. Below 620px it becomes a
+  column of strips with the picture on the left, as the archive's rows do at
+  780px.

@@ -1,7 +1,7 @@
 import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
 import { openProfileByFolder } from "../shared/profile-api.js"
 import { createPager } from "../shared/pager.js"
-import { INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRoute } from "../shared/deep-link.js"
+import { INITIAL_ROUTE, hrefForRoute, landOnLoad, matchRoute, onRoute, revealSection, writeRoute } from "../shared/deep-link.js"
 import { registerRouteTitle } from "../shared/page-meta.js"
 import { element as el } from "../shared/dom.js"
 
@@ -39,8 +39,8 @@ import { element as el } from "../shared/dom.js"
     // search, which this one is deliberately the twin of.
     const SEARCH_DEBOUNCE_MS = 120
 
-    // Every post in the manifest, for the reader's "another post" button —
-    // which suggests across the whole archive, not just the tab in view.
+    // Every post in the manifest, for the reader's "Keep reading" tiles —
+    // which draw from the whole archive, not just the tab in view.
     let allPosts = []
 
 
@@ -217,50 +217,79 @@ import { element as el } from "../shared/dom.js"
     // not dropped at the top of the document.
     let lastTrigger = null
 
-    /* ── "Another post" ──
-     * The People section's discover button, squared off: a tile at the foot of
-     * the reader offering a post picked at random from the rest of the
-     * archive. Like that one it lives on <body> rather than inside the panel —
-     * the panel is the thing that scrolls, so a button inside it would either
-     * scroll away or need a sticky footer over the prose.
+    /* ── "Keep reading" ──
+     * Three posts at the foot of the article, drawn at random from the rest
+     * of the archive on every open — so reading three posts in a row offers
+     * nine different ones. It is the Publications reader's "See also" in
+     * shape, but deliberately **not** in the choosing: that one scores by
+     * shared keywords, and a first version of this scored by category and
+     * author. It made every Awards post point at three other Awards posts,
+     * every essay at three essays — a closed loop that never took a reader
+     * anywhere new, on an archive of 48 where the point of the row is to
+     * show that there is more than the shelf they happened to land on.
      *
-     * Rebuilt on every open, which is what re-rolls the suggestion: reading
-     * three posts in a row offers three different ones. */
-    const another = el("button", "news-another")
-    another.type = "button"
-    another.hidden = true
-    document.body.appendChild(another)
-
-    let anotherPost = null
-    // Keeps the row that opened the reader in the first place, so closing after
-    // hopping through three posts still puts focus back where the reader came
-    // from rather than at the top of the document.
-    another.addEventListener("click", () => {
-        if (anotherPost) openPost(anotherPost, lastTrigger)
-    })
-
-    function offerAnother(current) {
-        const others = allPosts.filter((post) => post.slug !== current.slug)
-        anotherPost = others.length ? others[Math.floor(Math.random() * others.length)] : null
-
-        another.replaceChildren()
-        another.hidden = !anotherPost
-        if (!anotherPost) return
-
-        if (anotherPost.image) {
-            const img = el("img", "news-another__img")
-            img.src = anotherPost.image
-            img.alt = ""
-            another.appendChild(img)
+     * generate_pages.py draws a post's static page's three the same way, a
+     * fresh three on every build. See related_posts there. */
+    function shuffled(list) {
+        const out = list.slice()
+        for (let i = out.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1))
+            ;[out[i], out[j]] = [out[j], out[i]]
         }
+        return out
+    }
 
-        const copy = el("span", "news-another__copy")
-        copy.appendChild(el("span", "news-another__label", anotherPost.category ? "More " + anotherPost.category : "Read next"))
-        copy.appendChild(el("span", "news-another__title", anotherPost.title))
-        another.appendChild(copy)
+    function relatedTo(post, count) {
+        return shuffled(allPosts.filter((other) => other.slug !== post.slug)).slice(0, count)
+    }
 
-        another.setAttribute("aria-label", "Read another post: " + anotherPost.title)
-        another.title = anotherPost.title
+    /* A real anchor, not a button: the destination is a route the router
+       already owns, so `hrefForRoute` gives back exactly the URL `writeRoute`
+       would put in the address bar — and with it middle-click, "copy link
+       address", and a link a crawler can follow. The press itself is still
+       handled here, or the browser would reload the page to reach a panel. */
+    function routeAnchor(route, onOpen) {
+        const anchor = document.createElement("a")
+        const href = hrefForRoute(route)
+        if (href) anchor.href = href
+        anchor.addEventListener("click", (event) => {
+            if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+            event.preventDefault()
+            onOpen()
+        })
+        return anchor
+    }
+
+    function buildRelated(post) {
+        const related = relatedTo(post, 3)
+        if (!related.length) return null
+
+        const section = el("section", "news-article__related")
+        section.setAttribute("aria-label", "Keep reading")
+        section.appendChild(el("h4", "news-article__related-h", "Keep reading"))
+        const grid = el("div", "news-related")
+        related.forEach((other) => {
+            // The row that opened the reader stays the trigger, so closing after
+            // hopping through three posts still puts focus back where the reader
+            // came from rather than at the top of the document.
+            const item = routeAnchor("post-" + other.slug, () => openPost(other, lastTrigger))
+            item.className = "news-related__item"
+            if (other.image) {
+                const img = el("img", "news-related__img")
+                img.src = other.image
+                img.alt = ""
+                img.loading = "lazy"
+                item.appendChild(img)
+            }
+            const copy = el("span", "news-related__copy")
+            const line = [other.category, other.date ? String(other.date).slice(0, 4) : ""].filter(Boolean).join(" · ")
+            if (line) copy.appendChild(el("span", "news-related__meta", line))
+            copy.appendChild(el("span", "news-related__title", other.title))
+            item.appendChild(copy)
+            grid.appendChild(item)
+        })
+        section.appendChild(grid)
+        return section
     }
 
     function closeReader(write) {
@@ -272,7 +301,6 @@ import { element as el } from "../shared/dom.js"
         if (write !== false) writeRoute("news-" + activeTab)
         reader.classList.remove("is-open")
         backdrop.classList.remove("is-visible")
-        another.hidden = true
         // Out of the tab order only once it has finished sliding out; hiding it
         // on the spot would cut the transition.
         setTimeout(() => {
@@ -323,13 +351,15 @@ import { element as el } from "../shared/dom.js"
             article.appendChild(foot)
         }
 
+        const related = buildRelated(post)
+        if (related) article.appendChild(related)
+
         readerBody.appendChild(article)
         reader.setAttribute("aria-label", post.title)
         reader.hidden = false
         // The panel is fixed and scrolls itself; a reopened one would otherwise
         // start where the last post was left.
         reader.scrollTop = 0
-        offerAnother(post)
 
         // The panel goes from `display: none` to displayed, so there is no
         // starting position for the transform to animate from until it has

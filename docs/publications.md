@@ -234,12 +234,12 @@ being read, and the three are drawn from the best-scoring band that can fill
 them. Two things follow:
 
 - **The panel's three are random within a band and the generated page's three
-  are not.** Opening the same paper twice should offer something new, which is
-  the re-roll `news.js`'s "another post" already does — but a *page* whose
-  internal links changed on every build would churn 63 files a deploy and never
-  let a link settle. `related_publications` in `generate_pages.py` therefore has
-  total tie-breaks: shared keywords, then the nearest year, then the folder
-  name.
+  are not.** Opening the same paper twice should offer something new — but a
+  *page* whose internal links changed on every build would churn 63 files a
+  deploy and never let a link settle. `related_publications` in
+  `generate_pages.py` therefore has total tie-breaks: shared keywords, then the
+  nearest year, then the folder name. The News reader's "Keep reading" has
+  the same shape but no scoring at all — see [news.md](news.md) for why.
 - **An entry whose title key matches is dropped, not only the paper itself.**
   This is a backstop and not the plan: a preprint and its journal version must
   never both be in the list in the first place, and "One work, one entry" above

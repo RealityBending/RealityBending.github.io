@@ -60,6 +60,7 @@ sitemap entries and the redirect stubs' targets.
 
 import html
 import json
+import random
 import re
 import sys
 import textwrap
@@ -478,6 +479,29 @@ def write(path: str, content: str) -> None:
     written.append(path)
 
 
+def related_posts(post: dict, posts: list, count: int = 3) -> list:
+    """The three "Keep reading" links at the foot of a post's page.
+
+    `related_publications` below, for the news: three links turn the archive
+    into a graph a crawler can walk rather than 48 leaves hanging off one hub.
+
+    Random, not related — on purpose. news.js draws its three at random from
+    the rest of the archive on every open, and the page does the same, because
+    a scored pick (category, author) sent every Awards post to three other
+    Awards posts and every essay to three essays: a closed loop that never
+    showed a reader another shelf. The publications keep their keyword scoring
+    because 63 papers on a dozen topics *have* shelves worth walking; 48 posts
+    across six categories do not.
+
+    **Re-rolled on every build, unlike the publications' three.** Those are
+    deterministic so that a page's links settle; here a fresh three per deploy
+    is the point — every deploy re-mixes the archive, and the generated pages
+    are not in git, so there is no diff to churn.
+    """
+    others = [other for other in posts if other["slug"] != post["slug"]]
+    return random.sample(others, min(count, len(others)))
+
+
 def build_news(shell, posts):
     for post in posts:
         slug = post["slug"]
@@ -496,6 +520,19 @@ def build_news(shell, posts):
         summary = post.get("summary") or strip_tags(content)
         hero = f'<img src="{post["image"]}" alt="" />' if post.get("image") else ""
 
+        related = related_posts(post, posts)
+        see_also = (
+            "<h2>Keep reading</h2><ul>"
+            + "".join(
+                f'<li><a href="news/{esc(other["slug"])}/">{esc(other["title"])}</a>'
+                f' <span class="meta">— {esc(other.get("date", ""))}, {esc(other.get("category", ""))}</span></li>'
+                for other in related
+            )
+            + "</ul>"
+            if related
+            else ""
+        )
+
         body = f"""
             <article>
                 {crumbs(("News", "news/"), (post["title"], None))}
@@ -503,6 +540,7 @@ def build_news(shell, posts):
                 <p class="meta">{esc(post.get("date", ""))} · {esc(post.get("category", ""))}{" · " + esc(authors) if authors else ""}</p>
                 {hero}
                 {content}
+                {see_also}
             </article>"""
 
         jsonld = {

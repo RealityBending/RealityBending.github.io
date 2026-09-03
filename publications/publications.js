@@ -451,9 +451,9 @@ import { registerRouteTitle } from "../shared/page-meta.js"
              * candidate is scored by how many keywords it shares with the one
              * being read, and the three are drawn from the best-scoring band
              * that can fill them. Within a band the pick is random, so opening
-             * the same paper twice offers a different three — the re-roll
-             * news.js's "another post" does, constrained to things that are
-             * actually related.
+             * the same paper twice offers a different three, constrained to
+             * things that are actually related. news.js's "Keep reading" has
+             * the same shape but no scoring — see there for why.
              *
              * A publication with no keywords still gets three, out of the
              * zero-score band, which is the whole archive: a loose suggestion
