@@ -77,38 +77,6 @@
 }
 /* ── End minimal profile panel ── */
 
-.profile-panel__close {
-    position: sticky;
-    top: 1rem;
-    align-self: flex-end;
-    margin: 1rem 1.25rem 0 0;
-    display: grid;
-    place-items: center;
-    width: 2.55rem;
-    height: 2.55rem;
-    background: rgba(255, 255, 255, 0.72);
-    border: 1px solid rgba(17, 17, 17, 0.08);
-    font-size: 1.3rem;
-    cursor: pointer;
-    color: #273141;
-    z-index: 1;
-    line-height: 1;
-    padding: 0;
-    border-radius: 999px;
-    box-shadow: none;
-    backdrop-filter: none;
-    transition:
-        background 0.15s ease,
-        transform 0.15s ease,
-        color 0.15s ease;
-}
-
-.profile-panel__close:hover {
-    background: rgba(255, 255, 255, 0.9);
-    color: #111;
-    transform: translateY(-1px);
-}
-
 .profile-panel__body {
     --profile-body-inline-padding: 2.2rem;
     width: 100%;

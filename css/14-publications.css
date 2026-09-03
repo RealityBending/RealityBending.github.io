@@ -1018,35 +1018,6 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
     pointer-events: auto;
 }
 
-.pub-reader__close {
-    position: sticky;
-    top: 1rem;
-    align-self: flex-end;
-    margin: 1rem 1.25rem 0 0;
-    display: grid;
-    place-items: center;
-    width: 2.55rem;
-    height: 2.55rem;
-    padding: 0;
-    border: 1px solid rgba(17, 17, 17, 0.08);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.72);
-    color: #273141;
-    font-size: 1.3rem;
-    line-height: 1;
-    cursor: pointer;
-    z-index: 2;
-    transition:
-        background 0.15s ease,
-        transform 0.15s ease;
-}
-
-.pub-reader__close:hover {
-    background: rgba(255, 255, 255, 0.92);
-    color: #111;
-    transform: translateY(-1px);
-}
-
 .pub-reader__body {
     padding: 0 clamp(1.25rem, 4vw, 3rem) 4rem;
     /* Pulls the article up alongside the sticky close button rather than

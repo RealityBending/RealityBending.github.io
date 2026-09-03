@@ -367,3 +367,19 @@ Three things about it:
 belongs, and the number is the reason: every section sheet comes after it and
 can override. Parking a shared component in a section's own file puts it out of
 reach of every section before it.
+
+## The panel close button
+
+`.panel-close`, also in `css/07-shared.css`, is the ✕ on the three sliding
+panels — profile, news reader, publications reader. Each panel's JavaScript
+puts it on the button alongside the panel's own class (`.news-reader__close`
+and so on), which stays as the script's hook and styles nothing.
+
+It was three identical blocks, and they were identically wrong: each panel is
+a scrolling flex column, and a button with `height: 2.55rem` is still a flex
+item with `flex-shrink: 1`. Once the content overflowed, the button gave up
+height down to its font-size plus border — 40.8 × 22.8px, measured — and by
+an amount that depended on how far the content overflowed. So the same rule
+drew a circle on a short post in a tall window and an oval on a long one.
+`flex: none` is the whole fix, and it lives in one place so the next panel
+inherits it rather than the bug.

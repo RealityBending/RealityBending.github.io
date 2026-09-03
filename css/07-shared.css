@@ -202,8 +202,58 @@
     text-align: center;
 }
 
+/* ── The panel close button ──
+   The ✕ in the top-right corner of every sliding panel: the profile panel,
+   the news reader and the publications reader. One rule, because it was three
+   identical copies, and because the bug it fixes was copied along with them.
+
+   `flex: none` is the fix. Each panel is a flex column that scrolls, and a
+   button with a set height is still a flex item with `flex-shrink: 1`: once
+   the panel's content overflowed, the button gave up height — down to its
+   font-size plus border, 40.8 × 22.8px — and how much it gave up depended on
+   how far the content overflowed. So it was a circle on a short post at a tall
+   window and an oval on a long one, in the same stylesheet, from the same
+   rule. A flex item that must keep its box says so.
+
+   Section-specific classes (`.news-reader__close` and friends) stay on the
+   elements as JavaScript hooks and carry no styling of their own. */
+.panel-close {
+    position: sticky;
+    top: 1rem;
+    align-self: flex-end;
+    flex: none;
+    margin: 1rem 1.25rem 0 0;
+    display: grid;
+    place-items: center;
+    width: 2.55rem;
+    height: 2.55rem;
+    padding: 0;
+    border: 1px solid rgba(17, 17, 17, 0.08);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    color: #273141;
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2;
+    transition:
+        background 0.15s ease,
+        transform 0.15s ease;
+}
+
+.panel-close:hover {
+    background: rgba(255, 255, 255, 0.92);
+    color: #111;
+    transform: translateY(-1px);
+}
+
 @media (prefers-reduced-motion: reduce) {
-    .pager__btn {
+    .pager__btn,
+    .panel-close {
         transition: none;
+    }
+
+    .panel-close:hover {
+        transform: none;
     }
 }

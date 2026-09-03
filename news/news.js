@@ -203,7 +203,7 @@ import { element as el } from "../shared/dom.js"
     reader.setAttribute("aria-label", "Post")
     reader.hidden = true
 
-    const readerClose = el("button", "news-reader__close")
+    const readerClose = el("button", "panel-close news-reader__close")
     readerClose.type = "button"
     readerClose.setAttribute("aria-label", "Close")
     readerClose.textContent = "×"

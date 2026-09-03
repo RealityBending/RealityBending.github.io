@@ -143,8 +143,12 @@ colours: a fixed panel off the right edge, a blurred backdrop, closing on the
 - Its shell rules are **copied from `.profile-panel`, not shared with it** —
   same width behaviour, same 0.38s cubic-bezier, same z-index pair (200 over
   199). That sheet is 26KB of people-specific children and reaching into it
-  would couple the two sections for the sake of forty lines. If a third one of
-  these appears, that is the moment to extract the shell.
+  would couple the two sections for the sake of forty lines. The Publications
+  reader is the third copy. **The one piece that is shared is the ✕**:
+  `.panel-close` in `css/07-shared.css`, on all three panels, because the three
+  copies had the same bug — a flex item in a scrolling column that shrank to an
+  oval once the content overflowed — and one fix in three places is how the
+  fourth copy gets it wrong again. See [layout.md](layout.md).
 - It lives on `<body>`, **not inside `#main-page`** — which is the scroll
   container and is `pointer-events: none` until the door opens. A panel inside
   it would inherit both.

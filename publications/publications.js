@@ -408,7 +408,7 @@ import { registerRouteTitle } from "../shared/page-meta.js"
             reader.setAttribute("aria-label", "Publication")
             reader.hidden = true
 
-            const readerClose = el("button", "pub-reader__close", "×")
+            const readerClose = el("button", "panel-close pub-reader__close", "×")
             readerClose.type = "button"
             readerClose.setAttribute("aria-label", "Close")
             reader.appendChild(readerClose)

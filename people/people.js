@@ -768,7 +768,7 @@ import { registerRouteTitle } from "../shared/page-meta.js"
             const panel = document.createElement("div")
             panel.className = "profile-panel"
             panel.innerHTML =
-                '<button class="profile-panel__close" aria-label="Close">&times;</button>' + '<div class="profile-panel__body"></div>'
+                '<button class="panel-close profile-panel__close" aria-label="Close">&times;</button>' + '<div class="profile-panel__body"></div>'
             document.body.appendChild(panel)
 
             const panelBody = panel.querySelector(".profile-panel__body")
