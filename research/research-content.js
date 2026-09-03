@@ -111,11 +111,7 @@ export const RESEARCH_CONTENT = Object.freeze({
                     title: "Illusions",
                     accent: "#5599ff",
                     text: "An illusion is not a failure of the visual system. It is the system working exactly as designed, showing its assumptions out loud. We use them as instruments: measure how strongly a person's perception is biased, and you have measured something about how they build the world.",
-                    tags: [
-                        "Illusion sensitivity",
-                        "Phenomenological Control",
-                        "Computational modelling",
-                    ],
+                    tags: ["Illusion sensitivity", "Phenomenological Control", "Computational modelling"],
                     /* question → answer → question, on one button. The three
                        interactive landmarks all take these same keys, so the
                        reader meets one control rather than three. */
@@ -137,11 +133,7 @@ export const RESEARCH_CONTENT = Object.freeze({
                     short: "AI-Beliefs",
                     accent: "#a98bff",
                     text: 'We react to the same thing differently if we believe it is "fake". Believing something is artificial or synthetic changes how true, how moving, and how valuable it feels. We study the effect of believing that something is real or not, as well as the neurocognitive and bodily mechanisms that drive the formation of these beliefs.',
-                    tags: [
-                        "Trust & deception",
-                        "Fake news",
-                        "Human-AI interaction",
-                    ],
+                    tags: ["Trust & deception", "Fake news", "Human-AI interaction"],
                     /* Both paintings are human. The first is the one people
                        reliably call AI, the second the one they call human —
                        which is the demonstration: the judgement tracks the
@@ -172,11 +164,7 @@ export const RESEARCH_CONTENT = Object.freeze({
                     title: "Body & Emotions",
                     accent: "#ff5f57",
                     text: "Neither perception nor belief formation runs in a vacuum. A heartbeat, a held breath, a rising sweat response: the body's state biases what gets seen and what gets believed. We record the body while reality bends, and model both together.",
-                    tags: [
-                        "Interoception",
-                        "Emotion Regulation",
-                        "Brain-Body Axis",
-                    ],
+                    tags: ["Interoception", "Emotion Regulation", "Brain-Body Axis"],
                     /* No reveal to make here — the loop is the point, and it
                        runs whether or not anyone presses anything, so there is
                        nothing to caption either. The button is a placeholder
@@ -216,11 +204,7 @@ export const RESEARCH_CONTENT = Object.freeze({
                     text: [
                         "Neuropsychology and its connected fields are an evolving science with a long history and an unfinished future. We believe that in order to better understand where we are, and how to move forward, we must know and study the past. We are interested in exploring the roots of our current theories, excavating ancient perspectives that resonate with today's interpretations. Moreover, we are committed to contributing to the future of psychological science by developing new methods, tools, and approaches that can advance our understanding of the mind and brain.",
                     ],
-                    tags: [
-                        "History & philosophy",
-                        "Statistics & open tools",
-                        "Methods & instruments",
-                    ],
+                    tags: ["History & philosophy", "Statistics & open tools", "Methods & instruments"],
                     /* ── The deck's cards ──
                        A card is `img` — a path from the site root,
                        `research/img/era-<id>.jpg`, cropped to the deck's 4:3 at
@@ -385,7 +369,7 @@ export const RESEARCH_CONTENT = Object.freeze({
                        first paragraph, which the Lumière text displaced. It is
                        what the heading and paragraph fall back to whenever the
                        reader is not pointing at a word. */
-                    text: "Our experience of reality is built from noisy senses, acquired by a body in a particular state, filtered through a cascade of prior expectations. We study the mechanisms that lead to its distortion, and explore what reality alterations tell us about our Selves.",
+                    text: "Our experience of reality is built from noisy senses, acquired by a body in a particular state, filtered through a cascade of prior expectations. We study the mechanisms that lead to its distortion, and explore what reality alterations tell us about our Selves. And because this question connects to many different fields, our research covers a wide and multidisciplinary range of topics!",
                     figure: {
                         type: "cloud",
                         dimensions: [
