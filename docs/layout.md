@@ -314,7 +314,9 @@ the strip between the host and the centred column
 (`(100% - var(--content-inline-size)) / 2`), so hosting it *on* that column
 leaves nothing: News passed `.news-shell` and got 32px zones against every other
 section's 113px, which is a target nobody can find and is why that section
-looked like it had no arrows at all. All five now host on their `<section>`.
+looked like it had no arrows at all. The four that still have tabs host on their
+`<section>`. (News is the one that no longer does — it lost its tab bar when
+Featured became a filter chip; see [news.md](news.md).)
 
 Two sections need more than the default:
 

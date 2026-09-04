@@ -1,7 +1,12 @@
 /* ── 13 · NEWS SECTION ──
-   An index of posts — rows, keyword filters, a pager — and a reader that
-   slides in over the page for one of them. news/news.js builds both from
-   news/news_manifest.json.
+   An index of posts — a grid of cards under a search field, filter chips and a
+   pager — and a reader that slides in over the page for one of them.
+   news/news.js builds both from news/news_manifest.json.
+
+   There was a tab bar here, All posts over rows and Featured over this grid;
+   Featured became a chip in the filter row, the grid became how every post is
+   drawn, and with one view left the tab bar had nothing to switch between. Its
+   rules and the row's are gone rather than commented out — git has them.
 
    The section's accent is --section-news (#33cccc, the teal it has on the
    hero's arc and on the brain). It is used on the rules, the chips and the
@@ -33,12 +38,15 @@
     gap: 1.3rem;
 }
 
-/* The title and nothing else. It used to carry a post count opposite it and a
-   rule underneath; the count is gone, and with the tab bar drawing its own line
-   directly below, a second rule 1.3rem above it was two lines saying the same
-   thing. */
+/* The title and nothing else — it used to carry a post count opposite it, and
+   nothing here reports the size of a set any more. The rule under it is back:
+   it was dropped when the tab bar drew its own line directly below, which was
+   two lines saying the same thing, and with the tab bar gone the title
+   otherwise floats free of the search field beneath it. */
 .news-head {
     display: block;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid rgba(51, 204, 204, 0.2);
 }
 
 .news-full__title {
@@ -52,66 +60,6 @@
     margin: 0;
 }
 
-
-/* ── Tabs ──
-   Featured and All posts, the same shape as the People and Research tab bars.
-   The panels slide through swapTabPanels and the empty side margins are
-   prev/next zones through initMarginTabNav, so the section behaves like every
-   other tab group on the page. */
-.news-tabs-nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0;
-    border-bottom: 1px solid rgba(51, 204, 204, 0.2);
-    margin-top: -0.4rem;
-}
-
-.news-tab-btn {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.55em 1.35em;
-    border: none;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -1px;
-    background: transparent;
-    color: rgba(26, 79, 79, 0.5);
-    cursor: pointer;
-    transition:
-        color 0.15s ease,
-        border-color 0.15s ease;
-}
-
-.news-tab-btn:hover {
-    color: rgba(26, 79, 79, 0.85);
-}
-
-.news-tab-btn--active {
-    color: var(--news-accent-deep);
-    border-bottom-color: rgba(51, 204, 204, 0.75);
-}
-
-/* swapTabPanels pins the outgoing panel and slides it away, which needs the
-   host to be a positioned ancestor — it sets position: relative itself if it
-   has to, but saying so here keeps it from writing to the element. */
-.news-panels {
-    position: relative;
-    width: 100%;
-}
-
-.news-panel {
-    display: grid;
-    gap: 1.3rem;
-}
-
-/* [hidden] loses to the display rule above, which is how swapTabPanels puts a
-   panel away. Same trap as .research-tab-panel, .join-stage and .pub-card. */
-.news-panel[hidden] {
-    display: none;
-}
 
 /* ── Search ──
    The Publications search field (css/14-publications.css) in this section's
@@ -231,10 +179,11 @@
     color: var(--news-accent-deep);
 }
 
-/* ── Category filters ──
-   Multi-select chips: pressing one adds it, pressing it again takes it away,
-   and none pressed means all. So there is no "All" chip — the way back is
-   Clear, which is only up while something is selected. */
+/* ── The filter chips ──
+   Multi-select: pressing one adds it, pressing it again takes it away, and none
+   pressed means all. So there is no "All" chip — the way back is Clear, which
+   is only up while something is selected. Featured leads the row and has its
+   own rules below; the rest are the categories, which match on *any*. */
 .news-filters {
     display: grid;
 }
@@ -277,6 +226,26 @@
     color: var(--news-accent-deep);
 }
 
+/* ── The Featured chip ──
+   `featured: true` in a post.json, which was a tab of its own until it became
+   the first chip in this row. It sits with the categories because it behaves
+   like them — press to narrow, press again to widen — and it is dressed
+   exactly like them: same border, same fill, same "on" state, and the star
+   inheriting the chip's own colour rather than taking one.
+
+   That is the whole point and it cost two attempts to get right. A hairline
+   separator after it drew the row as two groups when it is one, and a star in
+   the section accent read as *pressed* — the accent is the colour the "on"
+   state uses, so an off chip wearing it announces a filter nobody applied.
+   The star is a glyph and not a signal: what the chip filters on is a
+   different axis from the categories, but that difference shows up in what
+   pressing it *does*, not in how it looks sitting there. */
+.news-filter__star {
+    font-size: 0.78em;
+    line-height: 1;
+    color: inherit;
+}
+
 .news-filter__count {
     font-size: 0.62rem;
     font-weight: 700;
@@ -306,130 +275,11 @@
     color: #211f1c;
 }
 
-/* ── The rows ──
-   One row per post: thumbnail on the left, everything else on the right. A
-   grid of squares would give every post the same weight and the same crop, and
-   these run from a two-line link-out to a 1500-word essay. */
-.news-list {
-    display: grid;
-    gap: 1rem;
-}
-
-.news-card {
-    display: grid;
-    grid-template-columns: 15rem 1fr;
-    gap: 1.4rem;
-    align-items: stretch;
-    width: 100%;
-    padding: 0;
-    text-align: left;
-    border: 1px solid rgba(51, 204, 204, 0.2);
-    border-radius: 1.1rem;
-    background: rgba(255, 255, 255, 0.72);
-    box-shadow: 0 16px 34px rgba(17, 17, 17, 0.05);
-    overflow: hidden;
-    cursor: pointer;
-    font: inherit;
-    color: inherit;
-    transition:
-        transform 0.22s ease,
-        box-shadow 0.22s ease,
-        border-color 0.22s ease;
-}
-
-.news-card--textonly {
-    grid-template-columns: 1fr;
-}
-
-.news-card:hover,
-.news-card:focus-visible {
-    transform: translateY(-3px);
-    box-shadow: 0 22px 44px rgba(17, 17, 17, 0.09);
-    border-color: rgba(51, 204, 204, 0.5);
-}
-
-/* The thumbnail fills its column at whatever the row's height turns out to be,
-   so a short post and a long one still line their images up. */
-.news-card__thumb {
-    position: relative;
-    overflow: hidden;
-    background: rgba(51, 204, 204, 0.08);
-}
-
-.news-card__thumb img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-}
-
-.news-card:hover .news-card__thumb img {
-    transform: scale(1.04);
-}
-
-.news-card__body {
-    display: grid;
-    gap: 0.55rem;
-    align-content: start;
-    padding: 1.25rem 1.4rem 1.3rem 0;
-    min-width: 0;
-}
-
-.news-card--textonly .news-card__body {
-    padding-left: 1.4rem;
-}
-
-.news-card__meta {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 0.75rem;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 0.68rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #8a857c;
-}
-
-.news-card__date {
-    color: var(--news-accent-deep);
-    font-weight: 700;
-}
-
-.news-card__title {
-    margin: 0;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.28rem;
-    font-weight: 400;
-    line-height: 1.3;
-    color: #1f241e;
-}
-
-.news-card__summary {
-    margin: 0;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 0.96rem;
-    line-height: 1.7;
-    color: #605b53;
-}
-
-.news-card__foot {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.6rem 1rem;
-    margin-top: 0.25rem;
-}
-
-/* ── Featured: cards, two across ──
-   The other tab's rows are the right shape for scanning forty entries; this is
-   a shortlist of six being browsed, where the picture is the reason to press.
-   So the picture becomes the top of the card and the cards run two across,
-   which is also what tells a reader which tab they are on without their having
-   to look at the tab bar.
+/* ── The index: cards, three across ──
+   This was the Featured tab's layout and it is now the whole index. Rows are
+   the right shape for scanning something you already know the name of, cards
+   for browsing something you do not — and scanning is what the search field
+   and the chips above do, far better than forty rows did.
 
    `auto-fit` with a floor rather than a fixed `1fr 1fr 1fr`: it is three
    columns at the 1200px content cap, two from ~1100px down and one below
@@ -445,17 +295,14 @@
    432 against 375. The `min()` lets the floor collapse to the container once
    there is no room for it, which is the one case `auto-fit` cannot handle on
    its own. */
-.news-features {
+.news-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(22rem, 100%), 1fr));
     gap: 1.4rem;
     align-items: stretch;
 }
 
-/* Everything here is deliberately the row's own dressing — same border, same
-   radius, same cream, same lift on hover — because these are the same posts in
-   the same section. The layout is what differs, not the material. */
-.news-feature {
+.news-card {
     display: grid;
     grid-template-rows: auto 1fr;
     width: 100%;
@@ -475,8 +322,8 @@
         border-color 0.22s ease;
 }
 
-.news-feature:hover,
-.news-feature:focus-visible {
+.news-card:hover,
+.news-card:focus-visible {
     transform: translateY(-3px);
     box-shadow: 0 22px 44px rgba(17, 17, 17, 0.09);
     border-color: rgba(51, 204, 204, 0.5);
@@ -486,21 +333,21 @@
    1400px-wide reader panel and they arrive in every shape, so letting each one
    set its own height would stagger the titles across a row. 16:9 is the crop
    they mostly already are. */
-.news-feature__media {
+.news-card__media {
     position: relative;
     aspect-ratio: 16 / 9;
     overflow: hidden;
     background: rgba(51, 204, 204, 0.08);
 }
 
-.news-feature__media img {
+.news-card__media img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.4s ease;
 }
 
-.news-feature:hover .news-feature__media img {
+.news-card:hover .news-card__media img {
     transform: scale(1.04);
 }
 
@@ -508,7 +355,7 @@
    rather than listed. Opaque rather than a tint: it sits over a photograph
    that could be any colour, and a translucent chip on the Matrix stills was
    unreadable. */
-.news-feature__tag {
+.news-card__tag {
     position: absolute;
     top: 0.75rem;
     left: 0.75rem;
@@ -527,7 +374,7 @@
 
 /* The 1fr row before the byline is what pushes it to the foot, so bylines line
    up across a pair whichever way the two summaries wrapped. */
-.news-feature__body {
+.news-card__body {
     display: grid;
     grid-template-rows: auto auto 1fr auto;
     gap: 0.5rem;
@@ -535,11 +382,11 @@
     min-width: 0;
 }
 
-.news-feature--textonly .news-feature__body {
+.news-card--textonly .news-card__body {
     padding-top: 1.35rem;
 }
 
-.news-feature__meta {
+.news-card__meta {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
@@ -551,7 +398,7 @@
     color: #8a857c;
 }
 
-.news-feature__date {
+.news-card__date {
     color: var(--news-accent-deep);
     font-weight: 700;
 }
@@ -561,7 +408,7 @@
    grid does not leave one card floating in a tall cell. 1.2rem, down from 1.34
    when the grid went from two columns to three: a 385px card holds about 30
    characters a line at this size, so a typical title still fits in three. */
-.news-feature__title {
+.news-card__title {
     margin: 0;
     font-family: Georgia, "Times New Roman", serif;
     font-size: 1.2rem;
@@ -575,7 +422,7 @@
     overflow: hidden;
 }
 
-.news-feature__summary {
+.news-card__summary {
     margin: 0;
     font-family: Georgia, "Times New Roman", serif;
     font-size: 0.94rem;
@@ -588,7 +435,7 @@
     overflow: hidden;
 }
 
-.news-feature .news-byline {
+.news-card .news-byline {
     align-self: end;
     padding-top: 0.2rem;
 }
@@ -1182,27 +1029,6 @@
     color: #5f5b54;
 }
 
-/* Rows go to a single column well before the page does: 15rem of thumbnail
-   plus a readable summary needs more room than the breakpoint in 19-narrow.css
-   grants, and a 6rem-wide crop of a photograph is not a photograph. */
-@media (max-width: 780px) {
-    .news-card {
-        grid-template-columns: 1fr;
-    }
-
-    .news-card__thumb {
-        height: 11rem;
-    }
-
-    .news-card__thumb img {
-        position: static;
-    }
-
-    .news-card__body {
-        padding: 1.15rem 1.25rem 1.25rem;
-    }
-}
-
 /* The reader is the whole screen below this width and 12.5rem tiles would be
    a third of it: laid flat instead, a column of strips with a small picture on
    the left, which is also what the archive's rows do at 780px. */
@@ -1236,9 +1062,7 @@
 
 @media (prefers-reduced-motion: reduce) {
     .news-card,
-    .news-card__thumb img,
-    .news-feature,
-    .news-feature__media img,
+    .news-card__media img,
     .news-reader,
     .news-reader__backdrop,
     .news-related__item,
@@ -1247,13 +1071,11 @@
     }
 
     .news-card:hover,
-    .news-feature:hover,
     .news-related__item:hover {
         transform: none;
     }
 
-    .news-card:hover .news-card__thumb img,
-    .news-feature:hover .news-feature__media img,
+    .news-card:hover .news-card__media img,
     .news-related__item:hover .news-related__img {
         transform: none;
     }

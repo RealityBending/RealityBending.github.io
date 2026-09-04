@@ -27,7 +27,7 @@ Four things follow:
   the nine Services card paths (services.js was never migrated off hashes, so
   the generator had never been told they existed), `/information/contact/` (the
   one *default* tab with no page — `activateContactTab` writes `contact-<tab>`
-  for every tab, as News writes `news-all`), and `/people/` + `/research/`,
+  for every tab, as People writes `people-lab`), and `/people/` + `/research/`,
   which a legacy stub had overwritten with a page that redirected to itself.
   Run it after the generator. It pairs with `tools/check-routes.html`: that one
   checks routes.js round-trips, this one checks something serves the result.

@@ -1073,9 +1073,20 @@ def service_card_pages():
 # section hubs (see build_stubs). They also drop out of sitemap.xml below: a
 # sitemap advertises destinations, and a page that points its canonical
 # elsewhere is not one.
+#
+# The News pair is the same shape for a different reason: they were the two
+# tabs of the News section, the section now has one view, and `news.js` no
+# longer writes either route. They stay files because they were the addresses
+# the tab bar wrote for a year and are indexed, linked and bookmarked, and
+# `news.js` still *lands* them — `/news/featured/` opens the index with the
+# Featured chip on, which is the same set of posts the tab showed. What they
+# must not go on being is two more search results for the index, which is what
+# `/news/` is; hence the canonical, and hence dropping out of sitemap.xml.
 CANONICAL_ALIASES = {
     "/join/": "/information/join/",
     "/services/": "/information/services/",
+    "/news/all/": "/news/",
+    "/news/featured/": "/news/",
 }
 
 
@@ -1115,8 +1126,9 @@ def build_sections(shell):
         ),
         # `/information/contact/` as well as bare `/information/`, and it is not
         # redundant: `activateContactTab` writes `contact-<tab>` for every tab
-        # including the default one, exactly as News writes `news-all` and
-        # People writes `people-lab`. It was the one default tab whose page was
+        # including the default one, exactly as People writes `people-lab` (and
+        # as News wrote `news-all` before it lost its tabs). It was the one
+        # default tab whose page was
         # missing, so pressing the *first* tab of the last section — the most
         # ordinary thing a reader can do there — left an address that 404s on
         # reload.
@@ -1191,10 +1203,13 @@ def build_sections(shell):
             "Memories",
             "Photographs from the life of the Reality Bending Lab.",
         ),
+        # The News section's two former tabs. Files, not 404s, because they were
+        # live addresses; canonicalised to /news/ because that is now the only
+        # view — see CANONICAL_ALIASES.
         (
             "news-all",
             "/news/all/",
-            "All posts",
+            "News",
             "Every post from the Reality Bending Lab.",
         ),
         (

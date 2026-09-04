@@ -1,6 +1,6 @@
 # The News section
 
-One JSON file per post, the reader panel, the two tabs, and how the fifteen posts were ported from the old Hugo site.
+One JSON file per post, the reader panel, the index, and how the fifteen posts were ported from the old Hugo site.
 
 ## News
 
@@ -47,8 +47,9 @@ applies to two posts is a category, one that applies to one is a tag. An
 unknown value is a warning, not a failure, so a typo shows up in the run rather
 than silently producing a chip of its own.
 
-**`featured: true` is the whole Featured tab.** No ordering field, no count —
-the tab is whatever is flagged, newest first.
+**`featured: true` is the whole Featured filter.** No ordering field, no count
+— the chip shows whatever is flagged, newest first, like every other chip in
+that row. It was a tab of its own until it became one; see "The index" below.
 
 `image` names the hero if it is not called `featured.*`; the manifest reports
 the resolved path as `image`, so `featured` can mean the flag and nothing else.
@@ -158,71 +159,112 @@ colours: a fixed panel off the right edge, a blurred backdrop, closing on the
   animate from, and rAF is not always running — in a headless preview pane it
   never fires, and the panel would appear with no slide at all.
 
-**The index is two tabs** — All posts, the archive, and Featured, a short
-curated list with no filter and no pager because neither has anything to do on
-four rows a human chose. They use the page's own tab machinery: `swapTabPanels`
-for the slide and `initMarginTabNav` for the margin arrows, like People,
-Research, Publications and Information. `.news-panel[hidden]` is needed because
-`[hidden]` loses to their `display` rule — the same trap as everywhere else.
+**The index is one view: a grid of cards, three across.** There were two tabs
+here — All posts over rows, Featured over this same grid — and folding the
+second into the filter row left the first with nothing to switch to, so the tab
+bar, `swapTabPanels`, `initMarginTabNav` and `.news-panel` went with it. What
+that removed is worth stating plainly, because a tab bar is not free: it is a
+control a reader has to read before they know what they are looking at, and
+both of ours showed **the same posts from the same manifest**, differing only
+in which ones the second dropped. That is a filter, and as a filter it composes
+— "featured *Awards* posts" is one gesture the two tabs could not express at
+all.
 
-**All posts is first, and so the default.** The archive is what a reader coming
-to a News section is looking for; Featured is a shortcut into it rather than a
-front door of its own. Two consequences worth keeping: the tab order is a
-presentation decision, so `news.js` fills the two panels through `panelFor(id)`
-rather than by index, and the "no posts" / "could not be loaded" messages go to
-the archive list — the panel a reader is actually looking at. The empty state
-names whichever control emptied it: "No posts match your search." when a term
-is active, "No posts in those categories." otherwise.
+**Featured is now the first chip in the filter row**
+(`.news-filter__btn--featured`), and it is the one chip that does **not** join
+the categories' any-of set: it narrows *with* them. A post has exactly one
+category, so two category chips can only sensibly mean "Research **or**
+Thoughts"; Featured is a different axis, so Featured plus Awards means the
+featured Awards posts. Read the other way it would be useless — a value in the
+any-of set can only ever widen, which is precisely what the tab could not do
+either. It is absent entirely when nothing is flagged.
 
-The head above the tabs is the title and nothing else. It used to carry a post
-count opposite it and a rule underneath; the tab bar draws its own line
-immediately below, so the second rule was two lines saying the same thing.
-Nothing reports the size of a filtered set now — the rows are the feedback, and
-the pager still says which page of how many once there is more than one.
+**It is dressed exactly like a category chip**, star included, and that took two
+attempts. A hairline separator after it drew the row as two groups when it is
+one; a star in the section accent read as *pressed*, because the accent is the
+colour the "on" state uses — an off chip wearing it announces a filter nobody
+applied. The star inherits the chip's own colour now, so it is a glyph and not a
+signal. The difference between this chip and its neighbours is in what pressing
+it **does**, not in how it looks sitting there.
 
-**The two tabs lay their posts out differently, and that is the point.**
-All posts is **rows** (`.news-card`, `buildRow`) — thumbnail at a fixed 15rem on
-the left, everything else on the right — because posts run from a two-line
-link-out to a 1500-word essay, forty of them read down the page, and a grid of
-squares would give them all the same weight and the same crop. Featured is
-**cards three across** (`.news-feature`, `buildFeatureCard`), picture on top,
-because it is six posts a human chose and the picture is the reason to press.
-It also means a reader knows which tab they are on without reading the tab bar.
+**Two routes outlived the tabs.** `news-all` and `news-featured` were the
+addresses the tab bar wrote, so they are indexed and bookmarked; nothing writes
+them now, but `news.js` still lands them. `/news/all/` is the index and
+`/news/featured/` is the index with the Featured chip on — the same set of
+posts the tab showed, so an old link still means what it meant. Three things
+keep that honest, and all three have to stay together:
 
-Everything else about the card is the row's own dressing — same border, radius,
-cream and lift — because these are the same posts in the same section; the
-layout is what differs, not the material. Four things:
+- **`applyTabRoute` sets the chip rather than toggling it**, in both
+  directions, so `/news/all/` can take it back off.
+- **The pages are still generated, with a canonical pointing at `/news/`**
+  (`CANONICAL_ALIASES` in `generate_pages.py`), which also drops them from
+  `sitemap.xml`. Files rather than 404s because they were live addresses; not
+  destinations, because `/news/` is the view now.
+- **`all` and `featured` stay in `RESERVED`** in `shared/routes.js`. They no
+  longer name tabs, but a post folder called `all` would take the path off one
+  of them.
+
+Bare `news` — what closing the reader writes — deliberately says nothing about
+the chips, so a reader who filtered before opening a post gets their filter
+back when they close it.
+
+The head above the index is the title and nothing else; the count that used to
+sit opposite it is gone, and nothing reports the size of a filtered set — the
+cards are the feedback, and the pager says which page of how many once there is
+more than one. The rule under the title came back when the tab bar went: the
+tab bar had been drawing that line itself.
+
+The empty state names whichever control emptied it: "No posts match your
+search." when a term is active, "No posts match those filters." otherwise —
+"filters" and not "categories" because Featured is in the same row of chips to
+the eye, and a reader should not have to know it is a different axis to work
+out what to undo.
+
+**Why cards and not rows.** The row was the right shape for a list you are
+*scanning* — thumbnail at a fixed 15rem, the summary doing the work, forty
+entries down the page. The card is the right shape for one you are *browsing*,
+and someone arriving at a lab's News section is browsing: they do not know what
+is here. Scanning is what the search field and the chips above do, and they do
+it better than forty rows ever did. Five things about the card (`.news-card`,
+`buildCard`):
 
 - **There is no lead card**, and the temptation is real: a big first card
-  spanning both columns is the obvious editorial move. It would be a lie.
-  `featured` is a flag with no ordering, so the first card is only the most
-  recently flagged post, not the most important one. Equal weight, because the
-  data gives them equal weight — the same reason nothing here reports the size
-  of a filtered set.
+  spanning the row is the obvious editorial move. It would be a lie. The order
+  is the date, so the first card is only the most recent post, not the most
+  important one. Equal weight, because the data gives them equal weight — the
+  same reason nothing here reports the size of a filtered set.
 - **`repeat(auto-fit, minmax(min(22rem, 100%), 1fr))`**, not `1fr 1fr 1fr`:
   three columns at the 1200px content cap, two from ~1100px down, one below
   ~730px, no breakpoint to keep in step. 22rem is what puts three inside the
-  cap; the cards come out at ~385px, and the title dropped from 1.34rem to
-  1.2rem so a serif title still fits its three lines at that width. (It was
-  26rem and two columns until the third was asked for.) **The `min()` is
-  load-bearing**: a track minimum is a *minimum*, so a bare floor keeps the
-  single column wider than a 375px phone and pushes `#main-page` into
-  horizontal overflow — 432 against 375, measured at 26rem.
+  cap; the cards come out at ~385px, and the title is 1.2rem so a serif title
+  still fits its three lines at that width. **The `min()` is load-bearing**: a
+  track minimum is a *minimum*, so a bare floor keeps the single column wider
+  than a 375px phone and pushes `#main-page` into horizontal overflow — 432
+  against 375, measured at 26rem.
 - **The media is a fixed 16:9, not the picture's own ratio.** These are heroes
   cropped for a 1400px reader panel and they arrive in every shape; letting each
   set its own height staggers the titles across a row. Title and summary are
   clamped (3 lines each) for the same reason — with the row's cards stretched to
   its tallest, an unclamped essay summary leaves the card beside it floating in
-  a tall cell.
+  a tall cell. **The card is the wider crop of the two, not the tighter one**:
+  the hero is the picture's own ratio under a `max-height: 22rem`, which starts
+  biting above a panel width of ~626px and leaves only the middle ~77% of a 16:9
+  picture at the full 920px. The crop is vertical at every width, never
+  horizontal. A hero built around one centred subject — a portrait, a logo, a
+  still on a plate — has to keep it inside that band, or the card looks right
+  and the article clips it.
 - **The category rides on the picture**, opaque rather than tinted: it sits over
   a photograph that could be any colour, and a translucent chip on the Matrix
   stills was unreadable. A post with no picture has nowhere for it to ride, so
   it joins the meta line instead of being dropped.
+- **`PAGE_SIZE` is 9, a multiple of the column count** rather than a number of
+  entries a reader can take in. It was 4 when these were rows; a page of cards
+  that is not a multiple of three ends the grid ragged.
 
 - **Category chips are multi-select and match on *any*.** A post has exactly
   one category, so "Research or Thoughts" is the only useful reading of two
   chips. There is no "All" chip — none selected already means all, and the way
-  back is Clear, which is only up while something is selected.
+  back is Clear, which is only up while something is on (Featured included).
 - **Above them is the search field, and it is the Publications one.** Same
   shape (chips for committed terms inside the box, whatever is half-typed
   counting as one more, every term having to match), same 120ms debounce, same
@@ -230,7 +272,7 @@ layout is what differs, not the material. Four things:
   back, Escape closes the list. The rules are copied into `css/13-news.css`
   rather than shared, for the reason the reader shell already gives.
   Four things differ, all of them because this is not a bibliography:
-  - **It narrows *with* the category chips, not instead of them.** A category
+  - **It narrows *with* the chips, not instead of them.** A category
     is a shelf and a search is a question, and "Methods, about Bayes" is a
     reasonable thing to ask for.
   - **It searches the manifest**, which is metadata only — title, subtitle,
@@ -252,9 +294,6 @@ layout is what differs, not the material. Four things:
 - The pager is the shared one (see [layout.md](layout.md), "The pager"), which hides itself below two
   pages — so a filter that leaves one post does not leave two dead arrows and
   "Page 1 of 1" behind. `PAGE_SIZE` is in `news.js`.
-- Rows drop to one column at 780px, well before the page's own 900px
-  breakpoint: 15rem of thumbnail plus a readable summary needs the room, and a
-  6rem crop of a photograph is not a photograph.
 
 **"Keep reading" is three posts at the foot of the article** (`.news-related`),
 the Publications reader's "See also" in shape. It replaced a single tile fixed
@@ -290,5 +329,5 @@ the prose it was suggesting an alternative to. Four things about it:
   the post was on once they had finished it. Three across is 12.5rem a tile, which a 16:9
   picture over a three-line title fits; a post with no picture gets a tinted
   block of the same size so the row keeps its shape. Below 620px it becomes a
-  column of strips with the picture on the left, as the archive's rows do at
-  780px.
+  column of strips with the picture on the left — which is what the index's own
+  cards do too, once `auto-fit` has run out of room for a second column.

@@ -1,4 +1,3 @@
-import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
 import { openProfileByFolder } from "../shared/profile-api.js"
 import { createPager } from "../shared/pager.js"
 import { INITIAL_ROUTE, hrefForRoute, landOnLoad, matchRoute, onRoute, revealSection, writeRoute } from "../shared/deep-link.js"
@@ -6,9 +5,17 @@ import { registerRouteTitle } from "../shared/page-meta.js"
 import { element as el } from "../shared/dom.js"
 
 /* news.js
- * The News section: two tabs over an index of posts — Featured, a short
- * curated list, and All posts, the browsable archive with category filters and
- * a pager — plus a reader that slides in over the page for one of them.
+ * The News section: one index of posts — a grid of cards under a search field,
+ * category chips and a pager — plus a reader that slides in over the page for
+ * one of them.
+ *
+ * There were two tabs here, All posts and Featured, and the second is now a
+ * chip in the first's own filter row. A tab is a *view*, and Featured was
+ * never one: it showed the same posts, from the same manifest, differing only
+ * in which of them it dropped. That is what a filter is, and as a filter it
+ * composes — "featured Awards posts" is one gesture where two tabs could not
+ * express it at all. The grid the Featured tab used to draw is now how every
+ * post is drawn, so nothing was lost but the tab bar.
  *
  * Content is the People section's system — one folder per post under news/,
  * assembled by update_news.py into news/news_manifest.json. A post is a single
@@ -33,14 +40,19 @@ import { element as el } from "../shared/dom.js"
     if (!root) return
 
     const MANIFEST_URL = "news/news_manifest.json"
-    const PAGE_SIZE = 4
+    /* Three rows of the three-column grid. It was 4 when the index was rows —
+       a page of cards has to fill its last row or the grid ends ragged, so the
+       size is a multiple of the column count rather than a number of entries a
+       reader can take in. */
+    const PAGE_SIZE = 9
     // Long enough that a fast typist filters once rather than per keystroke,
     // short enough that the list feels live. Same value as the Publications
     // search, which this one is deliberately the twin of.
     const SEARCH_DEBOUNCE_MS = 120
 
     // Every post in the manifest, for the reader's "Keep reading" tiles —
-    // which draw from the whole archive, not just the tab in view.
+    // which draw from the whole archive, not from whatever the filters have
+    // left on screen.
     let allPosts = []
 
 
@@ -298,7 +310,7 @@ import { element as el } from "../shared/dom.js"
         // is reading — except when the close is itself part of applying a
         // route, where the caller is about to say what the URL should be.
         reader.dataset.post = ""
-        if (write !== false) writeRoute("news-" + activeTab)
+        if (write !== false) writeRoute("news")
         reader.classList.remove("is-open")
         backdrop.classList.remove("is-visible")
         // Out of the tab order only once it has finished sliding out; hiding it
@@ -409,23 +421,44 @@ import { element as el } from "../shared/dom.js"
             })
     }
 
-    /* ── The index ── */
-
-    function buildRow(post) {
-        const row = el("button", "news-card")
-        row.type = "button"
-        row.addEventListener("click", () => openPost(post, row))
+    /* ── The index ──
+     * One card per post, three across: the picture on top, then date, title,
+     * summary, byline.
+     *
+     * It was a row until the Featured tab was folded into the filters —
+     * thumbnail at a fixed 15rem on the left, everything else on the right,
+     * with this card shape kept for the tab. The row is the better shape for a
+     * list you are *scanning* and the grid for one you are *browsing*, and a
+     * reader arriving at a lab's News section is browsing: they do not know
+     * what is here. Scanning is what the search field and the chips above are
+     * for, and they answer it better than forty rows ever did.
+     *
+     * ── Why there is no lead card ──
+     * A big first card spanning the row is the obvious editorial move and it
+     * would be a lie: the order is the date, so the first card is only the most
+     * recent post, not the most important one. The same reason nothing on this
+     * site reports the size of a filtered set or dresses an h-index up as an
+     * achievement. Equal weight, because the data gives them equal weight.
+     */
+    function buildCard(post) {
+        const card = el("button", "news-card")
+        card.type = "button"
+        card.addEventListener("click", () => openPost(post, card))
 
         if (post.image) {
-            const figure = el("div", "news-card__thumb")
+            const media = el("div", "news-card__media")
             const img = el("img")
             img.src = post.image
             img.alt = ""
             img.loading = "lazy"
-            figure.appendChild(img)
-            row.appendChild(figure)
+            media.appendChild(img)
+            /* The category rides on the picture rather than sitting under the
+               title, which keeps the body a clean run of date, title, summary,
+               byline whatever the summary's length. */
+            if (post.category) media.appendChild(el("span", "news-card__tag", post.category))
+            card.appendChild(media)
         } else {
-            row.classList.add("news-card--textonly")
+            card.classList.add("news-card--textonly")
         }
 
         const body = el("div", "news-card__body")
@@ -433,79 +466,16 @@ import { element as el } from "../shared/dom.js"
         const meta = el("div", "news-card__meta")
         meta.appendChild(el("time", "news-card__date", formatDate(post.date, true)))
         if (post.minutes) meta.appendChild(el("span", "news-card__read", post.minutes + " min read"))
-        body.appendChild(meta)
-
-        body.appendChild(el("h3", "news-card__title", post.title))
-        if (post.summary) body.appendChild(el("p", "news-card__summary", post.summary))
-
-        const foot = el("div", "news-card__foot")
-        foot.appendChild(buildByline(post, "news-byline news-byline--card"))
-        if (post.category) foot.appendChild(el("span", "news-tag", post.category))
-        body.appendChild(foot)
-
-        row.appendChild(body)
-        return row
-    }
-
-    /* ── Featured ──
-     * The front door: a short curated list, no filter and no pager, because
-     * neither has anything to do on a handful of posts a human chose.
-     * `featured: true` in a post.json is the whole mechanism.
-     *
-     * ── Why these are cards and the archive is rows ──
-     * The archive's row is the right shape for a list you are *scanning*:
-     * thumbnail at a fixed 15rem, the summary doing the work, forty entries
-     * reading down the page. This is a shortlist you are *browsing*, six or so
-     * of them, and the picture is the reason to press. So the picture becomes
-     * the top of the card and the cards run two across — which is also what
-     * separates the two tabs at a glance, rather than making a reader read the
-     * tab bar to know which one they are on.
-     *
-     * ── And why there is no lead card ──
-     * A big first card spanning both columns is the obvious editorial move and
-     * it would be a lie here: `featured` is a flag with no ordering, so the
-     * first card is only the most recently flagged post, not the most
-     * important one. The same reason nothing on this site reports the size of
-     * a filtered set or dresses an h-index up as an achievement. Equal weight,
-     * because the data gives them equal weight.
-     */
-    function buildFeatureCard(post) {
-        const card = el("button", "news-feature")
-        card.type = "button"
-        card.addEventListener("click", () => openPost(post, card))
-
-        if (post.image) {
-            const media = el("div", "news-feature__media")
-            const img = el("img")
-            img.src = post.image
-            img.alt = ""
-            img.loading = "lazy"
-            media.appendChild(img)
-            /* The category rides on the picture rather than sitting under the
-               title, which is what marks these as picked rather than listed —
-               and it keeps the body a clean run of date, title, summary,
-               byline whatever the summary's length. */
-            if (post.category) media.appendChild(el("span", "news-feature__tag", post.category))
-            card.appendChild(media)
-        } else {
-            card.classList.add("news-feature--textonly")
-        }
-
-        const body = el("div", "news-feature__body")
-
-        const meta = el("div", "news-feature__meta")
-        meta.appendChild(el("time", "news-feature__date", formatDate(post.date, true)))
-        if (post.minutes) meta.appendChild(el("span", "news-feature__read", post.minutes + " min read"))
         // With no picture there is nowhere for the badge to ride, so it joins
         // the meta line rather than being dropped.
         if (post.category && !post.image) meta.appendChild(el("span", "news-tag", post.category))
         body.appendChild(meta)
 
-        body.appendChild(el("h3", "news-feature__title", post.title))
-        if (post.summary) body.appendChild(el("p", "news-feature__summary", post.summary))
+        body.appendChild(el("h3", "news-card__title", post.title))
+        if (post.summary) body.appendChild(el("p", "news-card__summary", post.summary))
 
         /* The byline goes last and is pushed to the foot by the body's own
-           1fr row, so it lines up across a pair whether or not the two
+           1fr row, so it lines up across a row of cards whether or not their
            summaries wrap to the same number of lines. */
         body.appendChild(buildByline(post, "news-byline news-byline--card"))
 
@@ -513,17 +483,7 @@ import { element as el } from "../shared/dom.js"
         return card
     }
 
-    function buildFeatured(posts) {
-        const featured = posts.filter((post) => post.featured)
-        featuredList.replaceChildren()
-        if (!featured.length) {
-            featuredList.appendChild(el("p", "news-empty", "Nothing featured yet."))
-            return
-        }
-        featured.forEach((post) => featuredList.appendChild(buildFeatureCard(post)))
-    }
-
-    /* ── All posts: categories and pages ── */
+    /* ── The filters and the pages ── */
     function buildArchive(posts, categories) {
         /* One category per post, out of a short closed list — the old site's
          * free tags put "Reality Bending Lab" and "Psychology" on everything,
@@ -532,6 +492,16 @@ import { element as el } from "../shared/dom.js"
          * "All" chip, because none selected already means all. The way back is
          * Clear, which is only up while something is on. */
         const selected = new Set()
+        /* ── Featured ──
+         * `featured: true` in a post.json, which used to be a tab of its own
+         * and is now a chip at the head of the same row. It is a *different
+         * axis* from the categories, so it narrows **with** them rather than
+         * joining their any-of set: "Featured" and "Awards" together means the
+         * featured Awards posts, not everything that is either. That is the
+         * only reading that makes it worth having beside them — as one more
+         * value in the any-of set it could never narrow anything, which is
+         * exactly what the tab could not do either. */
+        let featuredOnly = false
         let page = 0
 
         /* ── Search ──
@@ -580,8 +550,9 @@ import { element as el } from "../shared/dom.js"
 
         function matching() {
             const wanted = activeWords()
-            if (!selected.size && !wanted.length) return posts
+            if (!selected.size && !featuredOnly && !wanted.length) return posts
             return posts.filter((post) => {
+                if (featuredOnly && !post.featured) return false
                 if (selected.size && !selected.has(post.category)) return false
                 const haystack = haystacks.get(post) || ""
                 return wanted.every((word) => haystack.includes(word))
@@ -595,11 +566,14 @@ import { element as el } from "../shared/dom.js"
 
             archiveList.replaceChildren()
             if (!shown.length) {
+                // Naming whichever control emptied the list, so a reader knows
+                // which one to undo. Featured and the categories are the same
+                // row of chips to the eye, so they give the same message.
                 archiveList.appendChild(
-                    el("p", "news-empty", activeWords().length ? "No posts match your search." : "No posts in those categories.")
+                    el("p", "news-empty", activeWords().length ? "No posts match your search." : "No posts match those filters.")
                 )
             } else {
-                shown.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE).forEach((post) => archiveList.appendChild(buildRow(post)))
+                shown.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE).forEach((post) => archiveList.appendChild(buildCard(post)))
             }
 
             pager.render(page, pages)
@@ -748,51 +722,107 @@ import { element as el } from "../shared/dom.js"
             }
         })
 
-        if (categories.length) {
-            const filter = el("div", "news-filter")
-            filter.setAttribute("role", "group")
-            filter.setAttribute("aria-label", "Filter posts by category")
+        const featuredCount = posts.filter((post) => post.featured).length
 
-            categories.forEach((entry) => {
-                const name = typeof entry === "string" ? entry : entry.name
-                if (!name) return
-                const button = el("button", "news-filter__btn")
-                button.type = "button"
-                button.dataset.category = name
-                button.setAttribute("aria-pressed", "false")
-                button.appendChild(el("span", null, name))
-                if (entry.count) button.appendChild(el("span", "news-filter__count", String(entry.count)))
+        /* One row of chips: Featured first, then the categories, then Clear.
+           `role="group"` and not a name mentioning categories any more — the
+           row now filters on two different axes. */
+        const filter = el("div", "news-filter")
+        filter.setAttribute("role", "group")
+        filter.setAttribute("aria-label", "Filter posts")
 
-                button.addEventListener("click", () => {
-                    if (selected.has(name)) selected.delete(name)
-                    else selected.add(name)
-                    button.classList.toggle("news-filter__btn--on", selected.has(name))
-                    button.setAttribute("aria-pressed", selected.has(name) ? "true" : "false")
-                    clear.hidden = selected.size === 0
-                    page = 0
-                    render()
-                })
-                filter.appendChild(button)
-            })
-
-            const clear = el("button", "news-filter__clear", "Clear")
-            clear.type = "button"
-            clear.hidden = true
-            clear.addEventListener("click", () => {
-                selected.clear()
-                filter.querySelectorAll(".news-filter__btn--on").forEach((button) => {
-                    button.classList.remove("news-filter__btn--on")
-                    button.setAttribute("aria-pressed", "false")
-                })
-                clear.hidden = true
+        /* Built here rather than in the loop below, and given a modifier of its
+           own — but the modifier is a hook for the route to find it by, not a
+           different look. It is dressed exactly like a category chip, star
+           included: the star inherits the chip's colour rather than taking the
+           section accent, because the accent is what the *pressed* state uses
+           and an off chip wearing it announces a filter nobody applied. */
+        let featuredBtn = null
+        if (featuredCount) {
+            featuredBtn = el("button", "news-filter__btn news-filter__btn--featured")
+            featuredBtn.type = "button"
+            featuredBtn.setAttribute("aria-pressed", "false")
+            featuredBtn.appendChild(el("span", "news-filter__star", "★"))
+            featuredBtn.appendChild(el("span", null, "Featured"))
+            featuredBtn.appendChild(el("span", "news-filter__count", String(featuredCount)))
+            featuredBtn.addEventListener("click", () => {
+                setFeatured(!featuredOnly)
                 page = 0
                 render()
             })
-            filter.appendChild(clear)
-            filters.appendChild(filter)
+            filter.appendChild(featuredBtn)
         }
 
-        return { render }
+        categories.forEach((entry) => {
+            const name = typeof entry === "string" ? entry : entry.name
+            if (!name) return
+            const button = el("button", "news-filter__btn")
+            button.type = "button"
+            button.dataset.category = name
+            button.setAttribute("aria-pressed", "false")
+            button.appendChild(el("span", null, name))
+            if (entry.count) button.appendChild(el("span", "news-filter__count", String(entry.count)))
+
+            button.addEventListener("click", () => {
+                if (selected.has(name)) selected.delete(name)
+                else selected.add(name)
+                button.classList.toggle("news-filter__btn--on", selected.has(name))
+                button.setAttribute("aria-pressed", selected.has(name) ? "true" : "false")
+                syncClear()
+                page = 0
+                render()
+            })
+            filter.appendChild(button)
+        })
+
+        const clear = el("button", "news-filter__clear", "Clear")
+        clear.type = "button"
+        clear.hidden = true
+        clear.addEventListener("click", () => {
+            selected.clear()
+            setFeatured(false)
+            filter.querySelectorAll(".news-filter__btn--on").forEach((button) => {
+                button.classList.remove("news-filter__btn--on")
+                button.setAttribute("aria-pressed", "false")
+            })
+            page = 0
+            render()
+        })
+        filter.appendChild(clear)
+
+        // There is no "All" chip — none pressed already means all, and the way
+        // back is Clear, which is only up while something is on.
+        function syncClear() {
+            clear.hidden = !selected.size && !featuredOnly
+        }
+
+        /* Set rather than toggled, because the route applies it too: landing on
+           the old `/news/featured/` turns the chip on instead of 404ing, and
+           that path must leave the button saying the same thing a press would
+           have. */
+        function setFeatured(on) {
+            featuredOnly = Boolean(on) && Boolean(featuredCount)
+            if (featuredBtn) {
+                featuredBtn.classList.toggle("news-filter__btn--on", featuredOnly)
+                featuredBtn.setAttribute("aria-pressed", featuredOnly ? "true" : "false")
+            }
+            syncClear()
+        }
+
+        if (featuredBtn || filter.querySelector(".news-filter__btn")) filters.appendChild(filter)
+
+        return {
+            render,
+            /* What the two surviving tab routes land on. Set, not toggled, and
+               in both directions: `/news/all/` means the unfiltered index, so
+               it has to be able to take the chip *off* as well. */
+            applyTabRoute(featured) {
+                if (featuredOnly === Boolean(featured)) return
+                setFeatured(featured)
+                page = 0
+                render()
+            },
+        }
     }
 
     function buildIndex(manifest) {
@@ -802,22 +832,15 @@ import { element as el } from "../shared/dom.js"
             return
         }
 
-        buildFeatured(allPosts)
-        buildArchive(allPosts, Array.isArray(manifest.categories) ? manifest.categories : []).render()
-
-        /* Two tabs over the same shell, the same machinery every other tab
-           group on this page uses — swapTabPanels for the slide, and the empty
-           side margins as prev/next zones. */
-        tabs.forEach((tab) => {
-            tab.button.addEventListener("click", () => activateTab(tab.id))
-        })
+        const archive = buildArchive(allPosts, Array.isArray(manifest.categories) ? manifest.categories : [])
+        archive.render()
 
         /* ── The URL ──
-           `#post-<slug>` opens a post in the reader, `#news-<tab>` picks a tab.
-           Here rather than at startup: the manifest is what turns a slug into a
-           post, and this runs inside its `.then`. Idempotent — the reader can
-           paste the same link twice, and a route naming the post already open
-           must not re-fetch and re-enter it. */
+           `#post-<slug>` opens a post in the reader; the section itself is
+           `news`. Here rather than at startup: the manifest is what turns a
+           slug into a post, and this runs inside its `.then`. Idempotent — the
+           reader can paste the same link twice, and a route naming the post
+           already open must not re-fetch and re-enter it. */
         function applyRoute(route) {
             const slug = matchRoute(route, "post")
             if (slug) {
@@ -834,10 +857,26 @@ import { element as el } from "../shared/dom.js"
                open, which is the usual case. */
             closeReader(false)
 
+            /* ── The two tab routes that outlived the tabs ──
+               `news-all` and `news-featured` were written by the tab bar and
+               are indexed, linked and bookmarked; nothing writes them now, but
+               they still have to *land*. `/news/all/` is the index, and
+               `/news/featured/` is the index with the Featured chip on — which
+               is the same set of posts the tab used to show, so an old link
+               still means what it meant. Both pages canonicalise to `/news/`
+               (generate_pages.py, CANONICAL_ALIASES).
+
+               Read only, in both directions: they stay in RESERVED in
+               shared/routes.js so that no post folder called `all` or
+               `featured` could ever take the path off them. */
             const tab = matchRoute(route, "news")
-            if (tab === null || !tabs.some((entry) => entry.id === tab)) return false
+            if (tab === null) return false
+            if (tab !== "" && tab !== "all" && tab !== "featured") return false
             revealSection("sec-news-full")
-            activateTab(tab, false)
+            // Bare `news` is the section itself and says nothing about the
+            // chips — it is what closing the reader writes, and a reader who
+            // had filtered before opening a post gets their filter back.
+            if (tab) archive.applyTabRoute(tab === "featured")
             return true
         }
 
@@ -858,14 +897,6 @@ import { element as el } from "../shared/dom.js"
            four of them scrolling to themselves at `load` and the last one
            winning — which is how a member link ended up 3,090px into News. */
         if (applyRoute(INITIAL_ROUTE)) landOnLoad("sec-news-full")
-
-        /* The section, not the shell. The zones are as wide as the strip
-           between their host and the centred content column
-           (`(100% - --content-inline-size) / 2`), and the shell *is* that
-           column — so hosted there they came out 32px wide against the other
-           sections' 113px, which is a target nobody could find and the reason
-           this section looked like it had no arrows at all. */
-        initMarginTabNav(document.getElementById("sec-news-full"), ".news-tab-btn")
     }
 
     /* ── Assembly ── */
@@ -876,77 +907,16 @@ import { element as el } from "../shared/dom.js"
     head.appendChild(el("h2", "news-full__title", "News"))
     shell.appendChild(head)
 
-    const nav = el("div", "news-tabs-nav")
-    nav.setAttribute("role", "tablist")
-    nav.setAttribute("aria-label", "News views")
-    shell.appendChild(nav)
-
-    const panelHost = el("div", "news-panels")
-    shell.appendChild(panelHost)
-
-    /* All posts first, and so the default: the archive is what a reader coming
-       to a News section is looking for, and Featured is a shortcut into it
-       rather than a front door of its own. */
-    const tabs = [
-        { id: "all", label: "All posts" },
-        { id: "featured", label: "Featured" },
-    ].map((tab, index) => {
-        const button = el("button", "news-tab-btn" + (index === 0 ? " news-tab-btn--active" : ""), tab.label)
-        button.type = "button"
-        button.setAttribute("role", "tab")
-        button.setAttribute("aria-selected", index === 0 ? "true" : "false")
-        button.setAttribute("aria-controls", "news-panel-" + tab.id)
-        nav.appendChild(button)
-
-        const panel = el("div", "news-panel")
-        panel.id = "news-panel-" + tab.id
-        panel.setAttribute("role", "tabpanel")
-        panel.hidden = index !== 0
-        panelHost.appendChild(panel)
-
-        return { ...tab, button, panel }
-    })
-
-    // By id rather than by index: the two panels are filled with different
-    // things and the tab order is a presentation decision, so reordering the
-    // list above must not silently swap what goes in them.
-    const panelFor = (id) => tabs.find((tab) => tab.id === id).panel
-
-    /* Which tab the URL goes back to when the reader is closed — a post is read
-       over whichever index the visitor was on. */
-    let activeTab = tabs[0].id
-
-    /* `write` is false when the switch came out of the URL in the first place;
-       writing then would be this section claiming a hash it was only reading. */
-    function activateTab(id, write) {
-        activeTab = id
-        tabs.forEach((other) => {
-            const isActive = other.id === id
-            other.button.classList.toggle("news-tab-btn--active", isActive)
-            other.button.setAttribute("aria-selected", isActive ? "true" : "false")
-        })
-        swapTabPanels(
-            tabs.map((other) => other.panel),
-            "news-panel-" + id
-        )
-        if (write !== false) writeRoute("news-" + id)
-    }
-
-    // Its own class, not `news-list`: the two tabs lay their posts out
-    // differently on purpose — see buildFeatureCard.
-    const featuredList = el("div", "news-features")
-    panelFor("featured").appendChild(featuredList)
-
-    /* Two rows, not one box: the search field spans the column and the
-       category chips wrap under it. buildArchive fills both. */
+    /* Two rows, not one box: the search field spans the column and the chips
+       wrap under it. buildArchive fills both. */
     const searchBar = el("div", "news-search")
     const filters = el("div", "news-filters")
     const archiveList = el("div", "news-list")
     // Assigned by buildArchive, which is where the page number lives. The pager
-    // is built out here because the panel it sits in is assembled here.
+    // is built out here because the shell it sits in is assembled here.
     let pageTo = () => {}
     const pager = createPager({ onChange: (page) => pageTo(page), ariaLabel: "News pages" })
-    panelFor("all").append(searchBar, filters, archiveList, pager.el)
+    shell.append(searchBar, filters, archiveList, pager.el)
 
     root.replaceChildren(shell)
 
@@ -958,8 +928,8 @@ import { element as el } from "../shared/dom.js"
         .then(buildIndex)
         .catch((error) => {
             console.error("news: could not load " + MANIFEST_URL, error)
-            // The panel the reader is looking at, which is the archive now that
-            // All posts is the default tab.
+            // Where the posts would have been, which is what the reader is
+            // looking at.
             archiveList.appendChild(el("p", "news-empty", "News could not be loaded."))
         })
 })()

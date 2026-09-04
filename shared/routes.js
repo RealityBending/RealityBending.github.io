@@ -43,7 +43,14 @@ const SECTION_PATHS = new Map([
     ["contact", "information"],
 ])
 
-/* The tabs of each section, by path segment. These are the reserved names. */
+/* The tabs of each section, by path segment. These are the reserved names.
+
+   News is the one entry that no longer names live tabs: the section has a
+   single view now, `all` and `featured` are read-only routes kept alive for the
+   links the old tab bar left behind, and `news.js` lands them on the index (the
+   second with the Featured chip on). They stay reserved for exactly the reason
+   the list exists — a post folder called `all` would otherwise take the path
+   off one of them. */
 const RESERVED = new Map([
     ["people", ["lab", "collaborations", "memories"]],
     ["research", ["overview", "creations"]],

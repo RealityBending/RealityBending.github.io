@@ -193,7 +193,8 @@ that is the only place it lives.
 <details>
 <summary>Two folder names that are not allowed</summary>
 
-`all` and `featured`, because those are the two tabs of the News section.
+`all` and `featured`. They used to be the two tabs of the News section, and
+they are still the addresses of two old links that have to keep working.
 </details>
 
 ### 2. Write `post.json`
@@ -225,7 +226,7 @@ that is the only place it lives.
 | `category` | One of `Research`, `Thoughts`, `Methods`, `Lab`, `Awards`, `Media`. This is the chip readers filter by.                                                                                                                            |
 | `summary`  | Shown on the index. If you leave it out, the first paragraph is used.                                                                                                                                                              |
 | `subtitle` | Optional, shown under the title.                                                                                                                                                                                                   |
-| `featured` | `true` puts the post on the Featured tab.                                                                                                                                                                                          |
+| `featured` | `true` puts the post behind the **Featured** chip, beside the category chips.                                                                                                                                                                                          |
 | `draft`    | `true` keeps the post out of the site entirely. **Use this while you are writing.**                                                                                                                                                |
 
 ### 3. About `content`
