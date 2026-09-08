@@ -81,6 +81,18 @@ would otherwise have to remember on every post:
 - every off-site `<a>` gets `target="_blank"`, `rel="noreferrer noopener"` and
   the `.news-link` class.
 
+**A floated picture goes inside a `<p>`, and only that paragraph wraps around
+it.** `.news-prose` is `display: grid`, so every top-level block is a grid item
+and `float` on one has no effect at all — a `<figure style="float: right">` just
+becomes a narrow item taking a whole row, which is not a bug anyone reads as one.
+Put the `<img>` at the start of a paragraph instead (`2026-cognitive-elegance`
+and `2026-rolling-the-bones` both do), and **pick a paragraph at least as tall as
+the picture**: a float cannot escape its own grid item, so the paragraph after it
+starts below the picture rather than continuing around it, and a short paragraph
+leaves a gap the width of the column. A picture that wants a caption is a
+full-width `<figure>` in the column — the caption is why the float was never
+going to work there.
+
 ### Porting a post from the old Hugo site
 
 Fifteen came across from `content/post/` in one pass, and five things about it

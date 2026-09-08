@@ -6,7 +6,7 @@
     },
     {
       "name": "Thoughts",
-      "count": 8
+      "count": 9
     },
     {
       "name": "Methods",
@@ -26,6 +26,27 @@
     }
   ],
   "posts": [
+    {
+      "slug": "2026-rolling-the-bones",
+      "title": "Rolling the Bones: Divination as a Randomness-Harnessing Process",
+      "subtitle": "",
+      "date": "2026-09-08",
+      "summary": "What if divination wasn't about finding order, but about embracing chaos? And how was that useful for our ancestors' survival.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Thoughts",
+      "featured": false,
+      "image": "news/2026-rolling-the-bones/featured.jpg",
+      "file": "news/2026-rolling-the-bones/post.json",
+      "base": "news/2026-rolling-the-bones/",
+      "words": 1950,
+      "minutes": 9
+    },
     {
       "slug": "2026-skeptic-agnostic-believer",
       "title": "The ABS Bayesian Priors Framework (Agnostic, Believer, Skeptic)",
