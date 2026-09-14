@@ -282,13 +282,62 @@ entries, which is not a vocabulary. See the keyword note below.
   which is the assumption `normalizeRichHtml` is written on. The tag pattern
   requires a letter after the `<`, so an abstract containing "p < .05 and
   n > 30" keeps it.
+- **The one exception, and it is not HTML: `abstract` and `summary` are read
+  in the Information section's inline dialect** — `[label](href)`,
+  `**strong**`, `*emphasis*` — by `appendRichText` in the panel and by
+  `inline_markup` in `generate_pages.py`. That is `shared/rich-text.js`, which
+  builds DOM nodes and only ever emits `<a>`, `<em>` and `<strong>`, so the
+  paragraph above still holds: a `<` arriving from CrossRef cannot open an
+  element. Four things follow.
+  - **It exists because a deposit's own formatting arrives as punctuation.**
+    `cogmod`'s abstract was deposited with the package name in Markdown code
+    ticks, which rendered as literal backticks in a paragraph of serif prose —
+    the one thing on the page that looked like a typo rather than a style. It
+    is `**cogmod**` in its `info.json` now. `_clean_abstract` cannot fix this
+    upstream: the ticks are in the deposited text, not in the JATS. The same
+    habit reaches a *hand-written* field — `2021_Performance`'s summary had
+    `check_model()` in ticks — so this is a thing to look for in a summary
+    written about a piece of software, not only in a deposit.
+  - **The two renderers must agree, and nothing checks that they do.**
+    `INLINE_PATTERN` is duplicated between `shared/rich-text.js` and
+    `generate_pages.py` for the reason `apa_reference` is duplicated, and with
+    the same consequence: if they drift, the panel and the page say different
+    things about the same paragraph. Copy the regex, do not re-derive it.
+  - **A machine-read copy is flattened, not rendered.** `strip_markup` keeps
+    the label and drops the punctuation for the JSON-LD `abstract` and for the
+    `<meta name="description">` — otherwise a search result prints the
+    asterisks. The cost of the whole arrangement is that a literal asterisk in
+    a deposited abstract would now read as emphasis. None of the 63 has one;
+    the `$\mu$` and `{brms}` that *do* turn up in a deposit are outside this
+    grammar and pass through untouched.
+  - **A card's search index is read back off the parser, not stripped by a
+    second regex.** `plain()` in `publications.js` builds the nodes and takes
+    the `textContent`, so `card.dataset.search` holds exactly the string the
+    reader sees — no asterisk they never saw, and no href behind a link's
+    label. A search for `check_model` matches `performance` because of it.
+
+  **`summary` carries the dialect in four places and `abstract` in two**, which
+  is the thing to know before adding markup to one. A summary is shown on the
+  card, in the panel's "In brief", as the generated page's lede and as its
+  `<meta name="description">` — and the lede is `<strong>` in full, so a
+  `**…**` inside it renders there and changes nothing. That is not a bug to
+  fix: the alternative is printing the asterisks on the one page a crawler
+  indexes.
+- **A URL the deposit dropped is ours to put back.** cogmod's abstract ends
+  "openly available at ." in CrossRef itself — the preprint was deposited that
+  way, so there is nothing to re-fetch and nothing that will ever repair it.
+  The link was written into `info.json` by hand, pointing where
+  `research/creations-content.js` already points for that package. Check the
+  tail of a software paper's abstract for this: it is the sentence most likely
+  to have lost its link, and `merged.update(existing)` means a hand-written
+  abstract survives every future run.
 - **`summary` is written for all 63, and it is the highest-value text an entry
   carries.** Two or three plain sentences on what the paper found are the one
   thing about it that is not already on the publisher's site, on PubMed and on
   ResearchGate — an abstract makes a page longer, this is what makes it worth
-  indexing. It is shown three times over: clamped to three lines on the card,
-  in full above the abstract in the panel, and as the generated page's
-  `<meta name="description">`.
+  indexing. It is shown four times over: clamped to three lines on the card,
+  in full above the abstract in the panel, as the generated page's bold lede
+  and as its `<meta name="description">`.
 
   **Where there was no abstract to work from, the summary says what the paper
   *does*, not what it found.** 36 of the 63 have no abstract — every JOSS

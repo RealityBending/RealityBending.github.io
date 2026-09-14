@@ -5,10 +5,35 @@ import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
 import { createPager } from "../shared/pager.js"
 import { INITIAL_ROUTE, hrefForRoute, landOnLoad, matchRoute, onRoute, revealSection, writeRoute } from "../shared/deep-link.js"
 import { element as el } from "../shared/dom.js"
+import { createRichText } from "../shared/rich-text.js"
 import { openImageLightbox } from "../shared/media-lightbox.js"
 import { registerRouteTitle } from "../shared/page-meta.js"
 ;(function () {
     const PAGE_SIZE = 5
+
+    /* ── The two strings here that carry markup ──
+     * `abstract` and `summary`, in the Information section's inline dialect
+     * rather than HTML: `**cogmod**` for a package name the deposit set in
+     * Markdown code ticks (they render as literal backticks otherwise),
+     * `[label](href)` for a link. It is `appendRichText` that reads it, and
+     * that only ever emits <a>, <em> and <strong>, built as DOM nodes — so a
+     * "<" arriving from CrossRef still cannot open an element. See
+     * shared/rich-text.js.
+     *
+     * The cost is that a literal asterisk in an upstream abstract now reads as
+     * emphasis. None of the 63 has one, and the $\mu$ and {brms} that do turn
+     * up in a deposited abstract are untouched by this grammar.
+     */
+    const { appendRichText } = createRichText({ linkClass: "pub-article__link" })
+
+    /* The same string the card and the panel show, with the grammar's own
+       punctuation gone — the search index must not match an asterisk the
+       reader never sees, nor the href behind a link's label. It reads the text
+       back off the parser rather than stripping it with a second regex, so
+       there is no second copy of the dialect to keep in step with this one. */
+    function plain(text) {
+        return appendRichText(document.createElement("span"), text || "").textContent
+    }
 
     /* ── The Scholar figures ──
      * Hand-kept, because there is no API for them and scraping a Scholar
@@ -627,7 +652,7 @@ import { registerRouteTitle } from "../shared/page-meta.js"
                 // The lab's own two or three sentences on what the paper found
                 // — the one thing about it that is not already on the
                 // publisher's site. See docs/publications.md.
-                if (pub.summary) briefRow.appendChild(el("p", "pub-article__summary", pub.summary))
+                if (pub.summary) briefRow.appendChild(appendRichText(el("p", "pub-article__summary"), pub.summary))
 
                 if (pub.featured) {
                     briefRow.classList.add("pub-article__brief-row--split")
@@ -771,10 +796,9 @@ import { registerRouteTitle } from "../shared/page-meta.js"
                     if (!abstract) return
                     slot.replaceChildren()
                     slot.appendChild(el("h4", "pub-article__h", "Abstract"))
-                    // Text, never markup: this is the only string on the site
-                    // fetched from a third party (CrossRef), and `element` sets
-                    // textContent. See docs/publications.md.
-                    slot.appendChild(el("p", null, abstract))
+                    // The inline dialect, not HTML — see appendRichText at the
+                    // top of this module and docs/publications.md.
+                    slot.appendChild(appendRichText(el("p"), abstract))
                 })
             }
 
@@ -791,7 +815,7 @@ import { registerRouteTitle } from "../shared/page-meta.js"
                     pub.title || "",
                     pub.authors || "",
                     pub.journal || "",
-                    pub.summary || "",
+                    plain(pub.summary),
                     (pub.keywords || []).join(" "),
                     pub.is_preprint ? "preprint" : "",
                     String(pub.year || ""),
@@ -897,7 +921,7 @@ import { registerRouteTitle } from "../shared/page-meta.js"
                    that is not bibliographic, which is why it sits between the
                    journal line and the keywords rather than under them. */
                 if (pub.summary) {
-                    body.appendChild(el("p", "pub-card__summary", pub.summary))
+                    body.appendChild(appendRichText(el("p", "pub-card__summary"), pub.summary))
                 }
 
                 /* keywords â€” clickable, add to filter */

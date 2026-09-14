@@ -183,6 +183,55 @@ def strip_tags(value) -> str:
     return re.sub(r"\s+", " ", html.unescape(text)).strip()
 
 
+# The inline markup dialect of shared/rich-text.js, which the panel reads the
+# abstract with — `[label](href)`, `***both***`, `**strong**`, `*emphasis*`.
+# Kept byte-for-byte identical to INLINE_PATTERN there: the two render the same
+# string, and a page that disagreed with the panel about what a paragraph says
+# is exactly the kind of drift nothing here would report.
+INLINE_PATTERN = re.compile(
+    r"\[([^\]]+)\]\(([^)\s]+)\)|\*\*\*([^*]+)\*\*\*|\*\*([^*]+)\*\*|\*([^*]+)\*"
+)
+
+
+def inline_markup(value) -> str:
+    """The dialect as HTML, escaping everything that is not part of it.
+
+    `esc` first and match after, so the text is escaped exactly once and the
+    grammar's own characters — none of which `html.escape` touches — still line
+    up. A link's href is escaped by the same pass, which is what makes it safe
+    in an attribute.
+    """
+
+    def render(match: "re.Match[str]") -> str:
+        if match.group(1):
+            # Off-site by construction (an in-page anchor has no business in an
+            # abstract), so it opens in a new tab the way the panel's does.
+            return (
+                f'<a href="{match.group(2)}" target="_blank"'
+                f' rel="noreferrer noopener">{match.group(1)}</a>'
+            )
+        if match.group(3):
+            return f"<strong><em>{match.group(3)}</em></strong>"
+        if match.group(4):
+            return f"<strong>{match.group(4)}</strong>"
+        return f"<em>{match.group(5)}</em>"
+
+    return INLINE_PATTERN.sub(render, esc(value))
+
+
+def strip_markup(value) -> str:
+    """The dialect flattened to its own text, for a description or JSON-LD.
+
+    A meta description and a schema.org `abstract` are read by machines that
+    would print the asterisks. This is the same pattern keeping the label and
+    dropping the punctuation around it.
+    """
+    return INLINE_PATTERN.sub(
+        lambda m: m.group(1) or m.group(3) or m.group(4) or m.group(5),
+        "" if value is None else str(value),
+    )
+
+
 def clip(text: str, limit: int = 300) -> str:
     """A description long enough to be useful and short enough not to be cut.
 
@@ -867,9 +916,16 @@ def build_publications(shell, publications):
 
         bits = []
         if summary:
-            bits.append(f"<p><strong>{esc(summary)}</strong></p>")
+            # The lede is bold in full, so a `**…**` inside it is a no-op here
+            # and visible only on the card and in the panel. It is still read
+            # rather than escaped, because the alternative is printing the
+            # asterisks on the one page a crawler indexes.
+            bits.append(f"<p><strong>{inline_markup(summary)}</strong></p>")
         if abstract:
-            bits.append(f"<h2>Abstract</h2><p>{esc(abstract)}</p>")
+            # The one field on one of these pages that carries markup — the
+            # inline dialect the panel reads it with, not HTML. See
+            # inline_markup and docs/publications.md.
+            bits.append(f"<h2>Abstract</h2><p>{inline_markup(abstract)}</p>")
         if p.get("featured"):
             bits.append(f'<img src="{p["featured"]}" alt="" />')
         refs = []
@@ -955,7 +1011,9 @@ def build_publications(shell, publications):
             jsonld["identifier"] = f"https://doi.org/{doi}"
             jsonld["sameAs"] = f"https://doi.org/{doi}"
         if abstract:
-            jsonld["abstract"] = abstract
+            # Flattened: schema.org wants the prose, and a consumer of it would
+            # print the asterisks.
+            jsonld["abstract"] = strip_markup(abstract)
         if p.get("keywords"):
             jsonld["keywords"] = p["keywords"]
 
@@ -966,8 +1024,8 @@ def build_publications(shell, publications):
                 route=f"pub-{folder}",
                 path=f"/publications/{folder}/",
                 title=p["title"],
-                description=summary
-                or abstract
+                description=strip_markup(summary)
+                or strip_markup(abstract)
                 or f'{p.get("authors","")} ({p.get("year","")}). {p.get("journal","")}',
                 image=p.get("featured"),
                 prerender=prerender(body),

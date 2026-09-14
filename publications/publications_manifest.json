@@ -696,7 +696,7 @@
       "citations": 5285,
       "featured": "publications/2021_Performance/featured.jpg",
       "folder": "2021_Performance",
-      "summary": "performance is the easystats package for asking whether a model is any good: R², ICC, overdispersion, collinearity, outliers and residual normality, plus model comparison. `check_model()` runs the diagnostics that apply and draws them, rather than leaving the analyst to remember which ones those are."
+      "summary": "performance is the easystats package for asking whether a model is any good: R², ICC, overdispersion, collinearity, outliers and residual normality, plus model comparison. **check_model()** runs the diagnostics that apply and draws them, rather than leaving the analyst to remember which ones those are."
     },
     {
       "doi": "10.21105/joss.03393",
