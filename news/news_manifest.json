@@ -22,7 +22,7 @@
     },
     {
       "name": "Media",
-      "count": 2
+      "count": 3
     }
   ],
   "posts": [
@@ -429,6 +429,27 @@
       "base": "news/2024-research-culture-award/",
       "words": 99,
       "minutes": 1
+    },
+    {
+      "slug": "2024-open-science-sustainability-debate",
+      "title": "Open science vs. sustainability: a debate at the BNA Members' Meeting",
+      "subtitle": "Dominique Makowski was invited as the open science champion to the BNA's green neuroscience debate.",
+      "date": "2024-04-24",
+      "summary": "A BNA Members' Meeting debate pitted sustainable neuroscience against open neuroscience. My position: raw data is what we should not trade away.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Media",
+      "featured": false,
+      "image": "news/2024-open-science-sustainability-debate/featured.jpg",
+      "file": "news/2024-open-science-sustainability-debate/post.json",
+      "base": "news/2024-open-science-sustainability-debate/",
+      "words": 450,
+      "minutes": 2
     },
     {
       "slug": "2024-mres-tips",
