@@ -6,7 +6,7 @@
     },
     {
       "name": "Thoughts",
-      "count": 9
+      "count": 10
     },
     {
       "name": "Methods",
@@ -26,6 +26,27 @@
     }
   ],
   "posts": [
+    {
+      "slug": "2026-university-after-ai",
+      "title": "The End of the Glorified Adulescent Childcare? On the Future of Universities after the AI Apocalypse",
+      "subtitle": "By making teaching abundant and assessment obsolete, AI may force universities to rediscover what only people can provide.",
+      "date": "2026-09-15",
+      "summary": "AI threatens two of the university's traditional functions at once: teaching and certification. The future university may look like its recent past, smaller-scale, elitist, and focused on Human interactions. For better or for worse.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Thoughts",
+      "featured": false,
+      "image": "news/2026-university-after-ai/featured.gif",
+      "file": "news/2026-university-after-ai/post.json",
+      "base": "news/2026-university-after-ai/",
+      "words": 819,
+      "minutes": 4
+    },
     {
       "slug": "2026-rolling-the-bones",
       "title": "Rolling the Bones: Divination as a Randomness-Harnessing Process",
