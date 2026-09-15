@@ -180,13 +180,17 @@ export const JOIN_CONTENT = Object.freeze({
                         },
                         {
                             name: "SEDarc (ESRC) scholarships",
+                            featured: "Open now for 2027 entry",
                             tags: ["Open to all"],
-                            meta: "Deadline usually December",
-                            blurb: "Three and a half years, fully funded, for projects that sit inside one of the SEDarc themes — data science among them. Selection on CV and proposal.",
-                            highlights: ["3.5 years", "Must fit a theme"],
+                            meta: "2027 entry · apply to Sussex by 1 December 2026",
+                            blurb: `The ESRC's doctoral training partnership for the South East, and the closest fit for most of what this lab does — Psychology is one of its eligible subject areas. Home-rate fees and a UKRI stipend over 3.5 years, or 1+3.5 if you do not have a Masters yet, plus a funded three-month placement outside academia. The project has to sit inside one of the five SEDarc themes, and a proposal claiming the advanced quantitative methods or data skills steer is what this lab is built for.
+
+                            **You apply to Sussex by 1 December 2026**, complete with a supervisor statement; Sussex nominates to the consortium at the end of January. Write to me well before November.`,
+                            highlights: ["Fees + stipend", "3.5 or 1+3.5 years", "3-month funded placement"],
                             links: [
                                 { label: "SEDarc", href: "https://www.sedarc.ac.uk/" },
                                 { label: "Thematic pathways", href: "https://www.sedarc.ac.uk/thematic-pathways/" },
+                                { label: "The advert", href: "https://www.findaphd.com/phds/program/the-south-east-doctoral-training-arc-sedarc/?i207p6322" },
                             ],
                         },
                         {
