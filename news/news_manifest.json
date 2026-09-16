@@ -559,9 +559,9 @@
     {
       "slug": "2023-ohbm-brainart",
       "title": "Unicity through Complexity: EEG attractors at the OHBM BrainArt exhibition",
-      "subtitle": "Two 1.5m canvases of resting brain activity, one neurotypical and one neuroatypical, and a question with no fair answer.",
+      "subtitle": "Two 1.5m canvases of resting brain activity, one neurotypical and one neuroatypical, to illustrate Unicity and Diversity",
       "date": "2023-07-24",
-      "summary": "My art project NeuropsyXart was selected for the 2023 Brain Art Exhibition at OHBM in Montréal: two large canvases, each one an eight-minute EEG attractor drawn as a single line — one from a neurotypical person, one from a neuroatypical person — with the viewer standing between them and asked which is which.",
+      "summary": "My art project NeuropsyXart was selected for the 2023 Brain Art Exhibition at OHBM in Montréal!",
       "authors": [
         {
           "name": "Dominique Makowski",
@@ -574,7 +574,7 @@
       "image": "news/2023-ohbm-brainart/featured.jpg",
       "file": "news/2023-ohbm-brainart/post.json",
       "base": "news/2023-ohbm-brainart/",
-      "words": 492,
+      "words": 470,
       "minutes": 2
     },
     {
