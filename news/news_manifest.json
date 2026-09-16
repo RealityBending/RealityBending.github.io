@@ -22,7 +22,7 @@
     },
     {
       "name": "Media",
-      "count": 3
+      "count": 4
     }
   ],
   "posts": [
@@ -368,6 +368,27 @@
       "minutes": 1
     },
     {
+      "slug": "2024-breaking-barriers-reproducibility",
+      "title": "Breaking Barriers to Reproducibility",
+      "subtitle": "An interview for the University of Sussex's research culture impact cases, following the Openness in Research Award.",
+      "date": "2024-12-17",
+      "summary": "Dr Dominique Makowski is featured in the University of Sussex's research culture impact cases, talking about open science, the software that makes it easier, and what still stands in its way.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Media",
+      "featured": false,
+      "image": "news/2024-breaking-barriers-reproducibility/featured.jpg",
+      "file": "news/2024-breaking-barriers-reproducibility/post.json",
+      "base": "news/2024-breaking-barriers-reproducibility/",
+      "words": 86,
+      "minutes": 1
+    },
+    {
       "slug": "2024-most-cited-researcher",
       "title": "🏅 Most cited researcher in the School of Psychology",
       "subtitle": "",
@@ -432,10 +453,10 @@
     },
     {
       "slug": "2024-sips-mission-award-neurokit",
-      "title": "🎉 NeuroKit wins a SIPS Mission Award",
+      "title": "🎉 NeuroKit receives a SIPS Commendation",
       "subtitle": "",
       "date": "2024-07-01",
-      "summary": "The NeuroKit Python package has won a Mission Award from the Society for the Improvement of Psychological Science (SIPS).",
+      "summary": "The NeuroKit Python package has received a Commendation from the Society for the Improvement of Psychological Science (SIPS).",
       "authors": [
         {
           "name": "Dominique Makowski",
@@ -448,7 +469,7 @@
       "image": "news/2024-sips-mission-award-neurokit/featured.png",
       "file": "news/2024-sips-mission-award-neurokit/post.json",
       "base": "news/2024-sips-mission-award-neurokit/",
-      "words": 72,
+      "words": 71,
       "minutes": 1
     },
     {

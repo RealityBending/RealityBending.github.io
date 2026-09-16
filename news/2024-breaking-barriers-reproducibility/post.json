@@ -1,0 +1,13 @@
+{
+    "title": "Breaking Barriers to Reproducibility",
+    "subtitle": "An interview for the University of Sussex's research culture impact cases, following the Openness in Research Award.",
+    "date": "2024-12-17",
+    "authors": ["dominique-makowski"],
+    "category": "Media",
+    "featured": false,
+    "summary": "Dr Dominique Makowski is featured in the University of Sussex's research culture impact cases, talking about open science, the software that makes it easier, and what still stands in its way.",
+    "content": [
+        "<p>Following the <a href=\"#post-2024-research-culture-award\">Openness in Research Award</a>, Dr Dominique Makowski is featured in the University of Sussex's <em>Our research integrity</em> series, in a piece written by Alice Sambrook.</p>",
+        "<p>The interview covers what pulled the lab towards open research in the first place, the reproducibility crisis in psychology, the software built to make transparent work easier (<a href=\"https://easystats.github.io/easystats/\">easystats</a> and <a href=\"https://neuropsychology.github.io/NeuroKit/\">NeuroKit</a>), and the two things that still keep researchers from working openly: the fear of being scooped, and imposter syndrome. <a href=\"https://www.sussex.ac.uk/research/about/standards/breaking-barriers-research\">Read it on the Sussex site</a>.</p>"
+    ]
+}
