@@ -1,0 +1,14 @@
+{
+    "title": "An interactive tool to visualize Evidence Accumulation Models",
+    "date": "2026-09-16",
+    "subtitle": "We made an interactive widget tool to see what the parameters of sequential sampling models actually do, and how the models relate to one another.",
+    "summary": "We made an interactive widget tool to see what the parameters of sequential sampling models actually do, and how the models relate to one another.",
+    "authors": ["dominique-makowski"],
+    "category": "Methods",
+    "content": [
+        "<p><img src=\"logo.webp\" alt=\"The cogmod hex logo.\" style=\"float: right; width: 20%; margin: 0.2rem 0 0.7rem 1.2rem;\">Evidence accumulation models (also known as sequential sampling models) are notoriously hard to visualize, and their parameters are hard to grasp intuitively. It is one thing to read that a drift rate is a rate of evidence accumulation, and another to see what moving it does to the choices and the reaction times it produces.</p>",
+        "<p>There are also a lot of them, and both the literature and the software implementations tend to portray them as distinct and separated things. But aktchyually, the Wald, the DDM, the LBA, the LNR and the rest are connected in super interesting ways, and much of what separates them is which assumptions about the data generating process they make.</p>",
+        "<p>So as part of <a href=\"https://dominiquemakowski.github.io/cogmod/\">cogmod</a>'s documentation, we built a tool to help people visualize how these models behave, what their parameters mean, and what they each assume about the process that generated the data.</p>",
+        "<p>The <a href=\"https://dominiquemakowski.github.io/cogmod/articles/decision_making.html\">decision making vignette</a> is a tutorial about these models, with the widget in it.</p>"
+    ]
+}

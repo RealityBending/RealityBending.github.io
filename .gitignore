@@ -60,7 +60,9 @@ robots.txt
 *_full.jpg
 *_full.png
 *_full.webp
+*_full.gif
 img/Intro.mp4
+news/*/featured_poster.png
 
 # ── Local noise ──
 __pycache__/

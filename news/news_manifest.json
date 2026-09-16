@@ -10,11 +10,11 @@
     },
     {
       "name": "Methods",
-      "count": 12
+      "count": 13
     },
     {
       "name": "Lab",
-      "count": 10
+      "count": 11
     },
     {
       "name": "Awards",
@@ -26,6 +26,27 @@
     }
   ],
   "posts": [
+    {
+      "slug": "2026-evidence-accumulation-widget",
+      "title": "An interactive tool to visualize Evidence Accumulation Models",
+      "subtitle": "We made an interactive widget tool to see what the parameters of sequential sampling models actually do, and how the models relate to one another.",
+      "date": "2026-09-16",
+      "summary": "We made an interactive widget tool to see what the parameters of sequential sampling models actually do, and how the models relate to one another.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Methods",
+      "featured": false,
+      "image": "news/2026-evidence-accumulation-widget/featured.gif",
+      "file": "news/2026-evidence-accumulation-widget/post.json",
+      "base": "news/2026-evidence-accumulation-widget/",
+      "words": 164,
+      "minutes": 1
+    },
     {
       "slug": "2026-university-after-ai",
       "title": "The End of the Glorified Adulescent Childcare? On the Future of Universities after the AI Apocalypse",
@@ -534,6 +555,27 @@
       "base": "news/2023-jra-experience/",
       "words": 597,
       "minutes": 3
+    },
+    {
+      "slug": "2023-ohbm-brainart",
+      "title": "Unicity through Complexity: EEG attractors at the OHBM BrainArt exhibition",
+      "subtitle": "Two 1.5m canvases of resting brain activity, one neurotypical and one neuroatypical, and a question with no fair answer.",
+      "date": "2023-07-24",
+      "summary": "My art project NeuropsyXart was selected for the 2023 Brain Art Exhibition at OHBM in Montréal: two large canvases, each one an eight-minute EEG attractor drawn as a single line — one from a neurotypical person, one from a neuroatypical person — with the viewer standing between them and asked which is which.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Lab",
+      "featured": false,
+      "image": "news/2023-ohbm-brainart/featured.jpg",
+      "file": "news/2023-ohbm-brainart/post.json",
+      "base": "news/2023-ohbm-brainart/",
+      "words": 492,
+      "minutes": 2
     },
     {
       "slug": "2023-sips-mission-award-easystats",
