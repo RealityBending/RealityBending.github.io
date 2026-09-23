@@ -19,38 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-Note on third-party material
-============================
-
-The MIT licence above covers the code in this repository — the HTML, CSS,
-JavaScript and Python that make the site work.
-
-It does not, and cannot, cover material in this repository that belongs to
-someone else. That includes at least:
-
-  - img/brain.glb — the 3-D brain mesh, by dgallichan via Sketchfab,
-    licensed CC-BY-4.0. Attribution is required if you reuse it.
-  - img/magritte_falsemirror.jpg, research/img/era-*.jpg and
-    research/img/art_*.jpg — reproductions of artworks and historical
-    photographs, included here as illustration.
-  - research/img/train_ciotat_*.webp / .jpg — frames of the Lumière
-    brothers' L'Arrivée d'un train en gare de La Ciotat (1896).
-  - publications/*/*.pdf and publications/*/featured.* — papers and figures
-    whose rights sit with their publishers and co-authors.
-  - information/img/logo_sussex.svg and the photographs of the University of
-    Sussex — University of Sussex marks and imagery.
-  - research/img/logo-*.png — the marks of the software projects they name.
-  - news/2025-sam-marine-nhs-prize/featured.png and
-    news/2025-eva-mala-socobio-internship/featured.png — the NHS and
-    SoCoBio DTP marks, reproduced to illustrate the awards those posts
-    report. Both are trademarks of their owners.
-  - news/2024-open-science-sustainability-debate/featured.jpg — the British
-    Neuroscience Association's own announcement graphic for the debate that
-    post reports, marks and speaker photographs included. Theirs, and
-    reproduced to illustrate the event it announces.
-  - Photographs of lab members and lab events.
-
-If you want to reuse any of that, the licence you need is theirs, not this one.
