@@ -50,9 +50,10 @@ generate_pages.py   manifests + index.html          → ~250 real pages, robots.
 tools/              developer tools — nothing here is part of the site
 img/                assets shared by more than one section
 .github/workflows/  the deploy and check pipelines
-LICENSE             MIT for the code, plus what in here is somebody else's: the
-                    brain mesh is CC-BY-4.0, the paintings and the papers are
-                    not ours to relicense
+LICENSE             MIT, unmodified, so GitHub detects it
+NOTICE.md           what in here is somebody else's: the brain mesh is
+                    CC-BY-4.0, the paintings and the papers are not ours
+                    to relicense
 ```
 
 ## Rules that apply everywhere
