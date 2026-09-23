@@ -181,7 +181,7 @@
       "type": "Journal Article",
       "authors": "Dickinson, R., Makowski, D., van Marwijk, H., & Ford, E.",
       "is_preprint": false,
-      "pdf": null,
+      "pdf": "publications/2025_InterventionsForCombatingCovid19/2025_InterventionsForCombatingCovid19.pdf",
       "folder": "2025_InterventionsForCombatingCovid19",
       "featured": "publications/2025_InterventionsForCombatingCovid19/featured.jpg",
       "keywords": [
@@ -238,7 +238,7 @@
       "type": "Journal Article",
       "authors": "Makowski, D., Ben-Shachar, M. S., Wiernik, B. M., Patil, I., Thériault, R., & Lüdecke, D.",
       "is_preprint": false,
-      "pdf": "https://joss.theoj.org/papers/10.21105/joss.07969",
+      "pdf": "publications/2025_Modelbased/2025_Modelbased.pdf",
       "folder": "2025_Modelbased",
       "featured": "publications/2025_Modelbased/featured.png",
       "github": "https://github.com/easystats/modelbased",
@@ -246,7 +246,7 @@
         "Software Development",
         "Statistical Methods"
       ],
-      "citations": 35,
+      "citations": 40,
       "summary": "modelbased is the easystats package for the step after fitting: estimated marginal means, marginal effects, contrasts and model predictions, for any supported model, so that what a model implies can be read off directly rather than reconstructed from its coefficients."
     },
     {
@@ -257,7 +257,7 @@
       "type": "Journal Article",
       "authors": "Fernandez, K., Makowski, D., & Fisher, C.",
       "is_preprint": false,
-      "pdf": "https://proceedings.juliacon.org/papers/10.21105/jcon.00186",
+      "pdf": "publications/2025_Sequentialsamplingmodels/2025_Sequentialsamplingmodels.pdf",
       "keywords": [
         "Computational Models",
         "Reaction Times",
@@ -300,7 +300,7 @@
         "Aesthetics",
         "Reality Beliefs"
       ],
-      "citations": 7,
+      "citations": 8,
       "featured": "publications/2025_TooBeautifulToBeFake/featured.jpg",
       "folder": "2025_TooBeautifulToBeFake",
       "summary": "As AI-generated faces become indistinguishable from photographs, what people fall back on to judge reality starts to matter. Attractive faces were less likely to be judged as artificially generated: beauty reads as authenticity.",
@@ -321,7 +321,7 @@
         "Signal Processing",
         "Statistical Methods"
       ],
-      "citations": 5,
+      "citations": 9,
       "featured": "publications/2025_WhichHeartRateVariability/featured.jpg",
       "folder": "2025_WhichHeartRateVariability",
       "summary": "There are dozens of HRV indices and many of them measure much the same thing. Consensus clustering of 89 indices across 635 resting ECG recordings from two samples produced 21 robust clusters, and from those a recommended set of 13 indices for short resting-state recordings — enough to cover the space without reporting the same quantity six times."
@@ -334,7 +334,7 @@
       "type": "Journal Article",
       "authors": "Rose, L., Kovarski, K., Caetta, F., Makowski, D., & Chokron, S.",
       "is_preprint": false,
-      "pdf": null,
+      "pdf": "publications/2024_BeyondEmpathy/2024_BeyondEmpathy.pdf",
       "keywords": [
         "Social Cognition"
       ],
@@ -351,13 +351,13 @@
       "type": "Journal Article",
       "authors": "Thériault, R., Ben-Shachar, M. S., Patil, I., Lüdecke, D., Wiernik, B. M., & Makowski, D.",
       "is_preprint": false,
-      "pdf": null,
+      "pdf": "publications/2024_CheckYourOutliers/2024_CheckYourOutliers.pdf",
       "keywords": [
         "Statistical Methods",
         "Software Development",
         "Open Science"
       ],
-      "citations": 41,
+      "citations": 42,
       "featured": null,
       "folder": "2024_CheckYourOutliers",
       "summary": "Outliers are usually removed on a rule of thumb and rarely reported. This tutorial sets out what an outlier actually is, which detection method suits which design, and how to run and document the whole procedure in R with easystats."
@@ -370,7 +370,7 @@
       "type": "Journal Article",
       "authors": "Dickinson, R., Makowski, D., van Marwijk, H., & Ford, E.",
       "is_preprint": false,
-      "pdf": null,
+      "pdf": "publications/2024_NewsOutletsConspiracyTheory/2024_NewsOutletsConspiracyTheory.pdf",
       "keywords": [
         "Misinformation",
         "Reality Beliefs"
@@ -388,12 +388,12 @@
       "type": "Journal Article",
       "authors": "Salgues, S., Jacquot, A., Makowski, D., Tahar, C., Baekeland, J., Arcangeli, M., Dokic, J., Piolino, P., & Sperduti, M.",
       "is_preprint": false,
-      "pdf": null,
+      "pdf": "publications/2024_SelfreferenceAndEmotionalReaction/2024_SelfreferenceAndEmotionalReaction.pdf",
       "keywords": [
         "Aesthetics",
         "Self-Reference"
       ],
-      "citations": 5,
+      "citations": 6,
       "featured": null,
       "folder": "2024_SelfreferenceAndEmotionalReaction",
       "summary": "What makes something beautiful to a particular person. This study separates two candidate drivers of aesthetic judgment — how self-relevant the work feels, and how strong an emotional reaction it produces — and reports both of them contributing."
@@ -476,6 +476,21 @@
       "summary": "How crowded a place feels is not simply how many people are in it. This online study crosses environment type with crowd density to ask whether a more beautiful environment makes the same crowd feel less crowded."
     },
     {
+      "doi": "10.4135/9781529789522.n4",
+      "title": "Clinical Neuropsychology in the Era of Neuroimaging",
+      "year": 2023,
+      "journal": "The SAGE Handbook of Clinical Neuropsychology",
+      "type": "Book Chapter",
+      "authors": "Makowski, D., Chen, S. A., Larsen, R. R., Boyle, G. J., & Lilienfeld, S. O.",
+      "is_preprint": false,
+      "keywords": [],
+      "summary": "",
+      "pdf": "publications/2023_ClinicalNeuropsychologyNeuroimaging/2023_ClinicalNeuropsychologyNeuroimaging.pdf",
+      "citations": 0,
+      "featured": "publications/2023_ClinicalNeuropsychologyNeuroimaging/featured.jpg",
+      "folder": "2023_ClinicalNeuropsychologyNeuroimaging"
+    },
+    {
       "doi": "10.34641/mg.55",
       "title": "Disentangling the social from the aesthetic: neuropsychology for urban design",
       "year": 2023,
@@ -483,7 +498,7 @@
       "type": "Book Chapter",
       "authors": "Mavros, P., Olszewska-Guizzo, A., & Makowski, D.",
       "is_preprint": false,
-      "pdf": null,
+      "pdf": "publications/2023_DisentanglingTheSocial/2023_DisentanglingTheSocial.pdf",
       "keywords": [
         "Aesthetics",
         "Urban Environment",
@@ -527,7 +542,7 @@
         "Signal Processing",
         "Psychophysiology"
       ],
-      "citations": 229,
+      "citations": 238,
       "featured": "publications/2022_BrainEntropyFractalDimensions/featured.jpg",
       "folder": "2022_BrainEntropyFractalDimensions",
       "summary": "Complexity measures — entropy, fractal dimension, predictability — are increasingly applied to EEG, and their names hide what they actually compute. This review explains them in plain terms, sorts them into measures of predictability and of regularity, and synthesises what they have shown across consciousness research, mood and anxiety disorders, schizophrenia, neurodevelopmental and neurodegenerative conditions, and the lifespan."
@@ -545,7 +560,7 @@
         "Software Development",
         "Statistical Methods"
       ],
-      "citations": 50,
+      "citations": 51,
       "featured": "publications/2022_Datawizard/featured.jpg",
       "folder": "2022_Datawizard",
       "summary": "datawizard is the data-preparation layer under easystats: selecting, reshaping, recoding, standardising, centring, winsorising and describing, under one grammar and with essentially no dependencies."
@@ -563,7 +578,7 @@
         "Time Perception",
         "Fiction"
       ],
-      "citations": 8,
+      "citations": 10,
       "featured": "publications/2022_MovieEditingInfluencesSpectators/featured.jpg",
       "folder": "2022_MovieEditingInfluencesSpectators",
       "summary": "Editing is how a film handles time, and it turns out to change how long a scene feels. Across an online study and a pre-registered replication, scenes with continuous editing were judged longer than scenes with action-discontinuity editing, which were in turn judged longer than scenes with no editing at all."
@@ -613,12 +628,12 @@
       "type": "Journal Article",
       "authors": "Blondé, P., Sperduti, M., Makowski, D., & Piolino, P.",
       "is_preprint": false,
-      "pdf": null,
+      "pdf": "publications/2021_BoredDistractedAndForgetful/2021_BoredDistractedAndForgetful.pdf",
       "keywords": [
         "Mind Wandering",
         "Episodic Memory"
       ],
-      "citations": 34,
+      "citations": 37,
       "featured": null,
       "folder": "2021_BoredDistractedAndForgetful",
       "summary": "Mind wandering and boredom are closely tied, and both look as though they should hurt memory. Measured in the same task and set against each other, mind wandering is the reliable predictor of what gets remembered — boredom adds almost nothing once it is accounted for."
@@ -637,7 +652,7 @@
         "Psychophysiology",
         "Signal Processing"
       ],
-      "citations": 381,
+      "citations": 385,
       "featured": "publications/2021_HeartRateVariabilityPsychology/featured.jpg",
       "folder": "2021_HeartRateVariabilityPsychology",
       "summary": "Heart rate variability is easy to record and hard to analyse well: the indices are many, the pipelines inconsistent, and the choices that matter rarely visible in a paper. This review explains the commonly used HRV indices and what each is good for, then walks through a full analysis step by step in NeuroKit2."
@@ -656,7 +671,7 @@
         "Episodic Memory",
         "Virtual Reality"
       ],
-      "citations": 5,
+      "citations": 7,
       "featured": "publications/2021_InMedioStatVirtus/featured.jpg",
       "folder": "2021_InMedioStatVirtus",
       "summary": "Mind wandering usually costs memory, but not in a straight line. In a virtual environment, memory for what happened was best at intermediate levels of mind wandering rather than at the lowest."
@@ -675,7 +690,7 @@
         "Psychophysiology",
         "Signal Processing"
       ],
-      "citations": 1227,
+      "citations": 1274,
       "featured": "publications/2021_Neurokit2/featured.jpg",
       "folder": "2021_Neurokit2",
       "summary": "NeuroKit2 is the lab's Python toolbox for neurophysiological signals — ECG, PPG, EDA, EMG, RSP and EEG — taking each from a raw recording to cleaned features through the same interface. It is the most widely used piece of software the lab has produced."
@@ -693,7 +708,7 @@
         "Software Development",
         "Statistical Methods"
       ],
-      "citations": 5285,
+      "citations": 5462,
       "featured": "publications/2021_Performance/featured.jpg",
       "folder": "2021_Performance",
       "summary": "performance is the easystats package for asking whether a model is any good: R², ICC, overdispersion, collinearity, outliers and residual normality, plus model comparison. **check_model()** runs the diagnostics that apply and draws them, rather than leaving the analyst to remember which ones those are."
@@ -711,7 +726,7 @@
         "Software Development",
         "Statistical Methods"
       ],
-      "citations": 115,
+      "citations": 118,
       "featured": "publications/2021_See/featured.jpg",
       "folder": "2021_See",
       "summary": "see is the plotting half of easystats: it takes what the other packages return — model checks, effect sizes, posteriors, correlation matrices, cluster solutions — and draws it, so that a diagnostic is looked at rather than read off a table."
@@ -766,7 +781,7 @@
         "Software Development",
         "Statistical Methods"
       ],
-      "citations": 1928,
+      "citations": 1988,
       "featured": "publications/2020_Effectsize/featured.jpg",
       "folder": "2020_Effectsize",
       "summary": "effectsize computes and converts effect size indices — Cohen's d, Hedges' g, eta-squared, odds ratios and the rest — and standardises model parameters, with interpretation rules attached so that a number does not have to be looked up in a textbook before it can be read."
@@ -784,7 +799,7 @@
         "Software Development",
         "Statistical Methods"
       ],
-      "citations": 458,
+      "citations": 467,
       "featured": "publications/2020_Parameters/featured.jpg",
       "folder": "2020_Parameters",
       "summary": "The parameters R package extracts what a model actually estimated — coefficients, standard errors, intervals, p-values — out of any of the dozens of model classes in R and into one tidy frame, along with the bootstrapping, standardisation and dimensionality-reduction usually needed next."
@@ -802,7 +817,7 @@
         "Software Development",
         "Statistical Methods"
       ],
-      "citations": 405,
+      "citations": 411,
       "featured": "publications/2020_Correlation/featured.jpg",
       "folder": "2020_Correlation",
       "summary": "The correlation R package covers the whole family through one function — Pearson, Spearman, Kendall, biserial, polychoric, tetrachoric, partial and Bayesian — choosing the method that suits the variables it is given, and returning matrices that are ready to plot or report."
@@ -822,7 +837,7 @@
         "Attention",
         "Reaction Times"
       ],
-      "citations": 26,
+      "citations": 29,
       "featured": "publications/2020_TheHeartOfCognitiveControl/featured.jpg",
       "folder": "2020_TheHeartOfCognitiveControl",
       "summary": "Baroreceptors fire in time with the heartbeat, and that rhythm is known to shape cognition in emotional settings. Using a task with no emotional content, this study shows the effect is not specific to emotion: responses were faster during systole, and inhibition was most likely to fail towards the middle of it."
@@ -841,7 +856,7 @@
         "Episodic Memory",
         "Virtual Reality"
       ],
-      "citations": 15,
+      "citations": 16,
       "featured": "publications/2020_MindfulnessProspectiveMemory/featured.jpg",
       "folder": "2020_MindfulnessProspectiveMemory",
       "summary": "Prospective memory is remembering to do something later, and it is what mind wandering is most likely to cost. This virtual-reality study separates state from dispositional mindfulness and asks which of the two predicts remembering an intention in a realistic environment."
@@ -860,7 +875,7 @@
         "Bayesian Statistics",
         "Statistical Methods"
       ],
-      "citations": 1319,
+      "citations": 1345,
       "featured": "publications/2019_Bayestestr/featured.jpg",
       "folder": "2019_Bayestestr",
       "summary": "bayestestR describes what a Bayesian posterior actually implies about an effect: credible intervals, the probability of direction, ROPE-based decisions and Bayes factors, under one vocabulary. It is the easystats package for saying whether an effect exists, how large it is, and whether the size matters."
@@ -896,7 +911,7 @@
         "Bayesian Statistics",
         "Statistical Methods"
       ],
-      "citations": 826,
+      "citations": 841,
       "featured": "publications/2019_IndicesOfEffectExistence/featured.jpg",
       "folder": "2019_IndicesOfEffectExistence",
       "summary": "There are several ways to say a Bayesian effect \"exists\" — the probability of direction, ROPE coverage, Bayes factors, MAP-based p-values — and they do not always agree. This paper compares them on simulated data, sets out which to report, and maps each onto the frequentist p-value researchers are arriving from."
@@ -914,7 +929,7 @@
         "Software Development",
         "Statistical Methods"
       ],
-      "citations": 123,
+      "citations": 125,
       "featured": "publications/2019_Insight/featured.jpg",
       "folder": "2019_Insight",
       "summary": "insight is the package the rest of easystats stands on: one interface for getting information out of a fitted model — its predictors, random effects, priors, formula — whatever package produced it. It exists because every model class in R exposes its internals differently."
@@ -934,7 +949,7 @@
         "Reality Beliefs",
         "Psychophysiology"
       ],
-      "citations": 13,
+      "citations": 14,
       "featured": "publications/2019_FictionalReappraisal/featured.jpg",
       "folder": "2019_FictionalReappraisal",
       "summary": "The same images, presented as real photographs or as staged fiction, measured at three levels at once: what people reported feeling, what their bodies did, and what their brains did. The paper reports the correlates of fictional reappraisal at each level, and treats it as an emotion-regulation strategy nobody has to choose to use."
@@ -973,7 +988,7 @@
         "Statistical Methods",
         "Open Science"
       ],
-      "citations": 343,
+      "citations": 351,
       "featured": "publications/2018_Psycho/featured.jpg",
       "folder": "2018_Psycho",
       "summary": "The psycho R package turns the output of common statistical models into sentences that can go straight into a manuscript, with the APA-formatted numbers already in place. It is the direct ancestor of the easystats suite that replaced it."
@@ -991,7 +1006,7 @@
         "Virtual Reality",
         "Episodic Memory"
       ],
-      "citations": 106,
+      "citations": 112,
       "featured": "publications/2017_BeingThereAndRemembering/featured.jpg",
       "folder": "2017_BeingThereAndRemembering",
       "summary": "The sense of \"being there\" in a virtual environment — presence — is usually treated as a measure of how convincing the simulation is. Here it predicts memory: the stronger the presence during an episode, the better it was later remembered."
@@ -1045,7 +1060,7 @@
         "Attention",
         "Episodic Memory"
       ],
-      "citations": 5,
+      "citations": 8,
       "featured": "publications/2017_InteractionBetweenAttentionalSystems/featured.jpg",
       "folder": "2017_InteractionBetweenAttentionalSystems",
       "summary": "What becomes of a memory formed while attention is busy resolving a conflict. The study measures the cost of attentional conflict at encoding on how information is bound together into a single episode."
@@ -1063,7 +1078,7 @@
         "Mindfulness",
         "Aging"
       ],
-      "citations": 13,
+      "citations": 14,
       "featured": "publications/2017_MeditationAndSuccessfulAging/featured.jpg",
       "folder": "2017_MeditationAndSuccessfulAging",
       "summary": "A review of whether meditative practice can counteract age-related cognitive decline, and of what the evidence does and does not support once \"successful aging\" is treated as something that can be trained."
@@ -1081,7 +1096,7 @@
         "Software Development",
         "Open Science"
       ],
-      "citations": 17,
+      "citations": 20,
       "featured": "publications/2017_Neuropsydia/featured.jpg",
       "folder": "2017_Neuropsydia",
       "summary": "Neuropsydia.py is a Python module for building experiments, cognitive tasks and questionnaires. It is written for researchers rather than programmers: the recurring pieces of a psychology task — instructions, scales, response collection, timing — are single calls rather than a graphics stack to configure."
@@ -1139,7 +1154,7 @@
         "Reality Beliefs",
         "Self-Reference"
       ],
-      "citations": 26,
+      "citations": 29,
       "featured": "publications/2016_TheParadoxOfFiction/featured.jpg",
       "folder": "2016_TheParadoxOfFiction",
       "summary": "People are moved by events they know never happened. This study varies whether the same material is taken to be real or fictional, and finds the emotional response modulated by how self-relevant the scenario is rather than by its reality status alone."

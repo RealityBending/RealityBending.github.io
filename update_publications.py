@@ -100,6 +100,9 @@ EXTRA_DOIS: dict[str, str] = {
     # Not on the ORCID profile. The old Hugo site carried it, and its figure is
     # imported by import_publication_figures.py.
     "10.3917/bupsy.549.0163": "Centenaire Ribot (première partie) — Bulletin de psychologie",
+    # Book chapter, not on the ORCID profile either. CrossRef has it in full
+    # (pages 41-58 of the SAGE Handbook of Clinical Neuropsychology, vol. 1).
+    "10.4135/9781529789522.n4": "Clinical Neuropsychology in the Era of Neuroimaging — SAGE Handbook",
 }
 
 # ── One work, one entry ──
@@ -257,6 +260,7 @@ SLUG_OVERRIDES: dict[str, str] = {
     "2016_CanMentalFatigueBe": "2016_MentalFatigueWeberCompass",
     "2016_TheProtectiveRoleOf": "2016_LongTermMeditationExecutive",
     "2015_EmotionRegulationAndThe": "2015_EmotionRegulationAging",
+    "2023_ClinicalNeuropsychologyInThe": "2023_ClinicalNeuropsychologyNeuroimaging",
 }
 
 errors_found = 0
