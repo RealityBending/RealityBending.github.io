@@ -33,6 +33,24 @@ jobs:
               with:
                   python-version: "3.12"
 
+            # Most pull requests here are a student adding a profile or a post
+            # with the GitHub uploader, which means nobody ran these and the
+            # committed manifests do not list the new folder. Without these two
+            # steps a malformed profile.json passes — generate_pages.py reads
+            # the manifest, never the folder — and the member just never
+            # appears. Both scripts exit non-zero on any warning (bad JSON, a
+            # missing field, an unknown one), and their output names the folder
+            # and the line, which is what the student will read.
+            #
+            # They also mean the generator below builds the new member's page,
+            # so check-paths.py covers it. People first: posts resolve their
+            # authors against the people manifest.
+            - name: Validate profiles and rebuild the people manifest
+              run: python update_people.py
+
+            - name: Validate posts and rebuild the news manifest
+              run: python update_news.py
+
             - name: Generate pages, stubs, sitemap and llms.txt
               run: python generate_pages.py
 

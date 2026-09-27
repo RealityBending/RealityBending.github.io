@@ -1,0 +1,75 @@
+# ── Commit the people and news manifests back to main ────────────────────────
+#
+# Students add a profile or a post with the GitHub uploader and cannot run
+# `update_people.py` / `update_news.py`, so after a merge the committed
+# manifests do not list the new folder. deploy.yml rebuilds them for the site
+# itself; this workflow commits the same output, so that a `git pull` is all a
+# local checkout needs and nobody has to remember to run anything.
+#
+# ── Why after the merge, and not on the pull request ──
+# Those pull requests come from forks. A `pull_request` run gets a read-only
+# token and cannot push to one; `pull_request_target` can, but only by running
+# the fork's code with write access to this repository — the textbook way to
+# hand a stranger the keys. Here the code is already on main, and check.yml has
+# already refused anything that would not validate.
+#
+# ── Why this does not trigger another deploy ──
+# A push made with GITHUB_TOKEN starts no workflows, by GitHub's design. That
+# is what we want: deploy.yml ran on the merge itself and built these same files
+# from the same folders, and it is also why this cannot loop on its own commit.
+
+name: 🗂️ Manifests
+
+on:
+    push:
+        branches: [main]
+        paths:
+            - "people/**"
+            - "news/**"
+            - "memories/**"
+            - "update_people.py"
+            - "update_news.py"
+    workflow_dispatch:
+
+permissions:
+    contents: write
+
+# Two merges in quick succession: the second waits, then starts from a main
+# that already has the first one's commit, so its push fast-forwards.
+concurrency:
+    group: manifests
+    cancel-in-progress: false
+
+jobs:
+    manifests:
+        runs-on: ubuntu-latest
+        steps:
+            # The tip of main, not the pushed SHA — see the concurrency note.
+            - uses: actions/checkout@v4
+              with:
+                  ref: main
+
+            - uses: actions/setup-python@v5
+              with:
+                  python-version: "3.12"
+
+            # People first: posts resolve their authors against its manifest.
+            - name: Rebuild the manifests
+              run: |
+                  python update_people.py
+                  python update_news.py
+
+            # Only the three manifests are staged. The scripts write nothing
+            # else, but `git add -A` here would commit whatever some future
+            # script leaves lying around.
+            - name: Commit them if anything changed
+              run: |
+                  git add people/people_manifest.json memories/memories_manifest.json news/news_manifest.json
+                  if git diff --cached --quiet; then
+                      echo "Manifests already up to date."
+                      exit 0
+                  fi
+                  git config user.name "github-actions[bot]"
+                  git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+                  git commit -m "Rebuild people and news manifests"
+                  git push

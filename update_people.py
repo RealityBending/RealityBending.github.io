@@ -161,18 +161,24 @@ def clean_education(value) -> list[dict[str, str]]:
 
 def validate_profile(folder: str, data: dict) -> bool:
     ok = True
+    # This is the check CI runs on a student's pull request, so a wrong type is
+    # reported like any other mistake rather than crashing on `.strip()`.
     for field in REQUIRED_FIELDS:
-        if not data.get(field, "").strip():
+        value = data.get(field)
+        if not clean_string(value):
             warn(folder, f"missing required field '{field}'")
             ok = False
-    category = data.get("category", "")
+        elif not isinstance(value, str):
+            warn(folder, f"'{field}' must be text, in quotes")
+            ok = False
+    category = clean_string(data.get("category"))
     if category and category not in ROLE_ORDER:
         warn(
             folder,
             f"invalid category '{category}' — must be one of: {', '.join(ROLE_ORDER)}",
         )
         ok = False
-    email = data.get("email", "")
+    email = clean_string(data.get("email"))
     if email and not EMAIL_RE.match(email):
         warn(folder, f"malformed email '{email}'")
     known = set(REQUIRED_FIELDS + OPTIONAL_FIELDS)
@@ -204,7 +210,8 @@ def load_people() -> list[dict]:
             warn(entry.name, "no profile.json found — skipping")
             continue
         try:
-            with open(profile_path, encoding="utf-8") as f:
+            # -sig: Notepad saves with a BOM, which json.load rejects outright.
+            with open(profile_path, encoding="utf-8-sig") as f:
                 data = json.load(f)
         except json.JSONDecodeError as e:
             warn(entry.name, f"invalid JSON in profile.json — {e}")

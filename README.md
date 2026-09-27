@@ -165,10 +165,17 @@ Field by field:
 `summary` and `details` are **HTML**, not plain text — a blank line between two
 paragraphs does nothing, and `<p>…</p>` around each one is what you want.
 
-### 4. Regenerate the list
+### 4. Open a pull request
 
-Open a pull request with just your folder.
-Someone will run the `update_people.py` script to update the website
+Open a pull request with just your folder — see
+[Getting your change onto the site](#getting-your-change-onto-the-site). You do
+not need to run any script: the site's list of members is rebuilt automatically
+once your change is merged.
+
+The pull request is checked automatically. If it shows a red ✗, open
+**Details**: the log names your folder and says what is wrong (a missing comma,
+a missing `name`, a misspelled field…). Fix the file, upload it again to the
+same branch, and the check re-runs.
 
 ---
 
@@ -265,14 +272,11 @@ Put a picture named `featured.jpg` (or `.png`, `.webp`, `.gif`) in the folder an
 it becomes the post's thumbnail and its header image. Resize it to **1400 pixels**
 on its longest side first.
 
-### 5. Regenerate the list
+### 5. Open a pull request
 
-```bash
-python update_news.py
-```
-
-Same as for people: it prints what it found, and you **commit the changed
-`news/news_manifest.json`** together with your folder.
+Same as for people: a pull request with just your folder. Nothing to run — the
+list of posts is rebuilt automatically once it is merged, and the same automatic
+check tells you if `post.json` has a mistake in it.
 
 ---
 
@@ -309,6 +313,4 @@ Any tool will do this — Preview on a Mac, Photos on Windows, GIMP, or
 
 Use the GitHub website. On the repository page, **Add file → Upload files**, drag
 your folder in, and choose *"Create a new branch for this commit and start a pull request"* at the bottom.
-Say in the description that you could not run the update
-script, and someone will do it.
 

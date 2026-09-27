@@ -18,12 +18,17 @@
 # Leave it on "Deploy from a branch" and this workflow will run, succeed, and
 # deploy nothing anyone can see.
 #
-# ── Why only generate_pages.py runs here ──
-# The three `update_*.py` are content pipelines, not build steps, and
-# `update_publications.py` with MAX_PUBLICATIONS = None takes minutes and hits
-# ORCID and CrossRef once per DOI — too slow and too rude for every push. They
-# stay local; their manifests are committed. If a manifest is stale, the site is
-# stale, and that is a content commit rather than a deploy problem.
+# ── Which `update_*.py` run here, and which do not ──
+# `update_people.py` and `update_news.py` run on every deploy: standard library
+# only, offline, about a second each, and deterministic. They are here so that a
+# profile or post merged without anybody running them — the normal case for a
+# student's pull request — still reaches the site. `manifests.yml` commits the
+# same output back to main on the same push, so a `git pull` brings it home;
+# this build does not wait for that commit, it just makes the same files itself.
+#
+# `update_publications.py` does not, and should not: with MAX_PUBLICATIONS =
+# None it takes minutes and hits ORCID and CrossRef once per DOI — too slow and
+# too rude for every push. It stays local and its manifest is committed.
 
 name: 🚀 Build and deploy
 
@@ -61,6 +66,15 @@ jobs:
             # No pip install: generate_pages.py imports only the standard
             # library, which is a property worth keeping. Pillow is used by the
             # asset scripts, and those do not run here.
+
+            # Either one exits non-zero on any warning, which fails the deploy.
+            # That is on purpose: check.yml already refuses the same warning on
+            # a pull request, so this only fires on a direct push to main, and
+            # the alternative is a site that silently drops the member.
+            - name: Rebuild the people and news manifests
+              run: |
+                  python update_people.py
+                  python update_news.py
 
             - name: Generate pages, stubs, sitemap and llms.txt
               run: python generate_pages.py

@@ -64,6 +64,38 @@ python generate_pages.py
 python tools/check-paths.py
 ```
 
+### Which of them CI runs for you
+
+**`update_people.py` and `update_news.py` run in CI three times, and nobody has
+to run them to get content onto the site.** Students add a profile or a post
+with the GitHub uploader and cannot run anything, so the committed manifests
+arrive without the new folder:
+
+- **`check.yml`, on the pull request**, runs both as validation. Each exits
+  non-zero on any warning — invalid JSON, a missing or non-text `name`, a
+  `category` off the list, an unknown field — and names the folder, so a broken
+  `profile.json` is refused before merge. Without it the failure is silent:
+  `generate_pages.py` reads the manifest, never the folder, so the member just
+  never appears.
+- **`deploy.yml`, on the merge**, runs both before `generate_pages.py`, so the
+  site is built from the folders whatever the committed manifests say.
+- **`manifests.yml`, on the same merge**, runs both again and commits the three
+  manifests back to `main` if they changed. That is what makes **a `git pull`
+  sufficient** locally. It is a separate workflow so that `contents: write` is
+  granted to it alone, and its push, made with `GITHUB_TOKEN`, deliberately
+  triggers no second deploy.
+
+It is done after the merge rather than pushed onto the pull request because
+those come from forks: a `pull_request` token cannot write to one, and
+`pull_request_target` could only by running the fork's code with write access.
+
+Run them locally only to *preview* a content change before pushing it.
+`update_publications.py` is not in CI at all — it takes minutes and calls ORCID
+and CrossRef per DOI — so its manifest is still committed by hand.
+
+A first-time contributor's workflows wait for a maintainer to press **Approve
+and run** on the pull request; until then the check has not happened.
+
 `generate_pages.py` reads the manifests, so it runs **after** whichever
 `update_*.py` owns the content you changed. Editing a publication's `info.json`
 is the case that catches people out: the page's own text is read straight from
