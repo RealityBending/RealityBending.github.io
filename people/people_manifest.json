@@ -237,6 +237,29 @@
       "avatar": "people/catriona-osborn-moar/avatar.jpg"
     },
     {
+      "folder": "ada-erdem",
+      "name": "Ada Erdem",
+      "category": "Research Assistant",
+      "email": "ae455@sussex.ac.uk",
+      "details": "",
+      "website": "",
+      "title": "Psychology Student",
+      "affiliation": "",
+      "location": "",
+      "summary": "",
+      "socials": [],
+      "interests": [],
+      "achievements": [],
+      "experience": [],
+      "keywords": [
+        "reality",
+        "illusions",
+        "psychology"
+      ],
+      "hook": "",
+      "avatar": "people/ada-erdem/avatar.jpg"
+    },
+    {
       "folder": "oliver-collins",
       "name": "Oliver Collins",
       "category": "Research Assistant",
@@ -907,6 +930,29 @@
       }
     ],
     "Research Assistant": [
+      {
+        "folder": "ada-erdem",
+        "name": "Ada Erdem",
+        "category": "Research Assistant",
+        "email": "ae455@sussex.ac.uk",
+        "details": "",
+        "website": "",
+        "title": "Psychology Student",
+        "affiliation": "",
+        "location": "",
+        "summary": "",
+        "socials": [],
+        "interests": [],
+        "achievements": [],
+        "experience": [],
+        "keywords": [
+          "reality",
+          "illusions",
+          "psychology"
+        ],
+        "hook": "",
+        "avatar": "people/ada-erdem/avatar.jpg"
+      },
       {
         "folder": "oliver-collins",
         "name": "Oliver Collins",
