@@ -84,6 +84,14 @@ arrive without the new folder:
   sufficient** locally. It is a separate workflow so that `contents: write` is
   granted to it alone, and its push, made with `GITHUB_TOKEN`, deliberately
   triggers no second deploy.
+  **It needs `main` to not require pull requests** (*Settings → Branches*).
+  With that rule on, the push fails with `GH006: Protected branch update
+  failed … Changes must be made through a pull request` — admins are exempt,
+  which is why pushing by hand still works, but the Actions token is not. The
+  site is unaffected (deploy.yml already built it); only the committed
+  manifests go stale. Note that GitHub's unauthenticated API reports the branch
+  as protected but does not show this rule, so it cannot be checked from
+  outside.
 
 It is done after the merge rather than pushed onto the pull request because
 those come from forks: a `pull_request` token cannot write to one, and

@@ -17,6 +17,11 @@
 # A push made with GITHUB_TOKEN starts no workflows, by GitHub's design. That
 # is what we want: deploy.yml ran on the merge itself and built these same files
 # from the same folders, and it is also why this cannot loop on its own commit.
+#
+# ── One setting it depends on ──
+# main must not require pull requests (Settings → Branches). With that rule on,
+# the push is refused with GH006 — admins are exempt from it, the Actions token
+# is not. The site is unaffected either way; only the committed manifests lag.
 
 name: 🗂️ Manifests
 
