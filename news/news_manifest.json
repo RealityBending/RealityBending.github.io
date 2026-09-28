@@ -10,7 +10,7 @@
     },
     {
       "name": "Methods",
-      "count": 13
+      "count": 14
     },
     {
       "name": "Lab",
@@ -26,6 +26,27 @@
     }
   ],
   "posts": [
+    {
+      "slug": "2026-apaquasi",
+      "title": "apaquasi: a Quarto template for good-looking preprints",
+      "subtitle": "",
+      "date": "2026-09-28",
+      "summary": "We released apaquasi, a Quarto template that keeps the machinery of APA formatting but gives preprints and manuscripts a styled, information-rich first page.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Methods",
+      "featured": false,
+      "image": "news/2026-apaquasi/featured.jpg",
+      "file": "news/2026-apaquasi/post.json",
+      "base": "news/2026-apaquasi/",
+      "words": 179,
+      "minutes": 1
+    },
     {
       "slug": "2026-evidence-accumulation-widget",
       "title": "An interactive tool to visualize Evidence Accumulation Models",

@@ -1,0 +1,12 @@
+{
+    "title": "apaquasi: a Quarto template for good-looking preprints",
+    "date": "2026-09-28",
+    "summary": "We released apaquasi, a Quarto template that keeps the machinery of APA formatting but gives preprints and manuscripts a styled, information-rich first page.",
+    "authors": ["dominique-makowski"],
+    "category": "Methods",
+    "content": [
+        "<p>We write our papers in <a href=\"https://quarto.org/\">Quarto</a>, and for APA-style manuscripts the go-to template is the excellent <a href=\"https://github.com/wjschne/apaquarto\">apaquarto</a> by W. Joel Schneider. It handles all the tedious parts (citations, headings, figure and table captions, references) but it produces, by design, a strict APA manuscript. Great for submission, but a bit more formal than it needs to be in (for our own taste).</p>",
+        "<p>So we made <a href=\"https://github.com/DominiqueMakowski/apaquasi\"><strong>apaquasi</strong></a>, a <em>quasi</em>-APA fork that keeps all of that machinery but gives the first page a more typeset look: a sidebar with the server, version, peer-review status, licence and keywords, links to the supplementary materials (GitHub, OSF, ...), <strong>Open Science badges</strong> for open data, materials, code and preregistration, ORCID icons next to author names, a customisable accent colour, optional line numbers, and a two-column body.</p>",
+        "<p>Starting a new paper with it is one command, <code>quarto use template DominiqueMakowski/apaquasi</code>, or <code>quarto add DominiqueMakowski/apaquasi</code> for an existing project. It's early days, so feedback and issues are very welcome <a href=\"https://github.com/DominiqueMakowski/apaquasi\">on the repository</a>!</p>"
+    ]
+}
