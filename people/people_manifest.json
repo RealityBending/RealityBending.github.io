@@ -312,6 +312,29 @@
       "avatar": "people/ada-erdem/avatar.jpg"
     },
     {
+      "folder": "asel-tohlukov",
+      "name": "Asel Tohlukov",
+      "category": "Research Assistant",
+      "email": "",
+      "details": "",
+      "website": "",
+      "title": "",
+      "affiliation": "",
+      "location": "",
+      "summary": "",
+      "socials": [],
+      "interests": [],
+      "achievements": [],
+      "experience": [],
+      "keywords": [
+        "psychology",
+        "dreams",
+        "reality"
+      ],
+      "hook": "",
+      "avatar": "people/asel-tohlukov/avatar.jpg"
+    },
+    {
       "folder": "oliver-collins",
       "name": "Oliver Collins",
       "category": "Research Assistant",
@@ -1056,6 +1079,29 @@
         ],
         "hook": "",
         "avatar": "people/ada-erdem/avatar.jpg"
+      },
+      {
+        "folder": "asel-tohlukov",
+        "name": "Asel Tohlukov",
+        "category": "Research Assistant",
+        "email": "",
+        "details": "",
+        "website": "",
+        "title": "",
+        "affiliation": "",
+        "location": "",
+        "summary": "",
+        "socials": [],
+        "interests": [],
+        "achievements": [],
+        "experience": [],
+        "keywords": [
+          "psychology",
+          "dreams",
+          "reality"
+        ],
+        "hook": "",
+        "avatar": "people/asel-tohlukov/avatar.jpg"
       },
       {
         "folder": "oliver-collins",
