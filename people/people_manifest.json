@@ -176,6 +176,58 @@
       "avatar": "people/ana-neves/avatar.jpg"
     },
     {
+      "folder": "cathy-croome",
+      "name": "Cathy Croome",
+      "category": "PhD Student",
+      "email": "cc831@sussex.ac.uk",
+      "details": "PhD Candidate, Sussex Neuroscience 4-Year PhD Programme",
+      "website": "",
+      "title": "Perception and inference",
+      "affiliation": "University of Sussex",
+      "location": "Brighton, UK",
+      "summary": "",
+      "socials": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/cathycroome"
+        },
+        {
+          "label": "LinkedIn",
+          "url": "https://www.linkedin.com/in/cathy-croome/"
+        }
+      ],
+      "interests": [
+        "Atypical and altered perception",
+        "Top-down contributions to perceptual experience",
+        "Bayesian inference and predictive coding",
+        "Computational modelling of perception"
+      ],
+      "achievements": [],
+      "experience": [
+        {
+          "degree": "Sussex Neuroscience 4-Year PhD Programme",
+          "institution": "University of Sussex",
+          "year": "2026–",
+          "details": "",
+          "logo": ""
+        },
+        {
+          "degree": "MSc in Cognitive and Computational Neuroscience",
+          "institution": "University of Sheffield",
+          "year": "2025",
+          "details": "",
+          "logo": ""
+        }
+      ],
+      "keywords": [
+        "perception",
+        "inference",
+        "modelling"
+      ],
+      "hook": "",
+      "avatar": "people/cathy-croome/avatar.jpg"
+    },
+    {
       "folder": "catriona-osborn-moar",
       "name": "Catriona Osborn Moar",
       "category": "PhD Student",
@@ -866,6 +918,58 @@
         ],
         "hook": "Did you know that Ana had the courage to re-start her psychology studies as a mature student?",
         "avatar": "people/ana-neves/avatar.jpg"
+      },
+      {
+        "folder": "cathy-croome",
+        "name": "Cathy Croome",
+        "category": "PhD Student",
+        "email": "cc831@sussex.ac.uk",
+        "details": "PhD Candidate, Sussex Neuroscience 4-Year PhD Programme",
+        "website": "",
+        "title": "Perception and inference",
+        "affiliation": "University of Sussex",
+        "location": "Brighton, UK",
+        "summary": "",
+        "socials": [
+          {
+            "label": "GitHub",
+            "url": "https://github.com/cathycroome"
+          },
+          {
+            "label": "LinkedIn",
+            "url": "https://www.linkedin.com/in/cathy-croome/"
+          }
+        ],
+        "interests": [
+          "Atypical and altered perception",
+          "Top-down contributions to perceptual experience",
+          "Bayesian inference and predictive coding",
+          "Computational modelling of perception"
+        ],
+        "achievements": [],
+        "experience": [
+          {
+            "degree": "Sussex Neuroscience 4-Year PhD Programme",
+            "institution": "University of Sussex",
+            "year": "2026–",
+            "details": "",
+            "logo": ""
+          },
+          {
+            "degree": "MSc in Cognitive and Computational Neuroscience",
+            "institution": "University of Sheffield",
+            "year": "2025",
+            "details": "",
+            "logo": ""
+          }
+        ],
+        "keywords": [
+          "perception",
+          "inference",
+          "modelling"
+        ],
+        "hook": "",
+        "avatar": "people/cathy-croome/avatar.jpg"
       },
       {
         "folder": "catriona-osborn-moar",
