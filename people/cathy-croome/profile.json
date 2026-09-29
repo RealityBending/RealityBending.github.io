@@ -1,0 +1,25 @@
+{
+    "name": "Cathy Croome",
+    "category": "PhD Student",
+    "affiliation": "University of Sussex",
+    "location": "Brighton, UK",
+    "email": "cc831@sussex.ac.uk",
+    "keywords": ["perception", "inference", "modelling"],
+    "interests": ["Top-down contributions to perceptual experience", "Altered states of consciousness", "Bayesian inference and predictive coding", "Computational modelling"],
+    "experience": [
+        {
+            "degree": "Sussex Neuroscience 4-Year PhD Programme",
+            "institution": "University of Sussex",
+            "year": "2026–"
+        },
+        {
+            "degree": "MSc in Cognitive and Computational Neuroscience",
+            "institution": "University of Sheffield",
+            "year": "2025"
+        }
+    ],
+    "socials": [
+        { "label": "GitHub", "url": "https://github.com/cathycroome" }
+        { "label": "LinkedIn", "url": "https://www.linkedin.com/in/cathy-croome/" }
+    ],    
+}
