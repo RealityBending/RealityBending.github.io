@@ -19,7 +19,7 @@
         }
     ],
     "socials": [
-        { "label": "GitHub", "url": "https://github.com/cathycroome" }
+        { "label": "GitHub", "url": "https://github.com/cathycroome" },
         { "label": "LinkedIn", "url": "https://www.linkedin.com/in/cathy-croome/" }
     ],    
 }
