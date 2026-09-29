@@ -7,7 +7,12 @@
     "location": "Brighton, UK",
     "email": "cc831@sussex.ac.uk",
     "keywords": ["perception", "inference", "modelling"],
-    "interests": ["Top-down contributions to perceptual experience", "Altered states of consciousness", "Bayesian inference and predictive coding", "Computational modelling"],
+    "interests": [
+        "Atypical and altered perception",
+        "Top-down contributions to perceptual experience",
+        "Bayesian inference and predictive coding",
+        "Computational modelling of perception"
+    ],
     "experience": [
         {
             "degree": "Sussex Neuroscience 4-Year PhD Programme",
