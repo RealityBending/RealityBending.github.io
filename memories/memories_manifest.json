@@ -1,22 +1,6 @@
 {
   "memories": [
     {
-      "file": "memories/img/logo.png",
-      "filename": "logo.png",
-      "title": "Test",
-      "caption": "test",
-      "year": 2026,
-      "month": 10,
-      "people": [
-        "ana-neves"
-      ],
-      "tags": [],
-      "slug": "2026-test",
-      "people_names": [
-        "Ana Neves"
-      ]
-    },
-    {
       "file": "memories/img/2026_ESCAN_Ana.webp",
       "filename": "2026_ESCAN_Ana.webp",
       "title": "Ana Neves' Talk (ESCAN 2026)",
