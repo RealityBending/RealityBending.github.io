@@ -14,7 +14,7 @@
     },
     {
       "name": "Lab",
-      "count": 11
+      "count": 12
     },
     {
       "name": "Awards",
@@ -26,6 +26,48 @@
     }
   ],
   "posts": [
+    {
+      "slug": "2026-oliver-collins-talk",
+      "title": "Oliver Collins Presents the Illusion Game to the Sussex Centre for Sensory and Perceptual Diversity",
+      "subtitle": "",
+      "date": "2026-10-07",
+      "summary": "Oliver Collins, final-year undergraduate and Research Assistant, presented the lab's work on visual illusions at the Autumn Meeting of the Sussex Centre for Sensory and Perceptual Diversity.",
+      "authors": [
+        {
+          "name": "Oliver Collins",
+          "folder": "oliver-collins",
+          "avatar": "people/oliver-collins/avatar.jpg"
+        }
+      ],
+      "category": "Lab",
+      "featured": false,
+      "image": "news/2026-oliver-collins-talk/featured.jpg",
+      "file": "news/2026-oliver-collins-talk/post.json",
+      "base": "news/2026-oliver-collins-talk/",
+      "words": 136,
+      "minutes": 1
+    },
+    {
+      "slug": "2026-escan-symposium-artificial-emotion",
+      "title": "Artificial Emotion: Our Symposium at ESCAN 2026",
+      "subtitle": "Four talks on how people feel about, and with, artificial intelligence, organised with Marco Sperduti in Rome.",
+      "date": "2026-06-06",
+      "summary": "At the European Society for Cognitive and Affective Neuroscience meeting in Rome, we organised a symposium with Marco Sperduti on affective responses to AI: from AI-labelled faces and artworks to social robots and interactive artificial agents.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Lab",
+      "featured": false,
+      "image": "news/2026-escan-symposium-artificial-emotion/featured.jpg",
+      "file": "news/2026-escan-symposium-artificial-emotion/post.json",
+      "base": "news/2026-escan-symposium-artificial-emotion/",
+      "words": 511,
+      "minutes": 2
+    },
     {
       "slug": "2026-apaquasi",
       "title": "apaquasi: a Quarto template for good-looking preprints",
@@ -151,27 +193,6 @@
       "base": "news/2026-oliver-collins-jra-scholarship/",
       "words": 61,
       "minutes": 1
-    },
-    {
-      "slug": "2026-escan-symposium-artificial-emotion",
-      "title": "Artificial Emotion: Our Symposium at ESCAN 2026",
-      "subtitle": "Four talks on how people feel about, and with, artificial intelligence, organised with Marco Sperduti in Rome.",
-      "date": "2026-06-06",
-      "summary": "At the European Society for Cognitive and Affective Neuroscience meeting in Rome, we organised a symposium with Marco Sperduti on affective responses to AI: from AI-labelled faces and artworks to social robots and interactive artificial agents.",
-      "authors": [
-        {
-          "name": "Dominique Makowski",
-          "folder": "dominique-makowski",
-          "avatar": "people/dominique-makowski/avatar.jpg"
-        }
-      ],
-      "category": "Lab",
-      "featured": false,
-      "image": "news/2026-escan-symposium-artificial-emotion/featured.jpg",
-      "file": "news/2026-escan-symposium-artificial-emotion/post.json",
-      "base": "news/2026-escan-symposium-artificial-emotion/",
-      "words": 511,
-      "minutes": 2
     },
     {
       "slug": "2026-emma-benn-sage-prize",

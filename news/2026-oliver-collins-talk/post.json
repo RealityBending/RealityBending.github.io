@@ -1,0 +1,13 @@
+{
+    "title": "Oliver Collins Presents the Illusion Game to the Sussex Centre for Sensory and Perceptual Diversity",
+    "date": "2026-10-07",
+    "summary": "Oliver Collins, final-year undergraduate and Research Assistant, presented the lab's work on visual illusions at the Autumn Meeting of the Sussex Centre for Sensory and Perceptual Diversity.",
+    "authors": ["oliver-collins"],
+    "category": "Lab",
+    "featured": false,
+    "content": [
+        "<p>Representing ReBeL at the Autumn Meeting of the <a href=\"https://www.sussex.ac.uk/research/centres/sussex-centre-for-sensory-and-perceptual-diversity/\">Sussex Centre for Sensory and Perceptual Diversity</a> (University of Sussex), Oliver gave a 10-minute presentation about our <a href=\"https://github.com/RealityBending/IllusionGame\">Illusion Game</a> paradigm.</p>",
+        "<p>Opening with a brief history of research on visual illusions, the talk highlighted the lab's rationale for creating the Illusion Game in aiming to reduce metacognitive influences on individuals' responses to illusions. Naturally, our previous implementations of the task were discussed in measuring visual illusion sensitivity in relation to <strong>personality traits</strong> (e.g., psychoticism) and <strong>phenomenological control</strong>. And, most excitingly, we announced our latest developments in understanding the perception of visual illusions through the <strong>cardiac cycle</strong> (systole versus diastole) and <strong>evidence accumulation models</strong> - more to come soon!</p>",
+        "<p>We enjoyed hearing the work of the other presenters and thank the organisers for the opportunity to present our research!</p>"
+    ]
+}
