@@ -10,7 +10,7 @@
     },
     {
       "name": "Methods",
-      "count": 14
+      "count": 15
     },
     {
       "name": "Lab",
@@ -26,6 +26,27 @@
     }
   ],
   "posts": [
+    {
+      "slug": "2026-lighthouse-plots",
+      "title": "Lighthouse plots: shining a light on differences",
+      "subtitle": "Why overlapping confidence intervals say little about a difference, and what to draw instead.",
+      "date": "2026-10-13",
+      "summary": "Two confidence intervals can overlap heavily while the difference between them is overwhelming. Lighthouse plots draw that difference directly, which is super useful .",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Methods",
+      "featured": false,
+      "image": "news/2026-lighthouse-plots/featured.gif",
+      "file": "news/2026-lighthouse-plots/post.json",
+      "base": "news/2026-lighthouse-plots/",
+      "words": 1110,
+      "minutes": 5
+    },
     {
       "slug": "2026-oliver-collins-talk",
       "title": "Oliver Collins Presents the Illusion Game to the Sussex Centre for Sensory and Perceptual Diversity",
