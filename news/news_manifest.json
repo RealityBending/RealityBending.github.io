@@ -31,7 +31,7 @@
       "title": "Lighthouse plots: shining a light on differences",
       "subtitle": "Why overlapping confidence intervals say little about a difference, and what to draw instead.",
       "date": "2026-10-13",
-      "summary": "Two confidence intervals can overlap heavily while the difference between them is overwhelming. Lighthouse plots draw that difference directly, which is super useful .",
+      "summary": "Two confidence intervals can overlap heavily while the difference between them is overwhelming. Lighthouse plots draw that difference directly, which is super useful for marginal contrasts.",
       "authors": [
         {
           "name": "Dominique Makowski",
@@ -44,7 +44,7 @@
       "image": "news/2026-lighthouse-plots/featured.gif",
       "file": "news/2026-lighthouse-plots/post.json",
       "base": "news/2026-lighthouse-plots/",
-      "words": 1110,
+      "words": 1114,
       "minutes": 5
     },
     {
