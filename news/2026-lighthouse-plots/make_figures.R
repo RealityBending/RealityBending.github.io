@@ -92,6 +92,8 @@ base_plot <- function(d) {
       alpha = 0.35, scale = 0.55, normalize = "panels"
     ) +
     facet_wrap(~Study) +
+    expand_limits(y = max(d$Score) + 10) + # headroom for the reveal's p-values, in both figures
+
     scale_x_continuous(breaks = 1:2, labels = c("A", "B"), expand = expansion(add = 0.7)) +
     scale_fill_manual(values = colours) +
     scale_colour_manual(values = colours) +
@@ -126,6 +128,16 @@ save(p_trap, "trap.png", 1100, 560)
 paired <- data
 paired$x <- x_raw[as.character(paired$Condition)]
 
+# The p of each study's paired t-test, the test the post's text reports
+format_p <- function(p) {
+  if (p < 0.001) "p < .001" else paste("p =", sub("^0", "", sprintf("%.2f", p)))
+}
+tests <- do.call(rbind, lapply(split(data, data$Study), function(d) {
+  test <- t.test(d$Score[d$Condition == "B"], d$Score[d$Condition == "A"], paired = TRUE)
+  data.frame(Study = d$Study[1], label = format_p(test$p.value))
+}))
+bracket_y <- max(data$Score) + 4
+
 p_reveal <- base_plot(data) +
   geom_line(
     data = paired, aes(x = x, y = Score, group = Participant),
@@ -135,7 +147,13 @@ p_reveal <- base_plot(data) +
     data = paired, aes(x = x, y = Score, colour = Condition),
     size = 1.6, alpha = 0.8
   ) +
-  mean_layer()
+  mean_layer() +
+  annotate("segment", x = 1, xend = 2, y = bracket_y, yend = bracket_y, linewidth = 0.5) +
+  annotate("segment", x = c(1, 2), xend = c(1, 2), y = bracket_y, yend = bracket_y - 1.5, linewidth = 0.5) +
+  geom_text(
+    data = tests, aes(x = 1.5, y = bracket_y + 2.2, label = label),
+    fontface = "bold", size = 4.6, vjust = 0, inherit.aes = FALSE
+  )
 save(p_reveal, "reveal.png", 1100, 560)
 
 # 3. The lighthouses ---------------------------------------------------------

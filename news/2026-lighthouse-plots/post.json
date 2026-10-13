@@ -2,14 +2,14 @@
   "title": "Lighthouse plots: shining a light on differences",
   "date": "2026-10-13",
   "subtitle": "Why overlapping confidence intervals say little about a difference, and what to draw instead.",
-  "summary": "Two confidence intervals can overlap heavily while the difference between them is overwhelming. Lighthouse plots draw that difference directly, which is super useful .",
+  "summary": "Two confidence intervals can overlap heavily while the difference between them is overwhelming. Lighthouse plots draw that difference directly, which is super useful for marginal contrasts.",
   "authors": [
     "dominique-makowski"
   ],
   "category": "Methods",
   "draft": false,
   "content": [
-    "<p><a href=\"https://github.com/jmgirard\">Jeffrey Girard</a>, the newest member of the <a href=\"https://github.com/easystats\">easystats</a> team (and the fastest issue-tackler), has just spent some time improving one of our most underrated features: <strong>lighthouse plots</strong>. If you've never heard of them, that is not really surprising: I came up with them in <a href=\"https://github.com/easystats/see/issues/12\">one of our GitHub issues</a>, back in 2019, when I was thinking of how to best convey condition differences in within-participant designs.</p>",
+    "<p><a href=\"https://github.com/jmgirard\">Jeffrey Girard</a>, the newest member of the <a href=\"https://github.com/easystats\">easystats</a> team (and the fastest issue-tackler), has just spent some time improving one of our most underrated features: <strong>lighthouse plots</strong>. If you've never heard of them, that is not really surprising: they originated in <a href=\"https://github.com/easystats/see/issues/12\">one of our GitHub issues</a>, a long time ago, when I was thinking of how to best convey condition differences in within-participant designs, but that idea never saw the <i>light</i> it deserved.</p>",
     "<h3>A puzzle</h3>",
     "<p>Here are two studies. In each, 30 participants got two scores: once in condition A, once in condition B. For each condition, the figure shows the distribution of the scores, and the mean with its 95% confidence interval.</p>",
     "<figure><img src=\"trap.png\" alt=\"Two identical-looking panels, Study 1 and Study 2, each showing the distribution of scores in conditions A and B with their means and heavily overlapping 95% confidence intervals.\"><figcaption>Two studies, two conditions. Each condition's mean and 95% CI, over the distribution of its scores.</figcaption></figure>",
@@ -31,6 +31,6 @@
     "<h3>Making one</h3>",
     "<p>A lighthouse plot is what <em>see</em> draws when you plot contrasts from <a href=\"https://easystats.github.io/modelbased/\">modelbased</a> together with the means they compare. Any model that <em>modelbased</em> supports will do. Here, a mixed model with a random intercept for each participant:</p>",
     "<pre><code class=\"language-r\">library(lme4)\nlibrary(modelbased)\nlibrary(see)\n\nmodel &lt;- lmer(Score ~ Condition + (1 | Participant), data = data)\n\nmeans &lt;- estimate_means(model, by = \"Condition\")\ncontrasts &lt;- estimate_contrasts(model, contrast = \"Condition\")\n\nplot(contrasts, means)</code></pre>",
-    "<p>Thank you, Jeffrey, for reviving and robustifying lighthouse plots. Now is a good time to try them, and to <a href=\"https://github.com/easystats/see/issues\">tell us</a> when they do not do what you expect.</p>"
+    "<p>Thank you, Jeffrey, for reviving and robustifying lighthouse plots. Now is a good time to try them, and to <a href=\"https://github.com/easystats/see/issues\">tell us</a> if they need more fixing.</p>"
   ]
 }
