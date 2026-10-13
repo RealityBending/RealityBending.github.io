@@ -7,7 +7,7 @@
     "dominique-makowski"
   ],
   "category": "Methods",
-  "draft": true,
+  "draft": false,
   "content": [
     "<p><a href=\"https://github.com/jmgirard\">Jeffrey Girard</a>, the newest member of the <a href=\"https://github.com/easystats\">easystats</a> team (and the fastest issue-tackler), has just spent some time improving one of our most underrated features: <strong>lighthouse plots</strong>. If you've never heard of them, that is not really surprising: I came up with them in <a href=\"https://github.com/easystats/see/issues/12\">one of our GitHub issues</a>, back in 2019, when I was thinking of how to best convey condition differences in within-participant designs.</p>",
     "<h3>A puzzle</h3>",
