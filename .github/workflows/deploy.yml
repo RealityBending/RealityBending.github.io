@@ -87,6 +87,17 @@ jobs:
             - name: Check every writable route is a real page
               run: python tools/check-paths.py
 
+            # generate_pages.py writes into _generated/, never into the source
+            # tree, so the deployed site is the checkout with that folder laid
+            # over it. The generator has already refused any path that exists
+            # on both sides, so this replaces nothing. The folder is removed
+            # afterwards, or every page would also be served a second time
+            # under /_generated/.
+            - name: Lay the generated pages over the checkout
+              run: |
+                  cp -r _generated/. .
+                  rm -rf _generated
+
             - name: Fail if the site is not at the deployed root
               # generate_pages.py writes root-absolute URLs into 148 pages and
               # every canonical is https://realitybending.github.io/…, so a

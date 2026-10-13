@@ -65,7 +65,7 @@ jobs:
               run: |
                   python - <<'PY'
                   import re, sys
-                  urls = re.findall(r"<loc>", open("sitemap.xml", encoding="utf-8").read())
+                  urls = re.findall(r"<loc>", open("_generated/sitemap.xml", encoding="utf-8").read())
                   if len(urls) < 100:
                       sys.exit(f"sitemap.xml has only {len(urls)} URLs — the generator did not run properly")
                   print(f"sitemap.xml: {len(urls)} URLs")

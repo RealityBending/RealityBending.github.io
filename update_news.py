@@ -260,11 +260,12 @@ def load_posts(people: dict) -> list[dict]:
             continue
         source = entry / "post.json"
         if not source.exists():
-            # generate_pages.py writes the two tab pages, news/all/ and
-            # news/featured/, into this folder as a lone index.html each. They
-            # are expected and not a post with a missing post.json, so they
-            # pass in silence; a folder holding anything else (a picture with
-            # no post.json beside it) is still the mistake worth flagging.
+            # generate_pages.py used to write the two tab pages, news/all/ and
+            # news/featured/, into this folder as a lone index.html each. It
+            # writes to _generated/ now, but an older working copy may still
+            # have them, and they are not a post with a missing post.json, so
+            # they pass in silence; a folder holding anything else (a picture
+            # with no post.json beside it) is still the mistake worth flagging.
             if all(p.name == "index.html" for p in entry.rglob("*") if p.is_file()):
                 continue
             warn(entry.name, "no post.json found — skipping")

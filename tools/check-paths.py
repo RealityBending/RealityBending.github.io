@@ -3,6 +3,10 @@
 
     python tools/check-paths.py        (run from the repo root, after generate_pages.py)
 
+A path counts as served if it is in `_generated/` or in the source tree — the
+same overlay deploy.yml uploads and tools/serve.py serves — so this works both
+before and after deploy.yml copies `_generated/` into the checkout.
+
 `tools/check-routes.html` checks the other half of this: that routes.js
 round-trips a route to a path and back. It cannot check that anything *serves*
 that path, because it has no filesystem. This does, and between them the
@@ -49,6 +53,8 @@ try:
     ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 except NameError:
     ROOT = os.getcwd()
+
+GENERATED = os.path.join(ROOT, "_generated")
 
 if not os.path.exists(os.path.join(ROOT, "index.html")):
     sys.exit(
@@ -115,8 +121,12 @@ def main():
     missing = []
     stubs = []
     for path in expected:
-        target = os.path.join(ROOT, path.strip("/"), "index.html") if path != "/" else os.path.join(ROOT, "index.html")
-        if not os.path.exists(target):
+        rel = os.path.join(path.strip("/"), "index.html") if path != "/" else "index.html"
+        target = next(
+            (t for t in (os.path.join(GENERATED, rel), os.path.join(ROOT, rel)) if os.path.exists(t)),
+            None,
+        )
+        if target is None:
             missing.append(path)
             continue
         # A page that redirects to itself is worse than a missing one: it is an

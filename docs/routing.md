@@ -347,6 +347,8 @@ hence the redirect stubs from `legacy_map.json`.
 `generate_pages.py`, run after the three `update_*.py` and after
 `tools/build_legacy_map.py`. It writes 182 pages — one per post, member, memory,
 publication and section, plus three hubs — 100 redirect stubs, `sitemap.xml` and `llms.txt`.
+All of it goes into `_generated/`, which `deploy.yml` lays over the repository
+before uploading (see [build-and-deploy.md](build-and-deploy.md)).
 **None of it is committed** (`.gitignore`); it is built in CI, because ~250
 files churning on every content edit buries the one-line change that actually
 happened. That includes `sitemap.xml` and `llms.txt`, which were committed for

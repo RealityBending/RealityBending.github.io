@@ -43,10 +43,11 @@ local server serves them, the Contact and Services backdrops render, and
 nothing in the repository looks wrong. `git status` does not mention them —
 that is the entire point of an ignore rule. Only the deployed site 404s.
 
-It is `information/index.html` + `information/*/index.html` now. The other six
-generated folders hold nothing else and are anchored with a leading slash
-(`/join/`, not `join/`) so they cannot also swallow `information/join/` and
-disguise which rule is doing the work.
+That whole class of problem is gone for generated output, because none of it is
+written into the source tree any more: `generate_pages.py` writes only into
+`_generated/`, which holds nothing else, so one line ignores all of it. The
+twenty patterns that used to pick generated `index.html` files out from the
+source beside them went with it.
 
 **Before adding a folder to `.gitignore`, check whether anything in it is
 source.** And when an image "does not show" on the deployed site but does
@@ -62,7 +63,30 @@ from it. Changing a colour in `css/01-base.css` alone will desynchronise them.
 python update_people.py && python update_publications.py && python update_news.py
 python generate_pages.py
 python tools/check-paths.py
+python tools/serve.py
 ```
+
+### Where the generated pages go
+
+**`_generated/`, and nowhere else.** The deployed site is the repository with
+that folder laid over it: `deploy.yml` copies it into the checkout just before
+uploading, and `tools/serve.py` serves the same overlay locally — a path is
+looked up in `_generated/` first, then in the source tree — so a reload on
+`/news/<slug>/` or a legacy `/post/…` URL behaves as it does in production.
+
+It used to be written in place, which is why an older working copy has
+`authors/`, `post/`, `publication/`, `jobs/`, `join/` and `services/` at the
+root, an `index.html` in every post and member folder, and `people/memories/`
+beside the real `memories/`. None of that was ever in git, and it read as a
+second copy of the site. **The generator now refuses to finish while any of it
+is still there**: a path it writes that also exists in the source tree would be
+silently replaced on the deployed site, so it lists every one and exits 1. In
+an old working copy they are all leftovers — untracked, and safe to delete.
+
+A run overwrites what is there and then deletes anything in `_generated/` it
+did not write, rather than wiping the folder first. That is for Dropbox, which
+holds a handle on a folder it has just synced: on Windows, deleting a freshly
+written tree fails with WinError 32.
 
 ### Which of them CI runs for you
 
@@ -111,14 +135,12 @@ is the case that catches people out: the page's own text is read straight from
 manifest, which is what the list view renders — so a change to any of those
 needs `update_publications.py` first or the section and the page disagree.
 
-Running them in the other order is harmless but leaves generated pages inside
-the source folders: `people/lab/`, `people/collaborations/`, `people/memories/`
-and `news/all/`, `news/featured/` are tab pages `generate_pages.py` writes as a
-lone `index.html` each. (The News pair outlived the tabs themselves — they are
-kept as canonicalised aliases of `/news/`, see [news.md](news.md).) `update_people.py` and `update_news.py` recognise a
-folder holding nothing but `index.html` files as that and skip it silently; a
-folder with no source file *and* something else in it is still warned about,
-because that one is a member or a post someone forgot to finish.
+`update_people.py` and `update_news.py` still skip, silently, a folder holding
+nothing but `index.html` files. That is what the generator's tab pages
+(`people/lab/`, `news/all/` …) looked like when they were written in place, and
+an older working copy may still have them. A folder with no source file *and*
+something else in it is still warned about, because that one is a member or a
+post someone forgot to finish.
 
 ### Two lines every one of them needs, and why
 
@@ -161,8 +183,11 @@ belongs.
 
 - **`check-routes.html`** — round-trips every route shape through `routes.js`
   and prints PASS or names what broke. Open it in a browser.
+- **`serve.py`** — the local server: the source tree with `_generated/` over it,
+  as deployed, and `Cache-Control: no-store` on everything. `.claude/launch.json`
+  starts it.
 - **`check-paths.py`** — every route the site can *write* is a real file, or it
-  names the 404s. Run it after `generate_pages.py`; CI runs it as a gate on the
+  names the 404s. It looks in `_generated/` and the source tree both. Run it after `generate_pages.py`; CI runs it as a gate on the
   deploy. It pairs with `check-routes.html`: that one checks routes.js
   round-trips, this one checks something serves the result.
 - **`build_legacy_map.py`** — the old Hugo site's URLs → `legacy_map.json`.

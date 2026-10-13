@@ -2,14 +2,18 @@
 
 Single-page site for the Reality Bending Lab (University of Sussex). No build
 step, no framework, no package manager: plain ES modules, plain stylesheets,
-static assets. The repository root **is** the site.
+static assets. The repository root **is** the site, less the ~300 pages
+`generate_pages.py` writes into `_generated/` — the deploy lays that folder over
+the root, and `tools/serve.py` does the same locally. Nothing generated is ever
+written into the source tree.
 
 **This file is the index, and it is deliberately short.** Everything specific
 lives in `docs/`, one file per area — read only the one you need. Every fact
 lives in exactly one place; if something is true of two areas, it is here.
 
 ```bash
-python -m http.server 8777
+python generate_pages.py   # only needed for reloads on deep URLs
+python tools/serve.py      # http://localhost:8777, the source tree + _generated/
 ```
 
 ## Where to read before you change something
@@ -45,8 +49,9 @@ update_people.py    people/ + memories/ folders  → their manifests
 update_publications.py
                     ORCID + CrossRef                → publications/ + manifest
 update_news.py      news/ folders                   → news_manifest.json
-generate_pages.py   manifests + index.html          → ~250 real pages, robots.txt,
-                    sitemap.xml, llms.txt   (all gitignored, all built in CI)
+generate_pages.py   manifests + index.html          → _generated/: ~300 real pages
+                    and legacy redirects, robots.txt, sitemap.xml, llms.txt
+                    (gitignored, built in CI, laid over the root on deploy)
 tools/              developer tools — nothing here is part of the site
 img/                assets shared by more than one section
 .github/workflows/  the deploy and check pipelines
@@ -61,12 +66,6 @@ NOTICE.md           what in here is somebody else's: the brain mesh is
 Break one of these and the failure is usually silent. They are here rather than
 in `docs/` because they are not any one area's business.
 
-- **A section's colour lives in `site-sections.js`, not in the stylesheet.**
-  The hero buttons, the nav links and the 3D brain's highlight all read from it.
-  Changing a colour in `css/01-base.css` alone desynchronises them. Note also
-  that the hero's button colours come from `:nth-child` rules, so a colour
-  belongs to **a position on the arc, not to a section** — see
-  [docs/layout.md](docs/layout.md).
 - **A section's colour lives in `site-sections.js`, not in the stylesheet.**
   The hero buttons, the nav links and the 3D brain's highlight all read from it.
   Changing a colour in `css/01-base.css` alone desynchronises them. Note also
@@ -125,9 +124,11 @@ getComputedStyle(el).position
 el.getBoundingClientRect()
 ```
 
-**`python -m http.server` sends no cache headers**, so browsers serve stale JS
-and CSS while you debug a fix that already landed. Before assuming the code is
-wrong: `fetch("/script.js", { cache: "reload" })`, then reload.
+**`tools/serve.py` sends `Cache-Control: no-store`; `python -m http.server`
+sends no cache headers at all**, so under the latter browsers serve stale JS and
+CSS while you debug a fix that already landed. If you are on it anyway, before
+assuming the code is wrong: `fetch("/script.js", { cache: "reload" })`, then
+reload.
 
 ### In a headless or non-compositing preview pane
 
