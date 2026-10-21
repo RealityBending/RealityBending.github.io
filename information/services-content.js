@@ -158,6 +158,24 @@ export const SERVICES_CONTENT = Object.freeze({
         },
 
         /* No client and no date: work offered rather than delivered. */
+        // {
+        //     id: "psychophysiology-workshop",
+        //     domain: "upskilling",
+        //     title: "Psychophysiology: from theory to practice",
+        //     description: "A workshop to start using bodily signals in your research.",
+        // },
+        // {
+        //     id: "online-experiments-workshop",
+        //     domain: "upskilling",
+        //     title: "Online experiments pipeline",
+        //     description: "Free, transparent and replicable online experiments with *GitHub* and *jsPsych*.",
+        // },
+        // {
+        //     id: "wearables-testing",
+        //     domain: "expertise",
+        //     title: "Testing wearables",
+        //     description: "Testing and validating products related to physiology and emotions, such as smart wearables.",
+        // },
         // { id: "research-software", domain: "development", title: "Research software and packages" },
         // { id: "modern-experiments", domain: "development", title: "User-friendly modern experiments" },
     ],
