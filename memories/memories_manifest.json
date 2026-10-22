@@ -61,10 +61,45 @@
       "title": "Labdrinks",
       "caption": "",
       "year": 2026,
-      "month": 1,
-      "people": [],
+      "month": 10,
+      "people": [
+      "ana-neves",
+      "ada-erdem",
+      "asel-tohlukov"],
       "tags": [],
-      "people_names": []
+      "people_names": [
+       "Ana Neves",
+       "Ada Erdem",
+       "Asel Tohlukov",
+       "Carmen McClean-Daoust"]
+    },
+    {      
+      "file": "memories/img/2026_labdinner.jpg",
+      "filename": "2026_labdinner.jpg",
+      "slug": "2026-labdinner",
+      "title": "Labdinner",
+      "caption": "",
+      "year": 2026,
+      "month": 10,
+      "people": [
+      "ana-neves",
+      "dominique-makowski",
+      "oliver-collins",
+      "cathy-croome",
+      "asel-tohlukov",
+      "ada-erdem", 
+      "roisin-sharma"],
+      "tags": [],
+      "people_names": [
+      "Ana Neves", 
+      "Dominique Makowski", 
+      "Oliver Collins",
+      "Roisin Sharma",
+      "Cathy Croome",
+      "Ada Erdem",
+      "Asel Tohlukov",
+      "Carmen McClean-Daoust",
+      "Max Lovell"]
     },
     {
       "file": "memories/img/2025_Dissection.webp",
