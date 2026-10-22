@@ -1,6 +1,54 @@
 {
   "memories": [
     {
+      "file": "memories/img/2026_labdinner.jpg",
+      "filename": "2026_labdinner.jpg",
+      "slug": "2026-labdinner",
+      "title": "Labdinner",
+      "caption": "",
+      "year": 2026,
+      "month": 10,
+      "people": [
+        "ana-neves",
+        "dominique-makowski",
+        "oliver-collins",
+        "cathy-croome",
+        "asel-tohlukov",
+        "ada-erdem",
+        "roisin-sharma"
+      ],
+      "tags": [],
+      "people_names": [
+        "Ana Neves",
+        "Dominique Makowski",
+        "Oliver Collins",
+        "Cathy Croome",
+        "Asel Tohlukov",
+        "Ada Erdem",
+        "Róisín Sharma"
+      ]
+    },
+    {
+      "file": "memories/img/2026_labdrinks.webp",
+      "filename": "2026_labdrinks.webp",
+      "slug": "2026-labdrinks",
+      "title": "Labdrinks",
+      "caption": "",
+      "year": 2026,
+      "month": 10,
+      "people": [
+        "ana-neves",
+        "ada-erdem",
+        "asel-tohlukov"
+      ],
+      "tags": [],
+      "people_names": [
+        "Ana Neves",
+        "Ada Erdem",
+        "Asel Tohlukov"
+      ]
+    },
+    {
       "file": "memories/img/2026_ESCAN_Ana.webp",
       "filename": "2026_ESCAN_Ana.webp",
       "title": "Ana Neves' Talk (ESCAN 2026)",
@@ -53,53 +101,6 @@
         "Ana Neves",
         "Dominique Makowski"
       ]
-    },
-    {
-      "file": "memories/img/2026_labdrinks.webp",
-      "filename": "2026_labdrinks.webp",
-      "slug": "2026-labdrinks",
-      "title": "Labdrinks",
-      "caption": "",
-      "year": 2026,
-      "month": 10,
-      "people": [
-      "ana-neves",
-      "ada-erdem",
-      "asel-tohlukov"],
-      "tags": [],
-      "people_names": [
-       "Ana Neves",
-       "Ada Erdem",
-       "Asel Tohlukov",
-       "Carmen McClean-Daoust"]
-    },
-    {      
-      "file": "memories/img/2026_labdinner.jpg",
-      "filename": "2026_labdinner.jpg",
-      "slug": "2026-labdinner",
-      "title": "Labdinner",
-      "caption": "",
-      "year": 2026,
-      "month": 10,
-      "people": [
-      "ana-neves",
-      "dominique-makowski",
-      "oliver-collins",
-      "cathy-croome",
-      "asel-tohlukov",
-      "ada-erdem", 
-      "roisin-sharma"],
-      "tags": [],
-      "people_names": [
-      "Ana Neves", 
-      "Dominique Makowski", 
-      "Oliver Collins",
-      "Roisin Sharma",
-      "Cathy Croome",
-      "Ada Erdem",
-      "Asel Tohlukov",
-      "Carmen McClean-Daoust",
-      "Max Lovell"]
     },
     {
       "file": "memories/img/2025_Dissection.webp",
