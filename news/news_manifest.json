@@ -18,7 +18,7 @@
     },
     {
       "name": "Awards",
-      "count": 12
+      "count": 13
     },
     {
       "name": "Media",
@@ -26,6 +26,27 @@
     }
   ],
   "posts": [
+    {
+      "slug": "2026-oliver-collins-jra-award",
+      "title": "🏆 Oliver Collins wins People's Choice Award at 2026 JRA Poster Exhibition",
+      "subtitle": "",
+      "date": "2026-10-13",
+      "summary": "Oliver Collins, final-year student and research assistant, has been awarded the People's Choice Award at the Junior Research Assistant (JRA) Poster Exhibition.",
+      "authors": [
+        {
+          "name": "Oliver Collins",
+          "folder": "oliver-collins",
+          "avatar": "people/oliver-collins/avatar.jpg"
+        }
+      ],
+      "category": "Awards",
+      "featured": false,
+      "image": "news/2026-oliver-collins-jra-award/featured.jpg",
+      "file": "news/2026-oliver-collins-jra-award/post.json",
+      "base": "news/2026-oliver-collins-jra-award/",
+      "words": 76,
+      "minutes": 1
+    },
     {
       "slug": "2026-lighthouse-plots",
       "title": "Lighthouse plots: shining a light on differences",
