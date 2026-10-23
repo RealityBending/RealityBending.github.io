@@ -1,0 +1,28 @@
+{
+    "name": "Jay Orpana",
+    "category": "Research Assistant",
+    "title": "MRes Psychological Research Methods",
+    "affiliation": "University of Sussex",
+    "location": "Brighton, UK",
+    "summary": "Masters student and occasional author of publications, with an interest in game-based learning environments, metacognition, neurodevelopmental conditions (specifically, Autism & ADHD), predictive processing (errors) and active inference. When not doing anything academic, can be found playing gigs around town and tatttooing!",
+    "email": "J.E.Orpana@sussex.ac.uk",
+    "socials": [
+        {
+            "label": "GitHub",
+            "url": "https://github.com/jay-or-what"
+        },
+        {
+            "label": "ResearchGate",
+            "url": "https://www.researchgate.net/profile/Jay-Orpana"
+        }
+    ],
+    "interests": ["GBLEs", "Metacognition", "Predictive Processing", "Jazz", "Art and Design", "Video Game Ethics", "Neurodiversity"],
+    "experience": [
+        {
+            "degree": "BSc in Psychology with Cognitive Science",
+            "institution": "University of Sussex",
+            "year": "2019-2024"
+        }
+    ],
+    "keywords": ["Game-Based Learning", "Metacognition", "Psychometrics"]
+}
