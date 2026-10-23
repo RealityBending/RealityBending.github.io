@@ -335,6 +335,54 @@
       "avatar": "people/asel-tohlukov/avatar.jpg"
     },
     {
+      "folder": "jay-orpana",
+      "name": "Jay Orpana",
+      "category": "Research Assistant",
+      "email": "J.E.Orpana@sussex.ac.uk",
+      "details": "",
+      "website": "",
+      "title": "MRes Psychological Research Methods",
+      "affiliation": "University of Sussex",
+      "location": "Brighton, UK",
+      "summary": "Masters student and occasional author of publications, with an interest in game-based learning environments, metacognition, neurodevelopmental conditions (specifically, Autism & ADHD), predictive processing (errors) and active inference. When not doing anything academic, can be found playing gigs around town and tatttooing!",
+      "socials": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/jay-or-what"
+        },
+        {
+          "label": "ResearchGate",
+          "url": "https://www.researchgate.net/profile/Jay-Orpana"
+        }
+      ],
+      "interests": [
+        "GBLEs",
+        "Metacognition",
+        "Predictive Processing",
+        "Jazz",
+        "Art and Design",
+        "Video Game Ethics",
+        "Neurodiversity"
+      ],
+      "achievements": [],
+      "experience": [
+        {
+          "degree": "BSc in Psychology with Cognitive Science",
+          "institution": "University of Sussex",
+          "year": "2019-2024",
+          "details": "",
+          "logo": ""
+        }
+      ],
+      "keywords": [
+        "Game-Based Learning",
+        "Metacognition",
+        "Psychometrics"
+      ],
+      "hook": "",
+      "avatar": "people/jay-orpana/avatar.jpg"
+    },
+    {
       "folder": "oliver-collins",
       "name": "Oliver Collins",
       "category": "Research Assistant",
@@ -381,51 +429,6 @@
       ],
       "hook": "Did you know that Oliver created a facial EMG-based guitar controller?",
       "avatar": "people/oliver-collins/avatar.jpg"
-    },
-    {
-      "folder": "roisin-sharma",
-      "name": "Róisín Sharma",
-      "category": "Research Assistant",
-      "email": "rs843@sussex.ac.uk",
-      "details": "Placement Student and Research Assistant",
-      "website": "",
-      "title": "",
-      "affiliation": "University of Sussex",
-      "location": "",
-      "summary": "",
-      "socials": [
-        {
-          "label": "GitHub",
-          "url": "https://github.com/RoisinSharma"
-        },
-        {
-          "label": "ResearchGate",
-          "url": "https://www.researchgate.net/profile/Roisin-Sharma"
-        }
-      ],
-      "interests": [
-        "Statistical Analysis",
-        "Cognitive Science",
-        "Learning languages",
-        "Chess (strictly informally!)"
-      ],
-      "achievements": [],
-      "experience": [
-        {
-          "degree": "BSc Psychology",
-          "institution": "University of Sussex",
-          "year": "2023–2027",
-          "details": "",
-          "logo": ""
-        }
-      ],
-      "keywords": [
-        "perception",
-        "synaesthesia",
-        "psychometrics"
-      ],
-      "hook": "Did you know that Róisín created the Cognitive Research Article Sussex Student Society?",
-      "avatar": "people/roisin-sharma/avatar.jpg"
     },
     {
       "folder": "anshu-te",
@@ -588,6 +591,51 @@
       "keywords": [],
       "hook": "",
       "avatar": "people/rob-dickinson/avatar.png"
+    },
+    {
+      "folder": "roisin-sharma",
+      "name": "Róisín Sharma",
+      "category": "Alumni",
+      "email": "rs843@sussex.ac.uk",
+      "details": "Placement Student (2025–26)",
+      "website": "",
+      "title": "",
+      "affiliation": "University of Sussex",
+      "location": "",
+      "summary": "",
+      "socials": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/RoisinSharma"
+        },
+        {
+          "label": "ResearchGate",
+          "url": "https://www.researchgate.net/profile/Roisin-Sharma"
+        }
+      ],
+      "interests": [
+        "Statistical Analysis",
+        "Cognitive Science",
+        "Learning languages",
+        "Chess (strictly informally!)"
+      ],
+      "achievements": [],
+      "experience": [
+        {
+          "degree": "BSc Psychology",
+          "institution": "University of Sussex",
+          "year": "2023–2027",
+          "details": "",
+          "logo": ""
+        }
+      ],
+      "keywords": [
+        "perception",
+        "synaesthesia",
+        "psychometrics"
+      ],
+      "hook": "Did you know that Róisín created the Cognitive Research Article Sussex Student Society?",
+      "avatar": "people/roisin-sharma/avatar.jpg"
     },
     {
       "folder": "stephanie-kirk",
@@ -1104,6 +1152,54 @@
         "avatar": "people/asel-tohlukov/avatar.jpg"
       },
       {
+        "folder": "jay-orpana",
+        "name": "Jay Orpana",
+        "category": "Research Assistant",
+        "email": "J.E.Orpana@sussex.ac.uk",
+        "details": "",
+        "website": "",
+        "title": "MRes Psychological Research Methods",
+        "affiliation": "University of Sussex",
+        "location": "Brighton, UK",
+        "summary": "Masters student and occasional author of publications, with an interest in game-based learning environments, metacognition, neurodevelopmental conditions (specifically, Autism & ADHD), predictive processing (errors) and active inference. When not doing anything academic, can be found playing gigs around town and tatttooing!",
+        "socials": [
+          {
+            "label": "GitHub",
+            "url": "https://github.com/jay-or-what"
+          },
+          {
+            "label": "ResearchGate",
+            "url": "https://www.researchgate.net/profile/Jay-Orpana"
+          }
+        ],
+        "interests": [
+          "GBLEs",
+          "Metacognition",
+          "Predictive Processing",
+          "Jazz",
+          "Art and Design",
+          "Video Game Ethics",
+          "Neurodiversity"
+        ],
+        "achievements": [],
+        "experience": [
+          {
+            "degree": "BSc in Psychology with Cognitive Science",
+            "institution": "University of Sussex",
+            "year": "2019-2024",
+            "details": "",
+            "logo": ""
+          }
+        ],
+        "keywords": [
+          "Game-Based Learning",
+          "Metacognition",
+          "Psychometrics"
+        ],
+        "hook": "",
+        "avatar": "people/jay-orpana/avatar.jpg"
+      },
+      {
         "folder": "oliver-collins",
         "name": "Oliver Collins",
         "category": "Research Assistant",
@@ -1150,51 +1246,6 @@
         ],
         "hook": "Did you know that Oliver created a facial EMG-based guitar controller?",
         "avatar": "people/oliver-collins/avatar.jpg"
-      },
-      {
-        "folder": "roisin-sharma",
-        "name": "Róisín Sharma",
-        "category": "Research Assistant",
-        "email": "rs843@sussex.ac.uk",
-        "details": "Placement Student and Research Assistant",
-        "website": "",
-        "title": "",
-        "affiliation": "University of Sussex",
-        "location": "",
-        "summary": "",
-        "socials": [
-          {
-            "label": "GitHub",
-            "url": "https://github.com/RoisinSharma"
-          },
-          {
-            "label": "ResearchGate",
-            "url": "https://www.researchgate.net/profile/Roisin-Sharma"
-          }
-        ],
-        "interests": [
-          "Statistical Analysis",
-          "Cognitive Science",
-          "Learning languages",
-          "Chess (strictly informally!)"
-        ],
-        "achievements": [],
-        "experience": [
-          {
-            "degree": "BSc Psychology",
-            "institution": "University of Sussex",
-            "year": "2023–2027",
-            "details": "",
-            "logo": ""
-          }
-        ],
-        "keywords": [
-          "perception",
-          "synaesthesia",
-          "psychometrics"
-        ],
-        "hook": "Did you know that Róisín created the Cognitive Research Article Sussex Student Society?",
-        "avatar": "people/roisin-sharma/avatar.jpg"
       }
     ],
     "Alumni": [
@@ -1359,6 +1410,51 @@
         "keywords": [],
         "hook": "",
         "avatar": "people/rob-dickinson/avatar.png"
+      },
+      {
+        "folder": "roisin-sharma",
+        "name": "Róisín Sharma",
+        "category": "Alumni",
+        "email": "rs843@sussex.ac.uk",
+        "details": "Placement Student (2025–26)",
+        "website": "",
+        "title": "",
+        "affiliation": "University of Sussex",
+        "location": "",
+        "summary": "",
+        "socials": [
+          {
+            "label": "GitHub",
+            "url": "https://github.com/RoisinSharma"
+          },
+          {
+            "label": "ResearchGate",
+            "url": "https://www.researchgate.net/profile/Roisin-Sharma"
+          }
+        ],
+        "interests": [
+          "Statistical Analysis",
+          "Cognitive Science",
+          "Learning languages",
+          "Chess (strictly informally!)"
+        ],
+        "achievements": [],
+        "experience": [
+          {
+            "degree": "BSc Psychology",
+            "institution": "University of Sussex",
+            "year": "2023–2027",
+            "details": "",
+            "logo": ""
+          }
+        ],
+        "keywords": [
+          "perception",
+          "synaesthesia",
+          "psychometrics"
+        ],
+        "hook": "Did you know that Róisín created the Cognitive Research Article Sussex Student Society?",
+        "avatar": "people/roisin-sharma/avatar.jpg"
       },
       {
         "folder": "stephanie-kirk",
