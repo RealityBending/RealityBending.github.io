@@ -210,7 +210,7 @@ transition — so every transitioned property reads as its *start* value, while
 `backdrop-filter`, which is not in the transition list, has already changed.
 Measured, the nav reported `rgb(245, 244, 239)` while the dark rule was
 demonstrably applying. Inject `* { transition: none !important }`, read, remove.
-Same trap as the frozen transitions in ../CLAUDE.md, "Verifying changes", but this one
+Same trap as the frozen transitions in ../AGENTS.md, "Verifying changes", but this one
 looks like a selector that does not match.
 
 Leaving the Overview tab locks the zoom too (`activateTab` in `research.js`),

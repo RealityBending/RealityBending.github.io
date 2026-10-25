@@ -26,6 +26,10 @@ someone else. That includes at least:
   Neuroscience Association's own announcement graphic for the debate that
   post reports, marks and speaker photographs included. Theirs, and
   reproduced to illustrate the event it announces.
+- `news/2026-udo-of-aachen/featured.jpg` and `nativity.webp` — the
+  manuscript "photographs" from Ray Girvan's *The Mandelbrot Monk* (1999),
+  reproduced to illustrate the post about that article. Its `meme.webp` is
+  the Scooby-Doo unmasking meme, a frame of a Hanna-Barbera cartoon.
 - Photographs of lab members and lab events.
 
 If you want to reuse any of that, the licence you need is theirs, not this one.

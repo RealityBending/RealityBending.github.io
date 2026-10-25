@@ -236,7 +236,7 @@ continuous one, and every scroll-driven module here routes `resize` to the same
 update function — which is what makes
 `window.dispatchEvent(new Event("resize"))` a working stand-in for a scroll in a
 preview pane that fires neither scroll events nor animation frames (see
-../CLAUDE.md, "Verifying changes"). Putting resize behind a frame would take that away, and
+../AGENTS.md, "Verifying changes"). Putting resize behind a frame would take that away, and
 buy almost nothing.
 
 **What it does not do is reorder reads before writes *across* handlers.** That

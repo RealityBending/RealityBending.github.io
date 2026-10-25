@@ -34,6 +34,52 @@ python tools/serve.py      # http://localhost:8777, the source tree + _generated
 `README.md` is the only file here written for lab students rather than
 maintainers: how to add a profile, how to write a post. Keep it that way.
 
+## Common tasks
+
+The recipes, in short. The field-by-field detail is in the file each one names.
+
+- **Add a profile.** One folder `people/<firstname-lastname>/` holding
+  `avatar.jpg` (700px) and a `profile.json` with at least `name` and a
+  `category` from `PI`, `Postdoc`, `PhD Student`, `Research Assistant`,
+  `Alumni`. Fields: `README.md`, "Add your profile". Someone leaving the lab is
+  the same folder with `category` changed to `Alumni`.
+- **Write a news post.** One folder `news/<year>-<a-few-words>/` holding a
+  `post.json` (`title`, `date` as `YYYY-MM-DD`, `content` as a list of HTML
+  strings; `authors` are people-folder names) and its pictures beside it —
+  `featured.jpg` (1400px) is the hero and thumbnail, and only one `featured.*`
+  may exist. `"draft": true` keeps it off the site. Fields: `README.md`, "Write
+  a blog post"; the reader and porting old posts: [docs/news.md](docs/news.md).
+- **Add a lab photo (a memory).** Drop `<YYYY>_<Name>.jpg` (1400px; a GIF
+  480px wide) into `memories/img/` and run `python update_people.py`. It adds an
+  entry to `memories/memories_manifest.json` with the year from the filename;
+  then write `title`, `caption`, `month` and `people` (member folder names)
+  there by hand — hand-written fields survive every rerun. **The filename is the
+  photo's URL**, so do not rename one once it is published.
+  [docs/people.md](docs/people.md), "A memory has an address".
+- **Add a publication.** The list is the ORCID profile, so the normal route is
+  to add the paper *to ORCID*. One that is not on ORCID goes in `EXTRA_DOIS` in
+  `update_publications.py`; one that should not appear (a preprint of a
+  published paper, a namesake's work) in `OMIT_DOIS` / `OMIT_TITLES`. Then run
+  `python update_publications.py` — **CI does not run it** — and commit
+  `publications/` with its manifest. Each entry gets a folder
+  `publications/<YYYY_FirstWordsOfTitle>/`: put the figure there as
+  `featured.jpg` (1000px) and the paper as any `*.pdf`, and hand-write
+  `summary`, `keywords`, `github` or `spotify` into its `info.json`, then rerun
+  the script, because the list view reads the manifest, not `info.json`.
+  [docs/publications.md](docs/publications.md).
+- **Add any other picture.** Encode it to the per-use budget in
+  [docs/assets.md](docs/assets.md) ("The size budget") *before* committing:
+  photographs as JPEG, never PNG; JPEG for anything that is also an `og:image`
+  (post heroes); ask before adding a GIF. Record it in that file's Assets
+  table. An image used by one section lives in that section's `img/`; root
+  `img/` is only for what several sections share.
+
+**Nothing has to be run for a profile, a post or a memory to reach the site** —
+CI rebuilds those manifests from the folders on merge (see
+[docs/build-and-deploy.md](docs/build-and-deploy.md)). Run the scripts locally
+only to preview: `python update_people.py`, `python update_news.py`, then
+`python generate_pages.py` and `python tools/serve.py`.
+
 ## The repository
 
 ```
@@ -53,6 +99,8 @@ generate_pages.py   manifests + index.html          → _generated/: ~300 real p
                     and legacy redirects, robots.txt, sitemap.xml, llms.txt
                     (gitignored, built in CI, laid over the root on deploy)
 tools/              developer tools — nothing here is part of the site
+social/             posts for Instagram, LinkedIn…: one <YYYY>_<MM>_<name>/
+                    folder each, a post.txt and its media — no page reads it
 img/                assets shared by more than one section
 .github/workflows/  the deploy and check pipelines
 LICENSE             MIT, unmodified, so GitHub detects it

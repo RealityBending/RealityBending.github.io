@@ -185,7 +185,7 @@ Six things hold that up:
   of it under the card's own clip. Re-measure by forcing
   `grid-template-rows: 1fr` and comparing the inner box's top against the
   card's — **with `transition: none` set first**, or the reading is a frozen
-  transition rather than a layout (see ../CLAUDE.md, "Verifying changes").
+  transition rather than a layout (see ../AGENTS.md, "Verifying changes").
 - **`@media (hover: none)` lays the reveal out in flow instead**, rather than
   showing it in place: a phone has no hover to give and the first tap is the
   link, so the card is simply taller there and the description sits under the
