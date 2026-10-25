@@ -6,7 +6,7 @@
     },
     {
       "name": "Thoughts",
-      "count": 10
+      "count": 11
     },
     {
       "name": "Methods",
@@ -26,6 +26,27 @@
     }
   ],
   "posts": [
+    {
+      "slug": "2026-udo-of-aachen",
+      "title": "The Monk Who Discovered the Mandelbrot Fractal",
+      "subtitle": "Udo of Aachen, a 13th-century Benedictine, and the fractal he drew seven centuries too early.",
+      "date": "2026-10-23",
+      "summary": "A 13th-century monk set out to calculate who would reach heaven, and ended up drawing the Mandelbrot set by hand, seven hundred years before computers. The story of Udo of Aachen.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Thoughts",
+      "featured": false,
+      "image": "news/2026-udo-of-aachen/featured.jpg",
+      "file": "news/2026-udo-of-aachen/post.json",
+      "base": "news/2026-udo-of-aachen/",
+      "words": 1547,
+      "minutes": 7
+    },
     {
       "slug": "2026-oliver-collins-jra-award",
       "title": "🏆 Oliver Collins wins People's Choice Award at 2026 JRA Poster Exhibition",
