@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab showcase video</title>
+<!-- The scenes of video.mp4 after the door opener. make_video.py drives this
+     page frame by frame through render(t); opened on its own it plays as a
+     preview, scaled to the window. Paths are relative to this folder. -->
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg: #0b0b0f;
+    --ink: #f4f2ee;
+    --muted: #b9b5c2;
+}
+html, body { margin: 0; background: #000; }
+body:not(.driven) { display: grid; place-items: center; height: 100vh; overflow: hidden; }
+#stage {
+    position: relative; width: 1080px; height: 1920px; overflow: hidden;
+    background: var(--bg); color: var(--ink); font-family: Georgia, "Times New Roman", serif;
+    transform-origin: center;
+}
+.scene { position: absolute; inset: 0; overflow: hidden; visibility: hidden; background: var(--bg); }
+.glow { position: absolute; inset: 0; }
+.head { position: absolute; left: 90px; top: 330px; width: 900px; }
+.kicker { font: 700 30px/1 Raleway, sans-serif; letter-spacing: .32em; text-transform: uppercase; }
+.title { margin: 26px 0 0; font: 400 82px/1.1 Georgia, serif; letter-spacing: -.01em; }
+.card {
+    position: absolute; overflow: hidden; border-radius: 28px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, .55), 0 0 0 2px rgba(255, 255, 255, .08);
+}
+.card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.chip {
+    display: inline-block; padding: 14px 30px; border-radius: 999px;
+    font: 700 28px/1 Raleway, sans-serif; letter-spacing: .14em; text-transform: uppercase;
+}
+.cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+/* ── eye ── */
+#eye-img { position: absolute; left: 0; top: 0; width: 2000px; height: 1345px; transform-origin: 0 0; }
+/* At 6.6x the pupil is the painting's own canvas grain, blown up: soft and
+   blotchy behind type. A disc riding on the pupil takes it to near-black before
+   the words land, and leaves the iris and the sky around it alone. */
+#eye-shade { position: absolute; border-radius: 50%; opacity: 0;
+    background: radial-gradient(circle closest-side, var(--bg) 88%, transparent 100%); }
+#eye-q {
+    position: absolute; left: 0; right: 0; top: 900px; text-align: center;
+    font: 400 104px/1.1 Georgia, serif;
+}
+
+/* ── illusion ── */
+#ill-svg { position: absolute; left: 0; top: 700px; width: 1080px; height: 660px; }
+.ill-say {
+    position: absolute; left: 0; right: 0; top: 1380px; text-align: center;
+    font: 600 42px/1.2 Raleway, sans-serif;
+}
+
+/* ── ai ── */
+#ai-card { left: 240px; top: 640px; width: 600px; height: 753px; }
+#ai-scan {
+    position: absolute; left: 0; right: 0; height: 4px; background: #d9ccff;
+    box-shadow: 0 0 24px 8px rgba(169, 139, 255, .75);
+}
+#ai-chip {
+    position: absolute; left: 50%; top: 1320px; transform: translateX(-50%);
+    background: rgba(11, 11, 15, .82); border: 2px solid #a98bff; color: #fff; white-space: nowrap;
+}
+
+/* ── body ── */
+#body-card { left: 90px; top: 680px; width: 900px; height: 675px; }
+#body-card img { filter: saturate(1.15); }
+#ecg { position: absolute; left: 0; top: 1300px; width: 1080px; height: 300px; overflow: visible; }
+
+/* ── lab ── */
+#lab-img { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; object-position: 50% 60%; }
+#lab-shade { position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(8, 8, 12, .92) 0%, rgba(8, 8, 12, .7) 32%, rgba(8, 8, 12, .05) 58%, rgba(8, 8, 12, .35) 100%); }
+#lab-chips { position: absolute; left: 90px; top: 690px; display: flex; gap: 18px; }
+#lab-chips .chip { background: rgba(51, 204, 204, .16); border: 2px solid #33cccc; color: #e8ffff; }
+
+/* ── tms ── */
+#tms-card { left: 210px; top: 650px; width: 660px; height: 825px; }
+#tms-card video { width: 100%; height: 100%; object-fit: cover; display: block; }
+#tms-chip {
+    position: absolute; left: 240px; top: 1405px;
+    background: rgba(11, 11, 15, .82); border: 2px solid #33cccc; color: #fff;
+}
+
+/* ── past ── */
+.past-card { width: 780px; height: 585px; left: 150px; top: 760px; border-radius: 22px; }
+
+/* ── tools ── */
+#tools-grid { position: absolute; left: 133px; top: 660px; width: 814px; height: 814px; }
+.tile {
+    position: absolute; width: 250px; height: 250px; border-radius: 34px; overflow: hidden;
+    background: #17171e; box-shadow: 0 16px 40px rgba(0, 0, 0, .5), 0 0 0 2px rgba(255, 255, 255, .06);
+}
+.tile img { position: absolute; inset: 22px; width: calc(100% - 44px); height: calc(100% - 44px); object-fit: contain; }
+.tile.full img { inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.tile.light { background: #fff; }
+
+/* ── team ── */
+.member { position: absolute; width: 200px; text-align: center; }
+.member .face {
+    width: 200px; height: 200px; border-radius: 50%; overflow: hidden;
+    box-shadow: 0 0 0 5px #0b0b0f, 0 0 0 9px #aa55ff, 0 18px 40px rgba(0, 0, 0, .5);
+}
+.member .face img { width: 100%; height: 100%; object-fit: cover; }
+.member .name { margin-top: 26px; font: 700 31px/1.1 Raleway, sans-serif; }
+.member .role { margin-top: 8px; font: 600 19px/1.2 Raleway, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+#team-more { position: absolute; left: 0; right: 0; top: 1290px; text-align: center;
+    font: italic 400 40px/1.2 Georgia, serif; color: var(--muted); }
+
+/* ── memories ── */
+.polaroid {
+    position: absolute; left: 240px; top: 740px; width: 600px; padding: 20px 20px 0; box-sizing: border-box;
+    background: #f7f4ee; border-radius: 6px; box-shadow: 0 24px 60px rgba(0, 0, 0, .6);
+}
+.polaroid .ph { width: 560px; height: 560px; overflow: hidden; background: #ddd; }
+.polaroid .ph img { width: 100%; height: 100%; object-fit: cover; }
+.polaroid .cap { height: 90px; display: flex; align-items: center; justify-content: center;
+    font: italic 400 36px/1 Georgia, serif; color: #2b2a30; }
+
+/* ── end ── */
+#end-q { position: absolute; left: 0; right: 0; top: 600px; text-align: center; font: 400 132px/1 Georgia, serif; }
+#end-logo { position: absolute; left: 180px; top: 900px; width: 720px; }
+#end-url { position: absolute; left: 0; right: 0; top: 1075px; text-align: center;
+    font: 800 60px/1 Raleway, sans-serif; letter-spacing: .02em; }
+#end-bar { position: absolute; left: 230px; top: 1160px; width: 620px; height: 7px; border-radius: 4px;
+    background: #fff; }
+#end-foot { position: absolute; left: 0; right: 0; top: 1290px; display: flex; justify-content: center; align-items: center; gap: 26px;
+    font: 600 24px/1.35 Raleway, sans-serif; letter-spacing: .2em; text-transform: uppercase; color: #9a96a3; }
+#end-foot img { height: 64px; filter: invert(1) brightness(.8); }
+
+#vignette { position: absolute; inset: 0; pointer-events: none; z-index: 50;
+    background: radial-gradient(130% 90% at 50% 50%, transparent 55%, rgba(0, 0, 0, .55) 100%); }
+</style>
+</head>
+<body>
+<div id="stage">
+
+    <section class="scene" id="s-eye">
+        <img id="eye-img" src="../../img/magritte_falsemirror.jpg" alt="">
+        <div id="eye-shade"></div>
+        <div id="eye-q">What is reality?</div>
+    </section>
+
+    <section class="scene" id="s-ill">
+        <div class="glow" style="background: radial-gradient(70% 45% at 50% 55%, rgba(85,153,255,.20), transparent 70%)"></div>
+        <div class="head"><div class="kicker" style="color:#5599ff">Perception</div>
+            <h1 class="title">Your brain builds reality. Illusions show how.</h1></div>
+        <svg id="ill-svg" viewBox="0 0 1080 660"></svg>
+        <div class="ill-say" id="ill-q">Which orange circle is bigger?</div>
+        <div class="ill-say" id="ill-a" style="color:#7fb2ff">Neither. They are the same size.</div>
+    </section>
+
+    <section class="scene" id="s-ai">
+        <div class="glow" style="background: radial-gradient(70% 45% at 50% 55%, rgba(169,139,255,.22), transparent 70%)"></div>
+        <div class="head"><div class="kicker" style="color:#a98bff">AI &amp; beliefs</div>
+            <h1 class="title">Would art move you less if an AI made it?</h1></div>
+        <div class="card" id="ai-card"><img src="../../research/img/art_real.jpg" alt=""><div id="ai-scan"></div></div>
+        <div class="chip" id="ai-chip">Human</div>
+    </section>
+
+    <section class="scene" id="s-body">
+        <div class="glow" style="background: radial-gradient(70% 45% at 50% 60%, rgba(255,77,106,.20), transparent 70%)"></div>
+        <div class="head"><div class="kicker" style="color:#ff5a6e">Body &amp; emotions</div>
+            <h1 class="title">How your heartbeat shapes what you believe</h1></div>
+        <div class="card" id="body-card"><img src="../../memories/img/2021_Thermal1.jpg" alt=""></div>
+        <svg id="ecg" viewBox="0 0 1080 300"><path id="ecg-path" fill="none" stroke="#ff4d6a" stroke-width="7"
+            stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 0 10px #ff4d6a)"/>
+            <circle id="ecg-dot" r="11" fill="#fff" style="filter: drop-shadow(0 0 14px #ff4d6a)"/></svg>
+    </section>
+
+    <section class="scene" id="s-lab">
+        <img id="lab-img" src="../../memories/img/2022_stephaniemax_eeg.jpg" alt="">
+        <div id="lab-shade"></div>
+        <div class="head"><div class="kicker" style="color:#33cccc">In the lab</div>
+            <h1 class="title">We record the brain and the body</h1></div>
+        <div id="lab-chips"><span class="chip">EEG</span><span class="chip">Heart rate</span><span class="chip">Skin conductance</span></div>
+    </section>
+
+    <section class="scene" id="s-tms">
+        <div class="glow" style="background: radial-gradient(70% 45% at 50% 58%, rgba(51,204,204,.18), transparent 70%)"></div>
+        <div class="head"><div class="kicker" style="color:#33cccc">Brain stimulation</div>
+            <h1 class="title">&hellip;and try to directly stimulate the brain</h1></div>
+        <div class="card" id="tms-card"><video id="tms-video" muted playsinline preload="auto"></video></div>
+        <div class="chip" id="tms-chip">TMS</div>
+    </section>
+
+    <section class="scene" id="s-past">
+        <div class="glow" style="background: radial-gradient(70% 45% at 50% 58%, rgba(232,182,76,.18), transparent 70%)"></div>
+        <div class="head"><div class="kicker" style="color:#e8b64c">Metascience</div>
+            <h1 class="title">We stand on the shoulders of giants, and try to push further</h1></div>
+        <div class="card past-card"><img src="../../research/img/era-folly.jpg" alt=""></div>
+        <div class="card past-card"><img src="../../research/img/era-phrenology.jpg" alt=""></div>
+        <div class="card past-card"><img src="../../research/img/era-charcot.jpg" alt=""></div>
+        <div class="card past-card"><img src="../../research/img/era-lab.jpg" alt=""></div>
+    </section>
+
+    <section class="scene" id="s-tools">
+        <div class="glow" style="background: radial-gradient(70% 45% at 50% 60%, rgba(85,204,119,.18), transparent 70%)"></div>
+        <div class="head"><div class="kicker" style="color:#55cc77">Open science</div>
+            <h1 class="title">We make tools used by researchers worldwide</h1></div>
+        <div id="tools-grid">
+            <div class="tile"><img src="../../research/img/logo-neurokit.png" alt=""></div>
+            <div class="tile"><img src="../../research/img/logo-easystats.png" alt=""></div>
+            <div class="tile"><img src="../../research/img/logo-cogmod.png" alt=""></div>
+            <div class="tile full"><img src="../../research/img/logo-mint.png" alt=""></div>
+            <div class="tile"><img src="../../research/img/logo-neuropsydia.png" alt=""></div>
+            <div class="tile full"><img src="../../research/img/logo-openmuse.png" alt=""></div>
+            <div class="tile light"><img src="../../research/img/logo-illusiongame.png" alt=""></div>
+            <div class="tile light"><img src="../../research/img/logo-pyllusion.png" alt=""></div>
+            <div class="tile full"><img src="../../research/img/logo-neuropsyxart.png" alt=""></div>
+        </div>
+    </section>
+
+    <section class="scene" id="s-team">
+        <div class="glow" style="background: radial-gradient(70% 45% at 50% 50%, rgba(170,85,255,.20), transparent 70%)"></div>
+        <div class="head"><div class="kicker" style="color:#aa55ff">The team</div>
+            <h1 class="title">Meet the lab</h1></div>
+        <div id="team"></div>
+        <div id="team-more">and ten alumni, and counting</div>
+    </section>
+
+    <section class="scene" id="s-mem">
+        <div class="glow" style="background: radial-gradient(70% 45% at 50% 60%, rgba(255,153,51,.18), transparent 70%)"></div>
+        <div class="head"><div class="kicker" style="color:#ff9933">Lab life</div>
+            <h1 class="title">Conferences, beaches &amp; lab dinners</h1></div>
+        <div id="mem"></div>
+    </section>
+
+    <section class="scene" id="s-end">
+        <div class="glow" style="background: radial-gradient(80% 50% at 50% 48%, #1d1b24 0%, transparent 75%)"></div>
+        <div id="end-q">Curious?</div>
+        <img id="end-logo" src="../../img/lab_banner_white.png" alt="">
+        <div id="end-url">realitybendinglab.com</div>
+        <div id="end-bar"></div>
+        <div id="end-foot"><img src="../../img/sussex_logo.svg" alt=""><span>School of Psychology<br>University of Sussex</span></div>
+    </section>
+
+    <div id="vignette"></div>
+</div>
+
+<script>
+// ── timing helpers ──
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x))
+const ramp = (u, a, b) => clamp((u - a) / (b - a))
+const inOut = (x) => ((x = clamp(x)), x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2)
+const out = (x) => 1 - Math.pow(1 - clamp(x), 3)
+const back = (x) => { x = clamp(x); const c = 1.70158; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2) }
+const $ = (q, root = document) => root.querySelector(q)
+const $$ = (q, root = document) => [...root.querySelectorAll(q)]
+
+// fade + rise, the way every line of text arrives
+function rise(el, u, at, dur = 0.55, dy = 36) {
+    const k = out(ramp(u, at, at + dur))
+    el.style.opacity = k
+    el.style.transform = `translateY(${(1 - k) * dy}px)`
+}
+function pop(el, u, at, dur = 0.5, before = "") {
+    const k = ramp(u, at, at + dur)
+    el.style.opacity = clamp(k * 3)
+    el.style.transform = `${before} scale(${0.55 + 0.45 * back(k)})`
+}
+function heading(scene, u) {
+    rise($(".kicker", scene), u, 0.12)
+    rise($(".title", scene), u, 0.26, 0.6, 44)
+}
+
+// Each scene dissolves in over the one before, which stays fully up until the
+// new one has arrived. `dur` includes that overlap.
+const FADE = 0.45
+const scenes = []
+function scene(id, dur, update) { scenes.push({ el: document.getElementById(id), dur, update }) }
+
+// ── the eye: a slow push into the pupil until it is the whole frame ──
+// pupil centre and radius, measured off the file (see docs/research-zoom.md)
+const EYE = { w: 2000, h: 1345, px: 963.5, py: 670.5, pr: 133 }
+scene("s-eye", 2.7, (u) => {
+    const s0 = 1920 / EYE.h
+    const z = (1 + 0.05 * ramp(u, 0, 0.45)) * Math.pow(6.6, inOut(ramp(u, 0.45, 2.0)))
+    const s = s0 * z
+    $("#eye-img").style.transform = `translate(${540 - EYE.px * s}px, ${960 - EYE.py * s}px) scale(${s})`
+    const shade = $("#eye-shade"), r = EYE.pr * s
+    Object.assign(shade.style, { left: `${540 - r}px`, top: `${960 - r}px`, width: `${2 * r}px`, height: `${2 * r}px` })
+    shade.style.opacity = 0.94 * inOut(ramp(u, 0.6, 1.3))
+    const q = $("#eye-q"), k = out(ramp(u, 1.25, 1.8))
+    q.style.opacity = k
+    q.style.transform = `scale(${0.92 + 0.08 * k})`
+})
+
+// ── illusions: the Ebbinghaus pair ──
+const ILL = { lx: 300, rx: 780, cy: 300, r: 62 }
+;(() => {
+    const svg = $("#ill-svg"), ns = "http://www.w3.org/2000/svg"
+    const g = (id) => { const e = document.createElementNS(ns, "g"); e.id = id; svg.appendChild(e); return e }
+    const circle = (parent, cx, cy, r, fill) => {
+        const c = document.createElementNS(ns, "circle")
+        c.setAttribute("cx", cx); c.setAttribute("cy", cy); c.setAttribute("r", r); c.setAttribute("fill", fill)
+        parent.appendChild(c); return c
+    }
+    const big = g("ill-big"), small = g("ill-small")
+    for (let i = 0; i < 6; i++) { const a = (i / 6) * 2 * Math.PI; circle(big, ILL.lx + 182 * Math.cos(a), ILL.cy + 182 * Math.sin(a), 88, "#8f94a3") }
+    for (let i = 0; i < 8; i++) { const a = (i / 8) * 2 * Math.PI + 0.2; circle(small, ILL.rx + 100 * Math.cos(a), ILL.cy + 100 * Math.sin(a), 26, "#8f94a3") }
+    circle(svg, ILL.lx, ILL.cy, ILL.r, "#ff9933").id = "ill-l"
+    circle(svg, ILL.rx, ILL.cy, ILL.r, "#ff9933").id = "ill-r"
+})()
+function svgScale(el, cx, cy, s, op) {
+    el.setAttribute("transform", `translate(${cx} ${cy}) scale(${s}) translate(${-cx} ${-cy})`)
+    el.style.opacity = op
+}
+scene("s-ill", 3.2, (u) => {
+    const sc = $("#s-ill")
+    heading(sc, u)
+    const kl = ramp(u, 0.5, 1.0), kr = ramp(u, 0.62, 1.12), gone = inOut(ramp(u, 1.95, 2.4))
+    svgScale($("#ill-big"), ILL.lx, ILL.cy, (0.55 + 0.45 * back(kl)) * (1 - 0.3 * gone), clamp(kl * 3) * (1 - gone))
+    svgScale($("#ill-small"), ILL.rx, ILL.cy, (0.55 + 0.45 * back(kr)) * (1 + 0.4 * gone), clamp(kr * 3) * (1 - gone))
+    const slide = 110 * inOut(ramp(u, 2.0, 2.5))
+    svgScale($("#ill-l"), ILL.lx, ILL.cy, 0.55 + 0.45 * back(kl), clamp(kl * 3))
+    svgScale($("#ill-r"), ILL.rx, ILL.cy, 0.55 + 0.45 * back(kr), clamp(kr * 3))
+    $("#ill-l").setAttribute("cx", ILL.lx + slide)
+    $("#ill-r").setAttribute("cx", ILL.rx - slide)
+    rise($("#ill-q"), u, 1.05)
+    $("#ill-q").style.opacity *= 1 - ramp(u, 2.15, 2.35)
+    rise($("#ill-a"), u, 2.4)
+})
+
+// ── AI & beliefs: a portrait, scanned, labelled and relabelled ──
+scene("s-ai", 2.8, (u) => {
+    const sc = $("#s-ai")
+    heading(sc, u)
+    const card = $("#ai-card")
+    pop(card, u, 0.35, 0.6)
+    card.querySelector("img").style.transform = `scale(${1.02 + 0.05 * ramp(u, 0, 2.8)})`
+    const scan = $("#ai-scan"), ks = ramp(u, 0.75, 1.75)
+    scan.style.top = `${ks * 753}px`
+    scan.style.opacity = ks > 0 && ks < 1 ? 1 : 0
+    const chip = $("#ai-chip")
+    const kc = out(ramp(u, 0.85, 1.15))
+    chip.style.opacity = kc
+    chip.style.transform = `translateX(-50%) translateY(${(1 - kc) * 30}px)`
+    let label = "Human", glitch = 0
+    if (u >= 1.0 && u < 2.05) {
+        const step = Math.floor((u - 1.0) / 0.15)
+        label = step % 2 ? "Human" : "AI"
+        glitch = (u - 1.0) % 0.15 < 0.05 ? 1 : 0
+    } else if (u >= 2.05) label = "Human or AI?"
+    chip.textContent = label
+    chip.style.textShadow = glitch ? "-4px 0 #ff2d55, 4px 0 #2de2ff" : "none"
+})
+
+// ── body & emotions: a thermal feed and a heartbeat drawn across it ──
+;(() => {
+    const P = 270, base = 150, pts = []
+    for (let x0 = -40; x0 < 1200; x0 += P) {
+        pts.push([x0, base], [x0 + 60, base], [x0 + 75, base - 14], [x0 + 90, base], [x0 + 110, base],
+                 [x0 + 120, base + 22], [x0 + 136, base - 120], [x0 + 152, base + 44], [x0 + 164, base],
+                 [x0 + 190, base], [x0 + 212, base - 30], [x0 + 236, base])
+    }
+    $("#ecg-path").setAttribute("d", "M" + pts.map((p) => p.join(" ")).join(" L"))
+})()
+scene("s-body", 2.7, (u) => {
+    const sc = $("#s-body")
+    heading(sc, u)
+    const card = $("#body-card")
+    pop(card, u, 0.3, 0.6)
+    card.querySelector("img").style.transform = `scale(${1.04 + 0.06 * ramp(u, 0, 2.7)})`
+    const path = $("#ecg-path"), L = path.getTotalLength(), k = ramp(u, 0.45, 2.6)
+    path.style.strokeDasharray = L
+    path.style.strokeDashoffset = L * (1 - k)
+    const dot = $("#ecg-dot"), p = path.getPointAtLength(L * k)
+    dot.setAttribute("cx", p.x); dot.setAttribute("cy", p.y)
+    dot.style.opacity = k > 0 && k < 1 ? 1 : 0
+})
+
+// ── in the lab: full bleed, the cap going on ──
+scene("s-lab", 2.5, (u) => {
+    const sc = $("#s-lab")
+    heading(sc, u)
+    $("#lab-img").style.transform = `scale(${1.04 + 0.07 * ramp(u, 0, 2.5)})`
+    $$("#lab-chips .chip").forEach((c, i) => pop(c, u, 0.75 + 0.13 * i, 0.45))
+})
+
+// ── brain stimulation: a TMS session ──
+// tms.webm is one take from the lab's own phone video (1.15–3.5s of
+// Dropbox/Pics/17849138815710946.mp4): Dom with the coil, then the pan to it
+// on Tam's head. Loaded as a blob, because a blob is
+// seekable whatever the server — SimpleHTTPRequestHandler ignores Range, and
+// without it a <video> will not seek.
+const tmsVideo = $("#tms-video")
+const tmsLoaded = fetch("tms.webm")
+    .then((r) => r.blob())
+    .then((b) => new Promise((done) => {
+        tmsVideo.addEventListener("loadeddata", done, { once: true })
+        tmsVideo.src = URL.createObjectURL(b)
+    }))
+const seeks = []
+// Driven, every frame is an exact seek that make_video.py waits on (settle());
+// previewing, the clip just plays and is only pulled back if it drifts.
+function clipAt(v, time) {
+    time = clamp(time, 0, (v.duration || 0) - 0.04)
+    if (window.__driven) {
+        // the middle of a 30fps frame: a seek onto a boundary can land on the
+        // frame before, so one in six repeated and the next was skipped
+        time = (Math.floor(time * 30) + 0.5) / 30
+        if (Math.abs(v.currentTime - time) < 0.001) return
+        seeks.push(new Promise((done) => v.addEventListener("seeked", done, { once: true })))
+        v.currentTime = time
+    } else {
+        if (v.paused) v.play().catch(() => {})
+        if (Math.abs(v.currentTime - time) > 0.3) v.currentTime = time
+    }
+}
+scene("s-tms", 2.9, (u) => {
+    const sc = $("#s-tms")
+    heading(sc, u)
+    const card = $("#tms-card")
+    pop(card, u, 0.1, 0.5)
+    clipAt(tmsVideo, u - 0.15)
+    rise($("#tms-chip"), u, 0.7, 0.45, 20)
+})
+
+// ── metascience: four eras dealt like cards ──
+const PAST = [[-7, -40, -30], [5, 30, 10], [-3, -20, 50], [3, 20, 90]] // rotation, x, y
+scene("s-past", 2.8, (u) => {
+    const sc = $("#s-past")
+    heading(sc, u)
+    $$(".past-card", sc).forEach((c, i) => {
+        const [rot, x, y] = PAST[i], k = out(ramp(u, 0.4 + 0.38 * i, 0.4 + 0.38 * i + 0.5))
+        c.style.opacity = clamp(k * 3)
+        c.style.transform = `translate(${x + (1 - k) * 420}px, ${y + (1 - k) * 260}px) rotate(${rot + (1 - k) * 14}deg)`
+    })
+})
+
+// ── open science: the tools, popping in ──
+scene("s-tools", 2.7, (u) => {
+    const sc = $("#s-tools")
+    heading(sc, u)
+    $$(".tile", sc).forEach((t, i) => {
+        const col = i % 3, row = Math.floor(i / 3)
+        t.style.left = `${col * 282}px`
+        t.style.top = `${row * 282}px`
+        pop(t, u, 0.45 + 0.08 * i, 0.5)
+    })
+})
+
+// ── the team ──
+const TEAM = [
+    ["dominique-makowski", "Dominique", "Lab lead"],
+    ["ana-neves", "Ana", "PhD"],
+    ["cathy-croome", "Cathy", "PhD"],
+    ["catriona-osborn-moar", "Catriona", "PhD"],
+    ["ada-erdem", "Ada", "Research assistant"],
+    ["asel-tohlukov", "Asel", "Research assistant"],
+    ["jay-orpana", "Jay", "Research assistant"],
+    ["oliver-collins", "Oliver", "Research assistant"],
+]
+;(() => {
+    const host = $("#team")
+    TEAM.forEach(([folder, name, role], i) => {
+        const m = document.createElement("div")
+        m.className = "member"
+        m.style.left = `${95 + (i % 4) * 230}px`
+        m.style.top = `${590 + Math.floor(i / 4) * 340}px`
+        m.innerHTML = `<div class="face"><img src="../../people/${folder}/avatar.jpg" alt=""></div><div class="name">${name}</div><div class="role">${role}</div>`
+        host.appendChild(m)
+    })
+})()
+scene("s-team", 3.0, (u) => {
+    const sc = $("#s-team")
+    heading(sc, u)
+    $$(".member", sc).forEach((m, i) => pop(m, u, 0.4 + 0.11 * i, 0.5))
+    rise($("#team-more"), u, 1.6)
+})
+
+// ── lab life: polaroids landing on a pile ──
+const MEM = [
+    ["2026_ESCAN_Symposium.webp", "Our symposium, Rome", -5, -30, 0],
+    ["2025_beach.png", "Brighton beach", 4, 40, 10],
+    ["2026_labdinner.jpg", "Lab dinner", -3, -20, -10],
+    ["2025_Dissection.webp", "Inside the cadaver", 6, 30, 20],
+    ["2026_ESCAN_spritz.png", "Spritz o'clock", -4, -40, 0],
+    ["2024_LightFest.jpg", "Sunfest", 3, 25, 15],
+    ["2024_pizza.png", "Pizza night", -2, 0, 5],
+]
+;(() => {
+    const host = $("#mem")
+    for (const [file, cap] of MEM) {
+        const p = document.createElement("div")
+        p.className = "polaroid"
+        p.innerHTML = `<div class="ph"><img src="../../memories/img/${file}" alt=""></div><div class="cap">${cap}</div>`
+        host.appendChild(p)
+    }
+})()
+scene("s-mem", 3.9, (u) => {
+    const sc = $("#s-mem")
+    heading(sc, u)
+    $$(".polaroid", sc).forEach((p, i) => {
+        const [, , rot, x, y] = MEM[i], at = 0.45 + 0.42 * i, k = out(ramp(u, at, at + 0.45))
+        const side = i % 2 ? 1 : -1
+        p.style.opacity = clamp(k * 4)
+        p.style.transform = `translate(${x + side * (1 - k) * 380}px, ${y + (1 - k) * 700}px) rotate(${rot + side * (1 - k) * 18}deg)`
+    })
+})
+
+// ── end card ──
+scene("s-end", 3.7, (u) => {
+    rise($("#end-q"), u, 0.15, 0.6, 50)
+    rise($("#end-logo"), u, 0.6)
+    rise($("#end-url"), u, 0.85)
+    const kb = inOut(ramp(u, 1.05, 1.6))
+    $("#end-bar").style.opacity = kb ? 1 : 0
+    $("#end-bar").style.transform = `scaleX(${kb})`
+    rise($("#end-foot"), u, 1.3)
+})
+
+// ── the timeline ──
+let at = 0
+for (const s of scenes) { s.start = at; at += s.dur - FADE }
+const DURATION = at + FADE
+
+function render(t) {
+    scenes.forEach((s, i) => {
+        const u = t - s.start
+        const live = u >= 0 && (u <= s.dur || i === scenes.length - 1)
+        s.el.style.visibility = live ? "visible" : "hidden"
+        if (!live) { $$("video", s.el).forEach((v) => v.pause()); return }
+        s.el.style.opacity = i === 0 ? 1 : inOut(u / FADE)
+        s.update(u, s.dur)
+    })
+}
+window.render = render
+window.DURATION = DURATION
+
+// Everything this page shows, decoded, so no frame catches a picture loading;
+// and, driven, the seeks this frame asked for.
+window.ready = Promise.all([document.fonts.ready, tmsLoaded, ...$$("img").map((i) => i.decode().catch(() => null))])
+window.settle = () => Promise.all(seeks.splice(0))
+
+// make_video.py sets window.__driven before the page loads and calls render()
+// itself. Opened on its own: play it, looping, scaled to fit the window.
+if (window.__driven) document.body.classList.add("driven")
+else {
+    const fit = () => { $("#stage").style.transform = `scale(${Math.min(innerWidth / 1080, innerHeight / 1920)})` }
+    addEventListener("resize", fit)
+    fit()
+    window.ready.then(() => {
+        const t0 = performance.now()
+        const loop = (now) => { render(((now - t0) / 1000) % (DURATION + 1)); requestAnimationFrame(loop) }
+        requestAnimationFrame(loop)
+    })
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+🧠 Research spotlight: the Reality Bending Lab
+
+How does the brain decide what is real, and what happens when it gets it wrong?
+
+The Reality Bending Lab, led by Dominique Makowski here in the School of Psychology, studies how we perceive reality and how that perception gets distorted: illusions, fake news, beliefs about AI-generated content, deception, and how all of these connect with our emotions, cognitive control and sense of self.
+
+To answer these questions, the lab records signals from the body (heart rate, skin conductance…) and the brain (EEG), analyses them with Bayesian and computational models, and builds open-source tools used by researchers around the world.
+
+Illusions, AI art, heartbeats, brain stimulation and a lot of lab dinners. Interested? Find out more at https://realitybendinglab.com
+
+#SussexPsychology #UniversityOfSussex #Psychology #Neuroscience #OpenScience #PhD #ResearchAssistant
