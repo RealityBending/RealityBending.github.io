@@ -121,6 +121,18 @@
       ]
     },
     {
+      "file": "memories/img/2025_Singapore.jpg",
+      "filename": "2025_Singapore.jpg",
+      "title": "Singapore",
+      "caption": "The Truth in the Machine symposium at Nanyang Technological University, 14 July 2025, hosted by Annabel Chen, with Marco Sperduti among the speakers.",
+      "year": 2025,
+      "month": 7,
+      "people": [],
+      "tags": [],
+      "slug": "2025-singapore",
+      "people_names": []
+    },
+    {
       "file": "memories/img/2025_beach.png",
       "filename": "2025_beach.png",
       "title": "Brighton Beach",
@@ -171,18 +183,6 @@
       "people_names": [
         "Ana Neves"
       ]
-    },
-    {
-      "file": "memories/img/2025_Singapore.jpg",
-      "filename": "2025_Singapore.jpg",
-      "title": "Singapore",
-      "caption": "",
-      "year": 2025,
-      "month": 1,
-      "people": [],
-      "tags": [],
-      "slug": "2025-singapore",
-      "people_names": []
     },
     {
       "file": "memories/img/2025_SunFest.jpg",

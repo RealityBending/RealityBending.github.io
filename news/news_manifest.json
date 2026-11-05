@@ -6,7 +6,7 @@
     },
     {
       "name": "Thoughts",
-      "count": 11
+      "count": 12
     },
     {
       "name": "Methods",
@@ -26,6 +26,27 @@
     }
   ],
   "posts": [
+    {
+      "slug": "2026-facets-of-reality",
+      "title": "Facets of Reality 💎",
+      "subtitle": "A first attempt at organising the many things we mean when we say that something is, or is not, \"real\".",
+      "date": "2026-11-05",
+      "summary": "\"Real\" can be the opposite of imagined, fabricated, AI-generated or simulated: the word does a lot of work. Here we introduce some terms describing its different facets.",
+      "authors": [
+        {
+          "name": "Dominique Makowski",
+          "folder": "dominique-makowski",
+          "avatar": "people/dominique-makowski/avatar.jpg"
+        }
+      ],
+      "category": "Thoughts",
+      "featured": true,
+      "image": "news/2026-facets-of-reality/featured.jpg",
+      "file": "news/2026-facets-of-reality/post.json",
+      "base": "news/2026-facets-of-reality/",
+      "words": 1030,
+      "minutes": 5
+    },
     {
       "slug": "2026-udo-of-aachen",
       "title": "The Monk who discovered the Mandelbrot fractal",
