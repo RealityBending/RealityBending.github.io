@@ -12,7 +12,7 @@ To re-derive it, both halves are recoverable, but from different places:
             was the deployed one on the `gh-pages` branch, so it is committed
             here as `legacy_sitemap.xml` — 354 distinct URLs, the complete list
             of what the old site published. `legacy_map.json` maps 100 of them;
-            the other 254 are deliberately unmapped (see CLAUDE.md), and this
+            the other 254 are deliberately unmapped (see docs/routing.md), and this
             file is the only thing that decision can be audited against.
 
 Writes legacy_map.json and an audit. Nothing is written into the site.
@@ -79,7 +79,7 @@ TITLE_OVERRIDES = {
 }
 
 # ── Deliberately NOT mapped ──
-# (see CLAUDE.md, "What the old site's URLs taught us")
+# (see docs/routing.md, "What the old site's URLs taught us")
 # tag/ (161), category/ (25), tags, categories, publication-type/,
 # publication_types, event, talk/ (2). A redirect to an irrelevant page is
 # treated as a soft 404 and discarded; a 404 is the correct answer for a page

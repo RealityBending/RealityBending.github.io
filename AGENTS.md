@@ -100,7 +100,8 @@ generate_pages.py   manifests + index.html          → _generated/: ~300 real p
                     (gitignored, built in CI, laid over the root on deploy)
 tools/              developer tools — nothing here is part of the site
 social/             posts for Instagram, LinkedIn…: one <YYYY>_<MM>_<name>/
-                    folder each, a post.txt and its media — no page reads it
+                    folder each, a post.txt, its media and whatever makes
+                    them — no page reads it
 img/                assets shared by more than one section
 .github/workflows/  the deploy and check pipelines
 LICENSE             MIT, unmodified, so GitHub detects it

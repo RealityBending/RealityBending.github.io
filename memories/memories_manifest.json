@@ -577,8 +577,26 @@
       ]
     },
     {
-      "file": "memories/img/2019_TMS_Tam.jpg",
-      "filename": "2019_TMS_Tam.jpg",
+      "file": "memories/img/2019_tamzen_eeg.jpg",
+      "filename": "2019_tamzen_eeg.jpg",
+      "title": "Setting up the EEG",
+      "caption": "Tam and Zen setting up our EEG experiment",
+      "year": 2019,
+      "month": 11,
+      "people": [
+        "tam-pham",
+        "zen-juen"
+      ],
+      "tags": [],
+      "slug": "2019-tamzen-eeg",
+      "people_names": [
+        "Tam Pham",
+        "Zen J. Lau"
+      ]
+    },
+    {
+      "file": "memories/img/2019_TMS_Tam.gif",
+      "filename": "2019_TMS_Tam.gif",
       "title": "TMS Tam",
       "caption": "Dom testing TMS on Tam",
       "year": 2019,

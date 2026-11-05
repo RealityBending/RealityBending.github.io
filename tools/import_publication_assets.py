@@ -45,7 +45,7 @@ NEW_PUBLICATIONS = ROOT / "publications"
 MANIFEST = NEW_PUBLICATIONS / "publications_manifest.json"
 
 # The documented budget for a publication figure (see "The size budget" in
-# CLAUDE.md). It is displayed in a 13rem column under `object-fit: cover`, so
+# docs/assets.md). It is displayed in a 13rem column under `object-fit: cover`, so
 # 1000px is already generous; the old files are up to 1956px and 617 KB.
 MAX_EDGE = 1000
 QUALITY = 82
