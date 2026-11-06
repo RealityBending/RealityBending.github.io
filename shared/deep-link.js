@@ -303,11 +303,20 @@ export function landOnLoad(sectionId) {
    bootstrap's timeout is only for a module that never ran at all.
 
    `panel` is the real one, when it has just opened. Its open state must be
-   computed while the attribute still turns its transition off, or removing
-   the attribute hands the slide straight back. */
+   computed while the attribute still turns its transition off, or changing
+   the attribute hands the slide straight back.
+
+   It ends as a handover rather than a removal: `done` fades the cover out
+   while the section's real backdrop — held at 0 until now — fades in over the
+   page behind, both on 0.3s, and the attribute goes once that has run. */
+const ARRIVAL_FADE_MS = 300
+
 export function endArrival(kind, panel) {
     const root = document.documentElement
     if (root.dataset.arriving !== kind) return
     if (panel) void panel.offsetWidth
-    delete root.dataset.arriving
+    root.dataset.arriving = "done"
+    setTimeout(() => {
+        if (root.dataset.arriving === "done") delete root.dataset.arriving
+    }, ARRIVAL_FADE_MS + 100)
 }

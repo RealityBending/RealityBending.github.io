@@ -710,14 +710,18 @@
 
 /* Arriving on a profile, the empty panel is already on screen (the arrival
    cover, css/07-shared.css) — at this panel's width, which is not the other
-   two's — so the real pair opens over it without its slide and fade. */
+   two's. The real panel opens over it without its slide, and the backdrop is
+   held back until the cover hands over to it. */
 :root[data-arriving="profile"] body::after {
     width: min(980px, 100vw);
 }
 
-:root[data-arriving="profile"] .profile-panel,
-:root[data-arriving="profile"] .profile-panel__backdrop {
+:root[data-arriving="profile"] .profile-panel {
     transition: none;
+}
+
+:root[data-arriving="profile"] .profile-panel__backdrop {
+    opacity: 0;
 }
 
 /* ── Memories section ── */

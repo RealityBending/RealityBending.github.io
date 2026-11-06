@@ -248,13 +248,28 @@ both are needed:
 
 - **The arrival cover.** The same inline bootstrap sets
   `data-arriving="post|profile|pub"` on `<html>`, and `css/07-shared.css` draws
-  an empty backdrop and panel as `body::before` / `::after`. When the real
-  panel opens over it, its slide is off (each section's own
-  `:root[data-arriving="…"]` rule), and `endArrival(kind, panel)` in
-  `deep-link.js` removes the attribute. The kind comes from a legacy hash's
-  prefix, or else from `body[data-panel]`, which `generate_pages.py` writes.
-  That attribute exists because a member's route has no prefix, so only the set
-  of folders can tell it from a typo.
+  an empty backdrop and panel as `body::before` / `::after`. The kind comes from
+  a legacy hash's prefix, or else from `body[data-panel]`, which
+  `generate_pages.py` writes. That attribute exists because a member's route has
+  no prefix, so only the set of folders can tell it from a typo.
+
+  **Its backdrop is opaque**: the page's cream with the real backdrop's dim
+  over it. The first version was see-through, like the real one, and it showed
+  a blurred black hero that then turned cream. The page sits on the hero until
+  a module scrolls it to the section, and the hero is not where the reader is
+  going. All three sections are that cream, so one colour serves every kind.
+  Measured against the real backdrop over the News section, the two are within
+  ten levels of each other.
+
+  **The page arrives with the panel, in a crossfade.** While the cover is up,
+  the real panel opens over it without its slide, and the real backdrop is held
+  at opacity 0. Both are each section's own `:root[data-arriving="…"]` rules,
+  beside its panel. `endArrival(kind, panel)` in `deep-link.js` then sets the
+  attribute to `done`. That releases the backdrop to fade in on its own 0.3s,
+  while the cover fades out on the same 0.3s. The attribute goes once both
+  have finished. They have to fade together: the cover already carries the dim,
+  and the real backdrop appearing over it at full strength would darken the
+  page for a frame.
 - **Preloads.** A generated post, profile or publication page carries
   `<link rel="preload">`s for what its module will fetch (`preload=` in
   `build_page`), so the files arrive while the modules are still loading.
@@ -270,13 +285,14 @@ Five things that are easy to break:
   module that never ran. People and Publications open their panel from the
   manifest alone, so they end it straight after applying the initial route.
   News waits for a post.json, so it ends it inside `openReader`.
-- **The reflow inside `endArrival` is load-bearing.** The panel's open state
-  has to be computed while its transition is still off. Remove the attribute
-  first and the slide comes back.
-- **The cover copies the panels' values**: the backdrop, the cream, the
-  shadow, 920px, and the profile's 980px, which sits in
-  `css/12-profile-panel.css`. Change a panel and change its cover, or the
-  arrival shows a step.
+- **The reflow inside `endArrival` is load-bearing.** The panel's open state,
+  and the backdrop's 0, have to be computed while the kind's rules still hold.
+  Change the attribute first and the slide comes back, and the backdrop never
+  fades because there was never a start for it to fade from.
+- **The cover copies the panels' values**: the backdrop's dim, the page's
+  `#f5f4ef` under it, the panel's cream and shadow, 920px, and the profile's
+  980px, which sits in `css/12-profile-panel.css`. Change a panel, a backdrop or
+  the page's cream, and change the cover, or the arrival shows a step.
 - **A preload's href must be byte-identical to what the module fetches**, and
   `as="fetch" crossorigin` is what lets `fetch()` pick it up. Get either wrong
   and the file downloads twice, with only a console warning to show for it.

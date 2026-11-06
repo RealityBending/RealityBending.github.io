@@ -1021,11 +1021,14 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
 }
 
 /* Arriving on a publication, the empty panel is already on screen (the
-   arrival cover, css/07-shared.css), so the real pair opens over it without
-   its slide and fade. */
-:root[data-arriving="pub"] .pub-reader,
-:root[data-arriving="pub"] .pub-reader__backdrop {
+   arrival cover, css/07-shared.css), so the real panel opens over it without
+   its slide, and the backdrop is held back until the cover hands over to it. */
+:root[data-arriving="pub"] .pub-reader {
     transition: none;
+}
+
+:root[data-arriving="pub"] .pub-reader__backdrop {
+    opacity: 0;
 }
 
 .pub-reader__body {

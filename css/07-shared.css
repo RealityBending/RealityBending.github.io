@@ -262,30 +262,45 @@
    Opened on a post, a profile or a publication, the page shows that panel from
    the first paint — empty — instead of the hero for as long as the modules and
    their fetches take. The inline bootstrap in index.html sets
-   `data-arriving="<kind>"` on <html>; the section that owns the panel removes
-   it once the real one is open over this (`endArrival`, shared/deep-link.js).
+   `data-arriving="<kind>"` on <html>; the section that owns the panel ends it
+   once the real one is open over this (`endArrival`, shared/deep-link.js).
 
-   The three panels share this look — the backdrop, the cream, the shadow — so
-   it is drawn once here, with the same values as `.news-reader`,
-   `.pub-reader`, `.profile-panel` and their backdrops; change them together.
-   What differs stays with its panel: the profile's width, and each panel's
-   rule that opens it without its slide while the attribute is up.
+   **The backdrop is opaque**: the page's own cream under the real backdrop's
+   dim, with nothing of the page showing through. Behind it is the hero, which
+   is dark and is not where the reader is going — the page is only scrolled to
+   the section once its module runs — so a see-through cover showed a blurred
+   black hero that then turned cream. All three sections are that cream, so
+   one colour serves every kind.
+
+   **The page arrives with the panel, as a crossfade.** While the cover is up,
+   each section holds its real backdrop at opacity 0 (its own
+   `:root[data-arriving="…"]` rule, beside its panel's), and `endArrival` sets
+   the attribute to `done`. That releases the backdrop to fade in on its own
+   0.3s transition while the cover fades out on the same 0.3s here, and the
+   attribute goes once both have finished. Both at once is the point: the cover
+   already carries the dim, so the real backdrop appearing over it at full
+   strength would darken the page for a frame.
+
+   The look — the cream, the dim, the panel's gradient, shadow and border — is
+   copied from `.news-reader`, `.pub-reader`, `.profile-panel` and their
+   backdrops; change them together. What differs stays with its panel: the
+   profile's width, and each panel's arrival rules.
 
    198, below the real pair (199/200): body::after paints after every child of
    <body>, so at an equal z-index it would cover the panel it stands in for.
-   The backdrop keeps its pointer events, so nothing under it can be pressed in
-   the meantime. */
+   The backdrop keeps its pointer events until `done`, so nothing under it can
+   be pressed in the meantime. */
 :root[data-arriving] body::before,
 :root[data-arriving] body::after {
     content: "";
     position: fixed;
     z-index: 198;
+    transition: opacity 0.3s ease;
 }
 
 :root[data-arriving] body::before {
     inset: 0;
-    background: rgba(7, 10, 18, 0.34);
-    backdrop-filter: blur(6px);
+    background: linear-gradient(rgba(7, 10, 18, 0.34), rgba(7, 10, 18, 0.34)), #f5f4ef;
 }
 
 :root[data-arriving] body::after {
@@ -296,4 +311,20 @@
     background: linear-gradient(180deg, #fbfaf7 0%, #f4f1eb 100%);
     box-shadow: -18px 0 56px rgba(7, 12, 22, 0.18);
     border-left: 1px solid rgba(17, 17, 17, 0.06);
+}
+
+/* The panel's cover fades too: it is hidden under the real panel when there
+   is one, and when the route named nothing it must not be the one thing left
+   standing. */
+:root[data-arriving="done"] body::before,
+:root[data-arriving="done"] body::after {
+    opacity: 0;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :root[data-arriving] body::before,
+    :root[data-arriving] body::after {
+        transition: none;
+    }
 }

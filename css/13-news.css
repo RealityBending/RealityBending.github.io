@@ -615,11 +615,15 @@
 }
 
 /* Arriving on a post, the empty panel is already on screen (the arrival cover,
-   css/07-shared.css), so the real pair opens over it without its slide and
-   fade — sliding in would read as the panel arriving twice. */
-:root[data-arriving="post"] .news-reader,
-:root[data-arriving="post"] .news-reader__backdrop {
+   css/07-shared.css), so the real panel opens over it without its slide —
+   sliding in would read as it arriving twice — and the backdrop is held back
+   until the cover hands over to it. */
+:root[data-arriving="post"] .news-reader {
     transition: none;
+}
+
+:root[data-arriving="post"] .news-reader__backdrop {
+    opacity: 0;
 }
 
 /* ── The article inside the reader ── */
