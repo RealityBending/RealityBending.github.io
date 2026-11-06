@@ -12,6 +12,9 @@
     position: fixed;
     top: 0;
     right: 0;
+    /* The arrival cover copies the width (`:root[data-arriving="profile"]`
+       below) and the background, shadow and border (css/07-shared.css);
+       change them together. */
     width: min(980px, 100vw);
     height: 100vh;
     background: linear-gradient(180deg, #fbfaf7 0%, #f4f1eb 100%);
@@ -703,6 +706,18 @@
 .profile-panel__backdrop.is-visible {
     opacity: 1;
     pointer-events: auto;
+}
+
+/* Arriving on a profile, the empty panel is already on screen (the arrival
+   cover, css/07-shared.css) — at this panel's width, which is not the other
+   two's — so the real pair opens over it without its slide and fade. */
+:root[data-arriving="profile"] body::after {
+    width: min(980px, 100vw);
+}
+
+:root[data-arriving="profile"] .profile-panel,
+:root[data-arriving="profile"] .profile-panel__backdrop {
+    transition: none;
 }
 
 /* ── Memories section ── */

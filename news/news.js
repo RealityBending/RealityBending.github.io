@@ -1,6 +1,6 @@
 import { openProfileByFolder } from "../shared/profile-api.js"
 import { createPager } from "../shared/pager.js"
-import { INITIAL_ROUTE, hrefForRoute, landOnLoad, matchRoute, onRoute, revealSection, writeRoute } from "../shared/deep-link.js"
+import { INITIAL_ROUTE, endArrival, hrefForRoute, landOnLoad, matchRoute, onRoute, revealSection, writeRoute } from "../shared/deep-link.js"
 import { registerRouteTitle } from "../shared/page-meta.js"
 import { element as el } from "../shared/dom.js"
 
@@ -387,6 +387,10 @@ import { element as el } from "../shared/dom.js"
         if (post.slug) writeRoute("post-" + post.slug)
         reader.classList.add("is-open")
         backdrop.classList.add("is-visible")
+        // Arriving on a post, this opened over the empty cover with its
+        // transition off; the cover can go now. Here rather than beside
+        // applyRoute, because the post.json is fetched first.
+        endArrival("post", reader)
         readerClose.focus({ preventScroll: true })
     }
 
@@ -829,6 +833,7 @@ import { element as el } from "../shared/dom.js"
         allPosts = Array.isArray(manifest.posts) ? manifest.posts.filter((post) => post && post.title) : []
         if (!allPosts.length) {
             archiveList.appendChild(el("p", "news-empty", "No posts yet."))
+            endArrival("post")
             return
         }
 
@@ -897,6 +902,7 @@ import { element as el } from "../shared/dom.js"
            four of them scrolling to themselves at `load` and the last one
            winning — which is how a member link ended up 3,090px into News. */
         if (applyRoute(INITIAL_ROUTE)) landOnLoad("sec-news-full")
+        else endArrival("post")
     }
 
     /* ── Assembly ── */
@@ -931,5 +937,6 @@ import { element as el } from "../shared/dom.js"
             // Where the posts would have been, which is what the reader is
             // looking at.
             archiveList.appendChild(el("p", "news-empty", "News could not be loaded."))
+            endArrival("post")
         })
 })()

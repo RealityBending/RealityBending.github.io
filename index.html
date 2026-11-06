@@ -1041,6 +1041,30 @@
                        because the custom properties it sets are inherited
                        from the root. */
                     document.documentElement.classList.add("deep-link")
+
+                    /* A post, a profile or a publication opens in a panel, and
+                       its module cannot open it until every module ahead of it
+                       has loaded and its fetches have come back — the hero on
+                       screen for most of a second, then a jump and a slide.
+                       `data-arriving` draws the empty panel from the first
+                       paint instead (css/07-shared.css), and the module takes
+                       it off once the real panel is open over it — see
+                       `endArrival` in shared/deep-link.js.
+
+                       Hash first, as deep-link.js reads it. A legacy hash
+                       names its kind by prefix; a generated page says it in
+                       `data-panel`, because a member's route has no prefix and
+                       only the set of folders could tell one from a typo. The
+                       timeout is the failsafe: a module that never runs must
+                       not leave the page under a blank panel. */
+                    var hash = window.location.hash.slice(1)
+                    var arriving = hash ? (hash.match(/^(post|pub)-/) || [])[1] : document.body.dataset.panel
+                    if (arriving) {
+                        document.documentElement.setAttribute("data-arriving", arriving)
+                        setTimeout(function () {
+                            document.documentElement.removeAttribute("data-arriving")
+                        }, 6000)
+                    }
                 }
 
                 /* ── The pre-rendered content, removed before it is ever seen ──

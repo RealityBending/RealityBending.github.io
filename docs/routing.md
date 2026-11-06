@@ -238,6 +238,54 @@ instantly on arrival and smoothly when a click in the page asks for it. A plain
 resolves a fragment once, against a page whose sections are still empty, and
 every manifest here is fetched, so the offsets move afterwards.
 
+### Arriving in a panel
+
+**A link to a post, a profile or a publication shows its panel from the first
+paint.** The module that opens it cannot do so until every module ahead of it
+has loaded and its fetches are back — measured locally on a post, 3.5s of
+hero, then a jump to the section and a 380ms slide. Two things close that, and
+both are needed:
+
+- **The arrival cover.** The same inline bootstrap sets
+  `data-arriving="post|profile|pub"` on `<html>`, and `css/07-shared.css` draws
+  an empty backdrop and panel as `body::before` / `::after`. When the real
+  panel opens over it, its slide is off (each section's own
+  `:root[data-arriving="…"]` rule), and `endArrival(kind, panel)` in
+  `deep-link.js` removes the attribute. The kind comes from a legacy hash's
+  prefix, or else from `body[data-panel]`, which `generate_pages.py` writes.
+  That attribute exists because a member's route has no prefix, so only the set
+  of folders can tell it from a typo.
+- **Preloads.** A generated post, profile or publication page carries
+  `<link rel="preload">`s for what its module will fetch (`preload=` in
+  `build_page`), so the files arrive while the modules are still loading.
+  Measured, every one was back before its module had run.
+
+Five things that are easy to break:
+
+- **Each section ends only its own kind.** News is told about a profile route
+  too, and says "not mine". If that ended any arrival, the cover would come
+  down just before the profile opened under it.
+- **It must end on every outcome**: the panel opening, the route naming
+  nothing, the manifest failing. The bootstrap's 6s timeout is only for a
+  module that never ran. People and Publications open their panel from the
+  manifest alone, so they end it straight after applying the initial route.
+  News waits for a post.json, so it ends it inside `openReader`.
+- **The reflow inside `endArrival` is load-bearing.** The panel's open state
+  has to be computed while its transition is still off. Remove the attribute
+  first and the slide comes back.
+- **The cover copies the panels' values**: the backdrop, the cream, the
+  shadow, 920px, and the profile's 980px, which sits in
+  `css/12-profile-panel.css`. Change a panel and change its cover, or the
+  arrival shows a step.
+- **A preload's href must be byte-identical to what the module fetches**, and
+  `as="fetch" crossorigin` is what lets `fetch()` pick it up. Get either wrong
+  and the file downloads twice, with only a console warning to show for it.
+  That is why a publication's `info.json` path is quoted the way
+  `encodeURIComponent` quotes it, and why it is only preloaded when it exists.
+
+A legacy member hash (`#dominique-makowski`) gets no cover, for the same
+reason the bootstrap cannot recognise one. It lands as it always did.
+
 ## How the page describes itself
 
 The `<head>` block in `index.html`, `shared/page-meta.js`, and the generated
@@ -360,7 +408,9 @@ nothing and cost 51 KB of diff per content edit.
 A generated page *is* `index.html`: same shell, same scripts, same stylesheets,
 with four changes — a head that describes this one thing, a second JSON-LD
 block, `<body data-route="…">`, and a `#prerender` block holding the content as
-plain semantic HTML.
+plain semantic HTML. A post's, a profile's or a publication's page has two
+more: `<body data-panel="…">` and `<link rel="preload">`s for what its module
+will fetch on arrival (see "Arriving in a panel", above).
 
 **The inline bootstrap removes `#prerender` before the first paint.** That one
 line is the whole trick: a reader with JavaScript never sees it, because the

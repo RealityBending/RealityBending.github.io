@@ -35,6 +35,11 @@ same stylesheets — with four changes:
   3. <body data-route="…"> tells deep-link.js which route the page is for
   4. a #prerender block holds the content as plain semantic HTML
 
+and, on a post, a profile or a publication, two more: <body data-panel="…">
+tells the inline bootstrap which panel to draw from the first paint, and
+<link rel="preload">s start what that panel's module will fetch — see
+"Arriving in a panel" in docs/routing.md.
+
 (4) is the whole trick. The inline bootstrap in index.html removes it before
 the first paint, so a reader with JavaScript never sees it — the modules open
 the real panel over the same content, exactly as they do for any other route,
@@ -71,6 +76,11 @@ import re
 import sys
 import textwrap
 from pathlib import Path
+from urllib.parse import quote
+
+# What JavaScript's encodeURIComponent leaves alone, beyond letters and digits —
+# for a URL that must come out byte-identical to one a module builds with it.
+URI_COMPONENT_SAFE = "-_.!~*'()"
 
 # ── Two lines that a notebook does not have ──
 # A Windows console defaults to cp1252 and these scripts print ✓/✗ and names, so
@@ -387,11 +397,20 @@ def build_page(
     prerender,
     jsonld=None,
     canonical=None,
+    panel=None,
+    preload=(),
 ) -> str:
     """One generated page: the shell, re-headed and given its content.
 
     `canonical` overrides the self-canonical for the handful of paths that are a
     second address for a page that already exists — see CANONICAL_ALIASES.
+
+    `panel` is the kind of panel this page opens — "post", "profile" or
+    "pub" — for the inline bootstrap's arrival cover, which cannot work it out
+    from the route: a member's route has no prefix. `preload` names
+    site-relative files that panel's module will `fetch()` on arrival, so the
+    parser starts them rather than the module, which waits behind every module
+    ahead of it. Both are in docs/routing.md, "Arriving in a panel".
     """
     url = SITE_URL + path
     canonical_url = SITE_URL + (canonical or path)
@@ -407,10 +426,17 @@ def build_page(
     # resolves back to the site root wherever the site happens to be mounted.
     # `/news/2023-new-logo/` is two deep; `/news/` is one.
     depth = len([p for p in path.split("/") if p])
+    # Straight after <base>, which is what they resolve against. `as="fetch"`
+    # with `crossorigin` is the pair a plain `fetch()` matches; without either
+    # the browser downloads the file a second time and warns about the first.
+    preloads = "".join(
+        f'\n        <link rel="preload" href="{esc(p)}" as="fetch" crossorigin="anonymous" />'
+        for p in preload
+    )
     out = set_tag(
         out,
         r'<base href="\./" />',
-        f'<base href="{"../" * depth or "./"}" />',
+        f'<base href="{"../" * depth or "./"}" />{preloads}',
         "<base>",
     )
 
@@ -479,12 +505,11 @@ def build_page(
         )
         out = out.replace("    </head>", block, 1)
 
-    out = out.replace("<body>", f'<body data-route="{esc(route)}">', 1)
-    out = out.replace(
-        f'<body data-route="{esc(route)}">',
-        f'<body data-route="{esc(route)}">\n{prerender}',
-        1,
-    )
+    body_tag = f'<body data-route="{esc(route)}"'
+    if panel:
+        body_tag += f' data-panel="{esc(panel)}"'
+    body_tag += ">"
+    out = out.replace("<body>", f"{body_tag}\n{prerender}", 1)
     return out
 
 
@@ -651,6 +676,10 @@ def build_news(shell, posts):
                 image=post.get("image"),
                 prerender=prerender(body),
                 jsonld=jsonld,
+                # Exactly what news.js fetches — MANIFEST_URL, then the
+                # manifest's `file` — or the preload is wasted.
+                panel="post",
+                preload=("news/news_manifest.json", post["file"]),
             ),
         )
         sitemap_urls.append(f"/news/{slug}/")
@@ -742,6 +771,14 @@ def build_people(shell, members):
                 image=m.get("avatar"),
                 prerender=prerender(body),
                 jsonld=jsonld,
+                # The manifest is the whole panel; the memories manifest fills
+                # its Memories block (shared/memories-data.js), which would
+                # otherwise appear after the rest.
+                panel="profile",
+                preload=(
+                    "people/people_manifest.json",
+                    "memories/memories_manifest.json",
+                ),
             ),
         )
         sitemap_urls.append(f"/people/{folder}/")
@@ -1056,6 +1093,18 @@ def build_publications(shell, publications):
                 image=p.get("featured"),
                 prerender=prerender(body),
                 jsonld=jsonld,
+                # The manifest opens the panel; info.json is the abstract, and
+                # is preloaded only when it exists — a preloaded 404 is a
+                # wasted request and a console warning. Quoted the way
+                # publications.js's encodeURIComponent quotes it, or the two
+                # URLs differ and the file is fetched twice.
+                panel="pub",
+                preload=("publications/publications_manifest.json",)
+                + (
+                    (f"publications/{quote(folder, safe=URI_COMPONENT_SAFE)}/info.json",)
+                    if info_path.exists()
+                    else ()
+                ),
             ),
         )
         sitemap_urls.append(f"/publications/{folder}/")

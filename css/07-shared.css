@@ -257,3 +257,43 @@
         transform: none;
     }
 }
+
+/* ── The arrival cover ──
+   Opened on a post, a profile or a publication, the page shows that panel from
+   the first paint — empty — instead of the hero for as long as the modules and
+   their fetches take. The inline bootstrap in index.html sets
+   `data-arriving="<kind>"` on <html>; the section that owns the panel removes
+   it once the real one is open over this (`endArrival`, shared/deep-link.js).
+
+   The three panels share this look — the backdrop, the cream, the shadow — so
+   it is drawn once here, with the same values as `.news-reader`,
+   `.pub-reader`, `.profile-panel` and their backdrops; change them together.
+   What differs stays with its panel: the profile's width, and each panel's
+   rule that opens it without its slide while the attribute is up.
+
+   198, below the real pair (199/200): body::after paints after every child of
+   <body>, so at an equal z-index it would cover the panel it stands in for.
+   The backdrop keeps its pointer events, so nothing under it can be pressed in
+   the meantime. */
+:root[data-arriving] body::before,
+:root[data-arriving] body::after {
+    content: "";
+    position: fixed;
+    z-index: 198;
+}
+
+:root[data-arriving] body::before {
+    inset: 0;
+    background: rgba(7, 10, 18, 0.34);
+    backdrop-filter: blur(6px);
+}
+
+:root[data-arriving] body::after {
+    top: 0;
+    right: 0;
+    width: min(920px, 100vw);
+    height: 100vh;
+    background: linear-gradient(180deg, #fbfaf7 0%, #f4f1eb 100%);
+    box-shadow: -18px 0 56px rgba(7, 12, 22, 0.18);
+    border-left: 1px solid rgba(17, 17, 17, 0.06);
+}

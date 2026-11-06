@@ -2,7 +2,7 @@ import { openImageLightbox } from "../shared/media-lightbox.js"
 import { buildMemoryMeta, getMemoriesManifest } from "../shared/memories-data.js"
 import { registerProfileActions } from "../shared/profile-api.js"
 import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
-import { hrefForRoute, INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRoute } from "../shared/deep-link.js"
+import { endArrival, hrefForRoute, INITIAL_ROUTE, landOnLoad, matchRoute, onRoute, revealSection, writeRoute } from "../shared/deep-link.js"
 import { registerMemberFolders } from "../shared/routes.js"
 import { registerRouteTitle } from "../shared/page-meta.js"
 
@@ -1113,7 +1113,11 @@ import { registerRouteTitle } from "../shared/page-meta.js"
             })
 
             // Armed only when this section owned the route — see news.js.
-            if (applyRoute(INITIAL_ROUTE)) landOnLoad("sec-people-full")
+            const landed = applyRoute(INITIAL_ROUTE)
+            // Opened on a profile, the panel opened just now, over the empty
+            // cover (see endArrival); either way, the cover can go.
+            endArrival("profile", panel)
+            if (landed) landOnLoad("sec-people-full")
 
             registerProfileActions({
                 open: openProfile,
@@ -1408,5 +1412,8 @@ import { registerRouteTitle } from "../shared/page-meta.js"
                 })
             })
         })
-        .catch((err) => console.warn("Could not load people manifest:", err))
+        .catch((err) => {
+            console.warn("Could not load people manifest:", err)
+            endArrival("profile")
+        })
 })()

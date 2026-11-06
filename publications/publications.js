@@ -3,7 +3,7 @@
  */
 import { initMarginTabNav, swapTabPanels } from "../shared/tab-slide.js"
 import { createPager } from "../shared/pager.js"
-import { INITIAL_ROUTE, hrefForRoute, landOnLoad, matchRoute, onRoute, revealSection, writeRoute } from "../shared/deep-link.js"
+import { INITIAL_ROUTE, endArrival, hrefForRoute, landOnLoad, matchRoute, onRoute, revealSection, writeRoute } from "../shared/deep-link.js"
 import { element as el } from "../shared/dom.js"
 import { createRichText } from "../shared/rich-text.js"
 import { openImageLightbox } from "../shared/media-lightbox.js"
@@ -289,6 +289,7 @@ import { registerRouteTitle } from "../shared/page-meta.js"
             const pubs = manifest.publications || []
             if (!pubs.length) {
                 container.textContent = "No publications found."
+                endArrival("pub")
                 return
             }
 
@@ -1303,7 +1304,12 @@ import { registerRouteTitle } from "../shared/page-meta.js"
                 return pub ? pub.title : null
             })
             // Armed only when this section owned the route — see news.js.
-            if (applyRoute(INITIAL_ROUTE)) landOnLoad("sec-publications-full")
+            const landed = applyRoute(INITIAL_ROUTE)
+            // Opened on a publication, the panel opened just now, over the
+            // empty cover (see endArrival); either way, the cover can go. The
+            // abstract arrives in its own time, as it does on a press.
+            endArrival("pub", reader)
+            if (landed) landOnLoad("sec-publications-full")
 
             // â”€â”€ Sort buttons â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             sortBar.querySelectorAll(".pub-sort-btn").forEach((btn) => {
@@ -1461,5 +1467,6 @@ import { registerRouteTitle } from "../shared/page-meta.js"
         })
         .catch((err) => {
             console.warn("publications.js: could not load manifest", err)
+            endArrival("pub")
         })
 })()

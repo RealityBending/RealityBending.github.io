@@ -971,6 +971,8 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
     position: fixed;
     top: 0;
     right: 0;
+    /* The arrival cover in css/07-shared.css copies the width, background,
+       shadow and border; change them together. */
     width: min(920px, 100vw);
     height: 100vh;
     z-index: 200;
@@ -1016,6 +1018,14 @@ a.pub-card__featured-wrap:hover .pub-card__featured {
 .pub-reader__backdrop.is-visible {
     opacity: 1;
     pointer-events: auto;
+}
+
+/* Arriving on a publication, the empty panel is already on screen (the
+   arrival cover, css/07-shared.css), so the real pair opens over it without
+   its slide and fade. */
+:root[data-arriving="pub"] .pub-reader,
+:root[data-arriving="pub"] .pub-reader__backdrop {
+    transition: none;
 }
 
 .pub-reader__body {

@@ -560,6 +560,8 @@
     position: fixed;
     top: 0;
     right: 0;
+    /* The arrival cover in css/07-shared.css copies the width, background,
+       shadow and border; change them together. */
     width: min(920px, 100vw);
     height: 100vh;
     z-index: 200;
@@ -610,6 +612,14 @@
 .news-reader__backdrop.is-visible {
     opacity: 1;
     pointer-events: auto;
+}
+
+/* Arriving on a post, the empty panel is already on screen (the arrival cover,
+   css/07-shared.css), so the real pair opens over it without its slide and
+   fade — sliding in would read as the panel arriving twice. */
+:root[data-arriving="post"] .news-reader,
+:root[data-arriving="post"] .news-reader__backdrop {
+    transition: none;
 }
 
 /* ── The article inside the reader ── */

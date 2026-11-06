@@ -151,7 +151,7 @@ Other notes:
 
 **The reader is the People section's sliding profile panel**, in this section's
 colours: a fixed panel off the right edge, a blurred backdrop, closing on the
-✕, on the backdrop and on Escape. Three things about it:
+✕, on the backdrop and on Escape. Four things about it:
 
 - Its shell rules are **copied from `.profile-panel`, not shared with it** —
   same width behaviour, same 0.38s cubic-bezier, same z-index pair (200 over
@@ -170,6 +170,13 @@ colours: a fixed panel off the right edge, a blurred backdrop, closing on the
   `display: none` to displayed leaves no start position for the transform to
   animate from, and rAF is not always running — in a headless preview pane it
   never fires, and the panel would appear with no slide at all.
+
+- **Arriving on a post, the panel is on screen from the first paint**, empty
+  until the post is in, and opens without its slide. That is shared with the
+  profile and publication panels: [routing.md](routing.md), "Arriving in a
+  panel". The part peculiar to News is that it ends the arrival inside
+  `openReader` rather than beside `applyRoute`, because the post.json is
+  fetched first. A generated post page preloads the manifest and the post.json.
 
 **The index is one view: a grid of cards, three across.** There were two tabs
 here — All posts over rows, Featured over this same grid — and folding the

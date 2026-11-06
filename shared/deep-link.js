@@ -289,3 +289,25 @@ export function landOnLoad(sectionId) {
     if (document.readyState === "complete") return
     window.addEventListener("load", () => revealSection(sectionId), { once: true })
 }
+
+/* ── The arrival cover ──
+   Opened on a post, a profile or a publication, the page shows that panel —
+   empty — from the first paint, rather than the hero for as long as the
+   modules and their fetches take: the inline bootstrap in index.html sets
+   `data-arriving="<kind>"` on <html>, and css/07-shared.css draws it.
+
+   The section that owns the panel ends it, and only its own `kind` — a profile
+   route is not News's business, and News saying "not mine" must not lift the
+   cover a profile is about to open under. It has to end on *every* outcome:
+   the panel opening, the route naming nothing, the manifest failing. The
+   bootstrap's timeout is only for a module that never ran at all.
+
+   `panel` is the real one, when it has just opened. Its open state must be
+   computed while the attribute still turns its transition off, or removing
+   the attribute hands the slide straight back. */
+export function endArrival(kind, panel) {
+    const root = document.documentElement
+    if (root.dataset.arriving !== kind) return
+    if (panel) void panel.offsetWidth
+    delete root.dataset.arriving
+}
